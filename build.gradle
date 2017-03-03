@@ -1,0 +1,78 @@
+buildscript {
+	ext {
+		kotlinVersion = '1.1.0'
+
+	}
+	repositories {
+		mavenCentral()
+    }
+    dependencies {
+        classpath group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin', version: kotlinVersion
+        classpath group: 'org.jetbrains.kotlin', name: 'kotlin-allopen', version: kotlinVersion
+        classpath group: 'org.jetbrains.kotlin', name: 'kotlin-noarg', version: kotlinVersion
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'groovy'
+
+
+jar {
+    baseName = 'chrome-reactive-kotlin'
+    version = '0.0.1-SNAPSHOT'
+}
+
+configurations {
+    ktlint
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+compileKotlin {
+    kotlinOptions.languageVersion = "1.1"
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.8.7'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.7'
+
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlinVersion
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: kotlinVersion
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-runtime', version: kotlinVersion
+	
+	  testCompile group: 'org.spockframework', name: 'spock-core'
+
+    ktlint group: 'com.github.shyiko', name: 'ktlint', version: '0.4.0'
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+}
+
+test {
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
+
+task ktlint(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+}
+
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
+}
