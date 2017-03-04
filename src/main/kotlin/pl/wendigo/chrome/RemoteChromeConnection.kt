@@ -71,29 +71,31 @@ internal class RemoteChromeConnection constructor(
     }
 
     private fun createNewPage() : Single<InspectorTab> {
-        val response = client.newCall(Request.Builder()
-                .url("http://$host:$port/json/new")
-                .build()
-        ).execute()
-
-        if (!response.isSuccessful) {
-            return Single.error(RemoteChromeException("Could not create new page"))
+        return Single.fromCallable {
+            Request.Builder().url("http://$host:$port/json/new").build()
+        }.map {
+            client.newCall(it).execute()
+        }.flatMap {
+            if (it.isSuccessful) {
+                Single.just(readJson(it.body().string(), InspectorTab::class.java))
+            } else {
+                Single.error(RemoteChromeException("Could not create new page"))
+            }
         }
-
-        return Single.just(readJson(response.body().string(), InspectorTab::class.java))
     }
 
     private fun listOpenPages() : Flowable<InspectorTab> {
-        val response = client.newCall(Request.Builder()
-                .url("http://$host:$port/json/list")
-                .build()
-        ).execute()
-
-        if (!response.isSuccessful) {
-            return Flowable.error(RemoteChromeException("Could not query tabs"))
+        return Flowable.fromCallable {
+            Request.Builder().url("http://$host:$port/json/list").build()
+        }.map {
+            client.newCall(it).execute()
+        }.flatMap {
+            if (it.isSuccessful) {
+                Flowable.fromArray(*readJson(it.body().string(), Array<InspectorTab>::class.java))
+            } else {
+                Flowable.error(RemoteChromeException("Could not query tabs"))
+            }
         }
-
-        return Flowable.fromArray(*readJson(response.body().string(), Array<InspectorTab>::class.java))
     }
 
     /**
@@ -109,14 +111,14 @@ internal class RemoteChromeConnection constructor(
         val serialized = mapper.writeValueAsString(request)
         val response = Flowable.fromFuture(responses.getOrPut(request.id, { CompletableFuture() }))
 
-        logger.info("<< Sending {}", request.ident())
+        logger.info("<< Sending {}", request.toLog())
 
         if (!remoteConnection!!.send(serialized)) {
             return Flowable.error(RemoteChromeException("Could not enqueue message"))
         }
 
         return response.doOnSubscribe {
-            logger.info("!! Waiting for {}", request.ident())
+            logger.info("!! Waiting for {}", request.toLog())
         }.subscribeOn(Schedulers.io()).map {
             mapper.treeToValue(it.result, outClazz)
         }
@@ -146,9 +148,8 @@ internal class RemoteChromeConnection constructor(
     override fun onMessage(webSocket: WebSocket?, text: String?) {
         val response = mapper.readValue(text, GenericResponse::class.java)
 
-        logger.info(">> Received {}", response.ident())
+        logger.info(">> Received {}", response.toLog())
 
-        // Response
         if (response.method == null) {
             responses.remove(response.id).let {
                 if (response.error != null) {
@@ -178,8 +179,8 @@ data class GenericResponse(
         val method: String?,
         val params: JsonNode?
 ) {
-    fun ident(): String {
-        return "${method ?: "response"}(id=$id, error=${error?.message ?: "no"})"
+    fun toLog(): String {
+        return "${method ?: "response"}(id=$id, error=${error?.message ?: "no"}, params=$params)"
     }
 }
 
@@ -194,7 +195,7 @@ data class GenericRequest(
     val method: String,
     val params: Any?
 ) {
-    fun ident(): String {
+    fun toLog(): String {
         return "$method(id=$id)"
     }
 }
