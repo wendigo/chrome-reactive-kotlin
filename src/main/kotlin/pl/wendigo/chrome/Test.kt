@@ -1,5 +1,6 @@
 package pl.wendigo.chrome
 
+import io.reactivex.Flowable
 import pl.wendigo.chrome.domain.page.NavigateRequest
 
 class Test {
@@ -9,7 +10,8 @@ class Test {
 
             val api = RemoteChrome.connect("127.0.0.1", 9292)
 
-            api.DOM.enable().concatWith { api.Page.enable() }.concatWith { api.CSS.enable() }
+            Flowable.merge(api.DOM.enable(), api.Page.enable(), api.CSS.enable())
+                .takeLast(1)
                 .flatMap {
                     api.Page.navigate(NavigateRequest(url="http://allegro.pl"))
                 }
