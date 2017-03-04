@@ -1,0 +1,35 @@
+package {{Package}}
+
+/**
+ * RemoteChrome represents session established via chrome's remote debugging protocol.
+ */
+class RemoteChrome internal constructor(private val api: RemoteChromeConnection) {
+    {{#each Protocol.Domains}}
+    /**
+     * {{#if Description}}{{{Description}}}{{else}}Returns {{Name}} domain object.{{/if}}
+     */
+    val {{Name}} : {{Package}}.domain.{{LowerName}}.{{Name}}Domain by lazy {
+        {{Package}}.domain.{{LowerName}}.{{Name}}Domain(api)
+    }
+
+    {{/each}}
+
+    /**
+     * Closes connection to API.
+     */
+    fun Close() {
+      return api.close()
+    }
+
+    companion object {
+        /**
+         * Connects to chrome debugging protocol on host and port.
+         */
+        @kotlin.jvm.Throws(RemoteChromeException::class)
+        fun connect(host: String, port: Int) : RemoteChrome {
+          return RemoteChrome(
+              RemoteChromeConnection(host, port).connect()
+          )
+        }
+    }
+}

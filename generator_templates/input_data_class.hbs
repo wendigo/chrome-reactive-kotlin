@@ -1,0 +1,9 @@
+data class {{SimpleName}}Request (
+    {{#each Parameters}}
+    /**
+     * {{{Description}}}
+     */
+    {{#if Experimental}}@{{Package}}.ProtocolExperimental {{/if}}{{#if Deprecated}}@{{Package}}.ProtocolDeprecated {{/if}}{{{value Name}}} : {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
+
+    {{/each}}
+)
