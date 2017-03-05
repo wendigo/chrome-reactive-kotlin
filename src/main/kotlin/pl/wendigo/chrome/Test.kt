@@ -26,7 +26,7 @@ class Test {
             .subscribe({ println("Finished loading with event " + it);  }, {
               println("Got exception" + it)
             }, {
-                api.Close()
+                api.close()
             })
         }
     }
