@@ -1,12 +1,8 @@
 package pl.wendigo.chrome.domain.domstorage
 
-/*
+/**
  * DOM Storage identifier.
  */
-
-
-
-
 data class StorageId(
   /**
    * Security origin for the storage.
@@ -17,15 +13,10 @@ data class StorageId(
    * Whether the storage is local storage (not session storage).
    */
   val isLocalStorage : Boolean
-
 )
 
-/*
+/**
  * DOM Storage item.
  */
-
-
-
 typealias Item = Array<String>
-
 

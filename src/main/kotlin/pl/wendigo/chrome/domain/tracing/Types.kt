@@ -1,21 +1,13 @@
 package pl.wendigo.chrome.domain.tracing
 
-/*
+/**
  * Configuration for memory dump. Used only when &quot;memory-infra&quot; category is enabled.
  */
-
-
-
-
 typealias MemoryDumpConfig = Map<String,Any>
 
-/*
+/**
  * 
  */
-
-
-
-
 data class TraceConfig(
   /**
    * Controls how the trace buffer stores data.
@@ -56,6 +48,5 @@ data class TraceConfig(
    * Configuration for memory dump triggers. Used only when "memory-infra" category is enabled.
    */
   val memoryDumpConfig : MemoryDumpConfig? = null
-
 )
 

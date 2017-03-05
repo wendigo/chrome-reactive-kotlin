@@ -432,6 +432,11 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 
 
 
+/**
+ * Represents request parameters that can be used with DOM.getDocument method call.
+ *
+ * Returns the root DOM node (and optionally the subtree) to the caller.
+ */
 data class GetDocumentRequest (
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
@@ -446,6 +451,8 @@ data class GetDocumentRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
 data class GetDocumentResponse(
@@ -456,6 +463,11 @@ data class GetDocumentResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.collectClassNamesFromSubtree method call.
+ *
+ * Collects class names for the node with given id and all of it's child nodes.
+ */
 data class CollectClassNamesFromSubtreeRequest (
     /**
      * Id of the node to collect class names.
@@ -465,6 +477,8 @@ data class CollectClassNamesFromSubtreeRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Collects class names for the node with given id and all of it's child nodes.
  */
 data class CollectClassNamesFromSubtreeResponse(
@@ -475,6 +489,11 @@ data class CollectClassNamesFromSubtreeResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.requestChildNodes method call.
+ *
+ * Requests that children of the node with given id are returned to the caller in form of <code>setChildNodes</code> events where not only immediate children are retrieved, but all children down to the specified depth.
+ */
 data class RequestChildNodesRequest (
     /**
      * Id of the node to get children for.
@@ -494,6 +513,11 @@ data class RequestChildNodesRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.querySelector method call.
+ *
+ * Executes <code>querySelector</code> on a given node.
+ */
 data class QuerySelectorRequest (
     /**
      * Id of the node to query upon.
@@ -508,6 +532,8 @@ data class QuerySelectorRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Executes <code>querySelector</code> on a given node.
  */
 data class QuerySelectorResponse(
@@ -518,6 +544,11 @@ data class QuerySelectorResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.querySelectorAll method call.
+ *
+ * Executes <code>querySelectorAll</code> on a given node.
+ */
 data class QuerySelectorAllRequest (
     /**
      * Id of the node to query upon.
@@ -532,6 +563,8 @@ data class QuerySelectorAllRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Executes <code>querySelectorAll</code> on a given node.
  */
 data class QuerySelectorAllResponse(
@@ -542,6 +575,11 @@ data class QuerySelectorAllResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.setNodeName method call.
+ *
+ * Sets node name for a node with given id.
+ */
 data class SetNodeNameRequest (
     /**
      * Id of the node to set name for.
@@ -556,6 +594,8 @@ data class SetNodeNameRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Sets node name for a node with given id.
  */
 data class SetNodeNameResponse(
@@ -566,6 +606,11 @@ data class SetNodeNameResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.setNodeValue method call.
+ *
+ * Sets node value for a node with given id.
+ */
 data class SetNodeValueRequest (
     /**
      * Id of the node to set value for.
@@ -580,6 +625,11 @@ data class SetNodeValueRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.removeNode method call.
+ *
+ * Removes node with given id.
+ */
 data class RemoveNodeRequest (
     /**
      * Id of the node to remove.
@@ -589,6 +639,11 @@ data class RemoveNodeRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.setAttributeValue method call.
+ *
+ * Sets attribute for an element with given id.
+ */
 data class SetAttributeValueRequest (
     /**
      * Id of the element to set attribute for.
@@ -608,6 +663,11 @@ data class SetAttributeValueRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.setAttributesAsText method call.
+ *
+ * Sets attributes on element with given id. This method is useful when user edits some existing attribute value and types in several attribute name/value pairs.
+ */
 data class SetAttributesAsTextRequest (
     /**
      * Id of the element to set attributes for.
@@ -627,6 +687,11 @@ data class SetAttributesAsTextRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.removeAttribute method call.
+ *
+ * Removes attribute with given name from an element with given id.
+ */
 data class RemoveAttributeRequest (
     /**
      * Id of the element to remove attribute from.
@@ -641,6 +706,11 @@ data class RemoveAttributeRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.getOuterHTML method call.
+ *
+ * Returns node's HTML markup.
+ */
 data class GetOuterHTMLRequest (
     /**
      * Id of the node to get markup for.
@@ -650,6 +720,8 @@ data class GetOuterHTMLRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Returns node's HTML markup.
  */
 data class GetOuterHTMLResponse(
@@ -660,6 +732,11 @@ data class GetOuterHTMLResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.setOuterHTML method call.
+ *
+ * Sets node HTML markup, returns new node id.
+ */
 data class SetOuterHTMLRequest (
     /**
      * Id of the node to set markup for.
@@ -674,6 +751,11 @@ data class SetOuterHTMLRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.performSearch method call.
+ *
+ * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
+ */
 data class PerformSearchRequest (
     /**
      * Plain text or query selector or XPath search query.
@@ -688,6 +770,8 @@ data class PerformSearchRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
  */
 data class PerformSearchResponse(
@@ -703,6 +787,11 @@ data class PerformSearchResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.getSearchResults method call.
+ *
+ * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
+ */
 data class GetSearchResultsRequest (
     /**
      * Unique search session identifier.
@@ -722,6 +811,8 @@ data class GetSearchResultsRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
  */
 data class GetSearchResultsResponse(
@@ -732,6 +823,11 @@ data class GetSearchResultsResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.discardSearchResults method call.
+ *
+ * Discards search results from the session with the given id. <code>getSearchResults</code> should no longer be called for that search.
+ */
 data class DiscardSearchResultsRequest (
     /**
      * Unique search session identifier.
@@ -741,6 +837,11 @@ data class DiscardSearchResultsRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.requestNode method call.
+ *
+ * Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.
+ */
 data class RequestNodeRequest (
     /**
      * JavaScript object id to convert into node.
@@ -750,6 +851,8 @@ data class RequestNodeRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.
  */
 data class RequestNodeResponse(
@@ -760,6 +863,11 @@ data class RequestNodeResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.setInspectMode method call.
+ *
+ * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
+ */
 data class SetInspectModeRequest (
     /**
      * Set an inspection mode.
@@ -774,6 +882,11 @@ data class SetInspectModeRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.highlightRect method call.
+ *
+ * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
+ */
 data class HighlightRectRequest (
     /**
      * X coordinate
@@ -808,6 +921,11 @@ data class HighlightRectRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.highlightQuad method call.
+ *
+ * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
+ */
 data class HighlightQuadRequest (
     /**
      * Quad to highlight
@@ -827,6 +945,11 @@ data class HighlightQuadRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.highlightNode method call.
+ *
+ * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
+ */
 data class HighlightNodeRequest (
     /**
      * A descriptor for the highlight appearance.
@@ -853,6 +976,11 @@ data class HighlightNodeRequest (
 
 
 
+/**
+ * Represents request parameters that can be used with DOM.highlightFrame method call.
+ *
+ * Highlights owner element of the frame with given id.
+ */
 data class HighlightFrameRequest (
     /**
      * Identifier of the frame to highlight.
@@ -872,6 +1000,11 @@ data class HighlightFrameRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.pushNodeByPathToFrontend method call.
+ *
+ * Requests that the node is sent to the caller given its path. // FIXME, use XPath
+ */
 data class PushNodeByPathToFrontendRequest (
     /**
      * Path to node in the proprietary format.
@@ -881,6 +1014,8 @@ data class PushNodeByPathToFrontendRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Requests that the node is sent to the caller given its path. // FIXME, use XPath
  */
 data class PushNodeByPathToFrontendResponse(
@@ -891,6 +1026,11 @@ data class PushNodeByPathToFrontendResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.pushNodesByBackendIdsToFrontend method call.
+ *
+ * Requests that a batch of nodes is sent to the caller given their backend node ids.
+ */
 data class PushNodesByBackendIdsToFrontendRequest (
     /**
      * The array of backend node ids.
@@ -900,6 +1040,8 @@ data class PushNodesByBackendIdsToFrontendRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Requests that a batch of nodes is sent to the caller given their backend node ids.
  */
 data class PushNodesByBackendIdsToFrontendResponse(
@@ -910,6 +1052,11 @@ data class PushNodesByBackendIdsToFrontendResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.setInspectedNode method call.
+ *
+ * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
+ */
 data class SetInspectedNodeRequest (
     /**
      * DOM node id to be accessible by means of $x command line API.
@@ -919,6 +1066,11 @@ data class SetInspectedNodeRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.resolveNode method call.
+ *
+ * Resolves JavaScript node object for given node id.
+ */
 data class ResolveNodeRequest (
     /**
      * Id of the node to resolve.
@@ -933,6 +1085,8 @@ data class ResolveNodeRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Resolves JavaScript node object for given node id.
  */
 data class ResolveNodeResponse(
@@ -943,6 +1097,11 @@ data class ResolveNodeResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.getAttributes method call.
+ *
+ * Returns attributes for the specified node.
+ */
 data class GetAttributesRequest (
     /**
      * Id of the node to retrieve attibutes for.
@@ -952,6 +1111,8 @@ data class GetAttributesRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Returns attributes for the specified node.
  */
 data class GetAttributesResponse(
@@ -962,6 +1123,11 @@ data class GetAttributesResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.copyTo method call.
+ *
+ * Creates a deep copy of the specified node and places it into the target container before the given anchor.
+ */
 data class CopyToRequest (
     /**
      * Id of the node to copy.
@@ -981,6 +1147,8 @@ data class CopyToRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Creates a deep copy of the specified node and places it into the target container before the given anchor.
  */
 data class CopyToResponse(
@@ -991,6 +1159,11 @@ data class CopyToResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.moveTo method call.
+ *
+ * Moves node into the new container, places it before the given anchor.
+ */
 data class MoveToRequest (
     /**
      * Id of the node to move.
@@ -1010,6 +1183,8 @@ data class MoveToRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Moves node into the new container, places it before the given anchor.
  */
 data class MoveToResponse(
@@ -1026,6 +1201,11 @@ data class MoveToResponse(
 
 
 
+/**
+ * Represents request parameters that can be used with DOM.focus method call.
+ *
+ * Focuses the given element.
+ */
 data class FocusRequest (
     /**
      * Id of the node to focus.
@@ -1035,6 +1215,11 @@ data class FocusRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.setFileInputFiles method call.
+ *
+ * Sets files for the given file input element.
+ */
 data class SetFileInputFilesRequest (
     /**
      * Id of the file input node to set files for.
@@ -1049,6 +1234,11 @@ data class SetFileInputFilesRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOM.getBoxModel method call.
+ *
+ * Returns boxes for the currently selected nodes.
+ */
 data class GetBoxModelRequest (
     /**
      * Id of the node to get box model for.
@@ -1058,6 +1248,8 @@ data class GetBoxModelRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Returns boxes for the currently selected nodes.
  */
 data class GetBoxModelResponse(
@@ -1068,6 +1260,11 @@ data class GetBoxModelResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.getNodeForLocation method call.
+ *
+ * Returns node id at given location.
+ */
 data class GetNodeForLocationRequest (
     /**
      * X coordinate.
@@ -1082,6 +1279,8 @@ data class GetNodeForLocationRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Returns node id at given location.
  */
 data class GetNodeForLocationResponse(
@@ -1092,6 +1291,11 @@ data class GetNodeForLocationResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.getRelayoutBoundary method call.
+ *
+ * Returns the id of the nearest ancestor that is a relayout boundary.
+ */
 data class GetRelayoutBoundaryRequest (
     /**
      * Id of the node.
@@ -1101,6 +1305,8 @@ data class GetRelayoutBoundaryRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Returns the id of the nearest ancestor that is a relayout boundary.
  */
 data class GetRelayoutBoundaryResponse(
@@ -1111,6 +1317,11 @@ data class GetRelayoutBoundaryResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOM.getHighlightObjectForTest method call.
+ *
+ * For testing.
+ */
 data class GetHighlightObjectForTestRequest (
     /**
      * Id of the node to get highlight object for.
@@ -1120,6 +1331,8 @@ data class GetHighlightObjectForTestRequest (
 )
 
 /**
+ * Represents response from DOM. method call.
+ *
  * For testing.
  */
 data class GetHighlightObjectForTestResponse(
@@ -1133,6 +1346,8 @@ data class GetHighlightObjectForTestResponse(
 
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code>.
  */
 data class InspectNodeRequestedEvent(
@@ -1144,6 +1359,8 @@ data class InspectNodeRequestedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "inspectNodeRequested")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Fired when backend wants to provide client with the missing DOM structure. This happens upon most of the calls requesting node ids.
  */
 data class SetChildNodesEvent(
@@ -1160,6 +1377,8 @@ data class SetChildNodesEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "setChildNodes")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Fired when <code>Element</code>'s attribute is modified.
  */
 data class AttributeModifiedEvent(
@@ -1181,6 +1400,8 @@ data class AttributeModifiedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "attributeModified")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Fired when <code>Element</code>'s attribute is removed.
  */
 data class AttributeRemovedEvent(
@@ -1197,6 +1418,8 @@ data class AttributeRemovedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "attributeRemoved")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Fired when <code>Element</code>'s inline style is modified via a CSS property modification.
  */
 data class InlineStyleInvalidatedEvent(
@@ -1208,6 +1431,8 @@ data class InlineStyleInvalidatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "inlineStyleInvalidated")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Mirrors <code>DOMCharacterDataModified</code> event.
  */
 data class CharacterDataModifiedEvent(
@@ -1224,6 +1449,8 @@ data class CharacterDataModifiedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "characterDataModified")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Fired when <code>Container</code>'s child node count has changed.
  */
 data class ChildNodeCountUpdatedEvent(
@@ -1240,6 +1467,8 @@ data class ChildNodeCountUpdatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeCountUpdated")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Mirrors <code>DOMNodeInserted</code> event.
  */
 data class ChildNodeInsertedEvent(
@@ -1261,6 +1490,8 @@ data class ChildNodeInsertedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeInserted")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Mirrors <code>DOMNodeRemoved</code> event.
  */
 data class ChildNodeRemovedEvent(
@@ -1277,6 +1508,8 @@ data class ChildNodeRemovedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeRemoved")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Called when shadow root is pushed into the element.
  */
 data class ShadowRootPushedEvent(
@@ -1293,6 +1526,8 @@ data class ShadowRootPushedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "shadowRootPushed")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Called when shadow root is popped from the element.
  */
 data class ShadowRootPoppedEvent(
@@ -1309,6 +1544,8 @@ data class ShadowRootPoppedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "shadowRootPopped")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Called when a pseudo element is added to an element.
  */
 data class PseudoElementAddedEvent(
@@ -1325,6 +1562,8 @@ data class PseudoElementAddedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "pseudoElementAdded")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Called when a pseudo element is removed from an element.
  */
 data class PseudoElementRemovedEvent(
@@ -1341,6 +1580,8 @@ data class PseudoElementRemovedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "pseudoElementRemoved")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * Called when distrubution is changed.
  */
 data class DistributedNodesUpdatedEvent(
@@ -1357,6 +1598,8 @@ data class DistributedNodesUpdatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "distributedNodesUpdated")
 
 /**
+ * Represents response from DOM. method call.
+ *
  * 
  */
 data class NodeHighlightRequestedEvent(

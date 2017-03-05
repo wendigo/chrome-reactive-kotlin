@@ -1,30 +1,18 @@
 package pl.wendigo.chrome.domain.debugger
 
-/*
+/**
  * Breakpoint identifier.
  */
 typealias BreakpointId = String
 
-
-
-
-
-/*
+/**
  * Call frame identifier.
  */
 typealias CallFrameId = String
 
-
-
-
-
-/*
+/**
  * Location in the source code.
  */
-
-
-
-
 data class Location(
   /**
    * Script identifier as reported in the <code>Debugger.scriptParsed</code>.
@@ -40,16 +28,11 @@ data class Location(
    * Column number in the script (0-based).
    */
   val columnNumber : Int? = null
-
 )
 
-/*
+/**
  * Location in the source code.
  */
-
-
-
-
 data class ScriptPosition(
   /**
    * 
@@ -60,16 +43,11 @@ data class ScriptPosition(
    * 
    */
   val columnNumber : Int
-
 )
 
-/*
+/**
  * JavaScript call frame. Array of call frames form the call stack.
  */
-
-
-
-
 data class CallFrame(
   /**
    * Call frame identifier. This identifier is only valid while the virtual machine is paused.
@@ -105,16 +83,11 @@ data class CallFrame(
    * The value being returned, if the function is at return point.
    */
   val returnValue : pl.wendigo.chrome.domain.runtime.RemoteObject? = null
-
 )
 
-/*
+/**
  * Scope description.
  */
-
-
-
-
 data class Scope(
   /**
    * Scope type.
@@ -140,16 +113,11 @@ data class Scope(
    * Location in the source code where scope ends
    */
   val endLocation : Location? = null
-
 )
 
-/*
+/**
  * Search match for resource.
  */
-
-
-
-
 data class SearchMatch(
   /**
    * Line number in resource content.
@@ -160,6 +128,5 @@ data class SearchMatch(
    * Line with match content.
    */
   val lineContent : String
-
 )
 

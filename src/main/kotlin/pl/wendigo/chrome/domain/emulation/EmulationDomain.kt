@@ -132,6 +132,11 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
    }
 }
 
+/**
+ * Represents request parameters that can be used with Emulation.setDeviceMetricsOverride method call.
+ *
+ * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
+ */
 data class SetDeviceMetricsOverrideRequest (
     /**
      * Overriding width value in pixels (minimum 0, maximum 10000000). 0 disables the override.
@@ -203,6 +208,11 @@ data class SetDeviceMetricsOverrideRequest (
 
 
 
+/**
+ * Represents request parameters that can be used with Emulation.forceViewport method call.
+ *
+ * Overrides the visible area of the page. The change is hidden from the page, i.e. the observable scroll position and page scale does not change. In effect, the command moves the specified area of the page into the top-left corner of the frame.
+ */
 data class ForceViewportRequest (
     /**
      * X coordinate of top-left corner of the area (CSS pixels).
@@ -226,6 +236,11 @@ data class ForceViewportRequest (
 
 
 
+/**
+ * Represents request parameters that can be used with Emulation.setPageScaleFactor method call.
+ *
+ * Sets a specified page scale factor.
+ */
 data class SetPageScaleFactorRequest (
     /**
      * Page scale factor.
@@ -235,6 +250,11 @@ data class SetPageScaleFactorRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Emulation.setVisibleSize method call.
+ *
+ * Resizes the frame/viewport of the page. Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported on Android.
+ */
 data class SetVisibleSizeRequest (
     /**
      * Frame width (DIP).
@@ -249,6 +269,11 @@ data class SetVisibleSizeRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Emulation.setScriptExecutionDisabled method call.
+ *
+ * Switches script execution in the page.
+ */
 data class SetScriptExecutionDisabledRequest (
     /**
      * Whether script execution should be disabled in the page.
@@ -258,6 +283,11 @@ data class SetScriptExecutionDisabledRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Emulation.setGeolocationOverride method call.
+ *
+ * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
+ */
 data class SetGeolocationOverrideRequest (
     /**
      * Mock latitude
@@ -279,6 +309,11 @@ data class SetGeolocationOverrideRequest (
 
 
 
+/**
+ * Represents request parameters that can be used with Emulation.setTouchEmulationEnabled method call.
+ *
+ * Toggles mouse event-based touch event emulation.
+ */
 data class SetTouchEmulationEnabledRequest (
     /**
      * Whether the touch event emulation should be enabled.
@@ -293,6 +328,11 @@ data class SetTouchEmulationEnabledRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Emulation.setEmulatedMedia method call.
+ *
+ * Emulates the given media for CSS media queries.
+ */
 data class SetEmulatedMediaRequest (
     /**
      * Media type to emulate. Empty string disables the override.
@@ -302,6 +342,11 @@ data class SetEmulatedMediaRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Emulation.setCPUThrottlingRate method call.
+ *
+ * Enables CPU throttling to emulate slow CPUs.
+ */
 data class SetCPUThrottlingRateRequest (
     /**
      * Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc).
@@ -313,6 +358,8 @@ data class SetCPUThrottlingRateRequest (
 
 
 /**
+ * Represents response from Emulation. method call.
+ *
  * Tells whether emulation is supported.
  */
 data class CanEmulateResponse(
@@ -323,6 +370,11 @@ data class CanEmulateResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Emulation.setVirtualTimePolicy method call.
+ *
+ * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets the current virtual time policy.  Note this supersedes any previous time budget.
+ */
 data class SetVirtualTimePolicyRequest (
     /**
      * 

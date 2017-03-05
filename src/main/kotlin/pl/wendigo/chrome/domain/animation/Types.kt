@@ -1,12 +1,8 @@
 package pl.wendigo.chrome.domain.animation
 
-/*
+/**
  * Animation instance.
  */
-
-
-
-
 data class Animation(
   /**
    * <code>Animation</code>'s id.
@@ -57,16 +53,11 @@ data class Animation(
    * A unique ID for <code>Animation</code> representing the sources that triggered this CSS animation/transition.
    */
   val cssId : String? = null
-
 )
 
-/*
+/**
  * AnimationEffect instance
  */
-
-
-
-
 data class AnimationEffect(
   /**
    * <code>AnimationEffect</code>'s delay.
@@ -117,16 +108,11 @@ data class AnimationEffect(
    * <code>AnimationEffect</code>'s timing function.
    */
   val easing : String
-
 )
 
-/*
+/**
  * Keyframes Rule
  */
-
-
-
-
 data class KeyframesRule(
   /**
    * CSS keyframed animation's name.
@@ -137,16 +123,11 @@ data class KeyframesRule(
    * List of animation keyframes.
    */
   val keyframes : Array<KeyframeStyle>
-
 )
 
-/*
+/**
  * Keyframe Style
  */
-
-
-
-
 data class KeyframeStyle(
   /**
    * Keyframe's time offset.
@@ -157,6 +138,5 @@ data class KeyframeStyle(
    * <code>AnimationEffect</code>'s timing function.
    */
   val easing : String
-
 )
 

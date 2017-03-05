@@ -30,6 +30,11 @@ package pl.wendigo.chrome.domain.tethering
    }
 }
 
+/**
+ * Represents request parameters that can be used with Tethering.bind method call.
+ *
+ * Request browser port binding.
+ */
 data class BindRequest (
     /**
      * Port number to bind.
@@ -39,6 +44,11 @@ data class BindRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Tethering.unbind method call.
+ *
+ * Request browser port unbinding.
+ */
 data class UnbindRequest (
     /**
      * Port number to unbind.
@@ -50,6 +60,8 @@ data class UnbindRequest (
 
 
 /**
+ * Represents response from Tethering. method call.
+ *
  * Informs that port was successfully bound and got a specified connection id.
  */
 data class AcceptedEvent(

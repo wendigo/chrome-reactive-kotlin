@@ -76,6 +76,11 @@ package pl.wendigo.chrome.domain.domstorage
 
 
 
+/**
+ * Represents request parameters that can be used with DOMStorage.getDOMStorageItems method call.
+ *
+ * 
+ */
 data class GetDOMStorageItemsRequest (
     /**
      * 
@@ -85,6 +90,8 @@ data class GetDOMStorageItemsRequest (
 )
 
 /**
+ * Represents response from DOMStorage. method call.
+ *
  * 
  */
 data class GetDOMStorageItemsResponse(
@@ -95,6 +102,11 @@ data class GetDOMStorageItemsResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with DOMStorage.setDOMStorageItem method call.
+ *
+ * 
+ */
 data class SetDOMStorageItemRequest (
     /**
      * 
@@ -114,6 +126,11 @@ data class SetDOMStorageItemRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOMStorage.removeDOMStorageItem method call.
+ *
+ * 
+ */
 data class RemoveDOMStorageItemRequest (
     /**
      * 
@@ -130,6 +147,8 @@ data class RemoveDOMStorageItemRequest (
 
 
 /**
+ * Represents response from DOMStorage. method call.
+ *
  * 
  */
 data class DomStorageItemsClearedEvent(
@@ -141,6 +160,8 @@ data class DomStorageItemsClearedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOMStorage", protocolEventName = "domStorageItemsCleared")
 
 /**
+ * Represents response from DOMStorage. method call.
+ *
  * 
  */
 data class DomStorageItemRemovedEvent(
@@ -157,6 +178,8 @@ data class DomStorageItemRemovedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOMStorage", protocolEventName = "domStorageItemRemoved")
 
 /**
+ * Represents response from DOMStorage. method call.
+ *
  * 
  */
 data class DomStorageItemAddedEvent(
@@ -178,6 +201,8 @@ data class DomStorageItemAddedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOMStorage", protocolEventName = "domStorageItemAdded")
 
 /**
+ * Represents response from DOMStorage. method call.
+ *
  * 
  */
 data class DomStorageItemUpdatedEvent(

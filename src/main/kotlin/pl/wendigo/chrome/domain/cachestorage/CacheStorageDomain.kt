@@ -37,6 +37,11 @@ package pl.wendigo.chrome.domain.cachestorage
 
   }
 
+/**
+ * Represents request parameters that can be used with CacheStorage.requestCacheNames method call.
+ *
+ * Requests cache names.
+ */
 data class RequestCacheNamesRequest (
     /**
      * Security origin.
@@ -46,6 +51,8 @@ data class RequestCacheNamesRequest (
 )
 
 /**
+ * Represents response from CacheStorage. method call.
+ *
  * Requests cache names.
  */
 data class RequestCacheNamesResponse(
@@ -56,6 +63,11 @@ data class RequestCacheNamesResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with CacheStorage.requestEntries method call.
+ *
+ * Requests data from cache.
+ */
 data class RequestEntriesRequest (
     /**
      * ID of cache to get entries from.
@@ -75,6 +87,8 @@ data class RequestEntriesRequest (
 )
 
 /**
+ * Represents response from CacheStorage. method call.
+ *
  * Requests data from cache.
  */
 data class RequestEntriesResponse(
@@ -90,6 +104,11 @@ data class RequestEntriesResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with CacheStorage.deleteCache method call.
+ *
+ * Deletes a cache.
+ */
 data class DeleteCacheRequest (
     /**
      * Id of cache for deletion.
@@ -99,6 +118,11 @@ data class DeleteCacheRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with CacheStorage.deleteEntry method call.
+ *
+ * Deletes a cache entry.
+ */
 data class DeleteEntryRequest (
     /**
      * Id of cache where the entry will be deleted.

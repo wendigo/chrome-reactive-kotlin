@@ -1,21 +1,13 @@
 package pl.wendigo.chrome.domain.domdebugger
 
-/*
+/**
  * DOM breakpoint type.
  */
 typealias DOMBreakpointType = String
 
-
-
-
-
-/*
+/**
  * Object event listener.
  */
-
-
-
-
 data class EventListener(
   /**
    * <code>EventListener</code>'s type.
@@ -66,6 +58,5 @@ data class EventListener(
    * Event listener remove function.
    */
   val removeFunction : pl.wendigo.chrome.domain.runtime.RemoteObject? = null
-
 )
 

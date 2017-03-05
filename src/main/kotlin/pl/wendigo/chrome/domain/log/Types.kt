@@ -1,12 +1,8 @@
 package pl.wendigo.chrome.domain.log
 
-/*
+/**
  * Log entry.
  */
-
-
-
-
 data class LogEntry(
   /**
    * Log entry source.
@@ -52,16 +48,11 @@ data class LogEntry(
    * Identifier of the worker associated with this entry.
    */
   val workerId : String? = null
-
 )
 
-/*
+/**
  * Violation configuration setting.
  */
-
-
-
-
 data class ViolationSetting(
   /**
    * Violation type.
@@ -72,6 +63,5 @@ data class ViolationSetting(
    * Time threshold to trigger upon.
    */
   val threshold : Double
-
 )
 

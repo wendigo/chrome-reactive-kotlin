@@ -1,12 +1,8 @@
 package pl.wendigo.chrome.domain.applicationcache
 
-/*
+/**
  * Detailed application cache resource information.
  */
-
-
-
-
 data class ApplicationCacheResource(
   /**
    * Resource url.
@@ -22,16 +18,11 @@ data class ApplicationCacheResource(
    * Resource type.
    */
   val type : String
-
 )
 
-/*
+/**
  * Detailed application cache information.
  */
-
-
-
-
 data class ApplicationCache(
   /**
    * Manifest URL.
@@ -57,16 +48,11 @@ data class ApplicationCache(
    * Application cache resources.
    */
   val resources : Array<ApplicationCacheResource>
-
 )
 
-/*
+/**
  * Frame identifier - manifest URL pair.
  */
-
-
-
-
 data class FrameWithManifest(
   /**
    * Frame identifier.
@@ -82,6 +68,5 @@ data class FrameWithManifest(
    * Application cache status.
    */
   val status : Int
-
 )
 

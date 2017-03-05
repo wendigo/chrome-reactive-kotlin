@@ -62,6 +62,11 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
 
 
 
+/**
+ * Represents request parameters that can be used with Profiler.setSamplingInterval method call.
+ *
+ * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
+ */
 data class SetSamplingIntervalRequest (
     /**
      * New sampling interval in microseconds.
@@ -75,6 +80,8 @@ data class SetSamplingIntervalRequest (
 
 
 /**
+ * Represents response from Profiler. method call.
+ *
  * 
  */
 data class StopResponse(
@@ -87,6 +94,8 @@ data class StopResponse(
 
 
 /**
+ * Represents response from Profiler. method call.
+ *
  * Sent when new profile recodring is started using console.profile() call.
  */
 data class ConsoleProfileStartedEvent(
@@ -108,6 +117,8 @@ data class ConsoleProfileStartedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Profiler", protocolEventName = "consoleProfileStarted")
 
 /**
+ * Represents response from Profiler. method call.
+ *
  * 
  */
 data class ConsoleProfileFinishedEvent(

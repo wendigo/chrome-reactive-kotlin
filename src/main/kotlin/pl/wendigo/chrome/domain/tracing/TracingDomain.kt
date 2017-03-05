@@ -65,6 +65,11 @@ package pl.wendigo.chrome.domain.tracing
    }
 }
 
+/**
+ * Represents request parameters that can be used with Tracing.start method call.
+ *
+ * Start trace events collection.
+ */
 data class StartRequest (
     /**
      * Category/tag filter
@@ -98,6 +103,8 @@ data class StartRequest (
 
 
 /**
+ * Represents response from Tracing. method call.
+ *
  * Gets supported tracing categories.
  */
 data class GetCategoriesResponse(
@@ -110,6 +117,8 @@ data class GetCategoriesResponse(
 
 
 /**
+ * Represents response from Tracing. method call.
+ *
  * Request a global memory dump.
  */
 data class RequestMemoryDumpResponse(
@@ -125,6 +134,11 @@ data class RequestMemoryDumpResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Tracing.recordClockSyncMarker method call.
+ *
+ * Record a clock sync marker in the trace.
+ */
 data class RecordClockSyncMarkerRequest (
     /**
      * The ID of this clock sync marker
@@ -136,6 +150,8 @@ data class RecordClockSyncMarkerRequest (
 
 
 /**
+ * Represents response from Tracing. method call.
+ *
  * Contains an bucket of collected trace events. When tracing is stopped collected events will be send as a sequence of dataCollected events followed by tracingComplete event.
  */
 data class DataCollectedEvent(
@@ -147,6 +163,8 @@ data class DataCollectedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Tracing", protocolEventName = "dataCollected")
 
 /**
+ * Represents response from Tracing. method call.
+ *
  * Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via dataCollected events.
  */
 data class TracingCompleteEvent(
@@ -158,6 +176,8 @@ data class TracingCompleteEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Tracing", protocolEventName = "tracingComplete")
 
 /**
+ * Represents response from Tracing. method call.
+ *
  * 
  */
 data class BufferUsageEvent(

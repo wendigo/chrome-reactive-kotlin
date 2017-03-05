@@ -412,6 +412,11 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 
 
 
+/**
+ * Represents request parameters that can be used with Page.addScriptToEvaluateOnLoad method call.
+ *
+ * 
+ */
 data class AddScriptToEvaluateOnLoadRequest (
     /**
      * 
@@ -421,6 +426,8 @@ data class AddScriptToEvaluateOnLoadRequest (
 )
 
 /**
+ * Represents response from Page. method call.
+ *
  * 
  */
 data class AddScriptToEvaluateOnLoadResponse(
@@ -431,6 +438,11 @@ data class AddScriptToEvaluateOnLoadResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Page.removeScriptToEvaluateOnLoad method call.
+ *
+ * 
+ */
 data class RemoveScriptToEvaluateOnLoadRequest (
     /**
      * 
@@ -440,6 +452,11 @@ data class RemoveScriptToEvaluateOnLoadRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Page.setAutoAttachToCreatedPages method call.
+ *
+ * Controls whether browser will open a new inspector window for connected pages.
+ */
 data class SetAutoAttachToCreatedPagesRequest (
     /**
      * If true, browser will open a new inspector window for every page created from this one.
@@ -449,6 +466,11 @@ data class SetAutoAttachToCreatedPagesRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Page.reload method call.
+ *
+ * Reloads given page optionally ignoring the cache.
+ */
 data class ReloadRequest (
     /**
      * If true, browser cache is ignored (as if the user pressed Shift+refresh).
@@ -463,6 +485,11 @@ data class ReloadRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Page.navigate method call.
+ *
+ * Navigates current page to the given URL.
+ */
 data class NavigateRequest (
     /**
      * URL to navigate the page to.
@@ -472,6 +499,8 @@ data class NavigateRequest (
 )
 
 /**
+ * Represents response from Page. method call.
+ *
  * Navigates current page to the given URL.
  */
 data class NavigateResponse(
@@ -486,6 +515,8 @@ data class NavigateResponse(
 
 
 /**
+ * Represents response from Page. method call.
+ *
  * Returns navigation history for the current page.
  */
 data class GetNavigationHistoryResponse(
@@ -501,6 +532,11 @@ data class GetNavigationHistoryResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Page.navigateToHistoryEntry method call.
+ *
+ * Navigates current page to the given history entry.
+ */
 data class NavigateToHistoryEntryRequest (
     /**
      * Unique id of the entry to navigate to.
@@ -512,6 +548,8 @@ data class NavigateToHistoryEntryRequest (
 
 
 /**
+ * Represents response from Page. method call.
+ *
  * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
  */
 data class GetCookiesResponse(
@@ -522,6 +560,11 @@ data class GetCookiesResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Page.deleteCookie method call.
+ *
+ * Deletes browser cookie with given name, domain and path.
+ */
 data class DeleteCookieRequest (
     /**
      * Name of the cookie to remove.
@@ -538,6 +581,8 @@ data class DeleteCookieRequest (
 
 
 /**
+ * Represents response from Page. method call.
+ *
  * Returns present frame / resource tree structure.
  */
 data class GetResourceTreeResponse(
@@ -548,6 +593,11 @@ data class GetResourceTreeResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Page.getResourceContent method call.
+ *
+ * Returns content of the given resource.
+ */
 data class GetResourceContentRequest (
     /**
      * Frame id to get resource for.
@@ -562,6 +612,8 @@ data class GetResourceContentRequest (
 )
 
 /**
+ * Represents response from Page. method call.
+ *
  * Returns content of the given resource.
  */
 data class GetResourceContentResponse(
@@ -577,6 +629,11 @@ data class GetResourceContentResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Page.searchInResource method call.
+ *
+ * Searches for given string in resource content.
+ */
 data class SearchInResourceRequest (
     /**
      * Frame id for resource to search in.
@@ -606,6 +663,8 @@ data class SearchInResourceRequest (
 )
 
 /**
+ * Represents response from Page. method call.
+ *
  * Searches for given string in resource content.
  */
 data class SearchInResourceResponse(
@@ -616,6 +675,11 @@ data class SearchInResourceResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Page.setDocumentContent method call.
+ *
+ * Sets given markup as the document's HTML.
+ */
 data class SetDocumentContentRequest (
     /**
      * Frame id to set HTML for.
@@ -630,6 +694,11 @@ data class SetDocumentContentRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Page.setDeviceMetricsOverride method call.
+ *
+ * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
+ */
 data class SetDeviceMetricsOverrideRequest (
     /**
      * Overriding width value in pixels (minimum 0, maximum 10000000). 0 disables the override.
@@ -701,6 +770,11 @@ data class SetDeviceMetricsOverrideRequest (
 
 
 
+/**
+ * Represents request parameters that can be used with Page.setGeolocationOverride method call.
+ *
+ * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
+ */
 data class SetGeolocationOverrideRequest (
     /**
      * Mock latitude
@@ -722,6 +796,11 @@ data class SetGeolocationOverrideRequest (
 
 
 
+/**
+ * Represents request parameters that can be used with Page.setDeviceOrientationOverride method call.
+ *
+ * Overrides the Device Orientation.
+ */
 data class SetDeviceOrientationOverrideRequest (
     /**
      * Mock alpha
@@ -743,6 +822,11 @@ data class SetDeviceOrientationOverrideRequest (
 
 
 
+/**
+ * Represents request parameters that can be used with Page.setTouchEmulationEnabled method call.
+ *
+ * Toggles mouse event-based touch event emulation.
+ */
 data class SetTouchEmulationEnabledRequest (
     /**
      * Whether the touch event emulation should be enabled.
@@ -759,6 +843,8 @@ data class SetTouchEmulationEnabledRequest (
 
 
 /**
+ * Represents response from Page. method call.
+ *
  * Capture page screenshot.
  */
 data class CaptureScreenshotResponse(
@@ -769,6 +855,11 @@ data class CaptureScreenshotResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Page.startScreencast method call.
+ *
+ * Starts sending each frame using the <code>screencastFrame</code> event.
+ */
 data class StartScreencastRequest (
     /**
      * Image compression format.
@@ -800,6 +891,11 @@ data class StartScreencastRequest (
 
 
 
+/**
+ * Represents request parameters that can be used with Page.screencastFrameAck method call.
+ *
+ * Acknowledges that a screencast frame has been received by the frontend.
+ */
 data class ScreencastFrameAckRequest (
     /**
      * Frame number.
@@ -809,6 +905,11 @@ data class ScreencastFrameAckRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Page.handleJavaScriptDialog method call.
+ *
+ * Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
+ */
 data class HandleJavaScriptDialogRequest (
     /**
      * Whether to accept or dismiss the dialog.
@@ -823,6 +924,11 @@ data class HandleJavaScriptDialogRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Page.setColorPickerEnabled method call.
+ *
+ * Shows / hides color picker
+ */
 data class SetColorPickerEnabledRequest (
     /**
      * Shows / hides color picker
@@ -832,6 +938,11 @@ data class SetColorPickerEnabledRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Page.configureOverlay method call.
+ *
+ * Configures overlay.
+ */
 data class ConfigureOverlayRequest (
     /**
      * Whether overlay should be suspended and not consume any resources.
@@ -848,6 +959,8 @@ data class ConfigureOverlayRequest (
 
 
 /**
+ * Represents response from Page. method call.
+ *
  * 
  */
 data class GetAppManifestResponse(
@@ -870,6 +983,11 @@ data class GetAppManifestResponse(
 
 
 
+/**
+ * Represents request parameters that can be used with Page.setControlNavigations method call.
+ *
+ * Toggles navigation throttling which allows programatic control over navigation and redirect response.
+ */
 data class SetControlNavigationsRequest (
     /**
      * 
@@ -879,6 +997,11 @@ data class SetControlNavigationsRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Page.processNavigation method call.
+ *
+ * Should be sent in response to a navigationRequested or a redirectRequested event, telling the browser how to handle the navigation.
+ */
 data class ProcessNavigationRequest (
     /**
      * 
@@ -895,6 +1018,8 @@ data class ProcessNavigationRequest (
 
 
 /**
+ * Represents response from Page. method call.
+ *
  * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
  */
 data class GetLayoutMetricsResponse(
@@ -912,6 +1037,8 @@ data class GetLayoutMetricsResponse(
 
 
 /**
+ * Represents response from Page. method call.
+ *
  * 
  */
 data class DomContentEventFiredEvent(
@@ -923,6 +1050,8 @@ data class DomContentEventFiredEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "domContentEventFired")
 
 /**
+ * Represents response from Page. method call.
+ *
  * 
  */
 data class LoadEventFiredEvent(
@@ -934,6 +1063,8 @@ data class LoadEventFiredEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "loadEventFired")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when frame has been attached to its parent.
  */
 data class FrameAttachedEvent(
@@ -950,6 +1081,8 @@ data class FrameAttachedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameAttached")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired once navigation of the frame has completed. Frame is now associated with the new loader.
  */
 data class FrameNavigatedEvent(
@@ -961,6 +1094,8 @@ data class FrameNavigatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameNavigated")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when frame has been detached from its parent.
  */
 data class FrameDetachedEvent(
@@ -972,6 +1107,8 @@ data class FrameDetachedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameDetached")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when frame has started loading.
  */
 data class FrameStartedLoadingEvent(
@@ -983,6 +1120,8 @@ data class FrameStartedLoadingEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameStartedLoading")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when frame has stopped loading.
  */
 data class FrameStoppedLoadingEvent(
@@ -994,6 +1133,8 @@ data class FrameStoppedLoadingEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameStoppedLoading")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when frame schedules a potential navigation.
  */
 data class FrameScheduledNavigationEvent(
@@ -1010,6 +1151,8 @@ data class FrameScheduledNavigationEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameScheduledNavigation")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when frame no longer has a scheduled navigation.
  */
 data class FrameClearedScheduledNavigationEvent(
@@ -1022,6 +1165,8 @@ data class FrameClearedScheduledNavigationEvent(
 
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to open.
  */
 data class JavascriptDialogOpeningEvent(
@@ -1038,6 +1183,8 @@ data class JavascriptDialogOpeningEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "javascriptDialogOpening")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been closed.
  */
 data class JavascriptDialogClosedEvent(
@@ -1049,6 +1196,8 @@ data class JavascriptDialogClosedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "javascriptDialogClosed")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Compressed image data requested by the <code>startScreencast</code>.
  */
 data class ScreencastFrameEvent(
@@ -1070,6 +1219,8 @@ data class ScreencastFrameEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "screencastFrame")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when the page with currently enabled screencast was shown or hidden </code>.
  */
 data class ScreencastVisibilityChangedEvent(
@@ -1081,6 +1232,8 @@ data class ScreencastVisibilityChangedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "screencastVisibilityChanged")
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when a color has been picked.
  */
 data class ColorPickedEvent(
@@ -1094,6 +1247,8 @@ data class ColorPickedEvent(
 
 
 /**
+ * Represents response from Page. method call.
+ *
  * Fired when a navigation is started if navigation throttles are enabled.  The navigation will be deferred until processNavigation is called.
  */
 data class NavigationRequestedEvent(

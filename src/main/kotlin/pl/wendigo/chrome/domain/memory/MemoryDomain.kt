@@ -32,6 +32,8 @@ package pl.wendigo.chrome.domain.memory
 
 
 /**
+ * Represents response from Memory. method call.
+ *
  * 
  */
 data class GetDOMCountersResponse(
@@ -52,6 +54,11 @@ data class GetDOMCountersResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Memory.setPressureNotificationsSuppressed method call.
+ *
+ * Enable/disable suppressing memory pressure notifications in all processes.
+ */
 data class SetPressureNotificationsSuppressedRequest (
     /**
      * If true, memory pressure notifications will be suppressed.
@@ -61,6 +68,11 @@ data class SetPressureNotificationsSuppressedRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Memory.simulatePressureNotification method call.
+ *
+ * Simulate a memory pressure notification in all processes.
+ */
 data class SimulatePressureNotificationRequest (
     /**
      * Memory pressure level of the notification.

@@ -1,21 +1,25 @@
 buildscript {
 	ext {
 		kotlinVersion = '1.1.0'
+        dokka_version = '0.9.13'
 
 	}
 	repositories {
 		mavenCentral()
+        jcenter()
     }
+
     dependencies {
         classpath group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin', version: kotlinVersion
         classpath group: 'org.jetbrains.kotlin', name: 'kotlin-allopen', version: kotlinVersion
         classpath group: 'org.jetbrains.kotlin', name: 'kotlin-noarg', version: kotlinVersion
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
     }
 }
 
 apply plugin: 'kotlin'
 apply plugin: 'groovy'
-
+apply plugin: 'org.jetbrains.dokka'
 
 jar {
     baseName = 'chrome-reactive-kotlin'
@@ -24,6 +28,7 @@ jar {
 
 configurations {
     ktlint
+    extra
 }
 
 configurations.all {
@@ -76,4 +81,18 @@ task ktlintFormat(type: JavaExec) {
     main = "com.github.shyiko.ktlint.Main"
     classpath = configurations.ktlint
     args "-F", "src/**/*.kt"
+}
+
+dokka {
+    moduleName = 'data'
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
+    processConfigurations = ['compile', 'extra']
+
+    linkMapping {
+        dir = "src/main/kotlin"
+        url = "https://github.com/wendigo/chrome-reactive-kotlin/blob/master/src/main/kotlin"
+        suffix = "#L"
+    }
+    sourceDirs = files('src/main/kotlin')
 }

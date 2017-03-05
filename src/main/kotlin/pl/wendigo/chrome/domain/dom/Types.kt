@@ -1,30 +1,18 @@
 package pl.wendigo.chrome.domain.dom
 
-/*
+/**
  * Unique DOM node identifier.
  */
-
-
 typealias NodeId = Int
 
-
-
-/*
+/**
  * Unique DOM node identifier used to reference a node that may not have been pushed to the front-end.
  */
-
-
 typealias BackendNodeId = Int
 
-
-
-/*
+/**
  * Backend node with a friendly name.
  */
-
-
-
-
 data class BackendNode(
   /**
    * <code>Node</code>'s nodeType.
@@ -40,34 +28,21 @@ data class BackendNode(
    * 
    */
   val backendNodeId : BackendNodeId
-
 )
 
-/*
+/**
  * Pseudo element type.
  */
 typealias PseudoType = String
 
-
-
-
-
-/*
+/**
  * Shadow root type.
  */
 typealias ShadowRootType = String
 
-
-
-
-
-/*
+/**
  * DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes. DOMNode is a base node mirror type.
  */
-
-
-
-
 data class Node(
   /**
    * Node identifier that is passed into the rest of the DOM messages as the <code>nodeId</code>. Backend will only push node with given <code>id</code> once. It is aware of all requested nodes and will only fire DOM events for nodes known to the client.
@@ -203,16 +178,11 @@ data class Node(
    * Whether the node is SVG.
    */
   @pl.wendigo.chrome.ProtocolExperimental val isSVG : Boolean? = null
-
 )
 
-/*
+/**
  * A structure holding an RGBA color.
  */
-
-
-
-
 data class RGBA(
   /**
    * The red component, in the [0-255] range.
@@ -233,25 +203,16 @@ data class RGBA(
    * The alpha component, in the [0-1] range (default: 1).
    */
   val a : Double? = null
-
 )
 
-/*
+/**
  * An array of quad vertices, x immediately followed by y for each point, points clock-wise.
  */
-
-
-
 typealias Quad = Array<Double>
 
-
-/*
+/**
  * Box model.
  */
-
-
-
-
 data class BoxModel(
   /**
    * Content box
@@ -287,16 +248,11 @@ data class BoxModel(
    * Shape outside coordinates
    */
   val shapeOutside : ShapeOutsideInfo? = null
-
 )
 
-/*
+/**
  * CSS Shape Outside details.
  */
-
-
-
-
 data class ShapeOutsideInfo(
   /**
    * Shape bounds
@@ -312,16 +268,11 @@ data class ShapeOutsideInfo(
    * Margin shape bounds
    */
   val marginShape : Array<Any>
-
 )
 
-/*
+/**
  * Rectangle.
  */
-
-
-
-
 data class Rect(
   /**
    * X coordinate
@@ -342,16 +293,11 @@ data class Rect(
    * Rectangle height
    */
   val height : Double
-
 )
 
-/*
+/**
  * Configuration data for the highlighting of page elements.
  */
-
-
-
-
 data class HighlightConfig(
   /**
    * Whether the node info tooltip should be shown (default: false).
@@ -412,15 +358,10 @@ data class HighlightConfig(
    * Selectors to highlight relevant nodes.
    */
   val selectorList : String? = null
-
 )
 
-/*
+/**
  * 
  */
 typealias InspectMode = String
-
-
-
-
 

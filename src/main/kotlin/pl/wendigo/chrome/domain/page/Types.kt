@@ -1,30 +1,18 @@
 package pl.wendigo.chrome.domain.page
 
-/*
+/**
  * Resource type as it was perceived by the rendering engine.
  */
 typealias ResourceType = String
 
-
-
-
-
-/*
+/**
  * Unique frame identifier.
  */
 typealias FrameId = String
 
-
-
-
-
-/*
+/**
  * Information about the Frame on the page.
  */
-
-
-
-
 data class Frame(
   /**
    * Frame unique identifier.
@@ -60,16 +48,11 @@ data class Frame(
    * Frame document's mimeType as determined by the browser.
    */
   val mimeType : String
-
 )
 
-/*
+/**
  * Information about the Resource on the page.
  */
-
-
-
-
 data class FrameResource(
   /**
    * Resource URL.
@@ -105,16 +88,11 @@ data class FrameResource(
    * True if the resource was canceled during loading.
    */
   val canceled : Boolean? = null
-
 )
 
-/*
+/**
  * Information about the Frame hierarchy along with their cached resources.
  */
-
-
-
-
 data class FrameResourceTree(
   /**
    * Frame information for this tree item.
@@ -130,25 +108,16 @@ data class FrameResourceTree(
    * Information about frame resources.
    */
   val resources : Array<FrameResource>
-
 )
 
-/*
+/**
  * Unique script identifier.
  */
 typealias ScriptIdentifier = String
 
-
-
-
-
-/*
+/**
  * Navigation history entry.
  */
-
-
-
-
 data class NavigationEntry(
   /**
    * Unique id of the navigation history entry.
@@ -164,16 +133,11 @@ data class NavigationEntry(
    * Title of the navigation history entry.
    */
   val title : String
-
 )
 
-/*
+/**
  * Screencast frame metadata.
  */
-
-
-
-
 data class ScreencastFrameMetadata(
   /**
    * Top offset in DIP.
@@ -209,25 +173,16 @@ data class ScreencastFrameMetadata(
    * Frame swap timestamp.
    */
   @pl.wendigo.chrome.ProtocolExperimental val timestamp : Double? = null
-
 )
 
-/*
+/**
  * Javascript dialog type.
  */
 typealias DialogType = String
 
-
-
-
-
-/*
+/**
  * Error while paring app manifest.
  */
-
-
-
-
 data class AppManifestError(
   /**
    * Error message.
@@ -248,25 +203,16 @@ data class AppManifestError(
    * Error column.
    */
   val column : Int
-
 )
 
-/*
+/**
  * Proceed: allow the navigation; Cancel: cancel the navigation; CancelAndIgnore: cancels the navigation and makes the requester of the navigation acts like the request was never made.
  */
 typealias NavigationResponse = String
 
-
-
-
-
-/*
+/**
  * Layout viewport position and dimensions.
  */
-
-
-
-
 data class LayoutViewport(
   /**
    * Horizontal offset relative to the document (CSS pixels).
@@ -287,16 +233,11 @@ data class LayoutViewport(
    * Height (CSS pixels), excludes scrollbar if present.
    */
   val clientHeight : Int
-
 )
 
-/*
+/**
  * Visual viewport position, dimensions, and scale.
  */
-
-
-
-
 data class VisualViewport(
   /**
    * Horizontal offset relative to the layout viewport (CSS pixels).
@@ -332,6 +273,5 @@ data class VisualViewport(
    * Scale relative to the ideal viewport (size at width=device-width).
    */
   val scale : Double
-
 )
 

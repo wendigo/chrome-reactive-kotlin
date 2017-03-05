@@ -45,6 +45,8 @@ package pl.wendigo.chrome.domain.security
 
 
 /**
+ * Represents response from Security. method call.
+ *
  * The security state of the page changed.
  */
 data class SecurityStateChangedEvent(

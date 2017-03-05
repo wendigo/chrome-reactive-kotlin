@@ -1,48 +1,28 @@
 package pl.wendigo.chrome.domain.accessibility
 
-/*
+/**
  * Unique accessibility node identifier.
  */
 typealias AXNodeId = String
 
-
-
-
-
-/*
+/**
  * Enum of possible property types.
  */
 typealias AXValueType = String
 
-
-
-
-
-/*
+/**
  * Enum of possible property sources.
  */
 typealias AXValueSourceType = String
 
-
-
-
-
-/*
+/**
  * Enum of possible native property sources (as a subtype of a particular AXValueSourceType).
  */
 typealias AXValueNativeSourceType = String
 
-
-
-
-
-/*
+/**
  * A single source for a computed AX property.
  */
-
-
-
-
 data class AXValueSource(
   /**
    * What type of source this is.
@@ -88,16 +68,11 @@ data class AXValueSource(
    * Reason for the value being invalid, if it is.
    */
   val invalidReason : String? = null
-
 )
 
-/*
+/**
  * 
  */
-
-
-
-
 data class AXRelatedNode(
   /**
    * The BackendNodeId of the related DOM node.
@@ -113,16 +88,11 @@ data class AXRelatedNode(
    * The text alternative of this node in the current context.
    */
   val text : String? = null
-
 )
 
-/*
+/**
  * 
  */
-
-
-
-
 data class AXProperty(
   /**
    * The name of this property.
@@ -133,16 +103,11 @@ data class AXProperty(
    * The value of this property.
    */
   val value : AXValue
-
 )
 
-/*
+/**
  * A single computed AX property.
  */
-
-
-
-
 data class AXValue(
   /**
    * The type of this value.
@@ -163,61 +128,36 @@ data class AXValue(
    * The sources which contributed to the computation of this property.
    */
   val sources : Array<AXValueSource>? = null
-
 )
 
-/*
+/**
  * States which apply to every AX node.
  */
 typealias AXGlobalStates = String
 
-
-
-
-
-/*
+/**
  * Attributes which apply to nodes in live regions.
  */
 typealias AXLiveRegionAttributes = String
 
-
-
-
-
-/*
+/**
  * Attributes which apply to widgets.
  */
 typealias AXWidgetAttributes = String
 
-
-
-
-
-/*
+/**
  * States which apply to widgets.
  */
 typealias AXWidgetStates = String
 
-
-
-
-
-/*
+/**
  * Relationships between elements other than parent/child/sibling.
  */
 typealias AXRelationshipAttributes = String
 
-
-
-
-
-/*
+/**
  * A node in the accessibility tree.
  */
-
-
-
-
 data class AXNode(
   /**
    * Unique identifier for this node.
@@ -268,6 +208,5 @@ data class AXNode(
    * The backend ID for the associated DOM node, if any.
    */
   val backendDOMNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId? = null
-
 )
 

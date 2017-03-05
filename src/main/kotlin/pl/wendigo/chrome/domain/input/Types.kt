@@ -1,12 +1,8 @@
 package pl.wendigo.chrome.domain.input
 
-/*
+/**
  * 
  */
-
-
-
-
 data class TouchPoint(
   /**
    * State of the touch point.
@@ -47,15 +43,10 @@ data class TouchPoint(
    * Identifier used to track touch sources between events, must be unique within an event.
    */
   val id : Double? = null
-
 )
 
-/*
+/**
  * 
  */
 typealias GestureSourceType = String
-
-
-
-
 

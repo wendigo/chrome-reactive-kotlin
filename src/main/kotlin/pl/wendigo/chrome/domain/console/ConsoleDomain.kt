@@ -45,6 +45,8 @@ package pl.wendigo.chrome.domain.console
 
 
 /**
+ * Represents response from Console. method call.
+ *
  * Issued when new console message is added.
  */
 data class MessageAddedEvent(

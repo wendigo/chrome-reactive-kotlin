@@ -1,30 +1,18 @@
 package pl.wendigo.chrome.domain.security
 
-/*
+/**
  * An internal certificate ID value.
  */
-
-
 typealias CertificateId = Int
 
-
-
-/*
+/**
  * The security level of a page or resource.
  */
 typealias SecurityState = String
 
-
-
-
-
-/*
+/**
  * An explanation of an factor contributing to the security state.
  */
-
-
-
-
 data class SecurityStateExplanation(
   /**
    * Security state representing the severity of the factor being explained.
@@ -45,16 +33,11 @@ data class SecurityStateExplanation(
    * True if the page has a certificate.
    */
   val hasCertificate : Boolean
-
 )
 
-/*
+/**
  * Information about insecure content on the page.
  */
-
-
-
-
 data class InsecureContentStatus(
   /**
    * True if the page was loaded over HTTPS and ran mixed (HTTP) content such as scripts.
@@ -85,6 +68,5 @@ data class InsecureContentStatus(
    * Security state representing a page that displayed insecure content.
    */
   val displayedInsecureContentStyle : SecurityState
-
 )
 

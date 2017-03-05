@@ -23,6 +23,11 @@ package pl.wendigo.chrome.domain.deviceorientation
 
   }
 
+/**
+ * Represents request parameters that can be used with DeviceOrientation.setDeviceOrientationOverride method call.
+ *
+ * Overrides the Device Orientation.
+ */
 data class SetDeviceOrientationOverrideRequest (
     /**
      * Mock alpha

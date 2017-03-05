@@ -75,6 +75,11 @@ class DOMDebuggerDomain internal constructor(private val connection : pl.wendigo
 
   }
 
+/**
+ * Represents request parameters that can be used with DOMDebugger.setDOMBreakpoint method call.
+ *
+ * Sets breakpoint on particular operation with DOM.
+ */
 data class SetDOMBreakpointRequest (
     /**
      * Identifier of the node to set breakpoint on.
@@ -89,6 +94,11 @@ data class SetDOMBreakpointRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOMDebugger.removeDOMBreakpoint method call.
+ *
+ * Removes DOM breakpoint that was set using <code>setDOMBreakpoint</code>.
+ */
 data class RemoveDOMBreakpointRequest (
     /**
      * Identifier of the node to remove breakpoint from.
@@ -103,6 +113,11 @@ data class RemoveDOMBreakpointRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOMDebugger.setEventListenerBreakpoint method call.
+ *
+ * Sets breakpoint on particular DOM event.
+ */
 data class SetEventListenerBreakpointRequest (
     /**
      * DOM Event name to stop on (any DOM event will do).
@@ -117,6 +132,11 @@ data class SetEventListenerBreakpointRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOMDebugger.removeEventListenerBreakpoint method call.
+ *
+ * Removes breakpoint on particular DOM event.
+ */
 data class RemoveEventListenerBreakpointRequest (
     /**
      * Event name.
@@ -131,6 +151,11 @@ data class RemoveEventListenerBreakpointRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOMDebugger.setInstrumentationBreakpoint method call.
+ *
+ * Sets breakpoint on particular native event.
+ */
 data class SetInstrumentationBreakpointRequest (
     /**
      * Instrumentation name to stop on.
@@ -140,6 +165,11 @@ data class SetInstrumentationBreakpointRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOMDebugger.removeInstrumentationBreakpoint method call.
+ *
+ * Removes breakpoint on particular native event.
+ */
 data class RemoveInstrumentationBreakpointRequest (
     /**
      * Instrumentation name to stop on.
@@ -149,6 +179,11 @@ data class RemoveInstrumentationBreakpointRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOMDebugger.setXHRBreakpoint method call.
+ *
+ * Sets breakpoint on XMLHttpRequest.
+ */
 data class SetXHRBreakpointRequest (
     /**
      * Resource URL substring. All XHRs having this substring in the URL will get stopped upon.
@@ -158,6 +193,11 @@ data class SetXHRBreakpointRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOMDebugger.removeXHRBreakpoint method call.
+ *
+ * Removes breakpoint from XMLHttpRequest.
+ */
 data class RemoveXHRBreakpointRequest (
     /**
      * Resource URL substring.
@@ -167,6 +207,11 @@ data class RemoveXHRBreakpointRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with DOMDebugger.getEventListeners method call.
+ *
+ * Returns event listeners of the given object.
+ */
 data class GetEventListenersRequest (
     /**
      * Identifier of the object to return listeners for.
@@ -176,6 +221,8 @@ data class GetEventListenersRequest (
 )
 
 /**
+ * Represents response from DOMDebugger. method call.
+ *
  * Returns event listeners of the given object.
  */
 data class GetEventListenersResponse(

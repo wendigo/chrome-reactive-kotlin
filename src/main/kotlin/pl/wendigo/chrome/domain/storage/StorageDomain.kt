@@ -16,6 +16,11 @@ package pl.wendigo.chrome.domain.storage
 
   }
 
+/**
+ * Represents request parameters that can be used with Storage.clearDataForOrigin method call.
+ *
+ * Clears storage for origin.
+ */
 data class ClearDataForOriginRequest (
     /**
      * Security origin.

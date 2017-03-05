@@ -44,6 +44,11 @@ package pl.wendigo.chrome.domain.rendering
 
   }
 
+/**
+ * Represents request parameters that can be used with Rendering.setShowPaintRects method call.
+ *
+ * Requests that backend shows paint rectangles
+ */
 data class SetShowPaintRectsRequest (
     /**
      * True for showing paint rectangles
@@ -53,6 +58,11 @@ data class SetShowPaintRectsRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Rendering.setShowDebugBorders method call.
+ *
+ * Requests that backend shows debug borders on layers
+ */
 data class SetShowDebugBordersRequest (
     /**
      * True for showing debug borders
@@ -62,6 +72,11 @@ data class SetShowDebugBordersRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Rendering.setShowFPSCounter method call.
+ *
+ * Requests that backend shows the FPS counter
+ */
 data class SetShowFPSCounterRequest (
     /**
      * True for showing the FPS counter
@@ -71,6 +86,11 @@ data class SetShowFPSCounterRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Rendering.setShowScrollBottleneckRects method call.
+ *
+ * Requests that backend shows scroll bottleneck rects
+ */
 data class SetShowScrollBottleneckRectsRequest (
     /**
      * True for showing scroll bottleneck rects
@@ -80,6 +100,11 @@ data class SetShowScrollBottleneckRectsRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Rendering.setShowViewportSizeOnResize method call.
+ *
+ * Paints viewport size upon main frame resize.
+ */
 data class SetShowViewportSizeOnResizeRequest (
     /**
      * Whether to paint size or not.

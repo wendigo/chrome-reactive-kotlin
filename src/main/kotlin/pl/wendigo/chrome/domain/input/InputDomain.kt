@@ -63,6 +63,11 @@ class InputDomain internal constructor(private val connection : pl.wendigo.chrom
 
   }
 
+/**
+ * Represents request parameters that can be used with Input.dispatchKeyEvent method call.
+ *
+ * Dispatches a key event to the page.
+ */
 data class DispatchKeyEventRequest (
     /**
      * Type of the key event.
@@ -132,6 +137,11 @@ data class DispatchKeyEventRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Input.dispatchMouseEvent method call.
+ *
+ * Dispatches a mouse event to the page.
+ */
 data class DispatchMouseEventRequest (
     /**
      * Type of the mouse event.
@@ -171,6 +181,11 @@ data class DispatchMouseEventRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Input.dispatchTouchEvent method call.
+ *
+ * Dispatches a touch event to the page.
+ */
 data class DispatchTouchEventRequest (
     /**
      * Type of the touch event.
@@ -195,6 +210,11 @@ data class DispatchTouchEventRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Input.emulateTouchFromMouseEvent method call.
+ *
+ * Emulates touch event from the mouse event parameters.
+ */
 data class EmulateTouchFromMouseEventRequest (
     /**
      * Type of the mouse event.
@@ -244,6 +264,11 @@ data class EmulateTouchFromMouseEventRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Input.synthesizePinchGesture method call.
+ *
+ * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
+ */
 data class SynthesizePinchGestureRequest (
     /**
      * X coordinate of the start of the gesture in CSS pixels.
@@ -273,6 +298,11 @@ data class SynthesizePinchGestureRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Input.synthesizeScrollGesture method call.
+ *
+ * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
+ */
 data class SynthesizeScrollGestureRequest (
     /**
      * X coordinate of the start of the gesture in CSS pixels.
@@ -337,6 +367,11 @@ data class SynthesizeScrollGestureRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Input.synthesizeTapGesture method call.
+ *
+ * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
+ */
 data class SynthesizeTapGestureRequest (
     /**
      * X coordinate of the start of the gesture in CSS pixels.

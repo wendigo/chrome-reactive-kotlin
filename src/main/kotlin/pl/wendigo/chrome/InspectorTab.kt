@@ -1,6 +1,6 @@
 package pl.wendigo.chrome
 
-data class InspectorTab(
+internal data class InspectorTab(
         val description: String,
         val devtoolsFrontendUrl: String,
         val id: String,

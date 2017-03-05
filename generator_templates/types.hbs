@@ -1,20 +1,14 @@
 package {{Package}}.domain.{{Domain.LowerName}}
 
 {{#each Domain.Types}}
-/*
+/**
  * {{Description}}
  */
-{{#equal Type "string"}}typealias {{Id}} = String{{/equal}}
-{{#equal Type "number"}}typealias {{Id}} = Double{{/equal}}
-{{#equal Type "integer"}}typealias {{Id}} = Int{{/equal}}
-{{#equal Type "array"}}typealias {{Id}} = {{{GetFormattedType}}}{{/equal}}
-{{#equal Type "object"}}{{#if HasProperties}}data class {{Id}}(
-{{#each Properties}}
+{{#equal Type "string"}}typealias {{Id}} = String{{/equal}}{{#equal Type "number"}}typealias {{Id}} = Double{{/equal}}{{#equal Type "integer"}}typealias {{Id}} = Int{{/equal}}{{#equal Type "array"}}typealias {{Id}} = {{{GetFormattedType}}}{{/equal}}{{#equal Type "object"}}{{#if HasProperties}}data class {{Id}}({{#each Properties}}
   /**
    * {{{Description}}}
    */
   {{#if Experimental}}@{{Package}}.ProtocolExperimental {{/if}}{{#if Deprecated}}@{{Package}}.ProtocolDeprecated {{/if}}{{{value Name}}} : {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
-
 {{/each}}
 ){{else}}typealias {{Id}} = Map<String,Any>{{/if}}{{/equal}}
 

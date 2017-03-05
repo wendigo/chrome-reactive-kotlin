@@ -220,6 +220,11 @@ class DebuggerDomain internal constructor(private val connection : pl.wendigo.ch
 
 
 
+/**
+ * Represents request parameters that can be used with Debugger.setBreakpointsActive method call.
+ *
+ * Activates / deactivates all breakpoints on the page.
+ */
 data class SetBreakpointsActiveRequest (
     /**
      * New value for breakpoints active state.
@@ -229,6 +234,11 @@ data class SetBreakpointsActiveRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Debugger.setSkipAllPauses method call.
+ *
+ * Makes page not interrupt on any pauses (breakpoint, exception, dom exception etc).
+ */
 data class SetSkipAllPausesRequest (
     /**
      * New value for skip pauses state.
@@ -238,6 +248,11 @@ data class SetSkipAllPausesRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Debugger.setBreakpointByUrl method call.
+ *
+ * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in <code>locations</code> property. Further matching script parsing will result in subsequent <code>breakpointResolved</code> events issued. This logical breakpoint will survive page reloads.
+ */
 data class SetBreakpointByUrlRequest (
     /**
      * Line number to set breakpoint at.
@@ -267,6 +282,8 @@ data class SetBreakpointByUrlRequest (
 )
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in <code>locations</code> property. Further matching script parsing will result in subsequent <code>breakpointResolved</code> events issued. This logical breakpoint will survive page reloads.
  */
 data class SetBreakpointByUrlResponse(
@@ -282,6 +299,11 @@ data class SetBreakpointByUrlResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Debugger.setBreakpoint method call.
+ *
+ * Sets JavaScript breakpoint at a given location.
+ */
 data class SetBreakpointRequest (
     /**
      * Location to set breakpoint in.
@@ -296,6 +318,8 @@ data class SetBreakpointRequest (
 )
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Sets JavaScript breakpoint at a given location.
  */
 data class SetBreakpointResponse(
@@ -311,6 +335,11 @@ data class SetBreakpointResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Debugger.removeBreakpoint method call.
+ *
+ * Removes JavaScript breakpoint.
+ */
 data class RemoveBreakpointRequest (
     /**
      * 
@@ -320,6 +349,11 @@ data class RemoveBreakpointRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Debugger.getPossibleBreakpoints method call.
+ *
+ * Returns possible locations for breakpoint. scriptId in start and end range locations should be the same.
+ */
 data class GetPossibleBreakpointsRequest (
     /**
      * Start of range to search possible breakpoint locations in.
@@ -334,6 +368,8 @@ data class GetPossibleBreakpointsRequest (
 )
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Returns possible locations for breakpoint. scriptId in start and end range locations should be the same.
  */
 data class GetPossibleBreakpointsResponse(
@@ -344,6 +380,11 @@ data class GetPossibleBreakpointsResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Debugger.continueToLocation method call.
+ *
+ * Continues execution until specific location is reached.
+ */
 data class ContinueToLocationRequest (
     /**
      * Location to continue to.
@@ -363,6 +404,11 @@ data class ContinueToLocationRequest (
 
 
 
+/**
+ * Represents request parameters that can be used with Debugger.searchInContent method call.
+ *
+ * Searches for given string in script content.
+ */
 data class SearchInContentRequest (
     /**
      * Id of the script to search in.
@@ -387,6 +433,8 @@ data class SearchInContentRequest (
 )
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Searches for given string in script content.
  */
 data class SearchInContentResponse(
@@ -397,6 +445,11 @@ data class SearchInContentResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Debugger.setScriptSource method call.
+ *
+ * Edits JavaScript source live.
+ */
 data class SetScriptSourceRequest (
     /**
      * Id of the script to edit.
@@ -416,6 +469,8 @@ data class SetScriptSourceRequest (
 )
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Edits JavaScript source live.
  */
 data class SetScriptSourceResponse(
@@ -441,6 +496,11 @@ data class SetScriptSourceResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Debugger.restartFrame method call.
+ *
+ * Restarts particular call frame from the beginning.
+ */
 data class RestartFrameRequest (
     /**
      * Call frame identifier to evaluate on.
@@ -450,6 +510,8 @@ data class RestartFrameRequest (
 )
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Restarts particular call frame from the beginning.
  */
 data class RestartFrameResponse(
@@ -465,6 +527,11 @@ data class RestartFrameResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Debugger.getScriptSource method call.
+ *
+ * Returns source for the script with given id.
+ */
 data class GetScriptSourceRequest (
     /**
      * Id of the script to get source for.
@@ -474,6 +541,8 @@ data class GetScriptSourceRequest (
 )
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Returns source for the script with given id.
  */
 data class GetScriptSourceResponse(
@@ -484,6 +553,11 @@ data class GetScriptSourceResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Debugger.setPauseOnExceptions method call.
+ *
+ * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or no exceptions. Initial pause on exceptions state is <code>none</code>.
+ */
 data class SetPauseOnExceptionsRequest (
     /**
      * Pause on exceptions mode.
@@ -493,6 +567,11 @@ data class SetPauseOnExceptionsRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Debugger.evaluateOnCallFrame method call.
+ *
+ * Evaluates expression on a given call frame.
+ */
 data class EvaluateOnCallFrameRequest (
     /**
      * Call frame identifier to evaluate on.
@@ -532,6 +611,8 @@ data class EvaluateOnCallFrameRequest (
 )
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Evaluates expression on a given call frame.
  */
 data class EvaluateOnCallFrameResponse(
@@ -547,6 +628,11 @@ data class EvaluateOnCallFrameResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Debugger.setVariableValue method call.
+ *
+ * Changes value of variable in a callframe. Object-based scopes are not supported and must be mutated manually.
+ */
 data class SetVariableValueRequest (
     /**
      * 0-based number of scope as was listed in scope chain. Only 'local', 'closure' and 'catch' scope types are allowed. Other scopes could be manipulated manually.
@@ -571,6 +657,11 @@ data class SetVariableValueRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Debugger.setAsyncCallStackDepth method call.
+ *
+ * Enables or disables async call stacks tracking.
+ */
 data class SetAsyncCallStackDepthRequest (
     /**
      * Maximum depth of async call stacks. Setting to <code>0</code> will effectively disable collecting async call stacks (default).
@@ -580,6 +671,11 @@ data class SetAsyncCallStackDepthRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Debugger.setBlackboxPatterns method call.
+ *
+ * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in scripts with url matching one of the patterns. VM will try to leave blackboxed script by performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
+ */
 data class SetBlackboxPatternsRequest (
     /**
      * Array of regexps that will be used to check script url for blackbox state.
@@ -589,6 +685,11 @@ data class SetBlackboxPatternsRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Debugger.setBlackboxedRanges method call.
+ *
+ * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted scripts by performing 'step in' several times, finally resorting to 'step out' if unsuccessful. Positions array contains positions where blackbox state is changed. First interval isn't blackboxed. Array should be sorted.
+ */
 data class SetBlackboxedRangesRequest (
     /**
      * Id of the script.
@@ -605,6 +706,8 @@ data class SetBlackboxedRangesRequest (
 
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Fired when virtual machine parses script. This event is also fired for all known and uncollected scripts upon enabling debugger.
  */
 data class ScriptParsedEvent(
@@ -671,6 +774,8 @@ data class ScriptParsedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "scriptParsed")
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Fired when virtual machine fails to parse the script.
  */
 data class ScriptFailedToParseEvent(
@@ -732,6 +837,8 @@ data class ScriptFailedToParseEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "scriptFailedToParse")
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Fired when breakpoint is resolved to an actual script and location.
  */
 data class BreakpointResolvedEvent(
@@ -748,6 +855,8 @@ data class BreakpointResolvedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "breakpointResolved")
 
 /**
+ * Represents response from Debugger. method call.
+ *
  * Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
  */
 data class PausedEvent(

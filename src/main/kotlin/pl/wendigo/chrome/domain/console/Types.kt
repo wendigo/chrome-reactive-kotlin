@@ -1,12 +1,8 @@
 package pl.wendigo.chrome.domain.console
 
-/*
+/**
  * Console message.
  */
-
-
-
-
 data class ConsoleMessage(
   /**
    * Message source.
@@ -37,6 +33,5 @@ data class ConsoleMessage(
    * Column number in the resource that generated this message (1-based).
    */
   val column : Int? = null
-
 )
 

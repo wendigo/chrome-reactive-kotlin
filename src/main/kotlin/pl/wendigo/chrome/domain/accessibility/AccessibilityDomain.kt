@@ -17,6 +17,11 @@ package pl.wendigo.chrome.domain.accessibility
 
   }
 
+/**
+ * Represents request parameters that can be used with Accessibility.getPartialAXTree method call.
+ *
+ * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
+ */
 data class GetPartialAXTreeRequest (
     /**
      * ID of node to get the partial accessibility tree for.
@@ -31,6 +36,8 @@ data class GetPartialAXTreeRequest (
 )
 
 /**
+ * Represents response from Accessibility. method call.
+ *
  * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
  */
 data class GetPartialAXTreeResponse(

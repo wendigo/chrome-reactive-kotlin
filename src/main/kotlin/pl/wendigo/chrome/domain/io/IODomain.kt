@@ -23,6 +23,11 @@ package pl.wendigo.chrome.domain.io
 
   }
 
+/**
+ * Represents request parameters that can be used with IO.read method call.
+ *
+ * Read a chunk of the stream
+ */
 data class ReadRequest (
     /**
      * Handle of the stream to read.
@@ -42,6 +47,8 @@ data class ReadRequest (
 )
 
 /**
+ * Represents response from IO. method call.
+ *
  * Read a chunk of the stream
  */
 data class ReadResponse(
@@ -57,6 +64,11 @@ data class ReadResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with IO.close method call.
+ *
+ * Close the stream, discard any temporary backing storage.
+ */
 data class CloseRequest (
     /**
      * Handle of the stream to close.

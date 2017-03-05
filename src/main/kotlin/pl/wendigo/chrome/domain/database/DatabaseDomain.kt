@@ -48,6 +48,11 @@ package pl.wendigo.chrome.domain.database
 
 
 
+/**
+ * Represents request parameters that can be used with Database.getDatabaseTableNames method call.
+ *
+ * 
+ */
 data class GetDatabaseTableNamesRequest (
     /**
      * 
@@ -57,6 +62,8 @@ data class GetDatabaseTableNamesRequest (
 )
 
 /**
+ * Represents response from Database. method call.
+ *
  * 
  */
 data class GetDatabaseTableNamesResponse(
@@ -67,6 +74,11 @@ data class GetDatabaseTableNamesResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Database.executeSQL method call.
+ *
+ * 
+ */
 data class ExecuteSQLRequest (
     /**
      * 
@@ -81,6 +93,8 @@ data class ExecuteSQLRequest (
 )
 
 /**
+ * Represents response from Database. method call.
+ *
  * 
  */
 data class ExecuteSQLResponse(
@@ -103,6 +117,8 @@ data class ExecuteSQLResponse(
 
 
 /**
+ * Represents response from Database. method call.
+ *
  * 
  */
 data class AddDatabaseEvent(

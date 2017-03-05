@@ -1,12 +1,8 @@
 package pl.wendigo.chrome.domain.schema
 
-/*
+/**
  * Description of the protocol domain.
  */
-
-
-
-
 data class Domain(
   /**
    * Domain name.
@@ -17,6 +13,5 @@ data class Domain(
    * Domain version.
    */
   val version : String
-
 )
 

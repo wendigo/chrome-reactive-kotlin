@@ -1,66 +1,38 @@
 package pl.wendigo.chrome.domain.network
 
-/*
+/**
  * Unique loader identifier.
  */
 typealias LoaderId = String
 
-
-
-
-
-/*
+/**
  * Unique request identifier.
  */
 typealias RequestId = String
 
-
-
-
-
-/*
+/**
  * Number of seconds since epoch.
  */
-
 typealias Timestamp = Double
 
-
-
-
-/*
+/**
  * Request / response headers as keys / values of JSON object.
  */
-
-
-
-
 typealias Headers = Map<String,Any>
 
-/*
+/**
  * Loading priority of a resource request.
  */
 typealias ConnectionType = String
 
-
-
-
-
-/*
+/**
  * Represents the cookie&apos;s &apos;SameSite&apos; status: https://tools.ietf.org/html/draft-west-first-party-cookies
  */
 typealias CookieSameSite = String
 
-
-
-
-
-/*
+/**
  * Timing information for the request.
  */
-
-
-
-
 data class ResourceTiming(
   /**
    * Timing's requestTime is a baseline in seconds, while the other numbers are ticks in milliseconds relatively to this requestTime.
@@ -141,25 +113,16 @@ data class ResourceTiming(
    * Finished receiving response headers.
    */
   val receiveHeadersEnd : Double
-
 )
 
-/*
+/**
  * Loading priority of a resource request.
  */
 typealias ResourcePriority = String
 
-
-
-
-
-/*
+/**
  * HTTP request data.
  */
-
-
-
-
 data class Request(
   /**
    * Request URL.
@@ -195,16 +158,11 @@ data class Request(
    * The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/
    */
   val referrerPolicy : String
-
 )
 
-/*
+/**
  * Details of a signed certificate timestamp (SCT).
  */
-
-
-
-
 data class SignedCertificateTimestamp(
   /**
    * Validation status.
@@ -245,16 +203,11 @@ data class SignedCertificateTimestamp(
    * Signature data.
    */
   val signatureData : String
-
 )
 
-/*
+/**
  * Security details about a request.
  */
-
-
-
-
 data class SecurityDetails(
   /**
    * Protocol name (e.g. "TLS 1.2" or "QUIC").
@@ -315,25 +268,16 @@ data class SecurityDetails(
    * List of signed certificate timestamps (SCTs).
    */
   val signedCertificateTimestampList : Array<SignedCertificateTimestamp>
-
 )
 
-/*
+/**
  * The reason why request was blocked.
  */
 typealias BlockedReason = String
 
-
-
-
-
-/*
+/**
  * HTTP response data.
  */
-
-
-
-
 data class Response(
   /**
    * Response URL. This URL can be different from CachedResource.url in case of redirect.
@@ -429,31 +373,21 @@ data class Response(
    * Security details for the request.
    */
   val securityDetails : SecurityDetails? = null
-
 )
 
-/*
+/**
  * WebSocket request data.
  */
-
-
-
-
 data class WebSocketRequest(
   /**
    * HTTP request headers.
    */
   val headers : Headers
-
 )
 
-/*
+/**
  * WebSocket response data.
  */
-
-
-
-
 data class WebSocketResponse(
   /**
    * HTTP response status code.
@@ -484,16 +418,11 @@ data class WebSocketResponse(
    * HTTP request headers text.
    */
   val requestHeadersText : String? = null
-
 )
 
-/*
+/**
  * WebSocket frame data.
  */
-
-
-
-
 data class WebSocketFrame(
   /**
    * WebSocket frame opcode.
@@ -509,16 +438,11 @@ data class WebSocketFrame(
    * WebSocke frame payload data.
    */
   val payloadData : String
-
 )
 
-/*
+/**
  * Information about the cached resource.
  */
-
-
-
-
 data class CachedResource(
   /**
    * Resource URL. This is the url of the original network request.
@@ -539,16 +463,11 @@ data class CachedResource(
    * Cached response body size.
    */
   val bodySize : Double
-
 )
 
-/*
+/**
  * Information about the request initiator.
  */
-
-
-
-
 data class Initiator(
   /**
    * Type of this initiator.
@@ -569,16 +488,11 @@ data class Initiator(
    * Initiator line number, set for Parser type only (0-based).
    */
   val lineNumber : Double? = null
-
 )
 
-/*
+/**
  * Cookie object
  */
-
-
-
-
 data class Cookie(
   /**
    * Cookie name.
@@ -629,6 +543,5 @@ data class Cookie(
    * Cookie SameSite type.
    */
   val sameSite : CookieSameSite? = null
-
 )
 

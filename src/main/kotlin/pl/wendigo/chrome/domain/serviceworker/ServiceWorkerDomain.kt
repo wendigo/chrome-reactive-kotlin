@@ -111,6 +111,11 @@ package pl.wendigo.chrome.domain.serviceworker
 
 
 
+/**
+ * Represents request parameters that can be used with ServiceWorker.unregister method call.
+ *
+ * 
+ */
 data class UnregisterRequest (
     /**
      * 
@@ -120,6 +125,11 @@ data class UnregisterRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with ServiceWorker.updateRegistration method call.
+ *
+ * 
+ */
 data class UpdateRegistrationRequest (
     /**
      * 
@@ -129,6 +139,11 @@ data class UpdateRegistrationRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with ServiceWorker.startWorker method call.
+ *
+ * 
+ */
 data class StartWorkerRequest (
     /**
      * 
@@ -138,6 +153,11 @@ data class StartWorkerRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with ServiceWorker.skipWaiting method call.
+ *
+ * 
+ */
 data class SkipWaitingRequest (
     /**
      * 
@@ -147,6 +167,11 @@ data class SkipWaitingRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with ServiceWorker.stopWorker method call.
+ *
+ * 
+ */
 data class StopWorkerRequest (
     /**
      * 
@@ -156,6 +181,11 @@ data class StopWorkerRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with ServiceWorker.inspectWorker method call.
+ *
+ * 
+ */
 data class InspectWorkerRequest (
     /**
      * 
@@ -165,6 +195,11 @@ data class InspectWorkerRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with ServiceWorker.setForceUpdateOnPageLoad method call.
+ *
+ * 
+ */
 data class SetForceUpdateOnPageLoadRequest (
     /**
      * 
@@ -174,6 +209,11 @@ data class SetForceUpdateOnPageLoadRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with ServiceWorker.deliverPushMessage method call.
+ *
+ * 
+ */
 data class DeliverPushMessageRequest (
     /**
      * 
@@ -193,6 +233,11 @@ data class DeliverPushMessageRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with ServiceWorker.dispatchSyncEvent method call.
+ *
+ * 
+ */
 data class DispatchSyncEventRequest (
     /**
      * 
@@ -219,6 +264,8 @@ data class DispatchSyncEventRequest (
 
 
 /**
+ * Represents response from ServiceWorker. method call.
+ *
  * 
  */
 data class WorkerRegistrationUpdatedEvent(
@@ -230,6 +277,8 @@ data class WorkerRegistrationUpdatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ServiceWorker", protocolEventName = "workerRegistrationUpdated")
 
 /**
+ * Represents response from ServiceWorker. method call.
+ *
  * 
  */
 data class WorkerVersionUpdatedEvent(
@@ -241,6 +290,8 @@ data class WorkerVersionUpdatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ServiceWorker", protocolEventName = "workerVersionUpdated")
 
 /**
+ * Represents response from ServiceWorker. method call.
+ *
  * 
  */
 data class WorkerErrorReportedEvent(

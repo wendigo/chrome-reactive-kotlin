@@ -53,6 +53,8 @@ package pl.wendigo.chrome.domain.applicationcache
 
 
 /**
+ * Represents response from ApplicationCache. method call.
+ *
  * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
  */
 data class GetFramesWithManifestsResponse(
@@ -65,6 +67,11 @@ data class GetFramesWithManifestsResponse(
 
 
 
+/**
+ * Represents request parameters that can be used with ApplicationCache.getManifestForFrame method call.
+ *
+ * Returns manifest URL for document in the given frame.
+ */
 data class GetManifestForFrameRequest (
     /**
      * Identifier of the frame containing document whose manifest is retrieved.
@@ -74,6 +81,8 @@ data class GetManifestForFrameRequest (
 )
 
 /**
+ * Represents response from ApplicationCache. method call.
+ *
  * Returns manifest URL for document in the given frame.
  */
 data class GetManifestForFrameResponse(
@@ -84,6 +93,11 @@ data class GetManifestForFrameResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with ApplicationCache.getApplicationCacheForFrame method call.
+ *
+ * Returns relevant application cache data for the document in given frame.
+ */
 data class GetApplicationCacheForFrameRequest (
     /**
      * Identifier of the frame containing document whose application cache is retrieved.
@@ -93,6 +107,8 @@ data class GetApplicationCacheForFrameRequest (
 )
 
 /**
+ * Represents response from ApplicationCache. method call.
+ *
  * Returns relevant application cache data for the document in given frame.
  */
 data class GetApplicationCacheForFrameResponse(
@@ -105,6 +121,8 @@ data class GetApplicationCacheForFrameResponse(
 
 
 /**
+ * Represents response from ApplicationCache. method call.
+ *
  * 
  */
 data class ApplicationCacheStatusUpdatedEvent(
@@ -126,6 +144,8 @@ data class ApplicationCacheStatusUpdatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ApplicationCache", protocolEventName = "applicationCacheStatusUpdated")
 
 /**
+ * Represents response from ApplicationCache. method call.
+ *
  * 
  */
 data class NetworkStateUpdatedEvent(

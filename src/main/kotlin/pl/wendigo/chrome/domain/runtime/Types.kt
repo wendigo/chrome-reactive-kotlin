@@ -1,39 +1,23 @@
 package pl.wendigo.chrome.domain.runtime
 
-/*
+/**
  * Unique script identifier.
  */
 typealias ScriptId = String
 
-
-
-
-
-/*
+/**
  * Unique object identifier.
  */
 typealias RemoteObjectId = String
 
-
-
-
-
-/*
+/**
  * Primitive value which cannot be JSON-stringified.
  */
 typealias UnserializableValue = String
 
-
-
-
-
-/*
+/**
  * Mirror object referencing original JavaScript object.
  */
-
-
-
-
 data class RemoteObject(
   /**
    * Object type.
@@ -79,16 +63,11 @@ data class RemoteObject(
    * 
    */
   @pl.wendigo.chrome.ProtocolExperimental val customPreview : CustomPreview? = null
-
 )
 
-/*
+/**
  * 
  */
-
-
-
-
 data class CustomPreview(
   /**
    * 
@@ -114,16 +93,11 @@ data class CustomPreview(
    * 
    */
   val configObjectId : RemoteObjectId? = null
-
 )
 
-/*
+/**
  * Object containing abbreviated remote object value.
  */
-
-
-
-
 data class ObjectPreview(
   /**
    * Object type.
@@ -154,16 +128,11 @@ data class ObjectPreview(
    * List of the entries. Specified for <code>map</code> and <code>set</code> subtype values only.
    */
   val entries : Array<EntryPreview>? = null
-
 )
 
-/*
+/**
  * 
  */
-
-
-
-
 data class PropertyPreview(
   /**
    * Property name.
@@ -189,16 +158,11 @@ data class PropertyPreview(
    * Object subtype hint. Specified for <code>object</code> type values only.
    */
   val subtype : String? = null
-
 )
 
-/*
+/**
  * 
  */
-
-
-
-
 data class EntryPreview(
   /**
    * Preview of the key. Specified for map-like collection entries.
@@ -209,16 +173,11 @@ data class EntryPreview(
    * Preview of the value.
    */
   val value : ObjectPreview
-
 )
 
-/*
+/**
  * Object property descriptor.
  */
-
-
-
-
 data class PropertyDescriptor(
   /**
    * Property name or symbol description.
@@ -269,16 +228,11 @@ data class PropertyDescriptor(
    * Property symbol object, if the property is of the <code>symbol</code> type.
    */
   val symbol : RemoteObject? = null
-
 )
 
-/*
+/**
  * Object internal property descriptor. This property isn&apos;t normally visible in JavaScript code.
  */
-
-
-
-
 data class InternalPropertyDescriptor(
   /**
    * Conventional property name.
@@ -289,16 +243,11 @@ data class InternalPropertyDescriptor(
    * The value associated with the property.
    */
   val value : RemoteObject? = null
-
 )
 
-/*
+/**
  * Represents function call argument. Either remote object id &lt;code&gt;objectId&lt;/code&gt;, primitive &lt;code&gt;value&lt;/code&gt;, unserializable primitive value or neither of (for undefined) them should be specified.
  */
-
-
-
-
 data class CallArgument(
   /**
    * Primitive value.
@@ -314,25 +263,16 @@ data class CallArgument(
    * Remote object handle.
    */
   val objectId : RemoteObjectId? = null
-
 )
 
-/*
+/**
  * Id of an execution context.
  */
-
-
 typealias ExecutionContextId = Int
 
-
-
-/*
+/**
  * Description of an isolated world.
  */
-
-
-
-
 data class ExecutionContextDescription(
   /**
    * Unique id of the execution context. It can be used to specify in which execution context script evaluation should be performed.
@@ -353,16 +293,11 @@ data class ExecutionContextDescription(
    * Embedder-specific auxiliary data.
    */
   val auxData : String? = null
-
 )
 
-/*
+/**
  * Detailed information about exception (or error) that was thrown during script compilation or execution.
  */
-
-
-
-
 data class ExceptionDetails(
   /**
    * Exception id.
@@ -408,25 +343,16 @@ data class ExceptionDetails(
    * Identifier of the context where exception happened.
    */
   val executionContextId : ExecutionContextId? = null
-
 )
 
-/*
+/**
  * Number of milliseconds since epoch.
  */
-
 typealias Timestamp = Double
 
-
-
-
-/*
+/**
  * Stack entry for runtime errors and assertions.
  */
-
-
-
-
 data class CallFrame(
   /**
    * JavaScript function name.
@@ -452,16 +378,11 @@ data class CallFrame(
    * JavaScript script column number (0-based).
    */
   val columnNumber : Int
-
 )
 
-/*
+/**
  * Call frames for assertions or error messages.
  */
-
-
-
-
 data class StackTrace(
   /**
    * String label of this stack trace. For async traces this may be a name of the function that initiated the async call.
@@ -477,6 +398,5 @@ data class StackTrace(
    * Asynchronous JavaScript stack trace that preceded this stack, if available.
    */
   val parent : StackTrace? = null
-
 )
 

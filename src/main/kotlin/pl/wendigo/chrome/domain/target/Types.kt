@@ -1,30 +1,18 @@
 package pl.wendigo.chrome.domain.target
 
-/*
+/**
  * 
  */
 typealias TargetID = String
 
-
-
-
-
-/*
+/**
  * 
  */
 typealias BrowserContextID = String
 
-
-
-
-
-/*
+/**
  * 
  */
-
-
-
-
 data class TargetInfo(
   /**
    * 
@@ -45,16 +33,11 @@ data class TargetInfo(
    * 
    */
   val url : String
-
 )
 
-/*
+/**
  * 
  */
-
-
-
-
 data class RemoteLocation(
   /**
    * 
@@ -65,6 +48,5 @@ data class RemoteLocation(
    * 
    */
   val port : Int
-
 )
 

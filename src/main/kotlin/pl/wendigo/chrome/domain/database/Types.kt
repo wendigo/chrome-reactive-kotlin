@@ -1,21 +1,13 @@
 package pl.wendigo.chrome.domain.database
 
-/*
+/**
  * Unique identifier of Database object.
  */
 typealias DatabaseId = String
 
-
-
-
-
-/*
+/**
  * Database object.
  */
-
-
-
-
 data class Database(
   /**
    * Database ID.
@@ -36,16 +28,11 @@ data class Database(
    * Database version.
    */
   val version : String
-
 )
 
-/*
+/**
  * Database error.
  */
-
-
-
-
 data class Error(
   /**
    * Error message.
@@ -56,6 +43,5 @@ data class Error(
    * Error code.
    */
   val code : Int
-
 )
 

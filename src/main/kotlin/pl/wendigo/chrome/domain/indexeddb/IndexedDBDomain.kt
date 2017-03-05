@@ -55,6 +55,11 @@ package pl.wendigo.chrome.domain.indexeddb
 
 
 
+/**
+ * Represents request parameters that can be used with IndexedDB.requestDatabaseNames method call.
+ *
+ * Requests database names for given security origin.
+ */
 data class RequestDatabaseNamesRequest (
     /**
      * Security origin.
@@ -64,6 +69,8 @@ data class RequestDatabaseNamesRequest (
 )
 
 /**
+ * Represents response from IndexedDB. method call.
+ *
  * Requests database names for given security origin.
  */
 data class RequestDatabaseNamesResponse(
@@ -74,6 +81,11 @@ data class RequestDatabaseNamesResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with IndexedDB.requestDatabase method call.
+ *
+ * Requests database with given name in given frame.
+ */
 data class RequestDatabaseRequest (
     /**
      * Security origin.
@@ -88,6 +100,8 @@ data class RequestDatabaseRequest (
 )
 
 /**
+ * Represents response from IndexedDB. method call.
+ *
  * Requests database with given name in given frame.
  */
 data class RequestDatabaseResponse(
@@ -98,6 +112,11 @@ data class RequestDatabaseResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with IndexedDB.requestData method call.
+ *
+ * Requests data from object store or index.
+ */
 data class RequestDataRequest (
     /**
      * Security origin.
@@ -137,6 +156,8 @@ data class RequestDataRequest (
 )
 
 /**
+ * Represents response from IndexedDB. method call.
+ *
  * Requests data from object store or index.
  */
 data class RequestDataResponse(
@@ -152,6 +173,11 @@ data class RequestDataResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with IndexedDB.clearObjectStore method call.
+ *
+ * Clears all entries from an object store.
+ */
 data class ClearObjectStoreRequest (
     /**
      * Security origin.

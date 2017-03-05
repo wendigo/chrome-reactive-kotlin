@@ -57,6 +57,11 @@ package pl.wendigo.chrome.domain.log
 
 
 
+/**
+ * Represents request parameters that can be used with Log.startViolationsReport method call.
+ *
+ * start violation reporting.
+ */
 data class StartViolationsReportRequest (
     /**
      * Configuration for violations.
@@ -70,6 +75,8 @@ data class StartViolationsReportRequest (
 
 
 /**
+ * Represents response from Log. method call.
+ *
  * Issued when new message was logged.
  */
 data class EntryAddedEvent(

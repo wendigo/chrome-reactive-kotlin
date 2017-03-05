@@ -1,30 +1,18 @@
 package pl.wendigo.chrome.domain.css
 
-/*
+/**
  * 
  */
 typealias StyleSheetId = String
 
-
-
-
-
-/*
+/**
  * Stylesheet type: &quot;injected&quot; for stylesheets injected via extension, &quot;user-agent&quot; for user-agent stylesheets, &quot;inspector&quot; for stylesheets created by the inspector (i.e. those holding the &quot;via inspector&quot; rules), &quot;regular&quot; for regular stylesheets.
  */
 typealias StyleSheetOrigin = String
 
-
-
-
-
-/*
+/**
  * CSS rule collection for a single pseudo style.
  */
-
-
-
-
 data class PseudoElementMatches(
   /**
    * Pseudo element type.
@@ -35,16 +23,11 @@ data class PseudoElementMatches(
    * Matches of CSS rules applicable to the pseudo style.
    */
   val matches : Array<RuleMatch>
-
 )
 
-/*
+/**
  * Inherited CSS rule collection from ancestor node.
  */
-
-
-
-
 data class InheritedStyleEntry(
   /**
    * The ancestor node's inline style, if any, in the style inheritance chain.
@@ -55,16 +38,11 @@ data class InheritedStyleEntry(
    * Matches of CSS rules matching the ancestor node in the style inheritance chain.
    */
   val matchedCSSRules : Array<RuleMatch>
-
 )
 
-/*
+/**
  * Match data for a CSS rule.
  */
-
-
-
-
 data class RuleMatch(
   /**
    * CSS rule in the match.
@@ -75,16 +53,11 @@ data class RuleMatch(
    * Matching selector indices in the rule's selectorList selectors (0-based).
    */
   val matchingSelectors : Array<Int>
-
 )
 
-/*
+/**
  * Data for a simple selector (these are delimited by commas in a selector list).
  */
-
-
-
-
 data class Value(
   /**
    * Value text.
@@ -95,16 +68,11 @@ data class Value(
    * Value range in the underlying resource (if available).
    */
   val range : SourceRange? = null
-
 )
 
-/*
+/**
  * Selector list data.
  */
-
-
-
-
 data class SelectorList(
   /**
    * Selectors in the list.
@@ -115,16 +83,11 @@ data class SelectorList(
    * Rule selector text.
    */
   val text : String
-
 )
 
-/*
+/**
  * CSS stylesheet metainformation.
  */
-
-
-
-
 data class CSSStyleSheetHeader(
   /**
    * The stylesheet identifier.
@@ -185,16 +148,11 @@ data class CSSStyleSheetHeader(
    * Column offset of the stylesheet within the resource (zero based).
    */
   val startColumn : Double
-
 )
 
-/*
+/**
  * CSS rule representation.
  */
-
-
-
-
 data class CSSRule(
   /**
    * The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
@@ -220,16 +178,11 @@ data class CSSRule(
    * Media list array (for rules involving media queries). The array enumerates media queries starting with the innermost one, going outwards.
    */
   val media : Array<CSSMedia>? = null
-
 )
 
-/*
+/**
  * CSS rule usage information.
  */
-
-
-
-
 data class RuleUsage(
   /**
    * The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
@@ -245,16 +198,11 @@ data class RuleUsage(
    * Indicates whether the rule was actually used by some element in the page.
    */
   val used : Boolean
-
 )
 
-/*
+/**
  * Text range within a resource. All numbers are zero-based.
  */
-
-
-
-
 data class SourceRange(
   /**
    * Start line of range.
@@ -275,16 +223,11 @@ data class SourceRange(
    * End column of range (exclusive).
    */
   val endColumn : Int
-
 )
 
-/*
+/**
  * 
  */
-
-
-
-
 data class ShorthandEntry(
   /**
    * Shorthand name.
@@ -300,16 +243,11 @@ data class ShorthandEntry(
    * Whether the property has "!important" annotation (implies <code>false</code> if absent).
    */
   val important : Boolean? = null
-
 )
 
-/*
+/**
  * 
  */
-
-
-
-
 data class CSSComputedStyleProperty(
   /**
    * Computed style property name.
@@ -320,16 +258,11 @@ data class CSSComputedStyleProperty(
    * Computed style property value.
    */
   val value : String
-
 )
 
-/*
+/**
  * CSS style representation.
  */
-
-
-
-
 data class CSSStyle(
   /**
    * The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
@@ -355,16 +288,11 @@ data class CSSStyle(
    * Style declaration range in the enclosing stylesheet (if available).
    */
   val range : SourceRange? = null
-
 )
 
-/*
+/**
  * CSS property declaration data.
  */
-
-
-
-
 data class CSSProperty(
   /**
    * The property name.
@@ -405,16 +333,11 @@ data class CSSProperty(
    * The entire property range in the enclosing style declaration (if available).
    */
   val range : SourceRange? = null
-
 )
 
-/*
+/**
  * CSS media rule descriptor.
  */
-
-
-
-
 data class CSSMedia(
   /**
    * Media query text.
@@ -445,16 +368,11 @@ data class CSSMedia(
    * Array of media queries.
    */
   @pl.wendigo.chrome.ProtocolExperimental val mediaList : Array<MediaQuery>? = null
-
 )
 
-/*
+/**
  * Media query descriptor.
  */
-
-
-
-
 data class MediaQuery(
   /**
    * Array of media query expressions.
@@ -465,16 +383,11 @@ data class MediaQuery(
    * Whether the media query condition is satisfied.
    */
   val active : Boolean
-
 )
 
-/*
+/**
  * Media query expression descriptor.
  */
-
-
-
-
 data class MediaQueryExpression(
   /**
    * Media query expression value.
@@ -500,16 +413,11 @@ data class MediaQueryExpression(
    * Computed length of media query expression (if applicable).
    */
   val computedLength : Double? = null
-
 )
 
-/*
+/**
  * Information about amount of glyphs that were rendered with given font.
  */
-
-
-
-
 data class PlatformFontUsage(
   /**
    * Font's family name reported by platform.
@@ -525,16 +433,11 @@ data class PlatformFontUsage(
    * Amount of glyphs that were rendered with this font.
    */
   val glyphCount : Double
-
 )
 
-/*
+/**
  * CSS keyframes rule representation.
  */
-
-
-
-
 data class CSSKeyframesRule(
   /**
    * Animation name.
@@ -545,16 +448,11 @@ data class CSSKeyframesRule(
    * List of keyframes.
    */
   val keyframes : Array<CSSKeyframeRule>
-
 )
 
-/*
+/**
  * CSS keyframe rule representation.
  */
-
-
-
-
 data class CSSKeyframeRule(
   /**
    * The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
@@ -575,16 +473,11 @@ data class CSSKeyframeRule(
    * Associated style declaration.
    */
   val style : CSSStyle
-
 )
 
-/*
+/**
  * A descriptor of operation to mutate style declaration text.
  */
-
-
-
-
 data class StyleDeclarationEdit(
   /**
    * The css style sheet identifier.
@@ -600,16 +493,11 @@ data class StyleDeclarationEdit(
    * New style text.
    */
   val text : String
-
 )
 
-/*
+/**
  * Details of post layout rendered text positions. The exact layout should not be regarded as stable and may change between versions.
  */
-
-
-
-
 data class InlineTextBox(
   /**
    * The absolute position bounding box.
@@ -625,16 +513,11 @@ data class InlineTextBox(
    * The number of characters in this post layout textbox substring.
    */
   val numCharacters : Int
-
 )
 
-/*
+/**
  * Details of an element in the DOM tree with a LayoutObject.
  */
-
-
-
-
 data class LayoutTreeNode(
   /**
    * The id of the related DOM node matching one from DOM.GetDocument.
@@ -660,21 +543,15 @@ data class LayoutTreeNode(
    * Index into the computedStyles array returned by getLayoutTreeAndStyles.
    */
   val styleIndex : Int? = null
-
 )
 
-/*
+/**
  * A subset of the full ComputedStyle as defined by the request whitelist.
  */
-
-
-
-
 data class ComputedStyle(
   /**
    * 
    */
   val properties : Array<CSSComputedStyleProperty>
-
 )
 

@@ -43,6 +43,8 @@ package pl.wendigo.chrome.domain.inspector
 
 
 /**
+ * Represents response from Inspector. method call.
+ *
  * Fired when remote debugging connection is about to be terminated. Contains detach reason.
  */
 data class DetachedEvent(

@@ -1,12 +1,8 @@
 package pl.wendigo.chrome.domain.serviceworker
 
-/*
+/**
  * ServiceWorker registration.
  */
-
-
-
-
 data class ServiceWorkerRegistration(
   /**
    * 
@@ -22,34 +18,21 @@ data class ServiceWorkerRegistration(
    * 
    */
   val isDeleted : Boolean
-
 )
 
-/*
+/**
  * 
  */
 typealias ServiceWorkerVersionRunningStatus = String
 
-
-
-
-
-/*
+/**
  * 
  */
 typealias ServiceWorkerVersionStatus = String
 
-
-
-
-
-/*
+/**
  * ServiceWorker version.
  */
-
-
-
-
 data class ServiceWorkerVersion(
   /**
    * 
@@ -95,16 +78,11 @@ data class ServiceWorkerVersion(
    * 
    */
   val targetId : pl.wendigo.chrome.domain.target.TargetID? = null
-
 )
 
-/*
+/**
  * ServiceWorker error message.
  */
-
-
-
-
 data class ServiceWorkerErrorMessage(
   /**
    * 
@@ -135,6 +113,5 @@ data class ServiceWorkerErrorMessage(
    * 
    */
   val columnNumber : Int
-
 )
 

@@ -18,6 +18,8 @@ class SchemaDomain internal constructor(private val connection : pl.wendigo.chro
 
 
 /**
+ * Represents response from Schema. method call.
+ *
  * Returns supported domains.
  */
 data class GetDomainsResponse(

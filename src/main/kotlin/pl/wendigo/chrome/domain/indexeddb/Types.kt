@@ -1,12 +1,8 @@
 package pl.wendigo.chrome.domain.indexeddb
 
-/*
+/**
  * Database with an array of object stores.
  */
-
-
-
-
 data class DatabaseWithObjectStores(
   /**
    * Database name.
@@ -22,16 +18,11 @@ data class DatabaseWithObjectStores(
    * Object stores in this database.
    */
   val objectStores : Array<ObjectStore>
-
 )
 
-/*
+/**
  * Object store.
  */
-
-
-
-
 data class ObjectStore(
   /**
    * Object store name.
@@ -52,16 +43,11 @@ data class ObjectStore(
    * Indexes in this object store.
    */
   val indexes : Array<ObjectStoreIndex>
-
 )
 
-/*
+/**
  * Object store index.
  */
-
-
-
-
 data class ObjectStoreIndex(
   /**
    * Index name.
@@ -82,16 +68,11 @@ data class ObjectStoreIndex(
    * If true, index allows multiple entries for a key.
    */
   val multiEntry : Boolean
-
 )
 
-/*
+/**
  * Key.
  */
-
-
-
-
 data class Key(
   /**
    * Key type.
@@ -117,16 +98,11 @@ data class Key(
    * Array value.
    */
   val array : Array<Key>? = null
-
 )
 
-/*
+/**
  * Key range.
  */
-
-
-
-
 data class KeyRange(
   /**
    * Lower bound.
@@ -147,16 +123,11 @@ data class KeyRange(
    * If true upper bound is open.
    */
   val upperOpen : Boolean
-
 )
 
-/*
+/**
  * Data entry.
  */
-
-
-
-
 data class DataEntry(
   /**
    * Key object.
@@ -172,16 +143,11 @@ data class DataEntry(
    * Value object.
    */
   val value : pl.wendigo.chrome.domain.runtime.RemoteObject
-
 )
 
-/*
+/**
  * Key path.
  */
-
-
-
-
 data class KeyPath(
   /**
    * Key path type.
@@ -197,6 +163,5 @@ data class KeyPath(
    * Array value.
    */
   val array : Array<String>? = null
-
 )
 

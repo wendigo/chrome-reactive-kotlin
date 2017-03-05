@@ -1,30 +1,18 @@
 package pl.wendigo.chrome.domain.layertree
 
-/*
+/**
  * Unique Layer identifier.
  */
 typealias LayerId = String
 
-
-
-
-
-/*
+/**
  * Unique snapshot identifier.
  */
 typealias SnapshotId = String
 
-
-
-
-
-/*
+/**
  * Rectangle where scrolling happens on the main thread.
  */
-
-
-
-
 data class ScrollRect(
   /**
    * Rectangle itself.
@@ -35,16 +23,11 @@ data class ScrollRect(
    * Reason for rectangle to force scrolling on the main thread
    */
   val type : String
-
 )
 
-/*
+/**
  * Serialized fragment of layer picture along with its offset within the layer.
  */
-
-
-
-
 data class PictureTile(
   /**
    * Offset from owning layer left boundary
@@ -60,16 +43,11 @@ data class PictureTile(
    * Base64-encoded snapshot data.
    */
   val picture : String
-
 )
 
-/*
+/**
  * Information about a compositing layer.
  */
-
-
-
-
 data class Layer(
   /**
    * The unique id for this layer.
@@ -145,15 +123,10 @@ data class Layer(
    * Rectangles scrolling on main thread only.
    */
   val scrollRects : Array<ScrollRect>? = null
-
 )
 
-/*
+/**
  * Array of timings, one per paint step.
  */
-
-
-
 typealias PaintProfile = Array<Double>
-
 

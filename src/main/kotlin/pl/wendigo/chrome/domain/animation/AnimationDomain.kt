@@ -106,6 +106,8 @@ package pl.wendigo.chrome.domain.animation
 
 
 /**
+ * Represents response from Animation. method call.
+ *
  * Gets the playback rate of the document timeline.
  */
 data class GetPlaybackRateResponse(
@@ -116,6 +118,11 @@ data class GetPlaybackRateResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Animation.setPlaybackRate method call.
+ *
+ * Sets the playback rate of the document timeline.
+ */
 data class SetPlaybackRateRequest (
     /**
      * Playback rate for animations on page
@@ -125,6 +132,11 @@ data class SetPlaybackRateRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Animation.getCurrentTime method call.
+ *
+ * Returns the current time of the an animation.
+ */
 data class GetCurrentTimeRequest (
     /**
      * Id of animation.
@@ -134,6 +146,8 @@ data class GetCurrentTimeRequest (
 )
 
 /**
+ * Represents response from Animation. method call.
+ *
  * Returns the current time of the an animation.
  */
 data class GetCurrentTimeResponse(
@@ -144,6 +158,11 @@ data class GetCurrentTimeResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with Animation.setPaused method call.
+ *
+ * Sets the paused state of a set of animations.
+ */
 data class SetPausedRequest (
     /**
      * Animations to set the pause state of.
@@ -158,6 +177,11 @@ data class SetPausedRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Animation.setTiming method call.
+ *
+ * Sets the timing of an animation node.
+ */
 data class SetTimingRequest (
     /**
      * Animation id.
@@ -177,6 +201,11 @@ data class SetTimingRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Animation.seekAnimations method call.
+ *
+ * Seek a set of animations to a particular time within each animation.
+ */
 data class SeekAnimationsRequest (
     /**
      * List of animation ids to seek.
@@ -191,6 +220,11 @@ data class SeekAnimationsRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Animation.releaseAnimations method call.
+ *
+ * Releases a set of animations to no longer be manipulated.
+ */
 data class ReleaseAnimationsRequest (
     /**
      * List of animation ids to seek.
@@ -200,6 +234,11 @@ data class ReleaseAnimationsRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with Animation.resolveAnimation method call.
+ *
+ * Gets the remote object of the Animation.
+ */
 data class ResolveAnimationRequest (
     /**
      * Animation id.
@@ -209,6 +248,8 @@ data class ResolveAnimationRequest (
 )
 
 /**
+ * Represents response from Animation. method call.
+ *
  * Gets the remote object of the Animation.
  */
 data class ResolveAnimationResponse(
@@ -221,6 +262,8 @@ data class ResolveAnimationResponse(
 
 
 /**
+ * Represents response from Animation. method call.
+ *
  * Event for each animation that has been created.
  */
 data class AnimationCreatedEvent(
@@ -232,6 +275,8 @@ data class AnimationCreatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Animation", protocolEventName = "animationCreated")
 
 /**
+ * Represents response from Animation. method call.
+ *
  * Event for animation that has been started.
  */
 data class AnimationStartedEvent(
@@ -243,6 +288,8 @@ data class AnimationStartedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Animation", protocolEventName = "animationStarted")
 
 /**
+ * Represents response from Animation. method call.
+ *
  * Event for when an animation has been cancelled.
  */
 data class AnimationCanceledEvent(

@@ -90,6 +90,11 @@ package pl.wendigo.chrome.domain.layertree
 
 
 
+/**
+ * Represents request parameters that can be used with LayerTree.compositingReasons method call.
+ *
+ * Provides the reasons why the given layer was composited.
+ */
 data class CompositingReasonsRequest (
     /**
      * The id of the layer for which we want to get the reasons it was composited.
@@ -99,6 +104,8 @@ data class CompositingReasonsRequest (
 )
 
 /**
+ * Represents response from LayerTree. method call.
+ *
  * Provides the reasons why the given layer was composited.
  */
 data class CompositingReasonsResponse(
@@ -109,6 +116,11 @@ data class CompositingReasonsResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with LayerTree.makeSnapshot method call.
+ *
+ * Returns the layer snapshot identifier.
+ */
 data class MakeSnapshotRequest (
     /**
      * The id of the layer.
@@ -118,6 +130,8 @@ data class MakeSnapshotRequest (
 )
 
 /**
+ * Represents response from LayerTree. method call.
+ *
  * Returns the layer snapshot identifier.
  */
 data class MakeSnapshotResponse(
@@ -128,6 +142,11 @@ data class MakeSnapshotResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with LayerTree.loadSnapshot method call.
+ *
+ * Returns the snapshot identifier.
+ */
 data class LoadSnapshotRequest (
     /**
      * An array of tiles composing the snapshot.
@@ -137,6 +156,8 @@ data class LoadSnapshotRequest (
 )
 
 /**
+ * Represents response from LayerTree. method call.
+ *
  * Returns the snapshot identifier.
  */
 data class LoadSnapshotResponse(
@@ -147,6 +168,11 @@ data class LoadSnapshotResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with LayerTree.releaseSnapshot method call.
+ *
+ * Releases layer snapshot captured by the back-end.
+ */
 data class ReleaseSnapshotRequest (
     /**
      * The id of the layer snapshot.
@@ -156,6 +182,11 @@ data class ReleaseSnapshotRequest (
 )
 
 
+/**
+ * Represents request parameters that can be used with LayerTree.profileSnapshot method call.
+ *
+ * 
+ */
 data class ProfileSnapshotRequest (
     /**
      * The id of the layer snapshot.
@@ -180,6 +211,8 @@ data class ProfileSnapshotRequest (
 )
 
 /**
+ * Represents response from LayerTree. method call.
+ *
  * 
  */
 data class ProfileSnapshotResponse(
@@ -190,6 +223,11 @@ data class ProfileSnapshotResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with LayerTree.replaySnapshot method call.
+ *
+ * Replays the layer snapshot and returns the resulting bitmap.
+ */
 data class ReplaySnapshotRequest (
     /**
      * The id of the layer snapshot.
@@ -214,6 +252,8 @@ data class ReplaySnapshotRequest (
 )
 
 /**
+ * Represents response from LayerTree. method call.
+ *
  * Replays the layer snapshot and returns the resulting bitmap.
  */
 data class ReplaySnapshotResponse(
@@ -224,6 +264,11 @@ data class ReplaySnapshotResponse(
 
 )
 
+/**
+ * Represents request parameters that can be used with LayerTree.snapshotCommandLog method call.
+ *
+ * Replays the layer snapshot and returns canvas log.
+ */
 data class SnapshotCommandLogRequest (
     /**
      * The id of the layer snapshot.
@@ -233,6 +278,8 @@ data class SnapshotCommandLogRequest (
 )
 
 /**
+ * Represents response from LayerTree. method call.
+ *
  * Replays the layer snapshot and returns canvas log.
  */
 data class SnapshotCommandLogResponse(
@@ -245,6 +292,8 @@ data class SnapshotCommandLogResponse(
 
 
 /**
+ * Represents response from LayerTree. method call.
+ *
  * 
  */
 data class LayerTreeDidChangeEvent(
@@ -256,6 +305,8 @@ data class LayerTreeDidChangeEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "LayerTree", protocolEventName = "layerTreeDidChange")
 
 /**
+ * Represents response from LayerTree. method call.
+ *
  * 
  */
 data class LayerPaintedEvent(
