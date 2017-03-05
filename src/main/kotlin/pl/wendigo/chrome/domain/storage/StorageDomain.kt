@@ -10,7 +10,7 @@ package pl.wendigo.chrome.domain.storage
 	/**
 	 * Clears storage for origin.
 	 */
-	fun clearDataForOrigin(input : ClearDataForOriginRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun clearDataForOrigin(input : ClearDataForOriginRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Storage.clearDataForOrigin", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 

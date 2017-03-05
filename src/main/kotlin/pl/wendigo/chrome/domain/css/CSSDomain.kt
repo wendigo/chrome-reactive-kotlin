@@ -10,154 +10,162 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been enabled until the result of this command is received.
 	 */
-	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables the CSS agent for the given page.
 	 */
-	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("CSS.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns requested styles for a DOM node identified by <code>nodeId</code>.
 	 */
-	fun getMatchedStylesForNode(input : GetMatchedStylesForNodeRequest) : io.reactivex.Flowable<GetMatchedStylesForNodeResponse> {
+	  fun getMatchedStylesForNode(input : GetMatchedStylesForNodeRequest) : io.reactivex.Flowable<GetMatchedStylesForNodeResponse> {
         return connection.runAndCaptureResponse("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java)
 	}
 
 	/**
 	 * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.
 	 */
-	fun getInlineStylesForNode(input : GetInlineStylesForNodeRequest) : io.reactivex.Flowable<GetInlineStylesForNodeResponse> {
+	  fun getInlineStylesForNode(input : GetInlineStylesForNodeRequest) : io.reactivex.Flowable<GetInlineStylesForNodeResponse> {
         return connection.runAndCaptureResponse("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java)
 	}
 
 	/**
 	 * Returns the computed style for a DOM node identified by <code>nodeId</code>.
 	 */
-	fun getComputedStyleForNode(input : GetComputedStyleForNodeRequest) : io.reactivex.Flowable<GetComputedStyleForNodeResponse> {
+	  fun getComputedStyleForNode(input : GetComputedStyleForNodeRequest) : io.reactivex.Flowable<GetComputedStyleForNodeResponse> {
         return connection.runAndCaptureResponse("CSS.getComputedStyleForNode", input, GetComputedStyleForNodeResponse::class.java)
 	}
 
 	/**
 	 * Requests information about platform fonts which we used to render child TextNodes in the given node.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun getPlatformFontsForNode(input : GetPlatformFontsForNodeRequest) : io.reactivex.Flowable<GetPlatformFontsForNodeResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getPlatformFontsForNode(input : GetPlatformFontsForNodeRequest) : io.reactivex.Flowable<GetPlatformFontsForNodeResponse> {
         return connection.runAndCaptureResponse("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java)
 	}
 
 	/**
 	 * Returns the current textual content and the URL for a stylesheet.
 	 */
-	fun getStyleSheetText(input : GetStyleSheetTextRequest) : io.reactivex.Flowable<GetStyleSheetTextResponse> {
+	  fun getStyleSheetText(input : GetStyleSheetTextRequest) : io.reactivex.Flowable<GetStyleSheetTextResponse> {
         return connection.runAndCaptureResponse("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java)
 	}
 
 	/**
 	 * Returns all class names from specified stylesheet.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun collectClassNames(input : CollectClassNamesRequest) : io.reactivex.Flowable<CollectClassNamesResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun collectClassNames(input : CollectClassNamesRequest) : io.reactivex.Flowable<CollectClassNamesResponse> {
         return connection.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java)
 	}
 
 	/**
 	 * Sets the new stylesheet text.
 	 */
-	fun setStyleSheetText(input : SetStyleSheetTextRequest) : io.reactivex.Flowable<SetStyleSheetTextResponse> {
+	  fun setStyleSheetText(input : SetStyleSheetTextRequest) : io.reactivex.Flowable<SetStyleSheetTextResponse> {
         return connection.runAndCaptureResponse("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java)
 	}
 
 	/**
 	 * Modifies the rule selector.
 	 */
-	fun setRuleSelector(input : SetRuleSelectorRequest) : io.reactivex.Flowable<SetRuleSelectorResponse> {
+	  fun setRuleSelector(input : SetRuleSelectorRequest) : io.reactivex.Flowable<SetRuleSelectorResponse> {
         return connection.runAndCaptureResponse("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java)
 	}
 
 	/**
 	 * Modifies the keyframe rule key text.
 	 */
-	fun setKeyframeKey(input : SetKeyframeKeyRequest) : io.reactivex.Flowable<SetKeyframeKeyResponse> {
+	  fun setKeyframeKey(input : SetKeyframeKeyRequest) : io.reactivex.Flowable<SetKeyframeKeyResponse> {
         return connection.runAndCaptureResponse("CSS.setKeyframeKey", input, SetKeyframeKeyResponse::class.java)
 	}
 
 	/**
 	 * Applies specified style edits one after another in the given order.
 	 */
-	fun setStyleTexts(input : SetStyleTextsRequest) : io.reactivex.Flowable<SetStyleTextsResponse> {
+	  fun setStyleTexts(input : SetStyleTextsRequest) : io.reactivex.Flowable<SetStyleTextsResponse> {
         return connection.runAndCaptureResponse("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java)
 	}
 
 	/**
 	 * Modifies the rule selector.
 	 */
-	fun setMediaText(input : SetMediaTextRequest) : io.reactivex.Flowable<SetMediaTextResponse> {
+	  fun setMediaText(input : SetMediaTextRequest) : io.reactivex.Flowable<SetMediaTextResponse> {
         return connection.runAndCaptureResponse("CSS.setMediaText", input, SetMediaTextResponse::class.java)
 	}
 
 	/**
 	 * Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.
 	 */
-	fun createStyleSheet(input : CreateStyleSheetRequest) : io.reactivex.Flowable<CreateStyleSheetResponse> {
+	  fun createStyleSheet(input : CreateStyleSheetRequest) : io.reactivex.Flowable<CreateStyleSheetResponse> {
         return connection.runAndCaptureResponse("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java)
 	}
 
 	/**
 	 * Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.
 	 */
-	fun addRule(input : AddRuleRequest) : io.reactivex.Flowable<AddRuleResponse> {
+	  fun addRule(input : AddRuleRequest) : io.reactivex.Flowable<AddRuleResponse> {
         return connection.runAndCaptureResponse("CSS.addRule", input, AddRuleResponse::class.java)
 	}
 
 	/**
 	 * Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.
 	 */
-	fun forcePseudoState(input : ForcePseudoStateRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun forcePseudoState(input : ForcePseudoStateRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns all media queries parsed by the rendering engine.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun getMediaQueries() : io.reactivex.Flowable<GetMediaQueriesResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getMediaQueries() : io.reactivex.Flowable<GetMediaQueriesResponse> {
         return connection.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java)
 	}
 
 	/**
 	 * Find a rule with the given active property for the given node and set the new value for this property
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun setEffectivePropertyValueForNode(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun setEffectivePropertyValueForNode(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun getBackgroundColors(input : GetBackgroundColorsRequest) : io.reactivex.Flowable<GetBackgroundColorsResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getBackgroundColors(input : GetBackgroundColorsRequest) : io.reactivex.Flowable<GetBackgroundColorsResponse> {
         return connection.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java)
 	}
 
 	/**
 	 * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun getLayoutTreeAndStyles(input : GetLayoutTreeAndStylesRequest) : io.reactivex.Flowable<GetLayoutTreeAndStylesResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getLayoutTreeAndStyles(input : GetLayoutTreeAndStylesRequest) : io.reactivex.Flowable<GetLayoutTreeAndStylesResponse> {
         return connection.runAndCaptureResponse("CSS.getLayoutTreeAndStyles", input, GetLayoutTreeAndStylesResponse::class.java)
 	}
 
 	/**
 	 * Enables the selector recording.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun startRuleUsageTracking() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun startRuleUsageTracking() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * The list of rules with an indication of whether these were used
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun stopRuleUsageTracking() : io.reactivex.Flowable<StopRuleUsageTrackingResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun stopRuleUsageTracking() : io.reactivex.Flowable<StopRuleUsageTrackingResponse> {
         return connection.runAndCaptureResponse("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java)
 	}
 
@@ -165,42 +173,37 @@ package pl.wendigo.chrome.domain.css
   /**
    * Fires whenever a MediaQuery result changes (for example, after a browser window has been resized.) The current implementation considers only viewport-dependent media features.
    */
-  fun onMediaQueryResultChanged() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+   fun onMediaQueryResultChanged() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
       return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
-  }
-
+   }
 
   /**
    * Fires whenever a web font gets loaded.
    */
-  fun onFontsUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+   fun onFontsUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
       return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired whenever a stylesheet is changed as a result of the client operation.
    */
-  fun onStyleSheetChanged() : io.reactivex.Flowable<StyleSheetChangedEvent> {
+   fun onStyleSheetChanged() : io.reactivex.Flowable<StyleSheetChangedEvent> {
       return connection.captureEvents(StyleSheetChangedEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired whenever an active document stylesheet is added.
    */
-  fun onStyleSheetAdded() : io.reactivex.Flowable<StyleSheetAddedEvent> {
+   fun onStyleSheetAdded() : io.reactivex.Flowable<StyleSheetAddedEvent> {
       return connection.captureEvents(StyleSheetAddedEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired whenever an active document stylesheet is removed.
    */
-  fun onStyleSheetRemoved() : io.reactivex.Flowable<StyleSheetRemovedEvent> {
+   fun onStyleSheetRemoved() : io.reactivex.Flowable<StyleSheetRemovedEvent> {
       return connection.captureEvents(StyleSheetRemovedEvent::class.java)
-  }
-
+   }
 }
 
 

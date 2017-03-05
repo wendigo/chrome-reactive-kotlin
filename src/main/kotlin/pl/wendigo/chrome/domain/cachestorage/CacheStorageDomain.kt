@@ -10,28 +10,28 @@ package pl.wendigo.chrome.domain.cachestorage
 	/**
 	 * Requests cache names.
 	 */
-	fun requestCacheNames(input : RequestCacheNamesRequest) : io.reactivex.Flowable<RequestCacheNamesResponse> {
+	  fun requestCacheNames(input : RequestCacheNamesRequest) : io.reactivex.Flowable<RequestCacheNamesResponse> {
         return connection.runAndCaptureResponse("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java)
 	}
 
 	/**
 	 * Requests data from cache.
 	 */
-	fun requestEntries(input : RequestEntriesRequest) : io.reactivex.Flowable<RequestEntriesResponse> {
+	  fun requestEntries(input : RequestEntriesRequest) : io.reactivex.Flowable<RequestEntriesResponse> {
         return connection.runAndCaptureResponse("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java)
 	}
 
 	/**
 	 * Deletes a cache.
 	 */
-	fun deleteCache(input : DeleteCacheRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun deleteCache(input : DeleteCacheRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("CacheStorage.deleteCache", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Deletes a cache entry.
 	 */
-	fun deleteEntry(input : DeleteEntryRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun deleteEntry(input : DeleteEntryRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("CacheStorage.deleteEntry", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 

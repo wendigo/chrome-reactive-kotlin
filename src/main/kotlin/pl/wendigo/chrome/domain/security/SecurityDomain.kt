@@ -10,21 +10,21 @@ package pl.wendigo.chrome.domain.security
 	/**
 	 * Enables tracking security state changes.
 	 */
-	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables tracking security state changes.
 	 */
-	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Displays native dialog with the certificate details.
 	 */
-	fun showCertificateViewer() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun showCertificateViewer() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Security.showCertificateViewer", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
@@ -32,10 +32,9 @@ package pl.wendigo.chrome.domain.security
   /**
    * The security state of the page changed.
    */
-  fun onSecurityStateChanged() : io.reactivex.Flowable<SecurityStateChangedEvent> {
+   fun onSecurityStateChanged() : io.reactivex.Flowable<SecurityStateChangedEvent> {
       return connection.captureEvents(SecurityStateChangedEvent::class.java)
-  }
-
+   }
 }
 
 

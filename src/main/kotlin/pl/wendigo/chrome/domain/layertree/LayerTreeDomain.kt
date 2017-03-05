@@ -10,63 +10,63 @@ package pl.wendigo.chrome.domain.layertree
 	/**
 	 * Enables compositing tree inspection.
 	 */
-	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables compositing tree inspection.
 	 */
-	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Provides the reasons why the given layer was composited.
 	 */
-	fun compositingReasons(input : CompositingReasonsRequest) : io.reactivex.Flowable<CompositingReasonsResponse> {
+	  fun compositingReasons(input : CompositingReasonsRequest) : io.reactivex.Flowable<CompositingReasonsResponse> {
         return connection.runAndCaptureResponse("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java)
 	}
 
 	/**
 	 * Returns the layer snapshot identifier.
 	 */
-	fun makeSnapshot(input : MakeSnapshotRequest) : io.reactivex.Flowable<MakeSnapshotResponse> {
+	  fun makeSnapshot(input : MakeSnapshotRequest) : io.reactivex.Flowable<MakeSnapshotResponse> {
         return connection.runAndCaptureResponse("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java)
 	}
 
 	/**
 	 * Returns the snapshot identifier.
 	 */
-	fun loadSnapshot(input : LoadSnapshotRequest) : io.reactivex.Flowable<LoadSnapshotResponse> {
+	  fun loadSnapshot(input : LoadSnapshotRequest) : io.reactivex.Flowable<LoadSnapshotResponse> {
         return connection.runAndCaptureResponse("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java)
 	}
 
 	/**
 	 * Releases layer snapshot captured by the back-end.
 	 */
-	fun releaseSnapshot(input : ReleaseSnapshotRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun releaseSnapshot(input : ReleaseSnapshotRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	fun profileSnapshot(input : ProfileSnapshotRequest) : io.reactivex.Flowable<ProfileSnapshotResponse> {
+	  fun profileSnapshot(input : ProfileSnapshotRequest) : io.reactivex.Flowable<ProfileSnapshotResponse> {
         return connection.runAndCaptureResponse("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java)
 	}
 
 	/**
 	 * Replays the layer snapshot and returns the resulting bitmap.
 	 */
-	fun replaySnapshot(input : ReplaySnapshotRequest) : io.reactivex.Flowable<ReplaySnapshotResponse> {
+	  fun replaySnapshot(input : ReplaySnapshotRequest) : io.reactivex.Flowable<ReplaySnapshotResponse> {
         return connection.runAndCaptureResponse("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java)
 	}
 
 	/**
 	 * Replays the layer snapshot and returns canvas log.
 	 */
-	fun snapshotCommandLog(input : SnapshotCommandLogRequest) : io.reactivex.Flowable<SnapshotCommandLogResponse> {
+	  fun snapshotCommandLog(input : SnapshotCommandLogRequest) : io.reactivex.Flowable<SnapshotCommandLogResponse> {
         return connection.runAndCaptureResponse("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java)
 	}
 
@@ -74,18 +74,16 @@ package pl.wendigo.chrome.domain.layertree
   /**
    * 
    */
-  fun onLayerTreeDidChange() : io.reactivex.Flowable<LayerTreeDidChangeEvent> {
+   fun onLayerTreeDidChange() : io.reactivex.Flowable<LayerTreeDidChangeEvent> {
       return connection.captureEvents(LayerTreeDidChangeEvent::class.java)
-  }
-
+   }
 
   /**
    * 
    */
-  fun onLayerPainted() : io.reactivex.Flowable<LayerPaintedEvent> {
+   fun onLayerPainted() : io.reactivex.Flowable<LayerPaintedEvent> {
       return connection.captureEvents(LayerPaintedEvent::class.java)
-  }
-
+   }
 }
 
 

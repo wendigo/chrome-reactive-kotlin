@@ -10,35 +10,35 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
 	/**
 	 * 
 	 */
-	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Profiler.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Profiler.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
 	 */
-	fun setSamplingInterval(input : SetSamplingIntervalRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun setSamplingInterval(input : SetSamplingIntervalRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Profiler.setSamplingInterval", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	fun start() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun start() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Profiler.start", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	fun stop() : io.reactivex.Flowable<StopResponse> {
+	  fun stop() : io.reactivex.Flowable<StopResponse> {
         return connection.runAndCaptureResponse("Profiler.stop", null, StopResponse::class.java)
 	}
 
@@ -46,18 +46,16 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
   /**
    * Sent when new profile recodring is started using console.profile() call.
    */
-  fun onConsoleProfileStarted() : io.reactivex.Flowable<ConsoleProfileStartedEvent> {
+   fun onConsoleProfileStarted() : io.reactivex.Flowable<ConsoleProfileStartedEvent> {
       return connection.captureEvents(ConsoleProfileStartedEvent::class.java)
-  }
-
+   }
 
   /**
    * 
    */
-  fun onConsoleProfileFinished() : io.reactivex.Flowable<ConsoleProfileFinishedEvent> {
+   fun onConsoleProfileFinished() : io.reactivex.Flowable<ConsoleProfileFinishedEvent> {
       return connection.captureEvents(ConsoleProfileFinishedEvent::class.java)
-  }
-
+   }
 }
 
 

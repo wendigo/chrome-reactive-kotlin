@@ -10,21 +10,21 @@ package pl.wendigo.chrome.domain.console
 	/**
 	 * Enables console domain, sends the messages collected so far to the client by means of the <code>messageAdded</code> notification.
 	 */
-	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Console.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables console domain, prevents further console messages from being reported to the client.
 	 */
-	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Console.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Does nothing.
 	 */
-	fun clearMessages() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun clearMessages() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Console.clearMessages", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
@@ -32,10 +32,9 @@ package pl.wendigo.chrome.domain.console
   /**
    * Issued when new console message is added.
    */
-  fun onMessageAdded() : io.reactivex.Flowable<MessageAddedEvent> {
+   fun onMessageAdded() : io.reactivex.Flowable<MessageAddedEvent> {
       return connection.captureEvents(MessageAddedEvent::class.java)
-  }
-
+   }
 }
 
 

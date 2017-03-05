@@ -10,35 +10,35 @@ package pl.wendigo.chrome.domain.domstorage
 	/**
 	 * Enables storage tracking, storage events will now be delivered to the client.
 	 */
-	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("DOMStorage.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables storage tracking, prevents storage events from being sent to the client.
 	 */
-	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("DOMStorage.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	fun getDOMStorageItems(input : GetDOMStorageItemsRequest) : io.reactivex.Flowable<GetDOMStorageItemsResponse> {
+	  fun getDOMStorageItems(input : GetDOMStorageItemsRequest) : io.reactivex.Flowable<GetDOMStorageItemsResponse> {
         return connection.runAndCaptureResponse("DOMStorage.getDOMStorageItems", input, GetDOMStorageItemsResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	fun setDOMStorageItem(input : SetDOMStorageItemRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun setDOMStorageItem(input : SetDOMStorageItemRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("DOMStorage.setDOMStorageItem", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	fun removeDOMStorageItem(input : RemoveDOMStorageItemRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun removeDOMStorageItem(input : RemoveDOMStorageItemRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("DOMStorage.removeDOMStorageItem", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
@@ -46,34 +46,30 @@ package pl.wendigo.chrome.domain.domstorage
   /**
    * 
    */
-  fun onDomStorageItemsCleared() : io.reactivex.Flowable<DomStorageItemsClearedEvent> {
+   fun onDomStorageItemsCleared() : io.reactivex.Flowable<DomStorageItemsClearedEvent> {
       return connection.captureEvents(DomStorageItemsClearedEvent::class.java)
-  }
-
+   }
 
   /**
    * 
    */
-  fun onDomStorageItemRemoved() : io.reactivex.Flowable<DomStorageItemRemovedEvent> {
+   fun onDomStorageItemRemoved() : io.reactivex.Flowable<DomStorageItemRemovedEvent> {
       return connection.captureEvents(DomStorageItemRemovedEvent::class.java)
-  }
-
+   }
 
   /**
    * 
    */
-  fun onDomStorageItemAdded() : io.reactivex.Flowable<DomStorageItemAddedEvent> {
+   fun onDomStorageItemAdded() : io.reactivex.Flowable<DomStorageItemAddedEvent> {
       return connection.captureEvents(DomStorageItemAddedEvent::class.java)
-  }
-
+   }
 
   /**
    * 
    */
-  fun onDomStorageItemUpdated() : io.reactivex.Flowable<DomStorageItemUpdatedEvent> {
+   fun onDomStorageItemUpdated() : io.reactivex.Flowable<DomStorageItemUpdatedEvent> {
       return connection.captureEvents(DomStorageItemUpdatedEvent::class.java)
-  }
-
+   }
 }
 
 

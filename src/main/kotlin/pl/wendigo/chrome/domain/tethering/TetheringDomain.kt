@@ -10,14 +10,14 @@ package pl.wendigo.chrome.domain.tethering
 	/**
 	 * Request browser port binding.
 	 */
-	fun bind(input : BindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun bind(input : BindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Request browser port unbinding.
 	 */
-	fun unbind(input : UnbindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun unbind(input : UnbindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
@@ -25,10 +25,9 @@ package pl.wendigo.chrome.domain.tethering
   /**
    * Informs that port was successfully bound and got a specified connection id.
    */
-  fun onAccepted() : io.reactivex.Flowable<AcceptedEvent> {
+   fun onAccepted() : io.reactivex.Flowable<AcceptedEvent> {
       return connection.captureEvents(AcceptedEvent::class.java)
-  }
-
+   }
 }
 
 data class BindRequest (

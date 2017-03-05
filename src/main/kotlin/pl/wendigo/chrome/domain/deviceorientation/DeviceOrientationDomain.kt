@@ -10,14 +10,14 @@ package pl.wendigo.chrome.domain.deviceorientation
 	/**
 	 * Overrides the Device Orientation.
 	 */
-	fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("DeviceOrientation.setDeviceOrientationOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Clears the overridden Device Orientation.
 	 */
-	fun clearDeviceOrientationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun clearDeviceOrientationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("DeviceOrientation.clearDeviceOrientationOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 

@@ -10,28 +10,28 @@ package pl.wendigo.chrome.domain.applicationcache
 	/**
 	 * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
 	 */
-	fun getFramesWithManifests() : io.reactivex.Flowable<GetFramesWithManifestsResponse> {
+	  fun getFramesWithManifests() : io.reactivex.Flowable<GetFramesWithManifestsResponse> {
         return connection.runAndCaptureResponse("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java)
 	}
 
 	/**
 	 * Enables application cache domain notifications.
 	 */
-	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("ApplicationCache.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns manifest URL for document in the given frame.
 	 */
-	fun getManifestForFrame(input : GetManifestForFrameRequest) : io.reactivex.Flowable<GetManifestForFrameResponse> {
+	  fun getManifestForFrame(input : GetManifestForFrameRequest) : io.reactivex.Flowable<GetManifestForFrameResponse> {
         return connection.runAndCaptureResponse("ApplicationCache.getManifestForFrame", input, GetManifestForFrameResponse::class.java)
 	}
 
 	/**
 	 * Returns relevant application cache data for the document in given frame.
 	 */
-	fun getApplicationCacheForFrame(input : GetApplicationCacheForFrameRequest) : io.reactivex.Flowable<GetApplicationCacheForFrameResponse> {
+	  fun getApplicationCacheForFrame(input : GetApplicationCacheForFrameRequest) : io.reactivex.Flowable<GetApplicationCacheForFrameResponse> {
         return connection.runAndCaptureResponse("ApplicationCache.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java)
 	}
 
@@ -39,18 +39,16 @@ package pl.wendigo.chrome.domain.applicationcache
   /**
    * 
    */
-  fun onApplicationCacheStatusUpdated() : io.reactivex.Flowable<ApplicationCacheStatusUpdatedEvent> {
+   fun onApplicationCacheStatusUpdated() : io.reactivex.Flowable<ApplicationCacheStatusUpdatedEvent> {
       return connection.captureEvents(ApplicationCacheStatusUpdatedEvent::class.java)
-  }
-
+   }
 
   /**
    * 
    */
-  fun onNetworkStateUpdated() : io.reactivex.Flowable<NetworkStateUpdatedEvent> {
+   fun onNetworkStateUpdated() : io.reactivex.Flowable<NetworkStateUpdatedEvent> {
       return connection.captureEvents(NetworkStateUpdatedEvent::class.java)
-  }
-
+   }
 }
 
 

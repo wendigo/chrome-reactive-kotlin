@@ -10,7 +10,7 @@ package pl.wendigo.chrome.domain.systeminfo
 	/**
 	 * Returns information about the system.
 	 */
-	fun getInfo() : io.reactivex.Flowable<GetInfoResponse> {
+	  fun getInfo() : io.reactivex.Flowable<GetInfoResponse> {
         return connection.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java)
 	}
 

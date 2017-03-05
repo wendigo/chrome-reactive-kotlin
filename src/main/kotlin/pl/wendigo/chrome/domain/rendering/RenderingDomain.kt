@@ -10,35 +10,35 @@ package pl.wendigo.chrome.domain.rendering
 	/**
 	 * Requests that backend shows paint rectangles
 	 */
-	fun setShowPaintRects(input : SetShowPaintRectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun setShowPaintRects(input : SetShowPaintRectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Rendering.setShowPaintRects", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Requests that backend shows debug borders on layers
 	 */
-	fun setShowDebugBorders(input : SetShowDebugBordersRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun setShowDebugBorders(input : SetShowDebugBordersRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Rendering.setShowDebugBorders", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Requests that backend shows the FPS counter
 	 */
-	fun setShowFPSCounter(input : SetShowFPSCounterRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun setShowFPSCounter(input : SetShowFPSCounterRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Rendering.setShowFPSCounter", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Requests that backend shows scroll bottleneck rects
 	 */
-	fun setShowScrollBottleneckRects(input : SetShowScrollBottleneckRectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun setShowScrollBottleneckRects(input : SetShowScrollBottleneckRectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Rendering.setShowScrollBottleneckRects", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Paints viewport size upon main frame resize.
 	 */
-	fun setShowViewportSizeOnResize(input : SetShowViewportSizeOnResizeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun setShowViewportSizeOnResize(input : SetShowViewportSizeOnResizeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Rendering.setShowViewportSizeOnResize", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 

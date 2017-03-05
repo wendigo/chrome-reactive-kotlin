@@ -10,35 +10,35 @@ package pl.wendigo.chrome.domain.log
 	/**
 	 * Enables log domain, sends the entries collected so far to the client by means of the <code>entryAdded</code> notification.
 	 */
-	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Log.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables log domain, prevents further log entries from being reported to the client.
 	 */
-	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Log.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Clears the log.
 	 */
-	fun clear() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun clear() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Log.clear", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * start violation reporting.
 	 */
-	fun startViolationsReport(input : StartViolationsReportRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun startViolationsReport(input : StartViolationsReportRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Log.startViolationsReport", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Stop violation reporting.
 	 */
-	fun stopViolationsReport() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun stopViolationsReport() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Log.stopViolationsReport", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
@@ -46,10 +46,9 @@ package pl.wendigo.chrome.domain.log
   /**
    * Issued when new message was logged.
    */
-  fun onEntryAdded() : io.reactivex.Flowable<EntryAddedEvent> {
+   fun onEntryAdded() : io.reactivex.Flowable<EntryAddedEvent> {
       return connection.captureEvents(EntryAddedEvent::class.java)
-  }
-
+   }
 }
 
 

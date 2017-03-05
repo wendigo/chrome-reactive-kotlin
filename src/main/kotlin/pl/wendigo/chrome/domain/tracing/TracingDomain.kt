@@ -10,35 +10,35 @@ package pl.wendigo.chrome.domain.tracing
 	/**
 	 * Start trace events collection.
 	 */
-	fun start(input : StartRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun start(input : StartRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Stop trace events collection.
 	 */
-	fun end() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun end() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Tracing.end", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Gets supported tracing categories.
 	 */
-	fun getCategories() : io.reactivex.Flowable<GetCategoriesResponse> {
+	  fun getCategories() : io.reactivex.Flowable<GetCategoriesResponse> {
         return connection.runAndCaptureResponse("Tracing.getCategories", null, GetCategoriesResponse::class.java)
 	}
 
 	/**
 	 * Request a global memory dump.
 	 */
-	fun requestMemoryDump() : io.reactivex.Flowable<RequestMemoryDumpResponse> {
+	  fun requestMemoryDump() : io.reactivex.Flowable<RequestMemoryDumpResponse> {
         return connection.runAndCaptureResponse("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java)
 	}
 
 	/**
 	 * Record a clock sync marker in the trace.
 	 */
-	fun recordClockSyncMarker(input : RecordClockSyncMarkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun recordClockSyncMarker(input : RecordClockSyncMarkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
@@ -46,26 +46,23 @@ package pl.wendigo.chrome.domain.tracing
   /**
    * Contains an bucket of collected trace events. When tracing is stopped collected events will be send as a sequence of dataCollected events followed by tracingComplete event.
    */
-  fun onDataCollected() : io.reactivex.Flowable<DataCollectedEvent> {
+   fun onDataCollected() : io.reactivex.Flowable<DataCollectedEvent> {
       return connection.captureEvents(DataCollectedEvent::class.java)
-  }
-
+   }
 
   /**
    * Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via dataCollected events.
    */
-  fun onTracingComplete() : io.reactivex.Flowable<TracingCompleteEvent> {
+   fun onTracingComplete() : io.reactivex.Flowable<TracingCompleteEvent> {
       return connection.captureEvents(TracingCompleteEvent::class.java)
-  }
-
+   }
 
   /**
    * 
    */
-  fun onBufferUsage() : io.reactivex.Flowable<BufferUsageEvent> {
+   fun onBufferUsage() : io.reactivex.Flowable<BufferUsageEvent> {
       return connection.captureEvents(BufferUsageEvent::class.java)
-  }
-
+   }
 }
 
 data class StartRequest (

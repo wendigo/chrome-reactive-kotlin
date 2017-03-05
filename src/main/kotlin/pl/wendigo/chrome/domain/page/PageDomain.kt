@@ -10,245 +10,273 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 	/**
 	 * Enables page domain notifications.
 	 */
-	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables page domain notifications.
 	 */
-	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun addScriptToEvaluateOnLoad(input : AddScriptToEvaluateOnLoadRequest) : io.reactivex.Flowable<AddScriptToEvaluateOnLoadResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun addScriptToEvaluateOnLoad(input : AddScriptToEvaluateOnLoadRequest) : io.reactivex.Flowable<AddScriptToEvaluateOnLoadResponse> {
         return connection.runAndCaptureResponse("Page.addScriptToEvaluateOnLoad", input, AddScriptToEvaluateOnLoadResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun removeScriptToEvaluateOnLoad(input : RemoveScriptToEvaluateOnLoadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun removeScriptToEvaluateOnLoad(input : RemoveScriptToEvaluateOnLoadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.removeScriptToEvaluateOnLoad", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Controls whether browser will open a new inspector window for connected pages.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun setAutoAttachToCreatedPages(input : SetAutoAttachToCreatedPagesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun setAutoAttachToCreatedPages(input : SetAutoAttachToCreatedPagesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.setAutoAttachToCreatedPages", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Reloads given page optionally ignoring the cache.
 	 */
-	fun reload(input : ReloadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun reload(input : ReloadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.reload", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Navigates current page to the given URL.
 	 */
-	fun navigate(input : NavigateRequest) : io.reactivex.Flowable<NavigateResponse> {
+	  fun navigate(input : NavigateRequest) : io.reactivex.Flowable<NavigateResponse> {
         return connection.runAndCaptureResponse("Page.navigate", input, NavigateResponse::class.java)
 	}
 
 	/**
 	 * Force the page stop all navigations and pending resource fetches.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun stopLoading() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun stopLoading() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.stopLoading", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns navigation history for the current page.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun getNavigationHistory() : io.reactivex.Flowable<GetNavigationHistoryResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getNavigationHistory() : io.reactivex.Flowable<GetNavigationHistoryResponse> {
         return connection.runAndCaptureResponse("Page.getNavigationHistory", null, GetNavigationHistoryResponse::class.java)
 	}
 
 	/**
 	 * Navigates current page to the given history entry.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun navigateToHistoryEntry(input : NavigateToHistoryEntryRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun navigateToHistoryEntry(input : NavigateToHistoryEntryRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.navigateToHistoryEntry", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun getCookies() : io.reactivex.Flowable<GetCookiesResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getCookies() : io.reactivex.Flowable<GetCookiesResponse> {
         return connection.runAndCaptureResponse("Page.getCookies", null, GetCookiesResponse::class.java)
 	}
 
 	/**
 	 * Deletes browser cookie with given name, domain and path.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.deleteCookie", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns present frame / resource tree structure.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun getResourceTree() : io.reactivex.Flowable<GetResourceTreeResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getResourceTree() : io.reactivex.Flowable<GetResourceTreeResponse> {
         return connection.runAndCaptureResponse("Page.getResourceTree", null, GetResourceTreeResponse::class.java)
 	}
 
 	/**
 	 * Returns content of the given resource.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun getResourceContent(input : GetResourceContentRequest) : io.reactivex.Flowable<GetResourceContentResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getResourceContent(input : GetResourceContentRequest) : io.reactivex.Flowable<GetResourceContentResponse> {
         return connection.runAndCaptureResponse("Page.getResourceContent", input, GetResourceContentResponse::class.java)
 	}
 
 	/**
 	 * Searches for given string in resource content.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun searchInResource(input : SearchInResourceRequest) : io.reactivex.Flowable<SearchInResourceResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun searchInResource(input : SearchInResourceRequest) : io.reactivex.Flowable<SearchInResourceResponse> {
         return connection.runAndCaptureResponse("Page.searchInResource", input, SearchInResourceResponse::class.java)
 	}
 
 	/**
 	 * Sets given markup as the document's HTML.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun setDocumentContent(input : SetDocumentContentRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun setDocumentContent(input : SetDocumentContentRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.setDocumentContent", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.setDeviceMetricsOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Clears the overriden device metrics.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun clearDeviceMetricsOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun clearDeviceMetricsOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
 	 */
-	fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.setGeolocationOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Clears the overriden Geolocation Position and Error.
 	 */
-	fun clearGeolocationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun clearGeolocationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.clearGeolocationOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Overrides the Device Orientation.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.setDeviceOrientationOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Clears the overridden Device Orientation.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun clearDeviceOrientationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun clearDeviceOrientationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Toggles mouse event-based touch event emulation.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.setTouchEmulationEnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Capture page screenshot.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun captureScreenshot() : io.reactivex.Flowable<CaptureScreenshotResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun captureScreenshot() : io.reactivex.Flowable<CaptureScreenshotResponse> {
         return connection.runAndCaptureResponse("Page.captureScreenshot", null, CaptureScreenshotResponse::class.java)
 	}
 
 	/**
 	 * Starts sending each frame using the <code>screencastFrame</code> event.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun startScreencast(input : StartScreencastRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun startScreencast(input : StartScreencastRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.startScreencast", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Stops sending each frame in the <code>screencastFrame</code>.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun stopScreencast() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun stopScreencast() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.stopScreencast", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Acknowledges that a screencast frame has been received by the frontend.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun screencastFrameAck(input : ScreencastFrameAckRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun screencastFrameAck(input : ScreencastFrameAckRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.screencastFrameAck", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
 	 */
-	fun handleJavaScriptDialog(input : HandleJavaScriptDialogRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun handleJavaScriptDialog(input : HandleJavaScriptDialogRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.handleJavaScriptDialog", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Shows / hides color picker
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun setColorPickerEnabled(input : SetColorPickerEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun setColorPickerEnabled(input : SetColorPickerEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.setColorPickerEnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Configures overlay.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun configureOverlay(input : ConfigureOverlayRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun configureOverlay(input : ConfigureOverlayRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.configureOverlay", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun getAppManifest() : io.reactivex.Flowable<GetAppManifestResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getAppManifest() : io.reactivex.Flowable<GetAppManifestResponse> {
         return connection.runAndCaptureResponse("Page.getAppManifest", null, GetAppManifestResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun requestAppBanner() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun requestAppBanner() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.requestAppBanner", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Toggles navigation throttling which allows programatic control over navigation and redirect response.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun setControlNavigations(input : SetControlNavigationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun setControlNavigations(input : SetControlNavigationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.setControlNavigations", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Should be sent in response to a navigationRequested or a redirectRequested event, telling the browser how to handle the navigation.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun processNavigation(input : ProcessNavigationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun processNavigation(input : ProcessNavigationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Page.processNavigation", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental fun getLayoutMetrics() : io.reactivex.Flowable<GetLayoutMetricsResponse> {
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getLayoutMetrics() : io.reactivex.Flowable<GetLayoutMetricsResponse> {
         return connection.runAndCaptureResponse("Page.getLayoutMetrics", null, GetLayoutMetricsResponse::class.java)
 	}
 
@@ -256,146 +284,128 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
   /**
    * 
    */
-  fun onDomContentEventFired() : io.reactivex.Flowable<DomContentEventFiredEvent> {
+   fun onDomContentEventFired() : io.reactivex.Flowable<DomContentEventFiredEvent> {
       return connection.captureEvents(DomContentEventFiredEvent::class.java)
-  }
-
+   }
 
   /**
    * 
    */
-  fun onLoadEventFired() : io.reactivex.Flowable<LoadEventFiredEvent> {
+   fun onLoadEventFired() : io.reactivex.Flowable<LoadEventFiredEvent> {
       return connection.captureEvents(LoadEventFiredEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when frame has been attached to its parent.
    */
-  fun onFrameAttached() : io.reactivex.Flowable<FrameAttachedEvent> {
+   fun onFrameAttached() : io.reactivex.Flowable<FrameAttachedEvent> {
       return connection.captureEvents(FrameAttachedEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired once navigation of the frame has completed. Frame is now associated with the new loader.
    */
-  fun onFrameNavigated() : io.reactivex.Flowable<FrameNavigatedEvent> {
+   fun onFrameNavigated() : io.reactivex.Flowable<FrameNavigatedEvent> {
       return connection.captureEvents(FrameNavigatedEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when frame has been detached from its parent.
    */
-  fun onFrameDetached() : io.reactivex.Flowable<FrameDetachedEvent> {
+   fun onFrameDetached() : io.reactivex.Flowable<FrameDetachedEvent> {
       return connection.captureEvents(FrameDetachedEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when frame has started loading.
    */
-  fun onFrameStartedLoading() : io.reactivex.Flowable<FrameStartedLoadingEvent> {
+   fun onFrameStartedLoading() : io.reactivex.Flowable<FrameStartedLoadingEvent> {
       return connection.captureEvents(FrameStartedLoadingEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when frame has stopped loading.
    */
-  fun onFrameStoppedLoading() : io.reactivex.Flowable<FrameStoppedLoadingEvent> {
+   fun onFrameStoppedLoading() : io.reactivex.Flowable<FrameStoppedLoadingEvent> {
       return connection.captureEvents(FrameStoppedLoadingEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when frame schedules a potential navigation.
    */
-  fun onFrameScheduledNavigation() : io.reactivex.Flowable<FrameScheduledNavigationEvent> {
+   fun onFrameScheduledNavigation() : io.reactivex.Flowable<FrameScheduledNavigationEvent> {
       return connection.captureEvents(FrameScheduledNavigationEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when frame no longer has a scheduled navigation.
    */
-  fun onFrameClearedScheduledNavigation() : io.reactivex.Flowable<FrameClearedScheduledNavigationEvent> {
+   fun onFrameClearedScheduledNavigation() : io.reactivex.Flowable<FrameClearedScheduledNavigationEvent> {
       return connection.captureEvents(FrameClearedScheduledNavigationEvent::class.java)
-  }
-
+   }
 
   /**
    * 
    */
-  fun onFrameResized() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+   fun onFrameResized() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
       return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to open.
    */
-  fun onJavascriptDialogOpening() : io.reactivex.Flowable<JavascriptDialogOpeningEvent> {
+   fun onJavascriptDialogOpening() : io.reactivex.Flowable<JavascriptDialogOpeningEvent> {
       return connection.captureEvents(JavascriptDialogOpeningEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been closed.
    */
-  fun onJavascriptDialogClosed() : io.reactivex.Flowable<JavascriptDialogClosedEvent> {
+   fun onJavascriptDialogClosed() : io.reactivex.Flowable<JavascriptDialogClosedEvent> {
       return connection.captureEvents(JavascriptDialogClosedEvent::class.java)
-  }
-
+   }
 
   /**
    * Compressed image data requested by the <code>startScreencast</code>.
    */
-  fun onScreencastFrame() : io.reactivex.Flowable<ScreencastFrameEvent> {
+   fun onScreencastFrame() : io.reactivex.Flowable<ScreencastFrameEvent> {
       return connection.captureEvents(ScreencastFrameEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when the page with currently enabled screencast was shown or hidden </code>.
    */
-  fun onScreencastVisibilityChanged() : io.reactivex.Flowable<ScreencastVisibilityChangedEvent> {
+   fun onScreencastVisibilityChanged() : io.reactivex.Flowable<ScreencastVisibilityChangedEvent> {
       return connection.captureEvents(ScreencastVisibilityChangedEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when a color has been picked.
    */
-  fun onColorPicked() : io.reactivex.Flowable<ColorPickedEvent> {
+   fun onColorPicked() : io.reactivex.Flowable<ColorPickedEvent> {
       return connection.captureEvents(ColorPickedEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when interstitial page was shown
    */
-  fun onInterstitialShown() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+   fun onInterstitialShown() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
       return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when interstitial page was hidden
    */
-  fun onInterstitialHidden() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+   fun onInterstitialHidden() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
       return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when a navigation is started if navigation throttles are enabled.  The navigation will be deferred until processNavigation is called.
    */
-  fun onNavigationRequested() : io.reactivex.Flowable<NavigationRequestedEvent> {
+   fun onNavigationRequested() : io.reactivex.Flowable<NavigationRequestedEvent> {
       return connection.captureEvents(NavigationRequestedEvent::class.java)
-  }
-
+   }
 }
 
 

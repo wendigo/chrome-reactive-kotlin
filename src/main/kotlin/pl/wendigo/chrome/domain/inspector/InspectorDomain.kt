@@ -10,14 +10,14 @@ package pl.wendigo.chrome.domain.inspector
 	/**
 	 * Enables inspector domain notifications.
 	 */
-	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Inspector.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables inspector domain notifications.
 	 */
-	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
         return connection.runAndCaptureResponse("Inspector.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
@@ -25,18 +25,16 @@ package pl.wendigo.chrome.domain.inspector
   /**
    * Fired when remote debugging connection is about to be terminated. Contains detach reason.
    */
-  fun onDetached() : io.reactivex.Flowable<DetachedEvent> {
+   fun onDetached() : io.reactivex.Flowable<DetachedEvent> {
       return connection.captureEvents(DetachedEvent::class.java)
-  }
-
+   }
 
   /**
    * Fired when debugging target has crashed
    */
-  fun onTargetCrashed() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+   fun onTargetCrashed() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
       return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
-  }
-
+   }
 }
 
 
