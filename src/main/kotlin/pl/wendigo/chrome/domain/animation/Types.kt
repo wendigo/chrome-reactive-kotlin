@@ -4,6 +4,9 @@ package pl.wendigo.chrome.domain.animation
  * Animation instance.
  */
 
+
+
+
 data class Animation(
   /**
    * <code>Animation</code>'s id.
@@ -60,6 +63,9 @@ data class Animation(
 /*
  * AnimationEffect instance
  */
+
+
+
 
 data class AnimationEffect(
   /**
@@ -118,6 +124,9 @@ data class AnimationEffect(
  * Keyframes Rule
  */
 
+
+
+
 data class KeyframesRule(
   /**
    * CSS keyframed animation's name.
@@ -134,6 +143,9 @@ data class KeyframesRule(
 /*
  * Keyframe Style
  */
+
+
+
 
 data class KeyframeStyle(
   /**

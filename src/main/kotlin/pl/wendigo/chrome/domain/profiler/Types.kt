@@ -4,6 +4,9 @@ package pl.wendigo.chrome.domain.profiler
  * Profile node. Holds callsite information, execution statistics and child nodes.
  */
 
+
+
+
 data class ProfileNode(
   /**
    * Unique id of the node.
@@ -41,6 +44,9 @@ data class ProfileNode(
  * Profile.
  */
 
+
+
+
 data class Profile(
   /**
    * The list of profile nodes. First item is the root node.
@@ -72,6 +78,9 @@ data class Profile(
 /*
  * Specifies a number of samples attributed to a certain source position.
  */
+
+
+
 
 data class PositionTickInfo(
   /**

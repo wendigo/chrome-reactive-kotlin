@@ -11,138 +11,140 @@ package pl.wendigo.chrome.domain.target
 	 * Controls whether to discover available targets and notify via <code>targetCreated/targetDestroyed</code> events.
 	 */
 	fun setDiscoverTargets(input : SetDiscoverTargetsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setDiscoverTargets", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Target.setDiscoverTargets", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Controls whether to automatically attach to new targets which are considered to be related to this one. When turned on, attaches to all existing related targets as well. When turned off, automatically detaches from all currently attached targets.
 	 */
 	fun setAutoAttach(input : SetAutoAttachRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setAutoAttach", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Target.setAutoAttach", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun setAttachToFrames(input : SetAttachToFramesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setAttachToFrames", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Target.setAttachToFrames", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Enables target discovery for the specified locations, when <code>setDiscoverTargets</code> was set to <code>true</code>.
 	 */
 	fun setRemoteLocations(input : SetRemoteLocationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setRemoteLocations", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Target.setRemoteLocations", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Sends protocol message to the target with given id.
 	 */
 	fun sendMessageToTarget(input : SendMessageToTargetRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.sendMessageToTarget", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Target.sendMessageToTarget", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns information about a target.
 	 */
 	fun getTargetInfo(input : GetTargetInfoRequest) : io.reactivex.Flowable<GetTargetInfoResponse> {
-        return connection.runAndCaptureResponse("$domainName.getTargetInfo", input, GetTargetInfoResponse::class.java)
+        return connection.runAndCaptureResponse("Target.getTargetInfo", input, GetTargetInfoResponse::class.java)
 	}
 
 	/**
 	 * Activates (focuses) the target.
 	 */
 	fun activateTarget(input : ActivateTargetRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.activateTarget", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Target.activateTarget", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Closes the target. If the target is a page that gets closed too.
 	 */
 	fun closeTarget(input : CloseTargetRequest) : io.reactivex.Flowable<CloseTargetResponse> {
-        return connection.runAndCaptureResponse("$domainName.closeTarget", input, CloseTargetResponse::class.java)
+        return connection.runAndCaptureResponse("Target.closeTarget", input, CloseTargetResponse::class.java)
 	}
 
 	/**
 	 * Attaches to the target with given id.
 	 */
 	fun attachToTarget(input : AttachToTargetRequest) : io.reactivex.Flowable<AttachToTargetResponse> {
-        return connection.runAndCaptureResponse("$domainName.attachToTarget", input, AttachToTargetResponse::class.java)
+        return connection.runAndCaptureResponse("Target.attachToTarget", input, AttachToTargetResponse::class.java)
 	}
 
 	/**
 	 * Detaches from the target with given id.
 	 */
 	fun detachFromTarget(input : DetachFromTargetRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.detachFromTarget", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Target.detachFromTarget", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than one.
 	 */
 	fun createBrowserContext() : io.reactivex.Flowable<CreateBrowserContextResponse> {
-        return connection.runAndCaptureResponse("$domainName.createBrowserContext", null, CreateBrowserContextResponse::class.java)
+        return connection.runAndCaptureResponse("Target.createBrowserContext", null, CreateBrowserContextResponse::class.java)
 	}
 
 	/**
 	 * Deletes a BrowserContext, will fail of any open page uses it.
 	 */
 	fun disposeBrowserContext(input : DisposeBrowserContextRequest) : io.reactivex.Flowable<DisposeBrowserContextResponse> {
-        return connection.runAndCaptureResponse("$domainName.disposeBrowserContext", input, DisposeBrowserContextResponse::class.java)
+        return connection.runAndCaptureResponse("Target.disposeBrowserContext", input, DisposeBrowserContextResponse::class.java)
 	}
 
 	/**
 	 * Creates a new page.
 	 */
 	fun createTarget(input : CreateTargetRequest) : io.reactivex.Flowable<CreateTargetResponse> {
-        return connection.runAndCaptureResponse("$domainName.createTarget", input, CreateTargetResponse::class.java)
+        return connection.runAndCaptureResponse("Target.createTarget", input, CreateTargetResponse::class.java)
 	}
 
 	/**
 	 * Retrieves a list of available targets.
 	 */
 	fun getTargets() : io.reactivex.Flowable<GetTargetsResponse> {
-        return connection.runAndCaptureResponse("$domainName.getTargets", null, GetTargetsResponse::class.java)
+        return connection.runAndCaptureResponse("Target.getTargets", null, GetTargetsResponse::class.java)
 	}
 
+  
   /**
    * Issued when a possible inspection target is created.
    */
   fun onTargetCreated() : io.reactivex.Flowable<TargetCreatedEvent> {
-      return connection.captureEvents("$domainName.targetCreated", TargetCreatedEvent::class.java)
+      return connection.captureEvents(TargetCreatedEvent::class.java)
   }
+
 
   /**
    * Issued when a target is destroyed.
    */
   fun onTargetDestroyed() : io.reactivex.Flowable<TargetDestroyedEvent> {
-      return connection.captureEvents("$domainName.targetDestroyed", TargetDestroyedEvent::class.java)
+      return connection.captureEvents(TargetDestroyedEvent::class.java)
   }
+
 
   /**
    * Issued when attached to target because of auto-attach or <code>attachToTarget</code> command.
    */
   fun onAttachedToTarget() : io.reactivex.Flowable<AttachedToTargetEvent> {
-      return connection.captureEvents("$domainName.attachedToTarget", AttachedToTargetEvent::class.java)
+      return connection.captureEvents(AttachedToTargetEvent::class.java)
   }
+
 
   /**
    * Issued when detached from target for any reason (including <code>detachFromTarget</code> command).
    */
   fun onDetachedFromTarget() : io.reactivex.Flowable<DetachedFromTargetEvent> {
-      return connection.captureEvents("$domainName.detachedFromTarget", DetachedFromTargetEvent::class.java)
+      return connection.captureEvents(DetachedFromTargetEvent::class.java)
   }
+
 
   /**
    * Notifies about new protocol message from attached target.
    */
   fun onReceivedMessageFromTarget() : io.reactivex.Flowable<ReceivedMessageFromTargetEvent> {
-      return connection.captureEvents("$domainName.receivedMessageFromTarget", ReceivedMessageFromTargetEvent::class.java)
+      return connection.captureEvents(ReceivedMessageFromTargetEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "Target"
-  }
 }
 
 data class SetDiscoverTargetsRequest (
@@ -152,6 +154,7 @@ data class SetDiscoverTargetsRequest (
     val discover : Boolean
 
 )
+
 
 data class SetAutoAttachRequest (
     /**
@@ -166,6 +169,7 @@ data class SetAutoAttachRequest (
 
 )
 
+
 data class SetAttachToFramesRequest (
     /**
      * Whether to attach to frames.
@@ -173,6 +177,7 @@ data class SetAttachToFramesRequest (
     val value : Boolean
 
 )
+
 
 data class SetRemoteLocationsRequest (
     /**
@@ -182,30 +187,35 @@ data class SetRemoteLocationsRequest (
 
 )
 
+
 data class SendMessageToTargetRequest (
     /**
-     *
+     * 
      */
     val targetId : String,
 
     /**
-     *
+     * 
      */
     val message : String
 
 )
 
+
 data class GetTargetInfoRequest (
     /**
-     *
+     * 
      */
     val targetId : TargetID
 
 )
 
-data class GetTargetInfoResponse (
+/**
+ * Returns information about a target.
+ */
+data class GetTargetInfoResponse(
   /**
-   *
+   * 
    */
   val targetInfo : TargetInfo
 
@@ -213,23 +223,27 @@ data class GetTargetInfoResponse (
 
 data class ActivateTargetRequest (
     /**
-     *
+     * 
      */
     val targetId : TargetID
 
 )
+
 
 data class CloseTargetRequest (
     /**
-     *
+     * 
      */
     val targetId : TargetID
 
 )
 
-data class CloseTargetResponse (
+/**
+ * Closes the target. If the target is a page that gets closed too.
+ */
+data class CloseTargetResponse(
   /**
-   *
+   * 
    */
   val success : Boolean
 
@@ -237,13 +251,16 @@ data class CloseTargetResponse (
 
 data class AttachToTargetRequest (
     /**
-     *
+     * 
      */
     val targetId : TargetID
 
 )
 
-data class AttachToTargetResponse (
+/**
+ * Attaches to the target with given id.
+ */
+data class AttachToTargetResponse(
   /**
    * Whether attach succeeded.
    */
@@ -253,13 +270,18 @@ data class AttachToTargetResponse (
 
 data class DetachFromTargetRequest (
     /**
-     *
+     * 
      */
     val targetId : TargetID
 
 )
 
-data class CreateBrowserContextResponse (
+
+
+/**
+ * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than one.
+ */
+data class CreateBrowserContextResponse(
   /**
    * The id of the context created.
    */
@@ -269,15 +291,18 @@ data class CreateBrowserContextResponse (
 
 data class DisposeBrowserContextRequest (
     /**
-     *
+     * 
      */
     val browserContextId : BrowserContextID
 
 )
 
-data class DisposeBrowserContextResponse (
+/**
+ * Deletes a BrowserContext, will fail of any open page uses it.
+ */
+data class DisposeBrowserContextResponse(
   /**
-   *
+   * 
    */
   val success : Boolean
 
@@ -306,7 +331,10 @@ data class CreateTargetRequest (
 
 )
 
-data class CreateTargetResponse (
+/**
+ * Creates a new page.
+ */
+data class CreateTargetResponse(
   /**
    * The id of the page opened.
    */
@@ -314,7 +342,11 @@ data class CreateTargetResponse (
 
 )
 
-data class GetTargetsResponse (
+
+/**
+ * Retrieves a list of available targets.
+ */
+data class GetTargetsResponse(
   /**
    * The list of targets.
    */
@@ -322,53 +354,69 @@ data class GetTargetsResponse (
 
 )
 
-data class TargetCreatedEvent (
+
+/**
+ * Issued when a possible inspection target is created.
+ */
+data class TargetCreatedEvent(
   /**
-   *
+   * 
    */
   val targetInfo : TargetInfo
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "targetCreated")
 
-data class TargetDestroyedEvent (
+/**
+ * Issued when a target is destroyed.
+ */
+data class TargetDestroyedEvent(
   /**
-   *
+   * 
    */
   val targetId : TargetID
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "targetDestroyed")
 
-data class AttachedToTargetEvent (
+/**
+ * Issued when attached to target because of auto-attach or <code>attachToTarget</code> command.
+ */
+data class AttachedToTargetEvent(
   /**
-   *
+   * 
    */
   val targetInfo : TargetInfo,
 
   /**
-   *
+   * 
    */
   val waitingForDebugger : Boolean
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "attachedToTarget")
 
-data class DetachedFromTargetEvent (
+/**
+ * Issued when detached from target for any reason (including <code>detachFromTarget</code> command).
+ */
+data class DetachedFromTargetEvent(
   /**
-   *
+   * 
    */
   val targetId : TargetID
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "detachedFromTarget")
 
-data class ReceivedMessageFromTargetEvent (
+/**
+ * Notifies about new protocol message from attached target.
+ */
+data class ReceivedMessageFromTargetEvent(
   /**
-   *
+   * 
    */
   val targetId : TargetID,
 
   /**
-   *
+   * 
    */
   val message : String
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "receivedMessageFromTarget")
 

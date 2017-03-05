@@ -11,53 +11,58 @@ package pl.wendigo.chrome.domain.database
 	 * Enables database tracking, database events will now be delivered to the client.
 	 */
 	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables database tracking, prevents database events from being sent to the client.
 	 */
 	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Database.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun getDatabaseTableNames(input : GetDatabaseTableNamesRequest) : io.reactivex.Flowable<GetDatabaseTableNamesResponse> {
-        return connection.runAndCaptureResponse("$domainName.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java)
+        return connection.runAndCaptureResponse("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun executeSQL(input : ExecuteSQLRequest) : io.reactivex.Flowable<ExecuteSQLResponse> {
-        return connection.runAndCaptureResponse("$domainName.executeSQL", input, ExecuteSQLResponse::class.java)
+        return connection.runAndCaptureResponse("Database.executeSQL", input, ExecuteSQLResponse::class.java)
 	}
 
+  
   /**
-   *
+   * 
    */
   fun onAddDatabase() : io.reactivex.Flowable<AddDatabaseEvent> {
-      return connection.captureEvents("$domainName.addDatabase", AddDatabaseEvent::class.java)
+      return connection.captureEvents(AddDatabaseEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "Database"
-  }
 }
+
+
+
+
 
 data class GetDatabaseTableNamesRequest (
     /**
-     *
+     * 
      */
     val databaseId : DatabaseId
 
 )
 
-data class GetDatabaseTableNamesResponse (
+/**
+ * 
+ */
+data class GetDatabaseTableNamesResponse(
   /**
-   *
+   * 
    */
   val tableNames : Array<String>
 
@@ -65,40 +70,47 @@ data class GetDatabaseTableNamesResponse (
 
 data class ExecuteSQLRequest (
     /**
-     *
+     * 
      */
     val databaseId : DatabaseId,
 
     /**
-     *
+     * 
      */
     val query : String
 
 )
 
-data class ExecuteSQLResponse (
+/**
+ * 
+ */
+data class ExecuteSQLResponse(
   /**
-   *
+   * 
    */
   val columnNames : Array<String>? = null,
 
   /**
-   *
+   * 
    */
   val values : Array<Any>? = null,
 
   /**
-   *
+   * 
    */
   val sqlError : Error? = null
 
 )
 
-data class AddDatabaseEvent (
+
+/**
+ * 
+ */
+data class AddDatabaseEvent(
   /**
-   *
+   * 
    */
   val database : Database
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Database", protocolEventName = "addDatabase")
 

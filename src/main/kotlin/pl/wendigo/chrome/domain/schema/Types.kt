@@ -4,6 +4,9 @@ package pl.wendigo.chrome.domain.schema
  * Description of the protocol domain.
  */
 
+
+
+
 data class Domain(
   /**
    * Domain name.

@@ -18,6 +18,22 @@ type Protocol struct {
 	Domains []Domain `json:"domains,omitempty"`
 }
 
+func (p Protocol) EventMappings() map[string]string {
+	mappings := make(map[string]string)
+
+	for _, domain := range p.Domains {
+		for _, event := range domain.Events {
+			if event.HasReturnValue() {
+				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.domain.%s.%s", basePackage, domain.LowerName(), event.ClassName())
+			} else {
+				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.%s", basePackage, "ChromeProtocolEvent")
+			}
+		}
+	}
+
+	return mappings
+}
+
 type Version struct {
 	Major string `json:"major,omitempty"`
 	Minor string `json:"minor,omitempty"`
@@ -65,72 +81,6 @@ type Command struct {
 	Deprecated   bool        `json:"deprecated,omitempty"`
 }
 
-func (d Domain) CollectImports() []string {
-
-	var references []string
-	imports := make(map[string]struct{})
-
-	for _, c := range d.Commands {
-		for _, p := range c.Parameters {
-			if ref := p.ReferenceImport(); ref != "" {
-				imports[ref] = struct{}{}
-			}
-		}
-	}
-
-	for _, c := range d.Commands {
-		for _, p := range c.Returns {
-			if ref := p.ReferenceImport(); ref != "" {
-				imports[ref] = struct{}{}
-			}
-		}
-	}
-
-	for _, e := range d.Events {
-		for _, p := range e.Returns {
-			if ref := p.ReferenceImport(); ref != "" {
-				imports[ref] = struct{}{}
-			}
-		}
-	}
-
-	for _, t := range d.Types {
-		for _, p := range t.Properties {
-			if ref := p.ReferenceImport(); ref != "" {
-				imports[ref] = struct{}{}
-			}
-		}
-
-		for _, ref := range t.CollectImports() {
-			imports[ref] = struct{}{}
-		}
-	}
-
-	for name := range imports {
-		references = append(references, name)
-	}
-
-	return references
-}
-
-func (t Type) CollectImports() []string {
-
-	var references []string
-	imports := make(map[string]struct{})
-
-	for _, p := range t.Properties {
-		if ref := p.ReferenceImport(); ref != "" {
-			imports[ref] = struct{}{}
-		}
-	}
-
-	for name := range imports {
-		references = append(references, name)
-	}
-
-	return references
-}
-
 func (c Command) SimpleName() string {
 	return strings.Title(c.Name)
 }
@@ -163,7 +113,9 @@ func (c Command) OutputDataClass() string {
 		log.Panicf("Could not render template: %s", err)
 	}
 
-	return raymond.MustRender(template, c)
+	return raymond.MustRender(template, struct {
+		Type Command
+	}{Type: c})
 }
 
 func (c Command) HasReturnValue() bool {
@@ -271,7 +223,7 @@ func (p Parameter) GetParameterArrayType() string {
 		case "any":
 			return "Any"
 		case "object":
-			return "Object"
+			return "Any"
 		case "number":
 			return "Double"
 		}
@@ -347,7 +299,9 @@ func (e Event) OutputDataClass() string {
 		log.Panicf("Could not render template: %s", err)
 	}
 
-	return raymond.MustRender(template, e)
+	return raymond.MustRender(template, struct {
+		Type Event
+	}{Type: e})
 }
 
 func (e Event) SimpleName() string {
@@ -362,9 +316,14 @@ func (e Event) ClassName() string {
 	return e.SimpleName() + "Event"
 }
 
+func (e Event) ImplementingInterfaces() []string {
+	return []string{fmt.Sprintf("%s.ChromeProtocolEvent(protocolDomain = \"%s\", protocolEventName = \"%s\")", basePackage, currentDomain, e.Name)}
+}
+
 var protocolFile string
 var basePackage string
 var kotlinBase string
+var currentDomain string
 
 func init() {
 	flag.StringVar(&protocolFile, "protocol-file", "protocol.json", "")
@@ -435,6 +394,10 @@ func main() {
 		return basePackage
 	})
 
+	raymond.RegisterHelper("Domain", func(options *raymond.Options) string {
+		return currentDomain
+	})
+
 	log.Printf("Generating protocol class")
 
 	if err := generateAndWrite(kotlinFilename("RemoteChrome"), "protocol_class", struct {
@@ -447,6 +410,8 @@ func main() {
 
 	for _, domain := range protocol.Domains {
 		log.Printf("Generating classes for domain: %s in %s", domain.Name, basePackage)
+
+		currentDomain = domain.Name
 
 		if err := generateAndWrite(kotlinFilename("domain/"+domain.LowerName()+"/"+domain.Name+"Domain"), "domain_class", struct {
 			Domain Domain

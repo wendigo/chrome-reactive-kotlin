@@ -4,6 +4,9 @@ package pl.wendigo.chrome.domain.systeminfo
  * Describes a single graphics processor (GPU).
  */
 
+
+
+
 data class GPUDevice(
   /**
    * PCI ID of the GPU vendor, if available; 0 otherwise.
@@ -30,6 +33,9 @@ data class GPUDevice(
 /*
  * Provides information about the GPU(s) on the system.
  */
+
+
+
 
 data class GPUInfo(
   /**

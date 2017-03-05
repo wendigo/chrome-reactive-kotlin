@@ -4,6 +4,9 @@ package pl.wendigo.chrome.domain.indexeddb
  * Database with an array of object stores.
  */
 
+
+
+
 data class DatabaseWithObjectStores(
   /**
    * Database name.
@@ -25,6 +28,9 @@ data class DatabaseWithObjectStores(
 /*
  * Object store.
  */
+
+
+
 
 data class ObjectStore(
   /**
@@ -53,6 +59,9 @@ data class ObjectStore(
  * Object store index.
  */
 
+
+
+
 data class ObjectStoreIndex(
   /**
    * Index name.
@@ -79,6 +88,9 @@ data class ObjectStoreIndex(
 /*
  * Key.
  */
+
+
+
 
 data class Key(
   /**
@@ -112,6 +124,9 @@ data class Key(
  * Key range.
  */
 
+
+
+
 data class KeyRange(
   /**
    * Lower bound.
@@ -139,6 +154,9 @@ data class KeyRange(
  * Data entry.
  */
 
+
+
+
 data class DataEntry(
   /**
    * Key object.
@@ -160,6 +178,9 @@ data class DataEntry(
 /*
  * Key path.
  */
+
+
+
 
 data class KeyPath(
   /**

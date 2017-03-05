@@ -4,6 +4,9 @@ package pl.wendigo.chrome.domain.console
  * Console message.
  */
 
+
+
+
 data class ConsoleMessage(
   /**
    * Message source.

@@ -11,55 +11,52 @@ class InputDomain internal constructor(private val connection : pl.wendigo.chrom
 	 * Dispatches a key event to the page.
 	 */
 	fun dispatchKeyEvent(input : DispatchKeyEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.dispatchKeyEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Input.dispatchKeyEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Dispatches a mouse event to the page.
 	 */
 	fun dispatchMouseEvent(input : DispatchMouseEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.dispatchMouseEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Input.dispatchMouseEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Dispatches a touch event to the page.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun dispatchTouchEvent(input : DispatchTouchEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.dispatchTouchEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Input.dispatchTouchEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Emulates touch event from the mouse event parameters.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun emulateTouchFromMouseEvent(input : EmulateTouchFromMouseEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Input.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun synthesizePinchGesture(input : SynthesizePinchGestureRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.synthesizePinchGesture", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Input.synthesizePinchGesture", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun synthesizeScrollGesture(input : SynthesizeScrollGestureRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.synthesizeScrollGesture", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Input.synthesizeScrollGesture", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun synthesizeTapGesture(input : SynthesizeTapGestureRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.synthesizeTapGesture", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Input.synthesizeTapGesture", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
-  companion object {
-    private const val domainName = "Input"
   }
-}
 
 data class DispatchKeyEventRequest (
     /**
@@ -129,6 +126,7 @@ data class DispatchKeyEventRequest (
 
 )
 
+
 data class DispatchMouseEventRequest (
     /**
      * Type of the mouse event.
@@ -167,6 +165,7 @@ data class DispatchMouseEventRequest (
 
 )
 
+
 data class DispatchTouchEventRequest (
     /**
      * Type of the touch event.
@@ -189,6 +188,7 @@ data class DispatchTouchEventRequest (
     val timestamp : Double? = null
 
 )
+
 
 data class EmulateTouchFromMouseEventRequest (
     /**
@@ -238,6 +238,7 @@ data class EmulateTouchFromMouseEventRequest (
 
 )
 
+
 data class SynthesizePinchGestureRequest (
     /**
      * X coordinate of the start of the gesture in CSS pixels.
@@ -265,6 +266,7 @@ data class SynthesizePinchGestureRequest (
     val gestureSourceType : GestureSourceType? = null
 
 )
+
 
 data class SynthesizeScrollGestureRequest (
     /**
@@ -329,6 +331,7 @@ data class SynthesizeScrollGestureRequest (
 
 )
 
+
 data class SynthesizeTapGestureRequest (
     /**
      * X coordinate of the start of the gesture in CSS pixels.
@@ -356,4 +359,6 @@ data class SynthesizeTapGestureRequest (
     val gestureSourceType : GestureSourceType? = null
 
 )
+
+
 

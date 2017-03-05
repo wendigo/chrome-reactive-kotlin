@@ -1,16 +1,16 @@
 package pl.wendigo.chrome
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.ReplaySubject
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import org.slf4j.LoggerFactory
@@ -21,9 +21,11 @@ import java.util.concurrent.atomic.AtomicLong
 
 internal class RemoteChromeConnection constructor(
     private val host: String,
-    private val port: Int
+    private val port: Int,
+    private val enableDebug: Boolean = false
 ) : WebSocketListener() {
-    private val events: PublishSubject<GenericResponse> = PublishSubject.create()
+    private val events: ReplaySubject<ChromeProtocolEvent> = ReplaySubject.create(1024)
+
     private val mapper: ObjectMapper = ObjectMapper().registerModule(KotlinModule())
             .setSerializationInclusion(JsonInclude.Include.NON_NULL)
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
@@ -33,6 +35,8 @@ internal class RemoteChromeConnection constructor(
     private val client: OkHttpClient = OkHttpClient.Builder()
             .readTimeout(0, TimeUnit.MILLISECONDS)
             .build()
+
+    private val mappings: ConcurrentHashMap<String, Class<out ChromeProtocolEvent>> = ConcurrentHashMap()
 
     private val nextCommandId = AtomicLong(0)
     private var remoteConnection: WebSocket? = null
@@ -55,6 +59,10 @@ internal class RemoteChromeConnection constructor(
                 .firstOrError()
                 .onErrorResumeNext { this.createNewPage() }
                 .map(InspectorTab::webSocketDebuggerUrl)
+    }
+
+    internal fun registerMappings(mapOf: Map<String, Class<out ChromeProtocolEvent>>) {
+        mappings.putAll(mapOf)
     }
 
     internal fun close() {
@@ -111,14 +119,16 @@ internal class RemoteChromeConnection constructor(
         val serialized = mapper.writeValueAsString(request)
         val response = Flowable.fromFuture(responses.getOrPut(request.id, { CompletableFuture() }))
 
-        logger.info("<< Sending {}", request.toLog())
+        if (enableDebug) {
+            logger.info("<< Sending {}", request.toLog())
+        }
 
         if (!remoteConnection!!.send(serialized)) {
             return Flowable.error(RemoteChromeException("Could not enqueue message"))
         }
 
         return response.doOnSubscribe {
-            logger.info("!! Waiting for {}", request.toLog())
+            logger.info("!! Subscribed for response {}", request.toLog())
         }.subscribeOn(Schedulers.io()).map {
             mapper.treeToValue(it.result, outClazz)
         }
@@ -127,17 +137,18 @@ internal class RemoteChromeConnection constructor(
     /**
      * Captures events by given name and casts received messages to specified class.
      */
-    fun <T> captureEvents(name: String, outClazz: Class<T>) : Flowable<T> {
+    fun <T> captureEvents(outClazz: Class<T>) : Flowable<T> where T : ChromeProtocolEvent {
         return events
                 .doOnSubscribe {
-                    logger.info(">> Listening for {}", name)
+                    logger.info(">> Subscribed for {}", outClazz.canonicalName)
                 }
                 .doOnDispose {
-                    logger.info(">> Stopped listening for {}", name)
+                    logger.info(">> Disposed subscription {}", outClazz.canonicalName)
                 }
-                .filter { it.method == name }
-                .map { if (outClazz == GenericResponse::class.java) it else mapper.treeToValue(it.params, outClazz) }
                 .ofType(outClazz)
+                .doOnNext {
+                    logger.info(">> Got next event {}", it)
+                }
                 .toFlowable(BackpressureStrategy.LATEST)
     }
 
@@ -148,7 +159,9 @@ internal class RemoteChromeConnection constructor(
     override fun onMessage(webSocket: WebSocket?, text: String?) {
         val response = mapper.readValue(text, GenericResponse::class.java)
 
-        logger.info(">> Received {}", response.toLog())
+        if (enableDebug) {
+            logger.info(">> Received {}", response.toLog())
+        }
 
         if (response.method == null) {
             responses.remove(response.id).let {
@@ -159,7 +172,15 @@ internal class RemoteChromeConnection constructor(
                 }
             }
         } else {
-            events.onNext(response)
+            val clazz = mappings[response.method]
+
+            if (clazz == null) {
+                events.onError(RemoteChromeException("Got unrecognized response: ${response.method} not being an event"))
+            } else if (clazz == ChromeProtocolEvent::class.java) {
+                events.onNext(ChromeProtocolEvent.fromMethodName(response.method))
+            } else {
+                events.onNext(mapper.treeToValue(response.params, clazz))
+            }
         }
     }
 
@@ -167,45 +188,11 @@ internal class RemoteChromeConnection constructor(
         events.onComplete()
     }
 
+    override fun onFailure(webSocket: WebSocket?, t: Throwable?, response: Response?) {
+        logger.error(">> Got error from websocket: {}", t!!.message)
+    }
+
     companion object {
         private val logger = LoggerFactory.getLogger(RemoteChromeConnection::class.java)
     }
 }
-
-data class GenericResponse(
-        val id: Long,
-        val result: JsonNode?,
-        val error: ProtocolError?,
-        val method: String?,
-        val params: JsonNode?
-) {
-    fun toLog(): String {
-        return "${method ?: "response"}(id=$id, error=${error?.message ?: "no"}, params=$params)"
-    }
-}
-
-data class ProtocolError(
-    val code: Long,
-    val message: String,
-    val data: String?
-)
-
-data class GenericRequest(
-    val id: Long,
-    val method: String,
-    val params: Any?
-) {
-    fun toLog(): String {
-        return "$method(id=$id)"
-    }
-}
-
-data class InspectorTab(
-    val description: String,
-    val devtoolsFrontendUrl: String,
-    val id: String,
-    val title: String,
-    val type: String,
-    val url: String,
-    val webSocketDebuggerUrl: String
-)

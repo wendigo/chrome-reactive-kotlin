@@ -12,7 +12,7 @@ package {{Package}}.domain.{{Domain.LowerName}}
 	 * {{{Description}}}
 	 */
 	{{#if Experimental}}@{{Package}}.ProtocolExperimental {{/if}}{{#if Deprecated}}@{{Package}}.ProtocolDeprecated {{/if}}fun {{Name}}({{#if HasInputParams}}input : {{SimpleName}}Request{{/if}}) : io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.GenericResponse{{/if}}> {
-        return connection.runAndCaptureResponse("$domainName.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.GenericResponse{{/if}}::class.java)
+        return connection.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.GenericResponse{{/if}}::class.java)
 	}
 
 	{{/each}}
@@ -20,15 +20,11 @@ package {{Package}}.domain.{{Domain.LowerName}}
   /**
    * {{{Description}}}
    */
-  fun on{{SimpleName}}() : io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.GenericResponse{{/if}}> {
-      return connection.captureEvents("$domainName.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.GenericResponse{{/if}}::class.java)
+  fun on{{SimpleName}}() : io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ChromeProtocolEvent{{/if}}> {
+      return connection.captureEvents({{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ChromeProtocolEvent{{/if}}::class.java)
   }
 
   {{/each}}
-
-  companion object {
-    private const val domainName = "{{Domain.Name}}"
-  }
 }
 
 {{#each Domain.Commands}}

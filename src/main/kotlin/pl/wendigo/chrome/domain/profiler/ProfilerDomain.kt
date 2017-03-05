@@ -8,58 +8,61 @@ package pl.wendigo.chrome.domain.profiler
 class ProfilerDomain internal constructor(private val connection : pl.wendigo.chrome.RemoteChromeConnection) {
 
 	/**
-	 *
+	 * 
 	 */
 	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Profiler.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Profiler.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
 	 */
 	fun setSamplingInterval(input : SetSamplingIntervalRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setSamplingInterval", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Profiler.setSamplingInterval", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun start() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.start", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Profiler.start", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun stop() : io.reactivex.Flowable<StopResponse> {
-        return connection.runAndCaptureResponse("$domainName.stop", null, StopResponse::class.java)
+        return connection.runAndCaptureResponse("Profiler.stop", null, StopResponse::class.java)
 	}
 
+  
   /**
    * Sent when new profile recodring is started using console.profile() call.
    */
   fun onConsoleProfileStarted() : io.reactivex.Flowable<ConsoleProfileStartedEvent> {
-      return connection.captureEvents("$domainName.consoleProfileStarted", ConsoleProfileStartedEvent::class.java)
+      return connection.captureEvents(ConsoleProfileStartedEvent::class.java)
   }
+
 
   /**
-   *
+   * 
    */
   fun onConsoleProfileFinished() : io.reactivex.Flowable<ConsoleProfileFinishedEvent> {
-      return connection.captureEvents("$domainName.consoleProfileFinished", ConsoleProfileFinishedEvent::class.java)
+      return connection.captureEvents(ConsoleProfileFinishedEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "Profiler"
-  }
 }
+
+
+
+
 
 data class SetSamplingIntervalRequest (
     /**
@@ -69,7 +72,14 @@ data class SetSamplingIntervalRequest (
 
 )
 
-data class StopResponse (
+
+
+
+
+/**
+ * 
+ */
+data class StopResponse(
   /**
    * Recorded profile.
    */
@@ -77,9 +87,13 @@ data class StopResponse (
 
 )
 
-data class ConsoleProfileStartedEvent (
+
+/**
+ * Sent when new profile recodring is started using console.profile() call.
+ */
+data class ConsoleProfileStartedEvent(
   /**
-   *
+   * 
    */
   val id : String,
 
@@ -93,11 +107,14 @@ data class ConsoleProfileStartedEvent (
    */
   val title : String? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Profiler", protocolEventName = "consoleProfileStarted")
 
-data class ConsoleProfileFinishedEvent (
+/**
+ * 
+ */
+data class ConsoleProfileFinishedEvent(
   /**
-   *
+   * 
    */
   val id : String,
 
@@ -107,7 +124,7 @@ data class ConsoleProfileFinishedEvent (
   val location : pl.wendigo.chrome.domain.debugger.Location,
 
   /**
-   *
+   * 
    */
   val profile : Profile,
 
@@ -116,5 +133,5 @@ data class ConsoleProfileFinishedEvent (
    */
   val title : String? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Profiler", protocolEventName = "consoleProfileFinished")
 

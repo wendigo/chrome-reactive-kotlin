@@ -5,3 +5,7 @@ package pl.wendigo.chrome.domain.storage
  */
 typealias StorageType = String
 
+
+
+
+

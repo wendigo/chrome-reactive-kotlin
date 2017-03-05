@@ -5,10 +5,18 @@ package pl.wendigo.chrome.domain.network
  */
 typealias LoaderId = String
 
+
+
+
+
 /*
  * Unique request identifier.
  */
 typealias RequestId = String
+
+
+
+
 
 /*
  * Number of seconds since epoch.
@@ -16,25 +24,42 @@ typealias RequestId = String
 
 typealias Timestamp = Double
 
+
+
+
 /*
  * Request / response headers as keys / values of JSON object.
  */
 
-typealias Headers = Map<String, Any>
+
+
+
+typealias Headers = Map<String,Any>
 
 /*
  * Loading priority of a resource request.
  */
 typealias ConnectionType = String
 
+
+
+
+
 /*
  * Represents the cookie&apos;s &apos;SameSite&apos; status: https://tools.ietf.org/html/draft-west-first-party-cookies
  */
 typealias CookieSameSite = String
 
+
+
+
+
 /*
  * Timing information for the request.
  */
+
+
+
 
 data class ResourceTiming(
   /**
@@ -124,9 +149,16 @@ data class ResourceTiming(
  */
 typealias ResourcePriority = String
 
+
+
+
+
 /*
  * HTTP request data.
  */
+
+
+
 
 data class Request(
   /**
@@ -169,6 +201,9 @@ data class Request(
 /*
  * Details of a signed certificate timestamp (SCT).
  */
+
+
+
 
 data class SignedCertificateTimestamp(
   /**
@@ -216,6 +251,9 @@ data class SignedCertificateTimestamp(
 /*
  * Security details about a request.
  */
+
+
+
 
 data class SecurityDetails(
   /**
@@ -285,9 +323,16 @@ data class SecurityDetails(
  */
 typealias BlockedReason = String
 
+
+
+
+
 /*
  * HTTP response data.
  */
+
+
+
 
 data class Response(
   /**
@@ -391,6 +436,9 @@ data class Response(
  * WebSocket request data.
  */
 
+
+
+
 data class WebSocketRequest(
   /**
    * HTTP request headers.
@@ -402,6 +450,9 @@ data class WebSocketRequest(
 /*
  * WebSocket response data.
  */
+
+
+
 
 data class WebSocketResponse(
   /**
@@ -440,6 +491,9 @@ data class WebSocketResponse(
  * WebSocket frame data.
  */
 
+
+
+
 data class WebSocketFrame(
   /**
    * WebSocket frame opcode.
@@ -461,6 +515,9 @@ data class WebSocketFrame(
 /*
  * Information about the cached resource.
  */
+
+
+
 
 data class CachedResource(
   /**
@@ -489,6 +546,9 @@ data class CachedResource(
  * Information about the request initiator.
  */
 
+
+
+
 data class Initiator(
   /**
    * Type of this initiator.
@@ -515,6 +575,9 @@ data class Initiator(
 /*
  * Cookie object
  */
+
+
+
 
 data class Cookie(
   /**

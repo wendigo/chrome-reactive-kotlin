@@ -11,34 +11,31 @@ package pl.wendigo.chrome.domain.cachestorage
 	 * Requests cache names.
 	 */
 	fun requestCacheNames(input : RequestCacheNamesRequest) : io.reactivex.Flowable<RequestCacheNamesResponse> {
-        return connection.runAndCaptureResponse("$domainName.requestCacheNames", input, RequestCacheNamesResponse::class.java)
+        return connection.runAndCaptureResponse("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java)
 	}
 
 	/**
 	 * Requests data from cache.
 	 */
 	fun requestEntries(input : RequestEntriesRequest) : io.reactivex.Flowable<RequestEntriesResponse> {
-        return connection.runAndCaptureResponse("$domainName.requestEntries", input, RequestEntriesResponse::class.java)
+        return connection.runAndCaptureResponse("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java)
 	}
 
 	/**
 	 * Deletes a cache.
 	 */
 	fun deleteCache(input : DeleteCacheRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.deleteCache", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("CacheStorage.deleteCache", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Deletes a cache entry.
 	 */
 	fun deleteEntry(input : DeleteEntryRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.deleteEntry", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("CacheStorage.deleteEntry", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
-  companion object {
-    private const val domainName = "CacheStorage"
   }
-}
 
 data class RequestCacheNamesRequest (
     /**
@@ -48,7 +45,10 @@ data class RequestCacheNamesRequest (
 
 )
 
-data class RequestCacheNamesResponse (
+/**
+ * Requests cache names.
+ */
+data class RequestCacheNamesResponse(
   /**
    * Caches for the security origin.
    */
@@ -74,7 +74,10 @@ data class RequestEntriesRequest (
 
 )
 
-data class RequestEntriesResponse (
+/**
+ * Requests data from cache.
+ */
+data class RequestEntriesResponse(
   /**
    * Array of object store data entries.
    */
@@ -95,6 +98,7 @@ data class DeleteCacheRequest (
 
 )
 
+
 data class DeleteEntryRequest (
     /**
      * Id of cache where the entry will be deleted.
@@ -107,4 +111,6 @@ data class DeleteEntryRequest (
     val request : String
 
 )
+
+
 

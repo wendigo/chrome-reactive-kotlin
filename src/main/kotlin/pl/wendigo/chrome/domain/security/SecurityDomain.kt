@@ -11,36 +11,44 @@ package pl.wendigo.chrome.domain.security
 	 * Enables tracking security state changes.
 	 */
 	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables tracking security state changes.
 	 */
 	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Displays native dialog with the certificate details.
 	 */
 	fun showCertificateViewer() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.showCertificateViewer", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Security.showCertificateViewer", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
+  
   /**
    * The security state of the page changed.
    */
   fun onSecurityStateChanged() : io.reactivex.Flowable<SecurityStateChangedEvent> {
-      return connection.captureEvents("$domainName.securityStateChanged", SecurityStateChangedEvent::class.java)
+      return connection.captureEvents(SecurityStateChangedEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "Security"
-  }
 }
 
-data class SecurityStateChangedEvent (
+
+
+
+
+
+
+
+/**
+ * The security state of the page changed.
+ */
+data class SecurityStateChangedEvent(
   /**
    * Security state.
    */
@@ -66,5 +74,5 @@ data class SecurityStateChangedEvent (
    */
   val summary : String? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Security", protocolEventName = "securityStateChanged")
 

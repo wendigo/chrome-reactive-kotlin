@@ -8,129 +8,136 @@ package pl.wendigo.chrome.domain.heapprofiler
 @pl.wendigo.chrome.ProtocolExperimental class HeapProfilerDomain internal constructor(private val connection : pl.wendigo.chrome.RemoteChromeConnection) {
 
 	/**
-	 *
+	 * 
 	 */
 	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun startTrackingHeapObjects(input : StartTrackingHeapObjectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.startTrackingHeapObjects", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.startTrackingHeapObjects", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun stopTrackingHeapObjects(input : StopTrackingHeapObjectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.stopTrackingHeapObjects", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.stopTrackingHeapObjects", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun takeHeapSnapshot(input : TakeHeapSnapshotRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.takeHeapSnapshot", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.takeHeapSnapshot", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun collectGarbage() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.collectGarbage", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun getObjectByHeapObjectId(input : GetObjectByHeapObjectIdRequest) : io.reactivex.Flowable<GetObjectByHeapObjectIdResponse> {
-        return connection.runAndCaptureResponse("$domainName.getObjectByHeapObjectId", input, GetObjectByHeapObjectIdResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.getObjectByHeapObjectId", input, GetObjectByHeapObjectIdResponse::class.java)
 	}
 
 	/**
 	 * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
 	 */
 	fun addInspectedHeapObject(input : AddInspectedHeapObjectRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.addInspectedHeapObject", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.addInspectedHeapObject", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun getHeapObjectId(input : GetHeapObjectIdRequest) : io.reactivex.Flowable<GetHeapObjectIdResponse> {
-        return connection.runAndCaptureResponse("$domainName.getHeapObjectId", input, GetHeapObjectIdResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.getHeapObjectId", input, GetHeapObjectIdResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun startSampling(input : StartSamplingRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.startSampling", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.startSampling", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	fun stopSampling() : io.reactivex.Flowable<StopSamplingResponse> {
-        return connection.runAndCaptureResponse("$domainName.stopSampling", null, StopSamplingResponse::class.java)
+        return connection.runAndCaptureResponse("HeapProfiler.stopSampling", null, StopSamplingResponse::class.java)
 	}
 
+  
   /**
-   *
+   * 
    */
   fun onAddHeapSnapshotChunk() : io.reactivex.Flowable<AddHeapSnapshotChunkEvent> {
-      return connection.captureEvents("$domainName.addHeapSnapshotChunk", AddHeapSnapshotChunkEvent::class.java)
+      return connection.captureEvents(AddHeapSnapshotChunkEvent::class.java)
   }
 
+
   /**
-   *
+   * 
    */
-  fun onResetProfiles() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-      return connection.captureEvents("$domainName.resetProfiles", pl.wendigo.chrome.GenericResponse::class.java)
+  fun onResetProfiles() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
   }
 
+
   /**
-   *
+   * 
    */
   fun onReportHeapSnapshotProgress() : io.reactivex.Flowable<ReportHeapSnapshotProgressEvent> {
-      return connection.captureEvents("$domainName.reportHeapSnapshotProgress", ReportHeapSnapshotProgressEvent::class.java)
+      return connection.captureEvents(ReportHeapSnapshotProgressEvent::class.java)
   }
+
 
   /**
    * If heap objects tracking has been started then backend regulary sends a current value for last seen object id and corresponding timestamp. If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
    */
   fun onLastSeenObjectId() : io.reactivex.Flowable<LastSeenObjectIdEvent> {
-      return connection.captureEvents("$domainName.lastSeenObjectId", LastSeenObjectIdEvent::class.java)
+      return connection.captureEvents(LastSeenObjectIdEvent::class.java)
   }
+
 
   /**
    * If heap objects tracking has been started then backend may send update for one or more fragments
    */
   fun onHeapStatsUpdate() : io.reactivex.Flowable<HeapStatsUpdateEvent> {
-      return connection.captureEvents("$domainName.heapStatsUpdate", HeapStatsUpdateEvent::class.java)
+      return connection.captureEvents(HeapStatsUpdateEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "HeapProfiler"
-  }
 }
+
+
+
+
 
 data class StartTrackingHeapObjectsRequest (
     /**
-     *
+     * 
      */
     val trackAllocations : Boolean? = null
 
 )
+
 
 data class StopTrackingHeapObjectsRequest (
     /**
@@ -140,6 +147,7 @@ data class StopTrackingHeapObjectsRequest (
 
 )
 
+
 data class TakeHeapSnapshotRequest (
     /**
      * If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken.
@@ -148,9 +156,12 @@ data class TakeHeapSnapshotRequest (
 
 )
 
+
+
+
 data class GetObjectByHeapObjectIdRequest (
     /**
-     *
+     * 
      */
     val objectId : HeapSnapshotObjectId,
 
@@ -161,7 +172,10 @@ data class GetObjectByHeapObjectIdRequest (
 
 )
 
-data class GetObjectByHeapObjectIdResponse (
+/**
+ * 
+ */
+data class GetObjectByHeapObjectIdResponse(
   /**
    * Evaluation result.
    */
@@ -177,6 +191,7 @@ data class AddInspectedHeapObjectRequest (
 
 )
 
+
 data class GetHeapObjectIdRequest (
     /**
      * Identifier of the object to get heap object id for.
@@ -185,7 +200,10 @@ data class GetHeapObjectIdRequest (
 
 )
 
-data class GetHeapObjectIdResponse (
+/**
+ * 
+ */
+data class GetHeapObjectIdResponse(
   /**
    * Id of the heap snapshot object corresponding to the passed remote object id.
    */
@@ -201,7 +219,12 @@ data class StartSamplingRequest (
 
 )
 
-data class StopSamplingResponse (
+
+
+/**
+ * 
+ */
+data class StopSamplingResponse(
   /**
    * Recorded sampling heap profile.
    */
@@ -209,50 +232,64 @@ data class StopSamplingResponse (
 
 )
 
-data class AddHeapSnapshotChunkEvent (
+
+/**
+ * 
+ */
+data class AddHeapSnapshotChunkEvent(
   /**
-   *
+   * 
    */
   val chunk : String
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "HeapProfiler", protocolEventName = "addHeapSnapshotChunk")
 
-data class ReportHeapSnapshotProgressEvent (
+
+/**
+ * 
+ */
+data class ReportHeapSnapshotProgressEvent(
   /**
-   *
+   * 
    */
   val done : Int,
 
   /**
-   *
+   * 
    */
   val total : Int,
 
   /**
-   *
+   * 
    */
   val finished : Boolean? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "HeapProfiler", protocolEventName = "reportHeapSnapshotProgress")
 
-data class LastSeenObjectIdEvent (
+/**
+ * If heap objects tracking has been started then backend regulary sends a current value for last seen object id and corresponding timestamp. If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+ */
+data class LastSeenObjectIdEvent(
   /**
-   *
+   * 
    */
   val lastSeenObjectId : Int,
 
   /**
-   *
+   * 
    */
   val timestamp : Double
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "HeapProfiler", protocolEventName = "lastSeenObjectId")
 
-data class HeapStatsUpdateEvent (
+/**
+ * If heap objects tracking has been started then backend may send update for one or more fragments
+ */
+data class HeapStatsUpdateEvent(
   /**
    * An array of triplets. Each triplet describes a fragment. The first integer is the fragment index, the second integer is a total count of objects for the fragment, the third integer is a total size of the objects for the fragment.
    */
   val statsUpdate : Array<Int>
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "HeapProfiler", protocolEventName = "heapStatsUpdate")
 

@@ -5,9 +5,16 @@ package pl.wendigo.chrome.domain.domdebugger
  */
 typealias DOMBreakpointType = String
 
+
+
+
+
 /*
  * Object event listener.
  */
+
+
+
 
 data class EventListener(
   /**

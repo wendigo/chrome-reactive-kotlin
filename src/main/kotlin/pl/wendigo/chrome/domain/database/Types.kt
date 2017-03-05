@@ -5,9 +5,16 @@ package pl.wendigo.chrome.domain.database
  */
 typealias DatabaseId = String
 
+
+
+
+
 /*
  * Database object.
  */
+
+
+
 
 data class Database(
   /**
@@ -35,6 +42,9 @@ data class Database(
 /*
  * Database error.
  */
+
+
+
 
 data class Error(
   /**

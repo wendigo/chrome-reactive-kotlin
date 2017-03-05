@@ -11,20 +11,17 @@ package pl.wendigo.chrome.domain.io
 	 * Read a chunk of the stream
 	 */
 	fun read(input : ReadRequest) : io.reactivex.Flowable<ReadResponse> {
-        return connection.runAndCaptureResponse("$domainName.read", input, ReadResponse::class.java)
+        return connection.runAndCaptureResponse("IO.read", input, ReadResponse::class.java)
 	}
 
 	/**
 	 * Close the stream, discard any temporary backing storage.
 	 */
 	fun close(input : CloseRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.close", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
-  companion object {
-    private const val domainName = "IO"
   }
-}
 
 data class ReadRequest (
     /**
@@ -44,7 +41,10 @@ data class ReadRequest (
 
 )
 
-data class ReadResponse (
+/**
+ * Read a chunk of the stream
+ */
+data class ReadResponse(
   /**
    * Data that were read.
    */
@@ -64,4 +64,6 @@ data class CloseRequest (
     val handle : StreamHandle
 
 )
+
+
 

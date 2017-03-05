@@ -11,40 +11,48 @@ package pl.wendigo.chrome.domain.inspector
 	 * Enables inspector domain notifications.
 	 */
 	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Inspector.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables inspector domain notifications.
 	 */
 	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Inspector.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
+  
   /**
    * Fired when remote debugging connection is about to be terminated. Contains detach reason.
    */
   fun onDetached() : io.reactivex.Flowable<DetachedEvent> {
-      return connection.captureEvents("$domainName.detached", DetachedEvent::class.java)
+      return connection.captureEvents(DetachedEvent::class.java)
   }
+
 
   /**
    * Fired when debugging target has crashed
    */
-  fun onTargetCrashed() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-      return connection.captureEvents("$domainName.targetCrashed", pl.wendigo.chrome.GenericResponse::class.java)
+  fun onTargetCrashed() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "Inspector"
-  }
 }
 
-data class DetachedEvent (
+
+
+
+
+
+/**
+ * Fired when remote debugging connection is about to be terminated. Contains detach reason.
+ */
+data class DetachedEvent(
   /**
    * The reason why connection has been terminated.
    */
   val reason : String
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Inspector", protocolEventName = "detached")
+
 

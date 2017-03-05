@@ -5,19 +5,34 @@ package pl.wendigo.chrome.domain.runtime
  */
 typealias ScriptId = String
 
+
+
+
+
 /*
  * Unique object identifier.
  */
 typealias RemoteObjectId = String
+
+
+
+
 
 /*
  * Primitive value which cannot be JSON-stringified.
  */
 typealias UnserializableValue = String
 
+
+
+
+
 /*
  * Mirror object referencing original JavaScript object.
  */
+
+
+
 
 data class RemoteObject(
   /**
@@ -61,7 +76,7 @@ data class RemoteObject(
   @pl.wendigo.chrome.ProtocolExperimental val preview : ObjectPreview? = null,
 
   /**
-   *
+   * 
    */
   @pl.wendigo.chrome.ProtocolExperimental val customPreview : CustomPreview? = null
 
@@ -71,29 +86,32 @@ data class RemoteObject(
  * 
  */
 
+
+
+
 data class CustomPreview(
   /**
-   *
+   * 
    */
   val header : String,
 
   /**
-   *
+   * 
    */
   val hasBody : Boolean,
 
   /**
-   *
+   * 
    */
   val formatterObjectId : RemoteObjectId,
 
   /**
-   *
+   * 
    */
   val bindRemoteObjectFunctionId : RemoteObjectId,
 
   /**
-   *
+   * 
    */
   val configObjectId : RemoteObjectId? = null
 
@@ -102,6 +120,9 @@ data class CustomPreview(
 /*
  * Object containing abbreviated remote object value.
  */
+
+
+
 
 data class ObjectPreview(
   /**
@@ -140,6 +161,9 @@ data class ObjectPreview(
  * 
  */
 
+
+
+
 data class PropertyPreview(
   /**
    * Property name.
@@ -172,6 +196,9 @@ data class PropertyPreview(
  * 
  */
 
+
+
+
 data class EntryPreview(
   /**
    * Preview of the key. Specified for map-like collection entries.
@@ -188,6 +215,9 @@ data class EntryPreview(
 /*
  * Object property descriptor.
  */
+
+
+
 
 data class PropertyDescriptor(
   /**
@@ -246,6 +276,9 @@ data class PropertyDescriptor(
  * Object internal property descriptor. This property isn&apos;t normally visible in JavaScript code.
  */
 
+
+
+
 data class InternalPropertyDescriptor(
   /**
    * Conventional property name.
@@ -262,6 +295,9 @@ data class InternalPropertyDescriptor(
 /*
  * Represents function call argument. Either remote object id &lt;code&gt;objectId&lt;/code&gt;, primitive &lt;code&gt;value&lt;/code&gt;, unserializable primitive value or neither of (for undefined) them should be specified.
  */
+
+
+
 
 data class CallArgument(
   /**
@@ -285,11 +321,17 @@ data class CallArgument(
  * Id of an execution context.
  */
 
+
 typealias ExecutionContextId = Int
+
+
 
 /*
  * Description of an isolated world.
  */
+
+
+
 
 data class ExecutionContextDescription(
   /**
@@ -317,6 +359,9 @@ data class ExecutionContextDescription(
 /*
  * Detailed information about exception (or error) that was thrown during script compilation or execution.
  */
+
+
+
 
 data class ExceptionDetails(
   /**
@@ -372,9 +417,15 @@ data class ExceptionDetails(
 
 typealias Timestamp = Double
 
+
+
+
 /*
  * Stack entry for runtime errors and assertions.
  */
+
+
+
 
 data class CallFrame(
   /**
@@ -407,6 +458,9 @@ data class CallFrame(
 /*
  * Call frames for assertions or error messages.
  */
+
+
+
 
 data class StackTrace(
   /**

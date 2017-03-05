@@ -5,14 +5,25 @@ package pl.wendigo.chrome.domain.debugger
  */
 typealias BreakpointId = String
 
+
+
+
+
 /*
  * Call frame identifier.
  */
 typealias CallFrameId = String
 
+
+
+
+
 /*
  * Location in the source code.
  */
+
+
+
 
 data class Location(
   /**
@@ -36,14 +47,17 @@ data class Location(
  * Location in the source code.
  */
 
+
+
+
 data class ScriptPosition(
   /**
-   *
+   * 
    */
   val lineNumber : Int,
 
   /**
-   *
+   * 
    */
   val columnNumber : Int
 
@@ -52,6 +66,9 @@ data class ScriptPosition(
 /*
  * JavaScript call frame. Array of call frames form the call stack.
  */
+
+
+
 
 data class CallFrame(
   /**
@@ -95,6 +112,9 @@ data class CallFrame(
  * Scope description.
  */
 
+
+
+
 data class Scope(
   /**
    * Scope type.
@@ -107,7 +127,7 @@ data class Scope(
   @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object : pl.wendigo.chrome.domain.runtime.RemoteObject,
 
   /**
-   *
+   * 
    */
   val name : String? = null,
 
@@ -126,6 +146,9 @@ data class Scope(
 /*
  * Search match for resource.
  */
+
+
+
 
 data class SearchMatch(
   /**

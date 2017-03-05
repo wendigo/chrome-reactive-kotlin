@@ -11,13 +11,10 @@ package pl.wendigo.chrome.domain.accessibility
 	 * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun getPartialAXTree(input : GetPartialAXTreeRequest) : io.reactivex.Flowable<GetPartialAXTreeResponse> {
-        return connection.runAndCaptureResponse("$domainName.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
+        return connection.runAndCaptureResponse("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
 	}
 
-  companion object {
-    private const val domainName = "Accessibility"
   }
-}
 
 data class GetPartialAXTreeRequest (
     /**
@@ -32,11 +29,15 @@ data class GetPartialAXTreeRequest (
 
 )
 
-data class GetPartialAXTreeResponse (
+/**
+ * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
+ */
+data class GetPartialAXTreeResponse(
   /**
    * The <code>Accessibility.AXNode</code> for this DOM node, if it exists, plus its ancestors, siblings and children, if requested.
    */
   val nodes : Array<AXNode>
 
 )
+
 

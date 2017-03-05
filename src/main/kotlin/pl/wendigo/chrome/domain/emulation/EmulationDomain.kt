@@ -11,117 +11,115 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
 	 */
 	fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setDeviceMetricsOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.setDeviceMetricsOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Clears the overriden device metrics.
 	 */
 	fun clearDeviceMetricsOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.clearDeviceMetricsOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.clearDeviceMetricsOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Overrides the visible area of the page. The change is hidden from the page, i.e. the observable scroll position and page scale does not change. In effect, the command moves the specified area of the page into the top-left corner of the frame.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun forceViewport(input : ForceViewportRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.forceViewport", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.forceViewport", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Resets the visible area of the page to the original viewport, undoing any effects of the <code>forceViewport</code> command.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun resetViewport() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.resetViewport", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.resetViewport", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Requests that page scale factor is reset to initial values.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun resetPageScaleFactor() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.resetPageScaleFactor", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.resetPageScaleFactor", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Sets a specified page scale factor.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setPageScaleFactor(input : SetPageScaleFactorRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setPageScaleFactor", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.setPageScaleFactor", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Resizes the frame/viewport of the page. Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported on Android.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setVisibleSize(input : SetVisibleSizeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setVisibleSize", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.setVisibleSize", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Switches script execution in the page.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setScriptExecutionDisabled(input : SetScriptExecutionDisabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setScriptExecutionDisabled", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.setScriptExecutionDisabled", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setGeolocationOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Clears the overriden Geolocation Position and Error.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun clearGeolocationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.clearGeolocationOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.clearGeolocationOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Toggles mouse event-based touch event emulation.
 	 */
 	fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setTouchEmulationEnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.setTouchEmulationEnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Emulates the given media for CSS media queries.
 	 */
 	fun setEmulatedMedia(input : SetEmulatedMediaRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setEmulatedMedia", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.setEmulatedMedia", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Enables CPU throttling to emulate slow CPUs.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setCPUThrottlingRate(input : SetCPUThrottlingRateRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setCPUThrottlingRate", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.setCPUThrottlingRate", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Tells whether emulation is supported.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun canEmulate() : io.reactivex.Flowable<CanEmulateResponse> {
-        return connection.runAndCaptureResponse("$domainName.canEmulate", null, CanEmulateResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.canEmulate", null, CanEmulateResponse::class.java)
 	}
 
 	/**
 	 * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets the current virtual time policy.  Note this supersedes any previous time budget.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setVirtualTimePolicy(input : SetVirtualTimePolicyRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setVirtualTimePolicy", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
+  
   /**
    * Notification sent after the virual time budget for the current VirtualTimePolicy has run out.
    */
-  fun onVirtualTimeBudgetExpired() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-      return connection.captureEvents("$domainName.virtualTimeBudgetExpired", pl.wendigo.chrome.GenericResponse::class.java)
+  fun onVirtualTimeBudgetExpired() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "Emulation"
-  }
 }
 
 data class SetDeviceMetricsOverrideRequest (
@@ -192,6 +190,9 @@ data class SetDeviceMetricsOverrideRequest (
 
 )
 
+
+
+
 data class ForceViewportRequest (
     /**
      * X coordinate of top-left corner of the area (CSS pixels).
@@ -210,6 +211,11 @@ data class ForceViewportRequest (
 
 )
 
+
+
+
+
+
 data class SetPageScaleFactorRequest (
     /**
      * Page scale factor.
@@ -217,6 +223,7 @@ data class SetPageScaleFactorRequest (
     val pageScaleFactor : Double
 
 )
+
 
 data class SetVisibleSizeRequest (
     /**
@@ -231,6 +238,7 @@ data class SetVisibleSizeRequest (
 
 )
 
+
 data class SetScriptExecutionDisabledRequest (
     /**
      * Whether script execution should be disabled in the page.
@@ -238,6 +246,7 @@ data class SetScriptExecutionDisabledRequest (
     val value : Boolean
 
 )
+
 
 data class SetGeolocationOverrideRequest (
     /**
@@ -257,6 +266,9 @@ data class SetGeolocationOverrideRequest (
 
 )
 
+
+
+
 data class SetTouchEmulationEnabledRequest (
     /**
      * Whether the touch event emulation should be enabled.
@@ -270,6 +282,7 @@ data class SetTouchEmulationEnabledRequest (
 
 )
 
+
 data class SetEmulatedMediaRequest (
     /**
      * Media type to emulate. Empty string disables the override.
@@ -277,6 +290,7 @@ data class SetEmulatedMediaRequest (
     val media : String
 
 )
+
 
 data class SetCPUThrottlingRateRequest (
     /**
@@ -286,7 +300,12 @@ data class SetCPUThrottlingRateRequest (
 
 )
 
-data class CanEmulateResponse (
+
+
+/**
+ * Tells whether emulation is supported.
+ */
+data class CanEmulateResponse(
   /**
    * True if emulation is supported.
    */
@@ -296,7 +315,7 @@ data class CanEmulateResponse (
 
 data class SetVirtualTimePolicyRequest (
     /**
-     *
+     * 
      */
     val policy : VirtualTimePolicy,
 
@@ -306,4 +325,7 @@ data class SetVirtualTimePolicyRequest (
     val budget : Int? = null
 
 )
+
+
+
 

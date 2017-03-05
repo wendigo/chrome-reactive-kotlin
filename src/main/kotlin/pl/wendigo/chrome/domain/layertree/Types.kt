@@ -5,14 +5,25 @@ package pl.wendigo.chrome.domain.layertree
  */
 typealias LayerId = String
 
+
+
+
+
 /*
  * Unique snapshot identifier.
  */
 typealias SnapshotId = String
 
+
+
+
+
 /*
  * Rectangle where scrolling happens on the main thread.
  */
+
+
+
 
 data class ScrollRect(
   /**
@@ -30,6 +41,9 @@ data class ScrollRect(
 /*
  * Serialized fragment of layer picture along with its offset within the layer.
  */
+
+
+
 
 data class PictureTile(
   /**
@@ -52,6 +66,9 @@ data class PictureTile(
 /*
  * Information about a compositing layer.
  */
+
+
+
 
 data class Layer(
   /**
@@ -135,5 +152,8 @@ data class Layer(
  * Array of timings, one per paint step.
  */
 
+
+
 typealias PaintProfile = Array<Double>
+
 

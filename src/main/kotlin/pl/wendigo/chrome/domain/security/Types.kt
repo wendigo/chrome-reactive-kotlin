@@ -4,16 +4,26 @@ package pl.wendigo.chrome.domain.security
  * An internal certificate ID value.
  */
 
+
 typealias CertificateId = Int
+
+
 
 /*
  * The security level of a page or resource.
  */
 typealias SecurityState = String
 
+
+
+
+
 /*
  * An explanation of an factor contributing to the security state.
  */
+
+
+
 
 data class SecurityStateExplanation(
   /**
@@ -41,6 +51,9 @@ data class SecurityStateExplanation(
 /*
  * Information about insecure content on the page.
  */
+
+
+
 
 data class InsecureContentStatus(
   /**

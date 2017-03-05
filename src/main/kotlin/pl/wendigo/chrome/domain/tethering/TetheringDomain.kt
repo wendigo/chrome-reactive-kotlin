@@ -11,26 +11,24 @@ package pl.wendigo.chrome.domain.tethering
 	 * Request browser port binding.
 	 */
 	fun bind(input : BindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.bind", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Request browser port unbinding.
 	 */
 	fun unbind(input : UnbindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.unbind", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
+  
   /**
    * Informs that port was successfully bound and got a specified connection id.
    */
   fun onAccepted() : io.reactivex.Flowable<AcceptedEvent> {
-      return connection.captureEvents("$domainName.accepted", AcceptedEvent::class.java)
+      return connection.captureEvents(AcceptedEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "Tethering"
-  }
 }
 
 data class BindRequest (
@@ -41,6 +39,7 @@ data class BindRequest (
 
 )
 
+
 data class UnbindRequest (
     /**
      * Port number to unbind.
@@ -49,7 +48,12 @@ data class UnbindRequest (
 
 )
 
-data class AcceptedEvent (
+
+
+/**
+ * Informs that port was successfully bound and got a specified connection id.
+ */
+data class AcceptedEvent(
   /**
    * Port number that was successfully bound.
    */
@@ -60,5 +64,5 @@ data class AcceptedEvent (
    */
   val connectionId : String
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Tethering", protocolEventName = "accepted")
 

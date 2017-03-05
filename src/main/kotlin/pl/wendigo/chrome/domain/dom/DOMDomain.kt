@@ -11,405 +11,422 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 	 * Enables DOM agent for the given page.
 	 */
 	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables DOM agent for the given page.
 	 */
 	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns the root DOM node (and optionally the subtree) to the caller.
 	 */
 	fun getDocument(input : GetDocumentRequest) : io.reactivex.Flowable<GetDocumentResponse> {
-        return connection.runAndCaptureResponse("$domainName.getDocument", input, GetDocumentResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.getDocument", input, GetDocumentResponse::class.java)
 	}
 
 	/**
 	 * Collects class names for the node with given id and all of it's child nodes.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun collectClassNamesFromSubtree(input : CollectClassNamesFromSubtreeRequest) : io.reactivex.Flowable<CollectClassNamesFromSubtreeResponse> {
-        return connection.runAndCaptureResponse("$domainName.collectClassNamesFromSubtree", input, CollectClassNamesFromSubtreeResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.collectClassNamesFromSubtree", input, CollectClassNamesFromSubtreeResponse::class.java)
 	}
 
 	/**
 	 * Requests that children of the node with given id are returned to the caller in form of <code>setChildNodes</code> events where not only immediate children are retrieved, but all children down to the specified depth.
 	 */
 	fun requestChildNodes(input : RequestChildNodesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.requestChildNodes", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.requestChildNodes", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Executes <code>querySelector</code> on a given node.
 	 */
 	fun querySelector(input : QuerySelectorRequest) : io.reactivex.Flowable<QuerySelectorResponse> {
-        return connection.runAndCaptureResponse("$domainName.querySelector", input, QuerySelectorResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.querySelector", input, QuerySelectorResponse::class.java)
 	}
 
 	/**
 	 * Executes <code>querySelectorAll</code> on a given node.
 	 */
 	fun querySelectorAll(input : QuerySelectorAllRequest) : io.reactivex.Flowable<QuerySelectorAllResponse> {
-        return connection.runAndCaptureResponse("$domainName.querySelectorAll", input, QuerySelectorAllResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.querySelectorAll", input, QuerySelectorAllResponse::class.java)
 	}
 
 	/**
 	 * Sets node name for a node with given id.
 	 */
 	fun setNodeName(input : SetNodeNameRequest) : io.reactivex.Flowable<SetNodeNameResponse> {
-        return connection.runAndCaptureResponse("$domainName.setNodeName", input, SetNodeNameResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.setNodeName", input, SetNodeNameResponse::class.java)
 	}
 
 	/**
 	 * Sets node value for a node with given id.
 	 */
 	fun setNodeValue(input : SetNodeValueRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setNodeValue", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.setNodeValue", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Removes node with given id.
 	 */
 	fun removeNode(input : RemoveNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.removeNode", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.removeNode", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Sets attribute for an element with given id.
 	 */
 	fun setAttributeValue(input : SetAttributeValueRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setAttributeValue", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.setAttributeValue", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Sets attributes on element with given id. This method is useful when user edits some existing attribute value and types in several attribute name/value pairs.
 	 */
 	fun setAttributesAsText(input : SetAttributesAsTextRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setAttributesAsText", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.setAttributesAsText", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Removes attribute with given name from an element with given id.
 	 */
 	fun removeAttribute(input : RemoveAttributeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.removeAttribute", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.removeAttribute", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns node's HTML markup.
 	 */
 	fun getOuterHTML(input : GetOuterHTMLRequest) : io.reactivex.Flowable<GetOuterHTMLResponse> {
-        return connection.runAndCaptureResponse("$domainName.getOuterHTML", input, GetOuterHTMLResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.getOuterHTML", input, GetOuterHTMLResponse::class.java)
 	}
 
 	/**
 	 * Sets node HTML markup, returns new node id.
 	 */
 	fun setOuterHTML(input : SetOuterHTMLRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setOuterHTML", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.setOuterHTML", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun performSearch(input : PerformSearchRequest) : io.reactivex.Flowable<PerformSearchResponse> {
-        return connection.runAndCaptureResponse("$domainName.performSearch", input, PerformSearchResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.performSearch", input, PerformSearchResponse::class.java)
 	}
 
 	/**
 	 * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun getSearchResults(input : GetSearchResultsRequest) : io.reactivex.Flowable<GetSearchResultsResponse> {
-        return connection.runAndCaptureResponse("$domainName.getSearchResults", input, GetSearchResultsResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.getSearchResults", input, GetSearchResultsResponse::class.java)
 	}
 
 	/**
 	 * Discards search results from the session with the given id. <code>getSearchResults</code> should no longer be called for that search.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun discardSearchResults(input : DiscardSearchResultsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.discardSearchResults", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.discardSearchResults", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.
 	 */
 	fun requestNode(input : RequestNodeRequest) : io.reactivex.Flowable<RequestNodeResponse> {
-        return connection.runAndCaptureResponse("$domainName.requestNode", input, RequestNodeResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.requestNode", input, RequestNodeResponse::class.java)
 	}
 
 	/**
 	 * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setInspectMode(input : SetInspectModeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setInspectMode", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.setInspectMode", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
 	 */
 	fun highlightRect(input : HighlightRectRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.highlightRect", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.highlightRect", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun highlightQuad(input : HighlightQuadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.highlightQuad", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.highlightQuad", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
 	 */
 	fun highlightNode(input : HighlightNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.highlightNode", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.highlightNode", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Hides DOM node highlight.
 	 */
 	fun hideHighlight() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.hideHighlight", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.hideHighlight", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Highlights owner element of the frame with given id.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun highlightFrame(input : HighlightFrameRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.highlightFrame", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.highlightFrame", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Requests that the node is sent to the caller given its path. // FIXME, use XPath
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun pushNodeByPathToFrontend(input : PushNodeByPathToFrontendRequest) : io.reactivex.Flowable<PushNodeByPathToFrontendResponse> {
-        return connection.runAndCaptureResponse("$domainName.pushNodeByPathToFrontend", input, PushNodeByPathToFrontendResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.pushNodeByPathToFrontend", input, PushNodeByPathToFrontendResponse::class.java)
 	}
 
 	/**
 	 * Requests that a batch of nodes is sent to the caller given their backend node ids.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun pushNodesByBackendIdsToFrontend(input : PushNodesByBackendIdsToFrontendRequest) : io.reactivex.Flowable<PushNodesByBackendIdsToFrontendResponse> {
-        return connection.runAndCaptureResponse("$domainName.pushNodesByBackendIdsToFrontend", input, PushNodesByBackendIdsToFrontendResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.pushNodesByBackendIdsToFrontend", input, PushNodesByBackendIdsToFrontendResponse::class.java)
 	}
 
 	/**
 	 * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setInspectedNode(input : SetInspectedNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setInspectedNode", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.setInspectedNode", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Resolves JavaScript node object for given node id.
 	 */
 	fun resolveNode(input : ResolveNodeRequest) : io.reactivex.Flowable<ResolveNodeResponse> {
-        return connection.runAndCaptureResponse("$domainName.resolveNode", input, ResolveNodeResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.resolveNode", input, ResolveNodeResponse::class.java)
 	}
 
 	/**
 	 * Returns attributes for the specified node.
 	 */
 	fun getAttributes(input : GetAttributesRequest) : io.reactivex.Flowable<GetAttributesResponse> {
-        return connection.runAndCaptureResponse("$domainName.getAttributes", input, GetAttributesResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.getAttributes", input, GetAttributesResponse::class.java)
 	}
 
 	/**
 	 * Creates a deep copy of the specified node and places it into the target container before the given anchor.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun copyTo(input : CopyToRequest) : io.reactivex.Flowable<CopyToResponse> {
-        return connection.runAndCaptureResponse("$domainName.copyTo", input, CopyToResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.copyTo", input, CopyToResponse::class.java)
 	}
 
 	/**
 	 * Moves node into the new container, places it before the given anchor.
 	 */
 	fun moveTo(input : MoveToRequest) : io.reactivex.Flowable<MoveToResponse> {
-        return connection.runAndCaptureResponse("$domainName.moveTo", input, MoveToResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.moveTo", input, MoveToResponse::class.java)
 	}
 
 	/**
 	 * Undoes the last performed action.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun undo() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.undo", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.undo", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Re-does the last undone action.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun redo() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.redo", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.redo", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Marks last undoable state.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun markUndoableState() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.markUndoableState", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.markUndoableState", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Focuses the given element.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun focus(input : FocusRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.focus", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.focus", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Sets files for the given file input element.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setFileInputFiles(input : SetFileInputFilesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setFileInputFiles", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.setFileInputFiles", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns boxes for the currently selected nodes.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun getBoxModel(input : GetBoxModelRequest) : io.reactivex.Flowable<GetBoxModelResponse> {
-        return connection.runAndCaptureResponse("$domainName.getBoxModel", input, GetBoxModelResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.getBoxModel", input, GetBoxModelResponse::class.java)
 	}
 
 	/**
 	 * Returns node id at given location.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun getNodeForLocation(input : GetNodeForLocationRequest) : io.reactivex.Flowable<GetNodeForLocationResponse> {
-        return connection.runAndCaptureResponse("$domainName.getNodeForLocation", input, GetNodeForLocationResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.getNodeForLocation", input, GetNodeForLocationResponse::class.java)
 	}
 
 	/**
 	 * Returns the id of the nearest ancestor that is a relayout boundary.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun getRelayoutBoundary(input : GetRelayoutBoundaryRequest) : io.reactivex.Flowable<GetRelayoutBoundaryResponse> {
-        return connection.runAndCaptureResponse("$domainName.getRelayoutBoundary", input, GetRelayoutBoundaryResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.getRelayoutBoundary", input, GetRelayoutBoundaryResponse::class.java)
 	}
 
 	/**
 	 * For testing.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun getHighlightObjectForTest(input : GetHighlightObjectForTestRequest) : io.reactivex.Flowable<GetHighlightObjectForTestResponse> {
-        return connection.runAndCaptureResponse("$domainName.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java)
+        return connection.runAndCaptureResponse("DOM.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java)
 	}
 
+  
   /**
    * Fired when <code>Document</code> has been totally updated. Node ids are no longer valid.
    */
-  fun onDocumentUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-      return connection.captureEvents("$domainName.documentUpdated", pl.wendigo.chrome.GenericResponse::class.java)
+  fun onDocumentUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
   }
+
 
   /**
    * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code>.
    */
   fun onInspectNodeRequested() : io.reactivex.Flowable<InspectNodeRequestedEvent> {
-      return connection.captureEvents("$domainName.inspectNodeRequested", InspectNodeRequestedEvent::class.java)
+      return connection.captureEvents(InspectNodeRequestedEvent::class.java)
   }
+
 
   /**
    * Fired when backend wants to provide client with the missing DOM structure. This happens upon most of the calls requesting node ids.
    */
   fun onSetChildNodes() : io.reactivex.Flowable<SetChildNodesEvent> {
-      return connection.captureEvents("$domainName.setChildNodes", SetChildNodesEvent::class.java)
+      return connection.captureEvents(SetChildNodesEvent::class.java)
   }
+
 
   /**
    * Fired when <code>Element</code>'s attribute is modified.
    */
   fun onAttributeModified() : io.reactivex.Flowable<AttributeModifiedEvent> {
-      return connection.captureEvents("$domainName.attributeModified", AttributeModifiedEvent::class.java)
+      return connection.captureEvents(AttributeModifiedEvent::class.java)
   }
+
 
   /**
    * Fired when <code>Element</code>'s attribute is removed.
    */
   fun onAttributeRemoved() : io.reactivex.Flowable<AttributeRemovedEvent> {
-      return connection.captureEvents("$domainName.attributeRemoved", AttributeRemovedEvent::class.java)
+      return connection.captureEvents(AttributeRemovedEvent::class.java)
   }
+
 
   /**
    * Fired when <code>Element</code>'s inline style is modified via a CSS property modification.
    */
   fun onInlineStyleInvalidated() : io.reactivex.Flowable<InlineStyleInvalidatedEvent> {
-      return connection.captureEvents("$domainName.inlineStyleInvalidated", InlineStyleInvalidatedEvent::class.java)
+      return connection.captureEvents(InlineStyleInvalidatedEvent::class.java)
   }
+
 
   /**
    * Mirrors <code>DOMCharacterDataModified</code> event.
    */
   fun onCharacterDataModified() : io.reactivex.Flowable<CharacterDataModifiedEvent> {
-      return connection.captureEvents("$domainName.characterDataModified", CharacterDataModifiedEvent::class.java)
+      return connection.captureEvents(CharacterDataModifiedEvent::class.java)
   }
+
 
   /**
    * Fired when <code>Container</code>'s child node count has changed.
    */
   fun onChildNodeCountUpdated() : io.reactivex.Flowable<ChildNodeCountUpdatedEvent> {
-      return connection.captureEvents("$domainName.childNodeCountUpdated", ChildNodeCountUpdatedEvent::class.java)
+      return connection.captureEvents(ChildNodeCountUpdatedEvent::class.java)
   }
+
 
   /**
    * Mirrors <code>DOMNodeInserted</code> event.
    */
   fun onChildNodeInserted() : io.reactivex.Flowable<ChildNodeInsertedEvent> {
-      return connection.captureEvents("$domainName.childNodeInserted", ChildNodeInsertedEvent::class.java)
+      return connection.captureEvents(ChildNodeInsertedEvent::class.java)
   }
+
 
   /**
    * Mirrors <code>DOMNodeRemoved</code> event.
    */
   fun onChildNodeRemoved() : io.reactivex.Flowable<ChildNodeRemovedEvent> {
-      return connection.captureEvents("$domainName.childNodeRemoved", ChildNodeRemovedEvent::class.java)
+      return connection.captureEvents(ChildNodeRemovedEvent::class.java)
   }
+
 
   /**
    * Called when shadow root is pushed into the element.
    */
   fun onShadowRootPushed() : io.reactivex.Flowable<ShadowRootPushedEvent> {
-      return connection.captureEvents("$domainName.shadowRootPushed", ShadowRootPushedEvent::class.java)
+      return connection.captureEvents(ShadowRootPushedEvent::class.java)
   }
+
 
   /**
    * Called when shadow root is popped from the element.
    */
   fun onShadowRootPopped() : io.reactivex.Flowable<ShadowRootPoppedEvent> {
-      return connection.captureEvents("$domainName.shadowRootPopped", ShadowRootPoppedEvent::class.java)
+      return connection.captureEvents(ShadowRootPoppedEvent::class.java)
   }
+
 
   /**
    * Called when a pseudo element is added to an element.
    */
   fun onPseudoElementAdded() : io.reactivex.Flowable<PseudoElementAddedEvent> {
-      return connection.captureEvents("$domainName.pseudoElementAdded", PseudoElementAddedEvent::class.java)
+      return connection.captureEvents(PseudoElementAddedEvent::class.java)
   }
+
 
   /**
    * Called when a pseudo element is removed from an element.
    */
   fun onPseudoElementRemoved() : io.reactivex.Flowable<PseudoElementRemovedEvent> {
-      return connection.captureEvents("$domainName.pseudoElementRemoved", PseudoElementRemovedEvent::class.java)
+      return connection.captureEvents(PseudoElementRemovedEvent::class.java)
   }
+
 
   /**
    * Called when distrubution is changed.
    */
   fun onDistributedNodesUpdated() : io.reactivex.Flowable<DistributedNodesUpdatedEvent> {
-      return connection.captureEvents("$domainName.distributedNodesUpdated", DistributedNodesUpdatedEvent::class.java)
+      return connection.captureEvents(DistributedNodesUpdatedEvent::class.java)
   }
+
 
   /**
-   *
+   * 
    */
   fun onNodeHighlightRequested() : io.reactivex.Flowable<NodeHighlightRequestedEvent> {
-      return connection.captureEvents("$domainName.nodeHighlightRequested", NodeHighlightRequestedEvent::class.java)
+      return connection.captureEvents(NodeHighlightRequestedEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "DOM"
-  }
 }
+
+
+
+
 
 data class GetDocumentRequest (
     /**
@@ -424,7 +441,10 @@ data class GetDocumentRequest (
 
 )
 
-data class GetDocumentResponse (
+/**
+ * Returns the root DOM node (and optionally the subtree) to the caller.
+ */
+data class GetDocumentResponse(
   /**
    * Resulting node.
    */
@@ -440,7 +460,10 @@ data class CollectClassNamesFromSubtreeRequest (
 
 )
 
-data class CollectClassNamesFromSubtreeResponse (
+/**
+ * Collects class names for the node with given id and all of it's child nodes.
+ */
+data class CollectClassNamesFromSubtreeResponse(
   /**
    * Class name list.
    */
@@ -466,6 +489,7 @@ data class RequestChildNodesRequest (
 
 )
 
+
 data class QuerySelectorRequest (
     /**
      * Id of the node to query upon.
@@ -479,7 +503,10 @@ data class QuerySelectorRequest (
 
 )
 
-data class QuerySelectorResponse (
+/**
+ * Executes <code>querySelector</code> on a given node.
+ */
+data class QuerySelectorResponse(
   /**
    * Query selector result.
    */
@@ -500,7 +527,10 @@ data class QuerySelectorAllRequest (
 
 )
 
-data class QuerySelectorAllResponse (
+/**
+ * Executes <code>querySelectorAll</code> on a given node.
+ */
+data class QuerySelectorAllResponse(
   /**
    * Query selector result.
    */
@@ -521,7 +551,10 @@ data class SetNodeNameRequest (
 
 )
 
-data class SetNodeNameResponse (
+/**
+ * Sets node name for a node with given id.
+ */
+data class SetNodeNameResponse(
   /**
    * New node's id.
    */
@@ -542,6 +575,7 @@ data class SetNodeValueRequest (
 
 )
 
+
 data class RemoveNodeRequest (
     /**
      * Id of the node to remove.
@@ -549,6 +583,7 @@ data class RemoveNodeRequest (
     val nodeId : NodeId
 
 )
+
 
 data class SetAttributeValueRequest (
     /**
@@ -568,6 +603,7 @@ data class SetAttributeValueRequest (
 
 )
 
+
 data class SetAttributesAsTextRequest (
     /**
      * Id of the element to set attributes for.
@@ -586,6 +622,7 @@ data class SetAttributesAsTextRequest (
 
 )
 
+
 data class RemoveAttributeRequest (
     /**
      * Id of the element to remove attribute from.
@@ -599,6 +636,7 @@ data class RemoveAttributeRequest (
 
 )
 
+
 data class GetOuterHTMLRequest (
     /**
      * Id of the node to get markup for.
@@ -607,7 +645,10 @@ data class GetOuterHTMLRequest (
 
 )
 
-data class GetOuterHTMLResponse (
+/**
+ * Returns node's HTML markup.
+ */
+data class GetOuterHTMLResponse(
   /**
    * Outer HTML markup.
    */
@@ -628,6 +669,7 @@ data class SetOuterHTMLRequest (
 
 )
 
+
 data class PerformSearchRequest (
     /**
      * Plain text or query selector or XPath search query.
@@ -641,7 +683,10 @@ data class PerformSearchRequest (
 
 )
 
-data class PerformSearchResponse (
+/**
+ * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
+ */
+data class PerformSearchResponse(
   /**
    * Unique search session identifier.
    */
@@ -672,7 +717,10 @@ data class GetSearchResultsRequest (
 
 )
 
-data class GetSearchResultsResponse (
+/**
+ * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
+ */
+data class GetSearchResultsResponse(
   /**
    * Ids of the search result nodes.
    */
@@ -688,6 +736,7 @@ data class DiscardSearchResultsRequest (
 
 )
 
+
 data class RequestNodeRequest (
     /**
      * JavaScript object id to convert into node.
@@ -696,7 +745,10 @@ data class RequestNodeRequest (
 
 )
 
-data class RequestNodeResponse (
+/**
+ * Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.
+ */
+data class RequestNodeResponse(
   /**
    * Node id for given object.
    */
@@ -716,6 +768,7 @@ data class SetInspectModeRequest (
     val highlightConfig : HighlightConfig? = null
 
 )
+
 
 data class HighlightRectRequest (
     /**
@@ -750,6 +803,7 @@ data class HighlightRectRequest (
 
 )
 
+
 data class HighlightQuadRequest (
     /**
      * Quad to highlight
@@ -767,6 +821,7 @@ data class HighlightQuadRequest (
     val outlineColor : RGBA? = null
 
 )
+
 
 data class HighlightNodeRequest (
     /**
@@ -791,6 +846,9 @@ data class HighlightNodeRequest (
 
 )
 
+
+
+
 data class HighlightFrameRequest (
     /**
      * Identifier of the frame to highlight.
@@ -809,6 +867,7 @@ data class HighlightFrameRequest (
 
 )
 
+
 data class PushNodeByPathToFrontendRequest (
     /**
      * Path to node in the proprietary format.
@@ -817,7 +876,10 @@ data class PushNodeByPathToFrontendRequest (
 
 )
 
-data class PushNodeByPathToFrontendResponse (
+/**
+ * Requests that the node is sent to the caller given its path. // FIXME, use XPath
+ */
+data class PushNodeByPathToFrontendResponse(
   /**
    * Id of the node for given path.
    */
@@ -833,7 +895,10 @@ data class PushNodesByBackendIdsToFrontendRequest (
 
 )
 
-data class PushNodesByBackendIdsToFrontendResponse (
+/**
+ * Requests that a batch of nodes is sent to the caller given their backend node ids.
+ */
+data class PushNodesByBackendIdsToFrontendResponse(
   /**
    * The array of ids of pushed nodes that correspond to the backend ids specified in backendNodeIds.
    */
@@ -849,6 +914,7 @@ data class SetInspectedNodeRequest (
 
 )
 
+
 data class ResolveNodeRequest (
     /**
      * Id of the node to resolve.
@@ -862,7 +928,10 @@ data class ResolveNodeRequest (
 
 )
 
-data class ResolveNodeResponse (
+/**
+ * Resolves JavaScript node object for given node id.
+ */
+data class ResolveNodeResponse(
   /**
    * JavaScript object wrapper for given node.
    */
@@ -878,7 +947,10 @@ data class GetAttributesRequest (
 
 )
 
-data class GetAttributesResponse (
+/**
+ * Returns attributes for the specified node.
+ */
+data class GetAttributesResponse(
   /**
    * An interleaved array of node attribute names and values.
    */
@@ -904,7 +976,10 @@ data class CopyToRequest (
 
 )
 
-data class CopyToResponse (
+/**
+ * Creates a deep copy of the specified node and places it into the target container before the given anchor.
+ */
+data class CopyToResponse(
   /**
    * Id of the node clone.
    */
@@ -930,13 +1005,22 @@ data class MoveToRequest (
 
 )
 
-data class MoveToResponse (
+/**
+ * Moves node into the new container, places it before the given anchor.
+ */
+data class MoveToResponse(
   /**
    * New id of the moved node.
    */
   val nodeId : NodeId
 
 )
+
+
+
+
+
+
 
 data class FocusRequest (
     /**
@@ -945,6 +1029,7 @@ data class FocusRequest (
     val nodeId : NodeId
 
 )
+
 
 data class SetFileInputFilesRequest (
     /**
@@ -959,6 +1044,7 @@ data class SetFileInputFilesRequest (
 
 )
 
+
 data class GetBoxModelRequest (
     /**
      * Id of the node to get box model for.
@@ -967,7 +1053,10 @@ data class GetBoxModelRequest (
 
 )
 
-data class GetBoxModelResponse (
+/**
+ * Returns boxes for the currently selected nodes.
+ */
+data class GetBoxModelResponse(
   /**
    * Box model for the node.
    */
@@ -988,7 +1077,10 @@ data class GetNodeForLocationRequest (
 
 )
 
-data class GetNodeForLocationResponse (
+/**
+ * Returns node id at given location.
+ */
+data class GetNodeForLocationResponse(
   /**
    * Id of the node at given coordinates.
    */
@@ -1004,7 +1096,10 @@ data class GetRelayoutBoundaryRequest (
 
 )
 
-data class GetRelayoutBoundaryResponse (
+/**
+ * Returns the id of the nearest ancestor that is a relayout boundary.
+ */
+data class GetRelayoutBoundaryResponse(
   /**
    * Relayout boundary node id for the given node.
    */
@@ -1020,7 +1115,10 @@ data class GetHighlightObjectForTestRequest (
 
 )
 
-data class GetHighlightObjectForTestResponse (
+/**
+ * For testing.
+ */
+data class GetHighlightObjectForTestResponse(
   /**
    * Highlight data for the node.
    */
@@ -1028,15 +1126,23 @@ data class GetHighlightObjectForTestResponse (
 
 )
 
-data class InspectNodeRequestedEvent (
+
+
+/**
+ * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code>.
+ */
+data class InspectNodeRequestedEvent(
   /**
    * Id of the node to inspect.
    */
   val backendNodeId : BackendNodeId
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "inspectNodeRequested")
 
-data class SetChildNodesEvent (
+/**
+ * Fired when backend wants to provide client with the missing DOM structure. This happens upon most of the calls requesting node ids.
+ */
+data class SetChildNodesEvent(
   /**
    * Parent node id to populate with children.
    */
@@ -1047,9 +1153,12 @@ data class SetChildNodesEvent (
    */
   val nodes : Array<Node>
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "setChildNodes")
 
-data class AttributeModifiedEvent (
+/**
+ * Fired when <code>Element</code>'s attribute is modified.
+ */
+data class AttributeModifiedEvent(
   /**
    * Id of the node that has changed.
    */
@@ -1065,9 +1174,12 @@ data class AttributeModifiedEvent (
    */
   val value : String
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "attributeModified")
 
-data class AttributeRemovedEvent (
+/**
+ * Fired when <code>Element</code>'s attribute is removed.
+ */
+data class AttributeRemovedEvent(
   /**
    * Id of the node that has changed.
    */
@@ -1078,17 +1190,23 @@ data class AttributeRemovedEvent (
    */
   val name : String
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "attributeRemoved")
 
-data class InlineStyleInvalidatedEvent (
+/**
+ * Fired when <code>Element</code>'s inline style is modified via a CSS property modification.
+ */
+data class InlineStyleInvalidatedEvent(
   /**
    * Ids of the nodes for which the inline styles have been invalidated.
    */
   val nodeIds : Array<NodeId>
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "inlineStyleInvalidated")
 
-data class CharacterDataModifiedEvent (
+/**
+ * Mirrors <code>DOMCharacterDataModified</code> event.
+ */
+data class CharacterDataModifiedEvent(
   /**
    * Id of the node that has changed.
    */
@@ -1099,9 +1217,12 @@ data class CharacterDataModifiedEvent (
    */
   val characterData : String
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "characterDataModified")
 
-data class ChildNodeCountUpdatedEvent (
+/**
+ * Fired when <code>Container</code>'s child node count has changed.
+ */
+data class ChildNodeCountUpdatedEvent(
   /**
    * Id of the node that has changed.
    */
@@ -1112,9 +1233,12 @@ data class ChildNodeCountUpdatedEvent (
    */
   val childNodeCount : Int
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeCountUpdated")
 
-data class ChildNodeInsertedEvent (
+/**
+ * Mirrors <code>DOMNodeInserted</code> event.
+ */
+data class ChildNodeInsertedEvent(
   /**
    * Id of the node that has changed.
    */
@@ -1130,9 +1254,12 @@ data class ChildNodeInsertedEvent (
    */
   val node : Node
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeInserted")
 
-data class ChildNodeRemovedEvent (
+/**
+ * Mirrors <code>DOMNodeRemoved</code> event.
+ */
+data class ChildNodeRemovedEvent(
   /**
    * Parent id.
    */
@@ -1143,9 +1270,12 @@ data class ChildNodeRemovedEvent (
    */
   val nodeId : NodeId
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeRemoved")
 
-data class ShadowRootPushedEvent (
+/**
+ * Called when shadow root is pushed into the element.
+ */
+data class ShadowRootPushedEvent(
   /**
    * Host element id.
    */
@@ -1156,9 +1286,12 @@ data class ShadowRootPushedEvent (
    */
   val root : Node
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "shadowRootPushed")
 
-data class ShadowRootPoppedEvent (
+/**
+ * Called when shadow root is popped from the element.
+ */
+data class ShadowRootPoppedEvent(
   /**
    * Host element id.
    */
@@ -1169,9 +1302,12 @@ data class ShadowRootPoppedEvent (
    */
   val rootId : NodeId
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "shadowRootPopped")
 
-data class PseudoElementAddedEvent (
+/**
+ * Called when a pseudo element is added to an element.
+ */
+data class PseudoElementAddedEvent(
   /**
    * Pseudo element's parent element id.
    */
@@ -1182,9 +1318,12 @@ data class PseudoElementAddedEvent (
    */
   val pseudoElement : Node
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "pseudoElementAdded")
 
-data class PseudoElementRemovedEvent (
+/**
+ * Called when a pseudo element is removed from an element.
+ */
+data class PseudoElementRemovedEvent(
   /**
    * Pseudo element's parent element id.
    */
@@ -1195,9 +1334,12 @@ data class PseudoElementRemovedEvent (
    */
   val pseudoElementId : NodeId
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "pseudoElementRemoved")
 
-data class DistributedNodesUpdatedEvent (
+/**
+ * Called when distrubution is changed.
+ */
+data class DistributedNodesUpdatedEvent(
   /**
    * Insertion point where distrubuted nodes were updated.
    */
@@ -1208,13 +1350,16 @@ data class DistributedNodesUpdatedEvent (
    */
   val distributedNodes : Array<BackendNode>
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "distributedNodesUpdated")
 
-data class NodeHighlightRequestedEvent (
+/**
+ * 
+ */
+data class NodeHighlightRequestedEvent(
   /**
-   *
+   * 
    */
   val nodeId : NodeId
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "nodeHighlightRequested")
 

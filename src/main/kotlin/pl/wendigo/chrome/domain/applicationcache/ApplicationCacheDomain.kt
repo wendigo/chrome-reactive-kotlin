@@ -11,56 +11,61 @@ package pl.wendigo.chrome.domain.applicationcache
 	 * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
 	 */
 	fun getFramesWithManifests() : io.reactivex.Flowable<GetFramesWithManifestsResponse> {
-        return connection.runAndCaptureResponse("$domainName.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java)
+        return connection.runAndCaptureResponse("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java)
 	}
 
 	/**
 	 * Enables application cache domain notifications.
 	 */
 	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("ApplicationCache.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns manifest URL for document in the given frame.
 	 */
 	fun getManifestForFrame(input : GetManifestForFrameRequest) : io.reactivex.Flowable<GetManifestForFrameResponse> {
-        return connection.runAndCaptureResponse("$domainName.getManifestForFrame", input, GetManifestForFrameResponse::class.java)
+        return connection.runAndCaptureResponse("ApplicationCache.getManifestForFrame", input, GetManifestForFrameResponse::class.java)
 	}
 
 	/**
 	 * Returns relevant application cache data for the document in given frame.
 	 */
 	fun getApplicationCacheForFrame(input : GetApplicationCacheForFrameRequest) : io.reactivex.Flowable<GetApplicationCacheForFrameResponse> {
-        return connection.runAndCaptureResponse("$domainName.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java)
+        return connection.runAndCaptureResponse("ApplicationCache.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java)
 	}
 
+  
   /**
-   *
+   * 
    */
   fun onApplicationCacheStatusUpdated() : io.reactivex.Flowable<ApplicationCacheStatusUpdatedEvent> {
-      return connection.captureEvents("$domainName.applicationCacheStatusUpdated", ApplicationCacheStatusUpdatedEvent::class.java)
+      return connection.captureEvents(ApplicationCacheStatusUpdatedEvent::class.java)
   }
+
 
   /**
-   *
+   * 
    */
   fun onNetworkStateUpdated() : io.reactivex.Flowable<NetworkStateUpdatedEvent> {
-      return connection.captureEvents("$domainName.networkStateUpdated", NetworkStateUpdatedEvent::class.java)
+      return connection.captureEvents(NetworkStateUpdatedEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "ApplicationCache"
-  }
 }
 
-data class GetFramesWithManifestsResponse (
+
+/**
+ * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
+ */
+data class GetFramesWithManifestsResponse(
   /**
    * Array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
    */
   val frameIds : Array<FrameWithManifest>
 
 )
+
+
 
 data class GetManifestForFrameRequest (
     /**
@@ -70,7 +75,10 @@ data class GetManifestForFrameRequest (
 
 )
 
-data class GetManifestForFrameResponse (
+/**
+ * Returns manifest URL for document in the given frame.
+ */
+data class GetManifestForFrameResponse(
   /**
    * Manifest URL for document in the given frame.
    */
@@ -86,7 +94,10 @@ data class GetApplicationCacheForFrameRequest (
 
 )
 
-data class GetApplicationCacheForFrameResponse (
+/**
+ * Returns relevant application cache data for the document in given frame.
+ */
+data class GetApplicationCacheForFrameResponse(
   /**
    * Relevant application cache data for the document in given frame.
    */
@@ -94,7 +105,11 @@ data class GetApplicationCacheForFrameResponse (
 
 )
 
-data class ApplicationCacheStatusUpdatedEvent (
+
+/**
+ * 
+ */
+data class ApplicationCacheStatusUpdatedEvent(
   /**
    * Identifier of the frame containing document whose application cache updated status.
    */
@@ -110,13 +125,16 @@ data class ApplicationCacheStatusUpdatedEvent (
    */
   val status : Int
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ApplicationCache", protocolEventName = "applicationCacheStatusUpdated")
 
-data class NetworkStateUpdatedEvent (
+/**
+ * 
+ */
+data class NetworkStateUpdatedEvent(
   /**
-   *
+   * 
    */
   val isNowOnline : Boolean
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ApplicationCache", protocolEventName = "networkStateUpdated")
 

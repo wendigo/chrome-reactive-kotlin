@@ -11,15 +11,16 @@ package pl.wendigo.chrome.domain.systeminfo
 	 * Returns information about the system.
 	 */
 	fun getInfo() : io.reactivex.Flowable<GetInfoResponse> {
-        return connection.runAndCaptureResponse("$domainName.getInfo", null, GetInfoResponse::class.java)
+        return connection.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java)
 	}
 
-  companion object {
-    private const val domainName = "SystemInfo"
   }
-}
 
-data class GetInfoResponse (
+
+/**
+ * Returns information about the system.
+ */
+data class GetInfoResponse(
   /**
    * Information about the GPUs on the system.
    */
@@ -36,4 +37,5 @@ data class GetInfoResponse (
   val modelVersion : String
 
 )
+
 

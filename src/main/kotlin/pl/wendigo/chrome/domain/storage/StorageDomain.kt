@@ -11,13 +11,10 @@ package pl.wendigo.chrome.domain.storage
 	 * Clears storage for origin.
 	 */
 	fun clearDataForOrigin(input : ClearDataForOriginRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.clearDataForOrigin", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Storage.clearDataForOrigin", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
-  companion object {
-    private const val domainName = "Storage"
   }
-}
 
 data class ClearDataForOriginRequest (
     /**
@@ -31,4 +28,6 @@ data class ClearDataForOriginRequest (
     val storageTypes : String
 
 )
+
+
 

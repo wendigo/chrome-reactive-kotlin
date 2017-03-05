@@ -4,17 +4,26 @@ package pl.wendigo.chrome.domain.dom
  * Unique DOM node identifier.
  */
 
+
 typealias NodeId = Int
+
+
 
 /*
  * Unique DOM node identifier used to reference a node that may not have been pushed to the front-end.
  */
 
+
 typealias BackendNodeId = Int
+
+
 
 /*
  * Backend node with a friendly name.
  */
+
+
+
 
 data class BackendNode(
   /**
@@ -28,7 +37,7 @@ data class BackendNode(
   val nodeName : String,
 
   /**
-   *
+   * 
    */
   val backendNodeId : BackendNodeId
 
@@ -39,14 +48,25 @@ data class BackendNode(
  */
 typealias PseudoType = String
 
+
+
+
+
 /*
  * Shadow root type.
  */
 typealias ShadowRootType = String
 
+
+
+
+
 /*
  * DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes. DOMNode is a base node mirror type.
  */
+
+
+
 
 data class Node(
   /**
@@ -190,6 +210,9 @@ data class Node(
  * A structure holding an RGBA color.
  */
 
+
+
+
 data class RGBA(
   /**
    * The red component, in the [0-255] range.
@@ -217,11 +240,17 @@ data class RGBA(
  * An array of quad vertices, x immediately followed by y for each point, points clock-wise.
  */
 
+
+
 typealias Quad = Array<Double>
+
 
 /*
  * Box model.
  */
+
+
+
 
 data class BoxModel(
   /**
@@ -265,6 +294,9 @@ data class BoxModel(
  * CSS Shape Outside details.
  */
 
+
+
+
 data class ShapeOutsideInfo(
   /**
    * Shape bounds
@@ -286,6 +318,9 @@ data class ShapeOutsideInfo(
 /*
  * Rectangle.
  */
+
+
+
 
 data class Rect(
   /**
@@ -314,6 +349,9 @@ data class Rect(
  * Configuration data for the highlighting of page elements.
  */
 
+
+
+
 data class HighlightConfig(
   /**
    * Whether the node info tooltip should be shown (default: false).
@@ -331,7 +369,7 @@ data class HighlightConfig(
   val showExtensionLines : Boolean? = null,
 
   /**
-   *
+   * 
    */
   @pl.wendigo.chrome.ProtocolExperimental val displayAsMaterial : Boolean? = null,
 
@@ -381,4 +419,8 @@ data class HighlightConfig(
  * 
  */
 typealias InspectMode = String
+
+
+
+
 

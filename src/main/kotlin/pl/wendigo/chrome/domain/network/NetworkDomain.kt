@@ -11,271 +11,283 @@ class NetworkDomain internal constructor(private val connection : pl.wendigo.chr
 	 * Enables network tracking, network events will now be delivered to the client.
 	 */
 	fun enable(input : EnableRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.enable", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.enable", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables network tracking, prevents network events from being sent to the client.
 	 */
 	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Allows overriding user agent with the given string.
 	 */
 	fun setUserAgentOverride(input : SetUserAgentOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setUserAgentOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.setUserAgentOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Specifies whether to always send extra HTTP headers with the requests from this page.
 	 */
 	fun setExtraHTTPHeaders(input : SetExtraHTTPHeadersRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setExtraHTTPHeaders", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.setExtraHTTPHeaders", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns content served for the given request.
 	 */
 	fun getResponseBody(input : GetResponseBodyRequest) : io.reactivex.Flowable<GetResponseBodyResponse> {
-        return connection.runAndCaptureResponse("$domainName.getResponseBody", input, GetResponseBodyResponse::class.java)
+        return connection.runAndCaptureResponse("Network.getResponseBody", input, GetResponseBodyResponse::class.java)
 	}
 
 	/**
 	 * Blocks specific URL from loading.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun addBlockedURL(input : AddBlockedURLRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.addBlockedURL", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.addBlockedURL", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Cancels blocking of a specific URL from loading.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun removeBlockedURL(input : RemoveBlockedURLRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.removeBlockedURL", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.removeBlockedURL", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * This method sends a new XMLHttpRequest which is identical to the original one. The following parameters should be identical: method, url, async, request body, extra headers, withCredentials attribute, user, password.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun replayXHR(input : ReplayXHRRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.replayXHR", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.replayXHR", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Toggles monitoring of XMLHttpRequest. If <code>true</code>, console will receive messages upon each XHR issued.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setMonitoringXHREnabled(input : SetMonitoringXHREnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setMonitoringXHREnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.setMonitoringXHREnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Tells whether clearing browser cache is supported.
 	 */
 	fun canClearBrowserCache() : io.reactivex.Flowable<CanClearBrowserCacheResponse> {
-        return connection.runAndCaptureResponse("$domainName.canClearBrowserCache", null, CanClearBrowserCacheResponse::class.java)
+        return connection.runAndCaptureResponse("Network.canClearBrowserCache", null, CanClearBrowserCacheResponse::class.java)
 	}
 
 	/**
 	 * Clears browser cache.
 	 */
 	fun clearBrowserCache() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.clearBrowserCache", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.clearBrowserCache", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Tells whether clearing browser cookies is supported.
 	 */
 	fun canClearBrowserCookies() : io.reactivex.Flowable<CanClearBrowserCookiesResponse> {
-        return connection.runAndCaptureResponse("$domainName.canClearBrowserCookies", null, CanClearBrowserCookiesResponse::class.java)
+        return connection.runAndCaptureResponse("Network.canClearBrowserCookies", null, CanClearBrowserCookiesResponse::class.java)
 	}
 
 	/**
 	 * Clears browser cookies.
 	 */
 	fun clearBrowserCookies() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.clearBrowserCookies", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.clearBrowserCookies", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns all browser cookies for the current URL. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun getCookies() : io.reactivex.Flowable<GetCookiesResponse> {
-        return connection.runAndCaptureResponse("$domainName.getCookies", null, GetCookiesResponse::class.java)
+        return connection.runAndCaptureResponse("Network.getCookies", null, GetCookiesResponse::class.java)
 	}
 
 	/**
 	 * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun getAllCookies() : io.reactivex.Flowable<GetAllCookiesResponse> {
-        return connection.runAndCaptureResponse("$domainName.getAllCookies", null, GetAllCookiesResponse::class.java)
+        return connection.runAndCaptureResponse("Network.getAllCookies", null, GetAllCookiesResponse::class.java)
 	}
 
 	/**
 	 * Deletes browser cookie with given name, domain and path.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.deleteCookie", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.deleteCookie", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setCookie(input : SetCookieRequest) : io.reactivex.Flowable<SetCookieResponse> {
-        return connection.runAndCaptureResponse("$domainName.setCookie", input, SetCookieResponse::class.java)
+        return connection.runAndCaptureResponse("Network.setCookie", input, SetCookieResponse::class.java)
 	}
 
 	/**
 	 * Tells whether emulation of network conditions is supported.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun canEmulateNetworkConditions() : io.reactivex.Flowable<CanEmulateNetworkConditionsResponse> {
-        return connection.runAndCaptureResponse("$domainName.canEmulateNetworkConditions", null, CanEmulateNetworkConditionsResponse::class.java)
+        return connection.runAndCaptureResponse("Network.canEmulateNetworkConditions", null, CanEmulateNetworkConditionsResponse::class.java)
 	}
 
 	/**
 	 * Activates emulation of network conditions.
 	 */
 	fun emulateNetworkConditions(input : EmulateNetworkConditionsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.emulateNetworkConditions", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.emulateNetworkConditions", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Toggles ignoring cache for each request. If <code>true</code>, cache will not be used.
 	 */
 	fun setCacheDisabled(input : SetCacheDisabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setCacheDisabled", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.setCacheDisabled", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Toggles ignoring of service worker for each request.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setBypassServiceWorker(input : SetBypassServiceWorkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setBypassServiceWorker", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.setBypassServiceWorker", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * For testing.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setDataSizeLimitsForTest(input : SetDataSizeLimitsForTestRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setDataSizeLimitsForTest", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Network.setDataSizeLimitsForTest", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns the DER-encoded certificate.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun getCertificate(input : GetCertificateRequest) : io.reactivex.Flowable<GetCertificateResponse> {
-        return connection.runAndCaptureResponse("$domainName.getCertificate", input, GetCertificateResponse::class.java)
+        return connection.runAndCaptureResponse("Network.getCertificate", input, GetCertificateResponse::class.java)
 	}
 
+  
   /**
    * Fired when resource loading priority is changed
    */
   fun onResourceChangedPriority() : io.reactivex.Flowable<ResourceChangedPriorityEvent> {
-      return connection.captureEvents("$domainName.resourceChangedPriority", ResourceChangedPriorityEvent::class.java)
+      return connection.captureEvents(ResourceChangedPriorityEvent::class.java)
   }
+
 
   /**
    * Fired when page is about to send HTTP request.
    */
   fun onRequestWillBeSent() : io.reactivex.Flowable<RequestWillBeSentEvent> {
-      return connection.captureEvents("$domainName.requestWillBeSent", RequestWillBeSentEvent::class.java)
+      return connection.captureEvents(RequestWillBeSentEvent::class.java)
   }
+
 
   /**
    * Fired if request ended up loading from cache.
    */
   fun onRequestServedFromCache() : io.reactivex.Flowable<RequestServedFromCacheEvent> {
-      return connection.captureEvents("$domainName.requestServedFromCache", RequestServedFromCacheEvent::class.java)
+      return connection.captureEvents(RequestServedFromCacheEvent::class.java)
   }
+
 
   /**
    * Fired when HTTP response is available.
    */
   fun onResponseReceived() : io.reactivex.Flowable<ResponseReceivedEvent> {
-      return connection.captureEvents("$domainName.responseReceived", ResponseReceivedEvent::class.java)
+      return connection.captureEvents(ResponseReceivedEvent::class.java)
   }
+
 
   /**
    * Fired when data chunk was received over the network.
    */
   fun onDataReceived() : io.reactivex.Flowable<DataReceivedEvent> {
-      return connection.captureEvents("$domainName.dataReceived", DataReceivedEvent::class.java)
+      return connection.captureEvents(DataReceivedEvent::class.java)
   }
+
 
   /**
    * Fired when HTTP request has finished loading.
    */
   fun onLoadingFinished() : io.reactivex.Flowable<LoadingFinishedEvent> {
-      return connection.captureEvents("$domainName.loadingFinished", LoadingFinishedEvent::class.java)
+      return connection.captureEvents(LoadingFinishedEvent::class.java)
   }
+
 
   /**
    * Fired when HTTP request has failed to load.
    */
   fun onLoadingFailed() : io.reactivex.Flowable<LoadingFailedEvent> {
-      return connection.captureEvents("$domainName.loadingFailed", LoadingFailedEvent::class.java)
+      return connection.captureEvents(LoadingFailedEvent::class.java)
   }
+
 
   /**
    * Fired when WebSocket is about to initiate handshake.
    */
   fun onWebSocketWillSendHandshakeRequest() : io.reactivex.Flowable<WebSocketWillSendHandshakeRequestEvent> {
-      return connection.captureEvents("$domainName.webSocketWillSendHandshakeRequest", WebSocketWillSendHandshakeRequestEvent::class.java)
+      return connection.captureEvents(WebSocketWillSendHandshakeRequestEvent::class.java)
   }
+
 
   /**
    * Fired when WebSocket handshake response becomes available.
    */
   fun onWebSocketHandshakeResponseReceived() : io.reactivex.Flowable<WebSocketHandshakeResponseReceivedEvent> {
-      return connection.captureEvents("$domainName.webSocketHandshakeResponseReceived", WebSocketHandshakeResponseReceivedEvent::class.java)
+      return connection.captureEvents(WebSocketHandshakeResponseReceivedEvent::class.java)
   }
+
 
   /**
    * Fired upon WebSocket creation.
    */
   fun onWebSocketCreated() : io.reactivex.Flowable<WebSocketCreatedEvent> {
-      return connection.captureEvents("$domainName.webSocketCreated", WebSocketCreatedEvent::class.java)
+      return connection.captureEvents(WebSocketCreatedEvent::class.java)
   }
+
 
   /**
    * Fired when WebSocket is closed.
    */
   fun onWebSocketClosed() : io.reactivex.Flowable<WebSocketClosedEvent> {
-      return connection.captureEvents("$domainName.webSocketClosed", WebSocketClosedEvent::class.java)
+      return connection.captureEvents(WebSocketClosedEvent::class.java)
   }
+
 
   /**
    * Fired when WebSocket frame is received.
    */
   fun onWebSocketFrameReceived() : io.reactivex.Flowable<WebSocketFrameReceivedEvent> {
-      return connection.captureEvents("$domainName.webSocketFrameReceived", WebSocketFrameReceivedEvent::class.java)
+      return connection.captureEvents(WebSocketFrameReceivedEvent::class.java)
   }
+
 
   /**
    * Fired when WebSocket frame error occurs.
    */
   fun onWebSocketFrameError() : io.reactivex.Flowable<WebSocketFrameErrorEvent> {
-      return connection.captureEvents("$domainName.webSocketFrameError", WebSocketFrameErrorEvent::class.java)
+      return connection.captureEvents(WebSocketFrameErrorEvent::class.java)
   }
+
 
   /**
    * Fired when WebSocket frame is sent.
    */
   fun onWebSocketFrameSent() : io.reactivex.Flowable<WebSocketFrameSentEvent> {
-      return connection.captureEvents("$domainName.webSocketFrameSent", WebSocketFrameSentEvent::class.java)
+      return connection.captureEvents(WebSocketFrameSentEvent::class.java)
   }
+
 
   /**
    * Fired when EventSource message is received.
    */
   fun onEventSourceMessageReceived() : io.reactivex.Flowable<EventSourceMessageReceivedEvent> {
-      return connection.captureEvents("$domainName.eventSourceMessageReceived", EventSourceMessageReceivedEvent::class.java)
+      return connection.captureEvents(EventSourceMessageReceivedEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "Network"
-  }
 }
 
 data class EnableRequest (
@@ -291,6 +303,9 @@ data class EnableRequest (
 
 )
 
+
+
+
 data class SetUserAgentOverrideRequest (
     /**
      * User agent to use.
@@ -298,6 +313,7 @@ data class SetUserAgentOverrideRequest (
     val userAgent : String
 
 )
+
 
 data class SetExtraHTTPHeadersRequest (
     /**
@@ -307,6 +323,7 @@ data class SetExtraHTTPHeadersRequest (
 
 )
 
+
 data class GetResponseBodyRequest (
     /**
      * Identifier of the network request to get content for.
@@ -315,7 +332,10 @@ data class GetResponseBodyRequest (
 
 )
 
-data class GetResponseBodyResponse (
+/**
+ * Returns content served for the given request.
+ */
+data class GetResponseBodyResponse(
   /**
    * Response body.
    */
@@ -336,6 +356,7 @@ data class AddBlockedURLRequest (
 
 )
 
+
 data class RemoveBlockedURLRequest (
     /**
      * URL to stop blocking.
@@ -343,6 +364,7 @@ data class RemoveBlockedURLRequest (
     val url : String
 
 )
+
 
 data class ReplayXHRRequest (
     /**
@@ -352,6 +374,7 @@ data class ReplayXHRRequest (
 
 )
 
+
 data class SetMonitoringXHREnabledRequest (
     /**
      * Monitoring enabled state.
@@ -360,7 +383,12 @@ data class SetMonitoringXHREnabledRequest (
 
 )
 
-data class CanClearBrowserCacheResponse (
+
+
+/**
+ * Tells whether clearing browser cache is supported.
+ */
+data class CanClearBrowserCacheResponse(
   /**
    * True if browser cache can be cleared.
    */
@@ -368,7 +396,13 @@ data class CanClearBrowserCacheResponse (
 
 )
 
-data class CanClearBrowserCookiesResponse (
+
+
+
+/**
+ * Tells whether clearing browser cookies is supported.
+ */
+data class CanClearBrowserCookiesResponse(
   /**
    * True if browser cookies can be cleared.
    */
@@ -376,7 +410,13 @@ data class CanClearBrowserCookiesResponse (
 
 )
 
-data class GetCookiesResponse (
+
+
+
+/**
+ * Returns all browser cookies for the current URL. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
+ */
+data class GetCookiesResponse(
   /**
    * Array of cookie objects.
    */
@@ -384,7 +424,11 @@ data class GetCookiesResponse (
 
 )
 
-data class GetAllCookiesResponse (
+
+/**
+ * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
+ */
+data class GetAllCookiesResponse(
   /**
    * Array of cookie objects.
    */
@@ -404,6 +448,7 @@ data class DeleteCookieRequest (
     val url : String
 
 )
+
 
 data class SetCookieRequest (
     /**
@@ -453,7 +498,10 @@ data class SetCookieRequest (
 
 )
 
-data class SetCookieResponse (
+/**
+ * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
+ */
+data class SetCookieResponse(
   /**
    * True if successfully set cookie.
    */
@@ -461,7 +509,11 @@ data class SetCookieResponse (
 
 )
 
-data class CanEmulateNetworkConditionsResponse (
+
+/**
+ * Tells whether emulation of network conditions is supported.
+ */
+data class CanEmulateNetworkConditionsResponse(
   /**
    * True if emulation of network conditions is supported.
    */
@@ -497,6 +549,7 @@ data class EmulateNetworkConditionsRequest (
 
 )
 
+
 data class SetCacheDisabledRequest (
     /**
      * Cache disabled state.
@@ -505,6 +558,7 @@ data class SetCacheDisabledRequest (
 
 )
 
+
 data class SetBypassServiceWorkerRequest (
     /**
      * Bypass service worker and load from network.
@@ -512,6 +566,7 @@ data class SetBypassServiceWorkerRequest (
     val bypass : Boolean
 
 )
+
 
 data class SetDataSizeLimitsForTestRequest (
     /**
@@ -526,6 +581,7 @@ data class SetDataSizeLimitsForTestRequest (
 
 )
 
+
 data class GetCertificateRequest (
     /**
      * Origin to get certificate for.
@@ -534,15 +590,22 @@ data class GetCertificateRequest (
 
 )
 
-data class GetCertificateResponse (
+/**
+ * Returns the DER-encoded certificate.
+ */
+data class GetCertificateResponse(
   /**
-   *
+   * 
    */
   val tableNames : Array<String>
 
 )
 
-data class ResourceChangedPriorityEvent (
+
+/**
+ * Fired when resource loading priority is changed
+ */
+data class ResourceChangedPriorityEvent(
   /**
    * Request identifier.
    */
@@ -558,9 +621,12 @@ data class ResourceChangedPriorityEvent (
    */
   val timestamp : Timestamp
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "resourceChangedPriority")
 
-data class RequestWillBeSentEvent (
+/**
+ * Fired when page is about to send HTTP request.
+ */
+data class RequestWillBeSentEvent(
   /**
    * Request identifier.
    */
@@ -611,17 +677,23 @@ data class RequestWillBeSentEvent (
    */
   @pl.wendigo.chrome.ProtocolExperimental val type : pl.wendigo.chrome.domain.page.ResourceType? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "requestWillBeSent")
 
-data class RequestServedFromCacheEvent (
+/**
+ * Fired if request ended up loading from cache.
+ */
+data class RequestServedFromCacheEvent(
   /**
    * Request identifier.
    */
   val requestId : RequestId
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "requestServedFromCache")
 
-data class ResponseReceivedEvent (
+/**
+ * Fired when HTTP response is available.
+ */
+data class ResponseReceivedEvent(
   /**
    * Request identifier.
    */
@@ -652,9 +724,12 @@ data class ResponseReceivedEvent (
    */
   val response : Response
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "responseReceived")
 
-data class DataReceivedEvent (
+/**
+ * Fired when data chunk was received over the network.
+ */
+data class DataReceivedEvent(
   /**
    * Request identifier.
    */
@@ -675,9 +750,12 @@ data class DataReceivedEvent (
    */
   val encodedDataLength : Int
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "dataReceived")
 
-data class LoadingFinishedEvent (
+/**
+ * Fired when HTTP request has finished loading.
+ */
+data class LoadingFinishedEvent(
   /**
    * Request identifier.
    */
@@ -693,9 +771,12 @@ data class LoadingFinishedEvent (
    */
   val encodedDataLength : Double
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "loadingFinished")
 
-data class LoadingFailedEvent (
+/**
+ * Fired when HTTP request has failed to load.
+ */
+data class LoadingFailedEvent(
   /**
    * Request identifier.
    */
@@ -726,9 +807,12 @@ data class LoadingFailedEvent (
    */
   @pl.wendigo.chrome.ProtocolExperimental val blockedReason : BlockedReason? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "loadingFailed")
 
-data class WebSocketWillSendHandshakeRequestEvent (
+/**
+ * Fired when WebSocket is about to initiate handshake.
+ */
+data class WebSocketWillSendHandshakeRequestEvent(
   /**
    * Request identifier.
    */
@@ -749,9 +833,12 @@ data class WebSocketWillSendHandshakeRequestEvent (
    */
   val request : WebSocketRequest
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketWillSendHandshakeRequest")
 
-data class WebSocketHandshakeResponseReceivedEvent (
+/**
+ * Fired when WebSocket handshake response becomes available.
+ */
+data class WebSocketHandshakeResponseReceivedEvent(
   /**
    * Request identifier.
    */
@@ -767,9 +854,12 @@ data class WebSocketHandshakeResponseReceivedEvent (
    */
   val response : WebSocketResponse
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketHandshakeResponseReceived")
 
-data class WebSocketCreatedEvent (
+/**
+ * Fired upon WebSocket creation.
+ */
+data class WebSocketCreatedEvent(
   /**
    * Request identifier.
    */
@@ -785,9 +875,12 @@ data class WebSocketCreatedEvent (
    */
   val initiator : Initiator? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketCreated")
 
-data class WebSocketClosedEvent (
+/**
+ * Fired when WebSocket is closed.
+ */
+data class WebSocketClosedEvent(
   /**
    * Request identifier.
    */
@@ -798,9 +891,12 @@ data class WebSocketClosedEvent (
    */
   val timestamp : Timestamp
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketClosed")
 
-data class WebSocketFrameReceivedEvent (
+/**
+ * Fired when WebSocket frame is received.
+ */
+data class WebSocketFrameReceivedEvent(
   /**
    * Request identifier.
    */
@@ -816,9 +912,12 @@ data class WebSocketFrameReceivedEvent (
    */
   val response : WebSocketFrame
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketFrameReceived")
 
-data class WebSocketFrameErrorEvent (
+/**
+ * Fired when WebSocket frame error occurs.
+ */
+data class WebSocketFrameErrorEvent(
   /**
    * Request identifier.
    */
@@ -834,9 +933,12 @@ data class WebSocketFrameErrorEvent (
    */
   val errorMessage : String
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketFrameError")
 
-data class WebSocketFrameSentEvent (
+/**
+ * Fired when WebSocket frame is sent.
+ */
+data class WebSocketFrameSentEvent(
   /**
    * Request identifier.
    */
@@ -852,9 +954,12 @@ data class WebSocketFrameSentEvent (
    */
   val response : WebSocketFrame
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketFrameSent")
 
-data class EventSourceMessageReceivedEvent (
+/**
+ * Fired when EventSource message is received.
+ */
+data class EventSourceMessageReceivedEvent(
   /**
    * Request identifier.
    */
@@ -880,5 +985,5 @@ data class EventSourceMessageReceivedEvent (
    */
   val data : String
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "eventSourceMessageReceived")
 

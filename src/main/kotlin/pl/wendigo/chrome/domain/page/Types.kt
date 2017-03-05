@@ -5,14 +5,25 @@ package pl.wendigo.chrome.domain.page
  */
 typealias ResourceType = String
 
+
+
+
+
 /*
  * Unique frame identifier.
  */
 typealias FrameId = String
 
+
+
+
+
 /*
  * Information about the Frame on the page.
  */
+
+
+
 
 data class Frame(
   /**
@@ -56,6 +67,9 @@ data class Frame(
  * Information about the Resource on the page.
  */
 
+
+
+
 data class FrameResource(
   /**
    * Resource URL.
@@ -98,6 +112,9 @@ data class FrameResource(
  * Information about the Frame hierarchy along with their cached resources.
  */
 
+
+
+
 data class FrameResourceTree(
   /**
    * Frame information for this tree item.
@@ -121,9 +138,16 @@ data class FrameResourceTree(
  */
 typealias ScriptIdentifier = String
 
+
+
+
+
 /*
  * Navigation history entry.
  */
+
+
+
 
 data class NavigationEntry(
   /**
@@ -146,6 +170,9 @@ data class NavigationEntry(
 /*
  * Screencast frame metadata.
  */
+
+
+
 
 data class ScreencastFrameMetadata(
   /**
@@ -190,9 +217,16 @@ data class ScreencastFrameMetadata(
  */
 typealias DialogType = String
 
+
+
+
+
 /*
  * Error while paring app manifest.
  */
+
+
+
 
 data class AppManifestError(
   /**
@@ -222,9 +256,16 @@ data class AppManifestError(
  */
 typealias NavigationResponse = String
 
+
+
+
+
 /*
  * Layout viewport position and dimensions.
  */
+
+
+
 
 data class LayoutViewport(
   /**
@@ -252,6 +293,9 @@ data class LayoutViewport(
 /*
  * Visual viewport position, dimensions, and scale.
  */
+
+
+
 
 data class VisualViewport(
   /**

@@ -5,9 +5,16 @@ package pl.wendigo.chrome.domain.heapprofiler
  */
 typealias HeapSnapshotObjectId = String
 
+
+
+
+
 /*
  * Sampling Heap Profile node. Holds callsite information, allocation statistics and child nodes.
  */
+
+
+
 
 data class SamplingHeapProfileNode(
   /**
@@ -31,9 +38,12 @@ data class SamplingHeapProfileNode(
  * Profile.
  */
 
+
+
+
 data class SamplingHeapProfile(
   /**
-   *
+   * 
    */
   val head : SamplingHeapProfileNode
 

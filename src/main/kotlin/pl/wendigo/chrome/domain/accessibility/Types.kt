@@ -5,24 +5,43 @@ package pl.wendigo.chrome.domain.accessibility
  */
 typealias AXNodeId = String
 
+
+
+
+
 /*
  * Enum of possible property types.
  */
 typealias AXValueType = String
+
+
+
+
 
 /*
  * Enum of possible property sources.
  */
 typealias AXValueSourceType = String
 
+
+
+
+
 /*
  * Enum of possible native property sources (as a subtype of a particular AXValueSourceType).
  */
 typealias AXValueNativeSourceType = String
 
+
+
+
+
 /*
  * A single source for a computed AX property.
  */
+
+
+
 
 data class AXValueSource(
   /**
@@ -76,6 +95,9 @@ data class AXValueSource(
  * 
  */
 
+
+
+
 data class AXRelatedNode(
   /**
    * The BackendNodeId of the related DOM node.
@@ -98,6 +120,9 @@ data class AXRelatedNode(
  * 
  */
 
+
+
+
 data class AXProperty(
   /**
    * The name of this property.
@@ -114,6 +139,9 @@ data class AXProperty(
 /*
  * A single computed AX property.
  */
+
+
+
 
 data class AXValue(
   /**
@@ -143,29 +171,52 @@ data class AXValue(
  */
 typealias AXGlobalStates = String
 
+
+
+
+
 /*
  * Attributes which apply to nodes in live regions.
  */
 typealias AXLiveRegionAttributes = String
+
+
+
+
 
 /*
  * Attributes which apply to widgets.
  */
 typealias AXWidgetAttributes = String
 
+
+
+
+
 /*
  * States which apply to widgets.
  */
 typealias AXWidgetStates = String
+
+
+
+
 
 /*
  * Relationships between elements other than parent/child/sibling.
  */
 typealias AXRelationshipAttributes = String
 
+
+
+
+
 /*
  * A node in the accessibility tree.
  */
+
+
+
 
 data class AXNode(
   /**

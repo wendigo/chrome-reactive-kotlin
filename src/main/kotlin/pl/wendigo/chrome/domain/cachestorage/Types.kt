@@ -5,9 +5,16 @@ package pl.wendigo.chrome.domain.cachestorage
  */
 typealias CacheId = String
 
+
+
+
+
 /*
  * Data entry.
  */
+
+
+
 
 data class DataEntry(
   /**
@@ -25,6 +32,9 @@ data class DataEntry(
 /*
  * Cache identifier.
  */
+
+
+
 
 data class Cache(
   /**

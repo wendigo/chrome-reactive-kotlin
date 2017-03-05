@@ -11,209 +11,215 @@ class DebuggerDomain internal constructor(private val connection : pl.wendigo.ch
 	 * Enables debugger for the given page. Clients should not assume that the debugging has been enabled until the result for this command is received.
 	 */
 	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables debugger for given page.
 	 */
 	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Activates / deactivates all breakpoints on the page.
 	 */
 	fun setBreakpointsActive(input : SetBreakpointsActiveRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setBreakpointsActive", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.setBreakpointsActive", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Makes page not interrupt on any pauses (breakpoint, exception, dom exception etc).
 	 */
 	fun setSkipAllPauses(input : SetSkipAllPausesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setSkipAllPauses", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.setSkipAllPauses", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in <code>locations</code> property. Further matching script parsing will result in subsequent <code>breakpointResolved</code> events issued. This logical breakpoint will survive page reloads.
 	 */
 	fun setBreakpointByUrl(input : SetBreakpointByUrlRequest) : io.reactivex.Flowable<SetBreakpointByUrlResponse> {
-        return connection.runAndCaptureResponse("$domainName.setBreakpointByUrl", input, SetBreakpointByUrlResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.setBreakpointByUrl", input, SetBreakpointByUrlResponse::class.java)
 	}
 
 	/**
 	 * Sets JavaScript breakpoint at a given location.
 	 */
 	fun setBreakpoint(input : SetBreakpointRequest) : io.reactivex.Flowable<SetBreakpointResponse> {
-        return connection.runAndCaptureResponse("$domainName.setBreakpoint", input, SetBreakpointResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.setBreakpoint", input, SetBreakpointResponse::class.java)
 	}
 
 	/**
 	 * Removes JavaScript breakpoint.
 	 */
 	fun removeBreakpoint(input : RemoveBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.removeBreakpoint", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.removeBreakpoint", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Returns possible locations for breakpoint. scriptId in start and end range locations should be the same.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun getPossibleBreakpoints(input : GetPossibleBreakpointsRequest) : io.reactivex.Flowable<GetPossibleBreakpointsResponse> {
-        return connection.runAndCaptureResponse("$domainName.getPossibleBreakpoints", input, GetPossibleBreakpointsResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.getPossibleBreakpoints", input, GetPossibleBreakpointsResponse::class.java)
 	}
 
 	/**
 	 * Continues execution until specific location is reached.
 	 */
 	fun continueToLocation(input : ContinueToLocationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.continueToLocation", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.continueToLocation", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Steps over the statement.
 	 */
 	fun stepOver() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.stepOver", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.stepOver", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Steps into the function call.
 	 */
 	fun stepInto() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.stepInto", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.stepInto", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Steps out of the function call.
 	 */
 	fun stepOut() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.stepOut", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.stepOut", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Stops on the next JavaScript statement.
 	 */
 	fun pause() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.pause", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.pause", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Resumes JavaScript execution.
 	 */
 	fun resume() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.resume", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.resume", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Searches for given string in script content.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun searchInContent(input : SearchInContentRequest) : io.reactivex.Flowable<SearchInContentResponse> {
-        return connection.runAndCaptureResponse("$domainName.searchInContent", input, SearchInContentResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.searchInContent", input, SearchInContentResponse::class.java)
 	}
 
 	/**
 	 * Edits JavaScript source live.
 	 */
 	fun setScriptSource(input : SetScriptSourceRequest) : io.reactivex.Flowable<SetScriptSourceResponse> {
-        return connection.runAndCaptureResponse("$domainName.setScriptSource", input, SetScriptSourceResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.setScriptSource", input, SetScriptSourceResponse::class.java)
 	}
 
 	/**
 	 * Restarts particular call frame from the beginning.
 	 */
 	fun restartFrame(input : RestartFrameRequest) : io.reactivex.Flowable<RestartFrameResponse> {
-        return connection.runAndCaptureResponse("$domainName.restartFrame", input, RestartFrameResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.restartFrame", input, RestartFrameResponse::class.java)
 	}
 
 	/**
 	 * Returns source for the script with given id.
 	 */
 	fun getScriptSource(input : GetScriptSourceRequest) : io.reactivex.Flowable<GetScriptSourceResponse> {
-        return connection.runAndCaptureResponse("$domainName.getScriptSource", input, GetScriptSourceResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.getScriptSource", input, GetScriptSourceResponse::class.java)
 	}
 
 	/**
 	 * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or no exceptions. Initial pause on exceptions state is <code>none</code>.
 	 */
 	fun setPauseOnExceptions(input : SetPauseOnExceptionsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setPauseOnExceptions", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.setPauseOnExceptions", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Evaluates expression on a given call frame.
 	 */
 	fun evaluateOnCallFrame(input : EvaluateOnCallFrameRequest) : io.reactivex.Flowable<EvaluateOnCallFrameResponse> {
-        return connection.runAndCaptureResponse("$domainName.evaluateOnCallFrame", input, EvaluateOnCallFrameResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.evaluateOnCallFrame", input, EvaluateOnCallFrameResponse::class.java)
 	}
 
 	/**
 	 * Changes value of variable in a callframe. Object-based scopes are not supported and must be mutated manually.
 	 */
 	fun setVariableValue(input : SetVariableValueRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setVariableValue", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.setVariableValue", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Enables or disables async call stacks tracking.
 	 */
 	fun setAsyncCallStackDepth(input : SetAsyncCallStackDepthRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setAsyncCallStackDepth", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.setAsyncCallStackDepth", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in scripts with url matching one of the patterns. VM will try to leave blackboxed script by performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setBlackboxPatterns(input : SetBlackboxPatternsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setBlackboxPatterns", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.setBlackboxPatterns", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted scripts by performing 'step in' several times, finally resorting to 'step out' if unsuccessful. Positions array contains positions where blackbox state is changed. First interval isn't blackboxed. Array should be sorted.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setBlackboxedRanges(input : SetBlackboxedRangesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setBlackboxedRanges", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Debugger.setBlackboxedRanges", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
+  
   /**
    * Fired when virtual machine parses script. This event is also fired for all known and uncollected scripts upon enabling debugger.
    */
   fun onScriptParsed() : io.reactivex.Flowable<ScriptParsedEvent> {
-      return connection.captureEvents("$domainName.scriptParsed", ScriptParsedEvent::class.java)
+      return connection.captureEvents(ScriptParsedEvent::class.java)
   }
+
 
   /**
    * Fired when virtual machine fails to parse the script.
    */
   fun onScriptFailedToParse() : io.reactivex.Flowable<ScriptFailedToParseEvent> {
-      return connection.captureEvents("$domainName.scriptFailedToParse", ScriptFailedToParseEvent::class.java)
+      return connection.captureEvents(ScriptFailedToParseEvent::class.java)
   }
+
 
   /**
    * Fired when breakpoint is resolved to an actual script and location.
    */
   fun onBreakpointResolved() : io.reactivex.Flowable<BreakpointResolvedEvent> {
-      return connection.captureEvents("$domainName.breakpointResolved", BreakpointResolvedEvent::class.java)
+      return connection.captureEvents(BreakpointResolvedEvent::class.java)
   }
+
 
   /**
    * Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
    */
   fun onPaused() : io.reactivex.Flowable<PausedEvent> {
-      return connection.captureEvents("$domainName.paused", PausedEvent::class.java)
+      return connection.captureEvents(PausedEvent::class.java)
   }
+
 
   /**
    * Fired when the virtual machine resumed execution.
    */
-  fun onResumed() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-      return connection.captureEvents("$domainName.resumed", pl.wendigo.chrome.GenericResponse::class.java)
+  fun onResumed() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "Debugger"
-  }
 }
+
+
+
+
 
 data class SetBreakpointsActiveRequest (
     /**
@@ -223,6 +229,7 @@ data class SetBreakpointsActiveRequest (
 
 )
 
+
 data class SetSkipAllPausesRequest (
     /**
      * New value for skip pauses state.
@@ -230,6 +237,7 @@ data class SetSkipAllPausesRequest (
     val skip : Boolean
 
 )
+
 
 data class SetBreakpointByUrlRequest (
     /**
@@ -259,7 +267,10 @@ data class SetBreakpointByUrlRequest (
 
 )
 
-data class SetBreakpointByUrlResponse (
+/**
+ * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in <code>locations</code> property. Further matching script parsing will result in subsequent <code>breakpointResolved</code> events issued. This logical breakpoint will survive page reloads.
+ */
+data class SetBreakpointByUrlResponse(
   /**
    * Id of the created breakpoint for further reference.
    */
@@ -285,7 +296,10 @@ data class SetBreakpointRequest (
 
 )
 
-data class SetBreakpointResponse (
+/**
+ * Sets JavaScript breakpoint at a given location.
+ */
+data class SetBreakpointResponse(
   /**
    * Id of the created breakpoint for further reference.
    */
@@ -300,11 +314,12 @@ data class SetBreakpointResponse (
 
 data class RemoveBreakpointRequest (
     /**
-     *
+     * 
      */
     val breakpointId : BreakpointId
 
 )
+
 
 data class GetPossibleBreakpointsRequest (
     /**
@@ -319,7 +334,10 @@ data class GetPossibleBreakpointsRequest (
 
 )
 
-data class GetPossibleBreakpointsResponse (
+/**
+ * Returns possible locations for breakpoint. scriptId in start and end range locations should be the same.
+ */
+data class GetPossibleBreakpointsResponse(
   /**
    * List of the possible breakpoint locations.
    */
@@ -334,6 +352,17 @@ data class ContinueToLocationRequest (
     val location : Location
 
 )
+
+
+
+
+
+
+
+
+
+
+
 
 data class SearchInContentRequest (
     /**
@@ -358,7 +387,10 @@ data class SearchInContentRequest (
 
 )
 
-data class SearchInContentResponse (
+/**
+ * Searches for given string in script content.
+ */
+data class SearchInContentResponse(
   /**
    * List of search matches.
    */
@@ -384,7 +416,10 @@ data class SetScriptSourceRequest (
 
 )
 
-data class SetScriptSourceResponse (
+/**
+ * Edits JavaScript source live.
+ */
+data class SetScriptSourceResponse(
   /**
    * New stack trace in case editing has happened while VM was stopped.
    */
@@ -415,7 +450,10 @@ data class RestartFrameRequest (
 
 )
 
-data class RestartFrameResponse (
+/**
+ * Restarts particular call frame from the beginning.
+ */
+data class RestartFrameResponse(
   /**
    * New stack trace.
    */
@@ -436,7 +474,10 @@ data class GetScriptSourceRequest (
 
 )
 
-data class GetScriptSourceResponse (
+/**
+ * Returns source for the script with given id.
+ */
+data class GetScriptSourceResponse(
   /**
    * Script source.
    */
@@ -451,6 +492,7 @@ data class SetPauseOnExceptionsRequest (
     val state : String
 
 )
+
 
 data class EvaluateOnCallFrameRequest (
     /**
@@ -490,7 +532,10 @@ data class EvaluateOnCallFrameRequest (
 
 )
 
-data class EvaluateOnCallFrameResponse (
+/**
+ * Evaluates expression on a given call frame.
+ */
+data class EvaluateOnCallFrameResponse(
   /**
    * Object wrapper for the evaluation result.
    */
@@ -526,6 +571,7 @@ data class SetVariableValueRequest (
 
 )
 
+
 data class SetAsyncCallStackDepthRequest (
     /**
      * Maximum depth of async call stacks. Setting to <code>0</code> will effectively disable collecting async call stacks (default).
@@ -533,6 +579,7 @@ data class SetAsyncCallStackDepthRequest (
     val maxDepth : Int
 
 )
+
 
 data class SetBlackboxPatternsRequest (
     /**
@@ -542,6 +589,7 @@ data class SetBlackboxPatternsRequest (
 
 )
 
+
 data class SetBlackboxedRangesRequest (
     /**
      * Id of the script.
@@ -549,13 +597,18 @@ data class SetBlackboxedRangesRequest (
     val scriptId : pl.wendigo.chrome.domain.runtime.ScriptId,
 
     /**
-     *
+     * 
      */
     val positions : Array<ScriptPosition>
 
 )
 
-data class ScriptParsedEvent (
+
+
+/**
+ * Fired when virtual machine parses script. This event is also fired for all known and uncollected scripts upon enabling debugger.
+ */
+data class ScriptParsedEvent(
   /**
    * Identifier of the script parsed.
    */
@@ -616,9 +669,12 @@ data class ScriptParsedEvent (
    */
   @pl.wendigo.chrome.ProtocolExperimental val hasSourceURL : Boolean? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "scriptParsed")
 
-data class ScriptFailedToParseEvent (
+/**
+ * Fired when virtual machine fails to parse the script.
+ */
+data class ScriptFailedToParseEvent(
   /**
    * Identifier of the script parsed.
    */
@@ -674,9 +730,12 @@ data class ScriptFailedToParseEvent (
    */
   @pl.wendigo.chrome.ProtocolExperimental val hasSourceURL : Boolean? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "scriptFailedToParse")
 
-data class BreakpointResolvedEvent (
+/**
+ * Fired when breakpoint is resolved to an actual script and location.
+ */
+data class BreakpointResolvedEvent(
   /**
    * Breakpoint unique identifier.
    */
@@ -687,9 +746,12 @@ data class BreakpointResolvedEvent (
    */
   val location : Location
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "breakpointResolved")
 
-data class PausedEvent (
+/**
+ * Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
+ */
+data class PausedEvent(
   /**
    * Call stack the virtual machine stopped on.
    */
@@ -715,5 +777,6 @@ data class PausedEvent (
    */
   val asyncStackTrace : pl.wendigo.chrome.domain.runtime.StackTrace? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "paused")
+
 

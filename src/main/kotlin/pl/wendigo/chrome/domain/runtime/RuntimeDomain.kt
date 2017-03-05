@@ -11,145 +11,149 @@ class RuntimeDomain internal constructor(private val connection : pl.wendigo.chr
 	 * Evaluates expression on global object.
 	 */
 	fun evaluate(input : EvaluateRequest) : io.reactivex.Flowable<EvaluateResponse> {
-        return connection.runAndCaptureResponse("$domainName.evaluate", input, EvaluateResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.evaluate", input, EvaluateResponse::class.java)
 	}
 
 	/**
 	 * Add handler to promise with given promise object id.
 	 */
 	fun awaitPromise(input : AwaitPromiseRequest) : io.reactivex.Flowable<AwaitPromiseResponse> {
-        return connection.runAndCaptureResponse("$domainName.awaitPromise", input, AwaitPromiseResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.awaitPromise", input, AwaitPromiseResponse::class.java)
 	}
 
 	/**
 	 * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
 	 */
 	fun callFunctionOn(input : CallFunctionOnRequest) : io.reactivex.Flowable<CallFunctionOnResponse> {
-        return connection.runAndCaptureResponse("$domainName.callFunctionOn", input, CallFunctionOnResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.callFunctionOn", input, CallFunctionOnResponse::class.java)
 	}
 
 	/**
 	 * Returns properties of a given object. Object group of the result is inherited from the target object.
 	 */
 	fun getProperties(input : GetPropertiesRequest) : io.reactivex.Flowable<GetPropertiesResponse> {
-        return connection.runAndCaptureResponse("$domainName.getProperties", input, GetPropertiesResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.getProperties", input, GetPropertiesResponse::class.java)
 	}
 
 	/**
 	 * Releases remote object with given id.
 	 */
 	fun releaseObject(input : ReleaseObjectRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.releaseObject", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.releaseObject", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Releases all remote objects that belong to a given group.
 	 */
 	fun releaseObjectGroup(input : ReleaseObjectGroupRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.releaseObjectGroup", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Tells inspected instance to run if it was waiting for debugger to attach.
 	 */
 	fun runIfWaitingForDebugger() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.runIfWaitingForDebugger", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Enables reporting of execution contexts creation by means of <code>executionContextCreated</code> event. When the reporting gets enabled the event will be sent immediately for each existing execution context.
 	 */
 	fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Disables reporting of execution contexts creation.
 	 */
 	fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Discards collected exceptions and console API calls.
 	 */
 	fun discardConsoleEntries() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.discardConsoleEntries", null, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental fun setCustomObjectFormatterEnabled(input : SetCustomObjectFormatterEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("$domainName.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
 	}
 
 	/**
 	 * Compiles expression.
 	 */
 	fun compileScript(input : CompileScriptRequest) : io.reactivex.Flowable<CompileScriptResponse> {
-        return connection.runAndCaptureResponse("$domainName.compileScript", input, CompileScriptResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.compileScript", input, CompileScriptResponse::class.java)
 	}
 
 	/**
 	 * Runs script with given id in a given context.
 	 */
 	fun runScript(input : RunScriptRequest) : io.reactivex.Flowable<RunScriptResponse> {
-        return connection.runAndCaptureResponse("$domainName.runScript", input, RunScriptResponse::class.java)
+        return connection.runAndCaptureResponse("Runtime.runScript", input, RunScriptResponse::class.java)
 	}
 
+  
   /**
    * Issued when new execution context is created.
    */
   fun onExecutionContextCreated() : io.reactivex.Flowable<ExecutionContextCreatedEvent> {
-      return connection.captureEvents("$domainName.executionContextCreated", ExecutionContextCreatedEvent::class.java)
+      return connection.captureEvents(ExecutionContextCreatedEvent::class.java)
   }
+
 
   /**
    * Issued when execution context is destroyed.
    */
   fun onExecutionContextDestroyed() : io.reactivex.Flowable<ExecutionContextDestroyedEvent> {
-      return connection.captureEvents("$domainName.executionContextDestroyed", ExecutionContextDestroyedEvent::class.java)
+      return connection.captureEvents(ExecutionContextDestroyedEvent::class.java)
   }
+
 
   /**
    * Issued when all executionContexts were cleared in browser
    */
-  fun onExecutionContextsCleared() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-      return connection.captureEvents("$domainName.executionContextsCleared", pl.wendigo.chrome.GenericResponse::class.java)
+  fun onExecutionContextsCleared() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
   }
+
 
   /**
    * Issued when exception was thrown and unhandled.
    */
   fun onExceptionThrown() : io.reactivex.Flowable<ExceptionThrownEvent> {
-      return connection.captureEvents("$domainName.exceptionThrown", ExceptionThrownEvent::class.java)
+      return connection.captureEvents(ExceptionThrownEvent::class.java)
   }
+
 
   /**
    * Issued when unhandled exception was revoked.
    */
   fun onExceptionRevoked() : io.reactivex.Flowable<ExceptionRevokedEvent> {
-      return connection.captureEvents("$domainName.exceptionRevoked", ExceptionRevokedEvent::class.java)
+      return connection.captureEvents(ExceptionRevokedEvent::class.java)
   }
+
 
   /**
    * Issued when console API was called.
    */
   fun onConsoleAPICalled() : io.reactivex.Flowable<ConsoleAPICalledEvent> {
-      return connection.captureEvents("$domainName.consoleAPICalled", ConsoleAPICalledEvent::class.java)
+      return connection.captureEvents(ConsoleAPICalledEvent::class.java)
   }
+
 
   /**
    * Issued when object should be inspected (for example, as a result of inspect() command line API call).
    */
   fun onInspectRequested() : io.reactivex.Flowable<InspectRequestedEvent> {
-      return connection.captureEvents("$domainName.inspectRequested", InspectRequestedEvent::class.java)
+      return connection.captureEvents(InspectRequestedEvent::class.java)
   }
 
-  companion object {
-    private const val domainName = "Runtime"
-  }
 }
 
 data class EvaluateRequest (
@@ -200,7 +204,10 @@ data class EvaluateRequest (
 
 )
 
-data class EvaluateResponse (
+/**
+ * Evaluates expression on global object.
+ */
+data class EvaluateResponse(
   /**
    * Evaluation result.
    */
@@ -231,7 +238,10 @@ data class AwaitPromiseRequest (
 
 )
 
-data class AwaitPromiseResponse (
+/**
+ * Add handler to promise with given promise object id.
+ */
+data class AwaitPromiseResponse(
   /**
    * Promise result. Will contain rejected value if promise was rejected.
    */
@@ -287,7 +297,10 @@ data class CallFunctionOnRequest (
 
 )
 
-data class CallFunctionOnResponse (
+/**
+ * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
+ */
+data class CallFunctionOnResponse(
   /**
    * Call result.
    */
@@ -323,7 +336,10 @@ data class GetPropertiesRequest (
 
 )
 
-data class GetPropertiesResponse (
+/**
+ * Returns properties of a given object. Object group of the result is inherited from the target object.
+ */
+data class GetPropertiesResponse(
   /**
    * Object properties.
    */
@@ -349,6 +365,7 @@ data class ReleaseObjectRequest (
 
 )
 
+
 data class ReleaseObjectGroupRequest (
     /**
      * Symbolic object group name.
@@ -357,13 +374,23 @@ data class ReleaseObjectGroupRequest (
 
 )
 
+
+
+
+
+
+
+
+
+
 data class SetCustomObjectFormatterEnabledRequest (
     /**
-     *
+     * 
      */
     val enabled : Boolean
 
 )
+
 
 data class CompileScriptRequest (
     /**
@@ -388,7 +415,10 @@ data class CompileScriptRequest (
 
 )
 
-data class CompileScriptResponse (
+/**
+ * Compiles expression.
+ */
+data class CompileScriptResponse(
   /**
    * Id of the script.
    */
@@ -444,7 +474,10 @@ data class RunScriptRequest (
 
 )
 
-data class RunScriptResponse (
+/**
+ * Runs script with given id in a given context.
+ */
+data class RunScriptResponse(
   /**
    * Run result.
    */
@@ -457,36 +490,50 @@ data class RunScriptResponse (
 
 )
 
-data class ExecutionContextCreatedEvent (
+
+/**
+ * Issued when new execution context is created.
+ */
+data class ExecutionContextCreatedEvent(
   /**
    * A newly created execution contex.
    */
   val context : ExecutionContextDescription
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "executionContextCreated")
 
-data class ExecutionContextDestroyedEvent (
+/**
+ * Issued when execution context is destroyed.
+ */
+data class ExecutionContextDestroyedEvent(
   /**
    * Id of the destroyed context
    */
   val executionContextId : ExecutionContextId
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "executionContextDestroyed")
 
-data class ExceptionThrownEvent (
+
+/**
+ * Issued when exception was thrown and unhandled.
+ */
+data class ExceptionThrownEvent(
   /**
    * Timestamp of the exception.
    */
   val timestamp : Timestamp,
 
   /**
-   *
+   * 
    */
   val exceptionDetails : ExceptionDetails
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "exceptionThrown")
 
-data class ExceptionRevokedEvent (
+/**
+ * Issued when unhandled exception was revoked.
+ */
+data class ExceptionRevokedEvent(
   /**
    * Reason describing why exception was revoked.
    */
@@ -497,9 +544,12 @@ data class ExceptionRevokedEvent (
    */
   val exceptionId : Int
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "exceptionRevoked")
 
-data class ConsoleAPICalledEvent (
+/**
+ * Issued when console API was called.
+ */
+data class ConsoleAPICalledEvent(
   /**
    * Type of the call.
    */
@@ -525,18 +575,21 @@ data class ConsoleAPICalledEvent (
    */
   val stackTrace : StackTrace? = null
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "consoleAPICalled")
 
-data class InspectRequestedEvent (
+/**
+ * Issued when object should be inspected (for example, as a result of inspect() command line API call).
+ */
+data class InspectRequestedEvent(
   /**
-   *
+   * 
    */
   @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object : RemoteObject,
 
   /**
-   *
+   * 
    */
   val hints : String
 
-)
+) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "inspectRequested")
 

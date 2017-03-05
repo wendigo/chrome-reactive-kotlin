@@ -4,6 +4,9 @@ package pl.wendigo.chrome.domain.input
  * 
  */
 
+
+
+
 data class TouchPoint(
   /**
    * State of the touch point.
@@ -51,4 +54,8 @@ data class TouchPoint(
  * 
  */
 typealias GestureSourceType = String
+
+
+
+
 

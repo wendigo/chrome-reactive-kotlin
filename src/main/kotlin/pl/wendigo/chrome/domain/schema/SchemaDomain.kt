@@ -11,19 +11,21 @@ class SchemaDomain internal constructor(private val connection : pl.wendigo.chro
 	 * Returns supported domains.
 	 */
 	fun getDomains() : io.reactivex.Flowable<GetDomainsResponse> {
-        return connection.runAndCaptureResponse("$domainName.getDomains", null, GetDomainsResponse::class.java)
+        return connection.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java)
 	}
 
-  companion object {
-    private const val domainName = "Schema"
   }
-}
 
-data class GetDomainsResponse (
+
+/**
+ * Returns supported domains.
+ */
+data class GetDomainsResponse(
   /**
    * List of supported domains.
    */
   val domains : Array<Domain>
 
 )
+
 
