@@ -17,14 +17,14 @@ package pl.wendigo.chrome.domain.io
 	/**
 	 * Close the stream, discard any temporary backing storage.
 	 */
-	  fun close(input : CloseRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun close(input : CloseRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   }
 
 /**
- * Represents request parameters that can be used with IO.read method call.
+ * Represents requestFrame parameters that can be used with IO.read method call.
  *
  * Read a chunk of the stream
  */
@@ -47,7 +47,7 @@ data class ReadRequest (
 )
 
 /**
- * Represents response from IO. method call.
+ * Represents responseFrame from IO. method call.
  *
  * Read a chunk of the stream
  */
@@ -65,7 +65,7 @@ data class ReadResponse(
 )
 
 /**
- * Represents request parameters that can be used with IO.close method call.
+ * Represents requestFrame parameters that can be used with IO.close method call.
  *
  * Close the stream, discard any temporary backing storage.
  */

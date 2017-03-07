@@ -10,29 +10,29 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
 	/**
 	 * 
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Profiler.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Profiler.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Profiler.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Profiler.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
 	 */
-	  fun setSamplingInterval(input : SetSamplingIntervalRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Profiler.setSamplingInterval", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setSamplingInterval(input : SetSamplingIntervalRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Profiler.setSamplingInterval", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun start() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Profiler.start", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun start() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Profiler.start", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -63,7 +63,7 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
 
 
 /**
- * Represents request parameters that can be used with Profiler.setSamplingInterval method call.
+ * Represents requestFrame parameters that can be used with Profiler.setSamplingInterval method call.
  *
  * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
  */
@@ -80,7 +80,7 @@ data class SetSamplingIntervalRequest (
 
 
 /**
- * Represents response from Profiler. method call.
+ * Represents responseFrame from Profiler. method call.
  *
  * 
  */
@@ -94,7 +94,7 @@ data class StopResponse(
 
 
 /**
- * Represents response from Profiler. method call.
+ * Represents responseFrame from Profiler. method call.
  *
  * Sent when new profile recodring is started using console.profile() call.
  */
@@ -117,7 +117,7 @@ data class ConsoleProfileStartedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Profiler", protocolEventName = "consoleProfileStarted")
 
 /**
- * Represents response from Profiler. method call.
+ * Represents responseFrame from Profiler. method call.
  *
  * 
  */

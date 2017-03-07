@@ -10,15 +10,15 @@ package pl.wendigo.chrome.domain.database
 	/**
 	 * Enables database tracking, database events will now be delivered to the client.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables database tracking, prevents database events from being sent to the client.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Database.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Database.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -49,7 +49,7 @@ package pl.wendigo.chrome.domain.database
 
 
 /**
- * Represents request parameters that can be used with Database.getDatabaseTableNames method call.
+ * Represents requestFrame parameters that can be used with Database.getDatabaseTableNames method call.
  *
  * 
  */
@@ -62,7 +62,7 @@ data class GetDatabaseTableNamesRequest (
 )
 
 /**
- * Represents response from Database. method call.
+ * Represents responseFrame from Database. method call.
  *
  * 
  */
@@ -75,7 +75,7 @@ data class GetDatabaseTableNamesResponse(
 )
 
 /**
- * Represents request parameters that can be used with Database.executeSQL method call.
+ * Represents requestFrame parameters that can be used with Database.executeSQL method call.
  *
  * 
  */
@@ -93,7 +93,7 @@ data class ExecuteSQLRequest (
 )
 
 /**
- * Represents response from Database. method call.
+ * Represents responseFrame from Database. method call.
  *
  * 
  */
@@ -117,7 +117,7 @@ data class ExecuteSQLResponse(
 
 
 /**
- * Represents response from Database. method call.
+ * Represents responseFrame from Database. method call.
  *
  * 
  */

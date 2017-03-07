@@ -10,61 +10,61 @@ class InputDomain internal constructor(private val connection : pl.wendigo.chrom
 	/**
 	 * Dispatches a key event to the page.
 	 */
-	  fun dispatchKeyEvent(input : DispatchKeyEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Input.dispatchKeyEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun dispatchKeyEvent(input : DispatchKeyEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Input.dispatchKeyEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Dispatches a mouse event to the page.
 	 */
-	  fun dispatchMouseEvent(input : DispatchMouseEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Input.dispatchMouseEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun dispatchMouseEvent(input : DispatchMouseEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Input.dispatchMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Dispatches a touch event to the page.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun dispatchTouchEvent(input : DispatchTouchEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Input.dispatchTouchEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun dispatchTouchEvent(input : DispatchTouchEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Input.dispatchTouchEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Emulates touch event from the mouse event parameters.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun emulateTouchFromMouseEvent(input : EmulateTouchFromMouseEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Input.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun emulateTouchFromMouseEvent(input : EmulateTouchFromMouseEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Input.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun synthesizePinchGesture(input : SynthesizePinchGestureRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Input.synthesizePinchGesture", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun synthesizePinchGesture(input : SynthesizePinchGestureRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Input.synthesizePinchGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun synthesizeScrollGesture(input : SynthesizeScrollGestureRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Input.synthesizeScrollGesture", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun synthesizeScrollGesture(input : SynthesizeScrollGestureRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Input.synthesizeScrollGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun synthesizeTapGesture(input : SynthesizeTapGestureRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Input.synthesizeTapGesture", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun synthesizeTapGesture(input : SynthesizeTapGestureRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Input.synthesizeTapGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   }
 
 /**
- * Represents request parameters that can be used with Input.dispatchKeyEvent method call.
+ * Represents requestFrame parameters that can be used with Input.dispatchKeyEvent method call.
  *
  * Dispatches a key event to the page.
  */
@@ -138,7 +138,7 @@ data class DispatchKeyEventRequest (
 
 
 /**
- * Represents request parameters that can be used with Input.dispatchMouseEvent method call.
+ * Represents requestFrame parameters that can be used with Input.dispatchMouseEvent method call.
  *
  * Dispatches a mouse event to the page.
  */
@@ -182,7 +182,7 @@ data class DispatchMouseEventRequest (
 
 
 /**
- * Represents request parameters that can be used with Input.dispatchTouchEvent method call.
+ * Represents requestFrame parameters that can be used with Input.dispatchTouchEvent method call.
  *
  * Dispatches a touch event to the page.
  */
@@ -211,7 +211,7 @@ data class DispatchTouchEventRequest (
 
 
 /**
- * Represents request parameters that can be used with Input.emulateTouchFromMouseEvent method call.
+ * Represents requestFrame parameters that can be used with Input.emulateTouchFromMouseEvent method call.
  *
  * Emulates touch event from the mouse event parameters.
  */
@@ -265,7 +265,7 @@ data class EmulateTouchFromMouseEventRequest (
 
 
 /**
- * Represents request parameters that can be used with Input.synthesizePinchGesture method call.
+ * Represents requestFrame parameters that can be used with Input.synthesizePinchGesture method call.
  *
  * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
  */
@@ -299,7 +299,7 @@ data class SynthesizePinchGestureRequest (
 
 
 /**
- * Represents request parameters that can be used with Input.synthesizeScrollGesture method call.
+ * Represents requestFrame parameters that can be used with Input.synthesizeScrollGesture method call.
  *
  * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
  */
@@ -368,7 +368,7 @@ data class SynthesizeScrollGestureRequest (
 
 
 /**
- * Represents request parameters that can be used with Input.synthesizeTapGesture method call.
+ * Represents requestFrame parameters that can be used with Input.synthesizeTapGesture method call.
  *
  * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
  */

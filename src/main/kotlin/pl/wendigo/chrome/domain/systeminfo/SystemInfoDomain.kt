@@ -18,7 +18,7 @@ package pl.wendigo.chrome.domain.systeminfo
 
 
 /**
- * Represents response from SystemInfo. method call.
+ * Represents responseFrame from SystemInfo. method call.
  *
  * Returns information about the system.
  */

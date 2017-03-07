@@ -10,15 +10,15 @@ package pl.wendigo.chrome.domain.indexeddb
 	/**
 	 * Enables events from backend.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables events from backend.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -45,8 +45,8 @@ package pl.wendigo.chrome.domain.indexeddb
 	/**
 	 * Clears all entries from an object store.
 	 */
-	  fun clearObjectStore(input : ClearObjectStoreRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun clearObjectStore(input : ClearObjectStoreRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   }
@@ -56,7 +56,7 @@ package pl.wendigo.chrome.domain.indexeddb
 
 
 /**
- * Represents request parameters that can be used with IndexedDB.requestDatabaseNames method call.
+ * Represents requestFrame parameters that can be used with IndexedDB.requestDatabaseNames method call.
  *
  * Requests database names for given security origin.
  */
@@ -69,7 +69,7 @@ data class RequestDatabaseNamesRequest (
 )
 
 /**
- * Represents response from IndexedDB. method call.
+ * Represents responseFrame from IndexedDB. method call.
  *
  * Requests database names for given security origin.
  */
@@ -82,7 +82,7 @@ data class RequestDatabaseNamesResponse(
 )
 
 /**
- * Represents request parameters that can be used with IndexedDB.requestDatabase method call.
+ * Represents requestFrame parameters that can be used with IndexedDB.requestDatabase method call.
  *
  * Requests database with given name in given frame.
  */
@@ -100,7 +100,7 @@ data class RequestDatabaseRequest (
 )
 
 /**
- * Represents response from IndexedDB. method call.
+ * Represents responseFrame from IndexedDB. method call.
  *
  * Requests database with given name in given frame.
  */
@@ -113,7 +113,7 @@ data class RequestDatabaseResponse(
 )
 
 /**
- * Represents request parameters that can be used with IndexedDB.requestData method call.
+ * Represents requestFrame parameters that can be used with IndexedDB.requestData method call.
  *
  * Requests data from object store or index.
  */
@@ -156,7 +156,7 @@ data class RequestDataRequest (
 )
 
 /**
- * Represents response from IndexedDB. method call.
+ * Represents responseFrame from IndexedDB. method call.
  *
  * Requests data from object store or index.
  */
@@ -174,7 +174,7 @@ data class RequestDataResponse(
 )
 
 /**
- * Represents request parameters that can be used with IndexedDB.clearObjectStore method call.
+ * Represents requestFrame parameters that can be used with IndexedDB.clearObjectStore method call.
  *
  * Clears all entries from an object store.
  */

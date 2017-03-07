@@ -10,59 +10,59 @@ class DOMDebuggerDomain internal constructor(private val connection : pl.wendigo
 	/**
 	 * Sets breakpoint on particular operation with DOM.
 	 */
-	  fun setDOMBreakpoint(input : SetDOMBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOMDebugger.setDOMBreakpoint", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setDOMBreakpoint(input : SetDOMBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOMDebugger.setDOMBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Removes DOM breakpoint that was set using <code>setDOMBreakpoint</code>.
 	 */
-	  fun removeDOMBreakpoint(input : RemoveDOMBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOMDebugger.removeDOMBreakpoint", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun removeDOMBreakpoint(input : RemoveDOMBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOMDebugger.removeDOMBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Sets breakpoint on particular DOM event.
 	 */
-	  fun setEventListenerBreakpoint(input : SetEventListenerBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOMDebugger.setEventListenerBreakpoint", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setEventListenerBreakpoint(input : SetEventListenerBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOMDebugger.setEventListenerBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Removes breakpoint on particular DOM event.
 	 */
-	  fun removeEventListenerBreakpoint(input : RemoveEventListenerBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOMDebugger.removeEventListenerBreakpoint", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun removeEventListenerBreakpoint(input : RemoveEventListenerBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOMDebugger.removeEventListenerBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Sets breakpoint on particular native event.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setInstrumentationBreakpoint(input : SetInstrumentationBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOMDebugger.setInstrumentationBreakpoint", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setInstrumentationBreakpoint(input : SetInstrumentationBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOMDebugger.setInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Removes breakpoint on particular native event.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun removeInstrumentationBreakpoint(input : RemoveInstrumentationBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOMDebugger.removeInstrumentationBreakpoint", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun removeInstrumentationBreakpoint(input : RemoveInstrumentationBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOMDebugger.removeInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Sets breakpoint on XMLHttpRequest.
 	 */
-	  fun setXHRBreakpoint(input : SetXHRBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOMDebugger.setXHRBreakpoint", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setXHRBreakpoint(input : SetXHRBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOMDebugger.setXHRBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Removes breakpoint from XMLHttpRequest.
 	 */
-	  fun removeXHRBreakpoint(input : RemoveXHRBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOMDebugger.removeXHRBreakpoint", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun removeXHRBreakpoint(input : RemoveXHRBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOMDebugger.removeXHRBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -76,7 +76,7 @@ class DOMDebuggerDomain internal constructor(private val connection : pl.wendigo
   }
 
 /**
- * Represents request parameters that can be used with DOMDebugger.setDOMBreakpoint method call.
+ * Represents requestFrame parameters that can be used with DOMDebugger.setDOMBreakpoint method call.
  *
  * Sets breakpoint on particular operation with DOM.
  */
@@ -95,7 +95,7 @@ data class SetDOMBreakpointRequest (
 
 
 /**
- * Represents request parameters that can be used with DOMDebugger.removeDOMBreakpoint method call.
+ * Represents requestFrame parameters that can be used with DOMDebugger.removeDOMBreakpoint method call.
  *
  * Removes DOM breakpoint that was set using <code>setDOMBreakpoint</code>.
  */
@@ -114,7 +114,7 @@ data class RemoveDOMBreakpointRequest (
 
 
 /**
- * Represents request parameters that can be used with DOMDebugger.setEventListenerBreakpoint method call.
+ * Represents requestFrame parameters that can be used with DOMDebugger.setEventListenerBreakpoint method call.
  *
  * Sets breakpoint on particular DOM event.
  */
@@ -133,7 +133,7 @@ data class SetEventListenerBreakpointRequest (
 
 
 /**
- * Represents request parameters that can be used with DOMDebugger.removeEventListenerBreakpoint method call.
+ * Represents requestFrame parameters that can be used with DOMDebugger.removeEventListenerBreakpoint method call.
  *
  * Removes breakpoint on particular DOM event.
  */
@@ -152,7 +152,7 @@ data class RemoveEventListenerBreakpointRequest (
 
 
 /**
- * Represents request parameters that can be used with DOMDebugger.setInstrumentationBreakpoint method call.
+ * Represents requestFrame parameters that can be used with DOMDebugger.setInstrumentationBreakpoint method call.
  *
  * Sets breakpoint on particular native event.
  */
@@ -166,7 +166,7 @@ data class SetInstrumentationBreakpointRequest (
 
 
 /**
- * Represents request parameters that can be used with DOMDebugger.removeInstrumentationBreakpoint method call.
+ * Represents requestFrame parameters that can be used with DOMDebugger.removeInstrumentationBreakpoint method call.
  *
  * Removes breakpoint on particular native event.
  */
@@ -180,7 +180,7 @@ data class RemoveInstrumentationBreakpointRequest (
 
 
 /**
- * Represents request parameters that can be used with DOMDebugger.setXHRBreakpoint method call.
+ * Represents requestFrame parameters that can be used with DOMDebugger.setXHRBreakpoint method call.
  *
  * Sets breakpoint on XMLHttpRequest.
  */
@@ -194,7 +194,7 @@ data class SetXHRBreakpointRequest (
 
 
 /**
- * Represents request parameters that can be used with DOMDebugger.removeXHRBreakpoint method call.
+ * Represents requestFrame parameters that can be used with DOMDebugger.removeXHRBreakpoint method call.
  *
  * Removes breakpoint from XMLHttpRequest.
  */
@@ -208,7 +208,7 @@ data class RemoveXHRBreakpointRequest (
 
 
 /**
- * Represents request parameters that can be used with DOMDebugger.getEventListeners method call.
+ * Represents requestFrame parameters that can be used with DOMDebugger.getEventListeners method call.
  *
  * Returns event listeners of the given object.
  */
@@ -221,7 +221,7 @@ data class GetEventListenersRequest (
 )
 
 /**
- * Represents response from DOMDebugger. method call.
+ * Represents responseFrame from DOMDebugger. method call.
  *
  * Returns event listeners of the given object.
  */

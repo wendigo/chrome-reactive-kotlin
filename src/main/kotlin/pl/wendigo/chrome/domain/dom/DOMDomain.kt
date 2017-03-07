@@ -10,15 +10,15 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 	/**
 	 * Enables DOM agent for the given page.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables DOM agent for the given page.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -39,8 +39,8 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 	/**
 	 * Requests that children of the node with given id are returned to the caller in form of <code>setChildNodes</code> events where not only immediate children are retrieved, but all children down to the specified depth.
 	 */
-	  fun requestChildNodes(input : RequestChildNodesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.requestChildNodes", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun requestChildNodes(input : RequestChildNodesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.requestChildNodes", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -67,36 +67,36 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 	/**
 	 * Sets node value for a node with given id.
 	 */
-	  fun setNodeValue(input : SetNodeValueRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.setNodeValue", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setNodeValue(input : SetNodeValueRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.setNodeValue", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Removes node with given id.
 	 */
-	  fun removeNode(input : RemoveNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.removeNode", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun removeNode(input : RemoveNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.removeNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Sets attribute for an element with given id.
 	 */
-	  fun setAttributeValue(input : SetAttributeValueRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.setAttributeValue", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setAttributeValue(input : SetAttributeValueRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.setAttributeValue", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Sets attributes on element with given id. This method is useful when user edits some existing attribute value and types in several attribute name/value pairs.
 	 */
-	  fun setAttributesAsText(input : SetAttributesAsTextRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.setAttributesAsText", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setAttributesAsText(input : SetAttributesAsTextRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.setAttributesAsText", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Removes attribute with given name from an element with given id.
 	 */
-	  fun removeAttribute(input : RemoveAttributeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.removeAttribute", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun removeAttribute(input : RemoveAttributeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.removeAttribute", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -109,8 +109,8 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 	/**
 	 * Sets node HTML markup, returns new node id.
 	 */
-	  fun setOuterHTML(input : SetOuterHTMLRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.setOuterHTML", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setOuterHTML(input : SetOuterHTMLRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.setOuterHTML", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -133,8 +133,8 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 	 * Discards search results from the session with the given id. <code>getSearchResults</code> should no longer be called for that search.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun discardSearchResults(input : DiscardSearchResultsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.discardSearchResults", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun discardSearchResults(input : DiscardSearchResultsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.discardSearchResults", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -148,45 +148,45 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 	 * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setInspectMode(input : SetInspectModeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.setInspectMode", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setInspectMode(input : SetInspectModeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.setInspectMode", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
 	 */
-	  fun highlightRect(input : HighlightRectRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.highlightRect", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun highlightRect(input : HighlightRectRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.highlightRect", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun highlightQuad(input : HighlightQuadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.highlightQuad", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun highlightQuad(input : HighlightQuadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.highlightQuad", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
 	 */
-	  fun highlightNode(input : HighlightNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.highlightNode", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun highlightNode(input : HighlightNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.highlightNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Hides DOM node highlight.
 	 */
-	  fun hideHighlight() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.hideHighlight", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun hideHighlight() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.hideHighlight", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Highlights owner element of the frame with given id.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun highlightFrame(input : HighlightFrameRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.highlightFrame", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun highlightFrame(input : HighlightFrameRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.highlightFrame", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -209,8 +209,8 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 	 * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setInspectedNode(input : SetInspectedNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.setInspectedNode", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setInspectedNode(input : SetInspectedNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.setInspectedNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -246,40 +246,40 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 	 * Undoes the last performed action.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun undo() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.undo", null, pl.wendigo.chrome.GenericResponse::class.java)
+    fun undo() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.undo", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Re-does the last undone action.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun redo() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.redo", null, pl.wendigo.chrome.GenericResponse::class.java)
+    fun redo() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.redo", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Marks last undoable state.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun markUndoableState() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.markUndoableState", null, pl.wendigo.chrome.GenericResponse::class.java)
+    fun markUndoableState() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.markUndoableState", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Focuses the given element.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun focus(input : FocusRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.focus", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun focus(input : FocusRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.focus", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Sets files for the given file input element.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setFileInputFiles(input : SetFileInputFilesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("DOM.setFileInputFiles", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setFileInputFiles(input : SetFileInputFilesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOM.setFileInputFiles", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -433,7 +433,7 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 
 
 /**
- * Represents request parameters that can be used with DOM.getDocument method call.
+ * Represents requestFrame parameters that can be used with DOM.getDocument method call.
  *
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
@@ -451,7 +451,7 @@ data class GetDocumentRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
@@ -464,7 +464,7 @@ data class GetDocumentResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.collectClassNamesFromSubtree method call.
+ * Represents requestFrame parameters that can be used with DOM.collectClassNamesFromSubtree method call.
  *
  * Collects class names for the node with given id and all of it's child nodes.
  */
@@ -477,7 +477,7 @@ data class CollectClassNamesFromSubtreeRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Collects class names for the node with given id and all of it's child nodes.
  */
@@ -490,7 +490,7 @@ data class CollectClassNamesFromSubtreeResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.requestChildNodes method call.
+ * Represents requestFrame parameters that can be used with DOM.requestChildNodes method call.
  *
  * Requests that children of the node with given id are returned to the caller in form of <code>setChildNodes</code> events where not only immediate children are retrieved, but all children down to the specified depth.
  */
@@ -514,7 +514,7 @@ data class RequestChildNodesRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.querySelector method call.
+ * Represents requestFrame parameters that can be used with DOM.querySelector method call.
  *
  * Executes <code>querySelector</code> on a given node.
  */
@@ -532,7 +532,7 @@ data class QuerySelectorRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Executes <code>querySelector</code> on a given node.
  */
@@ -545,7 +545,7 @@ data class QuerySelectorResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.querySelectorAll method call.
+ * Represents requestFrame parameters that can be used with DOM.querySelectorAll method call.
  *
  * Executes <code>querySelectorAll</code> on a given node.
  */
@@ -563,7 +563,7 @@ data class QuerySelectorAllRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Executes <code>querySelectorAll</code> on a given node.
  */
@@ -576,7 +576,7 @@ data class QuerySelectorAllResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.setNodeName method call.
+ * Represents requestFrame parameters that can be used with DOM.setNodeName method call.
  *
  * Sets node name for a node with given id.
  */
@@ -594,7 +594,7 @@ data class SetNodeNameRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Sets node name for a node with given id.
  */
@@ -607,7 +607,7 @@ data class SetNodeNameResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.setNodeValue method call.
+ * Represents requestFrame parameters that can be used with DOM.setNodeValue method call.
  *
  * Sets node value for a node with given id.
  */
@@ -626,7 +626,7 @@ data class SetNodeValueRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.removeNode method call.
+ * Represents requestFrame parameters that can be used with DOM.removeNode method call.
  *
  * Removes node with given id.
  */
@@ -640,7 +640,7 @@ data class RemoveNodeRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.setAttributeValue method call.
+ * Represents requestFrame parameters that can be used with DOM.setAttributeValue method call.
  *
  * Sets attribute for an element with given id.
  */
@@ -664,7 +664,7 @@ data class SetAttributeValueRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.setAttributesAsText method call.
+ * Represents requestFrame parameters that can be used with DOM.setAttributesAsText method call.
  *
  * Sets attributes on element with given id. This method is useful when user edits some existing attribute value and types in several attribute name/value pairs.
  */
@@ -688,7 +688,7 @@ data class SetAttributesAsTextRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.removeAttribute method call.
+ * Represents requestFrame parameters that can be used with DOM.removeAttribute method call.
  *
  * Removes attribute with given name from an element with given id.
  */
@@ -707,7 +707,7 @@ data class RemoveAttributeRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.getOuterHTML method call.
+ * Represents requestFrame parameters that can be used with DOM.getOuterHTML method call.
  *
  * Returns node's HTML markup.
  */
@@ -720,7 +720,7 @@ data class GetOuterHTMLRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Returns node's HTML markup.
  */
@@ -733,7 +733,7 @@ data class GetOuterHTMLResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.setOuterHTML method call.
+ * Represents requestFrame parameters that can be used with DOM.setOuterHTML method call.
  *
  * Sets node HTML markup, returns new node id.
  */
@@ -752,7 +752,7 @@ data class SetOuterHTMLRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.performSearch method call.
+ * Represents requestFrame parameters that can be used with DOM.performSearch method call.
  *
  * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
  */
@@ -770,7 +770,7 @@ data class PerformSearchRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
  */
@@ -788,7 +788,7 @@ data class PerformSearchResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.getSearchResults method call.
+ * Represents requestFrame parameters that can be used with DOM.getSearchResults method call.
  *
  * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
  */
@@ -811,7 +811,7 @@ data class GetSearchResultsRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
  */
@@ -824,7 +824,7 @@ data class GetSearchResultsResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.discardSearchResults method call.
+ * Represents requestFrame parameters that can be used with DOM.discardSearchResults method call.
  *
  * Discards search results from the session with the given id. <code>getSearchResults</code> should no longer be called for that search.
  */
@@ -838,7 +838,7 @@ data class DiscardSearchResultsRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.requestNode method call.
+ * Represents requestFrame parameters that can be used with DOM.requestNode method call.
  *
  * Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.
  */
@@ -851,7 +851,7 @@ data class RequestNodeRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.
  */
@@ -864,7 +864,7 @@ data class RequestNodeResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.setInspectMode method call.
+ * Represents requestFrame parameters that can be used with DOM.setInspectMode method call.
  *
  * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
  */
@@ -883,7 +883,7 @@ data class SetInspectModeRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.highlightRect method call.
+ * Represents requestFrame parameters that can be used with DOM.highlightRect method call.
  *
  * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
  */
@@ -922,7 +922,7 @@ data class HighlightRectRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.highlightQuad method call.
+ * Represents requestFrame parameters that can be used with DOM.highlightQuad method call.
  *
  * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
  */
@@ -946,7 +946,7 @@ data class HighlightQuadRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.highlightNode method call.
+ * Represents requestFrame parameters that can be used with DOM.highlightNode method call.
  *
  * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
  */
@@ -977,7 +977,7 @@ data class HighlightNodeRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.highlightFrame method call.
+ * Represents requestFrame parameters that can be used with DOM.highlightFrame method call.
  *
  * Highlights owner element of the frame with given id.
  */
@@ -1001,7 +1001,7 @@ data class HighlightFrameRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.pushNodeByPathToFrontend method call.
+ * Represents requestFrame parameters that can be used with DOM.pushNodeByPathToFrontend method call.
  *
  * Requests that the node is sent to the caller given its path. // FIXME, use XPath
  */
@@ -1014,7 +1014,7 @@ data class PushNodeByPathToFrontendRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Requests that the node is sent to the caller given its path. // FIXME, use XPath
  */
@@ -1027,7 +1027,7 @@ data class PushNodeByPathToFrontendResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.pushNodesByBackendIdsToFrontend method call.
+ * Represents requestFrame parameters that can be used with DOM.pushNodesByBackendIdsToFrontend method call.
  *
  * Requests that a batch of nodes is sent to the caller given their backend node ids.
  */
@@ -1040,7 +1040,7 @@ data class PushNodesByBackendIdsToFrontendRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Requests that a batch of nodes is sent to the caller given their backend node ids.
  */
@@ -1053,7 +1053,7 @@ data class PushNodesByBackendIdsToFrontendResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.setInspectedNode method call.
+ * Represents requestFrame parameters that can be used with DOM.setInspectedNode method call.
  *
  * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
  */
@@ -1067,7 +1067,7 @@ data class SetInspectedNodeRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.resolveNode method call.
+ * Represents requestFrame parameters that can be used with DOM.resolveNode method call.
  *
  * Resolves JavaScript node object for given node id.
  */
@@ -1085,7 +1085,7 @@ data class ResolveNodeRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Resolves JavaScript node object for given node id.
  */
@@ -1098,7 +1098,7 @@ data class ResolveNodeResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.getAttributes method call.
+ * Represents requestFrame parameters that can be used with DOM.getAttributes method call.
  *
  * Returns attributes for the specified node.
  */
@@ -1111,7 +1111,7 @@ data class GetAttributesRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Returns attributes for the specified node.
  */
@@ -1124,7 +1124,7 @@ data class GetAttributesResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.copyTo method call.
+ * Represents requestFrame parameters that can be used with DOM.copyTo method call.
  *
  * Creates a deep copy of the specified node and places it into the target container before the given anchor.
  */
@@ -1147,7 +1147,7 @@ data class CopyToRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Creates a deep copy of the specified node and places it into the target container before the given anchor.
  */
@@ -1160,7 +1160,7 @@ data class CopyToResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.moveTo method call.
+ * Represents requestFrame parameters that can be used with DOM.moveTo method call.
  *
  * Moves node into the new container, places it before the given anchor.
  */
@@ -1183,7 +1183,7 @@ data class MoveToRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Moves node into the new container, places it before the given anchor.
  */
@@ -1202,7 +1202,7 @@ data class MoveToResponse(
 
 
 /**
- * Represents request parameters that can be used with DOM.focus method call.
+ * Represents requestFrame parameters that can be used with DOM.focus method call.
  *
  * Focuses the given element.
  */
@@ -1216,7 +1216,7 @@ data class FocusRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.setFileInputFiles method call.
+ * Represents requestFrame parameters that can be used with DOM.setFileInputFiles method call.
  *
  * Sets files for the given file input element.
  */
@@ -1235,7 +1235,7 @@ data class SetFileInputFilesRequest (
 
 
 /**
- * Represents request parameters that can be used with DOM.getBoxModel method call.
+ * Represents requestFrame parameters that can be used with DOM.getBoxModel method call.
  *
  * Returns boxes for the currently selected nodes.
  */
@@ -1248,7 +1248,7 @@ data class GetBoxModelRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Returns boxes for the currently selected nodes.
  */
@@ -1261,7 +1261,7 @@ data class GetBoxModelResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.getNodeForLocation method call.
+ * Represents requestFrame parameters that can be used with DOM.getNodeForLocation method call.
  *
  * Returns node id at given location.
  */
@@ -1279,7 +1279,7 @@ data class GetNodeForLocationRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Returns node id at given location.
  */
@@ -1292,7 +1292,7 @@ data class GetNodeForLocationResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.getRelayoutBoundary method call.
+ * Represents requestFrame parameters that can be used with DOM.getRelayoutBoundary method call.
  *
  * Returns the id of the nearest ancestor that is a relayout boundary.
  */
@@ -1305,7 +1305,7 @@ data class GetRelayoutBoundaryRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Returns the id of the nearest ancestor that is a relayout boundary.
  */
@@ -1318,7 +1318,7 @@ data class GetRelayoutBoundaryResponse(
 )
 
 /**
- * Represents request parameters that can be used with DOM.getHighlightObjectForTest method call.
+ * Represents requestFrame parameters that can be used with DOM.getHighlightObjectForTest method call.
  *
  * For testing.
  */
@@ -1331,7 +1331,7 @@ data class GetHighlightObjectForTestRequest (
 )
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * For testing.
  */
@@ -1346,7 +1346,7 @@ data class GetHighlightObjectForTestResponse(
 
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code>.
  */
@@ -1359,7 +1359,7 @@ data class InspectNodeRequestedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "inspectNodeRequested")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Fired when backend wants to provide client with the missing DOM structure. This happens upon most of the calls requesting node ids.
  */
@@ -1377,7 +1377,7 @@ data class SetChildNodesEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "setChildNodes")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Fired when <code>Element</code>'s attribute is modified.
  */
@@ -1400,7 +1400,7 @@ data class AttributeModifiedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "attributeModified")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Fired when <code>Element</code>'s attribute is removed.
  */
@@ -1418,7 +1418,7 @@ data class AttributeRemovedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "attributeRemoved")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Fired when <code>Element</code>'s inline style is modified via a CSS property modification.
  */
@@ -1431,7 +1431,7 @@ data class InlineStyleInvalidatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "inlineStyleInvalidated")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Mirrors <code>DOMCharacterDataModified</code> event.
  */
@@ -1449,7 +1449,7 @@ data class CharacterDataModifiedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "characterDataModified")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Fired when <code>Container</code>'s child node count has changed.
  */
@@ -1467,7 +1467,7 @@ data class ChildNodeCountUpdatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeCountUpdated")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Mirrors <code>DOMNodeInserted</code> event.
  */
@@ -1490,7 +1490,7 @@ data class ChildNodeInsertedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeInserted")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Mirrors <code>DOMNodeRemoved</code> event.
  */
@@ -1508,7 +1508,7 @@ data class ChildNodeRemovedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeRemoved")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Called when shadow root is pushed into the element.
  */
@@ -1526,7 +1526,7 @@ data class ShadowRootPushedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "shadowRootPushed")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Called when shadow root is popped from the element.
  */
@@ -1544,7 +1544,7 @@ data class ShadowRootPoppedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "shadowRootPopped")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Called when a pseudo element is added to an element.
  */
@@ -1562,7 +1562,7 @@ data class PseudoElementAddedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "pseudoElementAdded")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Called when a pseudo element is removed from an element.
  */
@@ -1580,7 +1580,7 @@ data class PseudoElementRemovedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "pseudoElementRemoved")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * Called when distrubution is changed.
  */
@@ -1598,7 +1598,7 @@ data class DistributedNodesUpdatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "distributedNodesUpdated")
 
 /**
- * Represents response from DOM. method call.
+ * Represents responseFrame from DOM. method call.
  *
  * 
  */

@@ -10,15 +10,15 @@ package pl.wendigo.chrome.domain.animation
 	/**
 	 * Enables animation domain notifications.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Animation.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Animation.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables animation domain notifications.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Animation.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Animation.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -31,8 +31,8 @@ package pl.wendigo.chrome.domain.animation
 	/**
 	 * Sets the playback rate of the document timeline.
 	 */
-	  fun setPlaybackRate(input : SetPlaybackRateRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Animation.setPlaybackRate", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setPlaybackRate(input : SetPlaybackRateRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Animation.setPlaybackRate", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -45,29 +45,29 @@ package pl.wendigo.chrome.domain.animation
 	/**
 	 * Sets the paused state of a set of animations.
 	 */
-	  fun setPaused(input : SetPausedRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Animation.setPaused", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setPaused(input : SetPausedRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Animation.setPaused", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Sets the timing of an animation node.
 	 */
-	  fun setTiming(input : SetTimingRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Animation.setTiming", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setTiming(input : SetTimingRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Animation.setTiming", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Seek a set of animations to a particular time within each animation.
 	 */
-	  fun seekAnimations(input : SeekAnimationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Animation.seekAnimations", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun seekAnimations(input : SeekAnimationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Animation.seekAnimations", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Releases a set of animations to no longer be manipulated.
 	 */
-	  fun releaseAnimations(input : ReleaseAnimationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Animation.releaseAnimations", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun releaseAnimations(input : ReleaseAnimationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Animation.releaseAnimations", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -106,7 +106,7 @@ package pl.wendigo.chrome.domain.animation
 
 
 /**
- * Represents response from Animation. method call.
+ * Represents responseFrame from Animation. method call.
  *
  * Gets the playback rate of the document timeline.
  */
@@ -119,7 +119,7 @@ data class GetPlaybackRateResponse(
 )
 
 /**
- * Represents request parameters that can be used with Animation.setPlaybackRate method call.
+ * Represents requestFrame parameters that can be used with Animation.setPlaybackRate method call.
  *
  * Sets the playback rate of the document timeline.
  */
@@ -133,7 +133,7 @@ data class SetPlaybackRateRequest (
 
 
 /**
- * Represents request parameters that can be used with Animation.getCurrentTime method call.
+ * Represents requestFrame parameters that can be used with Animation.getCurrentTime method call.
  *
  * Returns the current time of the an animation.
  */
@@ -146,7 +146,7 @@ data class GetCurrentTimeRequest (
 )
 
 /**
- * Represents response from Animation. method call.
+ * Represents responseFrame from Animation. method call.
  *
  * Returns the current time of the an animation.
  */
@@ -159,7 +159,7 @@ data class GetCurrentTimeResponse(
 )
 
 /**
- * Represents request parameters that can be used with Animation.setPaused method call.
+ * Represents requestFrame parameters that can be used with Animation.setPaused method call.
  *
  * Sets the paused state of a set of animations.
  */
@@ -178,7 +178,7 @@ data class SetPausedRequest (
 
 
 /**
- * Represents request parameters that can be used with Animation.setTiming method call.
+ * Represents requestFrame parameters that can be used with Animation.setTiming method call.
  *
  * Sets the timing of an animation node.
  */
@@ -202,7 +202,7 @@ data class SetTimingRequest (
 
 
 /**
- * Represents request parameters that can be used with Animation.seekAnimations method call.
+ * Represents requestFrame parameters that can be used with Animation.seekAnimations method call.
  *
  * Seek a set of animations to a particular time within each animation.
  */
@@ -221,7 +221,7 @@ data class SeekAnimationsRequest (
 
 
 /**
- * Represents request parameters that can be used with Animation.releaseAnimations method call.
+ * Represents requestFrame parameters that can be used with Animation.releaseAnimations method call.
  *
  * Releases a set of animations to no longer be manipulated.
  */
@@ -235,7 +235,7 @@ data class ReleaseAnimationsRequest (
 
 
 /**
- * Represents request parameters that can be used with Animation.resolveAnimation method call.
+ * Represents requestFrame parameters that can be used with Animation.resolveAnimation method call.
  *
  * Gets the remote object of the Animation.
  */
@@ -248,7 +248,7 @@ data class ResolveAnimationRequest (
 )
 
 /**
- * Represents response from Animation. method call.
+ * Represents responseFrame from Animation. method call.
  *
  * Gets the remote object of the Animation.
  */
@@ -262,7 +262,7 @@ data class ResolveAnimationResponse(
 
 
 /**
- * Represents response from Animation. method call.
+ * Represents responseFrame from Animation. method call.
  *
  * Event for each animation that has been created.
  */
@@ -275,7 +275,7 @@ data class AnimationCreatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Animation", protocolEventName = "animationCreated")
 
 /**
- * Represents response from Animation. method call.
+ * Represents responseFrame from Animation. method call.
  *
  * Event for animation that has been started.
  */
@@ -288,7 +288,7 @@ data class AnimationStartedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Animation", protocolEventName = "animationStarted")
 
 /**
- * Represents response from Animation. method call.
+ * Represents responseFrame from Animation. method call.
  *
  * Event for when an animation has been cancelled.
  */

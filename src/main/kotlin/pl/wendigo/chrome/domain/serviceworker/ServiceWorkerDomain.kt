@@ -10,78 +10,78 @@ package pl.wendigo.chrome.domain.serviceworker
 	/**
 	 * 
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun unregister(input : UnregisterRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.unregister", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun unregister(input : UnregisterRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.unregister", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun updateRegistration(input : UpdateRegistrationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.updateRegistration", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun updateRegistration(input : UpdateRegistrationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.updateRegistration", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun startWorker(input : StartWorkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.startWorker", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun startWorker(input : StartWorkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.startWorker", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun skipWaiting(input : SkipWaitingRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.skipWaiting", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun skipWaiting(input : SkipWaitingRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.skipWaiting", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun stopWorker(input : StopWorkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.stopWorker", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun stopWorker(input : StopWorkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.stopWorker", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun inspectWorker(input : InspectWorkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.inspectWorker", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun inspectWorker(input : InspectWorkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.inspectWorker", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun setForceUpdateOnPageLoad(input : SetForceUpdateOnPageLoadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.setForceUpdateOnPageLoad", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setForceUpdateOnPageLoad(input : SetForceUpdateOnPageLoadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.setForceUpdateOnPageLoad", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun deliverPushMessage(input : DeliverPushMessageRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.deliverPushMessage", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun deliverPushMessage(input : DeliverPushMessageRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.deliverPushMessage", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun dispatchSyncEvent(input : DispatchSyncEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ServiceWorker.dispatchSyncEvent", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun dispatchSyncEvent(input : DispatchSyncEventRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ServiceWorker.dispatchSyncEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   
@@ -112,7 +112,7 @@ package pl.wendigo.chrome.domain.serviceworker
 
 
 /**
- * Represents request parameters that can be used with ServiceWorker.unregister method call.
+ * Represents requestFrame parameters that can be used with ServiceWorker.unregister method call.
  *
  * 
  */
@@ -126,7 +126,7 @@ data class UnregisterRequest (
 
 
 /**
- * Represents request parameters that can be used with ServiceWorker.updateRegistration method call.
+ * Represents requestFrame parameters that can be used with ServiceWorker.updateRegistration method call.
  *
  * 
  */
@@ -140,7 +140,7 @@ data class UpdateRegistrationRequest (
 
 
 /**
- * Represents request parameters that can be used with ServiceWorker.startWorker method call.
+ * Represents requestFrame parameters that can be used with ServiceWorker.startWorker method call.
  *
  * 
  */
@@ -154,7 +154,7 @@ data class StartWorkerRequest (
 
 
 /**
- * Represents request parameters that can be used with ServiceWorker.skipWaiting method call.
+ * Represents requestFrame parameters that can be used with ServiceWorker.skipWaiting method call.
  *
  * 
  */
@@ -168,7 +168,7 @@ data class SkipWaitingRequest (
 
 
 /**
- * Represents request parameters that can be used with ServiceWorker.stopWorker method call.
+ * Represents requestFrame parameters that can be used with ServiceWorker.stopWorker method call.
  *
  * 
  */
@@ -182,7 +182,7 @@ data class StopWorkerRequest (
 
 
 /**
- * Represents request parameters that can be used with ServiceWorker.inspectWorker method call.
+ * Represents requestFrame parameters that can be used with ServiceWorker.inspectWorker method call.
  *
  * 
  */
@@ -196,7 +196,7 @@ data class InspectWorkerRequest (
 
 
 /**
- * Represents request parameters that can be used with ServiceWorker.setForceUpdateOnPageLoad method call.
+ * Represents requestFrame parameters that can be used with ServiceWorker.setForceUpdateOnPageLoad method call.
  *
  * 
  */
@@ -210,7 +210,7 @@ data class SetForceUpdateOnPageLoadRequest (
 
 
 /**
- * Represents request parameters that can be used with ServiceWorker.deliverPushMessage method call.
+ * Represents requestFrame parameters that can be used with ServiceWorker.deliverPushMessage method call.
  *
  * 
  */
@@ -234,7 +234,7 @@ data class DeliverPushMessageRequest (
 
 
 /**
- * Represents request parameters that can be used with ServiceWorker.dispatchSyncEvent method call.
+ * Represents requestFrame parameters that can be used with ServiceWorker.dispatchSyncEvent method call.
  *
  * 
  */
@@ -264,7 +264,7 @@ data class DispatchSyncEventRequest (
 
 
 /**
- * Represents response from ServiceWorker. method call.
+ * Represents responseFrame from ServiceWorker. method call.
  *
  * 
  */
@@ -277,7 +277,7 @@ data class WorkerRegistrationUpdatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ServiceWorker", protocolEventName = "workerRegistrationUpdated")
 
 /**
- * Represents response from ServiceWorker. method call.
+ * Represents responseFrame from ServiceWorker. method call.
  *
  * 
  */
@@ -290,7 +290,7 @@ data class WorkerVersionUpdatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ServiceWorker", protocolEventName = "workerVersionUpdated")
 
 /**
- * Represents response from ServiceWorker. method call.
+ * Represents responseFrame from ServiceWorker. method call.
  *
  * 
  */

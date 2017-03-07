@@ -10,15 +10,15 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 	/**
 	 * Enables page domain notifications.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables page domain notifications.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -33,23 +33,23 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 	 * 
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun removeScriptToEvaluateOnLoad(input : RemoveScriptToEvaluateOnLoadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.removeScriptToEvaluateOnLoad", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun removeScriptToEvaluateOnLoad(input : RemoveScriptToEvaluateOnLoadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.removeScriptToEvaluateOnLoad", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Controls whether browser will open a new inspector window for connected pages.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setAutoAttachToCreatedPages(input : SetAutoAttachToCreatedPagesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.setAutoAttachToCreatedPages", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setAutoAttachToCreatedPages(input : SetAutoAttachToCreatedPagesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.setAutoAttachToCreatedPages", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Reloads given page optionally ignoring the cache.
 	 */
-	  fun reload(input : ReloadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.reload", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun reload(input : ReloadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.reload", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -63,8 +63,8 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 	 * Force the page stop all navigations and pending resource fetches.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun stopLoading() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.stopLoading", null, pl.wendigo.chrome.GenericResponse::class.java)
+    fun stopLoading() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.stopLoading", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -79,8 +79,8 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 	 * Navigates current page to the given history entry.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun navigateToHistoryEntry(input : NavigateToHistoryEntryRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.navigateToHistoryEntry", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun navigateToHistoryEntry(input : NavigateToHistoryEntryRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.navigateToHistoryEntry", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -95,8 +95,8 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 	 * Deletes browser cookie with given name, domain and path.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.deleteCookie", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.deleteCookie", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -127,62 +127,62 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 	 * Sets given markup as the document's HTML.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setDocumentContent(input : SetDocumentContentRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.setDocumentContent", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setDocumentContent(input : SetDocumentContentRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.setDocumentContent", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.setDeviceMetricsOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.setDeviceMetricsOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Clears the overriden device metrics.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun clearDeviceMetricsOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
+    fun clearDeviceMetricsOverride() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
 	 */
-	  fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.setGeolocationOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.setGeolocationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Clears the overriden Geolocation Position and Error.
 	 */
-	  fun clearGeolocationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.clearGeolocationOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun clearGeolocationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.clearGeolocationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Overrides the Device Orientation.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.setDeviceOrientationOverride", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.setDeviceOrientationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Clears the overridden Device Orientation.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun clearDeviceOrientationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.GenericResponse::class.java)
+    fun clearDeviceOrientationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Toggles mouse event-based touch event emulation.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.setTouchEmulationEnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.setTouchEmulationEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -197,47 +197,47 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 	 * Starts sending each frame using the <code>screencastFrame</code> event.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun startScreencast(input : StartScreencastRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.startScreencast", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun startScreencast(input : StartScreencastRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.startScreencast", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Stops sending each frame in the <code>screencastFrame</code>.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun stopScreencast() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.stopScreencast", null, pl.wendigo.chrome.GenericResponse::class.java)
+    fun stopScreencast() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.stopScreencast", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Acknowledges that a screencast frame has been received by the frontend.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun screencastFrameAck(input : ScreencastFrameAckRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.screencastFrameAck", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun screencastFrameAck(input : ScreencastFrameAckRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.screencastFrameAck", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
 	 */
-	  fun handleJavaScriptDialog(input : HandleJavaScriptDialogRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.handleJavaScriptDialog", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun handleJavaScriptDialog(input : HandleJavaScriptDialogRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.handleJavaScriptDialog", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Shows / hides color picker
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setColorPickerEnabled(input : SetColorPickerEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.setColorPickerEnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setColorPickerEnabled(input : SetColorPickerEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.setColorPickerEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Configures overlay.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun configureOverlay(input : ConfigureOverlayRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.configureOverlay", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun configureOverlay(input : ConfigureOverlayRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.configureOverlay", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -252,24 +252,24 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 	 * 
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun requestAppBanner() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.requestAppBanner", null, pl.wendigo.chrome.GenericResponse::class.java)
+    fun requestAppBanner() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.requestAppBanner", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Toggles navigation throttling which allows programatic control over navigation and redirect response.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setControlNavigations(input : SetControlNavigationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.setControlNavigations", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setControlNavigations(input : SetControlNavigationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.setControlNavigations", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Should be sent in response to a navigationRequested or a redirectRequested event, telling the browser how to handle the navigation.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun processNavigation(input : ProcessNavigationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Page.processNavigation", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun processNavigation(input : ProcessNavigationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Page.processNavigation", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -413,7 +413,7 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 
 
 /**
- * Represents request parameters that can be used with Page.addScriptToEvaluateOnLoad method call.
+ * Represents requestFrame parameters that can be used with Page.addScriptToEvaluateOnLoad method call.
  *
  * 
  */
@@ -426,7 +426,7 @@ data class AddScriptToEvaluateOnLoadRequest (
 )
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * 
  */
@@ -439,7 +439,7 @@ data class AddScriptToEvaluateOnLoadResponse(
 )
 
 /**
- * Represents request parameters that can be used with Page.removeScriptToEvaluateOnLoad method call.
+ * Represents requestFrame parameters that can be used with Page.removeScriptToEvaluateOnLoad method call.
  *
  * 
  */
@@ -453,7 +453,7 @@ data class RemoveScriptToEvaluateOnLoadRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.setAutoAttachToCreatedPages method call.
+ * Represents requestFrame parameters that can be used with Page.setAutoAttachToCreatedPages method call.
  *
  * Controls whether browser will open a new inspector window for connected pages.
  */
@@ -467,7 +467,7 @@ data class SetAutoAttachToCreatedPagesRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.reload method call.
+ * Represents requestFrame parameters that can be used with Page.reload method call.
  *
  * Reloads given page optionally ignoring the cache.
  */
@@ -486,7 +486,7 @@ data class ReloadRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.navigate method call.
+ * Represents requestFrame parameters that can be used with Page.navigate method call.
  *
  * Navigates current page to the given URL.
  */
@@ -499,7 +499,7 @@ data class NavigateRequest (
 )
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Navigates current page to the given URL.
  */
@@ -515,7 +515,7 @@ data class NavigateResponse(
 
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Returns navigation history for the current page.
  */
@@ -533,7 +533,7 @@ data class GetNavigationHistoryResponse(
 )
 
 /**
- * Represents request parameters that can be used with Page.navigateToHistoryEntry method call.
+ * Represents requestFrame parameters that can be used with Page.navigateToHistoryEntry method call.
  *
  * Navigates current page to the given history entry.
  */
@@ -548,7 +548,7 @@ data class NavigateToHistoryEntryRequest (
 
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
  */
@@ -561,7 +561,7 @@ data class GetCookiesResponse(
 )
 
 /**
- * Represents request parameters that can be used with Page.deleteCookie method call.
+ * Represents requestFrame parameters that can be used with Page.deleteCookie method call.
  *
  * Deletes browser cookie with given name, domain and path.
  */
@@ -581,7 +581,7 @@ data class DeleteCookieRequest (
 
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Returns present frame / resource tree structure.
  */
@@ -594,7 +594,7 @@ data class GetResourceTreeResponse(
 )
 
 /**
- * Represents request parameters that can be used with Page.getResourceContent method call.
+ * Represents requestFrame parameters that can be used with Page.getResourceContent method call.
  *
  * Returns content of the given resource.
  */
@@ -612,7 +612,7 @@ data class GetResourceContentRequest (
 )
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Returns content of the given resource.
  */
@@ -630,7 +630,7 @@ data class GetResourceContentResponse(
 )
 
 /**
- * Represents request parameters that can be used with Page.searchInResource method call.
+ * Represents requestFrame parameters that can be used with Page.searchInResource method call.
  *
  * Searches for given string in resource content.
  */
@@ -663,7 +663,7 @@ data class SearchInResourceRequest (
 )
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Searches for given string in resource content.
  */
@@ -676,7 +676,7 @@ data class SearchInResourceResponse(
 )
 
 /**
- * Represents request parameters that can be used with Page.setDocumentContent method call.
+ * Represents requestFrame parameters that can be used with Page.setDocumentContent method call.
  *
  * Sets given markup as the document's HTML.
  */
@@ -695,7 +695,7 @@ data class SetDocumentContentRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.setDeviceMetricsOverride method call.
+ * Represents requestFrame parameters that can be used with Page.setDeviceMetricsOverride method call.
  *
  * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
  */
@@ -771,7 +771,7 @@ data class SetDeviceMetricsOverrideRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.setGeolocationOverride method call.
+ * Represents requestFrame parameters that can be used with Page.setGeolocationOverride method call.
  *
  * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
  */
@@ -797,7 +797,7 @@ data class SetGeolocationOverrideRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.setDeviceOrientationOverride method call.
+ * Represents requestFrame parameters that can be used with Page.setDeviceOrientationOverride method call.
  *
  * Overrides the Device Orientation.
  */
@@ -823,7 +823,7 @@ data class SetDeviceOrientationOverrideRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.setTouchEmulationEnabled method call.
+ * Represents requestFrame parameters that can be used with Page.setTouchEmulationEnabled method call.
  *
  * Toggles mouse event-based touch event emulation.
  */
@@ -843,7 +843,7 @@ data class SetTouchEmulationEnabledRequest (
 
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Capture page screenshot.
  */
@@ -856,7 +856,7 @@ data class CaptureScreenshotResponse(
 )
 
 /**
- * Represents request parameters that can be used with Page.startScreencast method call.
+ * Represents requestFrame parameters that can be used with Page.startScreencast method call.
  *
  * Starts sending each frame using the <code>screencastFrame</code> event.
  */
@@ -892,7 +892,7 @@ data class StartScreencastRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.screencastFrameAck method call.
+ * Represents requestFrame parameters that can be used with Page.screencastFrameAck method call.
  *
  * Acknowledges that a screencast frame has been received by the frontend.
  */
@@ -906,7 +906,7 @@ data class ScreencastFrameAckRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.handleJavaScriptDialog method call.
+ * Represents requestFrame parameters that can be used with Page.handleJavaScriptDialog method call.
  *
  * Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
  */
@@ -925,7 +925,7 @@ data class HandleJavaScriptDialogRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.setColorPickerEnabled method call.
+ * Represents requestFrame parameters that can be used with Page.setColorPickerEnabled method call.
  *
  * Shows / hides color picker
  */
@@ -939,7 +939,7 @@ data class SetColorPickerEnabledRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.configureOverlay method call.
+ * Represents requestFrame parameters that can be used with Page.configureOverlay method call.
  *
  * Configures overlay.
  */
@@ -959,7 +959,7 @@ data class ConfigureOverlayRequest (
 
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * 
  */
@@ -984,7 +984,7 @@ data class GetAppManifestResponse(
 
 
 /**
- * Represents request parameters that can be used with Page.setControlNavigations method call.
+ * Represents requestFrame parameters that can be used with Page.setControlNavigations method call.
  *
  * Toggles navigation throttling which allows programatic control over navigation and redirect response.
  */
@@ -998,7 +998,7 @@ data class SetControlNavigationsRequest (
 
 
 /**
- * Represents request parameters that can be used with Page.processNavigation method call.
+ * Represents requestFrame parameters that can be used with Page.processNavigation method call.
  *
  * Should be sent in response to a navigationRequested or a redirectRequested event, telling the browser how to handle the navigation.
  */
@@ -1018,7 +1018,7 @@ data class ProcessNavigationRequest (
 
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
  */
@@ -1037,7 +1037,7 @@ data class GetLayoutMetricsResponse(
 
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * 
  */
@@ -1050,7 +1050,7 @@ data class DomContentEventFiredEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "domContentEventFired")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * 
  */
@@ -1063,7 +1063,7 @@ data class LoadEventFiredEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "loadEventFired")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when frame has been attached to its parent.
  */
@@ -1081,7 +1081,7 @@ data class FrameAttachedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameAttached")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired once navigation of the frame has completed. Frame is now associated with the new loader.
  */
@@ -1094,7 +1094,7 @@ data class FrameNavigatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameNavigated")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when frame has been detached from its parent.
  */
@@ -1107,7 +1107,7 @@ data class FrameDetachedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameDetached")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when frame has started loading.
  */
@@ -1120,7 +1120,7 @@ data class FrameStartedLoadingEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameStartedLoading")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when frame has stopped loading.
  */
@@ -1133,7 +1133,7 @@ data class FrameStoppedLoadingEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameStoppedLoading")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when frame schedules a potential navigation.
  */
@@ -1151,7 +1151,7 @@ data class FrameScheduledNavigationEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameScheduledNavigation")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when frame no longer has a scheduled navigation.
  */
@@ -1165,7 +1165,7 @@ data class FrameClearedScheduledNavigationEvent(
 
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to open.
  */
@@ -1183,7 +1183,7 @@ data class JavascriptDialogOpeningEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "javascriptDialogOpening")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been closed.
  */
@@ -1196,7 +1196,7 @@ data class JavascriptDialogClosedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "javascriptDialogClosed")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Compressed image data requested by the <code>startScreencast</code>.
  */
@@ -1219,7 +1219,7 @@ data class ScreencastFrameEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "screencastFrame")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when the page with currently enabled screencast was shown or hidden </code>.
  */
@@ -1232,7 +1232,7 @@ data class ScreencastVisibilityChangedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "screencastVisibilityChanged")
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when a color has been picked.
  */
@@ -1247,7 +1247,7 @@ data class ColorPickedEvent(
 
 
 /**
- * Represents response from Page. method call.
+ * Represents responseFrame from Page. method call.
  *
  * Fired when a navigation is started if navigation throttles are enabled.  The navigation will be deferred until processNavigation is called.
  */

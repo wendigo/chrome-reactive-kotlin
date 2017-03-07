@@ -24,21 +24,21 @@ package pl.wendigo.chrome.domain.cachestorage
 	/**
 	 * Deletes a cache.
 	 */
-	  fun deleteCache(input : DeleteCacheRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("CacheStorage.deleteCache", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun deleteCache(input : DeleteCacheRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("CacheStorage.deleteCache", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Deletes a cache entry.
 	 */
-	  fun deleteEntry(input : DeleteEntryRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("CacheStorage.deleteEntry", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun deleteEntry(input : DeleteEntryRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("CacheStorage.deleteEntry", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   }
 
 /**
- * Represents request parameters that can be used with CacheStorage.requestCacheNames method call.
+ * Represents requestFrame parameters that can be used with CacheStorage.requestCacheNames method call.
  *
  * Requests cache names.
  */
@@ -51,7 +51,7 @@ data class RequestCacheNamesRequest (
 )
 
 /**
- * Represents response from CacheStorage. method call.
+ * Represents responseFrame from CacheStorage. method call.
  *
  * Requests cache names.
  */
@@ -64,7 +64,7 @@ data class RequestCacheNamesResponse(
 )
 
 /**
- * Represents request parameters that can be used with CacheStorage.requestEntries method call.
+ * Represents requestFrame parameters that can be used with CacheStorage.requestEntries method call.
  *
  * Requests data from cache.
  */
@@ -87,7 +87,7 @@ data class RequestEntriesRequest (
 )
 
 /**
- * Represents response from CacheStorage. method call.
+ * Represents responseFrame from CacheStorage. method call.
  *
  * Requests data from cache.
  */
@@ -105,7 +105,7 @@ data class RequestEntriesResponse(
 )
 
 /**
- * Represents request parameters that can be used with CacheStorage.deleteCache method call.
+ * Represents requestFrame parameters that can be used with CacheStorage.deleteCache method call.
  *
  * Deletes a cache.
  */
@@ -119,7 +119,7 @@ data class DeleteCacheRequest (
 
 
 /**
- * Represents request parameters that can be used with CacheStorage.deleteEntry method call.
+ * Represents requestFrame parameters that can be used with CacheStorage.deleteEntry method call.
  *
  * Deletes a cache entry.
  */

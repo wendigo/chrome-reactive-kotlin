@@ -27,7 +27,7 @@ class RemoteChrome internal constructor(private val api: RemoteChromeConnection)
     {{/each}}
 
     /**
-     * Returns flowable capturing all events
+     * Returns flowable capturing all events.
      */
     fun onProtocolEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
       return api.captureAllEvents()
@@ -56,10 +56,31 @@ class RemoteChrome internal constructor(private val api: RemoteChromeConnection)
          * Connects to chrome debugging protocol on host and port.
          */
         @kotlin.jvm.Throws(RemoteChromeException::class)
-        fun connect(host: String, port: Int, debug: Boolean) : RemoteChrome {
+        fun newTab(chromeAddress: String) : RemoteChrome {
           return RemoteChrome(
-              RemoteChromeConnection(host, port, debug).connect()
+                RemoteChromeConnection(
+                    Inspector(chromeAddress)
+                        .openTab()
+                        .map(InspectorTab::webSocketDebuggerUrl)
+                        .blockingGet()
+                ).connect()
           )
+        }
+
+        /**
+         * Connects to chrome debugging protocol on host and port for given tab url.
+         */
+        @kotlin.jvm.Throws(RemoteChromeException::class)
+        fun connectToTab(chromeAddress: String, tabUrl: String) : RemoteChrome {
+            return RemoteChrome(
+                RemoteChromeConnection(
+                    Inspector(chromeAddress)
+                        .findTab(tabUrl)
+                        .singleOrError()
+                        .map(InspectorTab::webSocketDebuggerUrl)
+                        .blockingGet(), debug
+                ).connect()
+            )
         }
     }
 }

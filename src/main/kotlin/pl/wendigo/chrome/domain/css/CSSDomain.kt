@@ -10,15 +10,15 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been enabled until the result of this command is received.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables the CSS agent for the given page.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("CSS.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("CSS.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -117,8 +117,8 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.
 	 */
-	  fun forcePseudoState(input : ForcePseudoStateRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun forcePseudoState(input : ForcePseudoStateRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -133,8 +133,8 @@ package pl.wendigo.chrome.domain.css
 	 * Find a rule with the given active property for the given node and set the new value for this property
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setEffectivePropertyValueForNode(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setEffectivePropertyValueForNode(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -157,8 +157,8 @@ package pl.wendigo.chrome.domain.css
 	 * Enables the selector recording.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun startRuleUsageTracking() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.GenericResponse::class.java)
+    fun startRuleUsageTracking() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -211,7 +211,7 @@ package pl.wendigo.chrome.domain.css
 
 
 /**
- * Represents request parameters that can be used with CSS.getMatchedStylesForNode method call.
+ * Represents requestFrame parameters that can be used with CSS.getMatchedStylesForNode method call.
  *
  * Returns requested styles for a DOM node identified by <code>nodeId</code>.
  */
@@ -224,7 +224,7 @@ data class GetMatchedStylesForNodeRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Returns requested styles for a DOM node identified by <code>nodeId</code>.
  */
@@ -262,7 +262,7 @@ data class GetMatchedStylesForNodeResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.getInlineStylesForNode method call.
+ * Represents requestFrame parameters that can be used with CSS.getInlineStylesForNode method call.
  *
  * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.
  */
@@ -275,7 +275,7 @@ data class GetInlineStylesForNodeRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.
  */
@@ -293,7 +293,7 @@ data class GetInlineStylesForNodeResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.getComputedStyleForNode method call.
+ * Represents requestFrame parameters that can be used with CSS.getComputedStyleForNode method call.
  *
  * Returns the computed style for a DOM node identified by <code>nodeId</code>.
  */
@@ -306,7 +306,7 @@ data class GetComputedStyleForNodeRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Returns the computed style for a DOM node identified by <code>nodeId</code>.
  */
@@ -319,7 +319,7 @@ data class GetComputedStyleForNodeResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.getPlatformFontsForNode method call.
+ * Represents requestFrame parameters that can be used with CSS.getPlatformFontsForNode method call.
  *
  * Requests information about platform fonts which we used to render child TextNodes in the given node.
  */
@@ -332,7 +332,7 @@ data class GetPlatformFontsForNodeRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Requests information about platform fonts which we used to render child TextNodes in the given node.
  */
@@ -345,7 +345,7 @@ data class GetPlatformFontsForNodeResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.getStyleSheetText method call.
+ * Represents requestFrame parameters that can be used with CSS.getStyleSheetText method call.
  *
  * Returns the current textual content and the URL for a stylesheet.
  */
@@ -358,7 +358,7 @@ data class GetStyleSheetTextRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Returns the current textual content and the URL for a stylesheet.
  */
@@ -371,7 +371,7 @@ data class GetStyleSheetTextResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.collectClassNames method call.
+ * Represents requestFrame parameters that can be used with CSS.collectClassNames method call.
  *
  * Returns all class names from specified stylesheet.
  */
@@ -384,7 +384,7 @@ data class CollectClassNamesRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Returns all class names from specified stylesheet.
  */
@@ -397,7 +397,7 @@ data class CollectClassNamesResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.setStyleSheetText method call.
+ * Represents requestFrame parameters that can be used with CSS.setStyleSheetText method call.
  *
  * Sets the new stylesheet text.
  */
@@ -415,7 +415,7 @@ data class SetStyleSheetTextRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Sets the new stylesheet text.
  */
@@ -428,7 +428,7 @@ data class SetStyleSheetTextResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.setRuleSelector method call.
+ * Represents requestFrame parameters that can be used with CSS.setRuleSelector method call.
  *
  * Modifies the rule selector.
  */
@@ -451,7 +451,7 @@ data class SetRuleSelectorRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Modifies the rule selector.
  */
@@ -464,7 +464,7 @@ data class SetRuleSelectorResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.setKeyframeKey method call.
+ * Represents requestFrame parameters that can be used with CSS.setKeyframeKey method call.
  *
  * Modifies the keyframe rule key text.
  */
@@ -487,7 +487,7 @@ data class SetKeyframeKeyRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Modifies the keyframe rule key text.
  */
@@ -500,7 +500,7 @@ data class SetKeyframeKeyResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.setStyleTexts method call.
+ * Represents requestFrame parameters that can be used with CSS.setStyleTexts method call.
  *
  * Applies specified style edits one after another in the given order.
  */
@@ -513,7 +513,7 @@ data class SetStyleTextsRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Applies specified style edits one after another in the given order.
  */
@@ -526,7 +526,7 @@ data class SetStyleTextsResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.setMediaText method call.
+ * Represents requestFrame parameters that can be used with CSS.setMediaText method call.
  *
  * Modifies the rule selector.
  */
@@ -549,7 +549,7 @@ data class SetMediaTextRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Modifies the rule selector.
  */
@@ -562,7 +562,7 @@ data class SetMediaTextResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.createStyleSheet method call.
+ * Represents requestFrame parameters that can be used with CSS.createStyleSheet method call.
  *
  * Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.
  */
@@ -575,7 +575,7 @@ data class CreateStyleSheetRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.
  */
@@ -588,7 +588,7 @@ data class CreateStyleSheetResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.addRule method call.
+ * Represents requestFrame parameters that can be used with CSS.addRule method call.
  *
  * Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.
  */
@@ -611,7 +611,7 @@ data class AddRuleRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.
  */
@@ -624,7 +624,7 @@ data class AddRuleResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.forcePseudoState method call.
+ * Represents requestFrame parameters that can be used with CSS.forcePseudoState method call.
  *
  * Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.
  */
@@ -644,7 +644,7 @@ data class ForcePseudoStateRequest (
 
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Returns all media queries parsed by the rendering engine.
  */
@@ -657,7 +657,7 @@ data class GetMediaQueriesResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.setEffectivePropertyValueForNode method call.
+ * Represents requestFrame parameters that can be used with CSS.setEffectivePropertyValueForNode method call.
  *
  * Find a rule with the given active property for the given node and set the new value for this property
  */
@@ -681,7 +681,7 @@ data class SetEffectivePropertyValueForNodeRequest (
 
 
 /**
- * Represents request parameters that can be used with CSS.getBackgroundColors method call.
+ * Represents requestFrame parameters that can be used with CSS.getBackgroundColors method call.
  *
  * 
  */
@@ -694,7 +694,7 @@ data class GetBackgroundColorsRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * 
  */
@@ -707,7 +707,7 @@ data class GetBackgroundColorsResponse(
 )
 
 /**
- * Represents request parameters that can be used with CSS.getLayoutTreeAndStyles method call.
+ * Represents requestFrame parameters that can be used with CSS.getLayoutTreeAndStyles method call.
  *
  * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
  */
@@ -720,7 +720,7 @@ data class GetLayoutTreeAndStylesRequest (
 )
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
  */
@@ -741,7 +741,7 @@ data class GetLayoutTreeAndStylesResponse(
 
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * The list of rules with an indication of whether these were used
  */
@@ -757,7 +757,7 @@ data class StopRuleUsageTrackingResponse(
 
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Fired whenever a stylesheet is changed as a result of the client operation.
  */
@@ -770,7 +770,7 @@ data class StyleSheetChangedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "CSS", protocolEventName = "styleSheetChanged")
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Fired whenever an active document stylesheet is added.
  */
@@ -783,7 +783,7 @@ data class StyleSheetAddedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "CSS", protocolEventName = "styleSheetAdded")
 
 /**
- * Represents response from CSS. method call.
+ * Represents responseFrame from CSS. method call.
  *
  * Fired whenever an active document stylesheet is removed.
  */

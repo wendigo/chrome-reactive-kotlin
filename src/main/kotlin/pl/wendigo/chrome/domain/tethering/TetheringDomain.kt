@@ -10,15 +10,15 @@ package pl.wendigo.chrome.domain.tethering
 	/**
 	 * Request browser port binding.
 	 */
-	  fun bind(input : BindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun bind(input : BindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Request browser port unbinding.
 	 */
-	  fun unbind(input : UnbindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun unbind(input : UnbindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   
@@ -31,7 +31,7 @@ package pl.wendigo.chrome.domain.tethering
 }
 
 /**
- * Represents request parameters that can be used with Tethering.bind method call.
+ * Represents requestFrame parameters that can be used with Tethering.bind method call.
  *
  * Request browser port binding.
  */
@@ -45,7 +45,7 @@ data class BindRequest (
 
 
 /**
- * Represents request parameters that can be used with Tethering.unbind method call.
+ * Represents requestFrame parameters that can be used with Tethering.unbind method call.
  *
  * Request browser port unbinding.
  */
@@ -60,7 +60,7 @@ data class UnbindRequest (
 
 
 /**
- * Represents response from Tethering. method call.
+ * Represents responseFrame from Tethering. method call.
  *
  * Informs that port was successfully bound and got a specified connection id.
  */

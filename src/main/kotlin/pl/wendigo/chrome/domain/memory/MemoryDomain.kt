@@ -17,22 +17,22 @@ package pl.wendigo.chrome.domain.memory
 	/**
 	 * Enable/disable suppressing memory pressure notifications in all processes.
 	 */
-	  fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Simulate a memory pressure notification in all processes.
 	 */
-	  fun simulatePressureNotification(input : SimulatePressureNotificationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun simulatePressureNotification(input : SimulatePressureNotificationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   }
 
 
 /**
- * Represents response from Memory. method call.
+ * Represents responseFrame from Memory. method call.
  *
  * 
  */
@@ -55,7 +55,7 @@ data class GetDOMCountersResponse(
 )
 
 /**
- * Represents request parameters that can be used with Memory.setPressureNotificationsSuppressed method call.
+ * Represents requestFrame parameters that can be used with Memory.setPressureNotificationsSuppressed method call.
  *
  * Enable/disable suppressing memory pressure notifications in all processes.
  */
@@ -69,7 +69,7 @@ data class SetPressureNotificationsSuppressedRequest (
 
 
 /**
- * Represents request parameters that can be used with Memory.simulatePressureNotification method call.
+ * Represents requestFrame parameters that can be used with Memory.simulatePressureNotification method call.
  *
  * Simulate a memory pressure notification in all processes.
  */

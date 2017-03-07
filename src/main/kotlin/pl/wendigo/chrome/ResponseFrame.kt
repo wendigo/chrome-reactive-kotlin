@@ -6,11 +6,11 @@ import com.fasterxml.jackson.databind.JsonNode
 /**
  * Represents generic protocol response.
  */
-data class GenericResponse(
+data class ResponseFrame(
         /**
          * Response id.
          */
-        val id: Long,
+        val id: Long?,
 
         /**
          * Response result.
@@ -34,6 +34,13 @@ data class GenericResponse(
 ) {
     internal fun toLog(): String {
         return "${method ?: "response"}(id=$id, error=${error?.message ?: "no"}, params=$params)"
+    }
+
+    /**
+     * Checks if response is event
+     */
+    internal fun isEvent() : Boolean {
+        return this.id == null && this.method != null
     }
 }
 

@@ -10,36 +10,36 @@ package pl.wendigo.chrome.domain.target
 	/**
 	 * Controls whether to discover available targets and notify via <code>targetCreated/targetDestroyed</code> events.
 	 */
-	  fun setDiscoverTargets(input : SetDiscoverTargetsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Target.setDiscoverTargets", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setDiscoverTargets(input : SetDiscoverTargetsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Target.setDiscoverTargets", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Controls whether to automatically attach to new targets which are considered to be related to this one. When turned on, attaches to all existing related targets as well. When turned off, automatically detaches from all currently attached targets.
 	 */
-	  fun setAutoAttach(input : SetAutoAttachRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Target.setAutoAttach", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setAutoAttach(input : SetAutoAttachRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Target.setAutoAttach", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun setAttachToFrames(input : SetAttachToFramesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Target.setAttachToFrames", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setAttachToFrames(input : SetAttachToFramesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Target.setAttachToFrames", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Enables target discovery for the specified locations, when <code>setDiscoverTargets</code> was set to <code>true</code>.
 	 */
-	  fun setRemoteLocations(input : SetRemoteLocationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Target.setRemoteLocations", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setRemoteLocations(input : SetRemoteLocationsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Target.setRemoteLocations", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Sends protocol message to the target with given id.
 	 */
-	  fun sendMessageToTarget(input : SendMessageToTargetRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Target.sendMessageToTarget", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun sendMessageToTarget(input : SendMessageToTargetRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Target.sendMessageToTarget", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -52,8 +52,8 @@ package pl.wendigo.chrome.domain.target
 	/**
 	 * Activates (focuses) the target.
 	 */
-	  fun activateTarget(input : ActivateTargetRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Target.activateTarget", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun activateTarget(input : ActivateTargetRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Target.activateTarget", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -73,8 +73,8 @@ package pl.wendigo.chrome.domain.target
 	/**
 	 * Detaches from the target with given id.
 	 */
-	  fun detachFromTarget(input : DetachFromTargetRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Target.detachFromTarget", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun detachFromTarget(input : DetachFromTargetRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Target.detachFromTarget", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -143,7 +143,7 @@ package pl.wendigo.chrome.domain.target
 }
 
 /**
- * Represents request parameters that can be used with Target.setDiscoverTargets method call.
+ * Represents requestFrame parameters that can be used with Target.setDiscoverTargets method call.
  *
  * Controls whether to discover available targets and notify via <code>targetCreated/targetDestroyed</code> events.
  */
@@ -157,7 +157,7 @@ data class SetDiscoverTargetsRequest (
 
 
 /**
- * Represents request parameters that can be used with Target.setAutoAttach method call.
+ * Represents requestFrame parameters that can be used with Target.setAutoAttach method call.
  *
  * Controls whether to automatically attach to new targets which are considered to be related to this one. When turned on, attaches to all existing related targets as well. When turned off, automatically detaches from all currently attached targets.
  */
@@ -176,7 +176,7 @@ data class SetAutoAttachRequest (
 
 
 /**
- * Represents request parameters that can be used with Target.setAttachToFrames method call.
+ * Represents requestFrame parameters that can be used with Target.setAttachToFrames method call.
  *
  * 
  */
@@ -190,7 +190,7 @@ data class SetAttachToFramesRequest (
 
 
 /**
- * Represents request parameters that can be used with Target.setRemoteLocations method call.
+ * Represents requestFrame parameters that can be used with Target.setRemoteLocations method call.
  *
  * Enables target discovery for the specified locations, when <code>setDiscoverTargets</code> was set to <code>true</code>.
  */
@@ -204,7 +204,7 @@ data class SetRemoteLocationsRequest (
 
 
 /**
- * Represents request parameters that can be used with Target.sendMessageToTarget method call.
+ * Represents requestFrame parameters that can be used with Target.sendMessageToTarget method call.
  *
  * Sends protocol message to the target with given id.
  */
@@ -223,7 +223,7 @@ data class SendMessageToTargetRequest (
 
 
 /**
- * Represents request parameters that can be used with Target.getTargetInfo method call.
+ * Represents requestFrame parameters that can be used with Target.getTargetInfo method call.
  *
  * Returns information about a target.
  */
@@ -236,7 +236,7 @@ data class GetTargetInfoRequest (
 )
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Returns information about a target.
  */
@@ -249,7 +249,7 @@ data class GetTargetInfoResponse(
 )
 
 /**
- * Represents request parameters that can be used with Target.activateTarget method call.
+ * Represents requestFrame parameters that can be used with Target.activateTarget method call.
  *
  * Activates (focuses) the target.
  */
@@ -263,7 +263,7 @@ data class ActivateTargetRequest (
 
 
 /**
- * Represents request parameters that can be used with Target.closeTarget method call.
+ * Represents requestFrame parameters that can be used with Target.closeTarget method call.
  *
  * Closes the target. If the target is a page that gets closed too.
  */
@@ -276,7 +276,7 @@ data class CloseTargetRequest (
 )
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Closes the target. If the target is a page that gets closed too.
  */
@@ -289,7 +289,7 @@ data class CloseTargetResponse(
 )
 
 /**
- * Represents request parameters that can be used with Target.attachToTarget method call.
+ * Represents requestFrame parameters that can be used with Target.attachToTarget method call.
  *
  * Attaches to the target with given id.
  */
@@ -302,7 +302,7 @@ data class AttachToTargetRequest (
 )
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Attaches to the target with given id.
  */
@@ -315,7 +315,7 @@ data class AttachToTargetResponse(
 )
 
 /**
- * Represents request parameters that can be used with Target.detachFromTarget method call.
+ * Represents requestFrame parameters that can be used with Target.detachFromTarget method call.
  *
  * Detaches from the target with given id.
  */
@@ -330,7 +330,7 @@ data class DetachFromTargetRequest (
 
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than one.
  */
@@ -343,7 +343,7 @@ data class CreateBrowserContextResponse(
 )
 
 /**
- * Represents request parameters that can be used with Target.disposeBrowserContext method call.
+ * Represents requestFrame parameters that can be used with Target.disposeBrowserContext method call.
  *
  * Deletes a BrowserContext, will fail of any open page uses it.
  */
@@ -356,7 +356,7 @@ data class DisposeBrowserContextRequest (
 )
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Deletes a BrowserContext, will fail of any open page uses it.
  */
@@ -369,7 +369,7 @@ data class DisposeBrowserContextResponse(
 )
 
 /**
- * Represents request parameters that can be used with Target.createTarget method call.
+ * Represents requestFrame parameters that can be used with Target.createTarget method call.
  *
  * Creates a new page.
  */
@@ -397,7 +397,7 @@ data class CreateTargetRequest (
 )
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Creates a new page.
  */
@@ -411,7 +411,7 @@ data class CreateTargetResponse(
 
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Retrieves a list of available targets.
  */
@@ -425,7 +425,7 @@ data class GetTargetsResponse(
 
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Issued when a possible inspection target is created.
  */
@@ -438,7 +438,7 @@ data class TargetCreatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "targetCreated")
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Issued when a target is destroyed.
  */
@@ -451,7 +451,7 @@ data class TargetDestroyedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "targetDestroyed")
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Issued when attached to target because of auto-attach or <code>attachToTarget</code> command.
  */
@@ -469,7 +469,7 @@ data class AttachedToTargetEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "attachedToTarget")
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Issued when detached from target for any reason (including <code>detachFromTarget</code> command).
  */
@@ -482,7 +482,7 @@ data class DetachedFromTargetEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "detachedFromTarget")
 
 /**
- * Represents response from Target. method call.
+ * Represents responseFrame from Target. method call.
  *
  * Notifies about new protocol message from attached target.
  */

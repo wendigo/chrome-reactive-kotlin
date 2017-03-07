@@ -1,11 +1,6 @@
 package pl.wendigo.chrome
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.ReplaySubject
 import okhttp3.OkHttpClient
@@ -14,37 +9,24 @@ import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import org.slf4j.LoggerFactory
-import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
 
 internal class RemoteChromeConnection constructor(
-    private val host: String,
-    private val port: Int,
-    private val enableDebug: Boolean = false
+    private val debuggerUrl: String
 ) : WebSocketListener() {
-    private val events: ReplaySubject<ChromeProtocolEvent> = ReplaySubject.create(1024)
 
-    private val mapper: ObjectMapper = ObjectMapper().registerModule(KotlinModule())
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-
-    internal val responses = ConcurrentHashMap<Long, CompletableFuture<GenericResponse>>()
-
-    private val client: OkHttpClient = OkHttpClient.Builder()
-            .readTimeout(0, TimeUnit.MILLISECONDS)
-            .build()
-
+    private val messages: ReplaySubject<ResponseFrame> = ReplaySubject.create(128)
+    private val client: OkHttpClient = OkHttpClient.Builder().readTimeout(0, TimeUnit.MILLISECONDS).build()
     private val mappings: ConcurrentHashMap<String, Class<out ChromeProtocolEvent>> = ConcurrentHashMap()
-
     private val nextCommandId = AtomicLong(0)
     private var remoteConnection: WebSocket? = null
 
     @Throws(RemoteChromeException::class)
     internal fun connect(): RemoteChromeConnection {
         val wsRequest = Request.Builder()
-                .url(getDebuggerConnectionUri().blockingGet())
+                .url(debuggerUrl)
                 .build()
 
         remoteConnection = client.newWebSocket(wsRequest, this)
@@ -52,57 +34,22 @@ internal class RemoteChromeConnection constructor(
         return this
     }
 
-    private fun getDebuggerConnectionUri() : Single<String> {
-        return this
-                .listOpenPages()
-                .filter { it.type == "page" }
-                .firstOrError()
-                .onErrorResumeNext { this.createNewPage() }
-                .map(InspectorTab::webSocketDebuggerUrl)
-    }
-
     internal fun registerMappings(mapOf: Map<String, Class<out ChromeProtocolEvent>>) {
         mappings.putAll(mapOf)
     }
 
+    /**
+     * Closes connection to debugger
+     */
     internal fun close() {
-        events.onComplete()
-        client.connectionPool().evictAll()
-        client.dispatcher().executorService().shutdown()
+        messages.onComplete()
 
         try {
-            remoteConnection!!.cancel()
-            remoteConnection = null
+            client.connectionPool().evictAll()
+            client.dispatcher().executorService().shutdown()
+            remoteConnection!!.close(1000, "Goodbye!")
         } catch (e : Exception) {
             logger.error("Could not close websocket {}", e)
-        }
-    }
-
-    private fun createNewPage() : Single<InspectorTab> {
-        return Single.fromCallable {
-            Request.Builder().url("http://$host:$port/json/new").build()
-        }.map {
-            client.newCall(it).execute()
-        }.flatMap {
-            if (it.isSuccessful) {
-                Single.just(readJson(it.body().string(), InspectorTab::class.java))
-            } else {
-                Single.error(RemoteChromeException("Could not create new page"))
-            }
-        }
-    }
-
-    private fun listOpenPages() : Flowable<InspectorTab> {
-        return Flowable.fromCallable {
-            Request.Builder().url("http://$host:$port/json/list").build()
-        }.map {
-            client.newCall(it).execute()
-        }.flatMap {
-            if (it.isSuccessful) {
-                Flowable.fromArray(*readJson(it.body().string(), Array<InspectorTab>::class.java))
-            } else {
-                Flowable.error(RemoteChromeException("Could not query tabs"))
-            }
         }
     }
 
@@ -110,103 +57,57 @@ internal class RemoteChromeConnection constructor(
      * Sends request and captures response.
      */
     fun <T> runAndCaptureResponse(name: String, params: Any?, outClazz: Class<T>) : Flowable<T> {
-        val request = GenericRequest(
+        val request = RequestFrame(
                 id = nextCommandId.incrementAndGet(),
                 method = name,
                 params = params
         )
 
-        val serialized = mapper.writeValueAsString(request)
-        val response = Flowable.fromFuture(responses.getOrPut(request.id, { CompletableFuture() }))
-
-        if (enableDebug) {
-            logger.info("<< Sending {}", request.toLog())
+        try {
+            if (!remoteConnection!!.send(FrameMapper.serialize(request))) {
+                return Flowable.error(RemoteChromeException("Could not enqueue message"))
+            }
+        } catch (ex: Exception) {
+            return Flowable.error(RemoteChromeException("Could not enqueue message", ex))
         }
 
-        if (!remoteConnection!!.send(serialized)) {
-            return Flowable.error(RemoteChromeException("Could not enqueue message"))
-        }
-
-        return response.doOnSubscribe {
-            logger.info("!! Subscribed for response {}", request.toLog())
-        }.subscribeOn(Schedulers.io()).map {
-            mapper.treeToValue(it.result, outClazz)
-        }
+        return messages
+            .filter { it.id == request.id }
+            .take(1)
+            .flatMap { FrameMapper.deserializeResponse(it, outClazz) }
+            .subscribeOn(Schedulers.io())
+            .toFlowable(BackpressureStrategy.BUFFER)
     }
 
     /**
      * Captures events by given name and casts received messages to specified class.
      */
     fun <T> captureEvents(outClazz: Class<T>) : Flowable<T> where T : ChromeProtocolEvent {
-        return events
-                .doOnSubscribe {
-                    logger.info(">> Subscribed for {}", outClazz.canonicalName)
-                }
-                .doOnDispose {
-                    logger.info(">> Disposed subscription {}", outClazz.canonicalName)
-                }
-                .ofType(outClazz)
-                .doOnNext {
-                    logger.info(">> Got next event {}", it)
-                }
-                .toFlowable(BackpressureStrategy.LATEST)
+        return this.captureAllEvents().ofType(outClazz)
     }
 
     /**
-     * Captures all events as generated by debugger
+     * Captures all events as generated by remote debugger
      */
     fun captureAllEvents() : Flowable<ChromeProtocolEvent> {
-        return  events
-                .doOnSubscribe {
-                    logger.info(">> Subscribed for all events")
-                }
-                .doOnDispose {
-                    logger.info(">> Disposed all events subscription")
-                }
-                .doOnNext {
-                    logger.info(">> Got next event {}", it)
-                }
-                .toFlowable(BackpressureStrategy.LATEST)
+        return messages
+            .filter(ResponseFrame::isEvent)
+            .flatMap { frame -> FrameMapper.deserializeEvent(frame, mappings[frame.method] ?: ChromeProtocolEvent::class.java) }
+            .subscribeOn(Schedulers.io())
+            .toFlowable(BackpressureStrategy.LATEST)
     }
 
-    private fun <T> readJson(text: String, clazz: Class<T>): T {
-        return mapper.readValue(text, clazz)
-    }
 
     override fun onMessage(webSocket: WebSocket?, text: String?) {
-        val response = mapper.readValue(text, GenericResponse::class.java)
-
-        if (enableDebug) {
-            logger.info(">> Received {}", response.toLog())
-        }
-
-        if (response.method == null) {
-            responses.remove(response.id).let {
-                if (response.error != null) {
-                    it!!.completeExceptionally(RemoteChromeException(response.error.message))
-                } else {
-                    it!!.complete(response)
-                }
-            }
-        } else {
-            val clazz = mappings[response.method]
-
-            if (clazz == null) {
-                events.onError(RemoteChromeException("Got unrecognized response: ${response.method} not being an event"))
-            } else if (clazz == ChromeProtocolEvent::class.java) {
-                events.onNext(ChromeProtocolEvent.fromMethodName(response.method))
-            } else {
-                events.onNext(mapper.treeToValue(response.params, clazz))
-            }
-        }
+        messages.onNext(FrameMapper.deserialize(text!!, ResponseFrame::class.java))
     }
 
     override fun onClosed(webSocket: WebSocket?, code: Int, reason: String?) {
-        events.onComplete()
+        messages.onComplete()
     }
 
     override fun onFailure(webSocket: WebSocket?, t: Throwable?, response: Response?) {
-        logger.error(">> Got error from websocket: {}", t!!.message)
+        messages.onComplete()
     }
 
     companion object {

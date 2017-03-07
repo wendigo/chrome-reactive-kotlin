@@ -38,51 +38,51 @@ class RuntimeDomain internal constructor(private val connection : pl.wendigo.chr
 	/**
 	 * Releases remote object with given id.
 	 */
-	  fun releaseObject(input : ReleaseObjectRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Runtime.releaseObject", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun releaseObject(input : ReleaseObjectRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Runtime.releaseObject", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Releases all remote objects that belong to a given group.
 	 */
-	  fun releaseObjectGroup(input : ReleaseObjectGroupRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun releaseObjectGroup(input : ReleaseObjectGroupRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Tells inspected instance to run if it was waiting for debugger to attach.
 	 */
-	  fun runIfWaitingForDebugger() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun runIfWaitingForDebugger() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Enables reporting of execution contexts creation by means of <code>executionContextCreated</code> event. When the reporting gets enabled the event will be sent immediately for each existing execution context.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables reporting of execution contexts creation.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Discards collected exceptions and console API calls.
 	 */
-	  fun discardConsoleEntries() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun discardConsoleEntries() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun setCustomObjectFormatterEnabled(input : SetCustomObjectFormatterEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.GenericResponse::class.java)
+    fun setCustomObjectFormatterEnabled(input : SetCustomObjectFormatterEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -151,7 +151,7 @@ class RuntimeDomain internal constructor(private val connection : pl.wendigo.chr
 }
 
 /**
- * Represents request parameters that can be used with Runtime.evaluate method call.
+ * Represents requestFrame parameters that can be used with Runtime.evaluate method call.
  *
  * Evaluates expression on global object.
  */
@@ -204,7 +204,7 @@ data class EvaluateRequest (
 )
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Evaluates expression on global object.
  */
@@ -222,7 +222,7 @@ data class EvaluateResponse(
 )
 
 /**
- * Represents request parameters that can be used with Runtime.awaitPromise method call.
+ * Represents requestFrame parameters that can be used with Runtime.awaitPromise method call.
  *
  * Add handler to promise with given promise object id.
  */
@@ -245,7 +245,7 @@ data class AwaitPromiseRequest (
 )
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Add handler to promise with given promise object id.
  */
@@ -263,7 +263,7 @@ data class AwaitPromiseResponse(
 )
 
 /**
- * Represents request parameters that can be used with Runtime.callFunctionOn method call.
+ * Represents requestFrame parameters that can be used with Runtime.callFunctionOn method call.
  *
  * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
  */
@@ -311,7 +311,7 @@ data class CallFunctionOnRequest (
 )
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
  */
@@ -329,7 +329,7 @@ data class CallFunctionOnResponse(
 )
 
 /**
- * Represents request parameters that can be used with Runtime.getProperties method call.
+ * Represents requestFrame parameters that can be used with Runtime.getProperties method call.
  *
  * Returns properties of a given object. Object group of the result is inherited from the target object.
  */
@@ -357,7 +357,7 @@ data class GetPropertiesRequest (
 )
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Returns properties of a given object. Object group of the result is inherited from the target object.
  */
@@ -380,7 +380,7 @@ data class GetPropertiesResponse(
 )
 
 /**
- * Represents request parameters that can be used with Runtime.releaseObject method call.
+ * Represents requestFrame parameters that can be used with Runtime.releaseObject method call.
  *
  * Releases remote object with given id.
  */
@@ -394,7 +394,7 @@ data class ReleaseObjectRequest (
 
 
 /**
- * Represents request parameters that can be used with Runtime.releaseObjectGroup method call.
+ * Represents requestFrame parameters that can be used with Runtime.releaseObjectGroup method call.
  *
  * Releases all remote objects that belong to a given group.
  */
@@ -416,7 +416,7 @@ data class ReleaseObjectGroupRequest (
 
 
 /**
- * Represents request parameters that can be used with Runtime.setCustomObjectFormatterEnabled method call.
+ * Represents requestFrame parameters that can be used with Runtime.setCustomObjectFormatterEnabled method call.
  *
  * 
  */
@@ -430,7 +430,7 @@ data class SetCustomObjectFormatterEnabledRequest (
 
 
 /**
- * Represents request parameters that can be used with Runtime.compileScript method call.
+ * Represents requestFrame parameters that can be used with Runtime.compileScript method call.
  *
  * Compiles expression.
  */
@@ -458,7 +458,7 @@ data class CompileScriptRequest (
 )
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Compiles expression.
  */
@@ -476,7 +476,7 @@ data class CompileScriptResponse(
 )
 
 /**
- * Represents request parameters that can be used with Runtime.runScript method call.
+ * Represents requestFrame parameters that can be used with Runtime.runScript method call.
  *
  * Runs script with given id in a given context.
  */
@@ -524,7 +524,7 @@ data class RunScriptRequest (
 )
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Runs script with given id in a given context.
  */
@@ -543,7 +543,7 @@ data class RunScriptResponse(
 
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Issued when new execution context is created.
  */
@@ -556,7 +556,7 @@ data class ExecutionContextCreatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "executionContextCreated")
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Issued when execution context is destroyed.
  */
@@ -570,7 +570,7 @@ data class ExecutionContextDestroyedEvent(
 
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Issued when exception was thrown and unhandled.
  */
@@ -588,7 +588,7 @@ data class ExceptionThrownEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "exceptionThrown")
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Issued when unhandled exception was revoked.
  */
@@ -606,7 +606,7 @@ data class ExceptionRevokedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "exceptionRevoked")
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Issued when console API was called.
  */
@@ -639,7 +639,7 @@ data class ConsoleAPICalledEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "consoleAPICalled")
 
 /**
- * Represents response from Runtime. method call.
+ * Represents responseFrame from Runtime. method call.
  *
  * Issued when object should be inspected (for example, as a result of inspect() command line API call).
  */

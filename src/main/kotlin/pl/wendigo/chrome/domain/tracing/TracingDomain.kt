@@ -10,15 +10,15 @@ package pl.wendigo.chrome.domain.tracing
 	/**
 	 * Start trace events collection.
 	 */
-	  fun start(input : StartRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun start(input : StartRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Stop trace events collection.
 	 */
-	  fun end() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Tracing.end", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun end() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Tracing.end", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -38,8 +38,8 @@ package pl.wendigo.chrome.domain.tracing
 	/**
 	 * Record a clock sync marker in the trace.
 	 */
-	  fun recordClockSyncMarker(input : RecordClockSyncMarkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun recordClockSyncMarker(input : RecordClockSyncMarkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   
@@ -66,7 +66,7 @@ package pl.wendigo.chrome.domain.tracing
 }
 
 /**
- * Represents request parameters that can be used with Tracing.start method call.
+ * Represents requestFrame parameters that can be used with Tracing.start method call.
  *
  * Start trace events collection.
  */
@@ -103,7 +103,7 @@ data class StartRequest (
 
 
 /**
- * Represents response from Tracing. method call.
+ * Represents responseFrame from Tracing. method call.
  *
  * Gets supported tracing categories.
  */
@@ -117,7 +117,7 @@ data class GetCategoriesResponse(
 
 
 /**
- * Represents response from Tracing. method call.
+ * Represents responseFrame from Tracing. method call.
  *
  * Request a global memory dump.
  */
@@ -135,7 +135,7 @@ data class RequestMemoryDumpResponse(
 )
 
 /**
- * Represents request parameters that can be used with Tracing.recordClockSyncMarker method call.
+ * Represents requestFrame parameters that can be used with Tracing.recordClockSyncMarker method call.
  *
  * Record a clock sync marker in the trace.
  */
@@ -150,7 +150,7 @@ data class RecordClockSyncMarkerRequest (
 
 
 /**
- * Represents response from Tracing. method call.
+ * Represents responseFrame from Tracing. method call.
  *
  * Contains an bucket of collected trace events. When tracing is stopped collected events will be send as a sequence of dataCollected events followed by tracingComplete event.
  */
@@ -163,7 +163,7 @@ data class DataCollectedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Tracing", protocolEventName = "dataCollected")
 
 /**
- * Represents response from Tracing. method call.
+ * Represents responseFrame from Tracing. method call.
  *
  * Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via dataCollected events.
  */
@@ -176,7 +176,7 @@ data class TracingCompleteEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Tracing", protocolEventName = "tracingComplete")
 
 /**
- * Represents response from Tracing. method call.
+ * Represents responseFrame from Tracing. method call.
  *
  * 
  */

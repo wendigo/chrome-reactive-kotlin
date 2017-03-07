@@ -10,15 +10,15 @@ package pl.wendigo.chrome.domain.layertree
 	/**
 	 * Enables compositing tree inspection.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables compositing tree inspection.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -45,8 +45,8 @@ package pl.wendigo.chrome.domain.layertree
 	/**
 	 * Releases layer snapshot captured by the back-end.
 	 */
-	  fun releaseSnapshot(input : ReleaseSnapshotRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun releaseSnapshot(input : ReleaseSnapshotRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -91,7 +91,7 @@ package pl.wendigo.chrome.domain.layertree
 
 
 /**
- * Represents request parameters that can be used with LayerTree.compositingReasons method call.
+ * Represents requestFrame parameters that can be used with LayerTree.compositingReasons method call.
  *
  * Provides the reasons why the given layer was composited.
  */
@@ -104,7 +104,7 @@ data class CompositingReasonsRequest (
 )
 
 /**
- * Represents response from LayerTree. method call.
+ * Represents responseFrame from LayerTree. method call.
  *
  * Provides the reasons why the given layer was composited.
  */
@@ -117,7 +117,7 @@ data class CompositingReasonsResponse(
 )
 
 /**
- * Represents request parameters that can be used with LayerTree.makeSnapshot method call.
+ * Represents requestFrame parameters that can be used with LayerTree.makeSnapshot method call.
  *
  * Returns the layer snapshot identifier.
  */
@@ -130,7 +130,7 @@ data class MakeSnapshotRequest (
 )
 
 /**
- * Represents response from LayerTree. method call.
+ * Represents responseFrame from LayerTree. method call.
  *
  * Returns the layer snapshot identifier.
  */
@@ -143,7 +143,7 @@ data class MakeSnapshotResponse(
 )
 
 /**
- * Represents request parameters that can be used with LayerTree.loadSnapshot method call.
+ * Represents requestFrame parameters that can be used with LayerTree.loadSnapshot method call.
  *
  * Returns the snapshot identifier.
  */
@@ -156,7 +156,7 @@ data class LoadSnapshotRequest (
 )
 
 /**
- * Represents response from LayerTree. method call.
+ * Represents responseFrame from LayerTree. method call.
  *
  * Returns the snapshot identifier.
  */
@@ -169,7 +169,7 @@ data class LoadSnapshotResponse(
 )
 
 /**
- * Represents request parameters that can be used with LayerTree.releaseSnapshot method call.
+ * Represents requestFrame parameters that can be used with LayerTree.releaseSnapshot method call.
  *
  * Releases layer snapshot captured by the back-end.
  */
@@ -183,7 +183,7 @@ data class ReleaseSnapshotRequest (
 
 
 /**
- * Represents request parameters that can be used with LayerTree.profileSnapshot method call.
+ * Represents requestFrame parameters that can be used with LayerTree.profileSnapshot method call.
  *
  * 
  */
@@ -211,7 +211,7 @@ data class ProfileSnapshotRequest (
 )
 
 /**
- * Represents response from LayerTree. method call.
+ * Represents responseFrame from LayerTree. method call.
  *
  * 
  */
@@ -224,7 +224,7 @@ data class ProfileSnapshotResponse(
 )
 
 /**
- * Represents request parameters that can be used with LayerTree.replaySnapshot method call.
+ * Represents requestFrame parameters that can be used with LayerTree.replaySnapshot method call.
  *
  * Replays the layer snapshot and returns the resulting bitmap.
  */
@@ -252,7 +252,7 @@ data class ReplaySnapshotRequest (
 )
 
 /**
- * Represents response from LayerTree. method call.
+ * Represents responseFrame from LayerTree. method call.
  *
  * Replays the layer snapshot and returns the resulting bitmap.
  */
@@ -265,7 +265,7 @@ data class ReplaySnapshotResponse(
 )
 
 /**
- * Represents request parameters that can be used with LayerTree.snapshotCommandLog method call.
+ * Represents requestFrame parameters that can be used with LayerTree.snapshotCommandLog method call.
  *
  * Replays the layer snapshot and returns canvas log.
  */
@@ -278,7 +278,7 @@ data class SnapshotCommandLogRequest (
 )
 
 /**
- * Represents response from LayerTree. method call.
+ * Represents responseFrame from LayerTree. method call.
  *
  * Replays the layer snapshot and returns canvas log.
  */
@@ -292,7 +292,7 @@ data class SnapshotCommandLogResponse(
 
 
 /**
- * Represents response from LayerTree. method call.
+ * Represents responseFrame from LayerTree. method call.
  *
  * 
  */
@@ -305,7 +305,7 @@ data class LayerTreeDidChangeEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "LayerTree", protocolEventName = "layerTreeDidChange")
 
 /**
- * Represents response from LayerTree. method call.
+ * Represents responseFrame from LayerTree. method call.
  *
  * 
  */

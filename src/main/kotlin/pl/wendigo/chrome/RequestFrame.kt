@@ -1,6 +1,6 @@
 package pl.wendigo.chrome
 
-data class GenericRequest(
+data class RequestFrame(
         val id: Long,
         val method: String,
         val params: Any?

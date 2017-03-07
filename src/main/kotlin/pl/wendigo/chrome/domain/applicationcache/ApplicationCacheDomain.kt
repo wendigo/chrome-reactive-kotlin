@@ -17,8 +17,8 @@ package pl.wendigo.chrome.domain.applicationcache
 	/**
 	 * Enables application cache domain notifications.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("ApplicationCache.enable", null, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("ApplicationCache.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -53,7 +53,7 @@ package pl.wendigo.chrome.domain.applicationcache
 
 
 /**
- * Represents response from ApplicationCache. method call.
+ * Represents responseFrame from ApplicationCache. method call.
  *
  * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
  */
@@ -68,7 +68,7 @@ data class GetFramesWithManifestsResponse(
 
 
 /**
- * Represents request parameters that can be used with ApplicationCache.getManifestForFrame method call.
+ * Represents requestFrame parameters that can be used with ApplicationCache.getManifestForFrame method call.
  *
  * Returns manifest URL for document in the given frame.
  */
@@ -81,7 +81,7 @@ data class GetManifestForFrameRequest (
 )
 
 /**
- * Represents response from ApplicationCache. method call.
+ * Represents responseFrame from ApplicationCache. method call.
  *
  * Returns manifest URL for document in the given frame.
  */
@@ -94,7 +94,7 @@ data class GetManifestForFrameResponse(
 )
 
 /**
- * Represents request parameters that can be used with ApplicationCache.getApplicationCacheForFrame method call.
+ * Represents requestFrame parameters that can be used with ApplicationCache.getApplicationCacheForFrame method call.
  *
  * Returns relevant application cache data for the document in given frame.
  */
@@ -107,7 +107,7 @@ data class GetApplicationCacheForFrameRequest (
 )
 
 /**
- * Represents response from ApplicationCache. method call.
+ * Represents responseFrame from ApplicationCache. method call.
  *
  * Returns relevant application cache data for the document in given frame.
  */
@@ -121,7 +121,7 @@ data class GetApplicationCacheForFrameResponse(
 
 
 /**
- * Represents response from ApplicationCache. method call.
+ * Represents responseFrame from ApplicationCache. method call.
  *
  * 
  */
@@ -144,7 +144,7 @@ data class ApplicationCacheStatusUpdatedEvent(
 ) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ApplicationCache", protocolEventName = "applicationCacheStatusUpdated")
 
 /**
- * Represents response from ApplicationCache. method call.
+ * Represents responseFrame from ApplicationCache. method call.
  *
  * 
  */

@@ -10,42 +10,42 @@ package pl.wendigo.chrome.domain.rendering
 	/**
 	 * Requests that backend shows paint rectangles
 	 */
-	  fun setShowPaintRects(input : SetShowPaintRectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Rendering.setShowPaintRects", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setShowPaintRects(input : SetShowPaintRectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Rendering.setShowPaintRects", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Requests that backend shows debug borders on layers
 	 */
-	  fun setShowDebugBorders(input : SetShowDebugBordersRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Rendering.setShowDebugBorders", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setShowDebugBorders(input : SetShowDebugBordersRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Rendering.setShowDebugBorders", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Requests that backend shows the FPS counter
 	 */
-	  fun setShowFPSCounter(input : SetShowFPSCounterRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Rendering.setShowFPSCounter", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setShowFPSCounter(input : SetShowFPSCounterRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Rendering.setShowFPSCounter", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Requests that backend shows scroll bottleneck rects
 	 */
-	  fun setShowScrollBottleneckRects(input : SetShowScrollBottleneckRectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Rendering.setShowScrollBottleneckRects", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setShowScrollBottleneckRects(input : SetShowScrollBottleneckRectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Rendering.setShowScrollBottleneckRects", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Paints viewport size upon main frame resize.
 	 */
-	  fun setShowViewportSizeOnResize(input : SetShowViewportSizeOnResizeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.GenericResponse> {
-        return connection.runAndCaptureResponse("Rendering.setShowViewportSizeOnResize", input, pl.wendigo.chrome.GenericResponse::class.java)
+	  fun setShowViewportSizeOnResize(input : SetShowViewportSizeOnResizeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Rendering.setShowViewportSizeOnResize", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   }
 
 /**
- * Represents request parameters that can be used with Rendering.setShowPaintRects method call.
+ * Represents requestFrame parameters that can be used with Rendering.setShowPaintRects method call.
  *
  * Requests that backend shows paint rectangles
  */
@@ -59,7 +59,7 @@ data class SetShowPaintRectsRequest (
 
 
 /**
- * Represents request parameters that can be used with Rendering.setShowDebugBorders method call.
+ * Represents requestFrame parameters that can be used with Rendering.setShowDebugBorders method call.
  *
  * Requests that backend shows debug borders on layers
  */
@@ -73,7 +73,7 @@ data class SetShowDebugBordersRequest (
 
 
 /**
- * Represents request parameters that can be used with Rendering.setShowFPSCounter method call.
+ * Represents requestFrame parameters that can be used with Rendering.setShowFPSCounter method call.
  *
  * Requests that backend shows the FPS counter
  */
@@ -87,7 +87,7 @@ data class SetShowFPSCounterRequest (
 
 
 /**
- * Represents request parameters that can be used with Rendering.setShowScrollBottleneckRects method call.
+ * Represents requestFrame parameters that can be used with Rendering.setShowScrollBottleneckRects method call.
  *
  * Requests that backend shows scroll bottleneck rects
  */
@@ -101,7 +101,7 @@ data class SetShowScrollBottleneckRectsRequest (
 
 
 /**
- * Represents request parameters that can be used with Rendering.setShowViewportSizeOnResize method call.
+ * Represents requestFrame parameters that can be used with Rendering.setShowViewportSizeOnResize method call.
  *
  * Paints viewport size upon main frame resize.
  */
