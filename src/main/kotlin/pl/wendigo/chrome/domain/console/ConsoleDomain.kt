@@ -55,5 +55,5 @@ data class MessageAddedEvent(
    */
   val message : ConsoleMessage
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Console", protocolEventName = "messageAdded")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Console", name = "messageAdded")
 

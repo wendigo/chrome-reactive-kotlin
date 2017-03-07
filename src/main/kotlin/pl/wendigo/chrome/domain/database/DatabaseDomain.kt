@@ -127,5 +127,5 @@ data class AddDatabaseEvent(
    */
   val database : Database
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Database", protocolEventName = "addDatabase")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Database", name = "addDatabase")
 

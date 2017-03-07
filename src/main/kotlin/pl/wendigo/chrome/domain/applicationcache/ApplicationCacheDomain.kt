@@ -141,7 +141,7 @@ data class ApplicationCacheStatusUpdatedEvent(
    */
   val status : Int
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ApplicationCache", protocolEventName = "applicationCacheStatusUpdated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "ApplicationCache", name = "applicationCacheStatusUpdated")
 
 /**
  * Represents responseFrame from ApplicationCache. method call.
@@ -154,5 +154,5 @@ data class NetworkStateUpdatedEvent(
    */
   val isNowOnline : Boolean
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ApplicationCache", protocolEventName = "networkStateUpdated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "ApplicationCache", name = "networkStateUpdated")
 

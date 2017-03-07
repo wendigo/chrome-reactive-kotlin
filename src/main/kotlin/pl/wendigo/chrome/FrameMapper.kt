@@ -40,10 +40,10 @@ internal class FrameMapper {
             return mapper.readValue(text, clazz)
         }
 
-        internal fun <T> deserializeEvent(responseFrame: ResponseFrame, outClass: Class<T>) : Observable<T> where T : ChromeProtocolEvent {
+        internal fun <T> deserializeEvent(responseFrame: ResponseFrame, outClass: Class<T>) : Observable<T> where T : DebuggerEvent {
             try {
-                if (outClass == ChromeProtocolEvent::class.java) {
-                    return Observable.just(ChromeProtocolEvent.fromMethodName(responseFrame.method!!)) as Observable<T>
+                if (outClass == DebuggerEvent::class.java) {
+                    return Observable.just(DebuggerEvent.fromMethodName(responseFrame.method!!)) as Observable<T>
                 } else {
                     return Observable.just(mapper.treeToValue(responseFrame.params, outClass))
                 }

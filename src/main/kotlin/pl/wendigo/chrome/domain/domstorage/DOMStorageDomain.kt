@@ -157,7 +157,7 @@ data class DomStorageItemsClearedEvent(
    */
   val storageId : StorageId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOMStorage", protocolEventName = "domStorageItemsCleared")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOMStorage", name = "domStorageItemsCleared")
 
 /**
  * Represents responseFrame from DOMStorage. method call.
@@ -175,7 +175,7 @@ data class DomStorageItemRemovedEvent(
    */
   val key : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOMStorage", protocolEventName = "domStorageItemRemoved")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOMStorage", name = "domStorageItemRemoved")
 
 /**
  * Represents responseFrame from DOMStorage. method call.
@@ -198,7 +198,7 @@ data class DomStorageItemAddedEvent(
    */
   val newValue : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOMStorage", protocolEventName = "domStorageItemAdded")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOMStorage", name = "domStorageItemAdded")
 
 /**
  * Represents responseFrame from DOMStorage. method call.
@@ -226,5 +226,5 @@ data class DomStorageItemUpdatedEvent(
    */
   val newValue : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOMStorage", protocolEventName = "domStorageItemUpdated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOMStorage", name = "domStorageItemUpdated")
 

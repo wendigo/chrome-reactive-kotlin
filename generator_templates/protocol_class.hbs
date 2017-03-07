@@ -29,7 +29,7 @@ class RemoteChrome internal constructor(private val api: RemoteChromeConnection)
     /**
      * Returns flowable capturing all events.
      */
-    fun onProtocolEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+    fun onProtocolEvents() : io.reactivex.Flowable<DebuggerEvent> {
       return api.captureAllEvents()
     }
 
@@ -37,9 +37,9 @@ class RemoteChrome internal constructor(private val api: RemoteChromeConnection)
     /**
      * Returns flowable capturing {{Name}} domains events.
      */
-     fun on{{Name}}Events() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun on{{Name}}Events() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "{{Name}}"
+         it.protocolDomain() == "{{Name}}"
        }
      }
     {{/each}}

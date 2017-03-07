@@ -211,8 +211,8 @@ class DebuggerDomain internal constructor(private val connection : pl.wendigo.ch
   /**
    * Fired when the virtual machine resumed execution.
    */
-   fun onResumed() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
+   fun onResumed() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 }
 
@@ -771,7 +771,7 @@ data class ScriptParsedEvent(
    */
   @pl.wendigo.chrome.ProtocolExperimental val hasSourceURL : Boolean? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "scriptParsed")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Debugger", name = "scriptParsed")
 
 /**
  * Represents responseFrame from Debugger. method call.
@@ -834,7 +834,7 @@ data class ScriptFailedToParseEvent(
    */
   @pl.wendigo.chrome.ProtocolExperimental val hasSourceURL : Boolean? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "scriptFailedToParse")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Debugger", name = "scriptFailedToParse")
 
 /**
  * Represents responseFrame from Debugger. method call.
@@ -852,7 +852,7 @@ data class BreakpointResolvedEvent(
    */
   val location : Location
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "breakpointResolved")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Debugger", name = "breakpointResolved")
 
 /**
  * Represents responseFrame from Debugger. method call.
@@ -885,6 +885,6 @@ data class PausedEvent(
    */
   val asyncStackTrace : pl.wendigo.chrome.domain.runtime.StackTrace? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Debugger", protocolEventName = "paused")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Debugger", name = "paused")
 
 

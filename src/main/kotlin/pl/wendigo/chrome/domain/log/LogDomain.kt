@@ -85,5 +85,5 @@ data class EntryAddedEvent(
    */
   val entry : LogEntry
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Log", protocolEventName = "entryAdded")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Log", name = "entryAdded")
 

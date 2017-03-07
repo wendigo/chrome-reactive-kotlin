@@ -95,8 +95,8 @@ package pl.wendigo.chrome.domain.heapprofiler
   /**
    * 
    */
-   fun onResetProfiles() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
+   fun onResetProfiles() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
@@ -280,7 +280,7 @@ data class AddHeapSnapshotChunkEvent(
    */
   val chunk : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "HeapProfiler", protocolEventName = "addHeapSnapshotChunk")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "HeapProfiler", name = "addHeapSnapshotChunk")
 
 
 /**
@@ -304,7 +304,7 @@ data class ReportHeapSnapshotProgressEvent(
    */
   val finished : Boolean? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "HeapProfiler", protocolEventName = "reportHeapSnapshotProgress")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "HeapProfiler", name = "reportHeapSnapshotProgress")
 
 /**
  * Represents responseFrame from HeapProfiler. method call.
@@ -322,7 +322,7 @@ data class LastSeenObjectIdEvent(
    */
   val timestamp : Double
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "HeapProfiler", protocolEventName = "lastSeenObjectId")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "HeapProfiler", name = "lastSeenObjectId")
 
 /**
  * Represents responseFrame from HeapProfiler. method call.
@@ -335,5 +335,5 @@ data class HeapStatsUpdateEvent(
    */
   val statsUpdate : Array<Int>
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "HeapProfiler", protocolEventName = "heapStatsUpdate")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "HeapProfiler", name = "heapStatsUpdate")
 

@@ -117,8 +117,8 @@ class RuntimeDomain internal constructor(private val connection : pl.wendigo.chr
   /**
    * Issued when all executionContexts were cleared in browser
    */
-   fun onExecutionContextsCleared() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
+   fun onExecutionContextsCleared() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
@@ -553,7 +553,7 @@ data class ExecutionContextCreatedEvent(
    */
   val context : ExecutionContextDescription
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "executionContextCreated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Runtime", name = "executionContextCreated")
 
 /**
  * Represents responseFrame from Runtime. method call.
@@ -566,7 +566,7 @@ data class ExecutionContextDestroyedEvent(
    */
   val executionContextId : ExecutionContextId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "executionContextDestroyed")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Runtime", name = "executionContextDestroyed")
 
 
 /**
@@ -585,7 +585,7 @@ data class ExceptionThrownEvent(
    */
   val exceptionDetails : ExceptionDetails
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "exceptionThrown")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Runtime", name = "exceptionThrown")
 
 /**
  * Represents responseFrame from Runtime. method call.
@@ -603,7 +603,7 @@ data class ExceptionRevokedEvent(
    */
   val exceptionId : Int
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "exceptionRevoked")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Runtime", name = "exceptionRevoked")
 
 /**
  * Represents responseFrame from Runtime. method call.
@@ -636,7 +636,7 @@ data class ConsoleAPICalledEvent(
    */
   val stackTrace : StackTrace? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "consoleAPICalled")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Runtime", name = "consoleAPICalled")
 
 /**
  * Represents responseFrame from Runtime. method call.
@@ -654,5 +654,5 @@ data class InspectRequestedEvent(
    */
   val hints : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Runtime", protocolEventName = "inspectRequested")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Runtime", name = "inspectRequested")
 

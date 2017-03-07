@@ -302,7 +302,7 @@ data class LayerTreeDidChangeEvent(
    */
   val layers : Array<Layer>? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "LayerTree", protocolEventName = "layerTreeDidChange")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "LayerTree", name = "layerTreeDidChange")
 
 /**
  * Represents responseFrame from LayerTree. method call.
@@ -320,5 +320,5 @@ data class LayerPaintedEvent(
    */
   val clip : pl.wendigo.chrome.domain.dom.Rect
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "LayerTree", protocolEventName = "layerPainted")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "LayerTree", name = "layerPainted")
 

@@ -10,109 +10,109 @@ class RemoteChrome internal constructor(private val api: RemoteChromeConnection)
      */
     init {
       api.registerMappings(mapOf(
-      "DOMStorage.domStorageItemsCleared" to pl.wendigo.chrome.domain.domstorage.DomStorageItemsClearedEvent::class.java,
       "Target.targetCreated" to pl.wendigo.chrome.domain.target.TargetCreatedEvent::class.java,
-      "Tracing.dataCollected" to pl.wendigo.chrome.domain.tracing.DataCollectedEvent::class.java,
-      "Page.loadEventFired" to pl.wendigo.chrome.domain.page.LoadEventFiredEvent::class.java,
-      "CSS.styleSheetRemoved" to pl.wendigo.chrome.domain.css.StyleSheetRemovedEvent::class.java,
-      "Runtime.executionContextCreated" to pl.wendigo.chrome.domain.runtime.ExecutionContextCreatedEvent::class.java,
-      "Runtime.exceptionRevoked" to pl.wendigo.chrome.domain.runtime.ExceptionRevokedEvent::class.java,
-      "DOM.distributedNodesUpdated" to pl.wendigo.chrome.domain.dom.DistributedNodesUpdatedEvent::class.java,
-      "DOM.nodeHighlightRequested" to pl.wendigo.chrome.domain.dom.NodeHighlightRequestedEvent::class.java,
-      "Target.targetDestroyed" to pl.wendigo.chrome.domain.target.TargetDestroyedEvent::class.java,
-      "Page.interstitialShown" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
-      "Emulation.virtualTimeBudgetExpired" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
-      "Network.dataReceived" to pl.wendigo.chrome.domain.network.DataReceivedEvent::class.java,
-      "Network.webSocketHandshakeResponseReceived" to pl.wendigo.chrome.domain.network.WebSocketHandshakeResponseReceivedEvent::class.java,
-      "Network.webSocketFrameError" to pl.wendigo.chrome.domain.network.WebSocketFrameErrorEvent::class.java,
-      "Tracing.tracingComplete" to pl.wendigo.chrome.domain.tracing.TracingCompleteEvent::class.java,
-      "Runtime.exceptionThrown" to pl.wendigo.chrome.domain.runtime.ExceptionThrownEvent::class.java,
-      "DOM.childNodeRemoved" to pl.wendigo.chrome.domain.dom.ChildNodeRemovedEvent::class.java,
-      "CSS.styleSheetChanged" to pl.wendigo.chrome.domain.css.StyleSheetChangedEvent::class.java,
-      "Animation.animationStarted" to pl.wendigo.chrome.domain.animation.AnimationStartedEvent::class.java,
-      "Page.frameClearedScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameClearedScheduledNavigationEvent::class.java,
-      "Network.loadingFinished" to pl.wendigo.chrome.domain.network.LoadingFinishedEvent::class.java,
-      "Network.webSocketCreated" to pl.wendigo.chrome.domain.network.WebSocketCreatedEvent::class.java,
-      "ApplicationCache.networkStateUpdated" to pl.wendigo.chrome.domain.applicationcache.NetworkStateUpdatedEvent::class.java,
-      "DOM.inlineStyleInvalidated" to pl.wendigo.chrome.domain.dom.InlineStyleInvalidatedEvent::class.java,
-      "Runtime.executionContextDestroyed" to pl.wendigo.chrome.domain.runtime.ExecutionContextDestroyedEvent::class.java,
-      "HeapProfiler.lastSeenObjectId" to pl.wendigo.chrome.domain.heapprofiler.LastSeenObjectIdEvent::class.java,
-      "Animation.animationCanceled" to pl.wendigo.chrome.domain.animation.AnimationCanceledEvent::class.java,
+      "Page.interstitialShown" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "DOMStorage.domStorageItemRemoved" to pl.wendigo.chrome.domain.domstorage.DomStorageItemRemovedEvent::class.java,
+      "DOM.pseudoElementRemoved" to pl.wendigo.chrome.domain.dom.PseudoElementRemovedEvent::class.java,
+      "ServiceWorker.workerErrorReported" to pl.wendigo.chrome.domain.serviceworker.WorkerErrorReportedEvent::class.java,
+      "Debugger.breakpointResolved" to pl.wendigo.chrome.domain.debugger.BreakpointResolvedEvent::class.java,
+      "Debugger.scriptParsed" to pl.wendigo.chrome.domain.debugger.ScriptParsedEvent::class.java,
+      "Debugger.scriptFailedToParse" to pl.wendigo.chrome.domain.debugger.ScriptFailedToParseEvent::class.java,
       "Profiler.consoleProfileFinished" to pl.wendigo.chrome.domain.profiler.ConsoleProfileFinishedEvent::class.java,
-      "Inspector.detached" to pl.wendigo.chrome.domain.inspector.DetachedEvent::class.java,
-      "Page.frameNavigated" to pl.wendigo.chrome.domain.page.FrameNavigatedEvent::class.java,
-      "Page.interstitialHidden" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
+      "Page.screencastVisibilityChanged" to pl.wendigo.chrome.domain.page.ScreencastVisibilityChangedEvent::class.java,
+      "CSS.mediaQueryResultChanged" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Target.targetDestroyed" to pl.wendigo.chrome.domain.target.TargetDestroyedEvent::class.java,
+      "DOM.childNodeCountUpdated" to pl.wendigo.chrome.domain.dom.ChildNodeCountUpdatedEvent::class.java,
+      "DOM.childNodeRemoved" to pl.wendigo.chrome.domain.dom.ChildNodeRemovedEvent::class.java,
+      "CSS.fontsUpdated" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "ServiceWorker.workerRegistrationUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerRegistrationUpdatedEvent::class.java,
+      "Tethering.accepted" to pl.wendigo.chrome.domain.tethering.AcceptedEvent::class.java,
+      "Page.screencastFrame" to pl.wendigo.chrome.domain.page.ScreencastFrameEvent::class.java,
+      "Network.webSocketFrameSent" to pl.wendigo.chrome.domain.network.WebSocketFrameSentEvent::class.java,
+      "DOM.documentUpdated" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "DOM.pseudoElementAdded" to pl.wendigo.chrome.domain.dom.PseudoElementAddedEvent::class.java,
+      "DOM.nodeHighlightRequested" to pl.wendigo.chrome.domain.dom.NodeHighlightRequestedEvent::class.java,
+      "CSS.styleSheetRemoved" to pl.wendigo.chrome.domain.css.StyleSheetRemovedEvent::class.java,
+      "Target.detachedFromTarget" to pl.wendigo.chrome.domain.target.DetachedFromTargetEvent::class.java,
+      "Animation.animationCreated" to pl.wendigo.chrome.domain.animation.AnimationCreatedEvent::class.java,
+      "Page.frameAttached" to pl.wendigo.chrome.domain.page.FrameAttachedEvent::class.java,
+      "Page.frameDetached" to pl.wendigo.chrome.domain.page.FrameDetachedEvent::class.java,
+      "DOMStorage.domStorageItemAdded" to pl.wendigo.chrome.domain.domstorage.DomStorageItemAddedEvent::class.java,
+      "Debugger.paused" to pl.wendigo.chrome.domain.debugger.PausedEvent::class.java,
       "Network.webSocketClosed" to pl.wendigo.chrome.domain.network.WebSocketClosedEvent::class.java,
       "Database.addDatabase" to pl.wendigo.chrome.domain.database.AddDatabaseEvent::class.java,
-      "DOM.childNodeInserted" to pl.wendigo.chrome.domain.dom.ChildNodeInsertedEvent::class.java,
+      "LayerTree.layerPainted" to pl.wendigo.chrome.domain.layertree.LayerPaintedEvent::class.java,
+      "Runtime.exceptionThrown" to pl.wendigo.chrome.domain.runtime.ExceptionThrownEvent::class.java,
+      "Debugger.resumed" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Inspector.detached" to pl.wendigo.chrome.domain.inspector.DetachedEvent::class.java,
+      "Network.webSocketWillSendHandshakeRequest" to pl.wendigo.chrome.domain.network.WebSocketWillSendHandshakeRequestEvent::class.java,
+      "Network.webSocketCreated" to pl.wendigo.chrome.domain.network.WebSocketCreatedEvent::class.java,
+      "DOM.shadowRootPushed" to pl.wendigo.chrome.domain.dom.ShadowRootPushedEvent::class.java,
       "Runtime.inspectRequested" to pl.wendigo.chrome.domain.runtime.InspectRequestedEvent::class.java,
-      "HeapProfiler.resetProfiles" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
       "Page.frameScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameScheduledNavigationEvent::class.java,
-      "Page.screencastVisibilityChanged" to pl.wendigo.chrome.domain.page.ScreencastVisibilityChangedEvent::class.java,
-      "Page.navigationRequested" to pl.wendigo.chrome.domain.page.NavigationRequestedEvent::class.java,
+      "DOM.setChildNodes" to pl.wendigo.chrome.domain.dom.SetChildNodesEvent::class.java,
+      "DOM.childNodeInserted" to pl.wendigo.chrome.domain.dom.ChildNodeInsertedEvent::class.java,
+      "DOM.attributeModified" to pl.wendigo.chrome.domain.dom.AttributeModifiedEvent::class.java,
+      "Log.entryAdded" to pl.wendigo.chrome.domain.log.EntryAddedEvent::class.java,
+      "Page.frameClearedScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameClearedScheduledNavigationEvent::class.java,
+      "Network.requestServedFromCache" to pl.wendigo.chrome.domain.network.RequestServedFromCacheEvent::class.java,
       "DOMStorage.domStorageItemUpdated" to pl.wendigo.chrome.domain.domstorage.DomStorageItemUpdatedEvent::class.java,
-      "DOM.documentUpdated" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
-      "DOM.shadowRootPopped" to pl.wendigo.chrome.domain.dom.ShadowRootPoppedEvent::class.java,
-      "Debugger.breakpointResolved" to pl.wendigo.chrome.domain.debugger.BreakpointResolvedEvent::class.java,
-      "Debugger.resumed" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
-      "Page.frameDetached" to pl.wendigo.chrome.domain.page.FrameDetachedEvent::class.java,
-      "Page.frameResized" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
-      "Page.javascriptDialogOpening" to pl.wendigo.chrome.domain.page.JavascriptDialogOpeningEvent::class.java,
-      "Network.responseReceived" to pl.wendigo.chrome.domain.network.ResponseReceivedEvent::class.java,
-      "Network.webSocketFrameSent" to pl.wendigo.chrome.domain.network.WebSocketFrameSentEvent::class.java,
-      "Debugger.scriptParsed" to pl.wendigo.chrome.domain.debugger.ScriptParsedEvent::class.java,
+      "Page.navigationRequested" to pl.wendigo.chrome.domain.page.NavigationRequestedEvent::class.java,
+      "Security.securityStateChanged" to pl.wendigo.chrome.domain.security.SecurityStateChangedEvent::class.java,
       "Network.requestWillBeSent" to pl.wendigo.chrome.domain.network.RequestWillBeSentEvent::class.java,
+      "Network.loadingFailed" to pl.wendigo.chrome.domain.network.LoadingFailedEvent::class.java,
+      "CSS.styleSheetChanged" to pl.wendigo.chrome.domain.css.StyleSheetChangedEvent::class.java,
+      "Page.frameNavigated" to pl.wendigo.chrome.domain.page.FrameNavigatedEvent::class.java,
+      "Page.frameResized" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Page.javascriptDialogClosed" to pl.wendigo.chrome.domain.page.JavascriptDialogClosedEvent::class.java,
+      "Animation.animationCanceled" to pl.wendigo.chrome.domain.animation.AnimationCanceledEvent::class.java,
+      "Runtime.exceptionRevoked" to pl.wendigo.chrome.domain.runtime.ExceptionRevokedEvent::class.java,
+      "HeapProfiler.addHeapSnapshotChunk" to pl.wendigo.chrome.domain.heapprofiler.AddHeapSnapshotChunkEvent::class.java,
+      "DOM.attributeRemoved" to pl.wendigo.chrome.domain.dom.AttributeRemovedEvent::class.java,
+      "Tracing.dataCollected" to pl.wendigo.chrome.domain.tracing.DataCollectedEvent::class.java,
+      "Tracing.tracingComplete" to pl.wendigo.chrome.domain.tracing.TracingCompleteEvent::class.java,
+      "HeapProfiler.resetProfiles" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "HeapProfiler.heapStatsUpdate" to pl.wendigo.chrome.domain.heapprofiler.HeapStatsUpdateEvent::class.java,
+      "Inspector.targetCrashed" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Network.loadingFinished" to pl.wendigo.chrome.domain.network.LoadingFinishedEvent::class.java,
       "Network.eventSourceMessageReceived" to pl.wendigo.chrome.domain.network.EventSourceMessageReceivedEvent::class.java,
+      "LayerTree.layerTreeDidChange" to pl.wendigo.chrome.domain.layertree.LayerTreeDidChangeEvent::class.java,
+      "HeapProfiler.reportHeapSnapshotProgress" to pl.wendigo.chrome.domain.heapprofiler.ReportHeapSnapshotProgressEvent::class.java,
+      "Page.frameStartedLoading" to pl.wendigo.chrome.domain.page.FrameStartedLoadingEvent::class.java,
+      "Page.colorPicked" to pl.wendigo.chrome.domain.page.ColorPickedEvent::class.java,
+      "DOM.distributedNodesUpdated" to pl.wendigo.chrome.domain.dom.DistributedNodesUpdatedEvent::class.java,
+      "Network.webSocketFrameReceived" to pl.wendigo.chrome.domain.network.WebSocketFrameReceivedEvent::class.java,
+      "Network.webSocketFrameError" to pl.wendigo.chrome.domain.network.WebSocketFrameErrorEvent::class.java,
+      "DOMStorage.domStorageItemsCleared" to pl.wendigo.chrome.domain.domstorage.DomStorageItemsClearedEvent::class.java,
+      "CSS.styleSheetAdded" to pl.wendigo.chrome.domain.css.StyleSheetAddedEvent::class.java,
+      "Target.receivedMessageFromTarget" to pl.wendigo.chrome.domain.target.ReceivedMessageFromTargetEvent::class.java,
+      "Page.loadEventFired" to pl.wendigo.chrome.domain.page.LoadEventFiredEvent::class.java,
+      "Network.resourceChangedPriority" to pl.wendigo.chrome.domain.network.ResourceChangedPriorityEvent::class.java,
+      "Network.webSocketHandshakeResponseReceived" to pl.wendigo.chrome.domain.network.WebSocketHandshakeResponseReceivedEvent::class.java,
+      "Runtime.executionContextsCleared" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Profiler.consoleProfileStarted" to pl.wendigo.chrome.domain.profiler.ConsoleProfileStartedEvent::class.java,
+      "Network.dataReceived" to pl.wendigo.chrome.domain.network.DataReceivedEvent::class.java,
+      "DOM.inlineStyleInvalidated" to pl.wendigo.chrome.domain.dom.InlineStyleInvalidatedEvent::class.java,
+      "Runtime.executionContextDestroyed" to pl.wendigo.chrome.domain.runtime.ExecutionContextDestroyedEvent::class.java,
+      "Tracing.bufferUsage" to pl.wendigo.chrome.domain.tracing.BufferUsageEvent::class.java,
+      "Console.messageAdded" to pl.wendigo.chrome.domain.console.MessageAddedEvent::class.java,
+      "Page.domContentEventFired" to pl.wendigo.chrome.domain.page.DomContentEventFiredEvent::class.java,
+      "ApplicationCache.networkStateUpdated" to pl.wendigo.chrome.domain.applicationcache.NetworkStateUpdatedEvent::class.java,
+      "DOM.shadowRootPopped" to pl.wendigo.chrome.domain.dom.ShadowRootPoppedEvent::class.java,
+      "ApplicationCache.applicationCacheStatusUpdated" to pl.wendigo.chrome.domain.applicationcache.ApplicationCacheStatusUpdatedEvent::class.java,
+      "DOM.inspectNodeRequested" to pl.wendigo.chrome.domain.dom.InspectNodeRequestedEvent::class.java,
       "DOM.characterDataModified" to pl.wendigo.chrome.domain.dom.CharacterDataModifiedEvent::class.java,
       "Target.attachedToTarget" to pl.wendigo.chrome.domain.target.AttachedToTargetEvent::class.java,
-      "Animation.animationCreated" to pl.wendigo.chrome.domain.animation.AnimationCreatedEvent::class.java,
-      "DOM.childNodeCountUpdated" to pl.wendigo.chrome.domain.dom.ChildNodeCountUpdatedEvent::class.java,
-      "ServiceWorker.workerVersionUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerVersionUpdatedEvent::class.java,
-      "LayerTree.layerTreeDidChange" to pl.wendigo.chrome.domain.layertree.LayerTreeDidChangeEvent::class.java,
-      "Tracing.bufferUsage" to pl.wendigo.chrome.domain.tracing.BufferUsageEvent::class.java,
-      "Page.frameAttached" to pl.wendigo.chrome.domain.page.FrameAttachedEvent::class.java,
-      "Network.resourceChangedPriority" to pl.wendigo.chrome.domain.network.ResourceChangedPriorityEvent::class.java,
-      "DOM.setChildNodes" to pl.wendigo.chrome.domain.dom.SetChildNodesEvent::class.java,
-      "DOM.shadowRootPushed" to pl.wendigo.chrome.domain.dom.ShadowRootPushedEvent::class.java,
-      "Page.javascriptDialogClosed" to pl.wendigo.chrome.domain.page.JavascriptDialogClosedEvent::class.java,
-      "CSS.mediaQueryResultChanged" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
-      "Runtime.executionContextsCleared" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
-      "Page.frameStartedLoading" to pl.wendigo.chrome.domain.page.FrameStartedLoadingEvent::class.java,
-      "ApplicationCache.applicationCacheStatusUpdated" to pl.wendigo.chrome.domain.applicationcache.ApplicationCacheStatusUpdatedEvent::class.java,
-      "DOM.pseudoElementAdded" to pl.wendigo.chrome.domain.dom.PseudoElementAddedEvent::class.java,
-      "CSS.fontsUpdated" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
-      "Target.detachedFromTarget" to pl.wendigo.chrome.domain.target.DetachedFromTargetEvent::class.java,
-      "Console.messageAdded" to pl.wendigo.chrome.domain.console.MessageAddedEvent::class.java,
-      "Profiler.consoleProfileStarted" to pl.wendigo.chrome.domain.profiler.ConsoleProfileStartedEvent::class.java,
-      "Network.webSocketWillSendHandshakeRequest" to pl.wendigo.chrome.domain.network.WebSocketWillSendHandshakeRequestEvent::class.java,
-      "DOMStorage.domStorageItemAdded" to pl.wendigo.chrome.domain.domstorage.DomStorageItemAddedEvent::class.java,
-      "DOM.attributeModified" to pl.wendigo.chrome.domain.dom.AttributeModifiedEvent::class.java,
-      "DOM.pseudoElementRemoved" to pl.wendigo.chrome.domain.dom.PseudoElementRemovedEvent::class.java,
-      "LayerTree.layerPainted" to pl.wendigo.chrome.domain.layertree.LayerPaintedEvent::class.java,
-      "ServiceWorker.workerRegistrationUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerRegistrationUpdatedEvent::class.java,
-      "Runtime.consoleAPICalled" to pl.wendigo.chrome.domain.runtime.ConsoleAPICalledEvent::class.java,
-      "Debugger.paused" to pl.wendigo.chrome.domain.debugger.PausedEvent::class.java,
-      "Network.loadingFailed" to pl.wendigo.chrome.domain.network.LoadingFailedEvent::class.java,
-      "Network.webSocketFrameReceived" to pl.wendigo.chrome.domain.network.WebSocketFrameReceivedEvent::class.java,
-      "DOMStorage.domStorageItemRemoved" to pl.wendigo.chrome.domain.domstorage.DomStorageItemRemovedEvent::class.java,
-      "DOM.attributeRemoved" to pl.wendigo.chrome.domain.dom.AttributeRemovedEvent::class.java,
-      "Target.receivedMessageFromTarget" to pl.wendigo.chrome.domain.target.ReceivedMessageFromTargetEvent::class.java,
-      "HeapProfiler.reportHeapSnapshotProgress" to pl.wendigo.chrome.domain.heapprofiler.ReportHeapSnapshotProgressEvent::class.java,
-      "Network.requestServedFromCache" to pl.wendigo.chrome.domain.network.RequestServedFromCacheEvent::class.java,
-      "DOM.inspectNodeRequested" to pl.wendigo.chrome.domain.dom.InspectNodeRequestedEvent::class.java,
-      "CSS.styleSheetAdded" to pl.wendigo.chrome.domain.css.StyleSheetAddedEvent::class.java,
-      "Inspector.targetCrashed" to pl.wendigo.chrome.ChromeProtocolEvent::class.java,
-      "Page.domContentEventFired" to pl.wendigo.chrome.domain.page.DomContentEventFiredEvent::class.java,
       "Page.frameStoppedLoading" to pl.wendigo.chrome.domain.page.FrameStoppedLoadingEvent::class.java,
-      "Page.screencastFrame" to pl.wendigo.chrome.domain.page.ScreencastFrameEvent::class.java,
-      "Security.securityStateChanged" to pl.wendigo.chrome.domain.security.SecurityStateChangedEvent::class.java,
-      "Log.entryAdded" to pl.wendigo.chrome.domain.log.EntryAddedEvent::class.java,
-      "Tethering.accepted" to pl.wendigo.chrome.domain.tethering.AcceptedEvent::class.java,
-      "Debugger.scriptFailedToParse" to pl.wendigo.chrome.domain.debugger.ScriptFailedToParseEvent::class.java,
-      "HeapProfiler.addHeapSnapshotChunk" to pl.wendigo.chrome.domain.heapprofiler.AddHeapSnapshotChunkEvent::class.java,
-      "Page.colorPicked" to pl.wendigo.chrome.domain.page.ColorPickedEvent::class.java,
-      "ServiceWorker.workerErrorReported" to pl.wendigo.chrome.domain.serviceworker.WorkerErrorReportedEvent::class.java,
-      "HeapProfiler.heapStatsUpdate" to pl.wendigo.chrome.domain.heapprofiler.HeapStatsUpdateEvent::class.java
+      "Emulation.virtualTimeBudgetExpired" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Network.responseReceived" to pl.wendigo.chrome.domain.network.ResponseReceivedEvent::class.java,
+      "Animation.animationStarted" to pl.wendigo.chrome.domain.animation.AnimationStartedEvent::class.java,
+      "Runtime.executionContextCreated" to pl.wendigo.chrome.domain.runtime.ExecutionContextCreatedEvent::class.java,
+      "Runtime.consoleAPICalled" to pl.wendigo.chrome.domain.runtime.ConsoleAPICalledEvent::class.java,
+      "HeapProfiler.lastSeenObjectId" to pl.wendigo.chrome.domain.heapprofiler.LastSeenObjectIdEvent::class.java,
+      "Page.javascriptDialogOpening" to pl.wendigo.chrome.domain.page.JavascriptDialogOpeningEvent::class.java,
+      "Page.interstitialHidden" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "ServiceWorker.workerVersionUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerVersionUpdatedEvent::class.java
       ))
     }
 
@@ -358,280 +358,280 @@ class RemoteChrome internal constructor(private val api: RemoteChromeConnection)
     /**
      * Returns flowable capturing all events.
      */
-    fun onProtocolEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+    fun onProtocolEvents() : io.reactivex.Flowable<DebuggerEvent> {
       return api.captureAllEvents()
     }
 
     /**
      * Returns flowable capturing Inspector domains events.
      */
-     fun onInspectorEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onInspectorEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Inspector"
+         it.protocolDomain() == "Inspector"
        }
      }
     /**
      * Returns flowable capturing Memory domains events.
      */
-     fun onMemoryEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onMemoryEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Memory"
+         it.protocolDomain() == "Memory"
        }
      }
     /**
      * Returns flowable capturing Page domains events.
      */
-     fun onPageEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onPageEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Page"
+         it.protocolDomain() == "Page"
        }
      }
     /**
      * Returns flowable capturing Rendering domains events.
      */
-     fun onRenderingEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onRenderingEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Rendering"
+         it.protocolDomain() == "Rendering"
        }
      }
     /**
      * Returns flowable capturing Emulation domains events.
      */
-     fun onEmulationEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onEmulationEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Emulation"
+         it.protocolDomain() == "Emulation"
        }
      }
     /**
      * Returns flowable capturing Security domains events.
      */
-     fun onSecurityEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onSecurityEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Security"
+         it.protocolDomain() == "Security"
        }
      }
     /**
      * Returns flowable capturing Network domains events.
      */
-     fun onNetworkEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onNetworkEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Network"
+         it.protocolDomain() == "Network"
        }
      }
     /**
      * Returns flowable capturing Database domains events.
      */
-     fun onDatabaseEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onDatabaseEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Database"
+         it.protocolDomain() == "Database"
        }
      }
     /**
      * Returns flowable capturing IndexedDB domains events.
      */
-     fun onIndexedDBEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onIndexedDBEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "IndexedDB"
+         it.protocolDomain() == "IndexedDB"
        }
      }
     /**
      * Returns flowable capturing CacheStorage domains events.
      */
-     fun onCacheStorageEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onCacheStorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "CacheStorage"
+         it.protocolDomain() == "CacheStorage"
        }
      }
     /**
      * Returns flowable capturing DOMStorage domains events.
      */
-     fun onDOMStorageEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onDOMStorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "DOMStorage"
+         it.protocolDomain() == "DOMStorage"
        }
      }
     /**
      * Returns flowable capturing ApplicationCache domains events.
      */
-     fun onApplicationCacheEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onApplicationCacheEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "ApplicationCache"
+         it.protocolDomain() == "ApplicationCache"
        }
      }
     /**
      * Returns flowable capturing DOM domains events.
      */
-     fun onDOMEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onDOMEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "DOM"
+         it.protocolDomain() == "DOM"
        }
      }
     /**
      * Returns flowable capturing CSS domains events.
      */
-     fun onCSSEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onCSSEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "CSS"
+         it.protocolDomain() == "CSS"
        }
      }
     /**
      * Returns flowable capturing IO domains events.
      */
-     fun onIOEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onIOEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "IO"
+         it.protocolDomain() == "IO"
        }
      }
     /**
      * Returns flowable capturing DOMDebugger domains events.
      */
-     fun onDOMDebuggerEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onDOMDebuggerEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "DOMDebugger"
+         it.protocolDomain() == "DOMDebugger"
        }
      }
     /**
      * Returns flowable capturing Target domains events.
      */
-     fun onTargetEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onTargetEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Target"
+         it.protocolDomain() == "Target"
        }
      }
     /**
      * Returns flowable capturing ServiceWorker domains events.
      */
-     fun onServiceWorkerEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onServiceWorkerEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "ServiceWorker"
+         it.protocolDomain() == "ServiceWorker"
        }
      }
     /**
      * Returns flowable capturing Input domains events.
      */
-     fun onInputEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onInputEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Input"
+         it.protocolDomain() == "Input"
        }
      }
     /**
      * Returns flowable capturing LayerTree domains events.
      */
-     fun onLayerTreeEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onLayerTreeEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "LayerTree"
+         it.protocolDomain() == "LayerTree"
        }
      }
     /**
      * Returns flowable capturing DeviceOrientation domains events.
      */
-     fun onDeviceOrientationEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onDeviceOrientationEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "DeviceOrientation"
+         it.protocolDomain() == "DeviceOrientation"
        }
      }
     /**
      * Returns flowable capturing Tracing domains events.
      */
-     fun onTracingEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onTracingEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Tracing"
+         it.protocolDomain() == "Tracing"
        }
      }
     /**
      * Returns flowable capturing Animation domains events.
      */
-     fun onAnimationEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onAnimationEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Animation"
+         it.protocolDomain() == "Animation"
        }
      }
     /**
      * Returns flowable capturing Accessibility domains events.
      */
-     fun onAccessibilityEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onAccessibilityEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Accessibility"
+         it.protocolDomain() == "Accessibility"
        }
      }
     /**
      * Returns flowable capturing Storage domains events.
      */
-     fun onStorageEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onStorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Storage"
+         it.protocolDomain() == "Storage"
        }
      }
     /**
      * Returns flowable capturing Log domains events.
      */
-     fun onLogEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onLogEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Log"
+         it.protocolDomain() == "Log"
        }
      }
     /**
      * Returns flowable capturing SystemInfo domains events.
      */
-     fun onSystemInfoEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onSystemInfoEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "SystemInfo"
+         it.protocolDomain() == "SystemInfo"
        }
      }
     /**
      * Returns flowable capturing Tethering domains events.
      */
-     fun onTetheringEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onTetheringEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Tethering"
+         it.protocolDomain() == "Tethering"
        }
      }
     /**
      * Returns flowable capturing Schema domains events.
      */
-     fun onSchemaEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onSchemaEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Schema"
+         it.protocolDomain() == "Schema"
        }
      }
     /**
      * Returns flowable capturing Runtime domains events.
      */
-     fun onRuntimeEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onRuntimeEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Runtime"
+         it.protocolDomain() == "Runtime"
        }
      }
     /**
      * Returns flowable capturing Debugger domains events.
      */
-     fun onDebuggerEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onDebuggerEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Debugger"
+         it.protocolDomain() == "Debugger"
        }
      }
     /**
      * Returns flowable capturing Console domains events.
      */
-     fun onConsoleEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onConsoleEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Console"
+         it.protocolDomain() == "Console"
        }
      }
     /**
      * Returns flowable capturing Profiler domains events.
      */
-     fun onProfilerEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onProfilerEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "Profiler"
+         it.protocolDomain() == "Profiler"
        }
      }
     /**
      * Returns flowable capturing HeapProfiler domains events.
      */
-     fun onHeapProfilerEvents() : io.reactivex.Flowable<ChromeProtocolEvent> {
+     fun onHeapProfilerEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
-         it.protocolDomain == "HeapProfiler"
+         it.protocolDomain() == "HeapProfiler"
        }
      }
 

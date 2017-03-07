@@ -711,7 +711,7 @@ data class ResourceChangedPriorityEvent(
    */
   val timestamp : Timestamp
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "resourceChangedPriority")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "resourceChangedPriority")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -769,7 +769,7 @@ data class RequestWillBeSentEvent(
    */
   @pl.wendigo.chrome.ProtocolExperimental val type : pl.wendigo.chrome.domain.page.ResourceType? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "requestWillBeSent")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "requestWillBeSent")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -782,7 +782,7 @@ data class RequestServedFromCacheEvent(
    */
   val requestId : RequestId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "requestServedFromCache")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "requestServedFromCache")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -820,7 +820,7 @@ data class ResponseReceivedEvent(
    */
   val response : Response
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "responseReceived")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "responseReceived")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -848,7 +848,7 @@ data class DataReceivedEvent(
    */
   val encodedDataLength : Int
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "dataReceived")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "dataReceived")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -871,7 +871,7 @@ data class LoadingFinishedEvent(
    */
   val encodedDataLength : Double
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "loadingFinished")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "loadingFinished")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -909,7 +909,7 @@ data class LoadingFailedEvent(
    */
   @pl.wendigo.chrome.ProtocolExperimental val blockedReason : BlockedReason? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "loadingFailed")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "loadingFailed")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -937,7 +937,7 @@ data class WebSocketWillSendHandshakeRequestEvent(
    */
   val request : WebSocketRequest
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketWillSendHandshakeRequest")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "webSocketWillSendHandshakeRequest")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -960,7 +960,7 @@ data class WebSocketHandshakeResponseReceivedEvent(
    */
   val response : WebSocketResponse
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketHandshakeResponseReceived")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "webSocketHandshakeResponseReceived")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -983,7 +983,7 @@ data class WebSocketCreatedEvent(
    */
   val initiator : Initiator? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketCreated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "webSocketCreated")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -1001,7 +1001,7 @@ data class WebSocketClosedEvent(
    */
   val timestamp : Timestamp
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketClosed")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "webSocketClosed")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -1024,7 +1024,7 @@ data class WebSocketFrameReceivedEvent(
    */
   val response : WebSocketFrame
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketFrameReceived")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "webSocketFrameReceived")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -1047,7 +1047,7 @@ data class WebSocketFrameErrorEvent(
    */
   val errorMessage : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketFrameError")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "webSocketFrameError")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -1070,7 +1070,7 @@ data class WebSocketFrameSentEvent(
    */
   val response : WebSocketFrame
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "webSocketFrameSent")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "webSocketFrameSent")
 
 /**
  * Represents responseFrame from Network. method call.
@@ -1103,5 +1103,5 @@ data class EventSourceMessageReceivedEvent(
    */
   val data : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Network", protocolEventName = "eventSourceMessageReceived")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Network", name = "eventSourceMessageReceived")
 

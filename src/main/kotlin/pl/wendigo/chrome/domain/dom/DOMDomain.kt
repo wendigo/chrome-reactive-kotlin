@@ -318,8 +318,8 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
   /**
    * Fired when <code>Document</code> has been totally updated. Node ids are no longer valid.
    */
-   fun onDocumentUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
+   fun onDocumentUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
@@ -1356,7 +1356,7 @@ data class InspectNodeRequestedEvent(
    */
   val backendNodeId : BackendNodeId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "inspectNodeRequested")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "inspectNodeRequested")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1374,7 +1374,7 @@ data class SetChildNodesEvent(
    */
   val nodes : Array<Node>
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "setChildNodes")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "setChildNodes")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1397,7 +1397,7 @@ data class AttributeModifiedEvent(
    */
   val value : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "attributeModified")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "attributeModified")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1415,7 +1415,7 @@ data class AttributeRemovedEvent(
    */
   val name : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "attributeRemoved")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "attributeRemoved")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1428,7 +1428,7 @@ data class InlineStyleInvalidatedEvent(
    */
   val nodeIds : Array<NodeId>
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "inlineStyleInvalidated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "inlineStyleInvalidated")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1446,7 +1446,7 @@ data class CharacterDataModifiedEvent(
    */
   val characterData : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "characterDataModified")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "characterDataModified")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1464,7 +1464,7 @@ data class ChildNodeCountUpdatedEvent(
    */
   val childNodeCount : Int
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeCountUpdated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "childNodeCountUpdated")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1487,7 +1487,7 @@ data class ChildNodeInsertedEvent(
    */
   val node : Node
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeInserted")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "childNodeInserted")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1505,7 +1505,7 @@ data class ChildNodeRemovedEvent(
    */
   val nodeId : NodeId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "childNodeRemoved")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "childNodeRemoved")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1523,7 +1523,7 @@ data class ShadowRootPushedEvent(
    */
   val root : Node
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "shadowRootPushed")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "shadowRootPushed")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1541,7 +1541,7 @@ data class ShadowRootPoppedEvent(
    */
   val rootId : NodeId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "shadowRootPopped")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "shadowRootPopped")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1559,7 +1559,7 @@ data class PseudoElementAddedEvent(
    */
   val pseudoElement : Node
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "pseudoElementAdded")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "pseudoElementAdded")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1577,7 +1577,7 @@ data class PseudoElementRemovedEvent(
    */
   val pseudoElementId : NodeId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "pseudoElementRemoved")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "pseudoElementRemoved")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1595,7 +1595,7 @@ data class DistributedNodesUpdatedEvent(
    */
   val distributedNodes : Array<BackendNode>
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "distributedNodesUpdated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "distributedNodesUpdated")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1608,5 +1608,5 @@ data class NodeHighlightRequestedEvent(
    */
   val nodeId : NodeId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "DOM", protocolEventName = "nodeHighlightRequested")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "DOM", name = "nodeHighlightRequested")
 

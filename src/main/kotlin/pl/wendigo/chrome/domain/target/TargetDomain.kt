@@ -435,7 +435,7 @@ data class TargetCreatedEvent(
    */
   val targetInfo : TargetInfo
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "targetCreated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Target", name = "targetCreated")
 
 /**
  * Represents responseFrame from Target. method call.
@@ -448,7 +448,7 @@ data class TargetDestroyedEvent(
    */
   val targetId : TargetID
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "targetDestroyed")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Target", name = "targetDestroyed")
 
 /**
  * Represents responseFrame from Target. method call.
@@ -466,7 +466,7 @@ data class AttachedToTargetEvent(
    */
   val waitingForDebugger : Boolean
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "attachedToTarget")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Target", name = "attachedToTarget")
 
 /**
  * Represents responseFrame from Target. method call.
@@ -479,7 +479,7 @@ data class DetachedFromTargetEvent(
    */
   val targetId : TargetID
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "detachedFromTarget")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Target", name = "detachedFromTarget")
 
 /**
  * Represents responseFrame from Target. method call.
@@ -497,5 +497,5 @@ data class ReceivedMessageFromTargetEvent(
    */
   val message : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Target", protocolEventName = "receivedMessageFromTarget")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Target", name = "receivedMessageFromTarget")
 

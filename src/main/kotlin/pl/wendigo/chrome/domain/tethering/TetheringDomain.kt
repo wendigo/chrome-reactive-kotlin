@@ -75,5 +75,5 @@ data class AcceptedEvent(
    */
   val connectionId : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Tethering", protocolEventName = "accepted")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Tethering", name = "accepted")
 

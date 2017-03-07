@@ -160,7 +160,7 @@ data class DataCollectedEvent(
    */
   val value : Array<Any>
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Tracing", protocolEventName = "dataCollected")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Tracing", name = "dataCollected")
 
 /**
  * Represents responseFrame from Tracing. method call.
@@ -173,7 +173,7 @@ data class TracingCompleteEvent(
    */
   val stream : pl.wendigo.chrome.domain.io.StreamHandle? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Tracing", protocolEventName = "tracingComplete")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Tracing", name = "tracingComplete")
 
 /**
  * Represents responseFrame from Tracing. method call.
@@ -196,5 +196,5 @@ data class BufferUsageEvent(
    */
   val value : Double? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Tracing", protocolEventName = "bufferUsage")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Tracing", name = "bufferUsage")
 

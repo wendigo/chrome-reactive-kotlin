@@ -32,8 +32,8 @@ package pl.wendigo.chrome.domain.inspector
   /**
    * Fired when debugging target has crashed
    */
-   fun onTargetCrashed() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
+   fun onTargetCrashed() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 }
 
@@ -53,6 +53,6 @@ data class DetachedEvent(
    */
   val reason : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Inspector", protocolEventName = "detached")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Inspector", name = "detached")
 
 

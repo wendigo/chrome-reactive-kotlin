@@ -26,7 +26,7 @@ func (p Protocol) EventMappings() map[string]string {
 			if event.HasReturnValue() {
 				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.domain.%s.%s", basePackage, domain.LowerName(), event.ClassName())
 			} else {
-				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.%s", basePackage, "ChromeProtocolEvent")
+				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.%s", basePackage, "DebuggerEvent")
 			}
 		}
 	}
@@ -317,7 +317,7 @@ func (e Event) ClassName() string {
 }
 
 func (e Event) ImplementingInterfaces() []string {
-	return []string{fmt.Sprintf("%s.ChromeProtocolEvent(protocolDomain = \"%s\", protocolEventName = \"%s\")", basePackage, currentDomain, e.Name)}
+	return []string{fmt.Sprintf("%s.DebuggerEvent(domain = \"%s\", name = \"%s\")", basePackage, currentDomain, e.Name)}
 }
 
 var protocolFile string

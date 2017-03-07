@@ -274,7 +274,7 @@ data class WorkerRegistrationUpdatedEvent(
    */
   val registrations : Array<ServiceWorkerRegistration>
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ServiceWorker", protocolEventName = "workerRegistrationUpdated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "ServiceWorker", name = "workerRegistrationUpdated")
 
 /**
  * Represents responseFrame from ServiceWorker. method call.
@@ -287,7 +287,7 @@ data class WorkerVersionUpdatedEvent(
    */
   val versions : Array<ServiceWorkerVersion>
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ServiceWorker", protocolEventName = "workerVersionUpdated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "ServiceWorker", name = "workerVersionUpdated")
 
 /**
  * Represents responseFrame from ServiceWorker. method call.
@@ -300,5 +300,5 @@ data class WorkerErrorReportedEvent(
    */
   val errorMessage : ServiceWorkerErrorMessage
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "ServiceWorker", protocolEventName = "workerErrorReported")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "ServiceWorker", name = "workerErrorReported")
 

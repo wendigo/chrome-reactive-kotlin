@@ -75,5 +75,5 @@ data class SecurityStateChangedEvent(
    */
   val summary : String? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Security", protocolEventName = "securityStateChanged")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Security", name = "securityStateChanged")
 

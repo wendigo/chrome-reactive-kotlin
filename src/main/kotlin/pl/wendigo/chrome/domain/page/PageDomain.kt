@@ -347,8 +347,8 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
   /**
    * 
    */
-   fun onFrameResized() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
+   fun onFrameResized() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
@@ -389,15 +389,15 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
   /**
    * Fired when interstitial page was shown
    */
-   fun onInterstitialShown() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
+   fun onInterstitialShown() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
    * Fired when interstitial page was hidden
    */
-   fun onInterstitialHidden() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
+   fun onInterstitialHidden() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
@@ -1047,7 +1047,7 @@ data class DomContentEventFiredEvent(
    */
   val timestamp : Double
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "domContentEventFired")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "domContentEventFired")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1060,7 +1060,7 @@ data class LoadEventFiredEvent(
    */
   val timestamp : Double
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "loadEventFired")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "loadEventFired")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1078,7 +1078,7 @@ data class FrameAttachedEvent(
    */
   val parentFrameId : FrameId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameAttached")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "frameAttached")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1091,7 +1091,7 @@ data class FrameNavigatedEvent(
    */
   val frame : Frame
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameNavigated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "frameNavigated")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1104,7 +1104,7 @@ data class FrameDetachedEvent(
    */
   val frameId : FrameId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameDetached")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "frameDetached")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1117,7 +1117,7 @@ data class FrameStartedLoadingEvent(
    */
   val frameId : FrameId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameStartedLoading")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "frameStartedLoading")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1130,7 +1130,7 @@ data class FrameStoppedLoadingEvent(
    */
   val frameId : FrameId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameStoppedLoading")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "frameStoppedLoading")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1148,7 +1148,7 @@ data class FrameScheduledNavigationEvent(
    */
   val delay : Double
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameScheduledNavigation")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "frameScheduledNavigation")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1161,7 +1161,7 @@ data class FrameClearedScheduledNavigationEvent(
    */
   val frameId : FrameId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "frameClearedScheduledNavigation")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "frameClearedScheduledNavigation")
 
 
 /**
@@ -1180,7 +1180,7 @@ data class JavascriptDialogOpeningEvent(
    */
   val type : DialogType
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "javascriptDialogOpening")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "javascriptDialogOpening")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1193,7 +1193,7 @@ data class JavascriptDialogClosedEvent(
    */
   val result : Boolean
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "javascriptDialogClosed")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "javascriptDialogClosed")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1216,7 +1216,7 @@ data class ScreencastFrameEvent(
    */
   val sessionId : Int
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "screencastFrame")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "screencastFrame")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1229,7 +1229,7 @@ data class ScreencastVisibilityChangedEvent(
    */
   val visible : Boolean
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "screencastVisibilityChanged")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "screencastVisibilityChanged")
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1242,7 +1242,7 @@ data class ColorPickedEvent(
    */
   val color : pl.wendigo.chrome.domain.dom.RGBA
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "colorPicked")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "colorPicked")
 
 
 
@@ -1272,5 +1272,5 @@ data class NavigationRequestedEvent(
    */
   val url : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Page", protocolEventName = "navigationRequested")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Page", name = "navigationRequested")
 

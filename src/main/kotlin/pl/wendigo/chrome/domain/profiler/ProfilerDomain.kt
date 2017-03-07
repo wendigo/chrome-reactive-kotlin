@@ -114,7 +114,7 @@ data class ConsoleProfileStartedEvent(
    */
   val title : String? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Profiler", protocolEventName = "consoleProfileStarted")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Profiler", name = "consoleProfileStarted")
 
 /**
  * Represents responseFrame from Profiler. method call.
@@ -142,5 +142,5 @@ data class ConsoleProfileFinishedEvent(
    */
   val title : String? = null
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Profiler", protocolEventName = "consoleProfileFinished")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Profiler", name = "consoleProfileFinished")
 

@@ -272,7 +272,7 @@ data class AnimationCreatedEvent(
    */
   val id : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Animation", protocolEventName = "animationCreated")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Animation", name = "animationCreated")
 
 /**
  * Represents responseFrame from Animation. method call.
@@ -285,7 +285,7 @@ data class AnimationStartedEvent(
    */
   val animation : Animation
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Animation", protocolEventName = "animationStarted")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Animation", name = "animationStarted")
 
 /**
  * Represents responseFrame from Animation. method call.
@@ -298,5 +298,5 @@ data class AnimationCanceledEvent(
    */
   val id : String
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "Animation", protocolEventName = "animationCanceled")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "Animation", name = "animationCanceled")
 

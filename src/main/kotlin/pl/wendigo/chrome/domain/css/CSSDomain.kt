@@ -173,15 +173,15 @@ package pl.wendigo.chrome.domain.css
   /**
    * Fires whenever a MediaQuery result changes (for example, after a browser window has been resized.) The current implementation considers only viewport-dependent media features.
    */
-   fun onMediaQueryResultChanged() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
+   fun onMediaQueryResultChanged() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
    * Fires whenever a web font gets loaded.
    */
-   fun onFontsUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.ChromeProtocolEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.ChromeProtocolEvent::class.java)
+   fun onFontsUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
@@ -767,7 +767,7 @@ data class StyleSheetChangedEvent(
    */
   val styleSheetId : StyleSheetId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "CSS", protocolEventName = "styleSheetChanged")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "CSS", name = "styleSheetChanged")
 
 /**
  * Represents responseFrame from CSS. method call.
@@ -780,7 +780,7 @@ data class StyleSheetAddedEvent(
    */
   val header : CSSStyleSheetHeader
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "CSS", protocolEventName = "styleSheetAdded")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "CSS", name = "styleSheetAdded")
 
 /**
  * Represents responseFrame from CSS. method call.
@@ -793,5 +793,5 @@ data class StyleSheetRemovedEvent(
    */
   val styleSheetId : StyleSheetId
 
-) : pl.wendigo.chrome.ChromeProtocolEvent(protocolDomain = "CSS", protocolEventName = "styleSheetRemoved")
+) : pl.wendigo.chrome.DebuggerEvent(domain = "CSS", name = "styleSheetRemoved")
 
