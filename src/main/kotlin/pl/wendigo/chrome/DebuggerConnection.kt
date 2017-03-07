@@ -12,8 +12,8 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
 
-internal class RemoteChromeConnection constructor(
-    private val debuggerUrl: String
+internal class DebuggerConnection constructor(
+    private val url: String
 ) : WebSocketListener() {
 
     private val messages: ReplaySubject<ResponseFrame> = ReplaySubject.create(128)
@@ -23,8 +23,8 @@ internal class RemoteChromeConnection constructor(
     private var remoteConnection: WebSocket? = null
 
     @Throws(RemoteChromeException::class)
-    internal fun connect(): RemoteChromeConnection {
-        val wsRequest = Request.Builder().url(debuggerUrl).build()
+    internal fun connect(): DebuggerConnection {
+        val wsRequest = Request.Builder().url(url).build()
 
         remoteConnection = client.newWebSocket(wsRequest, this)
 

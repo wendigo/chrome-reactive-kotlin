@@ -3,7 +3,7 @@ package {{Package}}
 /**
  * RemoteChrome represents session established via chrome's remote debugging protocol.
  */
-class RemoteChrome internal constructor(private val api: RemoteChromeConnection) {
+class RemoteChrome internal constructor(private val api: DebuggerConnection) {
 
     /**
      * Register event mappings
@@ -45,7 +45,7 @@ class RemoteChrome internal constructor(private val api: RemoteChromeConnection)
     {{/each}}
 
     /**
-     * Closes connection to API.
+     * Closes debuggerConnection to API.
      */
     fun close() {
       return api.close()
@@ -58,7 +58,7 @@ class RemoteChrome internal constructor(private val api: RemoteChromeConnection)
         @kotlin.jvm.Throws(RemoteChromeException::class)
         fun newTab(chromeAddress: String) : RemoteChrome {
           return RemoteChrome(
-                RemoteChromeConnection(
+                DebuggerConnection(
                     Inspector(chromeAddress)
                         .openTab()
                         .map(InspectorTab::webSocketDebuggerUrl)
@@ -73,7 +73,7 @@ class RemoteChrome internal constructor(private val api: RemoteChromeConnection)
         @kotlin.jvm.Throws(RemoteChromeException::class)
         fun connectToTab(chromeAddress: String, tabUrl: String) : RemoteChrome {
             return RemoteChrome(
-                RemoteChromeConnection(
+                DebuggerConnection(
                     Inspector(chromeAddress)
                         .findTab(tabUrl)
                         .singleOrError()

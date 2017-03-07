@@ -1,11 +1,21 @@
 package pl.wendigo.chrome
 
+/**
+ * Represents request frame.
+ */
 data class RequestFrame(
-        val id: Long,
-        val method: String,
-        val params: Any?
-) {
-    internal fun toLog(): String {
-        return "$method(id=$id)"
-    }
-}
+    /**
+     * Request id, must be unique.
+     */
+    val id: Long,
+
+    /**
+     * Protocol method (domain.method_name i.e. Page.navigateTo)
+     */
+    val method: String,
+
+    /**
+     * Request params (if any)
+     */
+    val params: Any?
+)
