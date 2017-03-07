@@ -1,6 +1,7 @@
 package pl.wendigo.chrome
 
 import io.reactivex.Flowable
+import io.reactivex.schedulers.Schedulers
 import pl.wendigo.chrome.domain.network.EnableRequest
 import pl.wendigo.chrome.domain.network.GetResponseBodyRequest
 import pl.wendigo.chrome.domain.page.NavigateRequest
@@ -12,6 +13,10 @@ class Test {
         fun main(args: Array<String>) {
 
             val api = RemoteChrome.newTab("127.0.0.1:9292")
+
+            api.onProtocolEvents().observeOn(Schedulers.computation()).filter {it.protocolDomain() == RemoteChrome.Domains.CSS.name}.subscribe {
+                println("got next event: ${it.name()}: $it")
+            }
 
             Flowable.merge(listOf(api.DOM.enable(), api.Page.enable(), api.CSS.enable(), api.Network.enable(EnableRequest()), api.Console.enable()))
                     .lastOrError()

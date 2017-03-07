@@ -16,6 +16,12 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
       ))
     }
 
+    enum class Domains(name: String) {
+        {{#each Protocol.Domains}}
+            {{UpperName}}("{{Name}}"){{#unless @last}},{{/unless}}
+        {{/each}}
+    }
+
     {{#each Protocol.Domains}}
     /**
      * {{#if Description}}{{{Description}}}{{else}}Returns {{Name}} domain object.{{/if}}

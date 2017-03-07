@@ -54,6 +54,11 @@ func (d Domain) LowerName() string {
 	return strings.ToLower(d.Name)
 }
 
+func (d Domain) UpperName() string {
+	return strings.ToUpper(d.Name)
+}
+
+
 type Type struct {
 	Id           string      `json:"id,omitempty"`
 	Type         string      `json:"type,omitempty"`
