@@ -8,7 +8,6 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
-import org.slf4j.LoggerFactory
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
@@ -25,9 +24,7 @@ internal class RemoteChromeConnection constructor(
 
     @Throws(RemoteChromeException::class)
     internal fun connect(): RemoteChromeConnection {
-        val wsRequest = Request.Builder()
-                .url(debuggerUrl)
-                .build()
+        val wsRequest = Request.Builder().url(debuggerUrl).build()
 
         remoteConnection = client.newWebSocket(wsRequest, this)
 
@@ -42,14 +39,13 @@ internal class RemoteChromeConnection constructor(
      * Closes connection to debugger
      */
     internal fun close() {
-        messages.onComplete()
-
         try {
             client.connectionPool().evictAll()
             client.dispatcher().executorService().shutdown()
             remoteConnection!!.close(1000, "Goodbye!")
+            messages.onComplete()
         } catch (e : Exception) {
-            logger.error("Could not close websocket {}", e)
+            messages.onError(e)
         }
     }
 
@@ -108,9 +104,5 @@ internal class RemoteChromeConnection constructor(
 
     override fun onFailure(webSocket: WebSocket?, t: Throwable?, response: Response?) {
         messages.onComplete()
-    }
-
-    companion object {
-        private val logger = LoggerFactory.getLogger(RemoteChromeConnection::class.java)
     }
 }

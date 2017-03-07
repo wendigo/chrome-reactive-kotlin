@@ -78,7 +78,7 @@ class RemoteChrome internal constructor(private val api: RemoteChromeConnection)
                         .findTab(tabUrl)
                         .singleOrError()
                         .map(InspectorTab::webSocketDebuggerUrl)
-                        .blockingGet(), debug
+                        .blockingGet()
                 ).connect()
             )
         }

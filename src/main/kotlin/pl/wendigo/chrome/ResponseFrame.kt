@@ -40,7 +40,7 @@ data class ResponseFrame(
      * Checks if response is event
      */
     internal fun isEvent() : Boolean {
-        return this.id == null && this.method != null
+        return this.method != null
     }
 }
 

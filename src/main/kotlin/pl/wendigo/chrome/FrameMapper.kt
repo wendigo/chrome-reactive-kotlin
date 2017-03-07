@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.reactivex.Observable
 
+/**
+ * Frame mapper is responsible for (de)serializing frames exchanged via chrome remote debugging protocol.
+ */
 internal class FrameMapper {
 
     companion object {
@@ -22,11 +25,14 @@ internal class FrameMapper {
                 return Observable.error(RemoteChromeException(responseFrame.error.message))
             }
 
-            if (outClass == ResponseFrame::class.java) {
-                return Observable.just(responseFrame as T)
-            }
-            else {
-                return Observable.just(mapper.treeToValue(responseFrame.result, outClass))
+            try {
+                if (outClass == ResponseFrame::class.java) {
+                    return Observable.just(responseFrame as T)
+                } else {
+                    return Observable.just(mapper.treeToValue(responseFrame.result, outClass))
+                }
+            } catch (ex: Exception) {
+                return Observable.error(RemoteChromeException("Could not deserialize message", ex))
             }
         }
 
