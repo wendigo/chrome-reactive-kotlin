@@ -29,8 +29,8 @@ class Test {
             }.filter {
                 it.response.url.contentEquals("http://static.gazeta.pl/static/video/playerjs/deploy/app/n3j10/skin/hp/skin.json")
             }.take(1).flatMap {
-                event ->
-                api.Network.getResponseBody(GetResponseBodyRequest(requestId = event.requestId))
+                (requestId) ->
+                api.Network.getResponseBody(GetResponseBodyRequest(requestId = requestId))
             }
                     .map {
                         if (it.base64Encoded) Base64.getDecoder().decode(it.body) else it.body
