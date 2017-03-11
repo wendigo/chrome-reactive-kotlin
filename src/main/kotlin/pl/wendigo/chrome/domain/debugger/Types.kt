@@ -130,3 +130,28 @@ data class SearchMatch(
   val lineContent : String
 )
 
+/**
+ * 
+ */
+data class BreakLocation(
+  /**
+   * Script identifier as reported in the <code>Debugger.scriptParsed</code>.
+   */
+  val scriptId : pl.wendigo.chrome.domain.runtime.ScriptId,
+
+  /**
+   * Line number in the script (0-based).
+   */
+  val lineNumber : Int,
+
+  /**
+   * Column number in the script (0-based).
+   */
+  val columnNumber : Int? = null,
+
+  /**
+   * 
+   */
+  val type : String? = null
+)
+

@@ -147,7 +147,12 @@ data class CSSStyleSheetHeader(
   /**
    * Column offset of the stylesheet within the resource (zero based).
    */
-  val startColumn : Double
+  val startColumn : Double,
+
+  /**
+   * Size of the content (in characters).
+   */
+  @pl.wendigo.chrome.ProtocolExperimental val length : Double
 )
 
 /**
@@ -190,9 +195,14 @@ data class RuleUsage(
   val styleSheetId : StyleSheetId,
 
   /**
-   * Style declaration range in the enclosing stylesheet (if available).
+   * Offset of the start of the rule (including selector) from the beginning of the stylesheet.
    */
-  val range : SourceRange,
+  val startOffset : Double,
+
+  /**
+   * Offset of the end of the rule body from the beginning of the stylesheet.
+   */
+  val endOffset : Double,
 
   /**
    * Indicates whether the rule was actually used by some element in the page.

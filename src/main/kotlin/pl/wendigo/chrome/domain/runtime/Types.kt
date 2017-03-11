@@ -397,6 +397,11 @@ data class StackTrace(
   /**
    * Asynchronous JavaScript stack trace that preceded this stack, if available.
    */
-  val parent : StackTrace? = null
+  val parent : StackTrace? = null,
+
+  /**
+   * Creation frame of the Promise which produced the next synchronous trace when resolved, if available.
+   */
+  @pl.wendigo.chrome.ProtocolExperimental val promiseCreationFrame : CallFrame? = null
 )
 

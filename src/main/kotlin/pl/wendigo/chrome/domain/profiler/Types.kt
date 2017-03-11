@@ -80,3 +80,58 @@ data class PositionTickInfo(
   val ticks : Int
 )
 
+/**
+ * Coverage data for a source range.
+ */
+data class CoverageRange(
+  /**
+   * JavaScript script source offset for the range start.
+   */
+  val startOffset : Int,
+
+  /**
+   * JavaScript script source offset for the range end.
+   */
+  val endOffset : Int,
+
+  /**
+   * Collected execution count of the source range.
+   */
+  val count : Int
+)
+
+/**
+ * Coverage data for a JavaScript function.
+ */
+data class FunctionCoverage(
+  /**
+   * JavaScript function name.
+   */
+  val functionName : String,
+
+  /**
+   * Source ranges inside the function with coverage data.
+   */
+  val ranges : Array<CoverageRange>
+)
+
+/**
+ * Coverage data for a JavaScript script.
+ */
+data class ScriptCoverage(
+  /**
+   * JavaScript script id.
+   */
+  val scriptId : pl.wendigo.chrome.domain.runtime.ScriptId,
+
+  /**
+   * JavaScript script name or url.
+   */
+  val url : String,
+
+  /**
+   * Functions contained in the script that has coverage data.
+   */
+  val functions : Array<FunctionCoverage>
+)
+

@@ -100,6 +100,14 @@ class DebuggerDomain internal constructor(private val connection : pl.wendigo.ch
 	}
 
 	/**
+	 * Steps into next scheduled async task if any is scheduled before next pause. Returns success when async task is actually scheduled, returns error if no task were scheduled or another scheduleStepIntoAsync was called.
+	 */
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun scheduleStepIntoAsync() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Debugger.scheduleStepIntoAsync", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	}
+
+	/**
 	 * Resumes JavaScript execution.
 	 */
 	  fun resume() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
@@ -363,7 +371,12 @@ data class GetPossibleBreakpointsRequest (
     /**
      * End of range to search possible breakpoint locations in (excluding). When not specifed, end of scripts is used as end of range.
      */
-    val end : Location? = null
+    val end : Location? = null,
+
+    /**
+     * Only consider locations which are in the same (non-nested) function as start.
+     */
+    val restrictToFunction : Boolean? = null
 
 )
 
@@ -376,7 +389,7 @@ data class GetPossibleBreakpointsResponse(
   /**
    * List of the possible breakpoint locations.
    */
-  val locations : Array<Location>
+  val locations : Array<BreakLocation>
 
 )
 
@@ -392,6 +405,8 @@ data class ContinueToLocationRequest (
     val location : Location
 
 )
+
+
 
 
 
@@ -606,7 +621,12 @@ data class EvaluateOnCallFrameRequest (
     /**
      * Whether preview should be generated for the result.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val generatePreview : Boolean? = null
+    @pl.wendigo.chrome.ProtocolExperimental val generatePreview : Boolean? = null,
+
+    /**
+     * Whether to throw an exception if side effect cannot be ruled out during evaluation.
+     */
+    @pl.wendigo.chrome.ProtocolExperimental val throwOnSideEffect : Boolean? = null
 
 )
 
@@ -769,7 +789,17 @@ data class ScriptParsedEvent(
   /**
    * True, if this script has sourceURL.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val hasSourceURL : Boolean? = null
+  @pl.wendigo.chrome.ProtocolExperimental val hasSourceURL : Boolean? = null,
+
+  /**
+   * True, if this script is ES6 module.
+   */
+  @pl.wendigo.chrome.ProtocolExperimental val isModule : Boolean? = null,
+
+  /**
+   * This script length.
+   */
+  @pl.wendigo.chrome.ProtocolExperimental val length : Int? = null
 
 ) : pl.wendigo.chrome.DebuggerEvent(domain = "Debugger", name = "scriptParsed")
 
@@ -832,7 +862,17 @@ data class ScriptFailedToParseEvent(
   /**
    * True, if this script has sourceURL.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val hasSourceURL : Boolean? = null
+  @pl.wendigo.chrome.ProtocolExperimental val hasSourceURL : Boolean? = null,
+
+  /**
+   * True, if this script is ES6 module.
+   */
+  @pl.wendigo.chrome.ProtocolExperimental val isModule : Boolean? = null,
+
+  /**
+   * This script length.
+   */
+  @pl.wendigo.chrome.ProtocolExperimental val length : Int? = null
 
 ) : pl.wendigo.chrome.DebuggerEvent(domain = "Debugger", name = "scriptFailedToParse")
 

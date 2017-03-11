@@ -42,6 +42,38 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
         return connection.runAndCaptureResponse("Profiler.stop", null, StopResponse::class.java)
 	}
 
+	/**
+	 * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.
+	 */
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun startPreciseCoverage() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Profiler.startPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	}
+
+	/**
+	 * Disable precise code coverage. Disabling releases unnecessary execution count records and allows executing optimized code.
+	 */
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun stopPreciseCoverage() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	}
+
+	/**
+	 * Collect coverage data for the current isolate, and resets execution counters. Precise code coverage needs to have started.
+	 */
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun takePreciseCoverage() : io.reactivex.Flowable<TakePreciseCoverageResponse> {
+        return connection.runAndCaptureResponse("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse::class.java)
+	}
+
+	/**
+	 * Collect coverage data for the current isolate. The coverage data may be incomplete due to garbage collection.
+	 */
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun getBestEffortCoverage() : io.reactivex.Flowable<GetBestEffortCoverageResponse> {
+        return connection.runAndCaptureResponse("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse::class.java)
+	}
+
   
   /**
    * Sent when new profile recodring is started using console.profile() call.
@@ -89,6 +121,38 @@ data class StopResponse(
    * Recorded profile.
    */
   val profile : Profile
+
+)
+
+
+
+
+
+
+/**
+ * Represents responseFrame from Profiler. method call.
+ *
+ * Collect coverage data for the current isolate, and resets execution counters. Precise code coverage needs to have started.
+ */
+data class TakePreciseCoverageResponse(
+  /**
+   * Coverage data for the current isolate.
+   */
+  val result : Array<ScriptCoverage>
+
+)
+
+
+/**
+ * Represents responseFrame from Profiler. method call.
+ *
+ * Collect coverage data for the current isolate. The coverage data may be incomplete due to garbage collection.
+ */
+data class GetBestEffortCoverageResponse(
+  /**
+   * Coverage data for the current isolate.
+   */
+  val result : Array<ScriptCoverage>
 
 )
 

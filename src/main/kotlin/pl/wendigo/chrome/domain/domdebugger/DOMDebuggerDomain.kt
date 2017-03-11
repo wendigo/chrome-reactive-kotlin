@@ -216,7 +216,17 @@ data class GetEventListenersRequest (
     /**
      * Identifier of the object to return listeners for.
      */
-    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId
+    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId,
+
+    /**
+     * The maximum depth at which Node children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
+     */
+    @pl.wendigo.chrome.ProtocolExperimental val depth : Int? = null,
+
+    /**
+     * Whether or not iframes and shadow roots should be traversed when returning the subtree (default is false). Reports listeners for all contexts if pierce is enabled.
+     */
+    @pl.wendigo.chrome.ProtocolExperimental val pierce : Boolean? = null
 
 )
 

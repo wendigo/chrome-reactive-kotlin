@@ -50,6 +50,11 @@ data class Node(
   val nodeId : NodeId,
 
   /**
+   * The id of the parent node if any.
+   */
+  @pl.wendigo.chrome.ProtocolExperimental val parentId : NodeId? = null,
+
+  /**
    * The BackendNodeId for this node.
    */
   @pl.wendigo.chrome.ProtocolExperimental val backendNodeId : BackendNodeId,

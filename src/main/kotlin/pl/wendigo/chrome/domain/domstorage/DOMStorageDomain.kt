@@ -24,6 +24,13 @@ package pl.wendigo.chrome.domain.domstorage
 	/**
 	 * 
 	 */
+	  fun clear(input : ClearRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("DOMStorage.clear", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	}
+
+	/**
+	 * 
+	 */
 	  fun getDOMStorageItems(input : GetDOMStorageItemsRequest) : io.reactivex.Flowable<GetDOMStorageItemsResponse> {
         return connection.runAndCaptureResponse("DOMStorage.getDOMStorageItems", input, GetDOMStorageItemsResponse::class.java)
 	}
@@ -74,6 +81,20 @@ package pl.wendigo.chrome.domain.domstorage
 
 
 
+
+
+/**
+ * Represents requestFrame parameters that can be used with DOMStorage.clear method call.
+ *
+ * 
+ */
+data class ClearRequest (
+    /**
+     * 
+     */
+    val storageId : StorageId
+
+)
 
 
 /**

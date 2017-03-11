@@ -55,8 +55,8 @@ data class EventListener(
   val originalHandler : pl.wendigo.chrome.domain.runtime.RemoteObject? = null,
 
   /**
-   * Event listener remove function.
+   * Node the listener is added to (if any).
    */
-  val removeFunction : pl.wendigo.chrome.domain.runtime.RemoteObject? = null
+  val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId? = null
 )
 

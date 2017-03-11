@@ -46,16 +46,8 @@ class NetworkDomain internal constructor(private val connection : pl.wendigo.chr
 	 * Blocks specific URL from loading.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun addBlockedURL(input : AddBlockedURLRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Network.addBlockedURL", input, pl.wendigo.chrome.ResponseFrame::class.java)
-	}
-
-	/**
-	 * Cancels blocking of a specific URL from loading.
-	 */
-	@pl.wendigo.chrome.ProtocolExperimental
-    fun removeBlockedURL(input : RemoveBlockedURLRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Network.removeBlockedURL", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    fun setBlockedURLs(input : SetBlockedURLsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Network.setBlockedURLs", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -106,8 +98,8 @@ class NetworkDomain internal constructor(private val connection : pl.wendigo.chr
 	 * Returns all browser cookies for the current URL. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun getCookies() : io.reactivex.Flowable<GetCookiesResponse> {
-        return connection.runAndCaptureResponse("Network.getCookies", null, GetCookiesResponse::class.java)
+    fun getCookies(input : GetCookiesRequest) : io.reactivex.Flowable<GetCookiesResponse> {
+        return connection.runAndCaptureResponse("Network.getCookies", input, GetCookiesResponse::class.java)
 	}
 
 	/**
@@ -368,29 +360,15 @@ data class GetResponseBodyResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.addBlockedURL method call.
+ * Represents requestFrame parameters that can be used with Network.setBlockedURLs method call.
  *
  * Blocks specific URL from loading.
  */
-data class AddBlockedURLRequest (
+data class SetBlockedURLsRequest (
     /**
-     * URL to block.
+     * URLs to block.
      */
-    val url : String
-
-)
-
-
-/**
- * Represents requestFrame parameters that can be used with Network.removeBlockedURL method call.
- *
- * Cancels blocking of a specific URL from loading.
- */
-data class RemoveBlockedURLRequest (
-    /**
-     * URL to stop blocking.
-     */
-    val url : String
+    val urls : Array<String>
 
 )
 
@@ -455,6 +433,18 @@ data class CanClearBrowserCookiesResponse(
 
 
 
+/**
+ * Represents requestFrame parameters that can be used with Network.getCookies method call.
+ *
+ * Returns all browser cookies for the current URL. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
+ */
+data class GetCookiesRequest (
+    /**
+     * The list of URLs for which applicable cookies will be fetched
+     */
+    val urls : Array<String>? = null
+
+)
 
 /**
  * Represents responseFrame from Network. method call.

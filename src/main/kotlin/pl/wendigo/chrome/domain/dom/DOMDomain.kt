@@ -29,6 +29,13 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
 	}
 
 	/**
+	 * Returns the root DOM node (and optionally the subtree) to the caller.
+	 */
+	  fun getFlattenedDocument(input : GetFlattenedDocumentRequest) : io.reactivex.Flowable<GetFlattenedDocumentResponse> {
+        return connection.runAndCaptureResponse("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java)
+	}
+
+	/**
 	 * Collects class names for the node with given id and all of it's child nodes.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
@@ -460,6 +467,37 @@ data class GetDocumentResponse(
    * Resulting node.
    */
   val root : Node
+
+)
+
+/**
+ * Represents requestFrame parameters that can be used with DOM.getFlattenedDocument method call.
+ *
+ * Returns the root DOM node (and optionally the subtree) to the caller.
+ */
+data class GetFlattenedDocumentRequest (
+    /**
+     * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
+     */
+    @pl.wendigo.chrome.ProtocolExperimental val depth : Int? = null,
+
+    /**
+     * Whether or not iframes and shadow roots should be traversed when returning the subtree (default is false).
+     */
+    @pl.wendigo.chrome.ProtocolExperimental val pierce : Boolean? = null
+
+)
+
+/**
+ * Represents responseFrame from DOM. method call.
+ *
+ * Returns the root DOM node (and optionally the subtree) to the caller.
+ */
+data class GetFlattenedDocumentResponse(
+  /**
+   * Resulting node.
+   */
+  val nodes : Array<Node>
 
 )
 

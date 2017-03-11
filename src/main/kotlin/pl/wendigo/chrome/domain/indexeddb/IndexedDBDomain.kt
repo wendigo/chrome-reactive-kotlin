@@ -49,6 +49,13 @@ package pl.wendigo.chrome.domain.indexeddb
         return connection.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
+	/**
+	 * Deletes a database.
+	 */
+	  fun deleteDatabase(input : DeleteDatabaseRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	}
+
   }
 
 
@@ -193,6 +200,25 @@ data class ClearObjectStoreRequest (
      * Object store name.
      */
     val objectStoreName : String
+
+)
+
+
+/**
+ * Represents requestFrame parameters that can be used with IndexedDB.deleteDatabase method call.
+ *
+ * Deletes a database.
+ */
+data class DeleteDatabaseRequest (
+    /**
+     * Security origin.
+     */
+    val securityOrigin : String,
+
+    /**
+     * Database name.
+     */
+    val databaseName : String
 
 )
 

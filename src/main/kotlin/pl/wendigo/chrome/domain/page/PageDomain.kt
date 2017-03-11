@@ -189,8 +189,16 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
 	 * Capture page screenshot.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
-    fun captureScreenshot() : io.reactivex.Flowable<CaptureScreenshotResponse> {
-        return connection.runAndCaptureResponse("Page.captureScreenshot", null, CaptureScreenshotResponse::class.java)
+    fun captureScreenshot(input : CaptureScreenshotRequest) : io.reactivex.Flowable<CaptureScreenshotResponse> {
+        return connection.runAndCaptureResponse("Page.captureScreenshot", input, CaptureScreenshotResponse::class.java)
+	}
+
+	/**
+	 * Print page as pdf.
+	 */
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun printToPDF() : io.reactivex.Flowable<PrintToPDFResponse> {
+        return connection.runAndCaptureResponse("Page.printToPDF", null, PrintToPDFResponse::class.java)
 	}
 
 	/**
@@ -494,7 +502,12 @@ data class NavigateRequest (
     /**
      * URL to navigate the page to.
      */
-    val url : String
+    val url : String,
+
+    /**
+     * Referrer URL.
+     */
+    @pl.wendigo.chrome.ProtocolExperimental val referrer : String? = null
 
 )
 
@@ -841,6 +854,23 @@ data class SetTouchEmulationEnabledRequest (
 )
 
 
+/**
+ * Represents requestFrame parameters that can be used with Page.captureScreenshot method call.
+ *
+ * Capture page screenshot.
+ */
+data class CaptureScreenshotRequest (
+    /**
+     * Image compression format (defaults to png).
+     */
+    val format : String? = null,
+
+    /**
+     * Compression quality from range [0..100] (jpeg only).
+     */
+    val quality : Int? = null
+
+)
 
 /**
  * Represents responseFrame from Page. method call.
@@ -849,7 +879,21 @@ data class SetTouchEmulationEnabledRequest (
  */
 data class CaptureScreenshotResponse(
   /**
-   * Base64-encoded image data (PNG).
+   * Base64-encoded image data.
+   */
+  val data : String
+
+)
+
+
+/**
+ * Represents responseFrame from Page. method call.
+ *
+ * Print page as pdf.
+ */
+data class PrintToPDFResponse(
+  /**
+   * Base64-encoded pdf data.
    */
   val data : String
 
@@ -1031,7 +1075,12 @@ data class GetLayoutMetricsResponse(
   /**
    * Metrics relating to the visual viewport.
    */
-  val visualViewport : VisualViewport
+  val visualViewport : VisualViewport,
+
+  /**
+   * Size of scrollable area.
+   */
+  val contentSize : pl.wendigo.chrome.domain.dom.Rect
 
 )
 

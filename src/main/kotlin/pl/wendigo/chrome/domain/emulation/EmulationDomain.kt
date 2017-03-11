@@ -123,6 +123,14 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
         return connection.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
+	/**
+	 * Sets or clears an override of the default background color of the frame. This override is used if the content does not specify one.
+	 */
+	@pl.wendigo.chrome.ProtocolExperimental
+    fun setDefaultBackgroundColorOverride(input : SetDefaultBackgroundColorOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+        return connection.runAndCaptureResponse("Emulation.setDefaultBackgroundColorOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	}
+
   
   /**
    * Notification sent after the virual time budget for the current VirtualTimePolicy has run out.
@@ -385,6 +393,20 @@ data class SetVirtualTimePolicyRequest (
      * If set, after this many virtual milliseconds have elapsed virtual time will be paused and a virtualTimeBudgetExpired event is sent.
      */
     val budget : Int? = null
+
+)
+
+
+/**
+ * Represents requestFrame parameters that can be used with Emulation.setDefaultBackgroundColorOverride method call.
+ *
+ * Sets or clears an override of the default background color of the frame. This override is used if the content does not specify one.
+ */
+data class SetDefaultBackgroundColorOverrideRequest (
+    /**
+     * RGBA of the default background color. If not specified, any existing override will be cleared.
+     */
+    val color : pl.wendigo.chrome.domain.dom.RGBA? = null
 
 )
 
