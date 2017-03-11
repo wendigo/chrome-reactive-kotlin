@@ -35,6 +35,7 @@ scmVersion {
 }
 
 group = 'pl.wendigo'
+version = scmVersion.version
 
 jar {
     baseName = 'chrome-reactive-kotlin'
