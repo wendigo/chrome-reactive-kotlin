@@ -108,7 +108,7 @@ modifyPom {
 }
 
 nexusStaging {
-    packageGroup = 'org.javers'
+    packageGroup = 'pl.wendigo'
     numberOfRetries = 10
     delayBetweenRetriesInMillis = 3000
 }
