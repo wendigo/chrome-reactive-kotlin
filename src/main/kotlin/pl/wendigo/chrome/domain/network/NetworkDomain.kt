@@ -185,105 +185,105 @@ class NetworkDomain internal constructor(private val connection : pl.wendigo.chr
    * Fired when resource loading priority is changed
    */
    fun onResourceChangedPriority() : io.reactivex.Flowable<ResourceChangedPriorityEvent> {
-      return connection.captureEvents(ResourceChangedPriorityEvent::class.java)
+      return connection.captureEvents("Network.resourceChangedPriority", ResourceChangedPriorityEvent::class.java)
    }
 
   /**
    * Fired when page is about to send HTTP request.
    */
    fun onRequestWillBeSent() : io.reactivex.Flowable<RequestWillBeSentEvent> {
-      return connection.captureEvents(RequestWillBeSentEvent::class.java)
+      return connection.captureEvents("Network.requestWillBeSent", RequestWillBeSentEvent::class.java)
    }
 
   /**
    * Fired if request ended up loading from cache.
    */
    fun onRequestServedFromCache() : io.reactivex.Flowable<RequestServedFromCacheEvent> {
-      return connection.captureEvents(RequestServedFromCacheEvent::class.java)
+      return connection.captureEvents("Network.requestServedFromCache", RequestServedFromCacheEvent::class.java)
    }
 
   /**
    * Fired when HTTP response is available.
    */
    fun onResponseReceived() : io.reactivex.Flowable<ResponseReceivedEvent> {
-      return connection.captureEvents(ResponseReceivedEvent::class.java)
+      return connection.captureEvents("Network.responseReceived", ResponseReceivedEvent::class.java)
    }
 
   /**
    * Fired when data chunk was received over the network.
    */
    fun onDataReceived() : io.reactivex.Flowable<DataReceivedEvent> {
-      return connection.captureEvents(DataReceivedEvent::class.java)
+      return connection.captureEvents("Network.dataReceived", DataReceivedEvent::class.java)
    }
 
   /**
    * Fired when HTTP request has finished loading.
    */
    fun onLoadingFinished() : io.reactivex.Flowable<LoadingFinishedEvent> {
-      return connection.captureEvents(LoadingFinishedEvent::class.java)
+      return connection.captureEvents("Network.loadingFinished", LoadingFinishedEvent::class.java)
    }
 
   /**
    * Fired when HTTP request has failed to load.
    */
    fun onLoadingFailed() : io.reactivex.Flowable<LoadingFailedEvent> {
-      return connection.captureEvents(LoadingFailedEvent::class.java)
+      return connection.captureEvents("Network.loadingFailed", LoadingFailedEvent::class.java)
    }
 
   /**
    * Fired when WebSocket is about to initiate handshake.
    */
    fun onWebSocketWillSendHandshakeRequest() : io.reactivex.Flowable<WebSocketWillSendHandshakeRequestEvent> {
-      return connection.captureEvents(WebSocketWillSendHandshakeRequestEvent::class.java)
+      return connection.captureEvents("Network.webSocketWillSendHandshakeRequest", WebSocketWillSendHandshakeRequestEvent::class.java)
    }
 
   /**
    * Fired when WebSocket handshake response becomes available.
    */
    fun onWebSocketHandshakeResponseReceived() : io.reactivex.Flowable<WebSocketHandshakeResponseReceivedEvent> {
-      return connection.captureEvents(WebSocketHandshakeResponseReceivedEvent::class.java)
+      return connection.captureEvents("Network.webSocketHandshakeResponseReceived", WebSocketHandshakeResponseReceivedEvent::class.java)
    }
 
   /**
    * Fired upon WebSocket creation.
    */
    fun onWebSocketCreated() : io.reactivex.Flowable<WebSocketCreatedEvent> {
-      return connection.captureEvents(WebSocketCreatedEvent::class.java)
+      return connection.captureEvents("Network.webSocketCreated", WebSocketCreatedEvent::class.java)
    }
 
   /**
    * Fired when WebSocket is closed.
    */
    fun onWebSocketClosed() : io.reactivex.Flowable<WebSocketClosedEvent> {
-      return connection.captureEvents(WebSocketClosedEvent::class.java)
+      return connection.captureEvents("Network.webSocketClosed", WebSocketClosedEvent::class.java)
    }
 
   /**
    * Fired when WebSocket frame is received.
    */
    fun onWebSocketFrameReceived() : io.reactivex.Flowable<WebSocketFrameReceivedEvent> {
-      return connection.captureEvents(WebSocketFrameReceivedEvent::class.java)
+      return connection.captureEvents("Network.webSocketFrameReceived", WebSocketFrameReceivedEvent::class.java)
    }
 
   /**
    * Fired when WebSocket frame error occurs.
    */
    fun onWebSocketFrameError() : io.reactivex.Flowable<WebSocketFrameErrorEvent> {
-      return connection.captureEvents(WebSocketFrameErrorEvent::class.java)
+      return connection.captureEvents("Network.webSocketFrameError", WebSocketFrameErrorEvent::class.java)
    }
 
   /**
    * Fired when WebSocket frame is sent.
    */
    fun onWebSocketFrameSent() : io.reactivex.Flowable<WebSocketFrameSentEvent> {
-      return connection.captureEvents(WebSocketFrameSentEvent::class.java)
+      return connection.captureEvents("Network.webSocketFrameSent", WebSocketFrameSentEvent::class.java)
    }
 
   /**
    * Fired when EventSource message is received.
    */
    fun onEventSourceMessageReceived() : io.reactivex.Flowable<EventSourceMessageReceivedEvent> {
-      return connection.captureEvents(EventSourceMessageReceivedEvent::class.java)
+      return connection.captureEvents("Network.eventSourceMessageReceived", EventSourceMessageReceivedEvent::class.java)
    }
 }
 

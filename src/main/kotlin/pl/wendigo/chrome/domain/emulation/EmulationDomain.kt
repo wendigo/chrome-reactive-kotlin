@@ -128,7 +128,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
    * Notification sent after the virual time budget for the current VirtualTimePolicy has run out.
    */
    fun onVirtualTimeBudgetExpired() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
+      return connection.captureEvents("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 }
 

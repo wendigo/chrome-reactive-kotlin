@@ -1,0 +1,15 @@
+language: java
+jdk:
+- oraclejdk8
+script:
+- ./gradlew integrationTest
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: deploy/nexus.sh
+  on:
+    tags: true
+    all_branches: true
+sudo: false
+before_install:
+- openssl aes-256-cbc -K $encrypted_be75feebd170_key -iv $encrypted_be75feebd170_iv -in deploy/private.gpg.enc -out deploy/private.gpg -d

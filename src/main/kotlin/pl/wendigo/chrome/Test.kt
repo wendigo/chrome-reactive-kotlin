@@ -14,7 +14,13 @@ class Test {
 
             val api = RemoteChrome.newTab("127.0.0.1:9292")
 
-            api.onProtocolEvents().observeOn(Schedulers.computation()).filter {it.protocolDomain() == RemoteChrome.Domains.CSS.name}.subscribe {
+            api.SystemInfo.getInfo().blockingSubscribe( {
+                println("system info is: $it")
+            }, {
+                println("got error: $it")
+            })
+
+            api.onProtocolEvents().observeOn(Schedulers.computation()).filter { it.protocolDomain() == RemoteChrome.Domains.CSS.name }.subscribe {
                 println("got next event: ${it.name()}: $it")
             }
 

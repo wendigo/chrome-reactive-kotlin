@@ -174,35 +174,35 @@ package pl.wendigo.chrome.domain.css
    * Fires whenever a MediaQuery result changes (for example, after a browser window has been resized.) The current implementation considers only viewport-dependent media features.
    */
    fun onMediaQueryResultChanged() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
+      return connection.captureEvents("CSS.mediaQueryResultChanged", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
    * Fires whenever a web font gets loaded.
    */
    fun onFontsUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
+      return connection.captureEvents("CSS.fontsUpdated", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
    * Fired whenever a stylesheet is changed as a result of the client operation.
    */
    fun onStyleSheetChanged() : io.reactivex.Flowable<StyleSheetChangedEvent> {
-      return connection.captureEvents(StyleSheetChangedEvent::class.java)
+      return connection.captureEvents("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java)
    }
 
   /**
    * Fired whenever an active document stylesheet is added.
    */
    fun onStyleSheetAdded() : io.reactivex.Flowable<StyleSheetAddedEvent> {
-      return connection.captureEvents(StyleSheetAddedEvent::class.java)
+      return connection.captureEvents("CSS.styleSheetAdded", StyleSheetAddedEvent::class.java)
    }
 
   /**
    * Fired whenever an active document stylesheet is removed.
    */
    fun onStyleSheetRemoved() : io.reactivex.Flowable<StyleSheetRemovedEvent> {
-      return connection.captureEvents(StyleSheetRemovedEvent::class.java)
+      return connection.captureEvents("CSS.styleSheetRemoved", StyleSheetRemovedEvent::class.java)
    }
 }
 

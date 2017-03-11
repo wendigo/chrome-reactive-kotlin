@@ -47,14 +47,14 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
    * Sent when new profile recodring is started using console.profile() call.
    */
    fun onConsoleProfileStarted() : io.reactivex.Flowable<ConsoleProfileStartedEvent> {
-      return connection.captureEvents(ConsoleProfileStartedEvent::class.java)
+      return connection.captureEvents("Profiler.consoleProfileStarted", ConsoleProfileStartedEvent::class.java)
    }
 
   /**
    * 
    */
    fun onConsoleProfileFinished() : io.reactivex.Flowable<ConsoleProfileFinishedEvent> {
-      return connection.captureEvents(ConsoleProfileFinishedEvent::class.java)
+      return connection.captureEvents("Profiler.consoleProfileFinished", ConsoleProfileFinishedEvent::class.java)
    }
 }
 

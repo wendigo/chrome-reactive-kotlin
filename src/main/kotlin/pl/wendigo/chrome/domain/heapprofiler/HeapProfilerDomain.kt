@@ -89,35 +89,35 @@ package pl.wendigo.chrome.domain.heapprofiler
    * 
    */
    fun onAddHeapSnapshotChunk() : io.reactivex.Flowable<AddHeapSnapshotChunkEvent> {
-      return connection.captureEvents(AddHeapSnapshotChunkEvent::class.java)
+      return connection.captureEvents("HeapProfiler.addHeapSnapshotChunk", AddHeapSnapshotChunkEvent::class.java)
    }
 
   /**
    * 
    */
    fun onResetProfiles() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
+      return connection.captureEvents("HeapProfiler.resetProfiles", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
    * 
    */
    fun onReportHeapSnapshotProgress() : io.reactivex.Flowable<ReportHeapSnapshotProgressEvent> {
-      return connection.captureEvents(ReportHeapSnapshotProgressEvent::class.java)
+      return connection.captureEvents("HeapProfiler.reportHeapSnapshotProgress", ReportHeapSnapshotProgressEvent::class.java)
    }
 
   /**
    * If heap objects tracking has been started then backend regulary sends a current value for last seen object id and corresponding timestamp. If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
    */
    fun onLastSeenObjectId() : io.reactivex.Flowable<LastSeenObjectIdEvent> {
-      return connection.captureEvents(LastSeenObjectIdEvent::class.java)
+      return connection.captureEvents("HeapProfiler.lastSeenObjectId", LastSeenObjectIdEvent::class.java)
    }
 
   /**
    * If heap objects tracking has been started then backend may send update for one or more fragments
    */
    fun onHeapStatsUpdate() : io.reactivex.Flowable<HeapStatsUpdateEvent> {
-      return connection.captureEvents(HeapStatsUpdateEvent::class.java)
+      return connection.captureEvents("HeapProfiler.heapStatsUpdate", HeapStatsUpdateEvent::class.java)
    }
 }
 

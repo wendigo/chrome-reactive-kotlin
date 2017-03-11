@@ -78,8 +78,10 @@ internal class DebuggerConnection constructor(
     /**
      * Captures events by given name and casts received messages to specified class.
      */
-    fun <T> captureEvents(outClazz: Class<T>) : Flowable<T> where T : DebuggerEvent {
-        return this.captureAllEvents().ofType(outClazz)
+    fun <T> captureEvents(name : String, outClazz: Class<T>) : Flowable<T> where T : DebuggerEvent {
+        return this.captureAllEvents().filter{
+            it.name() == name
+        }.ofType(outClazz)
     }
 
     /**
@@ -92,7 +94,6 @@ internal class DebuggerConnection constructor(
             .subscribeOn(Schedulers.io())
             .toFlowable(BackpressureStrategy.LATEST)
     }
-
 
     override fun onMessage(webSocket: WebSocket?, text: String?) {
         messages.onNext(FrameMapper.deserialize(text!!, ResponseFrame::class.java))

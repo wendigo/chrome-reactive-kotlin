@@ -23,7 +23,7 @@ package {{Package}}.domain.{{Domain.LowerName}}
    * {{{Description}}}
    */
    fun on{{SimpleName}}() : io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.DebuggerEvent{{/if}}> {
-      return connection.captureEvents({{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.DebuggerEvent{{/if}}::class.java)
+      return connection.captureEvents("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.DebuggerEvent{{/if}}::class.java)
    }
   {{/each}}
 }

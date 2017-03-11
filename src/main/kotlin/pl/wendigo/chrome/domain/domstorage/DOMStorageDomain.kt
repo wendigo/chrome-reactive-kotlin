@@ -47,28 +47,28 @@ package pl.wendigo.chrome.domain.domstorage
    * 
    */
    fun onDomStorageItemsCleared() : io.reactivex.Flowable<DomStorageItemsClearedEvent> {
-      return connection.captureEvents(DomStorageItemsClearedEvent::class.java)
+      return connection.captureEvents("DOMStorage.domStorageItemsCleared", DomStorageItemsClearedEvent::class.java)
    }
 
   /**
    * 
    */
    fun onDomStorageItemRemoved() : io.reactivex.Flowable<DomStorageItemRemovedEvent> {
-      return connection.captureEvents(DomStorageItemRemovedEvent::class.java)
+      return connection.captureEvents("DOMStorage.domStorageItemRemoved", DomStorageItemRemovedEvent::class.java)
    }
 
   /**
    * 
    */
    fun onDomStorageItemAdded() : io.reactivex.Flowable<DomStorageItemAddedEvent> {
-      return connection.captureEvents(DomStorageItemAddedEvent::class.java)
+      return connection.captureEvents("DOMStorage.domStorageItemAdded", DomStorageItemAddedEvent::class.java)
    }
 
   /**
    * 
    */
    fun onDomStorageItemUpdated() : io.reactivex.Flowable<DomStorageItemUpdatedEvent> {
-      return connection.captureEvents(DomStorageItemUpdatedEvent::class.java)
+      return connection.captureEvents("DOMStorage.domStorageItemUpdated", DomStorageItemUpdatedEvent::class.java)
    }
 }
 

@@ -89,21 +89,21 @@ package pl.wendigo.chrome.domain.serviceworker
    * 
    */
    fun onWorkerRegistrationUpdated() : io.reactivex.Flowable<WorkerRegistrationUpdatedEvent> {
-      return connection.captureEvents(WorkerRegistrationUpdatedEvent::class.java)
+      return connection.captureEvents("ServiceWorker.workerRegistrationUpdated", WorkerRegistrationUpdatedEvent::class.java)
    }
 
   /**
    * 
    */
    fun onWorkerVersionUpdated() : io.reactivex.Flowable<WorkerVersionUpdatedEvent> {
-      return connection.captureEvents(WorkerVersionUpdatedEvent::class.java)
+      return connection.captureEvents("ServiceWorker.workerVersionUpdated", WorkerVersionUpdatedEvent::class.java)
    }
 
   /**
    * 
    */
    fun onWorkerErrorReported() : io.reactivex.Flowable<WorkerErrorReportedEvent> {
-      return connection.captureEvents(WorkerErrorReportedEvent::class.java)
+      return connection.captureEvents("ServiceWorker.workerErrorReported", WorkerErrorReportedEvent::class.java)
    }
 }
 

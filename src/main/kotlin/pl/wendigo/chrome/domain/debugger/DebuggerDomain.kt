@@ -184,35 +184,35 @@ class DebuggerDomain internal constructor(private val connection : pl.wendigo.ch
    * Fired when virtual machine parses script. This event is also fired for all known and uncollected scripts upon enabling debugger.
    */
    fun onScriptParsed() : io.reactivex.Flowable<ScriptParsedEvent> {
-      return connection.captureEvents(ScriptParsedEvent::class.java)
+      return connection.captureEvents("Debugger.scriptParsed", ScriptParsedEvent::class.java)
    }
 
   /**
    * Fired when virtual machine fails to parse the script.
    */
    fun onScriptFailedToParse() : io.reactivex.Flowable<ScriptFailedToParseEvent> {
-      return connection.captureEvents(ScriptFailedToParseEvent::class.java)
+      return connection.captureEvents("Debugger.scriptFailedToParse", ScriptFailedToParseEvent::class.java)
    }
 
   /**
    * Fired when breakpoint is resolved to an actual script and location.
    */
    fun onBreakpointResolved() : io.reactivex.Flowable<BreakpointResolvedEvent> {
-      return connection.captureEvents(BreakpointResolvedEvent::class.java)
+      return connection.captureEvents("Debugger.breakpointResolved", BreakpointResolvedEvent::class.java)
    }
 
   /**
    * Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
    */
    fun onPaused() : io.reactivex.Flowable<PausedEvent> {
-      return connection.captureEvents(PausedEvent::class.java)
+      return connection.captureEvents("Debugger.paused", PausedEvent::class.java)
    }
 
   /**
    * Fired when the virtual machine resumed execution.
    */
    fun onResumed() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
-      return connection.captureEvents(pl.wendigo.chrome.DebuggerEvent::class.java)
+      return connection.captureEvents("Debugger.resumed", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 }
 
