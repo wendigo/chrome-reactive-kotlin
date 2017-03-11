@@ -21,9 +21,6 @@ buildscript {
     }
 }
 
-group = 'pl.wendigo.chrome.reactive-kotlin'
-version = '1.0'
-
 apply plugin: 'kotlin'
 apply plugin: 'groovy'
 apply plugin: 'org.jetbrains.dokka'
@@ -36,6 +33,8 @@ scmVersion {
         prefix = 'chrome-reactive-kotlin'
     }
 }
+
+group = 'pl.wendigo'
 
 jar {
     baseName = 'chrome-reactive-kotlin'
