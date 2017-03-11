@@ -116,43 +116,6 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
       ))
     }
 
-    enum class Domains(name: String) {
-            INSPECTOR("Inspector"),
-            MEMORY("Memory"),
-            PAGE("Page"),
-            RENDERING("Rendering"),
-            EMULATION("Emulation"),
-            SECURITY("Security"),
-            NETWORK("Network"),
-            DATABASE("Database"),
-            INDEXEDDB("IndexedDB"),
-            CACHESTORAGE("CacheStorage"),
-            DOMSTORAGE("DOMStorage"),
-            APPLICATIONCACHE("ApplicationCache"),
-            DOM("DOM"),
-            CSS("CSS"),
-            IO("IO"),
-            DOMDEBUGGER("DOMDebugger"),
-            TARGET("Target"),
-            SERVICEWORKER("ServiceWorker"),
-            INPUT("Input"),
-            LAYERTREE("LayerTree"),
-            DEVICEORIENTATION("DeviceOrientation"),
-            TRACING("Tracing"),
-            ANIMATION("Animation"),
-            ACCESSIBILITY("Accessibility"),
-            STORAGE("Storage"),
-            LOG("Log"),
-            SYSTEMINFO("SystemInfo"),
-            TETHERING("Tethering"),
-            SCHEMA("Schema"),
-            RUNTIME("Runtime"),
-            DEBUGGER("Debugger"),
-            CONSOLE("Console"),
-            PROFILER("Profiler"),
-            HEAPPROFILER("HeapProfiler")
-    }
-
     /**
      * Returns Inspector domain object.
      */
