@@ -3,16 +3,19 @@ package pl.wendigo.chrome.domain.target
 /**
  * 
  */
+
 typealias TargetID = String
 
 /**
  * 
  */
+
 typealias BrowserContextID = String
 
 /**
  * 
  */
+
 data class TargetInfo(
   /**
    * 
@@ -38,6 +41,7 @@ data class TargetInfo(
 /**
  * 
  */
+
 data class RemoteLocation(
   /**
    * 

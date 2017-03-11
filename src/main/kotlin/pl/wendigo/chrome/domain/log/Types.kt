@@ -3,6 +3,7 @@ package pl.wendigo.chrome.domain.log
 /**
  * Log entry.
  */
+
 data class LogEntry(
   /**
    * Log entry source.
@@ -53,6 +54,7 @@ data class LogEntry(
 /**
  * Violation configuration setting.
  */
+
 data class ViolationSetting(
   /**
    * Violation type.

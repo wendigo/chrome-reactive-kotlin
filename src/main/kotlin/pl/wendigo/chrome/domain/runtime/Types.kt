@@ -3,21 +3,29 @@ package pl.wendigo.chrome.domain.runtime
 /**
  * Unique script identifier.
  */
+
 typealias ScriptId = String
 
 /**
  * Unique object identifier.
  */
+
 typealias RemoteObjectId = String
 
 /**
  * Primitive value which cannot be JSON-stringified.
  */
-typealias UnserializableValue = String
+enum class UnserializableValue {
+    @com.fasterxml.jackson.annotation.JsonProperty("Infinity") PLUS_INFINITY,
+    @com.fasterxml.jackson.annotation.JsonProperty("NaN") NAN,
+    @com.fasterxml.jackson.annotation.JsonProperty("-Infinity") MINUS_INFINITY,
+    @com.fasterxml.jackson.annotation.JsonProperty("-0") ZERO;
+}
 
 /**
  * Mirror object referencing original JavaScript object.
  */
+
 data class RemoteObject(
   /**
    * Object type.
@@ -68,6 +76,7 @@ data class RemoteObject(
 /**
  * 
  */
+
 data class CustomPreview(
   /**
    * 
@@ -98,6 +107,7 @@ data class CustomPreview(
 /**
  * Object containing abbreviated remote object value.
  */
+
 data class ObjectPreview(
   /**
    * Object type.
@@ -133,6 +143,7 @@ data class ObjectPreview(
 /**
  * 
  */
+
 data class PropertyPreview(
   /**
    * Property name.
@@ -163,6 +174,7 @@ data class PropertyPreview(
 /**
  * 
  */
+
 data class EntryPreview(
   /**
    * Preview of the key. Specified for map-like collection entries.
@@ -178,6 +190,7 @@ data class EntryPreview(
 /**
  * Object property descriptor.
  */
+
 data class PropertyDescriptor(
   /**
    * Property name or symbol description.
@@ -233,6 +246,7 @@ data class PropertyDescriptor(
 /**
  * Object internal property descriptor. This property isn&apos;t normally visible in JavaScript code.
  */
+
 data class InternalPropertyDescriptor(
   /**
    * Conventional property name.
@@ -248,6 +262,7 @@ data class InternalPropertyDescriptor(
 /**
  * Represents function call argument. Either remote object id &lt;code&gt;objectId&lt;/code&gt;, primitive &lt;code&gt;value&lt;/code&gt;, unserializable primitive value or neither of (for undefined) them should be specified.
  */
+
 data class CallArgument(
   /**
    * Primitive value.
@@ -268,11 +283,13 @@ data class CallArgument(
 /**
  * Id of an execution context.
  */
+
 typealias ExecutionContextId = Int
 
 /**
  * Description of an isolated world.
  */
+
 data class ExecutionContextDescription(
   /**
    * Unique id of the execution context. It can be used to specify in which execution context script evaluation should be performed.
@@ -298,6 +315,7 @@ data class ExecutionContextDescription(
 /**
  * Detailed information about exception (or error) that was thrown during script compilation or execution.
  */
+
 data class ExceptionDetails(
   /**
    * Exception id.
@@ -348,11 +366,13 @@ data class ExceptionDetails(
 /**
  * Number of milliseconds since epoch.
  */
+
 typealias Timestamp = Double
 
 /**
  * Stack entry for runtime errors and assertions.
  */
+
 data class CallFrame(
   /**
    * JavaScript function name.
@@ -383,6 +403,7 @@ data class CallFrame(
 /**
  * Call frames for assertions or error messages.
  */
+
 data class StackTrace(
   /**
    * String label of this stack trace. For async traces this may be a name of the function that initiated the async call.

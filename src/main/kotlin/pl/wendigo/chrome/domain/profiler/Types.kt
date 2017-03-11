@@ -3,6 +3,7 @@ package pl.wendigo.chrome.domain.profiler
 /**
  * Profile node. Holds callsite information, execution statistics and child nodes.
  */
+
 data class ProfileNode(
   /**
    * Unique id of the node.
@@ -38,6 +39,7 @@ data class ProfileNode(
 /**
  * Profile.
  */
+
 data class Profile(
   /**
    * The list of profile nodes. First item is the root node.
@@ -68,6 +70,7 @@ data class Profile(
 /**
  * Specifies a number of samples attributed to a certain source position.
  */
+
 data class PositionTickInfo(
   /**
    * Source line number (1-based).
@@ -83,6 +86,7 @@ data class PositionTickInfo(
 /**
  * Coverage data for a source range.
  */
+
 data class CoverageRange(
   /**
    * JavaScript script source offset for the range start.
@@ -103,6 +107,7 @@ data class CoverageRange(
 /**
  * Coverage data for a JavaScript function.
  */
+
 data class FunctionCoverage(
   /**
    * JavaScript function name.
@@ -118,6 +123,7 @@ data class FunctionCoverage(
 /**
  * Coverage data for a JavaScript script.
  */
+
 data class ScriptCoverage(
   /**
    * JavaScript script id.

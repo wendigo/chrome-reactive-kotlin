@@ -3,36 +3,54 @@ package pl.wendigo.chrome.domain.network
 /**
  * Unique loader identifier.
  */
+
 typealias LoaderId = String
 
 /**
  * Unique request identifier.
  */
+
 typealias RequestId = String
 
 /**
  * Number of seconds since epoch.
  */
+
 typealias Timestamp = Double
 
 /**
  * Request / response headers as keys / values of JSON object.
  */
+
 typealias Headers = Map<String,Any>
 
 /**
  * Loading priority of a resource request.
  */
-typealias ConnectionType = String
+enum class ConnectionType {
+    @com.fasterxml.jackson.annotation.JsonProperty("none") NONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("cellular2g") CELLULAR2G,
+    @com.fasterxml.jackson.annotation.JsonProperty("cellular3g") CELLULAR3G,
+    @com.fasterxml.jackson.annotation.JsonProperty("cellular4g") CELLULAR4G,
+    @com.fasterxml.jackson.annotation.JsonProperty("bluetooth") BLUETOOTH,
+    @com.fasterxml.jackson.annotation.JsonProperty("ethernet") ETHERNET,
+    @com.fasterxml.jackson.annotation.JsonProperty("wifi") WIFI,
+    @com.fasterxml.jackson.annotation.JsonProperty("wimax") WIMAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("other") OTHER;
+}
 
 /**
  * Represents the cookie&apos;s &apos;SameSite&apos; status: https://tools.ietf.org/html/draft-west-first-party-cookies
  */
-typealias CookieSameSite = String
+enum class CookieSameSite {
+    @com.fasterxml.jackson.annotation.JsonProperty("Strict") STRICT,
+    @com.fasterxml.jackson.annotation.JsonProperty("Lax") LAX;
+}
 
 /**
  * Timing information for the request.
  */
+
 data class ResourceTiming(
   /**
    * Timing's requestTime is a baseline in seconds, while the other numbers are ticks in milliseconds relatively to this requestTime.
@@ -118,11 +136,18 @@ data class ResourceTiming(
 /**
  * Loading priority of a resource request.
  */
-typealias ResourcePriority = String
+enum class ResourcePriority {
+    @com.fasterxml.jackson.annotation.JsonProperty("VeryLow") VERYLOW,
+    @com.fasterxml.jackson.annotation.JsonProperty("Low") LOW,
+    @com.fasterxml.jackson.annotation.JsonProperty("Medium") MEDIUM,
+    @com.fasterxml.jackson.annotation.JsonProperty("High") HIGH,
+    @com.fasterxml.jackson.annotation.JsonProperty("VeryHigh") VERYHIGH;
+}
 
 /**
  * HTTP request data.
  */
+
 data class Request(
   /**
    * Request URL.
@@ -163,6 +188,7 @@ data class Request(
 /**
  * Details of a signed certificate timestamp (SCT).
  */
+
 data class SignedCertificateTimestamp(
   /**
    * Validation status.
@@ -208,6 +234,7 @@ data class SignedCertificateTimestamp(
 /**
  * Security details about a request.
  */
+
 data class SecurityDetails(
   /**
    * Protocol name (e.g. "TLS 1.2" or "QUIC").
@@ -273,11 +300,19 @@ data class SecurityDetails(
 /**
  * The reason why request was blocked.
  */
-typealias BlockedReason = String
+enum class BlockedReason {
+    @com.fasterxml.jackson.annotation.JsonProperty("csp") CSP,
+    @com.fasterxml.jackson.annotation.JsonProperty("mixed-content") MIXED_CONTENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("origin") ORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("inspector") INSPECTOR,
+    @com.fasterxml.jackson.annotation.JsonProperty("subresource-filter") SUBRESOURCE_FILTER,
+    @com.fasterxml.jackson.annotation.JsonProperty("other") OTHER;
+}
 
 /**
  * HTTP response data.
  */
+
 data class Response(
   /**
    * Response URL. This URL can be different from CachedResource.url in case of redirect.
@@ -378,6 +413,7 @@ data class Response(
 /**
  * WebSocket request data.
  */
+
 data class WebSocketRequest(
   /**
    * HTTP request headers.
@@ -388,6 +424,7 @@ data class WebSocketRequest(
 /**
  * WebSocket response data.
  */
+
 data class WebSocketResponse(
   /**
    * HTTP response status code.
@@ -423,6 +460,7 @@ data class WebSocketResponse(
 /**
  * WebSocket frame data.
  */
+
 data class WebSocketFrame(
   /**
    * WebSocket frame opcode.
@@ -443,6 +481,7 @@ data class WebSocketFrame(
 /**
  * Information about the cached resource.
  */
+
 data class CachedResource(
   /**
    * Resource URL. This is the url of the original network request.
@@ -468,6 +507,7 @@ data class CachedResource(
 /**
  * Information about the request initiator.
  */
+
 data class Initiator(
   /**
    * Type of this initiator.
@@ -493,6 +533,7 @@ data class Initiator(
 /**
  * Cookie object
  */
+
 data class Cookie(
   /**
    * Cookie name.

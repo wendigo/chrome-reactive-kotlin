@@ -3,11 +3,13 @@ package pl.wendigo.chrome.domain.database
 /**
  * Unique identifier of Database object.
  */
+
 typealias DatabaseId = String
 
 /**
  * Database object.
  */
+
 data class Database(
   /**
    * Database ID.
@@ -33,6 +35,7 @@ data class Database(
 /**
  * Database error.
  */
+
 data class Error(
   /**
    * Error message.

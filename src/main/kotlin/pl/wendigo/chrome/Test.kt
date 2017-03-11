@@ -14,16 +14,6 @@ class Test {
 
             val api = RemoteChrome.newTab("127.0.0.1:9292")
 
-            api.SystemInfo.getInfo().blockingSubscribe( {
-                println("system info is: $it")
-            }, {
-                println("got error: $it")
-            })
-
-            api.onProtocolEvents().observeOn(Schedulers.computation()).filter { it.protocolDomain() == RemoteChrome.Domains.CSS.name }.subscribe {
-                println("got next event: ${it.name()}: $it")
-            }
-
             Flowable.merge(listOf(api.DOM.enable(), api.Page.enable(), api.CSS.enable(), api.Network.enable(EnableRequest()), api.Console.enable()))
                     .lastOrError()
                     .toFlowable()
@@ -43,9 +33,6 @@ class Test {
                 (requestId) ->
                 api.Network.getResponseBody(GetResponseBodyRequest(requestId = requestId))
             }
-                    .map {
-                        if (it.base64Encoded) Base64.getDecoder().decode(it.body) else it.body
-                    }
                     .subscribe({ println("Response captured: " + it); api.close(); }, {
                         println("Got exception" + it)
                     }, {

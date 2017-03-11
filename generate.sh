@@ -18,4 +18,4 @@ node -p '
 
 git diff protocol.json
 
-go run main.go
+go run generator.go

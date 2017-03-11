@@ -3,16 +3,32 @@ package pl.wendigo.chrome.domain.page
 /**
  * Resource type as it was perceived by the rendering engine.
  */
-typealias ResourceType = String
+enum class ResourceType {
+    @com.fasterxml.jackson.annotation.JsonProperty("Document") DOCUMENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("Stylesheet") STYLESHEET,
+    @com.fasterxml.jackson.annotation.JsonProperty("Image") IMAGE,
+    @com.fasterxml.jackson.annotation.JsonProperty("Media") MEDIA,
+    @com.fasterxml.jackson.annotation.JsonProperty("Font") FONT,
+    @com.fasterxml.jackson.annotation.JsonProperty("Script") SCRIPT,
+    @com.fasterxml.jackson.annotation.JsonProperty("TextTrack") TEXTTRACK,
+    @com.fasterxml.jackson.annotation.JsonProperty("XHR") XHR,
+    @com.fasterxml.jackson.annotation.JsonProperty("Fetch") FETCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("EventSource") EVENTSOURCE,
+    @com.fasterxml.jackson.annotation.JsonProperty("WebSocket") WEBSOCKET,
+    @com.fasterxml.jackson.annotation.JsonProperty("Manifest") MANIFEST,
+    @com.fasterxml.jackson.annotation.JsonProperty("Other") OTHER;
+}
 
 /**
  * Unique frame identifier.
  */
+
 typealias FrameId = String
 
 /**
  * Information about the Frame on the page.
  */
+
 data class Frame(
   /**
    * Frame unique identifier.
@@ -53,6 +69,7 @@ data class Frame(
 /**
  * Information about the Resource on the page.
  */
+
 data class FrameResource(
   /**
    * Resource URL.
@@ -93,6 +110,7 @@ data class FrameResource(
 /**
  * Information about the Frame hierarchy along with their cached resources.
  */
+
 data class FrameResourceTree(
   /**
    * Frame information for this tree item.
@@ -113,11 +131,13 @@ data class FrameResourceTree(
 /**
  * Unique script identifier.
  */
+
 typealias ScriptIdentifier = String
 
 /**
  * Navigation history entry.
  */
+
 data class NavigationEntry(
   /**
    * Unique id of the navigation history entry.
@@ -138,6 +158,7 @@ data class NavigationEntry(
 /**
  * Screencast frame metadata.
  */
+
 data class ScreencastFrameMetadata(
   /**
    * Top offset in DIP.
@@ -178,11 +199,17 @@ data class ScreencastFrameMetadata(
 /**
  * Javascript dialog type.
  */
-typealias DialogType = String
+enum class DialogType {
+    @com.fasterxml.jackson.annotation.JsonProperty("alert") ALERT,
+    @com.fasterxml.jackson.annotation.JsonProperty("confirm") CONFIRM,
+    @com.fasterxml.jackson.annotation.JsonProperty("prompt") PROMPT,
+    @com.fasterxml.jackson.annotation.JsonProperty("beforeunload") BEFOREUNLOAD;
+}
 
 /**
  * Error while paring app manifest.
  */
+
 data class AppManifestError(
   /**
    * Error message.
@@ -208,11 +235,16 @@ data class AppManifestError(
 /**
  * Proceed: allow the navigation; Cancel: cancel the navigation; CancelAndIgnore: cancels the navigation and makes the requester of the navigation acts like the request was never made.
  */
-typealias NavigationResponse = String
+enum class NavigationResponse {
+    @com.fasterxml.jackson.annotation.JsonProperty("Proceed") PROCEED,
+    @com.fasterxml.jackson.annotation.JsonProperty("Cancel") CANCEL,
+    @com.fasterxml.jackson.annotation.JsonProperty("CancelAndIgnore") CANCELANDIGNORE;
+}
 
 /**
  * Layout viewport position and dimensions.
  */
+
 data class LayoutViewport(
   /**
    * Horizontal offset relative to the document (CSS pixels).
@@ -238,6 +270,7 @@ data class LayoutViewport(
 /**
  * Visual viewport position, dimensions, and scale.
  */
+
 data class VisualViewport(
   /**
    * Horizontal offset relative to the layout viewport (CSS pixels).

@@ -3,26 +3,62 @@ package pl.wendigo.chrome.domain.accessibility
 /**
  * Unique accessibility node identifier.
  */
+
 typealias AXNodeId = String
 
 /**
  * Enum of possible property types.
  */
-typealias AXValueType = String
+enum class AXValueType {
+    @com.fasterxml.jackson.annotation.JsonProperty("boolean") BOOLEAN,
+    @com.fasterxml.jackson.annotation.JsonProperty("tristate") TRISTATE,
+    @com.fasterxml.jackson.annotation.JsonProperty("booleanOrUndefined") BOOLEANORUNDEFINED,
+    @com.fasterxml.jackson.annotation.JsonProperty("idref") IDREF,
+    @com.fasterxml.jackson.annotation.JsonProperty("idrefList") IDREFLIST,
+    @com.fasterxml.jackson.annotation.JsonProperty("integer") INTEGER,
+    @com.fasterxml.jackson.annotation.JsonProperty("node") NODE,
+    @com.fasterxml.jackson.annotation.JsonProperty("nodeList") NODELIST,
+    @com.fasterxml.jackson.annotation.JsonProperty("number") NUMBER,
+    @com.fasterxml.jackson.annotation.JsonProperty("string") STRING,
+    @com.fasterxml.jackson.annotation.JsonProperty("computedString") COMPUTEDSTRING,
+    @com.fasterxml.jackson.annotation.JsonProperty("token") TOKEN,
+    @com.fasterxml.jackson.annotation.JsonProperty("tokenList") TOKENLIST,
+    @com.fasterxml.jackson.annotation.JsonProperty("domRelation") DOMRELATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("role") ROLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("internalRole") INTERNALROLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("valueUndefined") VALUEUNDEFINED;
+}
 
 /**
  * Enum of possible property sources.
  */
-typealias AXValueSourceType = String
+enum class AXValueSourceType {
+    @com.fasterxml.jackson.annotation.JsonProperty("attribute") ATTRIBUTE,
+    @com.fasterxml.jackson.annotation.JsonProperty("implicit") IMPLICIT,
+    @com.fasterxml.jackson.annotation.JsonProperty("style") STYLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("contents") CONTENTS,
+    @com.fasterxml.jackson.annotation.JsonProperty("placeholder") PLACEHOLDER,
+    @com.fasterxml.jackson.annotation.JsonProperty("relatedElement") RELATEDELEMENT;
+}
 
 /**
  * Enum of possible native property sources (as a subtype of a particular AXValueSourceType).
  */
-typealias AXValueNativeSourceType = String
+enum class AXValueNativeSourceType {
+    @com.fasterxml.jackson.annotation.JsonProperty("figcaption") FIGCAPTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("label") LABEL,
+    @com.fasterxml.jackson.annotation.JsonProperty("labelfor") LABELFOR,
+    @com.fasterxml.jackson.annotation.JsonProperty("labelwrapped") LABELWRAPPED,
+    @com.fasterxml.jackson.annotation.JsonProperty("legend") LEGEND,
+    @com.fasterxml.jackson.annotation.JsonProperty("tablecaption") TABLECAPTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("title") TITLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("other") OTHER;
+}
 
 /**
  * A single source for a computed AX property.
  */
+
 data class AXValueSource(
   /**
    * What type of source this is.
@@ -73,6 +109,7 @@ data class AXValueSource(
 /**
  * 
  */
+
 data class AXRelatedNode(
   /**
    * The BackendNodeId of the related DOM node.
@@ -93,6 +130,7 @@ data class AXRelatedNode(
 /**
  * 
  */
+
 data class AXProperty(
   /**
    * The name of this property.
@@ -108,6 +146,7 @@ data class AXProperty(
 /**
  * A single computed AX property.
  */
+
 data class AXValue(
   /**
    * The type of this value.
@@ -133,31 +172,72 @@ data class AXValue(
 /**
  * States which apply to every AX node.
  */
-typealias AXGlobalStates = String
+enum class AXGlobalStates {
+    @com.fasterxml.jackson.annotation.JsonProperty("disabled") DISABLED,
+    @com.fasterxml.jackson.annotation.JsonProperty("hidden") HIDDEN,
+    @com.fasterxml.jackson.annotation.JsonProperty("hiddenRoot") HIDDENROOT,
+    @com.fasterxml.jackson.annotation.JsonProperty("invalid") INVALID,
+    @com.fasterxml.jackson.annotation.JsonProperty("keyshortcuts") KEYSHORTCUTS,
+    @com.fasterxml.jackson.annotation.JsonProperty("roledescription") ROLEDESCRIPTION;
+}
 
 /**
  * Attributes which apply to nodes in live regions.
  */
-typealias AXLiveRegionAttributes = String
+enum class AXLiveRegionAttributes {
+    @com.fasterxml.jackson.annotation.JsonProperty("live") LIVE,
+    @com.fasterxml.jackson.annotation.JsonProperty("atomic") ATOMIC,
+    @com.fasterxml.jackson.annotation.JsonProperty("relevant") RELEVANT,
+    @com.fasterxml.jackson.annotation.JsonProperty("busy") BUSY,
+    @com.fasterxml.jackson.annotation.JsonProperty("root") ROOT;
+}
 
 /**
  * Attributes which apply to widgets.
  */
-typealias AXWidgetAttributes = String
+enum class AXWidgetAttributes {
+    @com.fasterxml.jackson.annotation.JsonProperty("autocomplete") AUTOCOMPLETE,
+    @com.fasterxml.jackson.annotation.JsonProperty("haspopup") HASPOPUP,
+    @com.fasterxml.jackson.annotation.JsonProperty("level") LEVEL,
+    @com.fasterxml.jackson.annotation.JsonProperty("multiselectable") MULTISELECTABLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("orientation") ORIENTATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("multiline") MULTILINE,
+    @com.fasterxml.jackson.annotation.JsonProperty("readonly") READONLY,
+    @com.fasterxml.jackson.annotation.JsonProperty("required") REQUIRED,
+    @com.fasterxml.jackson.annotation.JsonProperty("valuemin") VALUEMIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("valuemax") VALUEMAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("valuetext") VALUETEXT;
+}
 
 /**
  * States which apply to widgets.
  */
-typealias AXWidgetStates = String
+enum class AXWidgetStates {
+    @com.fasterxml.jackson.annotation.JsonProperty("checked") CHECKED,
+    @com.fasterxml.jackson.annotation.JsonProperty("expanded") EXPANDED,
+    @com.fasterxml.jackson.annotation.JsonProperty("modal") MODAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("pressed") PRESSED,
+    @com.fasterxml.jackson.annotation.JsonProperty("selected") SELECTED;
+}
 
 /**
  * Relationships between elements other than parent/child/sibling.
  */
-typealias AXRelationshipAttributes = String
+enum class AXRelationshipAttributes {
+    @com.fasterxml.jackson.annotation.JsonProperty("activedescendant") ACTIVEDESCENDANT,
+    @com.fasterxml.jackson.annotation.JsonProperty("controls") CONTROLS,
+    @com.fasterxml.jackson.annotation.JsonProperty("describedby") DESCRIBEDBY,
+    @com.fasterxml.jackson.annotation.JsonProperty("details") DETAILS,
+    @com.fasterxml.jackson.annotation.JsonProperty("errormessage") ERRORMESSAGE,
+    @com.fasterxml.jackson.annotation.JsonProperty("flowto") FLOWTO,
+    @com.fasterxml.jackson.annotation.JsonProperty("labelledby") LABELLEDBY,
+    @com.fasterxml.jackson.annotation.JsonProperty("owns") OWNS;
+}
 
 /**
  * A node in the accessibility tree.
  */
+
 data class AXNode(
   /**
    * Unique identifier for this node.

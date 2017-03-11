@@ -3,5 +3,8 @@ package pl.wendigo.chrome.domain.memory
 /**
  * Memory pressure level.
  */
-typealias PressureLevel = String
+enum class PressureLevel {
+    @com.fasterxml.jackson.annotation.JsonProperty("moderate") MODERATE,
+    @com.fasterxml.jackson.annotation.JsonProperty("critical") CRITICAL;
+}
 

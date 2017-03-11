@@ -3,16 +3,19 @@ package pl.wendigo.chrome.domain.dom
 /**
  * Unique DOM node identifier.
  */
+
 typealias NodeId = Int
 
 /**
  * Unique DOM node identifier used to reference a node that may not have been pushed to the front-end.
  */
+
 typealias BackendNodeId = Int
 
 /**
  * Backend node with a friendly name.
  */
+
 data class BackendNode(
   /**
    * <code>Node</code>'s nodeType.
@@ -33,16 +36,37 @@ data class BackendNode(
 /**
  * Pseudo element type.
  */
-typealias PseudoType = String
+enum class PseudoType {
+    @com.fasterxml.jackson.annotation.JsonProperty("first-line") FIRST_LINE,
+    @com.fasterxml.jackson.annotation.JsonProperty("first-letter") FIRST_LETTER,
+    @com.fasterxml.jackson.annotation.JsonProperty("before") BEFORE,
+    @com.fasterxml.jackson.annotation.JsonProperty("after") AFTER,
+    @com.fasterxml.jackson.annotation.JsonProperty("backdrop") BACKDROP,
+    @com.fasterxml.jackson.annotation.JsonProperty("selection") SELECTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("first-line-inherited") FIRST_LINE_INHERITED,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar") SCROLLBAR,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-thumb") SCROLLBAR_THUMB,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-button") SCROLLBAR_BUTTON,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-track") SCROLLBAR_TRACK,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-track-piece") SCROLLBAR_TRACK_PIECE,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-corner") SCROLLBAR_CORNER,
+    @com.fasterxml.jackson.annotation.JsonProperty("resizer") RESIZER,
+    @com.fasterxml.jackson.annotation.JsonProperty("input-list-button") INPUT_LIST_BUTTON;
+}
 
 /**
  * Shadow root type.
  */
-typealias ShadowRootType = String
+enum class ShadowRootType {
+    @com.fasterxml.jackson.annotation.JsonProperty("user-agent") USER_AGENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("open") OPEN,
+    @com.fasterxml.jackson.annotation.JsonProperty("closed") CLOSED;
+}
 
 /**
  * DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes. DOMNode is a base node mirror type.
  */
+
 data class Node(
   /**
    * Node identifier that is passed into the rest of the DOM messages as the <code>nodeId</code>. Backend will only push node with given <code>id</code> once. It is aware of all requested nodes and will only fire DOM events for nodes known to the client.
@@ -188,6 +212,7 @@ data class Node(
 /**
  * A structure holding an RGBA color.
  */
+
 data class RGBA(
   /**
    * The red component, in the [0-255] range.
@@ -213,11 +238,13 @@ data class RGBA(
 /**
  * An array of quad vertices, x immediately followed by y for each point, points clock-wise.
  */
+
 typealias Quad = Array<Double>
 
 /**
  * Box model.
  */
+
 data class BoxModel(
   /**
    * Content box
@@ -258,6 +285,7 @@ data class BoxModel(
 /**
  * CSS Shape Outside details.
  */
+
 data class ShapeOutsideInfo(
   /**
    * Shape bounds
@@ -278,6 +306,7 @@ data class ShapeOutsideInfo(
 /**
  * Rectangle.
  */
+
 data class Rect(
   /**
    * X coordinate
@@ -303,6 +332,7 @@ data class Rect(
 /**
  * Configuration data for the highlighting of page elements.
  */
+
 data class HighlightConfig(
   /**
    * Whether the node info tooltip should be shown (default: false).
@@ -368,5 +398,9 @@ data class HighlightConfig(
 /**
  * 
  */
-typealias InspectMode = String
+enum class InspectMode {
+    @com.fasterxml.jackson.annotation.JsonProperty("searchForNode") SEARCHFORNODE,
+    @com.fasterxml.jackson.annotation.JsonProperty("searchForUAShadowDOM") SEARCHFORUASHADOWDOM,
+    @com.fasterxml.jackson.annotation.JsonProperty("none") NONE;
+}
 

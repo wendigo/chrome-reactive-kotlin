@@ -3,11 +3,13 @@ package pl.wendigo.chrome.domain.cachestorage
 /**
  * Unique identifier of the Cache object.
  */
+
 typealias CacheId = String
 
 /**
  * Data entry.
  */
+
 data class DataEntry(
   /**
    * Request url spec.
@@ -23,6 +25,7 @@ data class DataEntry(
 /**
  * Cache identifier.
  */
+
 data class Cache(
   /**
    * An opaque unique id of the cache.

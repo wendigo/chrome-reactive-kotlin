@@ -3,6 +3,7 @@ package pl.wendigo.chrome.domain.applicationcache
 /**
  * Detailed application cache resource information.
  */
+
 data class ApplicationCacheResource(
   /**
    * Resource url.
@@ -23,6 +24,7 @@ data class ApplicationCacheResource(
 /**
  * Detailed application cache information.
  */
+
 data class ApplicationCache(
   /**
    * Manifest URL.
@@ -53,6 +55,7 @@ data class ApplicationCache(
 /**
  * Frame identifier - manifest URL pair.
  */
+
 data class FrameWithManifest(
   /**
    * Frame identifier.

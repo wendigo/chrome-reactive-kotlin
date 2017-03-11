@@ -3,16 +3,19 @@ package pl.wendigo.chrome.domain.debugger
 /**
  * Breakpoint identifier.
  */
+
 typealias BreakpointId = String
 
 /**
  * Call frame identifier.
  */
+
 typealias CallFrameId = String
 
 /**
  * Location in the source code.
  */
+
 data class Location(
   /**
    * Script identifier as reported in the <code>Debugger.scriptParsed</code>.
@@ -33,6 +36,7 @@ data class Location(
 /**
  * Location in the source code.
  */
+
 data class ScriptPosition(
   /**
    * 
@@ -48,6 +52,7 @@ data class ScriptPosition(
 /**
  * JavaScript call frame. Array of call frames form the call stack.
  */
+
 data class CallFrame(
   /**
    * Call frame identifier. This identifier is only valid while the virtual machine is paused.
@@ -88,6 +93,7 @@ data class CallFrame(
 /**
  * Scope description.
  */
+
 data class Scope(
   /**
    * Scope type.
@@ -118,6 +124,7 @@ data class Scope(
 /**
  * Search match for resource.
  */
+
 data class SearchMatch(
   /**
    * Line number in resource content.
@@ -133,6 +140,7 @@ data class SearchMatch(
 /**
  * 
  */
+
 data class BreakLocation(
   /**
    * Script identifier as reported in the <code>Debugger.scriptParsed</code>.

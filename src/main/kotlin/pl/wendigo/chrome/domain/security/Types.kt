@@ -3,16 +3,25 @@ package pl.wendigo.chrome.domain.security
 /**
  * An internal certificate ID value.
  */
+
 typealias CertificateId = Int
 
 /**
  * The security level of a page or resource.
  */
-typealias SecurityState = String
+enum class SecurityState {
+    @com.fasterxml.jackson.annotation.JsonProperty("unknown") UNKNOWN,
+    @com.fasterxml.jackson.annotation.JsonProperty("neutral") NEUTRAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("insecure") INSECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("warning") WARNING,
+    @com.fasterxml.jackson.annotation.JsonProperty("secure") SECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("info") INFO;
+}
 
 /**
  * An explanation of an factor contributing to the security state.
  */
+
 data class SecurityStateExplanation(
   /**
    * Security state representing the severity of the factor being explained.
@@ -38,6 +47,7 @@ data class SecurityStateExplanation(
 /**
  * Information about insecure content on the page.
  */
+
 data class InsecureContentStatus(
   /**
    * True if the page was loaded over HTTPS and ran mixed (HTTP) content such as scripts.

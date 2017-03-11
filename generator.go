@@ -11,6 +11,8 @@ import (
 	"strings"
 
 	"github.com/aymerick/raymond"
+	"regexp"
+	"bytes"
 )
 
 type Protocol struct {
@@ -73,6 +75,10 @@ type Type struct {
 
 func (t Type) HasProperties() bool {
 	return len(t.Properties) > 0
+}
+
+func (t Type) IsEnum() bool {
+	return len(t.Enum) > 0
 }
 
 type Command struct {
@@ -350,6 +356,17 @@ func kotlinFilename(pkg string) string {
 	return fullpath
 }
 
+var camelRegex = regexp.MustCompile("[0-9A-Za-z]+")
+
+func EnumName(src string)(string){
+	byteSrc := []byte(src)
+	chunks := camelRegex.FindAll(byteSrc, -1)
+	for idx, val := range chunks {
+		chunks[idx] = bytes.ToUpper(val)
+	}
+	return string(bytes.Join(chunks, []byte("_")))
+}
+
 func readTemplate(name string) (string, error) {
 	bytes, err := ioutil.ReadFile("generator_templates/" + name + ".hbs")
 	return string(bytes), err
@@ -403,7 +420,20 @@ func main() {
 		return currentDomain
 	})
 
-	log.Printf("Generating protocol class")
+	raymond.RegisterHelper("EnumName", func(value string, options *raymond.Options) string {
+		switch value {
+		case "Infinity":
+			return "PLUS_INFINITY"
+		case "-Infinity":
+			return "MINUS_INFINITY"
+		case "-0":
+			return "ZERO"
+		}
+
+		return EnumName(value)
+	})
+
+	log.Println("Generating protocol class")
 
 	if err := generateAndWrite(kotlinFilename("RemoteChrome"), "protocol_class", struct {
 		Protocol Protocol

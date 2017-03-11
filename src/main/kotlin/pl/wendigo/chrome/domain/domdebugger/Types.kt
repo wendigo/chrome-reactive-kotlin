@@ -3,11 +3,16 @@ package pl.wendigo.chrome.domain.domdebugger
 /**
  * DOM breakpoint type.
  */
-typealias DOMBreakpointType = String
+enum class DOMBreakpointType {
+    @com.fasterxml.jackson.annotation.JsonProperty("subtree-modified") SUBTREE_MODIFIED,
+    @com.fasterxml.jackson.annotation.JsonProperty("attribute-modified") ATTRIBUTE_MODIFIED,
+    @com.fasterxml.jackson.annotation.JsonProperty("node-removed") NODE_REMOVED;
+}
 
 /**
  * Object event listener.
  */
+
 data class EventListener(
   /**
    * <code>EventListener</code>'s type.
