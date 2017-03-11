@@ -10,9 +10,10 @@ import (
 	"path/filepath"
 	"strings"
 
+	"bytes"
 	"github.com/aymerick/raymond"
 	"regexp"
-	"bytes"
+	"sort"
 )
 
 type Protocol struct {
@@ -20,7 +21,12 @@ type Protocol struct {
 	Domains []Domain `json:"domains,omitempty"`
 }
 
-func (p Protocol) EventMappings() map[string]string {
+type EventMapping struct {
+	EventName string
+	Class     string
+}
+
+func (p Protocol) EventMappings() []EventMapping {
 	mappings := make(map[string]string)
 
 	for _, domain := range p.Domains {
@@ -33,7 +39,20 @@ func (p Protocol) EventMappings() map[string]string {
 		}
 	}
 
-	return mappings
+	retval := make([]EventMapping, 0)
+
+	for event, class := range mappings {
+		retval = append(retval, EventMapping{
+			EventName: event,
+			Class:     class,
+		})
+	}
+
+	sort.Slice(retval, func(i, j int) bool {
+		return retval[i].EventName < retval[j].EventName
+	})
+
+	return retval
 }
 
 type Version struct {
@@ -59,7 +78,6 @@ func (d Domain) LowerName() string {
 func (d Domain) UpperName() string {
 	return strings.ToUpper(d.Name)
 }
-
 
 type Type struct {
 	Id           string      `json:"id,omitempty"`
@@ -358,7 +376,7 @@ func kotlinFilename(pkg string) string {
 
 var camelRegex = regexp.MustCompile("[0-9A-Za-z]+")
 
-func EnumName(src string)(string){
+func EnumName(src string) string {
 	byteSrc := []byte(src)
 	chunks := camelRegex.FindAll(byteSrc, -1)
 	for idx, val := range chunks {

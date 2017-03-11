@@ -10,7 +10,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
      */
     init {
       api.registerMappings(mapOf(
-      {{#each Protocol.EventMappings as |Class EventName|}}
+      {{#each Protocol.EventMappings}}
       "{{EventName}}" to {{Class}}::class.java{{#unless @last}},{{/unless}}
       {{/each}}
       ))

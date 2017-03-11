@@ -102,6 +102,7 @@ modifyPom {
         developers {
             developer {
                 name 'Mateusz "Serafin" Gajewski'
+                email 'contact@serafin.tech'
             }
         }
     }
@@ -138,7 +139,7 @@ task ktlintFormat(type: JavaExec) {
 dokka {
     moduleName = 'data'
     outputFormat = 'javadoc'
-    outputDirectory = "$buildDir/javadoc"
+    outputDirectory = javadoc.destinationDir
     processConfigurations = ['compile', 'extra']
 
     linkMapping {
@@ -147,4 +148,9 @@ dokka {
         suffix = "#L"
     }
     sourceDirs = files('src/main/kotlin')
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = javadoc.destinationDir
 }
