@@ -23,14 +23,14 @@ package pl.wendigo.chrome.domain.inspector
   /**
    * Fired when remote debugging connection is about to be terminated. Contains detach reason.
    */
-   fun onDetached() : io.reactivex.Flowable<DetachedEvent> {
+   fun detached() : io.reactivex.Flowable<DetachedEvent> {
       return connection.captureEvents("Inspector.detached", DetachedEvent::class.java)
    }
 
   /**
    * Fired when debugging target has crashed
    */
-   fun onTargetCrashed() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+   fun targetCrashed() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
       return connection.captureEvents("Inspector.targetCrashed", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 }

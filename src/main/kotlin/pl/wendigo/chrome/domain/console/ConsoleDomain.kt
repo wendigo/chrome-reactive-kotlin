@@ -30,7 +30,7 @@ package pl.wendigo.chrome.domain.console
   /**
    * Issued when new console message is added.
    */
-   fun onMessageAdded() : io.reactivex.Flowable<MessageAddedEvent> {
+   fun messageAdded() : io.reactivex.Flowable<MessageAddedEvent> {
       return connection.captureEvents("Console.messageAdded", MessageAddedEvent::class.java)
    }
 }

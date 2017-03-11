@@ -79,21 +79,21 @@ package pl.wendigo.chrome.domain.animation
   /**
    * Event for each animation that has been created.
    */
-   fun onAnimationCreated() : io.reactivex.Flowable<AnimationCreatedEvent> {
+   fun animationCreated() : io.reactivex.Flowable<AnimationCreatedEvent> {
       return connection.captureEvents("Animation.animationCreated", AnimationCreatedEvent::class.java)
    }
 
   /**
    * Event for animation that has been started.
    */
-   fun onAnimationStarted() : io.reactivex.Flowable<AnimationStartedEvent> {
+   fun animationStarted() : io.reactivex.Flowable<AnimationStartedEvent> {
       return connection.captureEvents("Animation.animationStarted", AnimationStartedEvent::class.java)
    }
 
   /**
    * Event for when an animation has been cancelled.
    */
-   fun onAnimationCanceled() : io.reactivex.Flowable<AnimationCanceledEvent> {
+   fun animationCanceled() : io.reactivex.Flowable<AnimationCanceledEvent> {
       return connection.captureEvents("Animation.animationCanceled", AnimationCanceledEvent::class.java)
    }
 }

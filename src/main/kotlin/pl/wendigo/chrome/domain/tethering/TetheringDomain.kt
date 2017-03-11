@@ -23,7 +23,7 @@ package pl.wendigo.chrome.domain.tethering
   /**
    * Informs that port was successfully bound and got a specified connection id.
    */
-   fun onAccepted() : io.reactivex.Flowable<AcceptedEvent> {
+   fun accepted() : io.reactivex.Flowable<AcceptedEvent> {
       return connection.captureEvents("Tethering.accepted", AcceptedEvent::class.java)
    }
 }

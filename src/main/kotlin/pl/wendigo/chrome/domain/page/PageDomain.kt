@@ -290,126 +290,126 @@ class PageDomain internal constructor(private val connection : pl.wendigo.chrome
   /**
    * 
    */
-   fun onDomContentEventFired() : io.reactivex.Flowable<DomContentEventFiredEvent> {
+   fun domContentEventFired() : io.reactivex.Flowable<DomContentEventFiredEvent> {
       return connection.captureEvents("Page.domContentEventFired", DomContentEventFiredEvent::class.java)
    }
 
   /**
    * 
    */
-   fun onLoadEventFired() : io.reactivex.Flowable<LoadEventFiredEvent> {
+   fun loadEventFired() : io.reactivex.Flowable<LoadEventFiredEvent> {
       return connection.captureEvents("Page.loadEventFired", LoadEventFiredEvent::class.java)
    }
 
   /**
    * Fired when frame has been attached to its parent.
    */
-   fun onFrameAttached() : io.reactivex.Flowable<FrameAttachedEvent> {
+   fun frameAttached() : io.reactivex.Flowable<FrameAttachedEvent> {
       return connection.captureEvents("Page.frameAttached", FrameAttachedEvent::class.java)
    }
 
   /**
    * Fired once navigation of the frame has completed. Frame is now associated with the new loader.
    */
-   fun onFrameNavigated() : io.reactivex.Flowable<FrameNavigatedEvent> {
+   fun frameNavigated() : io.reactivex.Flowable<FrameNavigatedEvent> {
       return connection.captureEvents("Page.frameNavigated", FrameNavigatedEvent::class.java)
    }
 
   /**
    * Fired when frame has been detached from its parent.
    */
-   fun onFrameDetached() : io.reactivex.Flowable<FrameDetachedEvent> {
+   fun frameDetached() : io.reactivex.Flowable<FrameDetachedEvent> {
       return connection.captureEvents("Page.frameDetached", FrameDetachedEvent::class.java)
    }
 
   /**
    * Fired when frame has started loading.
    */
-   fun onFrameStartedLoading() : io.reactivex.Flowable<FrameStartedLoadingEvent> {
+   fun frameStartedLoading() : io.reactivex.Flowable<FrameStartedLoadingEvent> {
       return connection.captureEvents("Page.frameStartedLoading", FrameStartedLoadingEvent::class.java)
    }
 
   /**
    * Fired when frame has stopped loading.
    */
-   fun onFrameStoppedLoading() : io.reactivex.Flowable<FrameStoppedLoadingEvent> {
+   fun frameStoppedLoading() : io.reactivex.Flowable<FrameStoppedLoadingEvent> {
       return connection.captureEvents("Page.frameStoppedLoading", FrameStoppedLoadingEvent::class.java)
    }
 
   /**
    * Fired when frame schedules a potential navigation.
    */
-   fun onFrameScheduledNavigation() : io.reactivex.Flowable<FrameScheduledNavigationEvent> {
+   fun frameScheduledNavigation() : io.reactivex.Flowable<FrameScheduledNavigationEvent> {
       return connection.captureEvents("Page.frameScheduledNavigation", FrameScheduledNavigationEvent::class.java)
    }
 
   /**
    * Fired when frame no longer has a scheduled navigation.
    */
-   fun onFrameClearedScheduledNavigation() : io.reactivex.Flowable<FrameClearedScheduledNavigationEvent> {
+   fun frameClearedScheduledNavigation() : io.reactivex.Flowable<FrameClearedScheduledNavigationEvent> {
       return connection.captureEvents("Page.frameClearedScheduledNavigation", FrameClearedScheduledNavigationEvent::class.java)
    }
 
   /**
    * 
    */
-   fun onFrameResized() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+   fun frameResized() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
       return connection.captureEvents("Page.frameResized", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
    * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to open.
    */
-   fun onJavascriptDialogOpening() : io.reactivex.Flowable<JavascriptDialogOpeningEvent> {
+   fun javascriptDialogOpening() : io.reactivex.Flowable<JavascriptDialogOpeningEvent> {
       return connection.captureEvents("Page.javascriptDialogOpening", JavascriptDialogOpeningEvent::class.java)
    }
 
   /**
    * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been closed.
    */
-   fun onJavascriptDialogClosed() : io.reactivex.Flowable<JavascriptDialogClosedEvent> {
+   fun javascriptDialogClosed() : io.reactivex.Flowable<JavascriptDialogClosedEvent> {
       return connection.captureEvents("Page.javascriptDialogClosed", JavascriptDialogClosedEvent::class.java)
    }
 
   /**
    * Compressed image data requested by the <code>startScreencast</code>.
    */
-   fun onScreencastFrame() : io.reactivex.Flowable<ScreencastFrameEvent> {
+   fun screencastFrame() : io.reactivex.Flowable<ScreencastFrameEvent> {
       return connection.captureEvents("Page.screencastFrame", ScreencastFrameEvent::class.java)
    }
 
   /**
    * Fired when the page with currently enabled screencast was shown or hidden </code>.
    */
-   fun onScreencastVisibilityChanged() : io.reactivex.Flowable<ScreencastVisibilityChangedEvent> {
+   fun screencastVisibilityChanged() : io.reactivex.Flowable<ScreencastVisibilityChangedEvent> {
       return connection.captureEvents("Page.screencastVisibilityChanged", ScreencastVisibilityChangedEvent::class.java)
    }
 
   /**
    * Fired when a color has been picked.
    */
-   fun onColorPicked() : io.reactivex.Flowable<ColorPickedEvent> {
+   fun colorPicked() : io.reactivex.Flowable<ColorPickedEvent> {
       return connection.captureEvents("Page.colorPicked", ColorPickedEvent::class.java)
    }
 
   /**
    * Fired when interstitial page was shown
    */
-   fun onInterstitialShown() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+   fun interstitialShown() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
       return connection.captureEvents("Page.interstitialShown", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
    * Fired when interstitial page was hidden
    */
-   fun onInterstitialHidden() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+   fun interstitialHidden() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
       return connection.captureEvents("Page.interstitialHidden", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
    * Fired when a navigation is started if navigation throttles are enabled.  The navigation will be deferred until processNavigation is called.
    */
-   fun onNavigationRequested() : io.reactivex.Flowable<NavigationRequestedEvent> {
+   fun navigationRequested() : io.reactivex.Flowable<NavigationRequestedEvent> {
       return connection.captureEvents("Page.navigationRequested", NavigationRequestedEvent::class.java)
    }
 }

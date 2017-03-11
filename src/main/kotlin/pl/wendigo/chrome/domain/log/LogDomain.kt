@@ -44,7 +44,7 @@ package pl.wendigo.chrome.domain.log
   /**
    * Issued when new message was logged.
    */
-   fun onEntryAdded() : io.reactivex.Flowable<EntryAddedEvent> {
+   fun entryAdded() : io.reactivex.Flowable<EntryAddedEvent> {
       return connection.captureEvents("Log.entryAdded", EntryAddedEvent::class.java)
    }
 }

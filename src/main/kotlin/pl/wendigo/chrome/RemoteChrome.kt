@@ -358,14 +358,14 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing all events.
      */
-    fun onProtocolEvents() : io.reactivex.Flowable<DebuggerEvent> {
+    fun Events() : io.reactivex.Flowable<DebuggerEvent> {
       return api.captureAllEvents()
     }
 
     /**
      * Returns flowable capturing Inspector domains events.
      */
-     fun onInspectorEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun InspectorEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Inspector"
        }
@@ -373,7 +373,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Memory domains events.
      */
-     fun onMemoryEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun MemoryEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Memory"
        }
@@ -381,7 +381,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Page domains events.
      */
-     fun onPageEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun PageEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Page"
        }
@@ -389,7 +389,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Rendering domains events.
      */
-     fun onRenderingEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun RenderingEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Rendering"
        }
@@ -397,7 +397,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Emulation domains events.
      */
-     fun onEmulationEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun EmulationEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Emulation"
        }
@@ -405,7 +405,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Security domains events.
      */
-     fun onSecurityEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun SecurityEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Security"
        }
@@ -413,7 +413,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Network domains events.
      */
-     fun onNetworkEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun NetworkEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Network"
        }
@@ -421,7 +421,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Database domains events.
      */
-     fun onDatabaseEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun DatabaseEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Database"
        }
@@ -429,7 +429,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing IndexedDB domains events.
      */
-     fun onIndexedDBEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun IndexedDBEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "IndexedDB"
        }
@@ -437,7 +437,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing CacheStorage domains events.
      */
-     fun onCacheStorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun CacheStorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "CacheStorage"
        }
@@ -445,7 +445,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing DOMStorage domains events.
      */
-     fun onDOMStorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun DOMStorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "DOMStorage"
        }
@@ -453,7 +453,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing ApplicationCache domains events.
      */
-     fun onApplicationCacheEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun ApplicationCacheEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "ApplicationCache"
        }
@@ -461,7 +461,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing DOM domains events.
      */
-     fun onDOMEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun DOMEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "DOM"
        }
@@ -469,7 +469,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing CSS domains events.
      */
-     fun onCSSEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun CSSEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "CSS"
        }
@@ -477,7 +477,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing IO domains events.
      */
-     fun onIOEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun IOEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "IO"
        }
@@ -485,7 +485,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing DOMDebugger domains events.
      */
-     fun onDOMDebuggerEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun DOMDebuggerEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "DOMDebugger"
        }
@@ -493,7 +493,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Target domains events.
      */
-     fun onTargetEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun TargetEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Target"
        }
@@ -501,7 +501,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing ServiceWorker domains events.
      */
-     fun onServiceWorkerEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun ServiceWorkerEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "ServiceWorker"
        }
@@ -509,7 +509,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Input domains events.
      */
-     fun onInputEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun InputEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Input"
        }
@@ -517,7 +517,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing LayerTree domains events.
      */
-     fun onLayerTreeEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun LayerTreeEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "LayerTree"
        }
@@ -525,7 +525,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing DeviceOrientation domains events.
      */
-     fun onDeviceOrientationEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun DeviceOrientationEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "DeviceOrientation"
        }
@@ -533,7 +533,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Tracing domains events.
      */
-     fun onTracingEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun TracingEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Tracing"
        }
@@ -541,7 +541,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Animation domains events.
      */
-     fun onAnimationEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun AnimationEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Animation"
        }
@@ -549,7 +549,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Accessibility domains events.
      */
-     fun onAccessibilityEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun AccessibilityEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Accessibility"
        }
@@ -557,7 +557,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Storage domains events.
      */
-     fun onStorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun StorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Storage"
        }
@@ -565,7 +565,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Log domains events.
      */
-     fun onLogEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun LogEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Log"
        }
@@ -573,7 +573,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing SystemInfo domains events.
      */
-     fun onSystemInfoEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun SystemInfoEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "SystemInfo"
        }
@@ -581,7 +581,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Tethering domains events.
      */
-     fun onTetheringEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun TetheringEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Tethering"
        }
@@ -589,7 +589,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Schema domains events.
      */
-     fun onSchemaEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun SchemaEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Schema"
        }
@@ -597,7 +597,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Runtime domains events.
      */
-     fun onRuntimeEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun RuntimeEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Runtime"
        }
@@ -605,7 +605,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Debugger domains events.
      */
-     fun onDebuggerEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun DebuggerEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Debugger"
        }
@@ -613,7 +613,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Console domains events.
      */
-     fun onConsoleEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun ConsoleEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Console"
        }
@@ -621,7 +621,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing Profiler domains events.
      */
-     fun onProfilerEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun ProfilerEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "Profiler"
        }
@@ -629,7 +629,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     /**
      * Returns flowable capturing HeapProfiler domains events.
      */
-     fun onHeapProfilerEvents() : io.reactivex.Flowable<DebuggerEvent> {
+     fun HeapProfilerEvents() : io.reactivex.Flowable<DebuggerEvent> {
        return api.captureAllEvents().filter {
          it.protocolDomain() == "HeapProfiler"
        }

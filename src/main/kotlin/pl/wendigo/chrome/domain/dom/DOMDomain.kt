@@ -323,112 +323,112 @@ class DOMDomain internal constructor(private val connection : pl.wendigo.chrome.
   /**
    * Fired when <code>Document</code> has been totally updated. Node ids are no longer valid.
    */
-   fun onDocumentUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+   fun documentUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
       return connection.captureEvents("DOM.documentUpdated", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
    * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code>.
    */
-   fun onInspectNodeRequested() : io.reactivex.Flowable<InspectNodeRequestedEvent> {
+   fun inspectNodeRequested() : io.reactivex.Flowable<InspectNodeRequestedEvent> {
       return connection.captureEvents("DOM.inspectNodeRequested", InspectNodeRequestedEvent::class.java)
    }
 
   /**
    * Fired when backend wants to provide client with the missing DOM structure. This happens upon most of the calls requesting node ids.
    */
-   fun onSetChildNodes() : io.reactivex.Flowable<SetChildNodesEvent> {
+   fun setChildNodes() : io.reactivex.Flowable<SetChildNodesEvent> {
       return connection.captureEvents("DOM.setChildNodes", SetChildNodesEvent::class.java)
    }
 
   /**
    * Fired when <code>Element</code>'s attribute is modified.
    */
-   fun onAttributeModified() : io.reactivex.Flowable<AttributeModifiedEvent> {
+   fun attributeModified() : io.reactivex.Flowable<AttributeModifiedEvent> {
       return connection.captureEvents("DOM.attributeModified", AttributeModifiedEvent::class.java)
    }
 
   /**
    * Fired when <code>Element</code>'s attribute is removed.
    */
-   fun onAttributeRemoved() : io.reactivex.Flowable<AttributeRemovedEvent> {
+   fun attributeRemoved() : io.reactivex.Flowable<AttributeRemovedEvent> {
       return connection.captureEvents("DOM.attributeRemoved", AttributeRemovedEvent::class.java)
    }
 
   /**
    * Fired when <code>Element</code>'s inline style is modified via a CSS property modification.
    */
-   fun onInlineStyleInvalidated() : io.reactivex.Flowable<InlineStyleInvalidatedEvent> {
+   fun inlineStyleInvalidated() : io.reactivex.Flowable<InlineStyleInvalidatedEvent> {
       return connection.captureEvents("DOM.inlineStyleInvalidated", InlineStyleInvalidatedEvent::class.java)
    }
 
   /**
    * Mirrors <code>DOMCharacterDataModified</code> event.
    */
-   fun onCharacterDataModified() : io.reactivex.Flowable<CharacterDataModifiedEvent> {
+   fun characterDataModified() : io.reactivex.Flowable<CharacterDataModifiedEvent> {
       return connection.captureEvents("DOM.characterDataModified", CharacterDataModifiedEvent::class.java)
    }
 
   /**
    * Fired when <code>Container</code>'s child node count has changed.
    */
-   fun onChildNodeCountUpdated() : io.reactivex.Flowable<ChildNodeCountUpdatedEvent> {
+   fun childNodeCountUpdated() : io.reactivex.Flowable<ChildNodeCountUpdatedEvent> {
       return connection.captureEvents("DOM.childNodeCountUpdated", ChildNodeCountUpdatedEvent::class.java)
    }
 
   /**
    * Mirrors <code>DOMNodeInserted</code> event.
    */
-   fun onChildNodeInserted() : io.reactivex.Flowable<ChildNodeInsertedEvent> {
+   fun childNodeInserted() : io.reactivex.Flowable<ChildNodeInsertedEvent> {
       return connection.captureEvents("DOM.childNodeInserted", ChildNodeInsertedEvent::class.java)
    }
 
   /**
    * Mirrors <code>DOMNodeRemoved</code> event.
    */
-   fun onChildNodeRemoved() : io.reactivex.Flowable<ChildNodeRemovedEvent> {
+   fun childNodeRemoved() : io.reactivex.Flowable<ChildNodeRemovedEvent> {
       return connection.captureEvents("DOM.childNodeRemoved", ChildNodeRemovedEvent::class.java)
    }
 
   /**
    * Called when shadow root is pushed into the element.
    */
-   fun onShadowRootPushed() : io.reactivex.Flowable<ShadowRootPushedEvent> {
+   fun shadowRootPushed() : io.reactivex.Flowable<ShadowRootPushedEvent> {
       return connection.captureEvents("DOM.shadowRootPushed", ShadowRootPushedEvent::class.java)
    }
 
   /**
    * Called when shadow root is popped from the element.
    */
-   fun onShadowRootPopped() : io.reactivex.Flowable<ShadowRootPoppedEvent> {
+   fun shadowRootPopped() : io.reactivex.Flowable<ShadowRootPoppedEvent> {
       return connection.captureEvents("DOM.shadowRootPopped", ShadowRootPoppedEvent::class.java)
    }
 
   /**
    * Called when a pseudo element is added to an element.
    */
-   fun onPseudoElementAdded() : io.reactivex.Flowable<PseudoElementAddedEvent> {
+   fun pseudoElementAdded() : io.reactivex.Flowable<PseudoElementAddedEvent> {
       return connection.captureEvents("DOM.pseudoElementAdded", PseudoElementAddedEvent::class.java)
    }
 
   /**
    * Called when a pseudo element is removed from an element.
    */
-   fun onPseudoElementRemoved() : io.reactivex.Flowable<PseudoElementRemovedEvent> {
+   fun pseudoElementRemoved() : io.reactivex.Flowable<PseudoElementRemovedEvent> {
       return connection.captureEvents("DOM.pseudoElementRemoved", PseudoElementRemovedEvent::class.java)
    }
 
   /**
    * Called when distrubution is changed.
    */
-   fun onDistributedNodesUpdated() : io.reactivex.Flowable<DistributedNodesUpdatedEvent> {
+   fun distributedNodesUpdated() : io.reactivex.Flowable<DistributedNodesUpdatedEvent> {
       return connection.captureEvents("DOM.distributedNodesUpdated", DistributedNodesUpdatedEvent::class.java)
    }
 
   /**
    * 
    */
-   fun onNodeHighlightRequested() : io.reactivex.Flowable<NodeHighlightRequestedEvent> {
+   fun nodeHighlightRequested() : io.reactivex.Flowable<NodeHighlightRequestedEvent> {
       return connection.captureEvents("DOM.nodeHighlightRequested", NodeHighlightRequestedEvent::class.java)
    }
 }

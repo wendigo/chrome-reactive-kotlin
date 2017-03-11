@@ -44,21 +44,21 @@ package pl.wendigo.chrome.domain.tracing
   /**
    * Contains an bucket of collected trace events. When tracing is stopped collected events will be send as a sequence of dataCollected events followed by tracingComplete event.
    */
-   fun onDataCollected() : io.reactivex.Flowable<DataCollectedEvent> {
+   fun dataCollected() : io.reactivex.Flowable<DataCollectedEvent> {
       return connection.captureEvents("Tracing.dataCollected", DataCollectedEvent::class.java)
    }
 
   /**
    * Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via dataCollected events.
    */
-   fun onTracingComplete() : io.reactivex.Flowable<TracingCompleteEvent> {
+   fun tracingComplete() : io.reactivex.Flowable<TracingCompleteEvent> {
       return connection.captureEvents("Tracing.tracingComplete", TracingCompleteEvent::class.java)
    }
 
   /**
    * 
    */
-   fun onBufferUsage() : io.reactivex.Flowable<BufferUsageEvent> {
+   fun bufferUsage() : io.reactivex.Flowable<BufferUsageEvent> {
       return connection.captureEvents("Tracing.bufferUsage", BufferUsageEvent::class.java)
    }
 }

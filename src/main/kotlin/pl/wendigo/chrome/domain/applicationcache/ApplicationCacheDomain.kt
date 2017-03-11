@@ -37,14 +37,14 @@ package pl.wendigo.chrome.domain.applicationcache
   /**
    * 
    */
-   fun onApplicationCacheStatusUpdated() : io.reactivex.Flowable<ApplicationCacheStatusUpdatedEvent> {
+   fun applicationCacheStatusUpdated() : io.reactivex.Flowable<ApplicationCacheStatusUpdatedEvent> {
       return connection.captureEvents("ApplicationCache.applicationCacheStatusUpdated", ApplicationCacheStatusUpdatedEvent::class.java)
    }
 
   /**
    * 
    */
-   fun onNetworkStateUpdated() : io.reactivex.Flowable<NetworkStateUpdatedEvent> {
+   fun networkStateUpdated() : io.reactivex.Flowable<NetworkStateUpdatedEvent> {
       return connection.captureEvents("ApplicationCache.networkStateUpdated", NetworkStateUpdatedEvent::class.java)
    }
 }

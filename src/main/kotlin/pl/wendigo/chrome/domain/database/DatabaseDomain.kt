@@ -37,7 +37,7 @@ package pl.wendigo.chrome.domain.database
   /**
    * 
    */
-   fun onAddDatabase() : io.reactivex.Flowable<AddDatabaseEvent> {
+   fun addDatabase() : io.reactivex.Flowable<AddDatabaseEvent> {
       return connection.captureEvents("Database.addDatabase", AddDatabaseEvent::class.java)
    }
 }

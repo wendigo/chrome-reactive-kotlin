@@ -101,49 +101,49 @@ class RuntimeDomain internal constructor(private val connection : pl.wendigo.chr
   /**
    * Issued when new execution context is created.
    */
-   fun onExecutionContextCreated() : io.reactivex.Flowable<ExecutionContextCreatedEvent> {
+   fun executionContextCreated() : io.reactivex.Flowable<ExecutionContextCreatedEvent> {
       return connection.captureEvents("Runtime.executionContextCreated", ExecutionContextCreatedEvent::class.java)
    }
 
   /**
    * Issued when execution context is destroyed.
    */
-   fun onExecutionContextDestroyed() : io.reactivex.Flowable<ExecutionContextDestroyedEvent> {
+   fun executionContextDestroyed() : io.reactivex.Flowable<ExecutionContextDestroyedEvent> {
       return connection.captureEvents("Runtime.executionContextDestroyed", ExecutionContextDestroyedEvent::class.java)
    }
 
   /**
    * Issued when all executionContexts were cleared in browser
    */
-   fun onExecutionContextsCleared() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
+   fun executionContextsCleared() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
       return connection.captureEvents("Runtime.executionContextsCleared", pl.wendigo.chrome.DebuggerEvent::class.java)
    }
 
   /**
    * Issued when exception was thrown and unhandled.
    */
-   fun onExceptionThrown() : io.reactivex.Flowable<ExceptionThrownEvent> {
+   fun exceptionThrown() : io.reactivex.Flowable<ExceptionThrownEvent> {
       return connection.captureEvents("Runtime.exceptionThrown", ExceptionThrownEvent::class.java)
    }
 
   /**
    * Issued when unhandled exception was revoked.
    */
-   fun onExceptionRevoked() : io.reactivex.Flowable<ExceptionRevokedEvent> {
+   fun exceptionRevoked() : io.reactivex.Flowable<ExceptionRevokedEvent> {
       return connection.captureEvents("Runtime.exceptionRevoked", ExceptionRevokedEvent::class.java)
    }
 
   /**
    * Issued when console API was called.
    */
-   fun onConsoleAPICalled() : io.reactivex.Flowable<ConsoleAPICalledEvent> {
+   fun consoleAPICalled() : io.reactivex.Flowable<ConsoleAPICalledEvent> {
       return connection.captureEvents("Runtime.consoleAPICalled", ConsoleAPICalledEvent::class.java)
    }
 
   /**
    * Issued when object should be inspected (for example, as a result of inspect() command line API call).
    */
-   fun onInspectRequested() : io.reactivex.Flowable<InspectRequestedEvent> {
+   fun inspectRequested() : io.reactivex.Flowable<InspectRequestedEvent> {
       return connection.captureEvents("Runtime.inspectRequested", InspectRequestedEvent::class.java)
    }
 }

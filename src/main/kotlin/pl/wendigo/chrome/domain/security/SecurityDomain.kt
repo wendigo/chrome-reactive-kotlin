@@ -30,7 +30,7 @@ package pl.wendigo.chrome.domain.security
   /**
    * The security state of the page changed.
    */
-   fun onSecurityStateChanged() : io.reactivex.Flowable<SecurityStateChangedEvent> {
+   fun securityStateChanged() : io.reactivex.Flowable<SecurityStateChangedEvent> {
       return connection.captureEvents("Security.securityStateChanged", SecurityStateChangedEvent::class.java)
    }
 }

@@ -72,14 +72,14 @@ package pl.wendigo.chrome.domain.layertree
   /**
    * 
    */
-   fun onLayerTreeDidChange() : io.reactivex.Flowable<LayerTreeDidChangeEvent> {
+   fun layerTreeDidChange() : io.reactivex.Flowable<LayerTreeDidChangeEvent> {
       return connection.captureEvents("LayerTree.layerTreeDidChange", LayerTreeDidChangeEvent::class.java)
    }
 
   /**
    * 
    */
-   fun onLayerPainted() : io.reactivex.Flowable<LayerPaintedEvent> {
+   fun layerPainted() : io.reactivex.Flowable<LayerPaintedEvent> {
       return connection.captureEvents("LayerTree.layerPainted", LayerPaintedEvent::class.java)
    }
 }

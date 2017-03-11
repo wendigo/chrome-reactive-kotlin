@@ -107,35 +107,35 @@ package pl.wendigo.chrome.domain.target
   /**
    * Issued when a possible inspection target is created.
    */
-   fun onTargetCreated() : io.reactivex.Flowable<TargetCreatedEvent> {
+   fun targetCreated() : io.reactivex.Flowable<TargetCreatedEvent> {
       return connection.captureEvents("Target.targetCreated", TargetCreatedEvent::class.java)
    }
 
   /**
    * Issued when a target is destroyed.
    */
-   fun onTargetDestroyed() : io.reactivex.Flowable<TargetDestroyedEvent> {
+   fun targetDestroyed() : io.reactivex.Flowable<TargetDestroyedEvent> {
       return connection.captureEvents("Target.targetDestroyed", TargetDestroyedEvent::class.java)
    }
 
   /**
    * Issued when attached to target because of auto-attach or <code>attachToTarget</code> command.
    */
-   fun onAttachedToTarget() : io.reactivex.Flowable<AttachedToTargetEvent> {
+   fun attachedToTarget() : io.reactivex.Flowable<AttachedToTargetEvent> {
       return connection.captureEvents("Target.attachedToTarget", AttachedToTargetEvent::class.java)
    }
 
   /**
    * Issued when detached from target for any reason (including <code>detachFromTarget</code> command).
    */
-   fun onDetachedFromTarget() : io.reactivex.Flowable<DetachedFromTargetEvent> {
+   fun detachedFromTarget() : io.reactivex.Flowable<DetachedFromTargetEvent> {
       return connection.captureEvents("Target.detachedFromTarget", DetachedFromTargetEvent::class.java)
    }
 
   /**
    * Notifies about new protocol message from attached target.
    */
-   fun onReceivedMessageFromTarget() : io.reactivex.Flowable<ReceivedMessageFromTargetEvent> {
+   fun receivedMessageFromTarget() : io.reactivex.Flowable<ReceivedMessageFromTargetEvent> {
       return connection.captureEvents("Target.receivedMessageFromTarget", ReceivedMessageFromTargetEvent::class.java)
    }
 }

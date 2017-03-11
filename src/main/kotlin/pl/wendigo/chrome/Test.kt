@@ -21,12 +21,12 @@ class Test {
                         api.Page.navigate(NavigateRequest(url = "http://gazeta.pl"))
                     }
                     .flatMap { (frameId) ->
-                        api.Page.onFrameStoppedLoading().filter {
+                        api.Page.frameStoppedLoading().filter {
                             (loadedFrameId) ->
                             loadedFrameId == frameId
                         }.take(1)
                     }.flatMap {
-                api.Network.onResponseReceived()
+                api.Network.responseReceived()
             }.filter {
                 it.response.url.contentEquals("http://static.gazeta.pl/static/video/playerjs/deploy/app/n3j10/skin/hp/skin.json")
             }.take(1).flatMap {
