@@ -3,20 +3,20 @@ package pl.wendigo.chrome.domain.emulation
 /**
  * This domain emulates different environments for the page.
  */
-class EmulationDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+class EmulationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
 	 */
 	  fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setDeviceMetricsOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.setDeviceMetricsOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Clears the overriden device metrics.
 	 */
 	  fun clearDeviceMetricsOverride() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.clearDeviceMetricsOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.clearDeviceMetricsOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -24,7 +24,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun forceViewport(input : ForceViewportRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.forceViewport", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.forceViewport", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -32,7 +32,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun resetViewport() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.resetViewport", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.resetViewport", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -40,7 +40,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun resetPageScaleFactor() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.resetPageScaleFactor", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.resetPageScaleFactor", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -48,7 +48,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun setPageScaleFactor(input : SetPageScaleFactorRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setPageScaleFactor", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.setPageScaleFactor", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -56,7 +56,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun setVisibleSize(input : SetVisibleSizeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setVisibleSize", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.setVisibleSize", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -64,7 +64,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun setScriptExecutionDisabled(input : SetScriptExecutionDisabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setScriptExecutionDisabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.setScriptExecutionDisabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -72,7 +72,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -80,21 +80,21 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun clearGeolocationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.clearGeolocationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.clearGeolocationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Toggles mouse event-based touch event emulation.
 	 */
 	  fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setTouchEmulationEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.setTouchEmulationEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Emulates the given media for CSS media queries.
 	 */
 	  fun setEmulatedMedia(input : SetEmulatedMediaRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setEmulatedMedia", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.setEmulatedMedia", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -102,7 +102,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun setCPUThrottlingRate(input : SetCPUThrottlingRateRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setCPUThrottlingRate", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.setCPUThrottlingRate", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -110,7 +110,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun canEmulate() : io.reactivex.Flowable<CanEmulateResponse> {
-        return connection.runAndCaptureResponse("Emulation.canEmulate", null, CanEmulateResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.canEmulate", null, CanEmulateResponse::class.java)
 	}
 
 	/**
@@ -118,7 +118,7 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun setVirtualTimePolicy(input : SetVirtualTimePolicyRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -126,18 +126,26 @@ class EmulationDomain internal constructor(private val connection : pl.wendigo.c
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun setDefaultBackgroundColorOverride(input : SetDefaultBackgroundColorOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setDefaultBackgroundColorOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Emulation.setDefaultBackgroundColorOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   
-  /**
-   * Notification sent after the virual time budget for the current VirtualTimePolicy has run out.
-   */
-   fun virtualTimeBudgetExpired() : io.reactivex.Flowable<pl.wendigo.chrome.DebuggerEvent> {
-      return connection.captureEvents("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.DebuggerEvent::class.java)
-   }
-}
+    /**
+     * Notification sent after the virual time budget for the current VirtualTimePolicy has run out.
+     */
+    fun virtualTimeBudgetExpired() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureEvents("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.ProtocolEvent::class.java)
+    }
 
+    /**
+     * Returns flowable capturing all Emulation domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "Emulation"
+        }
+    }
+}
 /**
  * Represents requestFrame parameters that can be used with Emulation.setDeviceMetricsOverride method call.
  *
@@ -407,7 +415,6 @@ data class SetDefaultBackgroundColorOverrideRequest (
     val color : pl.wendigo.chrome.domain.dom.RGBA? = null
 
 )
-
 
 
 

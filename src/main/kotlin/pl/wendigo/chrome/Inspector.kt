@@ -1,48 +1,95 @@
 package pl.wendigo.chrome
 
+import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.util.concurrent.TimeUnit
 
-internal class Inspector(
-        private val chromeAddress: String
+/**
+ * Creates new inspector that allows querying remote chrome instance for debugging sessions
+ */
+class Inspector(
+    private val chromeAddress: String,
+    private val client: OkHttpClient,
+    private val mapper: FrameMapper
 ) {
-    private val client: OkHttpClient = OkHttpClient.Builder()
-            .readTimeout(0, TimeUnit.MILLISECONDS)
-            .build()
+    /**
+     * Opens new page.
+     */
+    fun openNewPage(url : String? = null) : Single<InspectablePage> {
+        return runInspectorCommand("new?url=$url").map {
+            mapper.deserialize(it, InspectablePage::class.java)
+        }
+    }
 
-    internal fun openTab() : Single<InspectorTab> {
+    /**
+     * Returns currently opened pages and associated data (debugger connection uris)
+     */
+    fun openedPages() : Flowable<InspectablePage> {
+        return this.runInspectorCommand("list").flatMapObservable {
+            Observable.fromArray(*mapper.deserialize(it, Array<InspectablePage>::class.java))
+        }.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    /**
+     * Closes given page.
+     */
+    fun close(page: InspectablePage): Single<String> {
+        return runInspectorCommand("close/${page.id}")
+    }
+
+    /**
+     * Activates given page.
+     */
+    fun activate(page: InspectablePage): Single<String> {
+        return runInspectorCommand("activate/${page.id}")
+    }
+
+    /**
+     * Fetches protocol version information
+     */
+    fun version() : Single<ProtocolVersion> {
+        return runInspectorCommand("version").map {
+            mapper.deserialize(it, ProtocolVersion::class.java)
+        }
+    }
+
+    internal fun runInspectorCommand(uri : String) : Single<String> {
         return Single.fromCallable {
-            Request.Builder().url("http://$chromeAddress/json/new").build()
+            Request.Builder().url("http://$chromeAddress/json/$uri").build()
         }.map {
             client.newCall(it).execute()
         }.flatMap {
             if (it.isSuccessful) {
-                Single.just(FrameMapper.deserialize(it.body().string(), InspectorTab::class.java))
+                Single.just(it.body().string())
             } else {
-                Single.error(RemoteChromeException("Could not create new page"))
+                Single.error(InspectorCommandFailed(it.body().string()))
             }
         }
     }
 
-    internal fun openTabs() : Flowable<InspectorTab> {
-        return Flowable.fromCallable {
-            Request.Builder().url("http://$chromeAddress/json/list").build()
-        }.map {
-            client.newCall(it).execute()
-        }.flatMap {
-            if (it.isSuccessful) {
-                Flowable.fromArray(*FrameMapper.deserialize(it.body().string(), Array<InspectorTab>::class.java))
-            } else {
-                Flowable.error(RemoteChromeException("Could not query tabs"))
-            }
-        }
+    /**
+     * Finds opened page by its' url
+     */
+    fun findTab(tabUrl: String) : Single<InspectablePage> {
+        return this.openedPages().filter { it.url == tabUrl }.singleOrError()
     }
 
-    internal fun findTab(tabUrl: String) : Flowable<InspectorTab> {
-        return this.openTabs().filter { it.url == tabUrl }
+    companion object {
+        /**
+         * Creates new Inspector instance by connecting to remote chrome debugger.
+         */
+        @JvmStatic
+        fun connect(chromeAddress: String) : Inspector {
+            return Inspector(
+                    chromeAddress,
+                    OkHttpClient.Builder().readTimeout(0, TimeUnit.MILLISECONDS).build(),
+                    FrameMapper()
+            )
+        }
     }
 }
 

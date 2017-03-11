@@ -3,38 +3,46 @@ package pl.wendigo.chrome.domain.cachestorage
 /**
  * CacheStorageDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class CacheStorageDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+@pl.wendigo.chrome.ProtocolExperimental class CacheStorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Requests cache names.
 	 */
 	  fun requestCacheNames(input : RequestCacheNamesRequest) : io.reactivex.Flowable<RequestCacheNamesResponse> {
-        return connection.runAndCaptureResponse("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java)
 	}
 
 	/**
 	 * Requests data from cache.
 	 */
 	  fun requestEntries(input : RequestEntriesRequest) : io.reactivex.Flowable<RequestEntriesResponse> {
-        return connection.runAndCaptureResponse("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java)
 	}
 
 	/**
 	 * Deletes a cache.
 	 */
 	  fun deleteCache(input : DeleteCacheRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("CacheStorage.deleteCache", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("CacheStorage.deleteCache", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Deletes a cache entry.
 	 */
 	  fun deleteEntry(input : DeleteEntryRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("CacheStorage.deleteEntry", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("CacheStorage.deleteEntry", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
-  }
-
+  
+    /**
+     * Returns flowable capturing all CacheStorage domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "CacheStorage"
+        }
+    }
+}
 /**
  * Represents requestFrame parameters that can be used with CacheStorage.requestCacheNames method call.
  *
@@ -133,6 +141,5 @@ data class DeleteEntryRequest (
     val request : String
 
 )
-
 
 

@@ -3,18 +3,26 @@ package pl.wendigo.chrome.domain.accessibility
 /**
  * AccessibilityDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class AccessibilityDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+@pl.wendigo.chrome.ProtocolExperimental class AccessibilityDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun getPartialAXTree(input : GetPartialAXTreeRequest) : io.reactivex.Flowable<GetPartialAXTreeResponse> {
-        return connection.runAndCaptureResponse("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
 	}
 
-  }
-
+  
+    /**
+     * Returns flowable capturing all Accessibility domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "Accessibility"
+        }
+    }
+}
 /**
  * Represents requestFrame parameters that can be used with Accessibility.getPartialAXTree method call.
  *
@@ -45,5 +53,4 @@ data class GetPartialAXTreeResponse(
   val nodes : Array<AXNode>
 
 )
-
 

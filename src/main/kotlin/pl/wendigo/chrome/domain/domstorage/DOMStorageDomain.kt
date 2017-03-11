@@ -3,80 +3,88 @@ package pl.wendigo.chrome.domain.domstorage
 /**
  * Query and modify DOM storage.
  */
-@pl.wendigo.chrome.ProtocolExperimental class DOMStorageDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+@pl.wendigo.chrome.ProtocolExperimental class DOMStorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Enables storage tracking, storage events will now be delivered to the client.
 	 */
 	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMStorage.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("DOMStorage.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables storage tracking, prevents storage events from being sent to the client.
 	 */
 	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMStorage.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("DOMStorage.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
 	  fun clear(input : ClearRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMStorage.clear", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("DOMStorage.clear", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
 	  fun getDOMStorageItems(input : GetDOMStorageItemsRequest) : io.reactivex.Flowable<GetDOMStorageItemsResponse> {
-        return connection.runAndCaptureResponse("DOMStorage.getDOMStorageItems", input, GetDOMStorageItemsResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("DOMStorage.getDOMStorageItems", input, GetDOMStorageItemsResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
 	  fun setDOMStorageItem(input : SetDOMStorageItemRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMStorage.setDOMStorageItem", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("DOMStorage.setDOMStorageItem", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
 	  fun removeDOMStorageItem(input : RemoveDOMStorageItemRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMStorage.removeDOMStorageItem", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("DOMStorage.removeDOMStorageItem", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   
-  /**
-   * 
-   */
-   fun domStorageItemsCleared() : io.reactivex.Flowable<DomStorageItemsClearedEvent> {
-      return connection.captureEvents("DOMStorage.domStorageItemsCleared", DomStorageItemsClearedEvent::class.java)
-   }
+    /**
+     * Returns observable capturing all DOMStorage.domStorageItemsCleared events.
+     */
+    fun domStorageItemsCleared() : io.reactivex.Flowable<DomStorageItemsClearedEvent> {
+        return connectionRemote.captureEvents("DOMStorage.domStorageItemsCleared", DomStorageItemsClearedEvent::class.java)
+    }
 
-  /**
-   * 
-   */
-   fun domStorageItemRemoved() : io.reactivex.Flowable<DomStorageItemRemovedEvent> {
-      return connection.captureEvents("DOMStorage.domStorageItemRemoved", DomStorageItemRemovedEvent::class.java)
-   }
+    /**
+     * Returns observable capturing all DOMStorage.domStorageItemRemoved events.
+     */
+    fun domStorageItemRemoved() : io.reactivex.Flowable<DomStorageItemRemovedEvent> {
+        return connectionRemote.captureEvents("DOMStorage.domStorageItemRemoved", DomStorageItemRemovedEvent::class.java)
+    }
 
-  /**
-   * 
-   */
-   fun domStorageItemAdded() : io.reactivex.Flowable<DomStorageItemAddedEvent> {
-      return connection.captureEvents("DOMStorage.domStorageItemAdded", DomStorageItemAddedEvent::class.java)
-   }
+    /**
+     * Returns observable capturing all DOMStorage.domStorageItemAdded events.
+     */
+    fun domStorageItemAdded() : io.reactivex.Flowable<DomStorageItemAddedEvent> {
+        return connectionRemote.captureEvents("DOMStorage.domStorageItemAdded", DomStorageItemAddedEvent::class.java)
+    }
 
-  /**
-   * 
-   */
-   fun domStorageItemUpdated() : io.reactivex.Flowable<DomStorageItemUpdatedEvent> {
-      return connection.captureEvents("DOMStorage.domStorageItemUpdated", DomStorageItemUpdatedEvent::class.java)
-   }
+    /**
+     * Returns observable capturing all DOMStorage.domStorageItemUpdated events.
+     */
+    fun domStorageItemUpdated() : io.reactivex.Flowable<DomStorageItemUpdatedEvent> {
+        return connectionRemote.captureEvents("DOMStorage.domStorageItemUpdated", DomStorageItemUpdatedEvent::class.java)
+    }
+
+    /**
+     * Returns flowable capturing all DOMStorage domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "DOMStorage"
+        }
+    }
 }
-
 
 
 
@@ -164,7 +172,6 @@ data class RemoveDOMStorageItemRequest (
 )
 
 
-
 /**
  * Represents responseFrame from DOMStorage. method call.
  *
@@ -176,7 +183,7 @@ data class DomStorageItemsClearedEvent(
    */
   val storageId : StorageId
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "DOMStorage", name = "domStorageItemsCleared")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "DOMStorage", name = "domStorageItemsCleared")
 
 /**
  * Represents responseFrame from DOMStorage. method call.
@@ -194,7 +201,7 @@ data class DomStorageItemRemovedEvent(
    */
   val key : String
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "DOMStorage", name = "domStorageItemRemoved")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "DOMStorage", name = "domStorageItemRemoved")
 
 /**
  * Represents responseFrame from DOMStorage. method call.
@@ -217,7 +224,7 @@ data class DomStorageItemAddedEvent(
    */
   val newValue : String
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "DOMStorage", name = "domStorageItemAdded")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "DOMStorage", name = "domStorageItemAdded")
 
 /**
  * Represents responseFrame from DOMStorage. method call.
@@ -245,5 +252,5 @@ data class DomStorageItemUpdatedEvent(
    */
   val newValue : String
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "DOMStorage", name = "domStorageItemUpdated")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "DOMStorage", name = "domStorageItemUpdated")
 

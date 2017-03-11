@@ -34,7 +34,7 @@ func (p Protocol) EventMappings() []EventMapping {
 			if event.HasReturnValue() {
 				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.domain.%s.%s", basePackage, domain.LowerName(), event.ClassName())
 			} else {
-				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.%s", basePackage, "DebuggerEvent")
+				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.%s", basePackage, "ProtocolEvent")
 			}
 		}
 	}
@@ -346,7 +346,7 @@ func (e Event) ClassName() string {
 }
 
 func (e Event) ImplementingInterfaces() []string {
-	return []string{fmt.Sprintf("%s.DebuggerEvent(domain = \"%s\", name = \"%s\")", basePackage, currentDomain, e.Name)}
+	return []string{fmt.Sprintf("%s.ProtocolEvent(domain = \"%s\", name = \"%s\")", basePackage, currentDomain, e.Name)}
 }
 
 var protocolFile string
@@ -453,7 +453,7 @@ func main() {
 
 	log.Println("Generating protocol class")
 
-	if err := generateAndWrite(kotlinFilename("RemoteChrome"), "protocol_class", struct {
+	if err := generateAndWrite(kotlinFilename("ChromeProtocol"), "protocol_class", struct {
 		Protocol Protocol
 	}{
 		Protocol: *protocol,

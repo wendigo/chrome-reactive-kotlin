@@ -3,24 +3,32 @@ package pl.wendigo.chrome.domain.deviceorientation
 /**
  * DeviceOrientationDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class DeviceOrientationDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+@pl.wendigo.chrome.ProtocolExperimental class DeviceOrientationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Overrides the Device Orientation.
 	 */
 	  fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("DeviceOrientation.setDeviceOrientationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("DeviceOrientation.setDeviceOrientationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Clears the overridden Device Orientation.
 	 */
 	  fun clearDeviceOrientationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("DeviceOrientation.clearDeviceOrientationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("DeviceOrientation.clearDeviceOrientationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
-  }
-
+  
+    /**
+     * Returns flowable capturing all DeviceOrientation domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "DeviceOrientation"
+        }
+    }
+}
 /**
  * Represents requestFrame parameters that can be used with DeviceOrientation.setDeviceOrientationOverride method call.
  *
@@ -43,7 +51,6 @@ data class SetDeviceOrientationOverrideRequest (
     val gamma : Double
 
 )
-
 
 
 

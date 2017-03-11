@@ -3,41 +3,41 @@ package pl.wendigo.chrome.domain.profiler
 /**
  * ProfilerDomain represents remote debugger protocol domain.
  */
-class ProfilerDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+class ProfilerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * 
 	 */
 	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Profiler.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Profiler.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
 	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Profiler.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Profiler.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
 	 */
 	  fun setSamplingInterval(input : SetSamplingIntervalRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Profiler.setSamplingInterval", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Profiler.setSamplingInterval", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
 	  fun start() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Profiler.start", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Profiler.start", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
 	  fun stop() : io.reactivex.Flowable<StopResponse> {
-        return connection.runAndCaptureResponse("Profiler.stop", null, StopResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("Profiler.stop", null, StopResponse::class.java)
 	}
 
 	/**
@@ -45,7 +45,7 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun startPreciseCoverage() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Profiler.startPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Profiler.startPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -53,7 +53,7 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun stopPreciseCoverage() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -61,7 +61,7 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun takePreciseCoverage() : io.reactivex.Flowable<TakePreciseCoverageResponse> {
-        return connection.runAndCaptureResponse("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse::class.java)
 	}
 
 	/**
@@ -69,25 +69,33 @@ class ProfilerDomain internal constructor(private val connection : pl.wendigo.ch
 	 */
 	@pl.wendigo.chrome.ProtocolExperimental
     fun getBestEffortCoverage() : io.reactivex.Flowable<GetBestEffortCoverageResponse> {
-        return connection.runAndCaptureResponse("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse::class.java)
 	}
 
   
-  /**
-   * Sent when new profile recodring is started using console.profile() call.
-   */
-   fun consoleProfileStarted() : io.reactivex.Flowable<ConsoleProfileStartedEvent> {
-      return connection.captureEvents("Profiler.consoleProfileStarted", ConsoleProfileStartedEvent::class.java)
-   }
+    /**
+     * Sent when new profile recodring is started using console.profile() call.
+     */
+    fun consoleProfileStarted() : io.reactivex.Flowable<ConsoleProfileStartedEvent> {
+        return connectionRemote.captureEvents("Profiler.consoleProfileStarted", ConsoleProfileStartedEvent::class.java)
+    }
 
-  /**
-   * 
-   */
-   fun consoleProfileFinished() : io.reactivex.Flowable<ConsoleProfileFinishedEvent> {
-      return connection.captureEvents("Profiler.consoleProfileFinished", ConsoleProfileFinishedEvent::class.java)
-   }
+    /**
+     * Returns observable capturing all Profiler.consoleProfileFinished events.
+     */
+    fun consoleProfileFinished() : io.reactivex.Flowable<ConsoleProfileFinishedEvent> {
+        return connectionRemote.captureEvents("Profiler.consoleProfileFinished", ConsoleProfileFinishedEvent::class.java)
+    }
+
+    /**
+     * Returns flowable capturing all Profiler domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "Profiler"
+        }
+    }
 }
-
 
 
 
@@ -154,7 +162,6 @@ data class GetBestEffortCoverageResponse(
 
 )
 
-
 /**
  * Represents responseFrame from Profiler. method call.
  *
@@ -176,7 +183,7 @@ data class ConsoleProfileStartedEvent(
    */
   val title : String? = null
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "Profiler", name = "consoleProfileStarted")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Profiler", name = "consoleProfileStarted")
 
 /**
  * Represents responseFrame from Profiler. method call.
@@ -204,5 +211,5 @@ data class ConsoleProfileFinishedEvent(
    */
   val title : String? = null
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "Profiler", name = "consoleProfileFinished")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Profiler", name = "consoleProfileFinished")
 

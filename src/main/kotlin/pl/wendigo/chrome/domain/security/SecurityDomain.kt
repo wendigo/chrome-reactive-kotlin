@@ -3,39 +3,46 @@ package pl.wendigo.chrome.domain.security
 /**
  * Security
  */
-@pl.wendigo.chrome.ProtocolExperimental class SecurityDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+@pl.wendigo.chrome.ProtocolExperimental class SecurityDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Enables tracking security state changes.
 	 */
 	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables tracking security state changes.
 	 */
 	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Displays native dialog with the certificate details.
 	 */
 	  fun showCertificateViewer() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Security.showCertificateViewer", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Security.showCertificateViewer", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   
-  /**
-   * The security state of the page changed.
-   */
-   fun securityStateChanged() : io.reactivex.Flowable<SecurityStateChangedEvent> {
-      return connection.captureEvents("Security.securityStateChanged", SecurityStateChangedEvent::class.java)
-   }
+    /**
+     * The security state of the page changed.
+     */
+    fun securityStateChanged() : io.reactivex.Flowable<SecurityStateChangedEvent> {
+        return connectionRemote.captureEvents("Security.securityStateChanged", SecurityStateChangedEvent::class.java)
+    }
+
+    /**
+     * Returns flowable capturing all Security domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "Security"
+        }
+    }
 }
-
-
 
 
 
@@ -73,5 +80,5 @@ data class SecurityStateChangedEvent(
    */
   val summary : String? = null
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "Security", name = "securityStateChanged")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Security", name = "securityStateChanged")
 

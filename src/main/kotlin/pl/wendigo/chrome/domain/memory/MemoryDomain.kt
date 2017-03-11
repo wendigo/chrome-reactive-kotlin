@@ -3,31 +3,39 @@ package pl.wendigo.chrome.domain.memory
 /**
  * MemoryDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class MemoryDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+@pl.wendigo.chrome.ProtocolExperimental class MemoryDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * 
 	 */
 	  fun getDOMCounters() : io.reactivex.Flowable<GetDOMCountersResponse> {
-        return connection.runAndCaptureResponse("Memory.getDOMCounters", null, GetDOMCountersResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("Memory.getDOMCounters", null, GetDOMCountersResponse::class.java)
 	}
 
 	/**
 	 * Enable/disable suppressing memory pressure notifications in all processes.
 	 */
 	  fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Simulate a memory pressure notification in all processes.
 	 */
 	  fun simulatePressureNotification(input : SimulatePressureNotificationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
-  }
-
+  
+    /**
+     * Returns flowable capturing all Memory domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "Memory"
+        }
+    }
+}
 
 /**
  * Represents responseFrame from Memory. method call.
@@ -78,6 +86,5 @@ data class SimulatePressureNotificationRequest (
     val level : PressureLevel
 
 )
-
 
 

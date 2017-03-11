@@ -1,15 +1,15 @@
 package {{Package}}
 
 /**
- * RemoteChrome represents session established via chrome's remote debugging protocol.
+ * ChromeProtocol represents session established with given inspectablePage via chrome's remote debugging protocol.
  */
-class RemoteChrome internal constructor(private val api: DebuggerConnection) {
+class ChromeProtocol internal constructor(private val api: RemoteDebuggerConnection) {
 
     /**
-     * Register event mappings
+     * Register event eventNameToClassMapping
      */
     init {
-      api.registerMappings(mapOf(
+      api.registerEventMappings(mapOf(
       {{#each Protocol.EventMappings}}
       "{{EventName}}" to {{Class}}::class.java{{#unless @last}},{{/unless}}
       {{/each}}
@@ -25,62 +25,27 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
     }
 
     {{/each}}
-
     /**
      * Returns flowable capturing all events.
      */
-    fun Events() : io.reactivex.Flowable<DebuggerEvent> {
+    fun Events() : io.reactivex.Flowable<ProtocolEvent> {
       return api.captureAllEvents()
     }
 
-    {{#each Protocol.Domains}}
     /**
-     * Returns flowable capturing {{Name}} domains events.
+     * Closes debugging session.
      */
-     fun {{Name}}Events() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "{{Name}}"
-       }
-     }
-    {{/each}}
-
-    /**
-     * Closes debuggerConnection to API.
-     */
-    fun close() {
+    fun closeSession() {
       return api.close()
     }
 
     companion object {
-        /**
-         * Connects to chrome debugging protocol on host and port.
-         */
-        @kotlin.jvm.Throws(RemoteChromeException::class)
-        fun newTab(chromeAddress: String) : RemoteChrome {
-          return RemoteChrome(
-                DebuggerConnection(
-                    Inspector(chromeAddress)
-                        .openTab()
-                        .map(InspectorTab::webSocketDebuggerUrl)
-                        .blockingGet()
-                ).connect()
-          )
-        }
 
         /**
-         * Connects to chrome debugging protocol on host and port for given tab url.
+         * Opens new debugging session via chrome debugging protocol for given InspectablePage.
          */
-        @kotlin.jvm.Throws(RemoteChromeException::class)
-        fun connectToTab(chromeAddress: String, tabUrl: String) : RemoteChrome {
-            return RemoteChrome(
-                DebuggerConnection(
-                    Inspector(chromeAddress)
-                        .findTab(tabUrl)
-                        .singleOrError()
-                        .map(InspectorTab::webSocketDebuggerUrl)
-                        .blockingGet()
-                ).connect()
-            )
+        fun openSession(page: InspectablePage) : ChromeProtocol {
+            return ChromeProtocol(RemoteDebuggerConnection.openSession(page.webSocketDebuggerUrl).connect())
         }
     }
 }

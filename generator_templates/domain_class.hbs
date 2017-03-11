@@ -3,7 +3,7 @@ package {{Package}}.domain.{{Domain.LowerName}}
 /**
  * {{#if Domain.Description}}{{{Domain.Description}}}{{else}}{{Domain.Name}}Domain represents remote debugger protocol domain.{{/if}}
  */
-{{#if Domain.Experimental}}@{{Package}}.ProtocolExperimental {{/if}}{{#if Domain.Deprecated}}@{{Package}}.ProtocolDeprecated {{/if}}class {{Domain.Name}}Domain internal constructor(private val connection : {{Package}}.DebuggerConnection) {
+{{#if Domain.Experimental}}@{{Package}}.ProtocolExperimental {{/if}}{{#if Domain.Deprecated}}@{{Package}}.ProtocolDeprecated {{/if}}class {{Domain.Name}}Domain internal constructor(private val connectionRemote : {{Package}}.RemoteDebuggerConnection) {
 
   {{#each Domain.Commands}}
 	/**
@@ -12,25 +12,32 @@ package {{Package}}.domain.{{Domain.LowerName}}
 	{{#if Experimental}}@{{Package}}.ProtocolExperimental
   {{/if}}{{#if Deprecated}}@{{Package}}.ProtocolDeprecated
   {{/if}}  fun {{Name}}({{#if HasInputParams}}input : {{SimpleName}}Request{{/if}}) : io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}> {
-        return connection.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}::class.java)
+        return connectionRemote.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}::class.java)
 	}
 
 	{{/each}}
   {{#each Domain.Events}}
-  /**
-   * {{{Description}}}
-   */
-   fun {{Name}}() : io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.DebuggerEvent{{/if}}> {
-      return connection.captureEvents("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.DebuggerEvent{{/if}}::class.java)
-   }
+    /**
+     * {{#if Description}}{{{Description}}}{{else}}Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
+     */
+    fun {{Name}}() : io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ProtocolEvent{{/if}}> {
+        return connectionRemote.captureEvents("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ProtocolEvent{{/if}}::class.java)
+    }
   {{/each}}
-}
 
+    /**
+     * Returns flowable capturing all {{Domain.Name}} domains events.
+     */
+    fun events() : io.reactivex.Flowable<{{Package}}.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "{{Domain.Name}}"
+        }
+    }
+}
 {{#each Domain.Commands}}
 {{{InputDataClass}}}
 {{{OutputDataClass}}}
 {{/each}}
-
 {{#each Domain.Events}}
 {{{OutputDataClass}}}
 {{/each}}

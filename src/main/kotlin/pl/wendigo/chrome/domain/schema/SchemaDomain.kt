@@ -3,17 +3,25 @@ package pl.wendigo.chrome.domain.schema
 /**
  * Provides information about the protocol schema.
  */
-class SchemaDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+class SchemaDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Returns supported domains.
 	 */
 	  fun getDomains() : io.reactivex.Flowable<GetDomainsResponse> {
-        return connection.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java)
 	}
 
-  }
-
+  
+    /**
+     * Returns flowable capturing all Schema domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "Schema"
+        }
+    }
+}
 
 /**
  * Represents responseFrame from Schema. method call.
@@ -27,5 +35,4 @@ data class GetDomainsResponse(
   val domains : Array<Domain>
 
 )
-
 

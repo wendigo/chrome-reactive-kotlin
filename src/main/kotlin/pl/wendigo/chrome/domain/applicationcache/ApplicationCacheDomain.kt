@@ -3,52 +3,60 @@ package pl.wendigo.chrome.domain.applicationcache
 /**
  * ApplicationCacheDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class ApplicationCacheDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+@pl.wendigo.chrome.ProtocolExperimental class ApplicationCacheDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
 	 */
 	  fun getFramesWithManifests() : io.reactivex.Flowable<GetFramesWithManifestsResponse> {
-        return connection.runAndCaptureResponse("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java)
 	}
 
 	/**
 	 * Enables application cache domain notifications.
 	 */
 	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("ApplicationCache.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("ApplicationCache.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Returns manifest URL for document in the given frame.
 	 */
 	  fun getManifestForFrame(input : GetManifestForFrameRequest) : io.reactivex.Flowable<GetManifestForFrameResponse> {
-        return connection.runAndCaptureResponse("ApplicationCache.getManifestForFrame", input, GetManifestForFrameResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("ApplicationCache.getManifestForFrame", input, GetManifestForFrameResponse::class.java)
 	}
 
 	/**
 	 * Returns relevant application cache data for the document in given frame.
 	 */
 	  fun getApplicationCacheForFrame(input : GetApplicationCacheForFrameRequest) : io.reactivex.Flowable<GetApplicationCacheForFrameResponse> {
-        return connection.runAndCaptureResponse("ApplicationCache.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("ApplicationCache.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java)
 	}
 
   
-  /**
-   * 
-   */
-   fun applicationCacheStatusUpdated() : io.reactivex.Flowable<ApplicationCacheStatusUpdatedEvent> {
-      return connection.captureEvents("ApplicationCache.applicationCacheStatusUpdated", ApplicationCacheStatusUpdatedEvent::class.java)
-   }
+    /**
+     * Returns observable capturing all ApplicationCache.applicationCacheStatusUpdated events.
+     */
+    fun applicationCacheStatusUpdated() : io.reactivex.Flowable<ApplicationCacheStatusUpdatedEvent> {
+        return connectionRemote.captureEvents("ApplicationCache.applicationCacheStatusUpdated", ApplicationCacheStatusUpdatedEvent::class.java)
+    }
 
-  /**
-   * 
-   */
-   fun networkStateUpdated() : io.reactivex.Flowable<NetworkStateUpdatedEvent> {
-      return connection.captureEvents("ApplicationCache.networkStateUpdated", NetworkStateUpdatedEvent::class.java)
-   }
+    /**
+     * Returns observable capturing all ApplicationCache.networkStateUpdated events.
+     */
+    fun networkStateUpdated() : io.reactivex.Flowable<NetworkStateUpdatedEvent> {
+        return connectionRemote.captureEvents("ApplicationCache.networkStateUpdated", NetworkStateUpdatedEvent::class.java)
+    }
+
+    /**
+     * Returns flowable capturing all ApplicationCache domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "ApplicationCache"
+        }
+    }
 }
-
 
 /**
  * Represents responseFrame from ApplicationCache. method call.
@@ -117,7 +125,6 @@ data class GetApplicationCacheForFrameResponse(
 
 )
 
-
 /**
  * Represents responseFrame from ApplicationCache. method call.
  *
@@ -139,7 +146,7 @@ data class ApplicationCacheStatusUpdatedEvent(
    */
   val status : Int
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "ApplicationCache", name = "applicationCacheStatusUpdated")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "ApplicationCache", name = "applicationCacheStatusUpdated")
 
 /**
  * Represents responseFrame from ApplicationCache. method call.
@@ -152,5 +159,5 @@ data class NetworkStateUpdatedEvent(
    */
   val isNowOnline : Boolean
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "ApplicationCache", name = "networkStateUpdated")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "ApplicationCache", name = "networkStateUpdated")
 

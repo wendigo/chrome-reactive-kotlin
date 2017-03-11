@@ -3,17 +3,25 @@ package pl.wendigo.chrome.domain.systeminfo
 /**
  * The SystemInfo domain defines methods and events for querying low-level system information.
  */
-@pl.wendigo.chrome.ProtocolExperimental class SystemInfoDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+@pl.wendigo.chrome.ProtocolExperimental class SystemInfoDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Returns information about the system.
 	 */
 	  fun getInfo() : io.reactivex.Flowable<GetInfoResponse> {
-        return connection.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java)
 	}
 
-  }
-
+  
+    /**
+     * Returns flowable capturing all SystemInfo domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "SystemInfo"
+        }
+    }
+}
 
 /**
  * Represents responseFrame from SystemInfo. method call.
@@ -37,5 +45,4 @@ data class GetInfoResponse(
   val modelVersion : String
 
 )
-
 

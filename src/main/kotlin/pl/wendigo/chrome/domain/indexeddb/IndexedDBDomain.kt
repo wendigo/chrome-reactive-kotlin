@@ -3,59 +3,67 @@ package pl.wendigo.chrome.domain.indexeddb
 /**
  * IndexedDBDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class IndexedDBDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+@pl.wendigo.chrome.ProtocolExperimental class IndexedDBDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Enables events from backend.
 	 */
 	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables events from backend.
 	 */
 	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Requests database names for given security origin.
 	 */
 	  fun requestDatabaseNames(input : RequestDatabaseNamesRequest) : io.reactivex.Flowable<RequestDatabaseNamesResponse> {
-        return connection.runAndCaptureResponse("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java)
 	}
 
 	/**
 	 * Requests database with given name in given frame.
 	 */
 	  fun requestDatabase(input : RequestDatabaseRequest) : io.reactivex.Flowable<RequestDatabaseResponse> {
-        return connection.runAndCaptureResponse("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java)
 	}
 
 	/**
 	 * Requests data from object store or index.
 	 */
 	  fun requestData(input : RequestDataRequest) : io.reactivex.Flowable<RequestDataResponse> {
-        return connection.runAndCaptureResponse("IndexedDB.requestData", input, RequestDataResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("IndexedDB.requestData", input, RequestDataResponse::class.java)
 	}
 
 	/**
 	 * Clears all entries from an object store.
 	 */
 	  fun clearObjectStore(input : ClearObjectStoreRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Deletes a database.
 	 */
 	  fun deleteDatabase(input : DeleteDatabaseRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
-  }
-
+  
+    /**
+     * Returns flowable capturing all IndexedDB domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "IndexedDB"
+        }
+    }
+}
 
 
 
@@ -219,6 +227,5 @@ data class DeleteDatabaseRequest (
     val databaseName : String
 
 )
-
 
 

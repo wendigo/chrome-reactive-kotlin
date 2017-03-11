@@ -1,22 +1,22 @@
 package pl.wendigo.chrome
 
 /**
- * RemoteChrome represents session established via chrome's remote debugging protocol.
+ * ChromeProtocol represents session established with given inspectablePage via chrome's remote debugging protocol.
  */
-class RemoteChrome internal constructor(private val api: DebuggerConnection) {
+class ChromeProtocol internal constructor(private val api: RemoteDebuggerConnection) {
 
     /**
-     * Register event mappings
+     * Register event eventNameToClassMapping
      */
     init {
-      api.registerMappings(mapOf(
+      api.registerEventMappings(mapOf(
       "Animation.animationCanceled" to pl.wendigo.chrome.domain.animation.AnimationCanceledEvent::class.java,
       "Animation.animationCreated" to pl.wendigo.chrome.domain.animation.AnimationCreatedEvent::class.java,
       "Animation.animationStarted" to pl.wendigo.chrome.domain.animation.AnimationStartedEvent::class.java,
       "ApplicationCache.applicationCacheStatusUpdated" to pl.wendigo.chrome.domain.applicationcache.ApplicationCacheStatusUpdatedEvent::class.java,
       "ApplicationCache.networkStateUpdated" to pl.wendigo.chrome.domain.applicationcache.NetworkStateUpdatedEvent::class.java,
-      "CSS.fontsUpdated" to pl.wendigo.chrome.DebuggerEvent::class.java,
-      "CSS.mediaQueryResultChanged" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "CSS.fontsUpdated" to pl.wendigo.chrome.ProtocolEvent::class.java,
+      "CSS.mediaQueryResultChanged" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "CSS.styleSheetAdded" to pl.wendigo.chrome.domain.css.StyleSheetAddedEvent::class.java,
       "CSS.styleSheetChanged" to pl.wendigo.chrome.domain.css.StyleSheetChangedEvent::class.java,
       "CSS.styleSheetRemoved" to pl.wendigo.chrome.domain.css.StyleSheetRemovedEvent::class.java,
@@ -28,7 +28,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
       "DOM.childNodeInserted" to pl.wendigo.chrome.domain.dom.ChildNodeInsertedEvent::class.java,
       "DOM.childNodeRemoved" to pl.wendigo.chrome.domain.dom.ChildNodeRemovedEvent::class.java,
       "DOM.distributedNodesUpdated" to pl.wendigo.chrome.domain.dom.DistributedNodesUpdatedEvent::class.java,
-      "DOM.documentUpdated" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "DOM.documentUpdated" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "DOM.inlineStyleInvalidated" to pl.wendigo.chrome.domain.dom.InlineStyleInvalidatedEvent::class.java,
       "DOM.inspectNodeRequested" to pl.wendigo.chrome.domain.dom.InspectNodeRequestedEvent::class.java,
       "DOM.nodeHighlightRequested" to pl.wendigo.chrome.domain.dom.NodeHighlightRequestedEvent::class.java,
@@ -44,17 +44,17 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
       "Database.addDatabase" to pl.wendigo.chrome.domain.database.AddDatabaseEvent::class.java,
       "Debugger.breakpointResolved" to pl.wendigo.chrome.domain.debugger.BreakpointResolvedEvent::class.java,
       "Debugger.paused" to pl.wendigo.chrome.domain.debugger.PausedEvent::class.java,
-      "Debugger.resumed" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Debugger.resumed" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "Debugger.scriptFailedToParse" to pl.wendigo.chrome.domain.debugger.ScriptFailedToParseEvent::class.java,
       "Debugger.scriptParsed" to pl.wendigo.chrome.domain.debugger.ScriptParsedEvent::class.java,
-      "Emulation.virtualTimeBudgetExpired" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Emulation.virtualTimeBudgetExpired" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "HeapProfiler.addHeapSnapshotChunk" to pl.wendigo.chrome.domain.heapprofiler.AddHeapSnapshotChunkEvent::class.java,
       "HeapProfiler.heapStatsUpdate" to pl.wendigo.chrome.domain.heapprofiler.HeapStatsUpdateEvent::class.java,
       "HeapProfiler.lastSeenObjectId" to pl.wendigo.chrome.domain.heapprofiler.LastSeenObjectIdEvent::class.java,
       "HeapProfiler.reportHeapSnapshotProgress" to pl.wendigo.chrome.domain.heapprofiler.ReportHeapSnapshotProgressEvent::class.java,
-      "HeapProfiler.resetProfiles" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "HeapProfiler.resetProfiles" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "Inspector.detached" to pl.wendigo.chrome.domain.inspector.DetachedEvent::class.java,
-      "Inspector.targetCrashed" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Inspector.targetCrashed" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "LayerTree.layerPainted" to pl.wendigo.chrome.domain.layertree.LayerPaintedEvent::class.java,
       "LayerTree.layerTreeDidChange" to pl.wendigo.chrome.domain.layertree.LayerTreeDidChangeEvent::class.java,
       "Log.entryAdded" to pl.wendigo.chrome.domain.log.EntryAddedEvent::class.java,
@@ -79,12 +79,12 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
       "Page.frameClearedScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameClearedScheduledNavigationEvent::class.java,
       "Page.frameDetached" to pl.wendigo.chrome.domain.page.FrameDetachedEvent::class.java,
       "Page.frameNavigated" to pl.wendigo.chrome.domain.page.FrameNavigatedEvent::class.java,
-      "Page.frameResized" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Page.frameResized" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "Page.frameScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameScheduledNavigationEvent::class.java,
       "Page.frameStartedLoading" to pl.wendigo.chrome.domain.page.FrameStartedLoadingEvent::class.java,
       "Page.frameStoppedLoading" to pl.wendigo.chrome.domain.page.FrameStoppedLoadingEvent::class.java,
-      "Page.interstitialHidden" to pl.wendigo.chrome.DebuggerEvent::class.java,
-      "Page.interstitialShown" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Page.interstitialHidden" to pl.wendigo.chrome.ProtocolEvent::class.java,
+      "Page.interstitialShown" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "Page.javascriptDialogClosed" to pl.wendigo.chrome.domain.page.JavascriptDialogClosedEvent::class.java,
       "Page.javascriptDialogOpening" to pl.wendigo.chrome.domain.page.JavascriptDialogOpeningEvent::class.java,
       "Page.loadEventFired" to pl.wendigo.chrome.domain.page.LoadEventFiredEvent::class.java,
@@ -98,7 +98,7 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
       "Runtime.exceptionThrown" to pl.wendigo.chrome.domain.runtime.ExceptionThrownEvent::class.java,
       "Runtime.executionContextCreated" to pl.wendigo.chrome.domain.runtime.ExecutionContextCreatedEvent::class.java,
       "Runtime.executionContextDestroyed" to pl.wendigo.chrome.domain.runtime.ExecutionContextDestroyedEvent::class.java,
-      "Runtime.executionContextsCleared" to pl.wendigo.chrome.DebuggerEvent::class.java,
+      "Runtime.executionContextsCleared" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "Runtime.inspectRequested" to pl.wendigo.chrome.domain.runtime.InspectRequestedEvent::class.java,
       "Security.securityStateChanged" to pl.wendigo.chrome.domain.security.SecurityStateChangedEvent::class.java,
       "ServiceWorker.workerErrorReported" to pl.wendigo.chrome.domain.serviceworker.WorkerErrorReportedEvent::class.java,
@@ -354,324 +354,27 @@ class RemoteChrome internal constructor(private val api: DebuggerConnection) {
         pl.wendigo.chrome.domain.heapprofiler.HeapProfilerDomain(api)
     }
 
-
     /**
      * Returns flowable capturing all events.
      */
-    fun Events() : io.reactivex.Flowable<DebuggerEvent> {
+    fun Events() : io.reactivex.Flowable<ProtocolEvent> {
       return api.captureAllEvents()
     }
 
     /**
-     * Returns flowable capturing Inspector domains events.
+     * Closes debugging session.
      */
-     fun InspectorEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Inspector"
-       }
-     }
-    /**
-     * Returns flowable capturing Memory domains events.
-     */
-     fun MemoryEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Memory"
-       }
-     }
-    /**
-     * Returns flowable capturing Page domains events.
-     */
-     fun PageEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Page"
-       }
-     }
-    /**
-     * Returns flowable capturing Rendering domains events.
-     */
-     fun RenderingEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Rendering"
-       }
-     }
-    /**
-     * Returns flowable capturing Emulation domains events.
-     */
-     fun EmulationEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Emulation"
-       }
-     }
-    /**
-     * Returns flowable capturing Security domains events.
-     */
-     fun SecurityEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Security"
-       }
-     }
-    /**
-     * Returns flowable capturing Network domains events.
-     */
-     fun NetworkEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Network"
-       }
-     }
-    /**
-     * Returns flowable capturing Database domains events.
-     */
-     fun DatabaseEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Database"
-       }
-     }
-    /**
-     * Returns flowable capturing IndexedDB domains events.
-     */
-     fun IndexedDBEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "IndexedDB"
-       }
-     }
-    /**
-     * Returns flowable capturing CacheStorage domains events.
-     */
-     fun CacheStorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "CacheStorage"
-       }
-     }
-    /**
-     * Returns flowable capturing DOMStorage domains events.
-     */
-     fun DOMStorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "DOMStorage"
-       }
-     }
-    /**
-     * Returns flowable capturing ApplicationCache domains events.
-     */
-     fun ApplicationCacheEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "ApplicationCache"
-       }
-     }
-    /**
-     * Returns flowable capturing DOM domains events.
-     */
-     fun DOMEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "DOM"
-       }
-     }
-    /**
-     * Returns flowable capturing CSS domains events.
-     */
-     fun CSSEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "CSS"
-       }
-     }
-    /**
-     * Returns flowable capturing IO domains events.
-     */
-     fun IOEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "IO"
-       }
-     }
-    /**
-     * Returns flowable capturing DOMDebugger domains events.
-     */
-     fun DOMDebuggerEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "DOMDebugger"
-       }
-     }
-    /**
-     * Returns flowable capturing Target domains events.
-     */
-     fun TargetEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Target"
-       }
-     }
-    /**
-     * Returns flowable capturing ServiceWorker domains events.
-     */
-     fun ServiceWorkerEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "ServiceWorker"
-       }
-     }
-    /**
-     * Returns flowable capturing Input domains events.
-     */
-     fun InputEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Input"
-       }
-     }
-    /**
-     * Returns flowable capturing LayerTree domains events.
-     */
-     fun LayerTreeEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "LayerTree"
-       }
-     }
-    /**
-     * Returns flowable capturing DeviceOrientation domains events.
-     */
-     fun DeviceOrientationEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "DeviceOrientation"
-       }
-     }
-    /**
-     * Returns flowable capturing Tracing domains events.
-     */
-     fun TracingEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Tracing"
-       }
-     }
-    /**
-     * Returns flowable capturing Animation domains events.
-     */
-     fun AnimationEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Animation"
-       }
-     }
-    /**
-     * Returns flowable capturing Accessibility domains events.
-     */
-     fun AccessibilityEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Accessibility"
-       }
-     }
-    /**
-     * Returns flowable capturing Storage domains events.
-     */
-     fun StorageEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Storage"
-       }
-     }
-    /**
-     * Returns flowable capturing Log domains events.
-     */
-     fun LogEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Log"
-       }
-     }
-    /**
-     * Returns flowable capturing SystemInfo domains events.
-     */
-     fun SystemInfoEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "SystemInfo"
-       }
-     }
-    /**
-     * Returns flowable capturing Tethering domains events.
-     */
-     fun TetheringEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Tethering"
-       }
-     }
-    /**
-     * Returns flowable capturing Schema domains events.
-     */
-     fun SchemaEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Schema"
-       }
-     }
-    /**
-     * Returns flowable capturing Runtime domains events.
-     */
-     fun RuntimeEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Runtime"
-       }
-     }
-    /**
-     * Returns flowable capturing Debugger domains events.
-     */
-     fun DebuggerEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Debugger"
-       }
-     }
-    /**
-     * Returns flowable capturing Console domains events.
-     */
-     fun ConsoleEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Console"
-       }
-     }
-    /**
-     * Returns flowable capturing Profiler domains events.
-     */
-     fun ProfilerEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "Profiler"
-       }
-     }
-    /**
-     * Returns flowable capturing HeapProfiler domains events.
-     */
-     fun HeapProfilerEvents() : io.reactivex.Flowable<DebuggerEvent> {
-       return api.captureAllEvents().filter {
-         it.protocolDomain() == "HeapProfiler"
-       }
-     }
-
-    /**
-     * Closes debuggerConnection to API.
-     */
-    fun close() {
+    fun closeSession() {
       return api.close()
     }
 
     companion object {
-        /**
-         * Connects to chrome debugging protocol on host and port.
-         */
-        @kotlin.jvm.Throws(RemoteChromeException::class)
-        fun newTab(chromeAddress: String) : RemoteChrome {
-          return RemoteChrome(
-                DebuggerConnection(
-                    Inspector(chromeAddress)
-                        .openTab()
-                        .map(InspectorTab::webSocketDebuggerUrl)
-                        .blockingGet()
-                ).connect()
-          )
-        }
 
         /**
-         * Connects to chrome debugging protocol on host and port for given tab url.
+         * Opens new debugging session via chrome debugging protocol for given InspectablePage.
          */
-        @kotlin.jvm.Throws(RemoteChromeException::class)
-        fun connectToTab(chromeAddress: String, tabUrl: String) : RemoteChrome {
-            return RemoteChrome(
-                DebuggerConnection(
-                    Inspector(chromeAddress)
-                        .findTab(tabUrl)
-                        .singleOrError()
-                        .map(InspectorTab::webSocketDebuggerUrl)
-                        .blockingGet()
-                ).connect()
-            )
+        fun openSession(page: InspectablePage) : ChromeProtocol {
+            return ChromeProtocol(RemoteDebuggerConnection.openSession(page.webSocketDebuggerUrl).connect())
         }
     }
 }

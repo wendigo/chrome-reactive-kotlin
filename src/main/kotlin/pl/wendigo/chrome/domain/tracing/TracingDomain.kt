@@ -3,66 +3,74 @@ package pl.wendigo.chrome.domain.tracing
 /**
  * TracingDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class TracingDomain internal constructor(private val connection : pl.wendigo.chrome.DebuggerConnection) {
+@pl.wendigo.chrome.ProtocolExperimental class TracingDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Start trace events collection.
 	 */
 	  fun start(input : StartRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Stop trace events collection.
 	 */
 	  fun end() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Tracing.end", null, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Tracing.end", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Gets supported tracing categories.
 	 */
 	  fun getCategories() : io.reactivex.Flowable<GetCategoriesResponse> {
-        return connection.runAndCaptureResponse("Tracing.getCategories", null, GetCategoriesResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("Tracing.getCategories", null, GetCategoriesResponse::class.java)
 	}
 
 	/**
 	 * Request a global memory dump.
 	 */
 	  fun requestMemoryDump() : io.reactivex.Flowable<RequestMemoryDumpResponse> {
-        return connection.runAndCaptureResponse("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java)
+        return connectionRemote.runAndCaptureResponse("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java)
 	}
 
 	/**
 	 * Record a clock sync marker in the trace.
 	 */
 	  fun recordClockSyncMarker(input : RecordClockSyncMarkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
-        return connection.runAndCaptureResponse("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.ResponseFrame::class.java)
+        return connectionRemote.runAndCaptureResponse("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
   
-  /**
-   * Contains an bucket of collected trace events. When tracing is stopped collected events will be send as a sequence of dataCollected events followed by tracingComplete event.
-   */
-   fun dataCollected() : io.reactivex.Flowable<DataCollectedEvent> {
-      return connection.captureEvents("Tracing.dataCollected", DataCollectedEvent::class.java)
-   }
+    /**
+     * Contains an bucket of collected trace events. When tracing is stopped collected events will be send as a sequence of dataCollected events followed by tracingComplete event.
+     */
+    fun dataCollected() : io.reactivex.Flowable<DataCollectedEvent> {
+        return connectionRemote.captureEvents("Tracing.dataCollected", DataCollectedEvent::class.java)
+    }
 
-  /**
-   * Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via dataCollected events.
-   */
-   fun tracingComplete() : io.reactivex.Flowable<TracingCompleteEvent> {
-      return connection.captureEvents("Tracing.tracingComplete", TracingCompleteEvent::class.java)
-   }
+    /**
+     * Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via dataCollected events.
+     */
+    fun tracingComplete() : io.reactivex.Flowable<TracingCompleteEvent> {
+        return connectionRemote.captureEvents("Tracing.tracingComplete", TracingCompleteEvent::class.java)
+    }
 
-  /**
-   * 
-   */
-   fun bufferUsage() : io.reactivex.Flowable<BufferUsageEvent> {
-      return connection.captureEvents("Tracing.bufferUsage", BufferUsageEvent::class.java)
-   }
+    /**
+     * Returns observable capturing all Tracing.bufferUsage events.
+     */
+    fun bufferUsage() : io.reactivex.Flowable<BufferUsageEvent> {
+        return connectionRemote.captureEvents("Tracing.bufferUsage", BufferUsageEvent::class.java)
+    }
+
+    /**
+     * Returns flowable capturing all Tracing domains events.
+     */
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return connectionRemote.captureAllEvents().filter {
+            it.protocolDomain() == "Tracing"
+        }
+    }
 }
-
 /**
  * Represents requestFrame parameters that can be used with Tracing.start method call.
  *
@@ -146,7 +154,6 @@ data class RecordClockSyncMarkerRequest (
 )
 
 
-
 /**
  * Represents responseFrame from Tracing. method call.
  *
@@ -158,7 +165,7 @@ data class DataCollectedEvent(
    */
   val value : Array<Any>
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "Tracing", name = "dataCollected")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Tracing", name = "dataCollected")
 
 /**
  * Represents responseFrame from Tracing. method call.
@@ -171,7 +178,7 @@ data class TracingCompleteEvent(
    */
   val stream : pl.wendigo.chrome.domain.io.StreamHandle? = null
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "Tracing", name = "tracingComplete")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Tracing", name = "tracingComplete")
 
 /**
  * Represents responseFrame from Tracing. method call.
@@ -194,5 +201,5 @@ data class BufferUsageEvent(
    */
   val value : Double? = null
 
-) : pl.wendigo.chrome.DebuggerEvent(domain = "Tracing", name = "bufferUsage")
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Tracing", name = "bufferUsage")
 
