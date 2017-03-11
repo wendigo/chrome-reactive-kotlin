@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.memory
 /**
  * MemoryDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class MemoryDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class MemoryDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * 

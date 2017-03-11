@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.rendering
 /**
  * This domain allows to control rendering of the page.
  */
-@pl.wendigo.chrome.ProtocolExperimental class RenderingDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class RenderingDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Requests that backend shows paint rectangles

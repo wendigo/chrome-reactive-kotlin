@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.storage
 /**
  * StorageDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class StorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class StorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Clears storage for origin.

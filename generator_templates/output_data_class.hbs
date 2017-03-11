@@ -8,7 +8,7 @@ data class {{Type.ClassName}}(
   /**
    * {{{Description}}}
    */
-  {{#if Experimental}}@{{Package}}.ProtocolExperimental {{/if}}{{#if Deprecated}}@{{Package}}.ProtocolDeprecated {{/if}}{{{value Name}}} : {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
+  {{#if Experimental}}@{{Package}}.Experimental {{/if}}{{#if Deprecated}}@{{Package}}.Deprecated {{/if}}{{{value Name}}} : {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
 
   {{/each}}
 ){{#each Type.ImplementingInterfaces}}{{#if @first}} : {{/if}}{{{.}}}{{#unless @last}}, {{/unless}}{{/each}}

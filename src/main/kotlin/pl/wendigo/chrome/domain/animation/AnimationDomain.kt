@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.animation
 /**
  * AnimationDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class AnimationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class AnimationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Enables animation domain notifications.

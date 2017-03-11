@@ -43,7 +43,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Blocks specific URL from loading.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setBlockedURLs(input : SetBlockedURLsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setBlockedURLs", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -51,7 +51,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * This method sends a new XMLHttpRequest which is identical to the original one. The following parameters should be identical: method, url, async, request body, extra headers, withCredentials attribute, user, password.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun replayXHR(input : ReplayXHRRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.replayXHR", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -59,7 +59,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Toggles monitoring of XMLHttpRequest. If <code>true</code>, console will receive messages upon each XHR issued.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setMonitoringXHREnabled(input : SetMonitoringXHREnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setMonitoringXHREnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -95,7 +95,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Returns all browser cookies for the current URL. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getCookies(input : GetCookiesRequest) : io.reactivex.Flowable<GetCookiesResponse> {
         return connectionRemote.runAndCaptureResponse("Network.getCookies", input, GetCookiesResponse::class.java)
 	}
@@ -103,7 +103,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getAllCookies() : io.reactivex.Flowable<GetAllCookiesResponse> {
         return connectionRemote.runAndCaptureResponse("Network.getAllCookies", null, GetAllCookiesResponse::class.java)
 	}
@@ -111,7 +111,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Deletes browser cookie with given name, domain and path.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.deleteCookie", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -119,7 +119,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setCookie(input : SetCookieRequest) : io.reactivex.Flowable<SetCookieResponse> {
         return connectionRemote.runAndCaptureResponse("Network.setCookie", input, SetCookieResponse::class.java)
 	}
@@ -127,7 +127,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Tells whether emulation of network conditions is supported.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun canEmulateNetworkConditions() : io.reactivex.Flowable<CanEmulateNetworkConditionsResponse> {
         return connectionRemote.runAndCaptureResponse("Network.canEmulateNetworkConditions", null, CanEmulateNetworkConditionsResponse::class.java)
 	}
@@ -149,7 +149,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Toggles ignoring of service worker for each request.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setBypassServiceWorker(input : SetBypassServiceWorkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setBypassServiceWorker", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -157,7 +157,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * For testing.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setDataSizeLimitsForTest(input : SetDataSizeLimitsForTestRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setDataSizeLimitsForTest", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -165,7 +165,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Returns the DER-encoded certificate.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getCertificate(input : GetCertificateRequest) : io.reactivex.Flowable<GetCertificateResponse> {
         return connectionRemote.runAndCaptureResponse("Network.getCertificate", input, GetCertificateResponse::class.java)
 	}
@@ -294,12 +294,12 @@ data class EnableRequest (
     /**
      * Buffer size in bytes to use when preserving network payloads (XHRs, etc).
      */
-    @pl.wendigo.chrome.ProtocolExperimental val maxTotalBufferSize : Int? = null,
+    @pl.wendigo.chrome.Experimental val maxTotalBufferSize : Int? = null,
 
     /**
      * Per-resource buffer size in bytes to use when preserving network payloads (XHRs, etc).
      */
-    @pl.wendigo.chrome.ProtocolExperimental val maxResourceBufferSize : Int? = null
+    @pl.wendigo.chrome.Experimental val maxResourceBufferSize : Int? = null
 
 )
 
@@ -722,7 +722,7 @@ data class RequestWillBeSentEvent(
   /**
    * Frame identifier.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val frameId : pl.wendigo.chrome.domain.page.FrameId,
+  @pl.wendigo.chrome.Experimental val frameId : pl.wendigo.chrome.domain.page.FrameId,
 
   /**
    * Loader identifier.
@@ -747,7 +747,7 @@ data class RequestWillBeSentEvent(
   /**
    * UTC Timestamp.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val wallTime : Timestamp,
+  @pl.wendigo.chrome.Experimental val wallTime : Timestamp,
 
   /**
    * Request initiator.
@@ -762,7 +762,7 @@ data class RequestWillBeSentEvent(
   /**
    * Type of this resource.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val type : pl.wendigo.chrome.domain.page.ResourceType? = null
+  @pl.wendigo.chrome.Experimental val type : pl.wendigo.chrome.domain.page.ResourceType? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "requestWillBeSent")
 
@@ -793,7 +793,7 @@ data class ResponseReceivedEvent(
   /**
    * Frame identifier.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val frameId : pl.wendigo.chrome.domain.page.FrameId,
+  @pl.wendigo.chrome.Experimental val frameId : pl.wendigo.chrome.domain.page.FrameId,
 
   /**
    * Loader identifier.
@@ -902,7 +902,7 @@ data class LoadingFailedEvent(
   /**
    * The reason why loading was blocked, if any.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val blockedReason : BlockedReason? = null
+  @pl.wendigo.chrome.Experimental val blockedReason : BlockedReason? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "loadingFailed")
 
@@ -925,7 +925,7 @@ data class WebSocketWillSendHandshakeRequestEvent(
   /**
    * UTC Timestamp.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val wallTime : Timestamp,
+  @pl.wendigo.chrome.Experimental val wallTime : Timestamp,
 
   /**
    * WebSocket request data.

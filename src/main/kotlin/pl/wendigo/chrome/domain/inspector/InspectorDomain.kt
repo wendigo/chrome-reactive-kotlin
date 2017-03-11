@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.inspector
 /**
  * InspectorDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class InspectorDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class InspectorDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Enables inspector domain notifications.

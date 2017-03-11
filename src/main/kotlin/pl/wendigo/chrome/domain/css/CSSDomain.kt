@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.css
 /**
  * This domain exposes CSS read/write operations. All CSS objects (stylesheets, rules, and styles) have an associated <code>id</code> used in subsequent operations on the related object. Each object type has a specific <code>id</code> structure, and those are not interchangeable between objects of different kinds. CSS objects can be loaded using the <code>get*ForNode()</code> calls (which accept a DOM node id). A client can also discover all the existing stylesheets with the <code>getAllStyleSheets()</code> method (or keeping track of the <code>styleSheetAdded</code>/<code>styleSheetRemoved</code> events) and subsequently load the required stylesheet contents using the <code>getStyleSheet[Text]()</code> methods.
  */
-@pl.wendigo.chrome.ProtocolExperimental class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been enabled until the result of this command is received.
@@ -43,7 +43,7 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * Requests information about platform fonts which we used to render child TextNodes in the given node.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getPlatformFontsForNode(input : GetPlatformFontsForNodeRequest) : io.reactivex.Flowable<GetPlatformFontsForNodeResponse> {
         return connectionRemote.runAndCaptureResponse("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java)
 	}
@@ -58,7 +58,7 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * Returns all class names from specified stylesheet.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun collectClassNames(input : CollectClassNamesRequest) : io.reactivex.Flowable<CollectClassNamesResponse> {
         return connectionRemote.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java)
 	}
@@ -122,7 +122,7 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * Returns all media queries parsed by the rendering engine.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getMediaQueries() : io.reactivex.Flowable<GetMediaQueriesResponse> {
         return connectionRemote.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java)
 	}
@@ -130,7 +130,7 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * Find a rule with the given active property for the given node and set the new value for this property
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setEffectivePropertyValueForNode(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -138,7 +138,7 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * 
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getBackgroundColors(input : GetBackgroundColorsRequest) : io.reactivex.Flowable<GetBackgroundColorsResponse> {
         return connectionRemote.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java)
 	}
@@ -146,7 +146,7 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getLayoutTreeAndStyles(input : GetLayoutTreeAndStylesRequest) : io.reactivex.Flowable<GetLayoutTreeAndStylesResponse> {
         return connectionRemote.runAndCaptureResponse("CSS.getLayoutTreeAndStyles", input, GetLayoutTreeAndStylesResponse::class.java)
 	}
@@ -154,7 +154,7 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * Enables the selector recording.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun startRuleUsageTracking() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -162,7 +162,7 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * The list of rules with an indication of whether these were used
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun stopRuleUsageTracking() : io.reactivex.Flowable<StopRuleUsageTrackingResponse> {
         return connectionRemote.runAndCaptureResponse("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java)
 	}

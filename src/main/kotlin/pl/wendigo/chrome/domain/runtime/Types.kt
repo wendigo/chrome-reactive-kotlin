@@ -65,12 +65,12 @@ data class RemoteObject(
   /**
    * Preview containing abbreviated property values. Specified for <code>object</code> type values only.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val preview : ObjectPreview? = null,
+  @pl.wendigo.chrome.Experimental val preview : ObjectPreview? = null,
 
   /**
    * 
    */
-  @pl.wendigo.chrome.ProtocolExperimental val customPreview : CustomPreview? = null
+  @pl.wendigo.chrome.Experimental val customPreview : CustomPreview? = null
 )
 
 /**
@@ -423,6 +423,6 @@ data class StackTrace(
   /**
    * Creation frame of the Promise which produced the next synchronous trace when resolved, if available.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val promiseCreationFrame : CallFrame? = null
+  @pl.wendigo.chrome.Experimental val promiseCreationFrame : CallFrame? = null
 )
 

@@ -164,7 +164,7 @@ data class CSSStyleSheetHeader(
   /**
    * Size of the content (in characters).
    */
-  @pl.wendigo.chrome.ProtocolExperimental val length : Double
+  @pl.wendigo.chrome.Experimental val length : Double
 )
 
 /**
@@ -397,7 +397,7 @@ data class CSSMedia(
   /**
    * Array of media queries.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val mediaList : Array<MediaQuery>? = null
+  @pl.wendigo.chrome.Experimental val mediaList : Array<MediaQuery>? = null
 )
 
 /**

@@ -21,7 +21,7 @@ class NotConnected constructor(override val message: String, throwable: Throwabl
  * Protocol request has failed.
  */
 class RequestFailed constructor(override val message: String, throwable: Throwable?) : Exception(message, throwable) {
-    constructor(message : String) : this(message, null)
+    constructor(request: RequestFrame, message : String) : this("request = $request, error = $message", null)
 }
 
 /**

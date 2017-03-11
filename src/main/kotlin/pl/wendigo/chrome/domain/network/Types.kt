@@ -100,12 +100,12 @@ data class ResourceTiming(
   /**
    * Started running ServiceWorker.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val workerStart : Double,
+  @pl.wendigo.chrome.Experimental val workerStart : Double,
 
   /**
    * Finished Starting ServiceWorker.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val workerReady : Double,
+  @pl.wendigo.chrome.Experimental val workerReady : Double,
 
   /**
    * Started sending request.
@@ -120,12 +120,12 @@ data class ResourceTiming(
   /**
    * Time the server started pushing request.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val pushStart : Double,
+  @pl.wendigo.chrome.Experimental val pushStart : Double,
 
   /**
    * Time the server finished pushing request.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val pushEnd : Double,
+  @pl.wendigo.chrome.Experimental val pushEnd : Double,
 
   /**
    * Finished receiving response headers.
@@ -367,12 +367,12 @@ data class Response(
   /**
    * Remote IP address.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val remoteIPAddress : String? = null,
+  @pl.wendigo.chrome.Experimental val remoteIPAddress : String? = null,
 
   /**
    * Remote port.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val remotePort : Int? = null,
+  @pl.wendigo.chrome.Experimental val remotePort : Int? = null,
 
   /**
    * Specifies that the request was served from the disk cache.

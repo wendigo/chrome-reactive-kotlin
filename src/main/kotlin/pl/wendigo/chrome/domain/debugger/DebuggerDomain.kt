@@ -57,7 +57,7 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
 	/**
 	 * Returns possible locations for breakpoint. scriptId in start and end range locations should be the same.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getPossibleBreakpoints(input : GetPossibleBreakpointsRequest) : io.reactivex.Flowable<GetPossibleBreakpointsResponse> {
         return connectionRemote.runAndCaptureResponse("Debugger.getPossibleBreakpoints", input, GetPossibleBreakpointsResponse::class.java)
 	}
@@ -100,7 +100,7 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
 	/**
 	 * Steps into next scheduled async task if any is scheduled before next pause. Returns success when async task is actually scheduled, returns error if no task were scheduled or another scheduleStepIntoAsync was called.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun scheduleStepIntoAsync() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Debugger.scheduleStepIntoAsync", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -115,7 +115,7 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
 	/**
 	 * Searches for given string in script content.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun searchInContent(input : SearchInContentRequest) : io.reactivex.Flowable<SearchInContentResponse> {
         return connectionRemote.runAndCaptureResponse("Debugger.searchInContent", input, SearchInContentResponse::class.java)
 	}
@@ -172,7 +172,7 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
 	/**
 	 * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in scripts with url matching one of the patterns. VM will try to leave blackboxed script by performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setBlackboxPatterns(input : SetBlackboxPatternsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Debugger.setBlackboxPatterns", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -180,7 +180,7 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
 	/**
 	 * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted scripts by performing 'step in' several times, finally resorting to 'step out' if unsuccessful. Positions array contains positions where blackbox state is changed. First interval isn't blackboxed. Array should be sorted.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setBlackboxedRanges(input : SetBlackboxedRangesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Debugger.setBlackboxedRanges", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -627,12 +627,12 @@ data class EvaluateOnCallFrameRequest (
     /**
      * Whether preview should be generated for the result.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val generatePreview : Boolean? = null,
+    @pl.wendigo.chrome.Experimental val generatePreview : Boolean? = null,
 
     /**
      * Whether to throw an exception if side effect cannot be ruled out during evaluation.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val throwOnSideEffect : Boolean? = null
+    @pl.wendigo.chrome.Experimental val throwOnSideEffect : Boolean? = null
 
 )
 
@@ -784,7 +784,7 @@ data class ScriptParsedEvent(
   /**
    * True, if this script is generated as a result of the live edit operation.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val isLiveEdit : Boolean? = null,
+  @pl.wendigo.chrome.Experimental val isLiveEdit : Boolean? = null,
 
   /**
    * URL of source map associated with script (if any).
@@ -794,17 +794,17 @@ data class ScriptParsedEvent(
   /**
    * True, if this script has sourceURL.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val hasSourceURL : Boolean? = null,
+  @pl.wendigo.chrome.Experimental val hasSourceURL : Boolean? = null,
 
   /**
    * True, if this script is ES6 module.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val isModule : Boolean? = null,
+  @pl.wendigo.chrome.Experimental val isModule : Boolean? = null,
 
   /**
    * This script length.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val length : Int? = null
+  @pl.wendigo.chrome.Experimental val length : Int? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Debugger", name = "scriptParsed")
 
@@ -867,17 +867,17 @@ data class ScriptFailedToParseEvent(
   /**
    * True, if this script has sourceURL.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val hasSourceURL : Boolean? = null,
+  @pl.wendigo.chrome.Experimental val hasSourceURL : Boolean? = null,
 
   /**
    * True, if this script is ES6 module.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val isModule : Boolean? = null,
+  @pl.wendigo.chrome.Experimental val isModule : Boolean? = null,
 
   /**
    * This script length.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val length : Int? = null
+  @pl.wendigo.chrome.Experimental val length : Int? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Debugger", name = "scriptFailedToParse")
 

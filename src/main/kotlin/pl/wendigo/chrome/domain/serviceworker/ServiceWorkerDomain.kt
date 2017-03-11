@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.serviceworker
 /**
  * ServiceWorkerDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class ServiceWorkerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class ServiceWorkerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * 

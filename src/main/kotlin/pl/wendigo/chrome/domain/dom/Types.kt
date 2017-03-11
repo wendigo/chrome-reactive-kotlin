@@ -76,12 +76,12 @@ data class Node(
   /**
    * The id of the parent node if any.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val parentId : NodeId? = null,
+  @pl.wendigo.chrome.Experimental val parentId : NodeId? = null,
 
   /**
    * The BackendNodeId for this node.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val backendNodeId : BackendNodeId,
+  @pl.wendigo.chrome.Experimental val backendNodeId : BackendNodeId,
 
   /**
    * <code>Node</code>'s nodeType.
@@ -126,7 +126,7 @@ data class Node(
   /**
    * Base URL that <code>Document</code> or <code>FrameOwner</code> node uses for URL completion.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val baseURL : String? = null,
+  @pl.wendigo.chrome.Experimental val baseURL : String? = null,
 
   /**
    * <code>DocumentType</code>'s publicId.
@@ -171,7 +171,7 @@ data class Node(
   /**
    * Frame ID for frame owner elements.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val frameId : pl.wendigo.chrome.domain.page.FrameId? = null,
+  @pl.wendigo.chrome.Experimental val frameId : pl.wendigo.chrome.domain.page.FrameId? = null,
 
   /**
    * Content document for frame owner elements.
@@ -181,17 +181,17 @@ data class Node(
   /**
    * Shadow root list for given element host.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val shadowRoots : Array<Node>? = null,
+  @pl.wendigo.chrome.Experimental val shadowRoots : Array<Node>? = null,
 
   /**
    * Content document fragment for template elements.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val templateContent : Node? = null,
+  @pl.wendigo.chrome.Experimental val templateContent : Node? = null,
 
   /**
    * Pseudo elements associated with this node.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val pseudoElements : Array<Node>? = null,
+  @pl.wendigo.chrome.Experimental val pseudoElements : Array<Node>? = null,
 
   /**
    * Import document for the HTMLImport links.
@@ -201,12 +201,12 @@ data class Node(
   /**
    * Distributed nodes for given insertion point.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val distributedNodes : Array<BackendNode>? = null,
+  @pl.wendigo.chrome.Experimental val distributedNodes : Array<BackendNode>? = null,
 
   /**
    * Whether the node is SVG.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val isSVG : Boolean? = null
+  @pl.wendigo.chrome.Experimental val isSVG : Boolean? = null
 )
 
 /**
@@ -352,7 +352,7 @@ data class HighlightConfig(
   /**
    * 
    */
-  @pl.wendigo.chrome.ProtocolExperimental val displayAsMaterial : Boolean? = null,
+  @pl.wendigo.chrome.Experimental val displayAsMaterial : Boolean? = null,
 
   /**
    * The content box highlight fill color (default: transparent).
@@ -377,17 +377,17 @@ data class HighlightConfig(
   /**
    * The event target element highlight fill color (default: transparent).
    */
-  @pl.wendigo.chrome.ProtocolExperimental val eventTargetColor : RGBA? = null,
+  @pl.wendigo.chrome.Experimental val eventTargetColor : RGBA? = null,
 
   /**
    * The shape outside fill color (default: transparent).
    */
-  @pl.wendigo.chrome.ProtocolExperimental val shapeColor : RGBA? = null,
+  @pl.wendigo.chrome.Experimental val shapeColor : RGBA? = null,
 
   /**
    * The shape margin fill color (default: transparent).
    */
-  @pl.wendigo.chrome.ProtocolExperimental val shapeMarginColor : RGBA? = null,
+  @pl.wendigo.chrome.Experimental val shapeMarginColor : RGBA? = null,
 
   /**
    * Selectors to highlight relevant nodes.

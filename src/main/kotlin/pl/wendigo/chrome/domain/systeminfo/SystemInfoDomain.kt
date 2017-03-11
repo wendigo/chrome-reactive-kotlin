@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.systeminfo
 /**
  * The SystemInfo domain defines methods and events for querying low-level system information.
  */
-@pl.wendigo.chrome.ProtocolExperimental class SystemInfoDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class SystemInfoDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Returns information about the system.

@@ -43,7 +43,7 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 	/**
 	 * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun startPreciseCoverage() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Profiler.startPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -51,7 +51,7 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 	/**
 	 * Disable precise code coverage. Disabling releases unnecessary execution count records and allows executing optimized code.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun stopPreciseCoverage() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -59,7 +59,7 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 	/**
 	 * Collect coverage data for the current isolate, and resets execution counters. Precise code coverage needs to have started.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun takePreciseCoverage() : io.reactivex.Flowable<TakePreciseCoverageResponse> {
         return connectionRemote.runAndCaptureResponse("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse::class.java)
 	}
@@ -67,7 +67,7 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 	/**
 	 * Collect coverage data for the current isolate. The coverage data may be incomplete due to garbage collection.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getBestEffortCoverage() : io.reactivex.Flowable<GetBestEffortCoverageResponse> {
         return connectionRemote.runAndCaptureResponse("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse::class.java)
 	}

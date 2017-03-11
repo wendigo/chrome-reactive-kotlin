@@ -36,7 +36,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
 	/**
 	 * Sets breakpoint on particular native event.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setInstrumentationBreakpoint(input : SetInstrumentationBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.setInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -44,7 +44,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
 	/**
 	 * Removes breakpoint on particular native event.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun removeInstrumentationBreakpoint(input : RemoveInstrumentationBreakpointRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.removeInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -66,7 +66,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
 	/**
 	 * Returns event listeners of the given object.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getEventListeners(input : GetEventListenersRequest) : io.reactivex.Flowable<GetEventListenersResponse> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.getEventListeners", input, GetEventListenersResponse::class.java)
 	}
@@ -133,7 +133,7 @@ data class SetEventListenerBreakpointRequest (
     /**
      * EventTarget interface name to stop on. If equal to <code>"*"</code> or not provided, will stop on any EventTarget.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val targetName : String? = null
+    @pl.wendigo.chrome.Experimental val targetName : String? = null
 
 )
 
@@ -152,7 +152,7 @@ data class RemoveEventListenerBreakpointRequest (
     /**
      * EventTarget interface name.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val targetName : String? = null
+    @pl.wendigo.chrome.Experimental val targetName : String? = null
 
 )
 
@@ -227,12 +227,12 @@ data class GetEventListenersRequest (
     /**
      * The maximum depth at which Node children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val depth : Int? = null,
+    @pl.wendigo.chrome.Experimental val depth : Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree (default is false). Reports listeners for all contexts if pierce is enabled.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val pierce : Boolean? = null
+    @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
 
 )
 

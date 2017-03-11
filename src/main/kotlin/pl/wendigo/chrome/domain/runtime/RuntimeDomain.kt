@@ -78,7 +78,7 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * 
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setCustomObjectFormatterEnabled(input : SetCustomObjectFormatterEnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -195,12 +195,12 @@ data class EvaluateRequest (
     /**
      * Whether preview should be generated for the result.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val generatePreview : Boolean? = null,
+    @pl.wendigo.chrome.Experimental val generatePreview : Boolean? = null,
 
     /**
      * Whether execution should be treated as initiated by user in the UI.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val userGesture : Boolean? = null,
+    @pl.wendigo.chrome.Experimental val userGesture : Boolean? = null,
 
     /**
      * Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error.
@@ -302,12 +302,12 @@ data class CallFunctionOnRequest (
     /**
      * Whether preview should be generated for the result.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val generatePreview : Boolean? = null,
+    @pl.wendigo.chrome.Experimental val generatePreview : Boolean? = null,
 
     /**
      * Whether execution should be treated as initiated by user in the UI.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val userGesture : Boolean? = null,
+    @pl.wendigo.chrome.Experimental val userGesture : Boolean? = null,
 
     /**
      * Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error.
@@ -353,12 +353,12 @@ data class GetPropertiesRequest (
     /**
      * If true, returns accessor properties (with getter/setter) only; internal properties are not returned either.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val accessorPropertiesOnly : Boolean? = null,
+    @pl.wendigo.chrome.Experimental val accessorPropertiesOnly : Boolean? = null,
 
     /**
      * Whether preview should be generated for the results.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val generatePreview : Boolean? = null
+    @pl.wendigo.chrome.Experimental val generatePreview : Boolean? = null
 
 )
 

@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.tracing
 /**
  * TracingDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class TracingDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class TracingDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Start trace events collection.
@@ -80,12 +80,12 @@ data class StartRequest (
     /**
      * Category/tag filter
      */
-    @pl.wendigo.chrome.ProtocolDeprecated val categories : String? = null,
+    @pl.wendigo.chrome.Deprecated val categories : String? = null,
 
     /**
      * Tracing options
      */
-    @pl.wendigo.chrome.ProtocolDeprecated val options : String? = null,
+    @pl.wendigo.chrome.Deprecated val options : String? = null,
 
     /**
      * If set, the agent will issue bufferUsage events at this interval, specified in milliseconds

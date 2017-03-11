@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.heapprofiler
 /**
  * HeapProfilerDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class HeapProfilerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class HeapProfilerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * 

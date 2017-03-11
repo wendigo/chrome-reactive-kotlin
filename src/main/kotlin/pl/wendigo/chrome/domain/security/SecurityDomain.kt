@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.security
 /**
  * Security
  */
-@pl.wendigo.chrome.ProtocolExperimental class SecurityDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class SecurityDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Enables tracking security state changes.

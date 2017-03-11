@@ -31,9 +31,9 @@ class FrameMapper {
     /**
      * Deserializes response frame as clazz
      */
-    internal fun <T> deserializeResponse(responseFrame: ResponseFrame, clazz: Class<T>) : Observable<T> {
+    internal fun <T> deserializeResponse(requestFrame: RequestFrame, responseFrame: ResponseFrame, clazz: Class<T>) : Observable<T> {
         if (responseFrame.error != null) {
-            return Observable.error(RequestFailed(responseFrame.error.message))
+            return Observable.error(RequestFailed(requestFrame, responseFrame.error.message))
         }
 
         try {

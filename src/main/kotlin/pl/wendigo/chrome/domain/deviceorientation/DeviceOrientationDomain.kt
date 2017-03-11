@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.deviceorientation
 /**
  * DeviceOrientationDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class DeviceOrientationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class DeviceOrientationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Overrides the Device Orientation.

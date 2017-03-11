@@ -36,7 +36,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Collects class names for the node with given id and all of it's child nodes.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun collectClassNamesFromSubtree(input : CollectClassNamesFromSubtreeRequest) : io.reactivex.Flowable<CollectClassNamesFromSubtreeResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.collectClassNamesFromSubtree", input, CollectClassNamesFromSubtreeResponse::class.java)
 	}
@@ -121,7 +121,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun performSearch(input : PerformSearchRequest) : io.reactivex.Flowable<PerformSearchResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.performSearch", input, PerformSearchResponse::class.java)
 	}
@@ -129,7 +129,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getSearchResults(input : GetSearchResultsRequest) : io.reactivex.Flowable<GetSearchResultsResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getSearchResults", input, GetSearchResultsResponse::class.java)
 	}
@@ -137,7 +137,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Discards search results from the session with the given id. <code>getSearchResults</code> should no longer be called for that search.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun discardSearchResults(input : DiscardSearchResultsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.discardSearchResults", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -152,7 +152,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setInspectMode(input : SetInspectModeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setInspectMode", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -167,7 +167,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun highlightQuad(input : HighlightQuadRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.highlightQuad", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -189,7 +189,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Highlights owner element of the frame with given id.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun highlightFrame(input : HighlightFrameRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.highlightFrame", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -197,7 +197,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Requests that the node is sent to the caller given its path. // FIXME, use XPath
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun pushNodeByPathToFrontend(input : PushNodeByPathToFrontendRequest) : io.reactivex.Flowable<PushNodeByPathToFrontendResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.pushNodeByPathToFrontend", input, PushNodeByPathToFrontendResponse::class.java)
 	}
@@ -205,7 +205,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Requests that a batch of nodes is sent to the caller given their backend node ids.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun pushNodesByBackendIdsToFrontend(input : PushNodesByBackendIdsToFrontendRequest) : io.reactivex.Flowable<PushNodesByBackendIdsToFrontendResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.pushNodesByBackendIdsToFrontend", input, PushNodesByBackendIdsToFrontendResponse::class.java)
 	}
@@ -213,7 +213,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setInspectedNode(input : SetInspectedNodeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setInspectedNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -235,7 +235,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Creates a deep copy of the specified node and places it into the target container before the given anchor.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun copyTo(input : CopyToRequest) : io.reactivex.Flowable<CopyToResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.copyTo", input, CopyToResponse::class.java)
 	}
@@ -250,7 +250,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Undoes the last performed action.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun undo() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.undo", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -258,7 +258,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Re-does the last undone action.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun redo() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.redo", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -266,7 +266,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Marks last undoable state.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun markUndoableState() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.markUndoableState", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -274,7 +274,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Focuses the given element.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun focus(input : FocusRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.focus", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -282,7 +282,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Sets files for the given file input element.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setFileInputFiles(input : SetFileInputFilesRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setFileInputFiles", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -290,7 +290,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Returns boxes for the currently selected nodes.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getBoxModel(input : GetBoxModelRequest) : io.reactivex.Flowable<GetBoxModelResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getBoxModel", input, GetBoxModelResponse::class.java)
 	}
@@ -298,7 +298,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Returns node id at given location.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getNodeForLocation(input : GetNodeForLocationRequest) : io.reactivex.Flowable<GetNodeForLocationResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getNodeForLocation", input, GetNodeForLocationResponse::class.java)
 	}
@@ -306,7 +306,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * Returns the id of the nearest ancestor that is a relayout boundary.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getRelayoutBoundary(input : GetRelayoutBoundaryRequest) : io.reactivex.Flowable<GetRelayoutBoundaryResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getRelayoutBoundary", input, GetRelayoutBoundaryResponse::class.java)
 	}
@@ -314,7 +314,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	/**
 	 * For testing.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun getHighlightObjectForTest(input : GetHighlightObjectForTestRequest) : io.reactivex.Flowable<GetHighlightObjectForTestResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java)
 	}
@@ -454,12 +454,12 @@ data class GetDocumentRequest (
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val depth : Int? = null,
+    @pl.wendigo.chrome.Experimental val depth : Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree (default is false).
      */
-    @pl.wendigo.chrome.ProtocolExperimental val pierce : Boolean? = null
+    @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
 
 )
 
@@ -485,12 +485,12 @@ data class GetFlattenedDocumentRequest (
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val depth : Int? = null,
+    @pl.wendigo.chrome.Experimental val depth : Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree (default is false).
      */
-    @pl.wendigo.chrome.ProtocolExperimental val pierce : Boolean? = null
+    @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
 
 )
 
@@ -547,12 +547,12 @@ data class RequestChildNodesRequest (
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val depth : Int? = null,
+    @pl.wendigo.chrome.Experimental val depth : Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the sub-tree (default is false).
      */
-    @pl.wendigo.chrome.ProtocolExperimental val pierce : Boolean? = null
+    @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
 
 )
 
@@ -809,7 +809,7 @@ data class PerformSearchRequest (
     /**
      * True to search in user agent shadow DOM.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val includeUserAgentShadowDOM : Boolean? = null
+    @pl.wendigo.chrome.Experimental val includeUserAgentShadowDOM : Boolean? = null
 
 )
 
@@ -1013,7 +1013,7 @@ data class HighlightNodeRequest (
     /**
      * JavaScript object id of the node to be highlighted.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    @pl.wendigo.chrome.Experimental val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
 
 )
 

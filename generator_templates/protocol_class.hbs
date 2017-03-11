@@ -45,7 +45,7 @@ class ChromeProtocol internal constructor(private val api: RemoteDebuggerConnect
          * Opens new debugging session via chrome debugging protocol for given InspectablePage.
          */
         fun openSession(page: InspectablePage) : ChromeProtocol {
-            return ChromeProtocol(RemoteDebuggerConnection.openSession(page.webSocketDebuggerUrl).connect())
+            return ChromeProtocol(RemoteDebuggerConnection.openSession(page.webSocketDebuggerUrl))
         }
     }
 }

@@ -22,7 +22,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Overrides the visible area of the page. The change is hidden from the page, i.e. the observable scroll position and page scale does not change. In effect, the command moves the specified area of the page into the top-left corner of the frame.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun forceViewport(input : ForceViewportRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.forceViewport", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -30,7 +30,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Resets the visible area of the page to the original viewport, undoing any effects of the <code>forceViewport</code> command.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun resetViewport() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.resetViewport", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -38,7 +38,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Requests that page scale factor is reset to initial values.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun resetPageScaleFactor() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.resetPageScaleFactor", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -46,7 +46,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Sets a specified page scale factor.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setPageScaleFactor(input : SetPageScaleFactorRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setPageScaleFactor", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -54,7 +54,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Resizes the frame/viewport of the page. Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported on Android.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setVisibleSize(input : SetVisibleSizeRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setVisibleSize", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -62,7 +62,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Switches script execution in the page.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setScriptExecutionDisabled(input : SetScriptExecutionDisabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setScriptExecutionDisabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -70,7 +70,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -78,7 +78,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Clears the overriden Geolocation Position and Error.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun clearGeolocationOverride() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.clearGeolocationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -100,7 +100,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Enables CPU throttling to emulate slow CPUs.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setCPUThrottlingRate(input : SetCPUThrottlingRateRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setCPUThrottlingRate", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -108,7 +108,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Tells whether emulation is supported.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun canEmulate() : io.reactivex.Flowable<CanEmulateResponse> {
         return connectionRemote.runAndCaptureResponse("Emulation.canEmulate", null, CanEmulateResponse::class.java)
 	}
@@ -116,7 +116,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets the current virtual time policy.  Note this supersedes any previous time budget.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setVirtualTimePolicy(input : SetVirtualTimePolicyRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -124,7 +124,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
 	/**
 	 * Sets or clears an override of the default background color of the frame. This override is used if the content does not specify one.
 	 */
-	@pl.wendigo.chrome.ProtocolExperimental
+	@pl.wendigo.chrome.Experimental
     fun setDefaultBackgroundColorOverride(input : SetDefaultBackgroundColorOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setDefaultBackgroundColorOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
@@ -180,37 +180,37 @@ data class SetDeviceMetricsOverrideRequest (
     /**
      * Scale to apply to resulting view image. Ignored in |fitWindow| mode.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val scale : Double? = null,
+    @pl.wendigo.chrome.Experimental val scale : Double? = null,
 
     /**
      * Not used.
      */
-    @pl.wendigo.chrome.ProtocolExperimental @pl.wendigo.chrome.ProtocolDeprecated val offsetX : Double? = null,
+    @pl.wendigo.chrome.Experimental @pl.wendigo.chrome.Deprecated val offsetX : Double? = null,
 
     /**
      * Not used.
      */
-    @pl.wendigo.chrome.ProtocolExperimental @pl.wendigo.chrome.ProtocolDeprecated val offsetY : Double? = null,
+    @pl.wendigo.chrome.Experimental @pl.wendigo.chrome.Deprecated val offsetY : Double? = null,
 
     /**
      * Overriding screen width value in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val screenWidth : Int? = null,
+    @pl.wendigo.chrome.Experimental val screenWidth : Int? = null,
 
     /**
      * Overriding screen height value in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val screenHeight : Int? = null,
+    @pl.wendigo.chrome.Experimental val screenHeight : Int? = null,
 
     /**
      * Overriding view X position on screen in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val positionX : Int? = null,
+    @pl.wendigo.chrome.Experimental val positionX : Int? = null,
 
     /**
      * Overriding view Y position on screen in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
      */
-    @pl.wendigo.chrome.ProtocolExperimental val positionY : Int? = null,
+    @pl.wendigo.chrome.Experimental val positionY : Int? = null,
 
     /**
      * Screen orientation override.

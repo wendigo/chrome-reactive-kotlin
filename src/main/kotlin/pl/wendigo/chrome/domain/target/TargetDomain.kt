@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.target
 /**
  * Supports additional targets discovery and allows to attach to them.
  */
-@pl.wendigo.chrome.ProtocolExperimental class TargetDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class TargetDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Controls whether to discover available targets and notify via <code>targetCreated/targetDestroyed</code> events.

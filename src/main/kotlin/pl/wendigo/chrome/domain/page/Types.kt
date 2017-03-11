@@ -163,37 +163,37 @@ data class ScreencastFrameMetadata(
   /**
    * Top offset in DIP.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val offsetTop : Double,
+  @pl.wendigo.chrome.Experimental val offsetTop : Double,
 
   /**
    * Page scale factor.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val pageScaleFactor : Double,
+  @pl.wendigo.chrome.Experimental val pageScaleFactor : Double,
 
   /**
    * Device screen width in DIP.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val deviceWidth : Double,
+  @pl.wendigo.chrome.Experimental val deviceWidth : Double,
 
   /**
    * Device screen height in DIP.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val deviceHeight : Double,
+  @pl.wendigo.chrome.Experimental val deviceHeight : Double,
 
   /**
    * Position of horizontal scroll in CSS pixels.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val scrollOffsetX : Double,
+  @pl.wendigo.chrome.Experimental val scrollOffsetX : Double,
 
   /**
    * Position of vertical scroll in CSS pixels.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val scrollOffsetY : Double,
+  @pl.wendigo.chrome.Experimental val scrollOffsetY : Double,
 
   /**
    * Frame swap timestamp.
    */
-  @pl.wendigo.chrome.ProtocolExperimental val timestamp : Double? = null
+  @pl.wendigo.chrome.Experimental val timestamp : Double? = null
 )
 
 /**

@@ -40,7 +40,14 @@ data class InspectablePage(
      * Web socket debugger url (ws:// scheme)
      */
     val webSocketDebuggerUrl: String
-)
+) {
+    /**
+     * Opens new chrome protocol debugger connection.
+     */
+    fun connect() : ChromeProtocol {
+        return ChromeProtocol.openSession(this)
+    }
+}
 
 /**
  * Protocol version represents browser build information.

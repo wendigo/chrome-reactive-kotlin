@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.layertree
 /**
  * LayerTreeDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.ProtocolExperimental class LayerTreeDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class LayerTreeDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
 
 	/**
 	 * Enables compositing tree inspection.

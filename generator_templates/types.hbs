@@ -13,7 +13,7 @@ package {{Package}}.domain.{{Domain.LowerName}}
   /**
    * {{{Description}}}
    */
-  {{#if Experimental}}@{{Package}}.ProtocolExperimental {{/if}}{{#if Deprecated}}@{{Package}}.ProtocolDeprecated {{/if}}{{{value Name}}} : {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
+  {{#if Experimental}}@{{Package}}.Experimental {{/if}}{{#if Deprecated}}@{{Package}}.Deprecated {{/if}}{{{value Name}}} : {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
 {{/each}}
 ){{else}}typealias {{Id}} = Map<String,Any>{{/if}}{{/equal}}{{/if}}
 
