@@ -73,9 +73,9 @@ internal class RemoteDebuggerConnection constructor(
          * Opens new RemoteDebuggerConnection session for given websocket uri.
          */
         @JvmStatic
-        fun openSession(url: String) : RemoteDebuggerConnection {
+        fun openSession(url: String, eventBufferSize: Int = 128) : RemoteDebuggerConnection {
             val mapper = FrameMapper()
-            val frames = FramesStream(url, ReplaySubject.create(512), mapper, OkHttpClient())
+            val frames = FramesStream(url, ReplaySubject.create(eventBufferSize), mapper, OkHttpClient())
 
             return RemoteDebuggerConnection(
                     frames,
