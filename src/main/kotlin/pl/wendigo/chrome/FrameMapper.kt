@@ -23,7 +23,7 @@ class FrameMapper {
      */
     internal fun serialize(requestFrame: RequestFrame) : Single<String> {
         try {
-            return Single.just(mapper.writeValueAsString(requestFrame))
+            return Single.fromCallable { mapper.writeValueAsString(requestFrame) }
         } catch (e : Exception) {
             return Single.error(SerializationFailed("Could not serialize request frame", e))
         }
@@ -42,7 +42,7 @@ class FrameMapper {
                 @Suppress("UNCHECKED_CAST")
                 return Single.just(responseFrame as T)
             } else {
-                return Single.just(mapper.treeToValue(responseFrame.result, clazz))
+                return Single.fromCallable { mapper.treeToValue(responseFrame.result, clazz) }
             }
         } catch (ex: Exception) {
             return Single.error(DeserializationFailed("Could not deserialize response frame", ex))
@@ -65,7 +65,7 @@ class FrameMapper {
                 @Suppress("UNCHECKED_CAST")
                 return Single.just(ProtocolEvent.fromMethodName(responseFrame.method!!)) as Single<T>
             } else {
-                return Single.just(mapper.treeToValue(responseFrame.params, clazz))
+                return Single.fromCallable { mapper.treeToValue(responseFrame.params, clazz) }
             }
         } catch (e: Exception) {
             return Single.error(DeserializationFailed("Could not deserialize event", e))

@@ -33,12 +33,12 @@ internal class RemoteDebuggerConnection constructor(
      * Sends request and captures response.
      */
     internal fun <T> runAndCaptureResponse(name: String, params: Any?, clazz: Class<T>) : Single<T> {
-        return Single.defer {
-            Single.just(RequestFrame(
+        return Single.fromCallable {
+            RequestFrame(
                 id = nextRequestId.incrementAndGet(),
                 method = name,
                 params = params
-            ))
+            )
         }.flatMap { request ->
             frames.send(request).flatMap { result ->
                 if (result == true) {
@@ -55,10 +55,10 @@ internal class RemoteDebuggerConnection constructor(
      */
     internal fun <T> captureEvents(name : String, outClazz: Class<T>) : Flowable<T> where T : ProtocolEvent {
         return frames.allEventFrames()
-        .filter { frame -> frame.method == name }
-        .flatMapSingle { frame ->  mapper.deserializeEvent(frame, outClazz) }
-        .subscribeOn(Schedulers.io())
-        .toFlowable(BackpressureStrategy.BUFFER)
+            .filter { frame -> frame.method == name }
+            .flatMapSingle { frame ->  mapper.deserializeEvent(frame, outClazz) }
+            .subscribeOn(Schedulers.io())
+            .toFlowable(BackpressureStrategy.BUFFER)
     }
 
     /**
