@@ -33,17 +33,19 @@ internal class RemoteDebuggerConnection constructor(
      * Sends request and captures response.
      */
     internal fun <T> runAndCaptureResponse(name: String, params: Any?, clazz: Class<T>) : Single<T> {
-        val request = RequestFrame(
-            id = nextRequestId.incrementAndGet(),
-            method = name,
-            params = params
-        )
-
-        return frames.send(request).flatMap { result ->
-            if (result == true) {
-                frames.getResponse(request, clazz)
-            } else {
-                Single.error(RequestFailed(request, "Could not enqueue message"))
+        return Single.defer {
+            Single.just(RequestFrame(
+                id = nextRequestId.incrementAndGet(),
+                method = name,
+                params = params
+            ))
+        }.flatMap { request ->
+            frames.send(request).flatMap { result ->
+                if (result == true) {
+                    frames.getResponse(request, clazz)
+                } else {
+                    Single.error(RequestFailed(request, "Could not enqueue message"))
+                }
             }
         }
     }
@@ -53,7 +55,7 @@ internal class RemoteDebuggerConnection constructor(
      */
     internal fun <T> captureEvents(name : String, outClazz: Class<T>) : Flowable<T> where T : ProtocolEvent {
         return frames.allEventFrames()
-        .filter {  (_, _, _, method) -> method == name }
+        .filter { frame -> frame.method == name }
         .flatMapSingle { frame ->  mapper.deserializeEvent(frame, outClazz) }
         .subscribeOn(Schedulers.io())
         .toFlowable(BackpressureStrategy.BUFFER)
