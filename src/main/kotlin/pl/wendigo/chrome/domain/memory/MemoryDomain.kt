@@ -8,21 +8,21 @@ package pl.wendigo.chrome.domain.memory
 	/**
 	 * 
 	 */
-	  fun getDOMCounters() : io.reactivex.Flowable<GetDOMCountersResponse> {
+	  fun getDOMCounters() : io.reactivex.Single<GetDOMCountersResponse> {
         return connectionRemote.runAndCaptureResponse("Memory.getDOMCounters", null, GetDOMCountersResponse::class.java)
 	}
 
 	/**
 	 * Enable/disable suppressing memory pressure notifications in all processes.
 	 */
-	  fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Simulate a memory pressure notification in all processes.
 	 */
-	  fun simulatePressureNotification(input : SimulatePressureNotificationRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun simulatePressureNotification(input : SimulatePressureNotificationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 

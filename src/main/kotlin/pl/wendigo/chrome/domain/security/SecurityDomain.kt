@@ -8,21 +8,21 @@ package pl.wendigo.chrome.domain.security
 	/**
 	 * Enables tracking security state changes.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables tracking security state changes.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Displays native dialog with the certificate details.
 	 */
-	  fun showCertificateViewer() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun showCertificateViewer() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Security.showCertificateViewer", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 

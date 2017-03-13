@@ -8,14 +8,14 @@ package pl.wendigo.chrome.domain.tethering
 	/**
 	 * Request browser port binding.
 	 */
-	  fun bind(input : BindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun bind(input : BindRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Request browser port unbinding.
 	 */
-	  fun unbind(input : UnbindRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun unbind(input : UnbindRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 

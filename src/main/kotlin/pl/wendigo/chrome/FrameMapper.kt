@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.reactivex.Observable
+import io.reactivex.Single
 
 /**
  * Frame mapper is responsible for (de)serializing frames exchanged via chrome remote debugging protocol.
@@ -20,30 +21,31 @@ class FrameMapper {
     /**
      * Serializes request frame using internal object mapper
      */
-    internal fun serialize(requestFrame: RequestFrame) : Observable<String> {
+    internal fun serialize(requestFrame: RequestFrame) : Single<String> {
         try {
-            return Observable.just(mapper.writeValueAsString(requestFrame))
+            return Single.just(mapper.writeValueAsString(requestFrame))
         } catch (e : Exception) {
-            return Observable.error(SerializationFailed("Could not serialize request frame", e))
+            return Single.error(SerializationFailed("Could not serialize request frame", e))
         }
     }
 
     /**
      * Deserializes response frame as clazz
      */
-    internal fun <T> deserializeResponse(requestFrame: RequestFrame, responseFrame: ResponseFrame, clazz: Class<T>) : Observable<T> {
+    internal fun <T> deserializeResponse(requestFrame: RequestFrame, responseFrame: ResponseFrame, clazz: Class<T>) : Single<T> {
         if (responseFrame.error != null) {
-            return Observable.error(RequestFailed(requestFrame, responseFrame.error.message))
+            return Single.error(RequestFailed(requestFrame, responseFrame.error.message))
         }
 
         try {
             if (clazz == ResponseFrame::class.java) {
-                return Observable.just(responseFrame as T)
+                @Suppress("UNCHECKED_CAST")
+                return Single.just(responseFrame as T)
             } else {
-                return Observable.just(mapper.treeToValue(responseFrame.result, clazz))
+                return Single.just(mapper.treeToValue(responseFrame.result, clazz))
             }
         } catch (ex: Exception) {
-            return Observable.error(DeserializationFailed("Could not deserialize response frame", ex))
+            return Single.error(DeserializationFailed("Could not deserialize response frame", ex))
         }
     }
 
@@ -57,15 +59,16 @@ class FrameMapper {
     /**
      * Deserialized response frame being event to clazz.
      */
-    internal fun <T> deserializeEvent(responseFrame: ResponseFrame, clazz: Class<T>) : Observable<T> where T : ProtocolEvent {
+    internal fun <T> deserializeEvent(responseFrame: ResponseFrame, clazz: Class<T>) : Single<T> where T : ProtocolEvent {
         try {
             if (clazz == ProtocolEvent::class.java) {
-                return Observable.just(ProtocolEvent.fromMethodName(responseFrame.method!!)) as Observable<T>
+                @Suppress("UNCHECKED_CAST")
+                return Single.just(ProtocolEvent.fromMethodName(responseFrame.method!!)) as Single<T>
             } else {
-                return Observable.just(mapper.treeToValue(responseFrame.params, clazz))
+                return Single.just(mapper.treeToValue(responseFrame.params, clazz))
             }
         } catch (e: Exception) {
-            return Observable.error(DeserializationFailed("Could not deserialize event", e))
+            return Single.error(DeserializationFailed("Could not deserialize event", e))
         }
     }
 }

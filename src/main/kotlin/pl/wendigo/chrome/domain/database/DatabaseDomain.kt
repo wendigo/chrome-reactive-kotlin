@@ -8,28 +8,28 @@ package pl.wendigo.chrome.domain.database
 	/**
 	 * Enables database tracking, database events will now be delivered to the client.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables database tracking, prevents database events from being sent to the client.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Database.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun getDatabaseTableNames(input : GetDatabaseTableNamesRequest) : io.reactivex.Flowable<GetDatabaseTableNamesResponse> {
+	  fun getDatabaseTableNames(input : GetDatabaseTableNamesRequest) : io.reactivex.Single<GetDatabaseTableNamesResponse> {
         return connectionRemote.runAndCaptureResponse("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun executeSQL(input : ExecuteSQLRequest) : io.reactivex.Flowable<ExecuteSQLResponse> {
+	  fun executeSQL(input : ExecuteSQLRequest) : io.reactivex.Single<ExecuteSQLResponse> {
         return connectionRemote.runAndCaptureResponse("Database.executeSQL", input, ExecuteSQLResponse::class.java)
 	}
 

@@ -8,35 +8,35 @@ package pl.wendigo.chrome.domain.tracing
 	/**
 	 * Start trace events collection.
 	 */
-	  fun start(input : StartRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun start(input : StartRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Stop trace events collection.
 	 */
-	  fun end() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun end() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Tracing.end", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Gets supported tracing categories.
 	 */
-	  fun getCategories() : io.reactivex.Flowable<GetCategoriesResponse> {
+	  fun getCategories() : io.reactivex.Single<GetCategoriesResponse> {
         return connectionRemote.runAndCaptureResponse("Tracing.getCategories", null, GetCategoriesResponse::class.java)
 	}
 
 	/**
 	 * Request a global memory dump.
 	 */
-	  fun requestMemoryDump() : io.reactivex.Flowable<RequestMemoryDumpResponse> {
+	  fun requestMemoryDump() : io.reactivex.Single<RequestMemoryDumpResponse> {
         return connectionRemote.runAndCaptureResponse("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java)
 	}
 
 	/**
 	 * Record a clock sync marker in the trace.
 	 */
-	  fun recordClockSyncMarker(input : RecordClockSyncMarkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun recordClockSyncMarker(input : RecordClockSyncMarkerRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 

@@ -8,35 +8,35 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 	/**
 	 * 
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Profiler.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Profiler.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
 	 */
-	  fun setSamplingInterval(input : SetSamplingIntervalRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun setSamplingInterval(input : SetSamplingIntervalRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Profiler.setSamplingInterval", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun start() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun start() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Profiler.start", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun stop() : io.reactivex.Flowable<StopResponse> {
+	  fun stop() : io.reactivex.Single<StopResponse> {
         return connectionRemote.runAndCaptureResponse("Profiler.stop", null, StopResponse::class.java)
 	}
 
@@ -44,7 +44,7 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 	 * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun startPreciseCoverage() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+    fun startPreciseCoverage() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Profiler.startPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
@@ -52,7 +52,7 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 	 * Disable precise code coverage. Disabling releases unnecessary execution count records and allows executing optimized code.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun stopPreciseCoverage() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+    fun stopPreciseCoverage() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
@@ -60,7 +60,7 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 	 * Collect coverage data for the current isolate, and resets execution counters. Precise code coverage needs to have started.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun takePreciseCoverage() : io.reactivex.Flowable<TakePreciseCoverageResponse> {
+    fun takePreciseCoverage() : io.reactivex.Single<TakePreciseCoverageResponse> {
         return connectionRemote.runAndCaptureResponse("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse::class.java)
 	}
 
@@ -68,7 +68,7 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 	 * Collect coverage data for the current isolate. The coverage data may be incomplete due to garbage collection.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getBestEffortCoverage() : io.reactivex.Flowable<GetBestEffortCoverageResponse> {
+    fun getBestEffortCoverage() : io.reactivex.Single<GetBestEffortCoverageResponse> {
         return connectionRemote.runAndCaptureResponse("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse::class.java)
 	}
 

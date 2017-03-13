@@ -8,35 +8,35 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Enables network tracking, network events will now be delivered to the client.
 	 */
-	  fun enable(input : EnableRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun enable(input : EnableRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.enable", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables network tracking, prevents network events from being sent to the client.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Allows overriding user agent with the given string.
 	 */
-	  fun setUserAgentOverride(input : SetUserAgentOverrideRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun setUserAgentOverride(input : SetUserAgentOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setUserAgentOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Specifies whether to always send extra HTTP headers with the requests from this page.
 	 */
-	  fun setExtraHTTPHeaders(input : SetExtraHTTPHeadersRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun setExtraHTTPHeaders(input : SetExtraHTTPHeadersRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setExtraHTTPHeaders", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Returns content served for the given request.
 	 */
-	  fun getResponseBody(input : GetResponseBodyRequest) : io.reactivex.Flowable<GetResponseBodyResponse> {
+	  fun getResponseBody(input : GetResponseBodyRequest) : io.reactivex.Single<GetResponseBodyResponse> {
         return connectionRemote.runAndCaptureResponse("Network.getResponseBody", input, GetResponseBodyResponse::class.java)
 	}
 
@@ -44,7 +44,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * Blocks specific URL from loading.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setBlockedURLs(input : SetBlockedURLsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+    fun setBlockedURLs(input : SetBlockedURLsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setBlockedURLs", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
@@ -52,7 +52,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * This method sends a new XMLHttpRequest which is identical to the original one. The following parameters should be identical: method, url, async, request body, extra headers, withCredentials attribute, user, password.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun replayXHR(input : ReplayXHRRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+    fun replayXHR(input : ReplayXHRRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.replayXHR", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
@@ -60,35 +60,35 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * Toggles monitoring of XMLHttpRequest. If <code>true</code>, console will receive messages upon each XHR issued.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setMonitoringXHREnabled(input : SetMonitoringXHREnabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+    fun setMonitoringXHREnabled(input : SetMonitoringXHREnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setMonitoringXHREnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Tells whether clearing browser cache is supported.
 	 */
-	  fun canClearBrowserCache() : io.reactivex.Flowable<CanClearBrowserCacheResponse> {
+	  fun canClearBrowserCache() : io.reactivex.Single<CanClearBrowserCacheResponse> {
         return connectionRemote.runAndCaptureResponse("Network.canClearBrowserCache", null, CanClearBrowserCacheResponse::class.java)
 	}
 
 	/**
 	 * Clears browser cache.
 	 */
-	  fun clearBrowserCache() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun clearBrowserCache() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.clearBrowserCache", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Tells whether clearing browser cookies is supported.
 	 */
-	  fun canClearBrowserCookies() : io.reactivex.Flowable<CanClearBrowserCookiesResponse> {
+	  fun canClearBrowserCookies() : io.reactivex.Single<CanClearBrowserCookiesResponse> {
         return connectionRemote.runAndCaptureResponse("Network.canClearBrowserCookies", null, CanClearBrowserCookiesResponse::class.java)
 	}
 
 	/**
 	 * Clears browser cookies.
 	 */
-	  fun clearBrowserCookies() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun clearBrowserCookies() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.clearBrowserCookies", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
@@ -96,7 +96,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * Returns all browser cookies for the current URL. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getCookies(input : GetCookiesRequest) : io.reactivex.Flowable<GetCookiesResponse> {
+    fun getCookies(input : GetCookiesRequest) : io.reactivex.Single<GetCookiesResponse> {
         return connectionRemote.runAndCaptureResponse("Network.getCookies", input, GetCookiesResponse::class.java)
 	}
 
@@ -104,7 +104,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getAllCookies() : io.reactivex.Flowable<GetAllCookiesResponse> {
+    fun getAllCookies() : io.reactivex.Single<GetAllCookiesResponse> {
         return connectionRemote.runAndCaptureResponse("Network.getAllCookies", null, GetAllCookiesResponse::class.java)
 	}
 
@@ -112,7 +112,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * Deletes browser cookie with given name, domain and path.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+    fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.deleteCookie", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
@@ -120,7 +120,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setCookie(input : SetCookieRequest) : io.reactivex.Flowable<SetCookieResponse> {
+    fun setCookie(input : SetCookieRequest) : io.reactivex.Single<SetCookieResponse> {
         return connectionRemote.runAndCaptureResponse("Network.setCookie", input, SetCookieResponse::class.java)
 	}
 
@@ -128,21 +128,21 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * Tells whether emulation of network conditions is supported.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun canEmulateNetworkConditions() : io.reactivex.Flowable<CanEmulateNetworkConditionsResponse> {
+    fun canEmulateNetworkConditions() : io.reactivex.Single<CanEmulateNetworkConditionsResponse> {
         return connectionRemote.runAndCaptureResponse("Network.canEmulateNetworkConditions", null, CanEmulateNetworkConditionsResponse::class.java)
 	}
 
 	/**
 	 * Activates emulation of network conditions.
 	 */
-	  fun emulateNetworkConditions(input : EmulateNetworkConditionsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun emulateNetworkConditions(input : EmulateNetworkConditionsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.emulateNetworkConditions", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Toggles ignoring cache for each request. If <code>true</code>, cache will not be used.
 	 */
-	  fun setCacheDisabled(input : SetCacheDisabledRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun setCacheDisabled(input : SetCacheDisabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setCacheDisabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
@@ -150,7 +150,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * Toggles ignoring of service worker for each request.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setBypassServiceWorker(input : SetBypassServiceWorkerRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+    fun setBypassServiceWorker(input : SetBypassServiceWorkerRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setBypassServiceWorker", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
@@ -158,7 +158,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * For testing.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setDataSizeLimitsForTest(input : SetDataSizeLimitsForTestRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+    fun setDataSizeLimitsForTest(input : SetDataSizeLimitsForTestRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setDataSizeLimitsForTest", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
@@ -166,7 +166,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	 * Returns the DER-encoded certificate.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getCertificate(input : GetCertificateRequest) : io.reactivex.Flowable<GetCertificateResponse> {
+    fun getCertificate(input : GetCertificateRequest) : io.reactivex.Single<GetCertificateResponse> {
         return connectionRemote.runAndCaptureResponse("Network.getCertificate", input, GetCertificateResponse::class.java)
 	}
 

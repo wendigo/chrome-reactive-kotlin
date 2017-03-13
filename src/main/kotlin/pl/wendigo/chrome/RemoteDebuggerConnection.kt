@@ -1,6 +1,7 @@
 package pl.wendigo.chrome
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.ReplaySubject
 import okhttp3.OkHttpClient
@@ -31,18 +32,18 @@ internal class RemoteDebuggerConnection constructor(
     /**
      * Sends request and captures response.
      */
-    internal fun <T> runAndCaptureResponse(name: String, params: Any?, clazz: Class<T>) : Flowable<T> {
+    internal fun <T> runAndCaptureResponse(name: String, params: Any?, clazz: Class<T>) : Single<T> {
         val request = RequestFrame(
             id = nextRequestId.incrementAndGet(),
             method = name,
             params = params
         )
 
-        return frames.send(request).toFlowable().flatMap { result ->
+        return frames.send(request).flatMap { result ->
             if (result == true) {
-                frames.getResponse(request, clazz).toFlowable()
+                frames.getResponse(request, clazz)
             } else {
-                Flowable.error(RequestFailed(request, "Could not enqueue message"))
+                Single.error(RequestFailed(request, "Could not enqueue message"))
             }
         }
     }
@@ -53,7 +54,7 @@ internal class RemoteDebuggerConnection constructor(
     internal fun <T> captureEvents(name : String, outClazz: Class<T>) : Flowable<T> where T : ProtocolEvent {
         return frames.allEventFrames()
         .filter {  (_, _, _, method) -> method == name }
-        .flatMap { frame ->  mapper.deserializeEvent(frame, outClazz) }
+        .flatMapSingle { frame ->  mapper.deserializeEvent(frame, outClazz) }
         .subscribeOn(Schedulers.io())
         .toFlowable(BackpressureStrategy.BUFFER)
     }
@@ -63,7 +64,7 @@ internal class RemoteDebuggerConnection constructor(
      */
     internal fun captureAllEvents() : Flowable<ProtocolEvent> {
         return frames.allEventFrames()
-            .flatMap { frame -> mapper.deserializeEvent(frame, eventNameToClassMapping[frame.method] ?: ProtocolEvent::class.java) }
+            .flatMapSingle { frame -> mapper.deserializeEvent(frame, eventNameToClassMapping[frame.method] ?: ProtocolEvent::class.java) }
             .subscribeOn(Schedulers.io())
             .toFlowable(BackpressureStrategy.LATEST)
     }

@@ -8,49 +8,49 @@ package pl.wendigo.chrome.domain.indexeddb
 	/**
 	 * Enables events from backend.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables events from backend.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Requests database names for given security origin.
 	 */
-	  fun requestDatabaseNames(input : RequestDatabaseNamesRequest) : io.reactivex.Flowable<RequestDatabaseNamesResponse> {
+	  fun requestDatabaseNames(input : RequestDatabaseNamesRequest) : io.reactivex.Single<RequestDatabaseNamesResponse> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java)
 	}
 
 	/**
 	 * Requests database with given name in given frame.
 	 */
-	  fun requestDatabase(input : RequestDatabaseRequest) : io.reactivex.Flowable<RequestDatabaseResponse> {
+	  fun requestDatabase(input : RequestDatabaseRequest) : io.reactivex.Single<RequestDatabaseResponse> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java)
 	}
 
 	/**
 	 * Requests data from object store or index.
 	 */
-	  fun requestData(input : RequestDataRequest) : io.reactivex.Flowable<RequestDataResponse> {
+	  fun requestData(input : RequestDataRequest) : io.reactivex.Single<RequestDataResponse> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.requestData", input, RequestDataResponse::class.java)
 	}
 
 	/**
 	 * Clears all entries from an object store.
 	 */
-	  fun clearObjectStore(input : ClearObjectStoreRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun clearObjectStore(input : ClearObjectStoreRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Deletes a database.
 	 */
-	  fun deleteDatabase(input : DeleteDatabaseRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun deleteDatabase(input : DeleteDatabaseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 

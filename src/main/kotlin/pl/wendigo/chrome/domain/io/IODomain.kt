@@ -8,14 +8,14 @@ package pl.wendigo.chrome.domain.io
 	/**
 	 * Read a chunk of the stream
 	 */
-	  fun read(input : ReadRequest) : io.reactivex.Flowable<ReadResponse> {
+	  fun read(input : ReadRequest) : io.reactivex.Single<ReadResponse> {
         return connectionRemote.runAndCaptureResponse("IO.read", input, ReadResponse::class.java)
 	}
 
 	/**
 	 * Close the stream, discard any temporary backing storage.
 	 */
-	  fun close(input : CloseRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun close(input : CloseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 

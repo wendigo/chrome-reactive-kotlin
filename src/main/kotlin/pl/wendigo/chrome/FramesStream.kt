@@ -51,7 +51,7 @@ class FramesStream : WebSocketListener {
 
         return messages
                 .filter { (frameId) -> frameId == requestFrame.id }
-                .flatMap { mapper.deserializeResponse(requestFrame, it, clazz) }
+                .flatMapSingle { mapper.deserializeResponse(requestFrame, it, clazz) }
                 .subscribeOn(Schedulers.io())
                 .take(1)
                 .singleOrError()
@@ -63,7 +63,7 @@ class FramesStream : WebSocketListener {
     fun send(frame: RequestFrame) : Single<Boolean> {
        return Single
             .just(frame)
-            .flatMap { mapper.serialize(it).singleOrError() }
+            .flatMap { mapper.serialize(it) }
             .map { connection.send(it) }
             .subscribeOn(Schedulers.io())
     }

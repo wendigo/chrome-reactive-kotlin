@@ -8,7 +8,7 @@ class SchemaDomain internal constructor(private val connectionRemote : pl.wendig
 	/**
 	 * Returns supported domains.
 	 */
-	  fun getDomains() : io.reactivex.Flowable<GetDomainsResponse> {
+	  fun getDomains() : io.reactivex.Single<GetDomainsResponse> {
         return connectionRemote.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java)
 	}
 

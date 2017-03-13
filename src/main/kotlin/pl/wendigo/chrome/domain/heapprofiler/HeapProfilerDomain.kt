@@ -8,77 +8,77 @@ package pl.wendigo.chrome.domain.heapprofiler
 	/**
 	 * 
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun startTrackingHeapObjects(input : StartTrackingHeapObjectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun startTrackingHeapObjects(input : StartTrackingHeapObjectsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.startTrackingHeapObjects", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun stopTrackingHeapObjects(input : StopTrackingHeapObjectsRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun stopTrackingHeapObjects(input : StopTrackingHeapObjectsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.stopTrackingHeapObjects", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun takeHeapSnapshot(input : TakeHeapSnapshotRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun takeHeapSnapshot(input : TakeHeapSnapshotRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.takeHeapSnapshot", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun collectGarbage() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun collectGarbage() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun getObjectByHeapObjectId(input : GetObjectByHeapObjectIdRequest) : io.reactivex.Flowable<GetObjectByHeapObjectIdResponse> {
+	  fun getObjectByHeapObjectId(input : GetObjectByHeapObjectIdRequest) : io.reactivex.Single<GetObjectByHeapObjectIdResponse> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.getObjectByHeapObjectId", input, GetObjectByHeapObjectIdResponse::class.java)
 	}
 
 	/**
 	 * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
 	 */
-	  fun addInspectedHeapObject(input : AddInspectedHeapObjectRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun addInspectedHeapObject(input : AddInspectedHeapObjectRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.addInspectedHeapObject", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun getHeapObjectId(input : GetHeapObjectIdRequest) : io.reactivex.Flowable<GetHeapObjectIdResponse> {
+	  fun getHeapObjectId(input : GetHeapObjectIdRequest) : io.reactivex.Single<GetHeapObjectIdResponse> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.getHeapObjectId", input, GetHeapObjectIdResponse::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun startSampling(input : StartSamplingRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun startSampling(input : StartSamplingRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.startSampling", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun stopSampling() : io.reactivex.Flowable<StopSamplingResponse> {
+	  fun stopSampling() : io.reactivex.Single<StopSamplingResponse> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.stopSampling", null, StopSamplingResponse::class.java)
 	}
 

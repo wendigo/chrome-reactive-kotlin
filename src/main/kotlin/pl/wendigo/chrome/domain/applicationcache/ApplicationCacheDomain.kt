@@ -8,28 +8,28 @@ package pl.wendigo.chrome.domain.applicationcache
 	/**
 	 * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
 	 */
-	  fun getFramesWithManifests() : io.reactivex.Flowable<GetFramesWithManifestsResponse> {
+	  fun getFramesWithManifests() : io.reactivex.Single<GetFramesWithManifestsResponse> {
         return connectionRemote.runAndCaptureResponse("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java)
 	}
 
 	/**
 	 * Enables application cache domain notifications.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("ApplicationCache.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Returns manifest URL for document in the given frame.
 	 */
-	  fun getManifestForFrame(input : GetManifestForFrameRequest) : io.reactivex.Flowable<GetManifestForFrameResponse> {
+	  fun getManifestForFrame(input : GetManifestForFrameRequest) : io.reactivex.Single<GetManifestForFrameResponse> {
         return connectionRemote.runAndCaptureResponse("ApplicationCache.getManifestForFrame", input, GetManifestForFrameResponse::class.java)
 	}
 
 	/**
 	 * Returns relevant application cache data for the document in given frame.
 	 */
-	  fun getApplicationCacheForFrame(input : GetApplicationCacheForFrameRequest) : io.reactivex.Flowable<GetApplicationCacheForFrameResponse> {
+	  fun getApplicationCacheForFrame(input : GetApplicationCacheForFrameRequest) : io.reactivex.Single<GetApplicationCacheForFrameResponse> {
         return connectionRemote.runAndCaptureResponse("ApplicationCache.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java)
 	}
 

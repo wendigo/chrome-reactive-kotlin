@@ -11,7 +11,7 @@ package {{Package}}.domain.{{Domain.LowerName}}
 	 */
 	{{#if Experimental}}@{{Package}}.Experimental
   {{/if}}{{#if Deprecated}}@{{Package}}.Deprecated
-  {{/if}}  fun {{Name}}({{#if HasInputParams}}input : {{SimpleName}}Request{{/if}}) : io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}> {
+  {{/if}}  fun {{Name}}({{#if HasInputParams}}input : {{SimpleName}}Request{{/if}}) : io.reactivex.Single<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}> {
         return connectionRemote.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}::class.java)
 	}
 

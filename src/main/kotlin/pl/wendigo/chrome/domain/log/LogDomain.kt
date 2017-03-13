@@ -8,35 +8,35 @@ package pl.wendigo.chrome.domain.log
 	/**
 	 * Enables log domain, sends the entries collected so far to the client by means of the <code>entryAdded</code> notification.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Log.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables log domain, prevents further log entries from being reported to the client.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Log.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Clears the log.
 	 */
-	  fun clear() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun clear() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Log.clear", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * start violation reporting.
 	 */
-	  fun startViolationsReport(input : StartViolationsReportRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun startViolationsReport(input : StartViolationsReportRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Log.startViolationsReport", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Stop violation reporting.
 	 */
-	  fun stopViolationsReport() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun stopViolationsReport() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Log.stopViolationsReport", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 

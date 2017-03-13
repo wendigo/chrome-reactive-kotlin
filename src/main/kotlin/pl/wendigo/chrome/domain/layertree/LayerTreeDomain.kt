@@ -8,63 +8,63 @@ package pl.wendigo.chrome.domain.layertree
 	/**
 	 * Enables compositing tree inspection.
 	 */
-	  fun enable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Disables compositing tree inspection.
 	 */
-	  fun disable() : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * Provides the reasons why the given layer was composited.
 	 */
-	  fun compositingReasons(input : CompositingReasonsRequest) : io.reactivex.Flowable<CompositingReasonsResponse> {
+	  fun compositingReasons(input : CompositingReasonsRequest) : io.reactivex.Single<CompositingReasonsResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java)
 	}
 
 	/**
 	 * Returns the layer snapshot identifier.
 	 */
-	  fun makeSnapshot(input : MakeSnapshotRequest) : io.reactivex.Flowable<MakeSnapshotResponse> {
+	  fun makeSnapshot(input : MakeSnapshotRequest) : io.reactivex.Single<MakeSnapshotResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java)
 	}
 
 	/**
 	 * Returns the snapshot identifier.
 	 */
-	  fun loadSnapshot(input : LoadSnapshotRequest) : io.reactivex.Flowable<LoadSnapshotResponse> {
+	  fun loadSnapshot(input : LoadSnapshotRequest) : io.reactivex.Single<LoadSnapshotResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java)
 	}
 
 	/**
 	 * Releases layer snapshot captured by the back-end.
 	 */
-	  fun releaseSnapshot(input : ReleaseSnapshotRequest) : io.reactivex.Flowable<pl.wendigo.chrome.ResponseFrame> {
+	  fun releaseSnapshot(input : ReleaseSnapshotRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
 	 * 
 	 */
-	  fun profileSnapshot(input : ProfileSnapshotRequest) : io.reactivex.Flowable<ProfileSnapshotResponse> {
+	  fun profileSnapshot(input : ProfileSnapshotRequest) : io.reactivex.Single<ProfileSnapshotResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java)
 	}
 
 	/**
 	 * Replays the layer snapshot and returns the resulting bitmap.
 	 */
-	  fun replaySnapshot(input : ReplaySnapshotRequest) : io.reactivex.Flowable<ReplaySnapshotResponse> {
+	  fun replaySnapshot(input : ReplaySnapshotRequest) : io.reactivex.Single<ReplaySnapshotResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java)
 	}
 
 	/**
 	 * Replays the layer snapshot and returns canvas log.
 	 */
-	  fun snapshotCommandLog(input : SnapshotCommandLogRequest) : io.reactivex.Flowable<SnapshotCommandLogResponse> {
+	  fun snapshotCommandLog(input : SnapshotCommandLogRequest) : io.reactivex.Single<SnapshotCommandLogResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java)
 	}
 

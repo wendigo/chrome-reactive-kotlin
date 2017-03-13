@@ -9,7 +9,7 @@ package pl.wendigo.chrome.domain.accessibility
 	 * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getPartialAXTree(input : GetPartialAXTreeRequest) : io.reactivex.Flowable<GetPartialAXTreeResponse> {
+    fun getPartialAXTree(input : GetPartialAXTreeRequest) : io.reactivex.Single<GetPartialAXTreeResponse> {
         return connectionRemote.runAndCaptureResponse("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
 	}
 
