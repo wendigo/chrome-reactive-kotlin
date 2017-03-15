@@ -874,7 +874,12 @@ data class CaptureScreenshotRequest (
     /**
      * Compression quality from range [0..100] (jpeg only).
      */
-    val quality : Int? = null
+    val quality : Int? = null,
+
+    /**
+     * Capture the screenshot from the surface, rather than the view. Defaults to false.
+     */
+    @pl.wendigo.chrome.Experimental val fromSurface : Boolean? = null
 
 )
 
