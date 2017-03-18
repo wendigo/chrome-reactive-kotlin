@@ -804,7 +804,12 @@ data class ScriptParsedEvent(
   /**
    * This script length.
    */
-  @pl.wendigo.chrome.Experimental val length : Int? = null
+  @pl.wendigo.chrome.Experimental val length : Int? = null,
+
+  /**
+   * JavaScript top stack frame of where the script parsed event was triggered if available.
+   */
+  @pl.wendigo.chrome.Experimental val stackTrace : pl.wendigo.chrome.domain.runtime.StackTrace? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Debugger", name = "scriptParsed")
 
@@ -877,7 +882,12 @@ data class ScriptFailedToParseEvent(
   /**
    * This script length.
    */
-  @pl.wendigo.chrome.Experimental val length : Int? = null
+  @pl.wendigo.chrome.Experimental val length : Int? = null,
+
+  /**
+   * JavaScript top stack frame of where the script parsed event was triggered if available.
+   */
+  @pl.wendigo.chrome.Experimental val stackTrace : pl.wendigo.chrome.domain.runtime.StackTrace? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Debugger", name = "scriptFailedToParse")
 
