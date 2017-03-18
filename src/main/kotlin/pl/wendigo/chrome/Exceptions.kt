@@ -11,13 +11,6 @@ class DeserializationFailed constructor(override val message: String, throwable:
 class SerializationFailed constructor(override val message: String, throwable: Throwable?) : Exception(message, throwable)
 
 /**
- * Remote debugger connection was not established.
- */
-class NotConnected constructor(override val message: String, throwable: Throwable?) : Exception(message, throwable) {
-    constructor(message : String) : this(message, null)
-}
-
-/**
  * Protocol request has failed.
  */
 class RequestFailed constructor(override val message: String, throwable: Throwable?) : Exception(message, throwable) {

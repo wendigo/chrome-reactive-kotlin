@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import io.reactivex.Observable
 import io.reactivex.Single
 
 /**
@@ -30,7 +29,7 @@ class FrameMapper {
     }
 
     /**
-     * Deserializes response frame as clazz
+     * Deserialize response frame as clazz
      */
     internal fun <T> deserializeResponse(requestFrame: RequestFrame, responseFrame: ResponseFrame, clazz: Class<T>) : Single<T> {
         if (responseFrame.error != null) {
@@ -50,14 +49,14 @@ class FrameMapper {
     }
 
     /**
-     * Deserializes text to clazz.
+     * Deserialize text to clazz.
      */
     internal fun <T> deserialize(text: String, clazz: Class<T>) : T {
         return mapper.readValue(text, clazz)
     }
 
     /**
-     * Deserialized response frame being event to clazz.
+     * Deserialize response frame event to clazz.
      */
     internal fun <T> deserializeEvent(responseFrame: ResponseFrame, clazz: Class<T>) : Single<T> where T : ProtocolEvent {
         try {

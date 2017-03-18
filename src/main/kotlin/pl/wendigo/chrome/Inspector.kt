@@ -57,6 +57,16 @@ class Inspector(
         }
     }
 
+    /**
+     * Finds opened page by its' url
+     */
+    fun findTab(tabUrl: String) : Single<InspectablePage> {
+        return this.openedPages().filter { it.url == tabUrl }.singleOrError()
+    }
+
+    /**
+     * Run inspector command from URI
+     */
     internal fun runInspectorCommand(uri : String) : Single<String> {
         return Single.fromCallable {
             Request.Builder().url("http://$chromeAddress/json/$uri").build()
@@ -69,13 +79,6 @@ class Inspector(
                 Single.error(InspectorCommandFailed(it.body().string()))
             }
         }
-    }
-
-    /**
-     * Finds opened page by its' url
-     */
-    fun findTab(tabUrl: String) : Single<InspectablePage> {
-        return this.openedPages().filter { it.url == tabUrl }.singleOrError()
     }
 
     companion object {
