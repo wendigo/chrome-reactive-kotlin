@@ -1135,7 +1135,12 @@ data class FrameAttachedEvent(
   /**
    * Parent frame identifier.
    */
-  val parentFrameId : FrameId
+  val parentFrameId : FrameId,
+
+  /**
+   * JavaScript stack trace of when frame was attached, only set if frame initiated from script.
+   */
+  @pl.wendigo.chrome.Experimental val stack : pl.wendigo.chrome.domain.runtime.StackTrace? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameAttached")
 

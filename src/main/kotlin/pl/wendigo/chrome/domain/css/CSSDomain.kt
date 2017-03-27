@@ -160,6 +160,14 @@ package pl.wendigo.chrome.domain.css
 	}
 
 	/**
+	 * Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)
+	 */
+	@pl.wendigo.chrome.Experimental
+    fun takeCoverageDelta() : io.reactivex.Single<TakeCoverageDeltaResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java)
+	}
+
+	/**
 	 * The list of rules with an indication of whether these were used
 	 */
 	@pl.wendigo.chrome.Experimental
@@ -744,6 +752,20 @@ data class GetLayoutTreeAndStylesResponse(
 )
 
 
+
+
+/**
+ * Represents responseFrame from CSS. method call.
+ *
+ * Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)
+ */
+data class TakeCoverageDeltaResponse(
+  /**
+   * 
+   */
+  val coverage : Array<RuleUsage>
+
+)
 
 
 /**

@@ -100,6 +100,7 @@ class ChromeProtocol internal constructor(private val api: RemoteDebuggerConnect
       "Runtime.executionContextDestroyed" to pl.wendigo.chrome.domain.runtime.ExecutionContextDestroyedEvent::class.java,
       "Runtime.executionContextsCleared" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "Runtime.inspectRequested" to pl.wendigo.chrome.domain.runtime.InspectRequestedEvent::class.java,
+      "Security.certificateError" to pl.wendigo.chrome.domain.security.CertificateErrorEvent::class.java,
       "Security.securityStateChanged" to pl.wendigo.chrome.domain.security.SecurityStateChangedEvent::class.java,
       "ServiceWorker.workerErrorReported" to pl.wendigo.chrome.domain.serviceworker.WorkerErrorReportedEvent::class.java,
       "ServiceWorker.workerRegistrationUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerRegistrationUpdatedEvent::class.java,

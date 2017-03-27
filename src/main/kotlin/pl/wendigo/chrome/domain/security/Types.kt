@@ -80,3 +80,11 @@ data class InsecureContentStatus(
   val displayedInsecureContentStyle : SecurityState
 )
 
+/**
+ * The action to take when a certificate error occurs. continue will continue processing the request and cancel will cancel the request.
+ */
+enum class CertificateErrorAction {
+    @com.fasterxml.jackson.annotation.JsonProperty("continue") CONTINUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("cancel") CANCEL;
+}
+

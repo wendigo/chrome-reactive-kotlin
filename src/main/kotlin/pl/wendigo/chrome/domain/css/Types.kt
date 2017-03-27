@@ -199,7 +199,7 @@ data class CSSRule(
 )
 
 /**
- * CSS rule usage information.
+ * CSS coverage information.
  */
 
 data class RuleUsage(

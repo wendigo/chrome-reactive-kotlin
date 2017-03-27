@@ -1318,7 +1318,12 @@ data class GetNodeForLocationRequest (
     /**
      * Y coordinate.
      */
-    val y : Int
+    val y : Int,
+
+    /**
+     * False to skip to the nearest non-UA shadow root ancestor (default: false).
+     */
+    val includeUserAgentShadowDOM : Boolean? = null
 
 )
 

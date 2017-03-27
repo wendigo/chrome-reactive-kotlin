@@ -44,8 +44,8 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 	 * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun startPreciseCoverage() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Profiler.startPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    fun startPreciseCoverage(input : StartPreciseCoverageRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Profiler.startPreciseCoverage", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -130,6 +130,18 @@ data class StopResponse(
 
 )
 
+/**
+ * Represents requestFrame parameters that can be used with Profiler.startPreciseCoverage method call.
+ *
+ * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.
+ */
+data class StartPreciseCoverageRequest (
+    /**
+     * Collect accurate call counts beyond simple 'covered' or 'not covered'.
+     */
+    val callCount : Boolean? = null
+
+)
 
 
 
