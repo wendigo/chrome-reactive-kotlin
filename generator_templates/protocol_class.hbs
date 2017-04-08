@@ -45,14 +45,14 @@ class ChromeProtocol internal constructor(private val api: DebuggerProtocol) {
          * Opens new debugging session via chrome debugging protocol for given InspectablePage.
          */
         fun openSession(page: InspectablePage, eventBufferSize: Int = 128) : ChromeProtocol {
-            return ChromeProtocol(ChromeDebuggerConnection.openSession(page.webSocketDebuggerUrl, eventBufferSize))
+            return ChromeProtocol(ChromeDebuggerConnection.openSession(page.webSocketDebuggerUrl!!, eventBufferSize))
         }
 
         /**
         * Opens new debugging session via chrome debugging protocol for given InspectablePage.
         */
-        fun openHeadlessSession(eventBufferSize: Int = 128) : ChromeProtocol {
-            return ChromeProtocol(HeadlessChromeDebuggerConnection.openSession(eventBufferSize))
+        fun openHeadlessSession(page: InspectablePage, eventBufferSize: Int = 128) : ChromeProtocol {
+            return ChromeProtocol(HeadlessChromeDebuggerConnection.openSession(page.webSocketDebuggerUrl!!, eventBufferSize))
         }
     }
 }
