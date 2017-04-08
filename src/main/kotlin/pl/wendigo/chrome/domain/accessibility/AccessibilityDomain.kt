@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.accessibility
 /**
  * AccessibilityDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class AccessibilityDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class AccessibilityDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.

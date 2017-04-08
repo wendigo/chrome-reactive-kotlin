@@ -31,7 +31,9 @@ class Inspector(
     fun openedPages() : Flowable<InspectablePage> {
         return this.runInspectorCommand("list").flatMapObservable {
             Observable.fromArray(*mapper.deserialize(it, Array<InspectablePage>::class.java))
-        }.toFlowable(BackpressureStrategy.BUFFER)
+        }.toFlowable(BackpressureStrategy.BUFFER).filter {
+            it.webSocketDebuggerUrl != null
+        }
     }
 
     /**

@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.emulation
 /**
  * This domain emulates different environments for the page.
  */
-class EmulationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+class EmulationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).

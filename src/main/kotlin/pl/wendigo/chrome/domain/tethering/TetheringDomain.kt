@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.tethering
 /**
  * The Tethering domain defines methods and events for browser port binding.
  */
-@pl.wendigo.chrome.Experimental class TetheringDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class TetheringDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Request browser port binding.

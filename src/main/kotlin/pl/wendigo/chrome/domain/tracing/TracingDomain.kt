@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.tracing
 /**
  * TracingDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class TracingDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class TracingDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Start trace events collection.

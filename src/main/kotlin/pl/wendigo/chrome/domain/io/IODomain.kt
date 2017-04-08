@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.io
 /**
  * Input/Output operations for streams produced by DevTools.
  */
-@pl.wendigo.chrome.Experimental class IODomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class IODomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Read a chunk of the stream

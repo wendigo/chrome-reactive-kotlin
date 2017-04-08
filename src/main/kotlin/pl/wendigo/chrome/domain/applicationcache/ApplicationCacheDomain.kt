@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.applicationcache
 /**
  * ApplicationCacheDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class ApplicationCacheDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class ApplicationCacheDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.

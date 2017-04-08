@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.cachestorage
 /**
  * CacheStorageDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class CacheStorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class CacheStorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Requests cache names.

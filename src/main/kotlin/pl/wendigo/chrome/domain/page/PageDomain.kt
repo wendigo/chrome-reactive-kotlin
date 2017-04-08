@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.page
 /**
  * Actions and events related to the inspected page belong to the page domain.
  */
-class PageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+class PageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Enables page domain notifications.

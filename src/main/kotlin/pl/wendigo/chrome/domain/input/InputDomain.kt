@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.input
 /**
  * InputDomain represents remote debugger protocol domain.
  */
-class InputDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+class InputDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Dispatches a key event to the page.

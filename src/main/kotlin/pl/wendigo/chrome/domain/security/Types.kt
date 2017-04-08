@@ -60,6 +60,11 @@ data class InsecureContentStatus(
   val displayedMixedContent : Boolean,
 
   /**
+   * True if the page was loaded over HTTPS and contained a form targeting an insecure url.
+   */
+  val containedMixedForm : Boolean,
+
+  /**
    * True if the page was loaded over HTTPS without certificate errors, and ran content such as scripts that were loaded with certificate errors.
    */
   val ranContentWithCertErrors : Boolean,

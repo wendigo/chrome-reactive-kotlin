@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.domdebugger
 /**
  * DOM debugging allows setting breakpoints on particular DOM operations and events. JavaScript execution will stop on these operations as if there was a regular breakpoint set.
  */
-class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Sets breakpoint on particular operation with DOM.

@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.database
 /**
  * DatabaseDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class DatabaseDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class DatabaseDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Enables database tracking, database events will now be delivered to the client.

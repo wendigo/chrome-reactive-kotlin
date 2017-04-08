@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.console
 /**
  * This domain is deprecated - use Runtime or Log instead.
  */
-@pl.wendigo.chrome.Deprecated class ConsoleDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Deprecated class ConsoleDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Enables console domain, sends the messages collected so far to the client by means of the <code>messageAdded</code> notification.

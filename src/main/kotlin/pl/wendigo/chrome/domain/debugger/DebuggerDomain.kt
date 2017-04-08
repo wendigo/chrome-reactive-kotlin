@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.debugger
 /**
  * Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing breakpoints, stepping through execution, exploring stack traces, etc.
  */
-class DebuggerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+class DebuggerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Enables debugger for the given page. Clients should not assume that the debugging has been enabled until the result for this command is received.

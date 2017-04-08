@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.domstorage
 /**
  * Query and modify DOM storage.
  */
-@pl.wendigo.chrome.Experimental class DOMStorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class DOMStorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Enables storage tracking, storage events will now be delivered to the client.

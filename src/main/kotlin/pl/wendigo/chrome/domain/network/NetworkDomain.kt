@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.network
 /**
  * Network domain allows tracking network activities of the page. It exposes information about http, file, data and other requests and responses, their headers, bodies, timing, etc.
  */
-class NetworkDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+class NetworkDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Enables network tracking, network events will now be delivered to the client.
@@ -41,7 +41,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	}
 
 	/**
-	 * Blocks specific URL from loading.
+	 * Blocks URLs from loading.
 	 */
 	@pl.wendigo.chrome.Experimental
     fun setBlockedURLs(input : SetBlockedURLsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -368,11 +368,11 @@ data class GetResponseBodyResponse(
 /**
  * Represents requestFrame parameters that can be used with Network.setBlockedURLs method call.
  *
- * Blocks specific URL from loading.
+ * Blocks URLs from loading.
  */
 data class SetBlockedURLsRequest (
     /**
-     * URLs to block.
+     * URL patterns to block. Wildcards ('*') are allowed.
      */
     val urls : Array<String>
 

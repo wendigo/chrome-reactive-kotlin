@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.log
 /**
  * Provides access to log entries.
  */
-@pl.wendigo.chrome.Experimental class LogDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class LogDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Enables log domain, sends the entries collected so far to the client by means of the <code>entryAdded</code> notification.

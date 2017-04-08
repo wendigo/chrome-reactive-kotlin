@@ -14,7 +14,7 @@ data class InspectablePage(
     /**
      * Devtools url
      */
-    val devtoolsFrontendUrl: String,
+    val devtoolsFrontendUrl: String?,
 
     /**
      * Identifier
@@ -39,7 +39,7 @@ data class InspectablePage(
     /**
      * Web socket debugger url (ws:// scheme)
      */
-    val webSocketDebuggerUrl: String
+    val webSocketDebuggerUrl: String?
 ) {
     /**
      * Opens new chrome protocol debugger connection.

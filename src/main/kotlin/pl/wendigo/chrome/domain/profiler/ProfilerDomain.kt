@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.profiler
 /**
  * ProfilerDomain represents remote debugger protocol domain.
  */
-class ProfilerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+class ProfilerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * 

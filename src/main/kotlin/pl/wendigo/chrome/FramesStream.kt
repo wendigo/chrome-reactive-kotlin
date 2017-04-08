@@ -10,7 +10,7 @@ import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 
-class FramesStream : WebSocketListener {
+class FramesStream : WebSocketListener, ProtocolStream {
     private val messages: Subject<ResponseFrame>
     private val mapper: FrameMapper
     private val connection: WebSocket
@@ -47,8 +47,7 @@ class FramesStream : WebSocketListener {
     /**
      * Returns protocol response (if any).
      */
-    fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>) : Single<T> {
-
+    override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>) : Single<T> {
         return messages
                 .filter { (frameId) -> frameId == requestFrame.id }
                 .flatMapSingle { mapper.deserializeResponse(requestFrame, it, clazz) }
@@ -60,7 +59,7 @@ class FramesStream : WebSocketListener {
     /**
      * Sends frame over the connection.
      */
-    fun send(frame: RequestFrame) : Single<Boolean> {
+    override fun send(frame: RequestFrame) : Single<Boolean> {
        return Single
             .just(frame)
             .flatMap { mapper.serialize(it) }
@@ -71,14 +70,14 @@ class FramesStream : WebSocketListener {
     /**
      * Returns all event frames.
      */
-    fun allEventFrames(): Observable<ResponseFrame> {
+    override fun allEventFrames(): Observable<ResponseFrame> {
         return messages.filter(ResponseFrame::isEvent)
     }
 
     /**
      * Closes stream
      */
-    fun close() {
+    override fun close() {
         try {
             connection.close(1000, "Goodbye!")
             client.connectionPool().evictAll()

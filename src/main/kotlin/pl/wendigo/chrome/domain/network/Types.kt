@@ -182,7 +182,12 @@ data class Request(
   /**
    * The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/
    */
-  val referrerPolicy : String
+  val referrerPolicy : String,
+
+  /**
+   * Whether is loaded via link preload.
+   */
+  val isLinkPreload : Boolean? = null
 )
 
 /**

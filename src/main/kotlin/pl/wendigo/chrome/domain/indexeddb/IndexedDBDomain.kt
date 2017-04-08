@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.indexeddb
 /**
  * IndexedDBDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class IndexedDBDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+@pl.wendigo.chrome.Experimental class IndexedDBDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Enables events from backend.

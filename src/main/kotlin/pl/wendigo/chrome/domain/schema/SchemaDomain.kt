@@ -3,7 +3,7 @@ package pl.wendigo.chrome.domain.schema
 /**
  * Provides information about the protocol schema.
  */
-class SchemaDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.RemoteDebuggerConnection) {
+class SchemaDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
 	 * Returns supported domains.

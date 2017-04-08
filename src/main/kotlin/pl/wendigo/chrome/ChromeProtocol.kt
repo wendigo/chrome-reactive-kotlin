@@ -3,7 +3,7 @@ package pl.wendigo.chrome
 /**
  * ChromeProtocol represents session established with given inspectablePage via chrome's remote debugging protocol.
  */
-class ChromeProtocol internal constructor(private val api: RemoteDebuggerConnection) {
+class ChromeProtocol internal constructor(private val api: DebuggerProtocol) {
 
     /**
      * Register event eventNameToClassMapping
@@ -314,6 +314,13 @@ class ChromeProtocol internal constructor(private val api: RemoteDebuggerConnect
     }
 
     /**
+     * The Browser domain defines methods and events for browser managing.
+     */
+    val Browser : pl.wendigo.chrome.domain.browser.BrowserDomain by lazy {
+        pl.wendigo.chrome.domain.browser.BrowserDomain(api)
+    }
+
+    /**
      * Provides information about the protocol schema.
      */
     val Schema : pl.wendigo.chrome.domain.schema.SchemaDomain by lazy {
@@ -375,7 +382,14 @@ class ChromeProtocol internal constructor(private val api: RemoteDebuggerConnect
          * Opens new debugging session via chrome debugging protocol for given InspectablePage.
          */
         fun openSession(page: InspectablePage, eventBufferSize: Int = 128) : ChromeProtocol {
-            return ChromeProtocol(RemoteDebuggerConnection.openSession(page.webSocketDebuggerUrl, eventBufferSize))
+            return ChromeProtocol(ChromeDebuggerConnection.openSession(page.webSocketDebuggerUrl!!, eventBufferSize))
+        }
+
+        /**
+        * Opens new debugging session via chrome debugging protocol for given InspectablePage.
+        */
+        fun openHeadlessSession(page: InspectablePage, eventBufferSize: Int = 128) : ChromeProtocol {
+            return ChromeProtocol(HeadlessChromeDebuggerConnection.openSession(page.webSocketDebuggerUrl!!, eventBufferSize))
         }
     }
 }

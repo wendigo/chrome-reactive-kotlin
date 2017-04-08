@@ -3,7 +3,7 @@ package {{Package}}.domain.{{Domain.LowerName}}
 /**
  * {{#if Domain.Description}}{{{Domain.Description}}}{{else}}{{Domain.Name}}Domain represents remote debugger protocol domain.{{/if}}
  */
-{{#if Domain.Experimental}}@{{Package}}.Experimental {{/if}}{{#if Domain.Deprecated}}@{{Package}}.Deprecated {{/if}}class {{Domain.Name}}Domain internal constructor(private val connectionRemote : {{Package}}.RemoteDebuggerConnection) {
+{{#if Domain.Experimental}}@{{Package}}.Experimental {{/if}}{{#if Domain.Deprecated}}@{{Package}}.Deprecated {{/if}}class {{Domain.Name}}Domain internal constructor(private val connectionRemote : {{Package}}.DebuggerProtocol) {
 
   {{#each Domain.Commands}}
 	/**
