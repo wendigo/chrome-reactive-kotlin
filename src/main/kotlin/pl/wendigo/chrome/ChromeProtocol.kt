@@ -8,7 +8,7 @@ import java.io.Closeable
 /**
  * ChromeProtocol represents session established with given inspectablePage via chrome's remote debugging protocol.
  */
-class ChromeProtocol internal constructor(private val api: DebuggerProtocol) : Closeable {
+open class ChromeProtocol internal constructor(private val api: DebuggerProtocol) : Closeable {
 
     /**
      * Register event eventNameToClassMapping
@@ -384,7 +384,7 @@ class ChromeProtocol internal constructor(private val api: DebuggerProtocol) : C
     /**
      * Opens new headless session if it's supported.
      */
-    fun headlessSession(url : String, width : Int = 1024, height: Int = 768) : Single<ChromeProtocol> {
+    fun headless(url : String, width : Int = 1024, height: Int = 768) : Single<HeadlessChromeProtocol> {
         val mapper = FrameMapper()
 
         return Target.createBrowserContext().flatMap { (browserContextId) ->
@@ -394,12 +394,18 @@ class ChromeProtocol internal constructor(private val api: DebuggerProtocol) : C
                 height = height,
                 width = width
             )).flatMap { (targetId) -> Target.attachToTarget(AttachToTargetRequest(targetId = targetId)).map {
-                    ChromeProtocol(ChromeDebuggerConnection(TargetedFramesStream(
-                        mapper,
-                        Target,
-                        targetId,
-                        browserContextId
-                    ), mapper))
+                    HeadlessChromeProtocol(api = ChromeDebuggerConnection(TargetedFramesStream(
+                            mapper,
+                            Target,
+                            targetId,
+                            browserContextId
+                        ), mapper),
+                        url = url,
+                        height = height,
+                        width = width,
+                        targetId = targetId,
+                        browserContextId = browserContextId
+                    )
                 }
             }
         }
