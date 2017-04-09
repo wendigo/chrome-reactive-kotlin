@@ -9,7 +9,6 @@ import pl.wendigo.chrome.domain.target.SendMessageToTargetRequest
 import pl.wendigo.chrome.domain.target.TargetDomain
 import pl.wendigo.chrome.domain.target.TargetID
 
-
 /**
  * Frames stream that supports browser context
  */
