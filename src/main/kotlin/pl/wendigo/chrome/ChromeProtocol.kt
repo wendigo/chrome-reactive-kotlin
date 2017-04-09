@@ -1,9 +1,14 @@
 package pl.wendigo.chrome
 
+import io.reactivex.Single
+import pl.wendigo.chrome.domain.target.CreateTargetRequest
+import pl.wendigo.chrome.domain.target.AttachToTargetRequest
+import java.io.Closeable
+
 /**
  * ChromeProtocol represents session established with given inspectablePage via chrome's remote debugging protocol.
  */
-class ChromeProtocol internal constructor(private val api: DebuggerProtocol) {
+class ChromeProtocol internal constructor(private val api: DebuggerProtocol) : Closeable {
 
     /**
      * Register event eventNameToClassMapping
@@ -372,8 +377,32 @@ class ChromeProtocol internal constructor(private val api: DebuggerProtocol) {
     /**
      * Closes debugging session.
      */
-    fun closeSession() {
+    override fun close() {
       return api.close()
+    }
+
+    /**
+     * Opens new headless session if it's supported.
+     */
+    fun headlessSession(url : String, width : Int = 1024, height: Int = 768) : Single<ChromeProtocol> {
+        val mapper = FrameMapper()
+
+        return Target.createBrowserContext().flatMap { (browserContextId) ->
+            Target.createTarget(CreateTargetRequest(
+                url = url,
+                browserContextId = browserContextId,
+                height = height,
+                width = width
+            )).flatMap { (targetId) -> Target.attachToTarget(AttachToTargetRequest(targetId = targetId)).map {
+                    ChromeProtocol(ChromeDebuggerConnection(TargetedFramesStream(
+                        mapper,
+                        Target,
+                        targetId,
+                        browserContextId
+                    ), mapper))
+                }
+            }
+        }
     }
 
     companion object {
@@ -383,13 +412,6 @@ class ChromeProtocol internal constructor(private val api: DebuggerProtocol) {
          */
         fun openSession(page: InspectablePage, eventBufferSize: Int = 128) : ChromeProtocol {
             return ChromeProtocol(ChromeDebuggerConnection.openSession(page.webSocketDebuggerUrl!!, eventBufferSize))
-        }
-
-        /**
-        * Opens new debugging session via chrome debugging protocol for given InspectablePage.
-        */
-        fun openHeadlessSession(page: InspectablePage, eventBufferSize: Int = 128) : ChromeProtocol {
-            return ChromeProtocol(HeadlessChromeDebuggerConnection.openSession(page.webSocketDebuggerUrl!!, eventBufferSize))
         }
     }
 }
