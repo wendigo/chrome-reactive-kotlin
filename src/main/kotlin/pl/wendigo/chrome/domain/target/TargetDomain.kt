@@ -218,7 +218,7 @@ data class SendMessageToTargetRequest (
     /**
      * 
      */
-    val targetId : TargetID,
+    val targetId : String,
 
     /**
      * 

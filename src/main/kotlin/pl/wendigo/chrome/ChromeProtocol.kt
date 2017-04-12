@@ -319,13 +319,6 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
     }
 
     /**
-     * The Browser domain defines methods and events for browser managing.
-     */
-    val Browser : pl.wendigo.chrome.domain.browser.BrowserDomain by lazy {
-        pl.wendigo.chrome.domain.browser.BrowserDomain(api)
-    }
-
-    /**
      * Provides information about the protocol schema.
      */
     val Schema : pl.wendigo.chrome.domain.schema.SchemaDomain by lazy {
