@@ -57,14 +57,6 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	}
 
 	/**
-	 * Toggles monitoring of XMLHttpRequest. If <code>true</code>, console will receive messages upon each XHR issued.
-	 */
-	@pl.wendigo.chrome.Experimental
-    fun setMonitoringXHREnabled(input : SetMonitoringXHREnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.setMonitoringXHREnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
-	}
-
-	/**
 	 * Tells whether clearing browser cache is supported.
 	 */
 	  fun canClearBrowserCache() : io.reactivex.Single<CanClearBrowserCacheResponse> {
@@ -389,20 +381,6 @@ data class ReplayXHRRequest (
      * Identifier of XHR to replay.
      */
     val requestId : RequestId
-
-)
-
-
-/**
- * Represents requestFrame parameters that can be used with Network.setMonitoringXHREnabled method call.
- *
- * Toggles monitoring of XMLHttpRequest. If <code>true</code>, console will receive messages upon each XHR issued.
- */
-data class SetMonitoringXHREnabledRequest (
-    /**
-     * Monitoring enabled state.
-     */
-    val enabled : Boolean
 
 )
 
