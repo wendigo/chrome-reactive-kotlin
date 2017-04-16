@@ -15,6 +15,6 @@ package {{Package}}.domain.{{Domain.LowerName}}
    */
   {{#if Experimental}}@{{Package}}.Experimental {{/if}}{{#if Deprecated}}@{{Package}}.Deprecated {{/if}}{{{value Name}}} : {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
 {{/each}}
-){{else}}typealias {{Id}} = Map<String,Any>{{/if}}{{/equal}}{{/if}}
+){{else}}typealias {{Id}} = Map<String, Any>{{/if}}{{/equal}}{{/if}}
 
 {{/each}}

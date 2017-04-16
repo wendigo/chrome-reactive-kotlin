@@ -4,7 +4,7 @@ package pl.wendigo.chrome.domain.tracing
  * Configuration for memory dump. Used only when &quot;memory-infra&quot; category is enabled.
  */
 
-typealias MemoryDumpConfig = Map<String,Any>
+typealias MemoryDumpConfig = Map<String, Any>
 
 /**
  * 

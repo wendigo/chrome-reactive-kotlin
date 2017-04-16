@@ -22,7 +22,7 @@ typealias Timestamp = Double
  * Request / response headers as keys / values of JSON object.
  */
 
-typealias Headers = Map<String,Any>
+typealias Headers = Map<String, Any>
 
 /**
  * Loading priority of a resource request.
