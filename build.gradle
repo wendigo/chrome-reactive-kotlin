@@ -58,7 +58,7 @@ repositories {
 dependencies {
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.8.7'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.7'
-    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.6.0'
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.7.0'
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlinVersion
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: kotlinVersion
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-runtime', version: kotlinVersion
