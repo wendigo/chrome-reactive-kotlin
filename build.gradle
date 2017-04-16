@@ -108,8 +108,8 @@ modifyPom {
 
 nexusStaging {
     packageGroup = 'pl.wendigo'
-    numberOfRetries = 10
-    delayBetweenRetriesInMillis = 5000
+    numberOfRetries = 20
+    delayBetweenRetriesInMillis = 10000
 }
 
 task wrapper(type: Wrapper) {
