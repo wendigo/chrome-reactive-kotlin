@@ -231,14 +231,6 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
 	}
 
 	/**
-	 * Shows / hides color picker
-	 */
-	@pl.wendigo.chrome.Experimental
-    fun setColorPickerEnabled(input : SetColorPickerEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Page.setColorPickerEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
-	}
-
-	/**
 	 * Configures overlay.
 	 */
 	@pl.wendigo.chrome.Experimental
@@ -383,13 +375,6 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
      */
     fun screencastVisibilityChanged() : io.reactivex.Flowable<ScreencastVisibilityChangedEvent> {
         return connectionRemote.captureEvents("Page.screencastVisibilityChanged", ScreencastVisibilityChangedEvent::class.java)
-    }
-
-    /**
-     * Fired when a color has been picked.
-     */
-    fun colorPicked() : io.reactivex.Flowable<ColorPickedEvent> {
-        return connectionRemote.captureEvents("Page.colorPicked", ColorPickedEvent::class.java)
     }
 
     /**
@@ -980,20 +965,6 @@ data class HandleJavaScriptDialogRequest (
 
 
 /**
- * Represents requestFrame parameters that can be used with Page.setColorPickerEnabled method call.
- *
- * Shows / hides color picker
- */
-data class SetColorPickerEnabledRequest (
-    /**
-     * Shows / hides color picker
-     */
-    val enabled : Boolean
-
-)
-
-
-/**
  * Represents requestFrame parameters that can be used with Page.configureOverlay method call.
  *
  * Configures overlay.
@@ -1294,19 +1265,6 @@ data class ScreencastVisibilityChangedEvent(
   val visible : Boolean
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "screencastVisibilityChanged")
-
-/**
- * Represents responseFrame from Page. method call.
- *
- * Fired when a color has been picked.
- */
-data class ColorPickedEvent(
-  /**
-   * RGBA of the picked color.
-   */
-  val color : pl.wendigo.chrome.domain.dom.RGBA
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "colorPicked")
 
 
 
