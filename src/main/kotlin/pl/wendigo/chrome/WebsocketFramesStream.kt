@@ -53,9 +53,6 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
             .filter { it.isResponse(requestFrame.id) }
             .flatMapSingle { mapper.deserializeResponse(requestFrame, it, clazz) }
             .subscribeOn(Schedulers.io())
-            .doOnNext {
-                logger.debug("received response: {} for request: {}", it, requestFrame)
-            }
             .take(1)
             .singleOrError()
     }
@@ -68,9 +65,6 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
             .just(frame)
             .flatMap { mapper.serialize(it) }
             .map { connection.send(it) }
-            .doOnSuccess {
-                logger.debug("sent request: {}", frame)
-            }
             .subscribeOn(Schedulers.io())
     }
 
@@ -79,9 +73,6 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
      */
     override fun eventFrames() : Observable<ResponseFrame> {
         return messages.filter(ResponseFrame::isEvent)
-            .doOnNext {
-                logger.debug("received event: {}", it)
-            }
     }
 
     /**
@@ -100,13 +91,13 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
             client.connectionPool().evictAll()
             client.dispatcher().executorService().shutdown()
         } catch (e : Exception) {
-            logger.info("caught exception while closing: {}", e)
+            logger.warn("caught exception while closing: {}", e)
         }
 
         messages.onComplete()
     }
 
     companion object {
-        val logger = LoggerFactory.getLogger(TargetedFramesStream::class.java) !!
+        val logger = LoggerFactory.getLogger(WebsocketFramesStream::class.java) !!
     }
 }

@@ -27,9 +27,6 @@ class TargetedFramesStream(
         .flatMapSingle {
             mapper.deserializeResponse(requestFrame, it, clazz)
         }
-        .doOnNext {
-            logger.debug("[{}] received response: {} for request: {}", targetId, it, requestFrame)
-        }
         .take(1)
         .singleOrError()
     }
@@ -40,18 +37,12 @@ class TargetedFramesStream(
                     targetId = targetId,
                     message = message
             ))
-            .doOnSuccess {
-                logger.debug("[{}] sent request: {}", targetId, frame)
-            }
             .map { it.isResponse() }
         }
     }
 
     override fun eventFrames() : Observable<ResponseFrame> {
         return frames().filter(ResponseFrame::isEvent)
-            .doOnNext {
-                logger.debug("[{}] received event: {}", targetId, it)
-            }
     }
 
     override fun frames() : Observable<ResponseFrame> {
@@ -68,7 +59,7 @@ class TargetedFramesStream(
         target.closeTarget(CloseTargetRequest(targetId)).flatMap {
             target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
         }.subscribe { closed, err ->
-            logger.debug("[{}] closed with status: {}, {}", targetId, closed.success, err)
+            logger.warn("[{}] closed with status: {}, {}", targetId, closed.success, err)
         }
     }
 
