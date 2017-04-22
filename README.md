@@ -41,3 +41,32 @@ fun main(args : Array<String>) {
     println("page loaded: $event")
 }
 ```
+
+or if you prefer fully reactive composition:
+
+```kotlin
+package pl.wendigo.chrome
+
+import pl.wendigo.chrome.domain.page.NavigateRequest
+
+fun main(args : Array<String>) {
+
+    val loaded = Inspector.connect("127.0.0.1:9222")
+        .openedPages()
+        .firstOrError()
+        .map(InspectablePage::connect)
+        .flatMap { protocol ->
+            protocol.headless(url = "about:blank", width = 1280, height = 1024)
+        }.flatMap { headlessProtocol ->
+            headlessProtocol.Page.enable().flatMap {
+                headlessProtocol.Page.navigate(NavigateRequest(url = "https://serafin.tech")).flatMap { (frameId) ->
+                    headlessProtocol.Page.frameStoppedLoading().filter {
+                        it.frameId == frameId
+                    }.take(1).singleOrError()
+                }
+            }
+        }
+
+    println("Page was loaded ${loaded.blockingGet()}")
+}
+```
