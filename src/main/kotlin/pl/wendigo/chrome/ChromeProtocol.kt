@@ -35,8 +35,6 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
       "DOM.distributedNodesUpdated" to pl.wendigo.chrome.domain.dom.DistributedNodesUpdatedEvent::class.java,
       "DOM.documentUpdated" to pl.wendigo.chrome.ProtocolEvent::class.java,
       "DOM.inlineStyleInvalidated" to pl.wendigo.chrome.domain.dom.InlineStyleInvalidatedEvent::class.java,
-      "DOM.inspectNodeRequested" to pl.wendigo.chrome.domain.dom.InspectNodeRequestedEvent::class.java,
-      "DOM.nodeHighlightRequested" to pl.wendigo.chrome.domain.dom.NodeHighlightRequestedEvent::class.java,
       "DOM.pseudoElementAdded" to pl.wendigo.chrome.domain.dom.PseudoElementAddedEvent::class.java,
       "DOM.pseudoElementRemoved" to pl.wendigo.chrome.domain.dom.PseudoElementRemovedEvent::class.java,
       "DOM.setChildNodes" to pl.wendigo.chrome.domain.dom.SetChildNodesEvent::class.java,
@@ -78,6 +76,8 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
       "Network.webSocketFrameSent" to pl.wendigo.chrome.domain.network.WebSocketFrameSentEvent::class.java,
       "Network.webSocketHandshakeResponseReceived" to pl.wendigo.chrome.domain.network.WebSocketHandshakeResponseReceivedEvent::class.java,
       "Network.webSocketWillSendHandshakeRequest" to pl.wendigo.chrome.domain.network.WebSocketWillSendHandshakeRequestEvent::class.java,
+      "Overlay.inspectNodeRequested" to pl.wendigo.chrome.domain.overlay.InspectNodeRequestedEvent::class.java,
+      "Overlay.nodeHighlightRequested" to pl.wendigo.chrome.domain.overlay.NodeHighlightRequestedEvent::class.java,
       "Page.domContentEventFired" to pl.wendigo.chrome.domain.page.DomContentEventFiredEvent::class.java,
       "Page.frameAttached" to pl.wendigo.chrome.domain.page.FrameAttachedEvent::class.java,
       "Page.frameClearedScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameClearedScheduledNavigationEvent::class.java,
@@ -143,10 +143,10 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
     }
 
     /**
-     * This domain allows to control rendering of the page.
+     * This domain provides various functionality related to drawing atop the inspected page.
      */
-    val Rendering : pl.wendigo.chrome.domain.rendering.RenderingDomain by lazy {
-        pl.wendigo.chrome.domain.rendering.RenderingDomain(api)
+    val Overlay : pl.wendigo.chrome.domain.overlay.OverlayDomain by lazy {
+        pl.wendigo.chrome.domain.overlay.OverlayDomain(api)
     }
 
     /**
