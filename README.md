@@ -6,6 +6,8 @@ Chrome-reactive-kotlin is a low level [Chrome Debugging Protocol](https://chrome
 
 Library exposes all protocol domains in a single, cohesive and highly composable fashion. It supports both headless and standalone Chrome versions and understands [BrowserContext](https://chromedevtools.github.io/debugger-protocol-viewer/tot/Target/) from Target domain.
 
+For debugging purposes you can use my [chrome-protocol-proxy](https://github.com/wendigo/chrome-protocol-proxy).
+
 # Usage
 
 Add to your Kotlin or Java project (Gradle dependency): 
