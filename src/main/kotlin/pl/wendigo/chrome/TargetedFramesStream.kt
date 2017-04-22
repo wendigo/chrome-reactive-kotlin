@@ -2,6 +2,7 @@ package pl.wendigo.chrome
 
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import pl.wendigo.chrome.domain.target.BrowserContextID
 import pl.wendigo.chrome.domain.target.CloseTargetRequest
 import pl.wendigo.chrome.domain.target.DisposeBrowserContextRequest
@@ -21,11 +22,14 @@ class TargetedFramesStream(
     override fun <T> getResponse(requestFrame : RequestFrame, clazz : Class<T>) : Single<T> {
         return frames().filter {
             it.isResponse(requestFrame.id)
-        }.flatMapSingle {
+        }
+        .observeOn(Schedulers.computation())
+        .flatMapSingle {
             mapper.deserializeResponse(requestFrame, it, clazz)
         }
         .take(1)
         .singleOrError()
+        .subscribeOn(Schedulers.io())
     }
 
     override fun send(frame : RequestFrame) : Single<Boolean> {
@@ -33,7 +37,10 @@ class TargetedFramesStream(
             target.sendMessageToTarget(SendMessageToTargetRequest(
                     targetId = targetId,
                     message = message
-            )).map { true }
+            ))
+            .observeOn(Schedulers.computation())
+            .map { true }
+            .subscribeOn(Schedulers.io())
         }
     }
 
@@ -44,9 +51,12 @@ class TargetedFramesStream(
     override fun frames() : Observable<ResponseFrame> {
        return target.receivedMessageFromTarget().filter { message ->
            message.targetId == targetId
-       }.map {
+        }
+       .observeOn(Schedulers.computation())
+       .map {
            mapper.deserialize(it.message, ResponseFrame::class.java)
        }.toObservable()
+       .subscribeOn(Schedulers.io())
     }
 
     override fun close() {
