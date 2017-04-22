@@ -3,6 +3,7 @@ package pl.wendigo.chrome
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.domain.target.BrowserContextID
 import pl.wendigo.chrome.domain.target.CloseTargetRequest
 import pl.wendigo.chrome.domain.target.DisposeBrowserContextRequest
@@ -23,13 +24,14 @@ class TargetedFramesStream(
         return frames().filter {
             it.isResponse(requestFrame.id)
         }
-        .observeOn(Schedulers.computation())
         .flatMapSingle {
             mapper.deserializeResponse(requestFrame, it, clazz)
         }
+        .doOnNext {
+            logger.debug("[{}] received response: {} for request: {}", targetId, it, requestFrame)
+        }
         .take(1)
         .singleOrError()
-        .subscribeOn(Schedulers.io())
     }
 
     override fun send(frame : RequestFrame) : Single<Boolean> {
@@ -38,30 +40,39 @@ class TargetedFramesStream(
                     targetId = targetId,
                     message = message
             ))
-            .observeOn(Schedulers.computation())
-            .map { true }
-            .subscribeOn(Schedulers.io())
+            .doOnSuccess {
+                logger.debug("[{}] sent request: {}", targetId, frame)
+            }
+            .map { it.isResponse() }
         }
     }
 
     override fun eventFrames() : Observable<ResponseFrame> {
         return frames().filter(ResponseFrame::isEvent)
+            .doOnNext {
+                logger.debug("[{}] received event: {}", targetId, it)
+            }
     }
 
     override fun frames() : Observable<ResponseFrame> {
-       return target.receivedMessageFromTarget().filter { message ->
-           message.targetId == targetId
+        return target.receivedMessageFromTarget().filter { message ->
+            message.targetId == targetId
         }
-       .observeOn(Schedulers.computation())
-       .map {
-           mapper.deserialize(it.message, ResponseFrame::class.java)
-       }.toObservable()
-       .subscribeOn(Schedulers.io())
+        .map {
+            mapper.deserialize(it.message, ResponseFrame::class.java)
+        }
+        .toObservable()
     }
 
     override fun close() {
         target.closeTarget(CloseTargetRequest(targetId)).flatMap {
             target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
-        }.blockingGet()
+        }.subscribe { closed, err ->
+            logger.debug("[{}] closed with status: {}, {}", targetId, closed.success, err)
+        }
+    }
+
+    companion object {
+        val logger = LoggerFactory.getLogger(TargetedFramesStream::class.java) !!
     }
 }

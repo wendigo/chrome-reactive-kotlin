@@ -9,6 +9,7 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
+import org.slf4j.LoggerFactory
 
 class WebsocketFramesStream : WebSocketListener, FramesStream {
     private val messages: Subject<ResponseFrame>
@@ -49,11 +50,14 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
      */
     override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>) : Single<T> {
         return messages
-                .filter { it.isResponse(requestFrame.id) }
-                .flatMapSingle { mapper.deserializeResponse(requestFrame, it, clazz) }
-                .subscribeOn(Schedulers.io())
-                .take(1)
-                .singleOrError()
+            .filter { it.isResponse(requestFrame.id) }
+            .flatMapSingle { mapper.deserializeResponse(requestFrame, it, clazz) }
+            .subscribeOn(Schedulers.io())
+            .doOnNext {
+                logger.debug("received response: {} for request: {}", it, requestFrame)
+            }
+            .take(1)
+            .singleOrError()
     }
 
     /**
@@ -64,6 +68,9 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
             .just(frame)
             .flatMap { mapper.serialize(it) }
             .map { connection.send(it) }
+            .doOnSuccess {
+                logger.debug("sent request: {}", frame)
+            }
             .subscribeOn(Schedulers.io())
     }
 
@@ -72,6 +79,9 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
      */
     override fun eventFrames() : Observable<ResponseFrame> {
         return messages.filter(ResponseFrame::isEvent)
+            .doOnNext {
+                logger.debug("received event: {}", it)
+            }
     }
 
     /**
@@ -90,16 +100,13 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
             client.connectionPool().evictAll()
             client.dispatcher().executorService().shutdown()
         } catch (e : Exception) {
-            messages.onError(e)
+            logger.info("caught exception while closing: {}", e)
         }
 
         messages.onComplete()
     }
 
-    /**
-     * Closes stream with error
-     */
-    fun close(e: Exception) {
-        messages.onError(e)
+    companion object {
+        val logger = LoggerFactory.getLogger(TargetedFramesStream::class.java) !!
     }
 }

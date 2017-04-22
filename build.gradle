@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.0'
+		kotlinVersion = '1.1.1'
         dokka_version = '0.9.13'
 
 	}
@@ -67,6 +67,7 @@ dependencies {
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: kotlinVersion
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-runtime', version: kotlinVersion
     compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.0.7'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
 
