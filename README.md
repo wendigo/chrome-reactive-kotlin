@@ -14,7 +14,7 @@ Add to your Kotlin or Java project (Gradle dependency):
 
 # Example
 
-```
+```kotlin
 package pl.wendigo.chrome
 
 import pl.wendigo.chrome.domain.page.NavigateRequest
