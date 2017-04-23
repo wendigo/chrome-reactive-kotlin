@@ -61,7 +61,7 @@ class TargetedFramesStream(
         }
         .observeOn(Schedulers.trampoline())
         .subscribe { closed, err ->
-            logger.warn("[{}] closed with status: {}, {}", targetId, closed.success, err)
+            logger.warn("[{}] closed with status: {}, {}", targetId, closed, err)
         }
     }
 
