@@ -56,12 +56,16 @@ class TargetedFramesStream(
     }
 
     override fun close() {
-        target.closeTarget(CloseTargetRequest(targetId)).flatMap {
-            target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
-        }
-        .observeOn(Schedulers.trampoline())
-        .subscribe { closed, err ->
-            logger.warn("[{}] closed with status: {}, {}", targetId, closed, err)
+        try {
+            val response = target.closeTarget(CloseTargetRequest(targetId)).flatMap {
+                target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
+            }
+            .blockingGet()
+
+            logger.info("Closed target {} with status {}", targetId, response)
+
+        } catch (e : Exception) {
+            logger.info("Could not close target: {}", e)
         }
     }
 
