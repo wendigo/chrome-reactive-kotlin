@@ -58,7 +58,9 @@ class TargetedFramesStream(
     override fun close() {
         target.closeTarget(CloseTargetRequest(targetId)).flatMap {
             target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
-        }.subscribe { closed, err ->
+        }
+        .observeOn(Schedulers.trampoline())
+        .subscribe { closed, err ->
             logger.warn("[{}] closed with status: {}, {}", targetId, closed.success, err)
         }
     }
