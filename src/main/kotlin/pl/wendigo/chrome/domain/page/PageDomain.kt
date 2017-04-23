@@ -231,6 +231,14 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
 	}
 
 	/**
+	 * Configures overlay.
+	 */
+	@pl.wendigo.chrome.Experimental
+    fun configureOverlay(input : ConfigureOverlayRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Page.configureOverlay", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	}
+
+	/**
 	 * 
 	 */
 	@pl.wendigo.chrome.Experimental
@@ -952,6 +960,25 @@ data class HandleJavaScriptDialogRequest (
      * The text to enter into the dialog prompt before accepting. Used only if this is a prompt dialog.
      */
     val promptText : String? = null
+
+)
+
+
+/**
+ * Represents requestFrame parameters that can be used with Page.configureOverlay method call.
+ *
+ * Configures overlay.
+ */
+data class ConfigureOverlayRequest (
+    /**
+     * Whether overlay should be suspended and not consume any resources.
+     */
+    val suspended : Boolean? = null,
+
+    /**
+     * Overlay message to display.
+     */
+    val message : String? = null
 
 )
 
