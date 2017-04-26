@@ -554,7 +554,7 @@ data class RunScriptResponse(
  */
 data class ExecutionContextCreatedEvent(
   /**
-   * A newly created execution contex.
+   * A newly created execution context.
    */
   val context : ExecutionContextDescription
 

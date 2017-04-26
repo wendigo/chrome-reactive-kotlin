@@ -150,48 +150,24 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 	}
 
 	/**
-	 * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
+	 * Highlights given rectangle.
 	 */
-	@pl.wendigo.chrome.Experimental
-    fun setInspectMode(input : SetInspectModeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOM.setInspectMode", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	  fun highlightRect() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOM.highlightRect", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
-	 * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
+	 * Highlights DOM node.
 	 */
-	  fun highlightRect(input : HighlightRectRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOM.highlightRect", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	  fun highlightNode() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOM.highlightNode", null, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
-	 * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
-	 */
-	@pl.wendigo.chrome.Experimental
-    fun highlightQuad(input : HighlightQuadRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOM.highlightQuad", input, pl.wendigo.chrome.ResponseFrame::class.java)
-	}
-
-	/**
-	 * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
-	 */
-	  fun highlightNode(input : HighlightNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOM.highlightNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
-	}
-
-	/**
-	 * Hides DOM node highlight.
+	 * Hides any highlight.
 	 */
 	  fun hideHighlight() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.hideHighlight", null, pl.wendigo.chrome.ResponseFrame::class.java)
-	}
-
-	/**
-	 * Highlights owner element of the frame with given id.
-	 */
-	@pl.wendigo.chrome.Experimental
-    fun highlightFrame(input : HighlightFrameRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOM.highlightFrame", input, pl.wendigo.chrome.ResponseFrame::class.java)
 	}
 
 	/**
@@ -311,27 +287,12 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
         return connectionRemote.runAndCaptureResponse("DOM.getRelayoutBoundary", input, GetRelayoutBoundaryResponse::class.java)
 	}
 
-	/**
-	 * For testing.
-	 */
-	@pl.wendigo.chrome.Experimental
-    fun getHighlightObjectForTest(input : GetHighlightObjectForTestRequest) : io.reactivex.Single<GetHighlightObjectForTestResponse> {
-        return connectionRemote.runAndCaptureResponse("DOM.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java)
-	}
-
   
     /**
      * Fired when <code>Document</code> has been totally updated. Node ids are no longer valid.
      */
     fun documentUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return connectionRemote.captureEvents("DOM.documentUpdated", pl.wendigo.chrome.ProtocolEvent::class.java)
-    }
-
-    /**
-     * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code>.
-     */
-    fun inspectNodeRequested() : io.reactivex.Flowable<InspectNodeRequestedEvent> {
-        return connectionRemote.captureEvents("DOM.inspectNodeRequested", InspectNodeRequestedEvent::class.java)
     }
 
     /**
@@ -423,13 +384,6 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
      */
     fun distributedNodesUpdated() : io.reactivex.Flowable<DistributedNodesUpdatedEvent> {
         return connectionRemote.captureEvents("DOM.distributedNodesUpdated", DistributedNodesUpdatedEvent::class.java)
-    }
-
-    /**
-     * Returns observable capturing all DOM.nodeHighlightRequested events.
-     */
-    fun nodeHighlightRequested() : io.reactivex.Flowable<NodeHighlightRequestedEvent> {
-        return connectionRemote.captureEvents("DOM.nodeHighlightRequested", NodeHighlightRequestedEvent::class.java)
     }
 
     /**
@@ -907,141 +861,10 @@ data class RequestNodeResponse(
 
 )
 
-/**
- * Represents requestFrame parameters that can be used with DOM.setInspectMode method call.
- *
- * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
- */
-data class SetInspectModeRequest (
-    /**
-     * Set an inspection mode.
-     */
-    val mode : InspectMode,
-
-    /**
-     * A descriptor for the highlight appearance of hovered-over nodes. May be omitted if <code>enabled == false</code>.
-     */
-    val highlightConfig : HighlightConfig? = null
-
-)
-
-
-/**
- * Represents requestFrame parameters that can be used with DOM.highlightRect method call.
- *
- * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
- */
-data class HighlightRectRequest (
-    /**
-     * X coordinate
-     */
-    val x : Int,
-
-    /**
-     * Y coordinate
-     */
-    val y : Int,
-
-    /**
-     * Rectangle width
-     */
-    val width : Int,
-
-    /**
-     * Rectangle height
-     */
-    val height : Int,
-
-    /**
-     * The highlight fill color (default: transparent).
-     */
-    val color : RGBA? = null,
-
-    /**
-     * The highlight outline color (default: transparent).
-     */
-    val outlineColor : RGBA? = null
-
-)
-
-
-/**
- * Represents requestFrame parameters that can be used with DOM.highlightQuad method call.
- *
- * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
- */
-data class HighlightQuadRequest (
-    /**
-     * Quad to highlight
-     */
-    val quad : Quad,
-
-    /**
-     * The highlight fill color (default: transparent).
-     */
-    val color : RGBA? = null,
-
-    /**
-     * The highlight outline color (default: transparent).
-     */
-    val outlineColor : RGBA? = null
-
-)
-
-
-/**
- * Represents requestFrame parameters that can be used with DOM.highlightNode method call.
- *
- * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
- */
-data class HighlightNodeRequest (
-    /**
-     * A descriptor for the highlight appearance.
-     */
-    val highlightConfig : HighlightConfig,
-
-    /**
-     * Identifier of the node to highlight.
-     */
-    val nodeId : NodeId? = null,
-
-    /**
-     * Identifier of the backend node to highlight.
-     */
-    val backendNodeId : BackendNodeId? = null,
-
-    /**
-     * JavaScript object id of the node to be highlighted.
-     */
-    @pl.wendigo.chrome.Experimental val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
-
-)
 
 
 
 
-/**
- * Represents requestFrame parameters that can be used with DOM.highlightFrame method call.
- *
- * Highlights owner element of the frame with given id.
- */
-data class HighlightFrameRequest (
-    /**
-     * Identifier of the frame to highlight.
-     */
-    val frameId : pl.wendigo.chrome.domain.page.FrameId,
-
-    /**
-     * The content box highlight fill color (default: transparent).
-     */
-    val contentColor : RGBA? = null,
-
-    /**
-     * The content box highlight outline color (default: transparent).
-     */
-    val contentOutlineColor : RGBA? = null
-
-)
 
 
 /**
@@ -1366,45 +1189,6 @@ data class GetRelayoutBoundaryResponse(
 
 )
 
-/**
- * Represents requestFrame parameters that can be used with DOM.getHighlightObjectForTest method call.
- *
- * For testing.
- */
-data class GetHighlightObjectForTestRequest (
-    /**
-     * Id of the node to get highlight object for.
-     */
-    val nodeId : NodeId
-
-)
-
-/**
- * Represents responseFrame from DOM. method call.
- *
- * For testing.
- */
-data class GetHighlightObjectForTestResponse(
-  /**
-   * Highlight data for the node.
-   */
-  val highlight : String
-
-)
-
-
-/**
- * Represents responseFrame from DOM. method call.
- *
- * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code>.
- */
-data class InspectNodeRequestedEvent(
-  /**
-   * Id of the node to inspect.
-   */
-  val backendNodeId : BackendNodeId
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "inspectNodeRequested")
 
 /**
  * Represents responseFrame from DOM. method call.
@@ -1644,17 +1428,4 @@ data class DistributedNodesUpdatedEvent(
   val distributedNodes : Array<BackendNode>
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "distributedNodesUpdated")
-
-/**
- * Represents responseFrame from DOM. method call.
- *
- * 
- */
-data class NodeHighlightRequestedEvent(
-  /**
-   * 
-   */
-  val nodeId : NodeId
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "nodeHighlightRequested")
 

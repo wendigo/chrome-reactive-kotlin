@@ -375,7 +375,7 @@ data class GetPossibleBreakpointsRequest (
     val start : Location,
 
     /**
-     * End of range to search possible breakpoint locations in (excluding). When not specifed, end of scripts is used as end of range.
+     * End of range to search possible breakpoint locations in (excluding). When not specified, end of scripts is used as end of range.
      */
     val end : Location? = null,
 

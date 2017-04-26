@@ -74,7 +74,7 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 
   
     /**
-     * Sent when new profile recodring is started using console.profile() call.
+     * Sent when new profile recording is started using console.profile() call.
      */
     fun consoleProfileStarted() : io.reactivex.Flowable<ConsoleProfileStartedEvent> {
         return connectionRemote.captureEvents("Profiler.consoleProfileStarted", ConsoleProfileStartedEvent::class.java)
@@ -177,7 +177,7 @@ data class GetBestEffortCoverageResponse(
 /**
  * Represents responseFrame from Profiler. method call.
  *
- * Sent when new profile recodring is started using console.profile() call.
+ * Sent when new profile recording is started using console.profile() call.
  */
 data class ConsoleProfileStartedEvent(
   /**
