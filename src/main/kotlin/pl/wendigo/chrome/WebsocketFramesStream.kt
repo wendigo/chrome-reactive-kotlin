@@ -11,6 +11,7 @@ import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import org.slf4j.LoggerFactory
+import java.util.concurrent.TimeUnit
 
 class WebsocketFramesStream : WebSocketListener, FramesStream {
     private val messages: Subject<ResponseFrame>
@@ -84,7 +85,7 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
      * Returns all frames.
      */
     override fun frames() : Observable<Timed<ResponseFrame>> {
-        return messages.timestamp()
+        return messages.timestamp(TimeUnit.NANOSECONDS)
     }
 
     /**
