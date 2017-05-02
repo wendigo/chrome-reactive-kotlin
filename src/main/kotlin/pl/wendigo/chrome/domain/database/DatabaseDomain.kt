@@ -8,44 +8,89 @@ package pl.wendigo.chrome.domain.database
 	/**
 	 * Enables database tracking, database events will now be delivered to the client.
 	 */
-	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Enables database tracking, database events will now be delivered to the client.
+    */
+     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Disables database tracking, prevents database events from being sent to the client.
 	 */
-	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Database.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+	}
+
+    /**
+     * Disables database tracking, prevents database events from being sent to the client.
+    */
+     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
         return connectionRemote.runAndCaptureResponse("Database.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-	}
+    }
 
 	/**
 	 * 
 	 */
-	  fun getDatabaseTableNames(input : GetDatabaseTableNamesRequest) : io.reactivex.Single<GetDatabaseTableNamesResponse> {
+	 fun getDatabaseTableNames(input : GetDatabaseTableNamesRequest) : io.reactivex.Single<GetDatabaseTableNamesResponse> {
+        return connectionRemote.runAndCaptureResponse("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java).map {
+            it.value()
+        }
+	}
+
+    /**
+     * 
+    */
+     fun getDatabaseTableNamesTimed(input : GetDatabaseTableNamesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetDatabaseTableNamesResponse>> {
         return connectionRemote.runAndCaptureResponse("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java)
-	}
+    }
 
 	/**
 	 * 
 	 */
-	  fun executeSQL(input : ExecuteSQLRequest) : io.reactivex.Single<ExecuteSQLResponse> {
-        return connectionRemote.runAndCaptureResponse("Database.executeSQL", input, ExecuteSQLResponse::class.java)
+	 fun executeSQL(input : ExecuteSQLRequest) : io.reactivex.Single<ExecuteSQLResponse> {
+        return connectionRemote.runAndCaptureResponse("Database.executeSQL", input, ExecuteSQLResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * 
+    */
+     fun executeSQLTimed(input : ExecuteSQLRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<ExecuteSQLResponse>> {
+        return connectionRemote.runAndCaptureResponse("Database.executeSQL", input, ExecuteSQLResponse::class.java)
+    }
 
   
     /**
      * Returns observable capturing all Database.addDatabase events.
      */
     fun addDatabase() : io.reactivex.Flowable<AddDatabaseEvent> {
-        return connectionRemote.captureEvents("Database.addDatabase", AddDatabaseEvent::class.java)
+        return addDatabaseTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Returns observable capturing all Database.addDatabase events.
+     */
+     fun addDatabaseTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AddDatabaseEvent>> {
+        return connectionRemote.captureEvents("Database.addDatabase", AddDatabaseEvent::class.java)
+     }
 
     /**
      * Returns flowable capturing all Database domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Database"
         }
     }

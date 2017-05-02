@@ -8,100 +8,217 @@ package pl.wendigo.chrome.domain.animation
 	/**
 	 * Enables animation domain notifications.
 	 */
-	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Enables animation domain notifications.
+    */
+     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Animation.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Disables animation domain notifications.
 	 */
-	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Disables animation domain notifications.
+    */
+     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Animation.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Gets the playback rate of the document timeline.
 	 */
-	  fun getPlaybackRate() : io.reactivex.Single<GetPlaybackRateResponse> {
-        return connectionRemote.runAndCaptureResponse("Animation.getPlaybackRate", null, GetPlaybackRateResponse::class.java)
+	 fun getPlaybackRate() : io.reactivex.Single<GetPlaybackRateResponse> {
+        return connectionRemote.runAndCaptureResponse("Animation.getPlaybackRate", null, GetPlaybackRateResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Gets the playback rate of the document timeline.
+    */
+     fun getPlaybackRateTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetPlaybackRateResponse>> {
+        return connectionRemote.runAndCaptureResponse("Animation.getPlaybackRate", null, GetPlaybackRateResponse::class.java)
+    }
 
 	/**
 	 * Sets the playback rate of the document timeline.
 	 */
-	  fun setPlaybackRate(input : SetPlaybackRateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.setPlaybackRate", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setPlaybackRate(input : SetPlaybackRateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.setPlaybackRate", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Sets the playback rate of the document timeline.
+    */
+     fun setPlaybackRateTimed(input : SetPlaybackRateRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Animation.setPlaybackRate", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Returns the current time of the an animation.
 	 */
-	  fun getCurrentTime(input : GetCurrentTimeRequest) : io.reactivex.Single<GetCurrentTimeResponse> {
-        return connectionRemote.runAndCaptureResponse("Animation.getCurrentTime", input, GetCurrentTimeResponse::class.java)
+	 fun getCurrentTime(input : GetCurrentTimeRequest) : io.reactivex.Single<GetCurrentTimeResponse> {
+        return connectionRemote.runAndCaptureResponse("Animation.getCurrentTime", input, GetCurrentTimeResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns the current time of the an animation.
+    */
+     fun getCurrentTimeTimed(input : GetCurrentTimeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetCurrentTimeResponse>> {
+        return connectionRemote.runAndCaptureResponse("Animation.getCurrentTime", input, GetCurrentTimeResponse::class.java)
+    }
 
 	/**
 	 * Sets the paused state of a set of animations.
 	 */
-	  fun setPaused(input : SetPausedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.setPaused", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setPaused(input : SetPausedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.setPaused", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Sets the paused state of a set of animations.
+    */
+     fun setPausedTimed(input : SetPausedRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Animation.setPaused", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Sets the timing of an animation node.
 	 */
-	  fun setTiming(input : SetTimingRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.setTiming", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setTiming(input : SetTimingRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.setTiming", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Sets the timing of an animation node.
+    */
+     fun setTimingTimed(input : SetTimingRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Animation.setTiming", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Seek a set of animations to a particular time within each animation.
 	 */
-	  fun seekAnimations(input : SeekAnimationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.seekAnimations", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun seekAnimations(input : SeekAnimationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.seekAnimations", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Seek a set of animations to a particular time within each animation.
+    */
+     fun seekAnimationsTimed(input : SeekAnimationsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Animation.seekAnimations", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Releases a set of animations to no longer be manipulated.
 	 */
-	  fun releaseAnimations(input : ReleaseAnimationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.releaseAnimations", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun releaseAnimations(input : ReleaseAnimationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.releaseAnimations", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Releases a set of animations to no longer be manipulated.
+    */
+     fun releaseAnimationsTimed(input : ReleaseAnimationsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Animation.releaseAnimations", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Gets the remote object of the Animation.
 	 */
-	  fun resolveAnimation(input : ResolveAnimationRequest) : io.reactivex.Single<ResolveAnimationResponse> {
-        return connectionRemote.runAndCaptureResponse("Animation.resolveAnimation", input, ResolveAnimationResponse::class.java)
+	 fun resolveAnimation(input : ResolveAnimationRequest) : io.reactivex.Single<ResolveAnimationResponse> {
+        return connectionRemote.runAndCaptureResponse("Animation.resolveAnimation", input, ResolveAnimationResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Gets the remote object of the Animation.
+    */
+     fun resolveAnimationTimed(input : ResolveAnimationRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<ResolveAnimationResponse>> {
+        return connectionRemote.runAndCaptureResponse("Animation.resolveAnimation", input, ResolveAnimationResponse::class.java)
+    }
 
   
     /**
      * Event for each animation that has been created.
      */
     fun animationCreated() : io.reactivex.Flowable<AnimationCreatedEvent> {
-        return connectionRemote.captureEvents("Animation.animationCreated", AnimationCreatedEvent::class.java)
+        return animationCreatedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Event for each animation that has been created.
+     */
+     fun animationCreatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AnimationCreatedEvent>> {
+        return connectionRemote.captureEvents("Animation.animationCreated", AnimationCreatedEvent::class.java)
+     }
 
     /**
      * Event for animation that has been started.
      */
     fun animationStarted() : io.reactivex.Flowable<AnimationStartedEvent> {
-        return connectionRemote.captureEvents("Animation.animationStarted", AnimationStartedEvent::class.java)
+        return animationStartedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Event for animation that has been started.
+     */
+     fun animationStartedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AnimationStartedEvent>> {
+        return connectionRemote.captureEvents("Animation.animationStarted", AnimationStartedEvent::class.java)
+     }
 
     /**
      * Event for when an animation has been cancelled.
      */
     fun animationCanceled() : io.reactivex.Flowable<AnimationCanceledEvent> {
-        return connectionRemote.captureEvents("Animation.animationCanceled", AnimationCanceledEvent::class.java)
+        return animationCanceledTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Event for when an animation has been cancelled.
+     */
+     fun animationCanceledTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AnimationCanceledEvent>> {
+        return connectionRemote.captureEvents("Animation.animationCanceled", AnimationCanceledEvent::class.java)
+     }
 
     /**
      * Returns flowable capturing all Animation domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Animation"
         }
     }

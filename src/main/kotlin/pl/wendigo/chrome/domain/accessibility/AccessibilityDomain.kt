@@ -9,16 +9,26 @@ package pl.wendigo.chrome.domain.accessibility
 	 * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getPartialAXTree(input : GetPartialAXTreeRequest) : io.reactivex.Single<GetPartialAXTreeResponse> {
-        return connectionRemote.runAndCaptureResponse("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
+   fun getPartialAXTree(input : GetPartialAXTreeRequest) : io.reactivex.Single<GetPartialAXTreeResponse> {
+        return connectionRemote.runAndCaptureResponse("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun getPartialAXTreeTimed(input : GetPartialAXTreeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetPartialAXTreeResponse>> {
+        return connectionRemote.runAndCaptureResponse("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
+    }
 
   
     /**
      * Returns flowable capturing all Accessibility domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Accessibility"
         }
     }

@@ -8,16 +8,25 @@ class SchemaDomain internal constructor(private val connectionRemote : pl.wendig
 	/**
 	 * Returns supported domains.
 	 */
-	  fun getDomains() : io.reactivex.Single<GetDomainsResponse> {
-        return connectionRemote.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java)
+	 fun getDomains() : io.reactivex.Single<GetDomainsResponse> {
+        return connectionRemote.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns supported domains.
+    */
+     fun getDomainsTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetDomainsResponse>> {
+        return connectionRemote.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java)
+    }
 
   
     /**
      * Returns flowable capturing all Schema domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Schema"
         }
     }

@@ -8,86 +8,185 @@ package pl.wendigo.chrome.domain.layertree
 	/**
 	 * Enables compositing tree inspection.
 	 */
-	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Enables compositing tree inspection.
+    */
+     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Disables compositing tree inspection.
 	 */
-	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Disables compositing tree inspection.
+    */
+     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Provides the reasons why the given layer was composited.
 	 */
-	  fun compositingReasons(input : CompositingReasonsRequest) : io.reactivex.Single<CompositingReasonsResponse> {
-        return connectionRemote.runAndCaptureResponse("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java)
+	 fun compositingReasons(input : CompositingReasonsRequest) : io.reactivex.Single<CompositingReasonsResponse> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Provides the reasons why the given layer was composited.
+    */
+     fun compositingReasonsTimed(input : CompositingReasonsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<CompositingReasonsResponse>> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java)
+    }
 
 	/**
 	 * Returns the layer snapshot identifier.
 	 */
-	  fun makeSnapshot(input : MakeSnapshotRequest) : io.reactivex.Single<MakeSnapshotResponse> {
-        return connectionRemote.runAndCaptureResponse("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java)
+	 fun makeSnapshot(input : MakeSnapshotRequest) : io.reactivex.Single<MakeSnapshotResponse> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns the layer snapshot identifier.
+    */
+     fun makeSnapshotTimed(input : MakeSnapshotRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<MakeSnapshotResponse>> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java)
+    }
 
 	/**
 	 * Returns the snapshot identifier.
 	 */
-	  fun loadSnapshot(input : LoadSnapshotRequest) : io.reactivex.Single<LoadSnapshotResponse> {
-        return connectionRemote.runAndCaptureResponse("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java)
+	 fun loadSnapshot(input : LoadSnapshotRequest) : io.reactivex.Single<LoadSnapshotResponse> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns the snapshot identifier.
+    */
+     fun loadSnapshotTimed(input : LoadSnapshotRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<LoadSnapshotResponse>> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java)
+    }
 
 	/**
 	 * Releases layer snapshot captured by the back-end.
 	 */
-	  fun releaseSnapshot(input : ReleaseSnapshotRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun releaseSnapshot(input : ReleaseSnapshotRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Releases layer snapshot captured by the back-end.
+    */
+     fun releaseSnapshotTimed(input : ReleaseSnapshotRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * 
 	 */
-	  fun profileSnapshot(input : ProfileSnapshotRequest) : io.reactivex.Single<ProfileSnapshotResponse> {
-        return connectionRemote.runAndCaptureResponse("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java)
+	 fun profileSnapshot(input : ProfileSnapshotRequest) : io.reactivex.Single<ProfileSnapshotResponse> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * 
+    */
+     fun profileSnapshotTimed(input : ProfileSnapshotRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<ProfileSnapshotResponse>> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java)
+    }
 
 	/**
 	 * Replays the layer snapshot and returns the resulting bitmap.
 	 */
-	  fun replaySnapshot(input : ReplaySnapshotRequest) : io.reactivex.Single<ReplaySnapshotResponse> {
-        return connectionRemote.runAndCaptureResponse("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java)
+	 fun replaySnapshot(input : ReplaySnapshotRequest) : io.reactivex.Single<ReplaySnapshotResponse> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Replays the layer snapshot and returns the resulting bitmap.
+    */
+     fun replaySnapshotTimed(input : ReplaySnapshotRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<ReplaySnapshotResponse>> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java)
+    }
 
 	/**
 	 * Replays the layer snapshot and returns canvas log.
 	 */
-	  fun snapshotCommandLog(input : SnapshotCommandLogRequest) : io.reactivex.Single<SnapshotCommandLogResponse> {
-        return connectionRemote.runAndCaptureResponse("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java)
+	 fun snapshotCommandLog(input : SnapshotCommandLogRequest) : io.reactivex.Single<SnapshotCommandLogResponse> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Replays the layer snapshot and returns canvas log.
+    */
+     fun snapshotCommandLogTimed(input : SnapshotCommandLogRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SnapshotCommandLogResponse>> {
+        return connectionRemote.runAndCaptureResponse("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java)
+    }
 
   
     /**
      * Returns observable capturing all LayerTree.layerTreeDidChange events.
      */
     fun layerTreeDidChange() : io.reactivex.Flowable<LayerTreeDidChangeEvent> {
-        return connectionRemote.captureEvents("LayerTree.layerTreeDidChange", LayerTreeDidChangeEvent::class.java)
+        return layerTreeDidChangeTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Returns observable capturing all LayerTree.layerTreeDidChange events.
+     */
+     fun layerTreeDidChangeTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LayerTreeDidChangeEvent>> {
+        return connectionRemote.captureEvents("LayerTree.layerTreeDidChange", LayerTreeDidChangeEvent::class.java)
+     }
 
     /**
      * Returns observable capturing all LayerTree.layerPainted events.
      */
     fun layerPainted() : io.reactivex.Flowable<LayerPaintedEvent> {
-        return connectionRemote.captureEvents("LayerTree.layerPainted", LayerPaintedEvent::class.java)
+        return layerPaintedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Returns observable capturing all LayerTree.layerPainted events.
+     */
+     fun layerPaintedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LayerPaintedEvent>> {
+        return connectionRemote.captureEvents("LayerTree.layerPainted", LayerPaintedEvent::class.java)
+     }
 
     /**
      * Returns flowable capturing all LayerTree domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "LayerTree"
         }
     }

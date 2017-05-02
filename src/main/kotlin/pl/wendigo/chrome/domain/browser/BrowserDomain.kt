@@ -8,30 +8,57 @@ package pl.wendigo.chrome.domain.browser
 	/**
 	 * Get the browser window that contains the devtools target.
 	 */
-	  fun getWindowForTarget(input : GetWindowForTargetRequest) : io.reactivex.Single<GetWindowForTargetResponse> {
-        return connectionRemote.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java)
+	 fun getWindowForTarget(input : GetWindowForTargetRequest) : io.reactivex.Single<GetWindowForTargetResponse> {
+        return connectionRemote.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Get the browser window that contains the devtools target.
+    */
+     fun getWindowForTargetTimed(input : GetWindowForTargetRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetWindowForTargetResponse>> {
+        return connectionRemote.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java)
+    }
 
 	/**
 	 * Set position and/or size of the browser window.
 	 */
-	  fun setWindowBounds(input : SetWindowBoundsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setWindowBounds(input : SetWindowBoundsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Set position and/or size of the browser window.
+    */
+     fun setWindowBoundsTimed(input : SetWindowBoundsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Get position and size of the browser window.
 	 */
-	  fun getWindowBounds(input : GetWindowBoundsRequest) : io.reactivex.Single<GetWindowBoundsResponse> {
-        return connectionRemote.runAndCaptureResponse("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java)
+	 fun getWindowBounds(input : GetWindowBoundsRequest) : io.reactivex.Single<GetWindowBoundsResponse> {
+        return connectionRemote.runAndCaptureResponse("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Get position and size of the browser window.
+    */
+     fun getWindowBoundsTimed(input : GetWindowBoundsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetWindowBoundsResponse>> {
+        return connectionRemote.runAndCaptureResponse("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java)
+    }
 
   
     /**
      * Returns flowable capturing all Browser domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Browser"
         }
     }

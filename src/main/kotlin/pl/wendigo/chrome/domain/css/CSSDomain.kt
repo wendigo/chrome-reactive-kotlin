@@ -8,214 +8,475 @@ package pl.wendigo.chrome.domain.css
 	/**
 	 * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been enabled until the result of this command is received.
 	 */
-	  fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been enabled until the result of this command is received.
+    */
+     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Disables the CSS agent for the given page.
 	 */
-	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("CSS.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("CSS.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Disables the CSS agent for the given page.
+    */
+     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("CSS.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Returns requested styles for a DOM node identified by <code>nodeId</code>.
 	 */
-	  fun getMatchedStylesForNode(input : GetMatchedStylesForNodeRequest) : io.reactivex.Single<GetMatchedStylesForNodeResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java)
+	 fun getMatchedStylesForNode(input : GetMatchedStylesForNodeRequest) : io.reactivex.Single<GetMatchedStylesForNodeResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns requested styles for a DOM node identified by <code>nodeId</code>.
+    */
+     fun getMatchedStylesForNodeTimed(input : GetMatchedStylesForNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetMatchedStylesForNodeResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java)
+    }
 
 	/**
 	 * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.
 	 */
-	  fun getInlineStylesForNode(input : GetInlineStylesForNodeRequest) : io.reactivex.Single<GetInlineStylesForNodeResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java)
+	 fun getInlineStylesForNode(input : GetInlineStylesForNodeRequest) : io.reactivex.Single<GetInlineStylesForNodeResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.
+    */
+     fun getInlineStylesForNodeTimed(input : GetInlineStylesForNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetInlineStylesForNodeResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java)
+    }
 
 	/**
 	 * Returns the computed style for a DOM node identified by <code>nodeId</code>.
 	 */
-	  fun getComputedStyleForNode(input : GetComputedStyleForNodeRequest) : io.reactivex.Single<GetComputedStyleForNodeResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getComputedStyleForNode", input, GetComputedStyleForNodeResponse::class.java)
+	 fun getComputedStyleForNode(input : GetComputedStyleForNodeRequest) : io.reactivex.Single<GetComputedStyleForNodeResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getComputedStyleForNode", input, GetComputedStyleForNodeResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns the computed style for a DOM node identified by <code>nodeId</code>.
+    */
+     fun getComputedStyleForNodeTimed(input : GetComputedStyleForNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetComputedStyleForNodeResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.getComputedStyleForNode", input, GetComputedStyleForNodeResponse::class.java)
+    }
 
 	/**
 	 * Requests information about platform fonts which we used to render child TextNodes in the given node.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getPlatformFontsForNode(input : GetPlatformFontsForNodeRequest) : io.reactivex.Single<GetPlatformFontsForNodeResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java)
+   fun getPlatformFontsForNode(input : GetPlatformFontsForNodeRequest) : io.reactivex.Single<GetPlatformFontsForNodeResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Requests information about platform fonts which we used to render child TextNodes in the given node.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun getPlatformFontsForNodeTimed(input : GetPlatformFontsForNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetPlatformFontsForNodeResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java)
+    }
 
 	/**
 	 * Returns the current textual content and the URL for a stylesheet.
 	 */
-	  fun getStyleSheetText(input : GetStyleSheetTextRequest) : io.reactivex.Single<GetStyleSheetTextResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java)
+	 fun getStyleSheetText(input : GetStyleSheetTextRequest) : io.reactivex.Single<GetStyleSheetTextResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns the current textual content and the URL for a stylesheet.
+    */
+     fun getStyleSheetTextTimed(input : GetStyleSheetTextRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetStyleSheetTextResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java)
+    }
 
 	/**
 	 * Returns all class names from specified stylesheet.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun collectClassNames(input : CollectClassNamesRequest) : io.reactivex.Single<CollectClassNamesResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java)
+   fun collectClassNames(input : CollectClassNamesRequest) : io.reactivex.Single<CollectClassNamesResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns all class names from specified stylesheet.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun collectClassNamesTimed(input : CollectClassNamesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<CollectClassNamesResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java)
+    }
 
 	/**
 	 * Sets the new stylesheet text.
 	 */
-	  fun setStyleSheetText(input : SetStyleSheetTextRequest) : io.reactivex.Single<SetStyleSheetTextResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java)
+	 fun setStyleSheetText(input : SetStyleSheetTextRequest) : io.reactivex.Single<SetStyleSheetTextResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Sets the new stylesheet text.
+    */
+     fun setStyleSheetTextTimed(input : SetStyleSheetTextRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetStyleSheetTextResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java)
+    }
 
 	/**
 	 * Modifies the rule selector.
 	 */
-	  fun setRuleSelector(input : SetRuleSelectorRequest) : io.reactivex.Single<SetRuleSelectorResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java)
+	 fun setRuleSelector(input : SetRuleSelectorRequest) : io.reactivex.Single<SetRuleSelectorResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Modifies the rule selector.
+    */
+     fun setRuleSelectorTimed(input : SetRuleSelectorRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetRuleSelectorResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java)
+    }
 
 	/**
 	 * Modifies the keyframe rule key text.
 	 */
-	  fun setKeyframeKey(input : SetKeyframeKeyRequest) : io.reactivex.Single<SetKeyframeKeyResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.setKeyframeKey", input, SetKeyframeKeyResponse::class.java)
+	 fun setKeyframeKey(input : SetKeyframeKeyRequest) : io.reactivex.Single<SetKeyframeKeyResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.setKeyframeKey", input, SetKeyframeKeyResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Modifies the keyframe rule key text.
+    */
+     fun setKeyframeKeyTimed(input : SetKeyframeKeyRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetKeyframeKeyResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.setKeyframeKey", input, SetKeyframeKeyResponse::class.java)
+    }
 
 	/**
 	 * Applies specified style edits one after another in the given order.
 	 */
-	  fun setStyleTexts(input : SetStyleTextsRequest) : io.reactivex.Single<SetStyleTextsResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java)
+	 fun setStyleTexts(input : SetStyleTextsRequest) : io.reactivex.Single<SetStyleTextsResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Applies specified style edits one after another in the given order.
+    */
+     fun setStyleTextsTimed(input : SetStyleTextsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetStyleTextsResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java)
+    }
 
 	/**
 	 * Modifies the rule selector.
 	 */
-	  fun setMediaText(input : SetMediaTextRequest) : io.reactivex.Single<SetMediaTextResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.setMediaText", input, SetMediaTextResponse::class.java)
+	 fun setMediaText(input : SetMediaTextRequest) : io.reactivex.Single<SetMediaTextResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.setMediaText", input, SetMediaTextResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Modifies the rule selector.
+    */
+     fun setMediaTextTimed(input : SetMediaTextRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetMediaTextResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.setMediaText", input, SetMediaTextResponse::class.java)
+    }
 
 	/**
 	 * Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.
 	 */
-	  fun createStyleSheet(input : CreateStyleSheetRequest) : io.reactivex.Single<CreateStyleSheetResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java)
+	 fun createStyleSheet(input : CreateStyleSheetRequest) : io.reactivex.Single<CreateStyleSheetResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.
+    */
+     fun createStyleSheetTimed(input : CreateStyleSheetRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<CreateStyleSheetResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java)
+    }
 
 	/**
 	 * Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.
 	 */
-	  fun addRule(input : AddRuleRequest) : io.reactivex.Single<AddRuleResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.addRule", input, AddRuleResponse::class.java)
+	 fun addRule(input : AddRuleRequest) : io.reactivex.Single<AddRuleResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.addRule", input, AddRuleResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.
+    */
+     fun addRuleTimed(input : AddRuleRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<AddRuleResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.addRule", input, AddRuleResponse::class.java)
+    }
 
 	/**
 	 * Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.
 	 */
-	  fun forcePseudoState(input : ForcePseudoStateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun forcePseudoState(input : ForcePseudoStateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.
+    */
+     fun forcePseudoStateTimed(input : ForcePseudoStateRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Returns all media queries parsed by the rendering engine.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getMediaQueries() : io.reactivex.Single<GetMediaQueriesResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java)
+   fun getMediaQueries() : io.reactivex.Single<GetMediaQueriesResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns all media queries parsed by the rendering engine.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun getMediaQueriesTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetMediaQueriesResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java)
+    }
 
 	/**
 	 * Find a rule with the given active property for the given node and set the new value for this property
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setEffectivePropertyValueForNode(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun setEffectivePropertyValueForNode(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Find a rule with the given active property for the given node and set the new value for this property
+    */
+    @pl.wendigo.chrome.Experimental
+     fun setEffectivePropertyValueForNodeTimed(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * 
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getBackgroundColors(input : GetBackgroundColorsRequest) : io.reactivex.Single<GetBackgroundColorsResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java)
+   fun getBackgroundColors(input : GetBackgroundColorsRequest) : io.reactivex.Single<GetBackgroundColorsResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * 
+    */
+    @pl.wendigo.chrome.Experimental
+     fun getBackgroundColorsTimed(input : GetBackgroundColorsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetBackgroundColorsResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java)
+    }
 
 	/**
 	 * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getLayoutTreeAndStyles(input : GetLayoutTreeAndStylesRequest) : io.reactivex.Single<GetLayoutTreeAndStylesResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getLayoutTreeAndStyles", input, GetLayoutTreeAndStylesResponse::class.java)
+   fun getLayoutTreeAndStyles(input : GetLayoutTreeAndStylesRequest) : io.reactivex.Single<GetLayoutTreeAndStylesResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getLayoutTreeAndStyles", input, GetLayoutTreeAndStylesResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun getLayoutTreeAndStylesTimed(input : GetLayoutTreeAndStylesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetLayoutTreeAndStylesResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.getLayoutTreeAndStyles", input, GetLayoutTreeAndStylesResponse::class.java)
+    }
 
 	/**
 	 * Enables the selector recording.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun startRuleUsageTracking() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun startRuleUsageTracking() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Enables the selector recording.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun startRuleUsageTrackingTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun takeCoverageDelta() : io.reactivex.Single<TakeCoverageDeltaResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java)
+   fun takeCoverageDelta() : io.reactivex.Single<TakeCoverageDeltaResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)
+    */
+    @pl.wendigo.chrome.Experimental
+     fun takeCoverageDeltaTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<TakeCoverageDeltaResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java)
+    }
 
 	/**
 	 * The list of rules with an indication of whether these were used
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun stopRuleUsageTracking() : io.reactivex.Single<StopRuleUsageTrackingResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java)
+   fun stopRuleUsageTracking() : io.reactivex.Single<StopRuleUsageTrackingResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * The list of rules with an indication of whether these were used
+    */
+    @pl.wendigo.chrome.Experimental
+     fun stopRuleUsageTrackingTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<StopRuleUsageTrackingResponse>> {
+        return connectionRemote.runAndCaptureResponse("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java)
+    }
 
   
     /**
      * Fires whenever a MediaQuery result changes (for example, after a browser window has been resized.) The current implementation considers only viewport-dependent media features.
      */
     fun mediaQueryResultChanged() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureEvents("CSS.mediaQueryResultChanged", pl.wendigo.chrome.ProtocolEvent::class.java)
+        return mediaQueryResultChangedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fires whenever a MediaQuery result changes (for example, after a browser window has been resized.) The current implementation considers only viewport-dependent media features.
+     */
+     fun mediaQueryResultChangedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+        return connectionRemote.captureEvents("CSS.mediaQueryResultChanged", pl.wendigo.chrome.ProtocolEvent::class.java)
+     }
 
     /**
      * Fires whenever a web font gets loaded.
      */
     fun fontsUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureEvents("CSS.fontsUpdated", pl.wendigo.chrome.ProtocolEvent::class.java)
+        return fontsUpdatedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fires whenever a web font gets loaded.
+     */
+     fun fontsUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+        return connectionRemote.captureEvents("CSS.fontsUpdated", pl.wendigo.chrome.ProtocolEvent::class.java)
+     }
 
     /**
      * Fired whenever a stylesheet is changed as a result of the client operation.
      */
     fun styleSheetChanged() : io.reactivex.Flowable<StyleSheetChangedEvent> {
-        return connectionRemote.captureEvents("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java)
+        return styleSheetChangedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired whenever a stylesheet is changed as a result of the client operation.
+     */
+     fun styleSheetChangedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<StyleSheetChangedEvent>> {
+        return connectionRemote.captureEvents("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java)
+     }
 
     /**
      * Fired whenever an active document stylesheet is added.
      */
     fun styleSheetAdded() : io.reactivex.Flowable<StyleSheetAddedEvent> {
-        return connectionRemote.captureEvents("CSS.styleSheetAdded", StyleSheetAddedEvent::class.java)
+        return styleSheetAddedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired whenever an active document stylesheet is added.
+     */
+     fun styleSheetAddedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<StyleSheetAddedEvent>> {
+        return connectionRemote.captureEvents("CSS.styleSheetAdded", StyleSheetAddedEvent::class.java)
+     }
 
     /**
      * Fired whenever an active document stylesheet is removed.
      */
     fun styleSheetRemoved() : io.reactivex.Flowable<StyleSheetRemovedEvent> {
-        return connectionRemote.captureEvents("CSS.styleSheetRemoved", StyleSheetRemovedEvent::class.java)
+        return styleSheetRemovedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired whenever an active document stylesheet is removed.
+     */
+     fun styleSheetRemovedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<StyleSheetRemovedEvent>> {
+        return connectionRemote.captureEvents("CSS.styleSheetRemoved", StyleSheetRemovedEvent::class.java)
+     }
 
     /**
      * Returns flowable capturing all CSS domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "CSS"
         }
     }

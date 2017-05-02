@@ -8,16 +8,25 @@ package pl.wendigo.chrome.domain.systeminfo
 	/**
 	 * Returns information about the system.
 	 */
-	  fun getInfo() : io.reactivex.Single<GetInfoResponse> {
-        return connectionRemote.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java)
+	 fun getInfo() : io.reactivex.Single<GetInfoResponse> {
+        return connectionRemote.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns information about the system.
+    */
+     fun getInfoTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetInfoResponse>> {
+        return connectionRemote.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java)
+    }
 
   
     /**
      * Returns flowable capturing all SystemInfo domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "SystemInfo"
         }
     }

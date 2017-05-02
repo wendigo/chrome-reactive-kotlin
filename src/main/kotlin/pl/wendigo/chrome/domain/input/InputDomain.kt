@@ -8,63 +8,131 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
 	/**
 	 * Dispatches a key event to the page.
 	 */
-	  fun dispatchKeyEvent(input : DispatchKeyEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Input.dispatchKeyEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun dispatchKeyEvent(input : DispatchKeyEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Input.dispatchKeyEvent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Dispatches a key event to the page.
+    */
+     fun dispatchKeyEventTimed(input : DispatchKeyEventRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Input.dispatchKeyEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Dispatches a mouse event to the page.
 	 */
-	  fun dispatchMouseEvent(input : DispatchMouseEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Input.dispatchMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun dispatchMouseEvent(input : DispatchMouseEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Input.dispatchMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Dispatches a mouse event to the page.
+    */
+     fun dispatchMouseEventTimed(input : DispatchMouseEventRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Input.dispatchMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Dispatches a touch event to the page.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun dispatchTouchEvent(input : DispatchTouchEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Input.dispatchTouchEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun dispatchTouchEvent(input : DispatchTouchEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Input.dispatchTouchEvent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Dispatches a touch event to the page.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun dispatchTouchEventTimed(input : DispatchTouchEventRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Input.dispatchTouchEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Emulates touch event from the mouse event parameters.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun emulateTouchFromMouseEvent(input : EmulateTouchFromMouseEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Input.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun emulateTouchFromMouseEvent(input : EmulateTouchFromMouseEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Input.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Emulates touch event from the mouse event parameters.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun emulateTouchFromMouseEventTimed(input : EmulateTouchFromMouseEventRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Input.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun synthesizePinchGesture(input : SynthesizePinchGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Input.synthesizePinchGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun synthesizePinchGesture(input : SynthesizePinchGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Input.synthesizePinchGesture", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun synthesizePinchGestureTimed(input : SynthesizePinchGestureRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Input.synthesizePinchGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun synthesizeScrollGesture(input : SynthesizeScrollGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Input.synthesizeScrollGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun synthesizeScrollGesture(input : SynthesizeScrollGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Input.synthesizeScrollGesture", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun synthesizeScrollGestureTimed(input : SynthesizeScrollGestureRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Input.synthesizeScrollGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun synthesizeTapGesture(input : SynthesizeTapGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Input.synthesizeTapGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun synthesizeTapGesture(input : SynthesizeTapGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Input.synthesizeTapGesture", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun synthesizeTapGestureTimed(input : SynthesizeTapGestureRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Input.synthesizeTapGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
   
     /**
      * Returns flowable capturing all Input domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Input"
         }
     }

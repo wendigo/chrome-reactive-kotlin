@@ -8,75 +8,159 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
 	/**
 	 * Sets breakpoint on particular operation with DOM.
 	 */
-	  fun setDOMBreakpoint(input : SetDOMBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOMDebugger.setDOMBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setDOMBreakpoint(input : SetDOMBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.setDOMBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Sets breakpoint on particular operation with DOM.
+    */
+     fun setDOMBreakpointTimed(input : SetDOMBreakpointRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.setDOMBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Removes DOM breakpoint that was set using <code>setDOMBreakpoint</code>.
 	 */
-	  fun removeDOMBreakpoint(input : RemoveDOMBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeDOMBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun removeDOMBreakpoint(input : RemoveDOMBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeDOMBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Removes DOM breakpoint that was set using <code>setDOMBreakpoint</code>.
+    */
+     fun removeDOMBreakpointTimed(input : RemoveDOMBreakpointRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeDOMBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Sets breakpoint on particular DOM event.
 	 */
-	  fun setEventListenerBreakpoint(input : SetEventListenerBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOMDebugger.setEventListenerBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setEventListenerBreakpoint(input : SetEventListenerBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.setEventListenerBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Sets breakpoint on particular DOM event.
+    */
+     fun setEventListenerBreakpointTimed(input : SetEventListenerBreakpointRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.setEventListenerBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Removes breakpoint on particular DOM event.
 	 */
-	  fun removeEventListenerBreakpoint(input : RemoveEventListenerBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeEventListenerBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun removeEventListenerBreakpoint(input : RemoveEventListenerBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeEventListenerBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Removes breakpoint on particular DOM event.
+    */
+     fun removeEventListenerBreakpointTimed(input : RemoveEventListenerBreakpointRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeEventListenerBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Sets breakpoint on particular native event.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setInstrumentationBreakpoint(input : SetInstrumentationBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOMDebugger.setInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun setInstrumentationBreakpoint(input : SetInstrumentationBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.setInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Sets breakpoint on particular native event.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun setInstrumentationBreakpointTimed(input : SetInstrumentationBreakpointRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.setInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Removes breakpoint on particular native event.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun removeInstrumentationBreakpoint(input : RemoveInstrumentationBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun removeInstrumentationBreakpoint(input : RemoveInstrumentationBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Removes breakpoint on particular native event.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun removeInstrumentationBreakpointTimed(input : RemoveInstrumentationBreakpointRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Sets breakpoint on XMLHttpRequest.
 	 */
-	  fun setXHRBreakpoint(input : SetXHRBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOMDebugger.setXHRBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setXHRBreakpoint(input : SetXHRBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.setXHRBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Sets breakpoint on XMLHttpRequest.
+    */
+     fun setXHRBreakpointTimed(input : SetXHRBreakpointRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.setXHRBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Removes breakpoint from XMLHttpRequest.
 	 */
-	  fun removeXHRBreakpoint(input : RemoveXHRBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeXHRBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun removeXHRBreakpoint(input : RemoveXHRBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeXHRBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Removes breakpoint from XMLHttpRequest.
+    */
+     fun removeXHRBreakpointTimed(input : RemoveXHRBreakpointRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.removeXHRBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Returns event listeners of the given object.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getEventListeners(input : GetEventListenersRequest) : io.reactivex.Single<GetEventListenersResponse> {
-        return connectionRemote.runAndCaptureResponse("DOMDebugger.getEventListeners", input, GetEventListenersResponse::class.java)
+   fun getEventListeners(input : GetEventListenersRequest) : io.reactivex.Single<GetEventListenersResponse> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.getEventListeners", input, GetEventListenersResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns event listeners of the given object.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun getEventListenersTimed(input : GetEventListenersRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetEventListenersResponse>> {
+        return connectionRemote.runAndCaptureResponse("DOMDebugger.getEventListeners", input, GetEventListenersResponse::class.java)
+    }
 
   
     /**
      * Returns flowable capturing all DOMDebugger domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "DOMDebugger"
         }
     }

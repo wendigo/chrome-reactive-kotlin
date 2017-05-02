@@ -8,271 +8,605 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
 	/**
 	 * Enables network tracking, network events will now be delivered to the client.
 	 */
-	  fun enable(input : EnableRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.enable", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun enable(input : EnableRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.enable", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Enables network tracking, network events will now be delivered to the client.
+    */
+     fun enableTimed(input : EnableRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.enable", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Disables network tracking, prevents network events from being sent to the client.
 	 */
-	  fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Disables network tracking, prevents network events from being sent to the client.
+    */
+     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Allows overriding user agent with the given string.
 	 */
-	  fun setUserAgentOverride(input : SetUserAgentOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.setUserAgentOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setUserAgentOverride(input : SetUserAgentOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.setUserAgentOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Allows overriding user agent with the given string.
+    */
+     fun setUserAgentOverrideTimed(input : SetUserAgentOverrideRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.setUserAgentOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Specifies whether to always send extra HTTP headers with the requests from this page.
 	 */
-	  fun setExtraHTTPHeaders(input : SetExtraHTTPHeadersRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.setExtraHTTPHeaders", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setExtraHTTPHeaders(input : SetExtraHTTPHeadersRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.setExtraHTTPHeaders", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Specifies whether to always send extra HTTP headers with the requests from this page.
+    */
+     fun setExtraHTTPHeadersTimed(input : SetExtraHTTPHeadersRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.setExtraHTTPHeaders", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Returns content served for the given request.
 	 */
-	  fun getResponseBody(input : GetResponseBodyRequest) : io.reactivex.Single<GetResponseBodyResponse> {
-        return connectionRemote.runAndCaptureResponse("Network.getResponseBody", input, GetResponseBodyResponse::class.java)
+	 fun getResponseBody(input : GetResponseBodyRequest) : io.reactivex.Single<GetResponseBodyResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.getResponseBody", input, GetResponseBodyResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns content served for the given request.
+    */
+     fun getResponseBodyTimed(input : GetResponseBodyRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetResponseBodyResponse>> {
+        return connectionRemote.runAndCaptureResponse("Network.getResponseBody", input, GetResponseBodyResponse::class.java)
+    }
 
 	/**
 	 * Blocks URLs from loading.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setBlockedURLs(input : SetBlockedURLsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.setBlockedURLs", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun setBlockedURLs(input : SetBlockedURLsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.setBlockedURLs", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Blocks URLs from loading.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun setBlockedURLsTimed(input : SetBlockedURLsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.setBlockedURLs", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * This method sends a new XMLHttpRequest which is identical to the original one. The following parameters should be identical: method, url, async, request body, extra headers, withCredentials attribute, user, password.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun replayXHR(input : ReplayXHRRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.replayXHR", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun replayXHR(input : ReplayXHRRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.replayXHR", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * This method sends a new XMLHttpRequest which is identical to the original one. The following parameters should be identical: method, url, async, request body, extra headers, withCredentials attribute, user, password.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun replayXHRTimed(input : ReplayXHRRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.replayXHR", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Tells whether clearing browser cache is supported.
 	 */
-	  fun canClearBrowserCache() : io.reactivex.Single<CanClearBrowserCacheResponse> {
-        return connectionRemote.runAndCaptureResponse("Network.canClearBrowserCache", null, CanClearBrowserCacheResponse::class.java)
+	 fun canClearBrowserCache() : io.reactivex.Single<CanClearBrowserCacheResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.canClearBrowserCache", null, CanClearBrowserCacheResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Tells whether clearing browser cache is supported.
+    */
+     fun canClearBrowserCacheTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<CanClearBrowserCacheResponse>> {
+        return connectionRemote.runAndCaptureResponse("Network.canClearBrowserCache", null, CanClearBrowserCacheResponse::class.java)
+    }
 
 	/**
 	 * Clears browser cache.
 	 */
-	  fun clearBrowserCache() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.clearBrowserCache", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun clearBrowserCache() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.clearBrowserCache", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Clears browser cache.
+    */
+     fun clearBrowserCacheTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.clearBrowserCache", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Tells whether clearing browser cookies is supported.
 	 */
-	  fun canClearBrowserCookies() : io.reactivex.Single<CanClearBrowserCookiesResponse> {
-        return connectionRemote.runAndCaptureResponse("Network.canClearBrowserCookies", null, CanClearBrowserCookiesResponse::class.java)
+	 fun canClearBrowserCookies() : io.reactivex.Single<CanClearBrowserCookiesResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.canClearBrowserCookies", null, CanClearBrowserCookiesResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Tells whether clearing browser cookies is supported.
+    */
+     fun canClearBrowserCookiesTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<CanClearBrowserCookiesResponse>> {
+        return connectionRemote.runAndCaptureResponse("Network.canClearBrowserCookies", null, CanClearBrowserCookiesResponse::class.java)
+    }
 
 	/**
 	 * Clears browser cookies.
 	 */
-	  fun clearBrowserCookies() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.clearBrowserCookies", null, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun clearBrowserCookies() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.clearBrowserCookies", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Clears browser cookies.
+    */
+     fun clearBrowserCookiesTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.clearBrowserCookies", null, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Returns all browser cookies for the current URL. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getCookies(input : GetCookiesRequest) : io.reactivex.Single<GetCookiesResponse> {
-        return connectionRemote.runAndCaptureResponse("Network.getCookies", input, GetCookiesResponse::class.java)
+   fun getCookies(input : GetCookiesRequest) : io.reactivex.Single<GetCookiesResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.getCookies", input, GetCookiesResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns all browser cookies for the current URL. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun getCookiesTimed(input : GetCookiesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetCookiesResponse>> {
+        return connectionRemote.runAndCaptureResponse("Network.getCookies", input, GetCookiesResponse::class.java)
+    }
 
 	/**
 	 * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getAllCookies() : io.reactivex.Single<GetAllCookiesResponse> {
-        return connectionRemote.runAndCaptureResponse("Network.getAllCookies", null, GetAllCookiesResponse::class.java)
+   fun getAllCookies() : io.reactivex.Single<GetAllCookiesResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.getAllCookies", null, GetAllCookiesResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun getAllCookiesTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetAllCookiesResponse>> {
+        return connectionRemote.runAndCaptureResponse("Network.getAllCookies", null, GetAllCookiesResponse::class.java)
+    }
 
 	/**
 	 * Deletes browser cookie with given name, domain and path.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.deleteCookie", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.deleteCookie", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Deletes browser cookie with given name, domain and path.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun deleteCookieTimed(input : DeleteCookieRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.deleteCookie", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setCookie(input : SetCookieRequest) : io.reactivex.Single<SetCookieResponse> {
-        return connectionRemote.runAndCaptureResponse("Network.setCookie", input, SetCookieResponse::class.java)
+   fun setCookie(input : SetCookieRequest) : io.reactivex.Single<SetCookieResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.setCookie", input, SetCookieResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun setCookieTimed(input : SetCookieRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetCookieResponse>> {
+        return connectionRemote.runAndCaptureResponse("Network.setCookie", input, SetCookieResponse::class.java)
+    }
 
 	/**
 	 * Tells whether emulation of network conditions is supported.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun canEmulateNetworkConditions() : io.reactivex.Single<CanEmulateNetworkConditionsResponse> {
-        return connectionRemote.runAndCaptureResponse("Network.canEmulateNetworkConditions", null, CanEmulateNetworkConditionsResponse::class.java)
+   fun canEmulateNetworkConditions() : io.reactivex.Single<CanEmulateNetworkConditionsResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.canEmulateNetworkConditions", null, CanEmulateNetworkConditionsResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Tells whether emulation of network conditions is supported.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun canEmulateNetworkConditionsTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<CanEmulateNetworkConditionsResponse>> {
+        return connectionRemote.runAndCaptureResponse("Network.canEmulateNetworkConditions", null, CanEmulateNetworkConditionsResponse::class.java)
+    }
 
 	/**
 	 * Activates emulation of network conditions.
 	 */
-	  fun emulateNetworkConditions(input : EmulateNetworkConditionsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.emulateNetworkConditions", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun emulateNetworkConditions(input : EmulateNetworkConditionsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.emulateNetworkConditions", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Activates emulation of network conditions.
+    */
+     fun emulateNetworkConditionsTimed(input : EmulateNetworkConditionsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.emulateNetworkConditions", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Toggles ignoring cache for each request. If <code>true</code>, cache will not be used.
 	 */
-	  fun setCacheDisabled(input : SetCacheDisabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.setCacheDisabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setCacheDisabled(input : SetCacheDisabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.setCacheDisabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Toggles ignoring cache for each request. If <code>true</code>, cache will not be used.
+    */
+     fun setCacheDisabledTimed(input : SetCacheDisabledRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.setCacheDisabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Toggles ignoring of service worker for each request.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setBypassServiceWorker(input : SetBypassServiceWorkerRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.setBypassServiceWorker", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun setBypassServiceWorker(input : SetBypassServiceWorkerRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.setBypassServiceWorker", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Toggles ignoring of service worker for each request.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun setBypassServiceWorkerTimed(input : SetBypassServiceWorkerRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.setBypassServiceWorker", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * For testing.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun setDataSizeLimitsForTest(input : SetDataSizeLimitsForTestRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.setDataSizeLimitsForTest", input, pl.wendigo.chrome.ResponseFrame::class.java)
+   fun setDataSizeLimitsForTest(input : SetDataSizeLimitsForTestRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.setDataSizeLimitsForTest", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * For testing.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun setDataSizeLimitsForTestTimed(input : SetDataSizeLimitsForTestRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.setDataSizeLimitsForTest", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Returns the DER-encoded certificate.
 	 */
 	@pl.wendigo.chrome.Experimental
-    fun getCertificate(input : GetCertificateRequest) : io.reactivex.Single<GetCertificateResponse> {
-        return connectionRemote.runAndCaptureResponse("Network.getCertificate", input, GetCertificateResponse::class.java)
+   fun getCertificate(input : GetCertificateRequest) : io.reactivex.Single<GetCertificateResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.getCertificate", input, GetCertificateResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Returns the DER-encoded certificate.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun getCertificateTimed(input : GetCertificateRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetCertificateResponse>> {
+        return connectionRemote.runAndCaptureResponse("Network.getCertificate", input, GetCertificateResponse::class.java)
+    }
 
   
     /**
      * Fired when resource loading priority is changed
      */
     fun resourceChangedPriority() : io.reactivex.Flowable<ResourceChangedPriorityEvent> {
-        return connectionRemote.captureEvents("Network.resourceChangedPriority", ResourceChangedPriorityEvent::class.java)
+        return resourceChangedPriorityTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when resource loading priority is changed
+     */
+     fun resourceChangedPriorityTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ResourceChangedPriorityEvent>> {
+        return connectionRemote.captureEvents("Network.resourceChangedPriority", ResourceChangedPriorityEvent::class.java)
+     }
 
     /**
      * Fired when page is about to send HTTP request.
      */
     fun requestWillBeSent() : io.reactivex.Flowable<RequestWillBeSentEvent> {
-        return connectionRemote.captureEvents("Network.requestWillBeSent", RequestWillBeSentEvent::class.java)
+        return requestWillBeSentTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when page is about to send HTTP request.
+     */
+     fun requestWillBeSentTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<RequestWillBeSentEvent>> {
+        return connectionRemote.captureEvents("Network.requestWillBeSent", RequestWillBeSentEvent::class.java)
+     }
 
     /**
      * Fired if request ended up loading from cache.
      */
     fun requestServedFromCache() : io.reactivex.Flowable<RequestServedFromCacheEvent> {
-        return connectionRemote.captureEvents("Network.requestServedFromCache", RequestServedFromCacheEvent::class.java)
+        return requestServedFromCacheTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired if request ended up loading from cache.
+     */
+     fun requestServedFromCacheTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<RequestServedFromCacheEvent>> {
+        return connectionRemote.captureEvents("Network.requestServedFromCache", RequestServedFromCacheEvent::class.java)
+     }
 
     /**
      * Fired when HTTP response is available.
      */
     fun responseReceived() : io.reactivex.Flowable<ResponseReceivedEvent> {
-        return connectionRemote.captureEvents("Network.responseReceived", ResponseReceivedEvent::class.java)
+        return responseReceivedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when HTTP response is available.
+     */
+     fun responseReceivedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ResponseReceivedEvent>> {
+        return connectionRemote.captureEvents("Network.responseReceived", ResponseReceivedEvent::class.java)
+     }
 
     /**
      * Fired when data chunk was received over the network.
      */
     fun dataReceived() : io.reactivex.Flowable<DataReceivedEvent> {
-        return connectionRemote.captureEvents("Network.dataReceived", DataReceivedEvent::class.java)
+        return dataReceivedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when data chunk was received over the network.
+     */
+     fun dataReceivedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DataReceivedEvent>> {
+        return connectionRemote.captureEvents("Network.dataReceived", DataReceivedEvent::class.java)
+     }
 
     /**
      * Fired when HTTP request has finished loading.
      */
     fun loadingFinished() : io.reactivex.Flowable<LoadingFinishedEvent> {
-        return connectionRemote.captureEvents("Network.loadingFinished", LoadingFinishedEvent::class.java)
+        return loadingFinishedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when HTTP request has finished loading.
+     */
+     fun loadingFinishedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LoadingFinishedEvent>> {
+        return connectionRemote.captureEvents("Network.loadingFinished", LoadingFinishedEvent::class.java)
+     }
 
     /**
      * Fired when HTTP request has failed to load.
      */
     fun loadingFailed() : io.reactivex.Flowable<LoadingFailedEvent> {
-        return connectionRemote.captureEvents("Network.loadingFailed", LoadingFailedEvent::class.java)
+        return loadingFailedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when HTTP request has failed to load.
+     */
+     fun loadingFailedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LoadingFailedEvent>> {
+        return connectionRemote.captureEvents("Network.loadingFailed", LoadingFailedEvent::class.java)
+     }
 
     /**
      * Fired when WebSocket is about to initiate handshake.
      */
     fun webSocketWillSendHandshakeRequest() : io.reactivex.Flowable<WebSocketWillSendHandshakeRequestEvent> {
-        return connectionRemote.captureEvents("Network.webSocketWillSendHandshakeRequest", WebSocketWillSendHandshakeRequestEvent::class.java)
+        return webSocketWillSendHandshakeRequestTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when WebSocket is about to initiate handshake.
+     */
+     fun webSocketWillSendHandshakeRequestTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WebSocketWillSendHandshakeRequestEvent>> {
+        return connectionRemote.captureEvents("Network.webSocketWillSendHandshakeRequest", WebSocketWillSendHandshakeRequestEvent::class.java)
+     }
 
     /**
      * Fired when WebSocket handshake response becomes available.
      */
     fun webSocketHandshakeResponseReceived() : io.reactivex.Flowable<WebSocketHandshakeResponseReceivedEvent> {
-        return connectionRemote.captureEvents("Network.webSocketHandshakeResponseReceived", WebSocketHandshakeResponseReceivedEvent::class.java)
+        return webSocketHandshakeResponseReceivedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when WebSocket handshake response becomes available.
+     */
+     fun webSocketHandshakeResponseReceivedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WebSocketHandshakeResponseReceivedEvent>> {
+        return connectionRemote.captureEvents("Network.webSocketHandshakeResponseReceived", WebSocketHandshakeResponseReceivedEvent::class.java)
+     }
 
     /**
      * Fired upon WebSocket creation.
      */
     fun webSocketCreated() : io.reactivex.Flowable<WebSocketCreatedEvent> {
-        return connectionRemote.captureEvents("Network.webSocketCreated", WebSocketCreatedEvent::class.java)
+        return webSocketCreatedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired upon WebSocket creation.
+     */
+     fun webSocketCreatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WebSocketCreatedEvent>> {
+        return connectionRemote.captureEvents("Network.webSocketCreated", WebSocketCreatedEvent::class.java)
+     }
 
     /**
      * Fired when WebSocket is closed.
      */
     fun webSocketClosed() : io.reactivex.Flowable<WebSocketClosedEvent> {
-        return connectionRemote.captureEvents("Network.webSocketClosed", WebSocketClosedEvent::class.java)
+        return webSocketClosedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when WebSocket is closed.
+     */
+     fun webSocketClosedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WebSocketClosedEvent>> {
+        return connectionRemote.captureEvents("Network.webSocketClosed", WebSocketClosedEvent::class.java)
+     }
 
     /**
      * Fired when WebSocket frame is received.
      */
     fun webSocketFrameReceived() : io.reactivex.Flowable<WebSocketFrameReceivedEvent> {
-        return connectionRemote.captureEvents("Network.webSocketFrameReceived", WebSocketFrameReceivedEvent::class.java)
+        return webSocketFrameReceivedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when WebSocket frame is received.
+     */
+     fun webSocketFrameReceivedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WebSocketFrameReceivedEvent>> {
+        return connectionRemote.captureEvents("Network.webSocketFrameReceived", WebSocketFrameReceivedEvent::class.java)
+     }
 
     /**
      * Fired when WebSocket frame error occurs.
      */
     fun webSocketFrameError() : io.reactivex.Flowable<WebSocketFrameErrorEvent> {
-        return connectionRemote.captureEvents("Network.webSocketFrameError", WebSocketFrameErrorEvent::class.java)
+        return webSocketFrameErrorTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when WebSocket frame error occurs.
+     */
+     fun webSocketFrameErrorTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WebSocketFrameErrorEvent>> {
+        return connectionRemote.captureEvents("Network.webSocketFrameError", WebSocketFrameErrorEvent::class.java)
+     }
 
     /**
      * Fired when WebSocket frame is sent.
      */
     fun webSocketFrameSent() : io.reactivex.Flowable<WebSocketFrameSentEvent> {
-        return connectionRemote.captureEvents("Network.webSocketFrameSent", WebSocketFrameSentEvent::class.java)
+        return webSocketFrameSentTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when WebSocket frame is sent.
+     */
+     fun webSocketFrameSentTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WebSocketFrameSentEvent>> {
+        return connectionRemote.captureEvents("Network.webSocketFrameSent", WebSocketFrameSentEvent::class.java)
+     }
 
     /**
      * Fired when EventSource message is received.
      */
     fun eventSourceMessageReceived() : io.reactivex.Flowable<EventSourceMessageReceivedEvent> {
-        return connectionRemote.captureEvents("Network.eventSourceMessageReceived", EventSourceMessageReceivedEvent::class.java)
+        return eventSourceMessageReceivedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Fired when EventSource message is received.
+     */
+     fun eventSourceMessageReceivedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<EventSourceMessageReceivedEvent>> {
+        return connectionRemote.captureEvents("Network.eventSourceMessageReceived", EventSourceMessageReceivedEvent::class.java)
+     }
 
     /**
      * Returns flowable capturing all Network domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Network"
         }
     }

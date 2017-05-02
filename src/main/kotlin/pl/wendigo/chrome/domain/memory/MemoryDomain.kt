@@ -8,30 +8,57 @@ package pl.wendigo.chrome.domain.memory
 	/**
 	 * 
 	 */
-	  fun getDOMCounters() : io.reactivex.Single<GetDOMCountersResponse> {
-        return connectionRemote.runAndCaptureResponse("Memory.getDOMCounters", null, GetDOMCountersResponse::class.java)
+	 fun getDOMCounters() : io.reactivex.Single<GetDOMCountersResponse> {
+        return connectionRemote.runAndCaptureResponse("Memory.getDOMCounters", null, GetDOMCountersResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * 
+    */
+     fun getDOMCountersTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetDOMCountersResponse>> {
+        return connectionRemote.runAndCaptureResponse("Memory.getDOMCounters", null, GetDOMCountersResponse::class.java)
+    }
 
 	/**
 	 * Enable/disable suppressing memory pressure notifications in all processes.
 	 */
-	  fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Enable/disable suppressing memory pressure notifications in all processes.
+    */
+     fun setPressureNotificationsSuppressedTimed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Simulate a memory pressure notification in all processes.
 	 */
-	  fun simulatePressureNotification(input : SimulatePressureNotificationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun simulatePressureNotification(input : SimulatePressureNotificationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Simulate a memory pressure notification in all processes.
+    */
+     fun simulatePressureNotificationTimed(input : SimulatePressureNotificationRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
   
     /**
      * Returns flowable capturing all Memory domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Memory"
         }
     }

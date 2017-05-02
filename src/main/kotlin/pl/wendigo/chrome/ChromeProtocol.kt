@@ -370,7 +370,9 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
      * Returns flowable capturing all events.
      */
     fun Events() : io.reactivex.Flowable<ProtocolEvent> {
-      return api.captureAllEvents()
+      return api.captureAllEvents().map {
+        it.value()
+      }
     }
 
     /**

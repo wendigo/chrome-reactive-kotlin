@@ -8,30 +8,57 @@ package pl.wendigo.chrome.domain.tethering
 	/**
 	 * Request browser port binding.
 	 */
-	  fun bind(input : BindRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun bind(input : BindRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Request browser port binding.
+    */
+     fun bindTimed(input : BindRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
 	/**
 	 * Request browser port unbinding.
 	 */
-	  fun unbind(input : UnbindRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun unbind(input : UnbindRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Request browser port unbinding.
+    */
+     fun unbindTimed(input : UnbindRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
   
     /**
      * Informs that port was successfully bound and got a specified connection id.
      */
     fun accepted() : io.reactivex.Flowable<AcceptedEvent> {
-        return connectionRemote.captureEvents("Tethering.accepted", AcceptedEvent::class.java)
+        return acceptedTimed().map {
+            it.value()
+        }
     }
+
+    /**
+     * Informs that port was successfully bound and got a specified connection id.
+     */
+     fun acceptedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AcceptedEvent>> {
+        return connectionRemote.captureEvents("Tethering.accepted", AcceptedEvent::class.java)
+     }
 
     /**
      * Returns flowable capturing all Tethering domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Tethering"
         }
     }

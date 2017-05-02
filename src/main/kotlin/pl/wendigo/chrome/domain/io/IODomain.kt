@@ -8,23 +8,41 @@ package pl.wendigo.chrome.domain.io
 	/**
 	 * Read a chunk of the stream
 	 */
-	  fun read(input : ReadRequest) : io.reactivex.Single<ReadResponse> {
-        return connectionRemote.runAndCaptureResponse("IO.read", input, ReadResponse::class.java)
+	 fun read(input : ReadRequest) : io.reactivex.Single<ReadResponse> {
+        return connectionRemote.runAndCaptureResponse("IO.read", input, ReadResponse::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Read a chunk of the stream
+    */
+     fun readTimed(input : ReadRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<ReadResponse>> {
+        return connectionRemote.runAndCaptureResponse("IO.read", input, ReadResponse::class.java)
+    }
 
 	/**
 	 * Close the stream, discard any temporary backing storage.
 	 */
-	  fun close(input : CloseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.ResponseFrame::class.java)
+	 fun close(input : CloseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
 	}
+
+    /**
+     * Close the stream, discard any temporary backing storage.
+    */
+     fun closeTimed(input : CloseRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
 
   
     /**
      * Returns flowable capturing all IO domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().filter {
+        return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "IO"
         }
     }

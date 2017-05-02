@@ -3,6 +3,7 @@ package pl.wendigo.chrome
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.schedulers.Timed
 import io.reactivex.subjects.Subject
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -48,10 +49,14 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     /**
      * Returns protocol response (if any).
      */
-    override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>) : Single<T> {
-        return messages
-            .filter { it.isResponse(requestFrame.id) }
-            .flatMapSingle { mapper.deserializeResponse(requestFrame, it, clazz) }
+    override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>) : Single<Timed<T>> {
+        return frames()
+            .filter { it.value().isResponse(requestFrame.id) }
+            .flatMapSingle { frame ->
+                mapper.deserializeResponse(requestFrame, frame.value(), clazz).map {
+                    Timed<T>(it, frame.time(), frame.unit())
+                }
+            }
             .subscribeOn(Schedulers.io())
             .take(1)
             .singleOrError()
@@ -71,15 +76,15 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     /**
      * Returns all event frames.
      */
-    override fun eventFrames() : Observable<ResponseFrame> {
-        return messages.filter(ResponseFrame::isEvent)
+    override fun eventFrames() : Observable<Timed<ResponseFrame>> {
+        return frames().filter { it.value().isEvent() }
     }
 
     /**
      * Returns all frames.
      */
-    override fun frames() : Observable<ResponseFrame> {
-        return messages
+    override fun frames() : Observable<Timed<ResponseFrame>> {
+        return messages.timestamp()
     }
 
     /**
