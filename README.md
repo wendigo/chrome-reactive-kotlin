@@ -12,7 +12,7 @@ For debugging purposes you can use my [chrome-protocol-proxy](https://github.com
 
 Add to your Kotlin or Java project (Gradle dependency): 
 
-```compile group: 'pl.wendigo', name: 'chrome-reactive-kotlin', version: '0.1.4'```
+```compile group: 'pl.wendigo', name: 'chrome-reactive-kotlin', version: '0.2.3'```
 
 # Example
 
