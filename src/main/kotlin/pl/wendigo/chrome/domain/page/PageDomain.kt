@@ -426,21 +426,21 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
 	/**
-	 * Print page as pdf.
+	 * Print page as PDF.
 	 */
 	@pl.wendigo.chrome.Experimental
-   fun printToPDF() : io.reactivex.Single<PrintToPDFResponse> {
-        return connectionRemote.runAndCaptureResponse("Page.printToPDF", null, PrintToPDFResponse::class.java).map {
+   fun printToPDF(input : PrintToPDFRequest) : io.reactivex.Single<PrintToPDFResponse> {
+        return connectionRemote.runAndCaptureResponse("Page.printToPDF", input, PrintToPDFResponse::class.java).map {
             it.value()
         }
 	}
 
     /**
-     * Print page as pdf.
+     * Print page as PDF.
     */
     @pl.wendigo.chrome.Experimental
-     fun printToPDFTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<PrintToPDFResponse>> {
-        return connectionRemote.runAndCaptureResponse("Page.printToPDF", null, PrintToPDFResponse::class.java)
+     fun printToPDFTimed(input : PrintToPDFRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<PrintToPDFResponse>> {
+        return connectionRemote.runAndCaptureResponse("Page.printToPDF", input, PrintToPDFResponse::class.java)
     }
 
 	/**
@@ -601,6 +601,24 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     @pl.wendigo.chrome.Experimental
      fun getLayoutMetricsTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetLayoutMetricsResponse>> {
         return connectionRemote.runAndCaptureResponse("Page.getLayoutMetrics", null, GetLayoutMetricsResponse::class.java)
+    }
+
+	/**
+	 * Creates an isolated world for the given frame.
+	 */
+	@pl.wendigo.chrome.Experimental
+   fun createIsolatedWorld(input : CreateIsolatedWorldRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Page.createIsolatedWorld", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+	}
+
+    /**
+     * Creates an isolated world for the given frame.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun createIsolatedWorldTimed(input : CreateIsolatedWorldRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Page.createIsolatedWorld", input, pl.wendigo.chrome.ResponseFrame::class.java)
     }
 
   
@@ -1359,11 +1377,73 @@ data class CaptureScreenshotResponse(
 
 )
 
+/**
+ * Represents requestFrame parameters that can be used with Page.printToPDF method call.
+ *
+ * Print page as PDF.
+ */
+data class PrintToPDFRequest (
+    /**
+     * Paper orientation. Defaults to false.
+     */
+    val landscape : Boolean? = null,
+
+    /**
+     * Display header and footer. Defaults to false.
+     */
+    val displayHeaderFooter : Boolean? = null,
+
+    /**
+     * Print background graphics. Defaults to false.
+     */
+    val printBackground : Boolean? = null,
+
+    /**
+     * Scale of the webpage rendering. Defaults to 1.
+     */
+    val scale : Double? = null,
+
+    /**
+     * Paper width in inches. Defaults to 8.5 inches.
+     */
+    val paperWidth : Double? = null,
+
+    /**
+     * Paper height in inches. Defaults to 11 inches.
+     */
+    val paperHeight : Double? = null,
+
+    /**
+     * Top margin in inches. Defaults to 1cm (~0.4 inches).
+     */
+    val marginTop : Double? = null,
+
+    /**
+     * Bottom margin in inches. Defaults to 1cm (~0.4 inches).
+     */
+    val marginBottom : Double? = null,
+
+    /**
+     * Left margin in inches. Defaults to 1cm (~0.4 inches).
+     */
+    val marginLeft : Double? = null,
+
+    /**
+     * Right margin in inches. Defaults to 1cm (~0.4 inches).
+     */
+    val marginRight : Double? = null,
+
+    /**
+     * Paper ranges to print, e.g., '1-5, 8, 11-13'. Defaults to the empty string, which means print all pages.
+     */
+    val pageRanges : String? = null
+
+)
 
 /**
  * Represents responseFrame from Page. method call.
  *
- * Print page as pdf.
+ * Print page as PDF.
  */
 data class PrintToPDFResponse(
   /**
@@ -1524,6 +1604,30 @@ data class GetLayoutMetricsResponse(
   val contentSize : pl.wendigo.chrome.domain.dom.Rect
 
 )
+
+/**
+ * Represents requestFrame parameters that can be used with Page.createIsolatedWorld method call.
+ *
+ * Creates an isolated world for the given frame.
+ */
+data class CreateIsolatedWorldRequest (
+    /**
+     * Id of the frame in which the isolated world should be created.
+     */
+    val frameId : FrameId,
+
+    /**
+     * An optional name which is reported in the Execution Context.
+     */
+    val worldName : String? = null,
+
+    /**
+     * Whether or not universal access should be granted to the isolated world. This is a powerful option, use with caution.
+     */
+    val grantUniveralAccess : Boolean? = null
+
+)
+
 
 /**
  * Represents responseFrame from Page. method call.
