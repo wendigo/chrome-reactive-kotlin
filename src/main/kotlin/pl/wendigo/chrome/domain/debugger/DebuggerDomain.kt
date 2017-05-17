@@ -683,7 +683,12 @@ data class ContinueToLocationRequest (
     /**
      * Location to continue to.
      */
-    val location : Location
+    val location : Location,
+
+    /**
+     * 
+     */
+    @pl.wendigo.chrome.Experimental val targetCallFrames : String? = null
 
 )
 
