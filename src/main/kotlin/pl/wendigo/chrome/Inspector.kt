@@ -76,9 +76,9 @@ class Inspector(
             client.newCall(it).execute()
         }.flatMap {
             if (it.isSuccessful) {
-                Single.just(it.body().string())
+                Single.just(it.body()?.string() ?: "")
             } else {
-                Single.error(InspectorCommandFailed(it.body().string()))
+                Single.error(InspectorCommandFailed(it.body()?.string() ?: ""))
             }
         }
     }

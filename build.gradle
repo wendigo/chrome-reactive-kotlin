@@ -1,24 +1,24 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.2-2'
-        dokka_version = '0.9.13'
-
+		kotlinVersion = '1.1.2-4'
+	        dokka_version = '0.9.13'
 	}
+	
 	repositories {
 		mavenCentral()
-        jcenter()
-    }
+        	jcenter()
+    	}
 
-    dependencies {
-        classpath group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin', version: kotlinVersion
-        classpath group: 'org.jetbrains.kotlin', name: 'kotlin-allopen', version: kotlinVersion
-        classpath group: 'org.jetbrains.kotlin', name: 'kotlin-noarg', version: kotlinVersion
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
+    	dependencies {
+        	classpath group: 'org.jetbrains.kotlin', name: 'kotlin-gradle-plugin', version: kotlinVersion
+        	classpath group: 'org.jetbrains.kotlin', name: 'kotlin-allopen', version: kotlinVersion
+        	classpath group: 'org.jetbrains.kotlin', name: 'kotlin-noarg', version: kotlinVersion
+        	classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
 
-        classpath 'pl.allegro.tech.build:axion-release-plugin:1.5.0'
-        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
-        classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3'
-    }
+        	classpath 'pl.allegro.tech.build:axion-release-plugin:1.5.0'
+        	classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+        	classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3'
+    	}
 }
 
 apply plugin: 'kotlin'
@@ -62,7 +62,7 @@ repositories {
 dependencies {
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.8.7'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.7'
-    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.7.0'
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.8.0'
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlinVersion
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: kotlinVersion
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-runtime', version: kotlinVersion
