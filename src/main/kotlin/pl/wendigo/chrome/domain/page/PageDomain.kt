@@ -994,7 +994,12 @@ data class NavigateRequest (
     /**
      * Referrer URL.
      */
-    @pl.wendigo.chrome.Experimental val referrer : String? = null
+    @pl.wendigo.chrome.Experimental val referrer : String? = null,
+
+    /**
+     * Intended transition type.
+     */
+    @pl.wendigo.chrome.Experimental val transitionType : TransitionType? = null
 
 )
 
@@ -1358,7 +1363,7 @@ data class CaptureScreenshotRequest (
     val quality : Int? = null,
 
     /**
-     * Capture the screenshot from the surface, rather than the view. Defaults to false.
+     * Capture the screenshot from the surface, rather than the view. Defaults to true.
      */
     @pl.wendigo.chrome.Experimental val fromSurface : Boolean? = null
 

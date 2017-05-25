@@ -135,6 +135,24 @@ data class FrameResourceTree(
 typealias ScriptIdentifier = String
 
 /**
+ * Transition type.
+ */
+enum class TransitionType {
+    @com.fasterxml.jackson.annotation.JsonProperty("link") LINK,
+    @com.fasterxml.jackson.annotation.JsonProperty("typed") TYPED,
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_bookmark") AUTO_BOOKMARK,
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_subframe") AUTO_SUBFRAME,
+    @com.fasterxml.jackson.annotation.JsonProperty("manual_subframe") MANUAL_SUBFRAME,
+    @com.fasterxml.jackson.annotation.JsonProperty("generated") GENERATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_toplevel") AUTO_TOPLEVEL,
+    @com.fasterxml.jackson.annotation.JsonProperty("form_submit") FORM_SUBMIT,
+    @com.fasterxml.jackson.annotation.JsonProperty("reload") RELOAD,
+    @com.fasterxml.jackson.annotation.JsonProperty("keyword") KEYWORD,
+    @com.fasterxml.jackson.annotation.JsonProperty("keyword_generated") KEYWORD_GENERATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("other") OTHER;
+}
+
+/**
  * Navigation history entry.
  */
 
@@ -150,9 +168,19 @@ data class NavigationEntry(
   val url : String,
 
   /**
+   * URL that the user typed in the url bar.
+   */
+  val userTypedURL : String,
+
+  /**
    * Title of the navigation history entry.
    */
-  val title : String
+  val title : String,
+
+  /**
+   * Transition type.
+   */
+  val transitionType : TransitionType
 )
 
 /**

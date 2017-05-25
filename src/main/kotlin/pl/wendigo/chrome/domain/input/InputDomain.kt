@@ -6,6 +6,22 @@ package pl.wendigo.chrome.domain.input
 class InputDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
 
 	/**
+	 * Ignores input events (useful while auditing page).
+	 */
+	 fun setIgnoreInputEvents(input : SetIgnoreInputEventsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Input.setIgnoreInputEvents", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+	}
+
+    /**
+     * Ignores input events (useful while auditing page).
+    */
+     fun setIgnoreInputEventsTimed(input : SetIgnoreInputEventsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Input.setIgnoreInputEvents", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
+
+	/**
 	 * Dispatches a key event to the page.
 	 */
 	 fun dispatchKeyEvent(input : DispatchKeyEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -137,6 +153,20 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
         }
     }
 }
+/**
+ * Represents requestFrame parameters that can be used with Input.setIgnoreInputEvents method call.
+ *
+ * Ignores input events (useful while auditing page).
+ */
+data class SetIgnoreInputEventsRequest (
+    /**
+     * Ignores input events processing when set to true.
+     */
+    val ignore : Boolean
+
+)
+
+
 /**
  * Represents requestFrame parameters that can be used with Input.dispatchKeyEvent method call.
  *
