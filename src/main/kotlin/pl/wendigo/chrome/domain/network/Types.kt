@@ -13,6 +13,30 @@ typealias LoaderId = String
 typealias RequestId = String
 
 /**
+ * Unique intercepted request identifier.
+ */
+
+typealias InterceptionId = String
+
+/**
+ * Network level fetch failure reason.
+ */
+enum class ErrorReason {
+    @com.fasterxml.jackson.annotation.JsonProperty("Failed") FAILED,
+    @com.fasterxml.jackson.annotation.JsonProperty("Aborted") ABORTED,
+    @com.fasterxml.jackson.annotation.JsonProperty("TimedOut") TIMEDOUT,
+    @com.fasterxml.jackson.annotation.JsonProperty("AccessDenied") ACCESSDENIED,
+    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionClosed") CONNECTIONCLOSED,
+    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionReset") CONNECTIONRESET,
+    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionRefused") CONNECTIONREFUSED,
+    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionAborted") CONNECTIONABORTED,
+    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionFailed") CONNECTIONFAILED,
+    @com.fasterxml.jackson.annotation.JsonProperty("NameNotResolved") NAMENOTRESOLVED,
+    @com.fasterxml.jackson.annotation.JsonProperty("InternetDisconnected") INTERNETDISCONNECTED,
+    @com.fasterxml.jackson.annotation.JsonProperty("AddressUnreachable") ADDRESSUNREACHABLE;
+}
+
+/**
  * Number of seconds since epoch.
  */
 

@@ -361,6 +361,42 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
         return connectionRemote.runAndCaptureResponse("Network.getCertificate", input, GetCertificateResponse::class.java)
     }
 
+	/**
+	 * 
+	 */
+	@pl.wendigo.chrome.Experimental
+   fun enableRequestInterception(input : EnableRequestInterceptionRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.enableRequestInterception", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+	}
+
+    /**
+     * 
+    */
+    @pl.wendigo.chrome.Experimental
+     fun enableRequestInterceptionTimed(input : EnableRequestInterceptionRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.enableRequestInterception", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
+
+	/**
+	 * Response to Network.requestIntercepted which either modifies the request to continue with any modifications, or blocks it, or completes it with the provided response bytes. If a network fetch occurs as a result which encounters a redirect an additional Network.requestIntercepted event will be sent with the same InterceptionId.
+	 */
+	@pl.wendigo.chrome.Experimental
+   fun continueInterceptedRequest(input : ContinueInterceptedRequestRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.continueInterceptedRequest", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+	}
+
+    /**
+     * Response to Network.requestIntercepted which either modifies the request to continue with any modifications, or blocks it, or completes it with the provided response bytes. If a network fetch occurs as a result which encounters a redirect an additional Network.requestIntercepted event will be sent with the same InterceptionId.
+    */
+    @pl.wendigo.chrome.Experimental
+     fun continueInterceptedRequestTimed(input : ContinueInterceptedRequestRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
+        return connectionRemote.runAndCaptureResponse("Network.continueInterceptedRequest", input, pl.wendigo.chrome.ResponseFrame::class.java)
+    }
+
   
     /**
      * Fired when resource loading priority is changed
@@ -600,6 +636,22 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
      */
      fun eventSourceMessageReceivedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<EventSourceMessageReceivedEvent>> {
         return connectionRemote.captureEvents("Network.eventSourceMessageReceived", EventSourceMessageReceivedEvent::class.java)
+     }
+
+    /**
+     * Details of an intercepted HTTP request, which must be either allowed, blocked, modified or mocked.
+     */
+    fun requestIntercepted() : io.reactivex.Flowable<RequestInterceptedEvent> {
+        return requestInterceptedTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Details of an intercepted HTTP request, which must be either allowed, blocked, modified or mocked.
+     */
+     fun requestInterceptedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<RequestInterceptedEvent>> {
+        return connectionRemote.captureEvents("Network.requestIntercepted", RequestInterceptedEvent::class.java)
      }
 
     /**
@@ -996,6 +1048,64 @@ data class GetCertificateResponse(
   val tableNames : Array<String>
 
 )
+
+/**
+ * Represents requestFrame parameters that can be used with Network.enableRequestInterception method call.
+ *
+ * 
+ */
+data class EnableRequestInterceptionRequest (
+    /**
+     * Whether or not HTTP requests should be intercepted and Network.requestIntercepted events sent.
+     */
+    val enabled : Boolean
+
+)
+
+
+/**
+ * Represents requestFrame parameters that can be used with Network.continueInterceptedRequest method call.
+ *
+ * Response to Network.requestIntercepted which either modifies the request to continue with any modifications, or blocks it, or completes it with the provided response bytes. If a network fetch occurs as a result which encounters a redirect an additional Network.requestIntercepted event will be sent with the same InterceptionId.
+ */
+data class ContinueInterceptedRequestRequest (
+    /**
+     * 
+     */
+    val interceptionId : InterceptionId,
+
+    /**
+     * If set this causes the request to fail with the given reason.
+     */
+    val errorReason : ErrorReason? = null,
+
+    /**
+     * If set the requests completes using with the provided base64 encoded raw response, including HTTP status line and headers etc...
+     */
+    val rawResponse : String? = null,
+
+    /**
+     * If set the request url will be modified in a way that's not observable by page.
+     */
+    val url : String? = null,
+
+    /**
+     * If set this allows the request method to be overridden.
+     */
+    val method : String? = null,
+
+    /**
+     * If set this allows postData to be set.
+     */
+    val postData : String? = null,
+
+    /**
+     * If set this allows the request headers to be changed.
+     */
+    val headers : Headers? = null
+
+)
+
 
 /**
  * Represents responseFrame from Network. method call.
@@ -1411,4 +1521,37 @@ data class EventSourceMessageReceivedEvent(
   val data : String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "eventSourceMessageReceived")
+
+/**
+ * Represents responseFrame from Network. method call.
+ *
+ * Details of an intercepted HTTP request, which must be either allowed, blocked, modified or mocked.
+ */
+data class RequestInterceptedEvent(
+  /**
+   * Each request the page makes will have a unique id, however if any redirects are encountered while processing that fetch, they will be reported with the same id as the original fetch.
+   */
+  val InterceptionId : InterceptionId,
+
+  /**
+   * 
+   */
+  val request : Request,
+
+  /**
+   * HTTP response headers, only sent if a redirect was intercepted.
+   */
+  val redirectHeaders : Headers? = null,
+
+  /**
+   * HTTP response code, only sent if a redirect was intercepted.
+   */
+  val redirectStatusCode : Int? = null,
+
+  /**
+   * Redirect location, only sent if a redirect was intercepted.
+   */
+  val redirectUrl : String? = null
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "requestIntercepted")
 
