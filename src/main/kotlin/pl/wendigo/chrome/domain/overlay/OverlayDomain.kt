@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.overlay
         }
 	}
 
-    /**
-     * Enables domain notifications.
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Disables domain notifications.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.overlay
             it.value()
         }
 	}
-
-    /**
-     * Disables domain notifications.
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Requests that backend shows paint rectangles
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.overlay
         }
 	}
 
-    /**
-     * Requests that backend shows paint rectangles
-    */
-     fun setShowPaintRectsTimed(input : SetShowPaintRectsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setShowPaintRects", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Requests that backend shows debug borders on layers
 	 */
@@ -61,13 +40,6 @@ package pl.wendigo.chrome.domain.overlay
             it.value()
         }
 	}
-
-    /**
-     * Requests that backend shows debug borders on layers
-    */
-     fun setShowDebugBordersTimed(input : SetShowDebugBordersRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setShowDebugBorders", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Requests that backend shows the FPS counter
@@ -78,13 +50,6 @@ package pl.wendigo.chrome.domain.overlay
         }
 	}
 
-    /**
-     * Requests that backend shows the FPS counter
-    */
-     fun setShowFPSCounterTimed(input : SetShowFPSCounterRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setShowFPSCounter", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Requests that backend shows scroll bottleneck rects
 	 */
@@ -93,13 +58,6 @@ package pl.wendigo.chrome.domain.overlay
             it.value()
         }
 	}
-
-    /**
-     * Requests that backend shows scroll bottleneck rects
-    */
-     fun setShowScrollBottleneckRectsTimed(input : SetShowScrollBottleneckRectsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setShowScrollBottleneckRects", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Paints viewport size upon main frame resize.
@@ -110,13 +68,6 @@ package pl.wendigo.chrome.domain.overlay
         }
 	}
 
-    /**
-     * Paints viewport size upon main frame resize.
-    */
-     fun setShowViewportSizeOnResizeTimed(input : SetShowViewportSizeOnResizeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setShowViewportSizeOnResize", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -125,13 +76,6 @@ package pl.wendigo.chrome.domain.overlay
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun setPausedInDebuggerMessageTimed(input : SetPausedInDebuggerMessageRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setPausedInDebuggerMessage", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -142,13 +86,6 @@ package pl.wendigo.chrome.domain.overlay
         }
 	}
 
-    /**
-     * 
-    */
-     fun setSuspendedTimed(input : SetSuspendedRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setSuspended", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
 	 */
@@ -157,13 +94,6 @@ package pl.wendigo.chrome.domain.overlay
             it.value()
         }
 	}
-
-    /**
-     * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
-    */
-     fun setInspectModeTimed(input : SetInspectModeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setInspectMode", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
@@ -174,13 +104,6 @@ package pl.wendigo.chrome.domain.overlay
         }
 	}
 
-    /**
-     * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
-    */
-     fun highlightRectTimed(input : HighlightRectRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.highlightRect", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
 	 */
@@ -189,13 +112,6 @@ package pl.wendigo.chrome.domain.overlay
             it.value()
         }
 	}
-
-    /**
-     * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
-    */
-     fun highlightQuadTimed(input : HighlightQuadRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.highlightQuad", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
@@ -206,13 +122,6 @@ package pl.wendigo.chrome.domain.overlay
         }
 	}
 
-    /**
-     * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
-    */
-     fun highlightNodeTimed(input : HighlightNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.highlightNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Highlights owner element of the frame with given id.
 	 */
@@ -221,13 +130,6 @@ package pl.wendigo.chrome.domain.overlay
             it.value()
         }
 	}
-
-    /**
-     * Highlights owner element of the frame with given id.
-    */
-     fun highlightFrameTimed(input : HighlightFrameRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.highlightFrame", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Hides any highlight.
@@ -238,13 +140,6 @@ package pl.wendigo.chrome.domain.overlay
         }
 	}
 
-    /**
-     * Hides any highlight.
-    */
-     fun hideHighlightTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.hideHighlight", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * For testing.
 	 */
@@ -253,13 +148,6 @@ package pl.wendigo.chrome.domain.overlay
             it.value()
         }
 	}
-
-    /**
-     * For testing.
-    */
-     fun getHighlightObjectForTestTimed(input : GetHighlightObjectForTestRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetHighlightObjectForTestResponse>> {
-        return connectionRemote.runAndCaptureResponse("Overlay.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java)
-    }
 
   
     /**

@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.systeminfo
         }
 	}
 
-    /**
-     * Returns information about the system.
-    */
-     fun getInfoTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetInfoResponse>> {
-        return connectionRemote.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java)
-    }
-
   
     /**
      * Returns flowable capturing all SystemInfo domains events.

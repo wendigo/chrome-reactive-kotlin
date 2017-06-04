@@ -14,13 +14,6 @@ class SchemaDomain internal constructor(private val connectionRemote : pl.wendig
         }
 	}
 
-    /**
-     * Returns supported domains.
-    */
-     fun getDomainsTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetDomainsResponse>> {
-        return connectionRemote.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java)
-    }
-
   
     /**
      * Returns flowable capturing all Schema domains events.

@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.tethering
         }
 	}
 
-    /**
-     * Request browser port binding.
-    */
-     fun bindTimed(input : BindRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Request browser port unbinding.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.tethering
             it.value()
         }
 	}
-
-    /**
-     * Request browser port unbinding.
-    */
-     fun unbindTimed(input : UnbindRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

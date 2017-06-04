@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.inspector
         }
 	}
 
-    /**
-     * Enables inspector domain notifications.
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Inspector.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Disables inspector domain notifications.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.inspector
             it.value()
         }
 	}
-
-    /**
-     * Disables inspector domain notifications.
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Inspector.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

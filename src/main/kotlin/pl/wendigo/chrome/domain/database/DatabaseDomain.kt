@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.database
         }
 	}
 
-    /**
-     * Enables database tracking, database events will now be delivered to the client.
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Disables database tracking, prevents database events from being sent to the client.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.database
             it.value()
         }
 	}
-
-    /**
-     * Disables database tracking, prevents database events from being sent to the client.
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Database.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.database
         }
 	}
 
-    /**
-     * 
-    */
-     fun getDatabaseTableNamesTimed(input : GetDatabaseTableNamesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetDatabaseTableNamesResponse>> {
-        return connectionRemote.runAndCaptureResponse("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -61,13 +40,6 @@ package pl.wendigo.chrome.domain.database
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun executeSQLTimed(input : ExecuteSQLRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<ExecuteSQLResponse>> {
-        return connectionRemote.runAndCaptureResponse("Database.executeSQL", input, ExecuteSQLResponse::class.java)
-    }
 
   
     /**

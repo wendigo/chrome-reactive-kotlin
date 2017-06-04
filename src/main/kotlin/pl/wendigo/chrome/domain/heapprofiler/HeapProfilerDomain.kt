@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.heapprofiler
         }
 	}
 
-    /**
-     * 
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.heapprofiler
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.heapprofiler
         }
 	}
 
-    /**
-     * 
-    */
-     fun startTrackingHeapObjectsTimed(input : StartTrackingHeapObjectsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.startTrackingHeapObjects", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -61,13 +40,6 @@ package pl.wendigo.chrome.domain.heapprofiler
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun stopTrackingHeapObjectsTimed(input : StopTrackingHeapObjectsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.stopTrackingHeapObjects", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -78,13 +50,6 @@ package pl.wendigo.chrome.domain.heapprofiler
         }
 	}
 
-    /**
-     * 
-    */
-     fun takeHeapSnapshotTimed(input : TakeHeapSnapshotRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.takeHeapSnapshot", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -93,13 +58,6 @@ package pl.wendigo.chrome.domain.heapprofiler
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun collectGarbageTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -110,13 +68,6 @@ package pl.wendigo.chrome.domain.heapprofiler
         }
 	}
 
-    /**
-     * 
-    */
-     fun getObjectByHeapObjectIdTimed(input : GetObjectByHeapObjectIdRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetObjectByHeapObjectIdResponse>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.getObjectByHeapObjectId", input, GetObjectByHeapObjectIdResponse::class.java)
-    }
-
 	/**
 	 * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
 	 */
@@ -125,13 +76,6 @@ package pl.wendigo.chrome.domain.heapprofiler
             it.value()
         }
 	}
-
-    /**
-     * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
-    */
-     fun addInspectedHeapObjectTimed(input : AddInspectedHeapObjectRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.addInspectedHeapObject", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -142,13 +86,6 @@ package pl.wendigo.chrome.domain.heapprofiler
         }
 	}
 
-    /**
-     * 
-    */
-     fun getHeapObjectIdTimed(input : GetHeapObjectIdRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetHeapObjectIdResponse>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.getHeapObjectId", input, GetHeapObjectIdResponse::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -158,13 +95,6 @@ package pl.wendigo.chrome.domain.heapprofiler
         }
 	}
 
-    /**
-     * 
-    */
-     fun startSamplingTimed(input : StartSamplingRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.startSampling", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -173,13 +103,6 @@ package pl.wendigo.chrome.domain.heapprofiler
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun stopSamplingTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<StopSamplingResponse>> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.stopSampling", null, StopSamplingResponse::class.java)
-    }
 
   
     /**

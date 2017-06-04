@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.storage
         }
 	}
 
-    /**
-     * Clears storage for origin.
-    */
-     fun clearDataForOriginTimed(input : ClearDataForOriginRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Storage.clearDataForOrigin", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
   
     /**
      * Returns flowable capturing all Storage domains events.

@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.target
         }
 	}
 
-    /**
-     * Controls whether to discover available targets and notify via <code>targetCreated/targetDestroyed</code> events.
-    */
-     fun setDiscoverTargetsTimed(input : SetDiscoverTargetsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Target.setDiscoverTargets", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Controls whether to automatically attach to new targets which are considered to be related to this one. When turned on, attaches to all existing related targets as well. When turned off, automatically detaches from all currently attached targets.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.target
             it.value()
         }
 	}
-
-    /**
-     * Controls whether to automatically attach to new targets which are considered to be related to this one. When turned on, attaches to all existing related targets as well. When turned off, automatically detaches from all currently attached targets.
-    */
-     fun setAutoAttachTimed(input : SetAutoAttachRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Target.setAutoAttach", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.target
         }
 	}
 
-    /**
-     * 
-    */
-     fun setAttachToFramesTimed(input : SetAttachToFramesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Target.setAttachToFrames", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Enables target discovery for the specified locations, when <code>setDiscoverTargets</code> was set to <code>true</code>.
 	 */
@@ -61,13 +40,6 @@ package pl.wendigo.chrome.domain.target
             it.value()
         }
 	}
-
-    /**
-     * Enables target discovery for the specified locations, when <code>setDiscoverTargets</code> was set to <code>true</code>.
-    */
-     fun setRemoteLocationsTimed(input : SetRemoteLocationsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Target.setRemoteLocations", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Sends protocol message to the target with given id.
@@ -78,13 +50,6 @@ package pl.wendigo.chrome.domain.target
         }
 	}
 
-    /**
-     * Sends protocol message to the target with given id.
-    */
-     fun sendMessageToTargetTimed(input : SendMessageToTargetRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Target.sendMessageToTarget", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Returns information about a target.
 	 */
@@ -93,13 +58,6 @@ package pl.wendigo.chrome.domain.target
             it.value()
         }
 	}
-
-    /**
-     * Returns information about a target.
-    */
-     fun getTargetInfoTimed(input : GetTargetInfoRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetTargetInfoResponse>> {
-        return connectionRemote.runAndCaptureResponse("Target.getTargetInfo", input, GetTargetInfoResponse::class.java)
-    }
 
 	/**
 	 * Activates (focuses) the target.
@@ -110,13 +68,6 @@ package pl.wendigo.chrome.domain.target
         }
 	}
 
-    /**
-     * Activates (focuses) the target.
-    */
-     fun activateTargetTimed(input : ActivateTargetRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Target.activateTarget", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Closes the target. If the target is a page that gets closed too.
 	 */
@@ -125,13 +76,6 @@ package pl.wendigo.chrome.domain.target
             it.value()
         }
 	}
-
-    /**
-     * Closes the target. If the target is a page that gets closed too.
-    */
-     fun closeTargetTimed(input : CloseTargetRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<CloseTargetResponse>> {
-        return connectionRemote.runAndCaptureResponse("Target.closeTarget", input, CloseTargetResponse::class.java)
-    }
 
 	/**
 	 * Attaches to the target with given id.
@@ -142,13 +86,6 @@ package pl.wendigo.chrome.domain.target
         }
 	}
 
-    /**
-     * Attaches to the target with given id.
-    */
-     fun attachToTargetTimed(input : AttachToTargetRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<AttachToTargetResponse>> {
-        return connectionRemote.runAndCaptureResponse("Target.attachToTarget", input, AttachToTargetResponse::class.java)
-    }
-
 	/**
 	 * Detaches from the target with given id.
 	 */
@@ -157,13 +94,6 @@ package pl.wendigo.chrome.domain.target
             it.value()
         }
 	}
-
-    /**
-     * Detaches from the target with given id.
-    */
-     fun detachFromTargetTimed(input : DetachFromTargetRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Target.detachFromTarget", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than one.
@@ -174,13 +104,6 @@ package pl.wendigo.chrome.domain.target
         }
 	}
 
-    /**
-     * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than one.
-    */
-     fun createBrowserContextTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<CreateBrowserContextResponse>> {
-        return connectionRemote.runAndCaptureResponse("Target.createBrowserContext", null, CreateBrowserContextResponse::class.java)
-    }
-
 	/**
 	 * Deletes a BrowserContext, will fail of any open page uses it.
 	 */
@@ -189,13 +112,6 @@ package pl.wendigo.chrome.domain.target
             it.value()
         }
 	}
-
-    /**
-     * Deletes a BrowserContext, will fail of any open page uses it.
-    */
-     fun disposeBrowserContextTimed(input : DisposeBrowserContextRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<DisposeBrowserContextResponse>> {
-        return connectionRemote.runAndCaptureResponse("Target.disposeBrowserContext", input, DisposeBrowserContextResponse::class.java)
-    }
 
 	/**
 	 * Creates a new page.
@@ -206,13 +122,6 @@ package pl.wendigo.chrome.domain.target
         }
 	}
 
-    /**
-     * Creates a new page.
-    */
-     fun createTargetTimed(input : CreateTargetRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<CreateTargetResponse>> {
-        return connectionRemote.runAndCaptureResponse("Target.createTarget", input, CreateTargetResponse::class.java)
-    }
-
 	/**
 	 * Retrieves a list of available targets.
 	 */
@@ -221,13 +130,6 @@ package pl.wendigo.chrome.domain.target
             it.value()
         }
 	}
-
-    /**
-     * Retrieves a list of available targets.
-    */
-     fun getTargetsTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetTargetsResponse>> {
-        return connectionRemote.runAndCaptureResponse("Target.getTargets", null, GetTargetsResponse::class.java)
-    }
 
   
     /**

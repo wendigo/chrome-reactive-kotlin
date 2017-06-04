@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.applicationcache
         }
 	}
 
-    /**
-     * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
-    */
-     fun getFramesWithManifestsTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetFramesWithManifestsResponse>> {
-        return connectionRemote.runAndCaptureResponse("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java)
-    }
-
 	/**
 	 * Enables application cache domain notifications.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.applicationcache
             it.value()
         }
 	}
-
-    /**
-     * Enables application cache domain notifications.
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ApplicationCache.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Returns manifest URL for document in the given frame.
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.applicationcache
         }
 	}
 
-    /**
-     * Returns manifest URL for document in the given frame.
-    */
-     fun getManifestForFrameTimed(input : GetManifestForFrameRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetManifestForFrameResponse>> {
-        return connectionRemote.runAndCaptureResponse("ApplicationCache.getManifestForFrame", input, GetManifestForFrameResponse::class.java)
-    }
-
 	/**
 	 * Returns relevant application cache data for the document in given frame.
 	 */
@@ -61,13 +40,6 @@ package pl.wendigo.chrome.domain.applicationcache
             it.value()
         }
 	}
-
-    /**
-     * Returns relevant application cache data for the document in given frame.
-    */
-     fun getApplicationCacheForFrameTimed(input : GetApplicationCacheForFrameRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetApplicationCacheForFrameResponse>> {
-        return connectionRemote.runAndCaptureResponse("ApplicationCache.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java)
-    }
 
   
     /**

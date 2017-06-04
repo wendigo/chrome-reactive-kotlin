@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.indexeddb
         }
 	}
 
-    /**
-     * Enables events from backend.
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Disables events from backend.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.indexeddb
             it.value()
         }
 	}
-
-    /**
-     * Disables events from backend.
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Requests database names for given security origin.
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.indexeddb
         }
 	}
 
-    /**
-     * Requests database names for given security origin.
-    */
-     fun requestDatabaseNamesTimed(input : RequestDatabaseNamesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<RequestDatabaseNamesResponse>> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java)
-    }
-
 	/**
 	 * Requests database with given name in given frame.
 	 */
@@ -61,13 +40,6 @@ package pl.wendigo.chrome.domain.indexeddb
             it.value()
         }
 	}
-
-    /**
-     * Requests database with given name in given frame.
-    */
-     fun requestDatabaseTimed(input : RequestDatabaseRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<RequestDatabaseResponse>> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java)
-    }
 
 	/**
 	 * Requests data from object store or index.
@@ -78,13 +50,6 @@ package pl.wendigo.chrome.domain.indexeddb
         }
 	}
 
-    /**
-     * Requests data from object store or index.
-    */
-     fun requestDataTimed(input : RequestDataRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<RequestDataResponse>> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.requestData", input, RequestDataResponse::class.java)
-    }
-
 	/**
 	 * Clears all entries from an object store.
 	 */
@@ -94,13 +59,6 @@ package pl.wendigo.chrome.domain.indexeddb
         }
 	}
 
-    /**
-     * Clears all entries from an object store.
-    */
-     fun clearObjectStoreTimed(input : ClearObjectStoreRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Deletes a database.
 	 */
@@ -109,13 +67,6 @@ package pl.wendigo.chrome.domain.indexeddb
             it.value()
         }
 	}
-
-    /**
-     * Deletes a database.
-    */
-     fun deleteDatabaseTimed(input : DeleteDatabaseRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

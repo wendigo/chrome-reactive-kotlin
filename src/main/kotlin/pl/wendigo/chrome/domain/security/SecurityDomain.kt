@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.security
         }
 	}
 
-    /**
-     * Enables tracking security state changes.
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Disables tracking security state changes.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.security
             it.value()
         }
 	}
-
-    /**
-     * Disables tracking security state changes.
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Displays native dialog with the certificate details.
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.security
         }
 	}
 
-    /**
-     * Displays native dialog with the certificate details.
-    */
-     fun showCertificateViewerTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Security.showCertificateViewer", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Handles a certificate error that fired a certificateError event.
 	 */
@@ -62,13 +41,6 @@ package pl.wendigo.chrome.domain.security
         }
 	}
 
-    /**
-     * Handles a certificate error that fired a certificateError event.
-    */
-     fun handleCertificateErrorTimed(input : HandleCertificateErrorRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Security.handleCertificateError", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Enable/disable overriding certificate errors. If enabled, all certificate error events need to be handled by the DevTools client and should be answered with handleCertificateError commands.
 	 */
@@ -77,13 +49,6 @@ package pl.wendigo.chrome.domain.security
             it.value()
         }
 	}
-
-    /**
-     * Enable/disable overriding certificate errors. If enabled, all certificate error events need to be handled by the DevTools client and should be answered with handleCertificateError commands.
-    */
-     fun setOverrideCertificateErrorsTimed(input : SetOverrideCertificateErrorsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Security.setOverrideCertificateErrors", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.domstorage
         }
 	}
 
-    /**
-     * Enables storage tracking, storage events will now be delivered to the client.
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("DOMStorage.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Disables storage tracking, prevents storage events from being sent to the client.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.domstorage
             it.value()
         }
 	}
-
-    /**
-     * Disables storage tracking, prevents storage events from being sent to the client.
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("DOMStorage.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.domstorage
         }
 	}
 
-    /**
-     * 
-    */
-     fun clearTimed(input : ClearRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("DOMStorage.clear", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -61,13 +40,6 @@ package pl.wendigo.chrome.domain.domstorage
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun getDOMStorageItemsTimed(input : GetDOMStorageItemsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetDOMStorageItemsResponse>> {
-        return connectionRemote.runAndCaptureResponse("DOMStorage.getDOMStorageItems", input, GetDOMStorageItemsResponse::class.java)
-    }
 
 	/**
 	 * 
@@ -78,13 +50,6 @@ package pl.wendigo.chrome.domain.domstorage
         }
 	}
 
-    /**
-     * 
-    */
-     fun setDOMStorageItemTimed(input : SetDOMStorageItemRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("DOMStorage.setDOMStorageItem", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -93,13 +58,6 @@ package pl.wendigo.chrome.domain.domstorage
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun removeDOMStorageItemTimed(input : RemoveDOMStorageItemRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("DOMStorage.removeDOMStorageItem", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

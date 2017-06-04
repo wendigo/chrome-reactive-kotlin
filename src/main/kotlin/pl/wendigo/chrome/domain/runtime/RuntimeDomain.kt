@@ -14,13 +14,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
         }
 	}
 
-    /**
-     * Evaluates expression on global object.
-    */
-     fun evaluateTimed(input : EvaluateRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<EvaluateResponse>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.evaluate", input, EvaluateResponse::class.java)
-    }
-
 	/**
 	 * Add handler to promise with given promise object id.
 	 */
@@ -29,13 +22,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
             it.value()
         }
 	}
-
-    /**
-     * Add handler to promise with given promise object id.
-    */
-     fun awaitPromiseTimed(input : AwaitPromiseRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<AwaitPromiseResponse>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.awaitPromise", input, AwaitPromiseResponse::class.java)
-    }
 
 	/**
 	 * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
@@ -46,13 +32,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
         }
 	}
 
-    /**
-     * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
-    */
-     fun callFunctionOnTimed(input : CallFunctionOnRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<CallFunctionOnResponse>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.callFunctionOn", input, CallFunctionOnResponse::class.java)
-    }
-
 	/**
 	 * Returns properties of a given object. Object group of the result is inherited from the target object.
 	 */
@@ -61,13 +40,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
             it.value()
         }
 	}
-
-    /**
-     * Returns properties of a given object. Object group of the result is inherited from the target object.
-    */
-     fun getPropertiesTimed(input : GetPropertiesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetPropertiesResponse>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.getProperties", input, GetPropertiesResponse::class.java)
-    }
 
 	/**
 	 * Releases remote object with given id.
@@ -78,13 +50,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
         }
 	}
 
-    /**
-     * Releases remote object with given id.
-    */
-     fun releaseObjectTimed(input : ReleaseObjectRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.releaseObject", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Releases all remote objects that belong to a given group.
 	 */
@@ -93,13 +58,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
             it.value()
         }
 	}
-
-    /**
-     * Releases all remote objects that belong to a given group.
-    */
-     fun releaseObjectGroupTimed(input : ReleaseObjectGroupRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Tells inspected instance to run if it was waiting for debugger to attach.
@@ -110,13 +68,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
         }
 	}
 
-    /**
-     * Tells inspected instance to run if it was waiting for debugger to attach.
-    */
-     fun runIfWaitingForDebuggerTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Enables reporting of execution contexts creation by means of <code>executionContextCreated</code> event. When the reporting gets enabled the event will be sent immediately for each existing execution context.
 	 */
@@ -125,13 +76,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
             it.value()
         }
 	}
-
-    /**
-     * Enables reporting of execution contexts creation by means of <code>executionContextCreated</code> event. When the reporting gets enabled the event will be sent immediately for each existing execution context.
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Disables reporting of execution contexts creation.
@@ -142,13 +86,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
         }
 	}
 
-    /**
-     * Disables reporting of execution contexts creation.
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Discards collected exceptions and console API calls.
 	 */
@@ -157,13 +94,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
             it.value()
         }
 	}
-
-    /**
-     * Discards collected exceptions and console API calls.
-    */
-     fun discardConsoleEntriesTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -175,14 +105,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
         }
 	}
 
-    /**
-     * 
-    */
-    @pl.wendigo.chrome.Experimental
-     fun setCustomObjectFormatterEnabledTimed(input : SetCustomObjectFormatterEnabledRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Compiles expression.
 	 */
@@ -192,13 +114,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
         }
 	}
 
-    /**
-     * Compiles expression.
-    */
-     fun compileScriptTimed(input : CompileScriptRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<CompileScriptResponse>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.compileScript", input, CompileScriptResponse::class.java)
-    }
-
 	/**
 	 * Runs script with given id in a given context.
 	 */
@@ -207,13 +122,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
             it.value()
         }
 	}
-
-    /**
-     * Runs script with given id in a given context.
-    */
-     fun runScriptTimed(input : RunScriptRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<RunScriptResponse>> {
-        return connectionRemote.runAndCaptureResponse("Runtime.runScript", input, RunScriptResponse::class.java)
-    }
 
   
     /**

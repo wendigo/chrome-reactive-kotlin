@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.log
         }
 	}
 
-    /**
-     * Enables log domain, sends the entries collected so far to the client by means of the <code>entryAdded</code> notification.
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Log.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Disables log domain, prevents further log entries from being reported to the client.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.log
             it.value()
         }
 	}
-
-    /**
-     * Disables log domain, prevents further log entries from being reported to the client.
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Log.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Clears the log.
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.log
         }
 	}
 
-    /**
-     * Clears the log.
-    */
-     fun clearTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Log.clear", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * start violation reporting.
 	 */
@@ -62,13 +41,6 @@ package pl.wendigo.chrome.domain.log
         }
 	}
 
-    /**
-     * start violation reporting.
-    */
-     fun startViolationsReportTimed(input : StartViolationsReportRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Log.startViolationsReport", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Stop violation reporting.
 	 */
@@ -77,13 +49,6 @@ package pl.wendigo.chrome.domain.log
             it.value()
         }
 	}
-
-    /**
-     * Stop violation reporting.
-    */
-     fun stopViolationsReportTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Log.stopViolationsReport", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

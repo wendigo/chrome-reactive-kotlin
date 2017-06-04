@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.deviceorientation
         }
 	}
 
-    /**
-     * Overrides the Device Orientation.
-    */
-     fun setDeviceOrientationOverrideTimed(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("DeviceOrientation.setDeviceOrientationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Clears the overridden Device Orientation.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.deviceorientation
             it.value()
         }
 	}
-
-    /**
-     * Clears the overridden Device Orientation.
-    */
-     fun clearDeviceOrientationOverrideTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("DeviceOrientation.clearDeviceOrientationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

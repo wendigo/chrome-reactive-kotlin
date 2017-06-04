@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.io
         }
 	}
 
-    /**
-     * Read a chunk of the stream
-    */
-     fun readTimed(input : ReadRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<ReadResponse>> {
-        return connectionRemote.runAndCaptureResponse("IO.read", input, ReadResponse::class.java)
-    }
-
 	/**
 	 * Close the stream, discard any temporary backing storage.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.io
             it.value()
         }
 	}
-
-    /**
-     * Close the stream, discard any temporary backing storage.
-    */
-     fun closeTimed(input : CloseRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

@@ -14,13 +14,6 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
         }
 	}
 
-    /**
-     * Ignores input events (useful while auditing page).
-    */
-     fun setIgnoreInputEventsTimed(input : SetIgnoreInputEventsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Input.setIgnoreInputEvents", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Dispatches a key event to the page.
 	 */
@@ -30,13 +23,6 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
         }
 	}
 
-    /**
-     * Dispatches a key event to the page.
-    */
-     fun dispatchKeyEventTimed(input : DispatchKeyEventRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Input.dispatchKeyEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Dispatches a mouse event to the page.
 	 */
@@ -45,13 +31,6 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
             it.value()
         }
 	}
-
-    /**
-     * Dispatches a mouse event to the page.
-    */
-     fun dispatchMouseEventTimed(input : DispatchMouseEventRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Input.dispatchMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Dispatches a touch event to the page.
@@ -63,14 +42,6 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
         }
 	}
 
-    /**
-     * Dispatches a touch event to the page.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun dispatchTouchEventTimed(input : DispatchTouchEventRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Input.dispatchTouchEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Emulates touch event from the mouse event parameters.
 	 */
@@ -80,14 +51,6 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
             it.value()
         }
 	}
-
-    /**
-     * Emulates touch event from the mouse event parameters.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun emulateTouchFromMouseEventTimed(input : EmulateTouchFromMouseEventRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Input.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
@@ -99,14 +62,6 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
         }
 	}
 
-    /**
-     * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun synthesizePinchGestureTimed(input : SynthesizePinchGestureRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Input.synthesizePinchGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
 	 */
@@ -117,14 +72,6 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
         }
 	}
 
-    /**
-     * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun synthesizeScrollGestureTimed(input : SynthesizeScrollGestureRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Input.synthesizeScrollGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
 	 */
@@ -134,14 +81,6 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
             it.value()
         }
 	}
-
-    /**
-     * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun synthesizeTapGestureTimed(input : SynthesizeTapGestureRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Input.synthesizeTapGesture", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

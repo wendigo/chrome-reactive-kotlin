@@ -14,13 +14,6 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
         }
 	}
 
-    /**
-     * 
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Profiler.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -29,13 +22,6 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Profiler.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
@@ -46,13 +32,6 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
         }
 	}
 
-    /**
-     * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
-    */
-     fun setSamplingIntervalTimed(input : SetSamplingIntervalRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Profiler.setSamplingInterval", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -62,13 +41,6 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
         }
 	}
 
-    /**
-     * 
-    */
-     fun startTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Profiler.start", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -77,13 +49,6 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun stopTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<StopResponse>> {
-        return connectionRemote.runAndCaptureResponse("Profiler.stop", null, StopResponse::class.java)
-    }
 
 	/**
 	 * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.
@@ -95,14 +60,6 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
         }
 	}
 
-    /**
-     * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun startPreciseCoverageTimed(input : StartPreciseCoverageRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Profiler.startPreciseCoverage", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Disable precise code coverage. Disabling releases unnecessary execution count records and allows executing optimized code.
 	 */
@@ -112,14 +69,6 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
             it.value()
         }
 	}
-
-    /**
-     * Disable precise code coverage. Disabling releases unnecessary execution count records and allows executing optimized code.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun stopPreciseCoverageTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Collect coverage data for the current isolate, and resets execution counters. Precise code coverage needs to have started.
@@ -131,14 +80,6 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
         }
 	}
 
-    /**
-     * Collect coverage data for the current isolate, and resets execution counters. Precise code coverage needs to have started.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun takePreciseCoverageTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<TakePreciseCoverageResponse>> {
-        return connectionRemote.runAndCaptureResponse("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse::class.java)
-    }
-
 	/**
 	 * Collect coverage data for the current isolate. The coverage data may be incomplete due to garbage collection.
 	 */
@@ -148,14 +89,6 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
             it.value()
         }
 	}
-
-    /**
-     * Collect coverage data for the current isolate. The coverage data may be incomplete due to garbage collection.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun getBestEffortCoverageTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetBestEffortCoverageResponse>> {
-        return connectionRemote.runAndCaptureResponse("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse::class.java)
-    }
 
   
     /**

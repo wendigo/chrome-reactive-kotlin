@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.cachestorage
         }
 	}
 
-    /**
-     * Requests cache names.
-    */
-     fun requestCacheNamesTimed(input : RequestCacheNamesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<RequestCacheNamesResponse>> {
-        return connectionRemote.runAndCaptureResponse("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java)
-    }
-
 	/**
 	 * Requests data from cache.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.cachestorage
             it.value()
         }
 	}
-
-    /**
-     * Requests data from cache.
-    */
-     fun requestEntriesTimed(input : RequestEntriesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<RequestEntriesResponse>> {
-        return connectionRemote.runAndCaptureResponse("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java)
-    }
 
 	/**
 	 * Deletes a cache.
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.cachestorage
         }
 	}
 
-    /**
-     * Deletes a cache.
-    */
-     fun deleteCacheTimed(input : DeleteCacheRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("CacheStorage.deleteCache", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Deletes a cache entry.
 	 */
@@ -61,13 +40,6 @@ package pl.wendigo.chrome.domain.cachestorage
             it.value()
         }
 	}
-
-    /**
-     * Deletes a cache entry.
-    */
-     fun deleteEntryTimed(input : DeleteEntryRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("CacheStorage.deleteEntry", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

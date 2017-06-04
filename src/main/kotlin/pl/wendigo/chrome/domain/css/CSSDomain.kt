@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been enabled until the result of this command is received.
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Disables the CSS agent for the given page.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.css
             it.value()
         }
 	}
-
-    /**
-     * Disables the CSS agent for the given page.
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("CSS.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Returns requested styles for a DOM node identified by <code>nodeId</code>.
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Returns requested styles for a DOM node identified by <code>nodeId</code>.
-    */
-     fun getMatchedStylesForNodeTimed(input : GetMatchedStylesForNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetMatchedStylesForNodeResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java)
-    }
-
 	/**
 	 * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.
 	 */
@@ -62,13 +41,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.
-    */
-     fun getInlineStylesForNodeTimed(input : GetInlineStylesForNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetInlineStylesForNodeResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java)
-    }
-
 	/**
 	 * Returns the computed style for a DOM node identified by <code>nodeId</code>.
 	 */
@@ -77,13 +49,6 @@ package pl.wendigo.chrome.domain.css
             it.value()
         }
 	}
-
-    /**
-     * Returns the computed style for a DOM node identified by <code>nodeId</code>.
-    */
-     fun getComputedStyleForNodeTimed(input : GetComputedStyleForNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetComputedStyleForNodeResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.getComputedStyleForNode", input, GetComputedStyleForNodeResponse::class.java)
-    }
 
 	/**
 	 * Requests information about platform fonts which we used to render child TextNodes in the given node.
@@ -95,14 +60,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Requests information about platform fonts which we used to render child TextNodes in the given node.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun getPlatformFontsForNodeTimed(input : GetPlatformFontsForNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetPlatformFontsForNodeResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java)
-    }
-
 	/**
 	 * Returns the current textual content and the URL for a stylesheet.
 	 */
@@ -111,13 +68,6 @@ package pl.wendigo.chrome.domain.css
             it.value()
         }
 	}
-
-    /**
-     * Returns the current textual content and the URL for a stylesheet.
-    */
-     fun getStyleSheetTextTimed(input : GetStyleSheetTextRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetStyleSheetTextResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java)
-    }
 
 	/**
 	 * Returns all class names from specified stylesheet.
@@ -129,14 +79,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Returns all class names from specified stylesheet.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun collectClassNamesTimed(input : CollectClassNamesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<CollectClassNamesResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java)
-    }
-
 	/**
 	 * Sets the new stylesheet text.
 	 */
@@ -145,13 +87,6 @@ package pl.wendigo.chrome.domain.css
             it.value()
         }
 	}
-
-    /**
-     * Sets the new stylesheet text.
-    */
-     fun setStyleSheetTextTimed(input : SetStyleSheetTextRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetStyleSheetTextResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java)
-    }
 
 	/**
 	 * Modifies the rule selector.
@@ -162,13 +97,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Modifies the rule selector.
-    */
-     fun setRuleSelectorTimed(input : SetRuleSelectorRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetRuleSelectorResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java)
-    }
-
 	/**
 	 * Modifies the keyframe rule key text.
 	 */
@@ -177,13 +105,6 @@ package pl.wendigo.chrome.domain.css
             it.value()
         }
 	}
-
-    /**
-     * Modifies the keyframe rule key text.
-    */
-     fun setKeyframeKeyTimed(input : SetKeyframeKeyRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetKeyframeKeyResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.setKeyframeKey", input, SetKeyframeKeyResponse::class.java)
-    }
 
 	/**
 	 * Applies specified style edits one after another in the given order.
@@ -194,13 +115,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Applies specified style edits one after another in the given order.
-    */
-     fun setStyleTextsTimed(input : SetStyleTextsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetStyleTextsResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java)
-    }
-
 	/**
 	 * Modifies the rule selector.
 	 */
@@ -209,13 +123,6 @@ package pl.wendigo.chrome.domain.css
             it.value()
         }
 	}
-
-    /**
-     * Modifies the rule selector.
-    */
-     fun setMediaTextTimed(input : SetMediaTextRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<SetMediaTextResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.setMediaText", input, SetMediaTextResponse::class.java)
-    }
 
 	/**
 	 * Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.
@@ -226,13 +133,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.
-    */
-     fun createStyleSheetTimed(input : CreateStyleSheetRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<CreateStyleSheetResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java)
-    }
-
 	/**
 	 * Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.
 	 */
@@ -242,13 +142,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.
-    */
-     fun addRuleTimed(input : AddRuleRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<AddRuleResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.addRule", input, AddRuleResponse::class.java)
-    }
-
 	/**
 	 * Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.
 	 */
@@ -257,13 +150,6 @@ package pl.wendigo.chrome.domain.css
             it.value()
         }
 	}
-
-    /**
-     * Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.
-    */
-     fun forcePseudoStateTimed(input : ForcePseudoStateRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Returns all media queries parsed by the rendering engine.
@@ -275,14 +161,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Returns all media queries parsed by the rendering engine.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun getMediaQueriesTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetMediaQueriesResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java)
-    }
-
 	/**
 	 * Find a rule with the given active property for the given node and set the new value for this property
 	 */
@@ -292,14 +170,6 @@ package pl.wendigo.chrome.domain.css
             it.value()
         }
 	}
-
-    /**
-     * Find a rule with the given active property for the given node and set the new value for this property
-    */
-    @pl.wendigo.chrome.Experimental
-     fun setEffectivePropertyValueForNodeTimed(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -311,14 +181,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * 
-    */
-    @pl.wendigo.chrome.Experimental
-     fun getBackgroundColorsTimed(input : GetBackgroundColorsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetBackgroundColorsResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java)
-    }
-
 	/**
 	 * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
 	 */
@@ -328,14 +190,6 @@ package pl.wendigo.chrome.domain.css
             it.value()
         }
 	}
-
-    /**
-     * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun getLayoutTreeAndStylesTimed(input : GetLayoutTreeAndStylesRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetLayoutTreeAndStylesResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.getLayoutTreeAndStyles", input, GetLayoutTreeAndStylesResponse::class.java)
-    }
 
 	/**
 	 * Enables the selector recording.
@@ -347,14 +201,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Enables the selector recording.
-    */
-    @pl.wendigo.chrome.Experimental
-     fun startRuleUsageTrackingTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)
 	 */
@@ -365,14 +211,6 @@ package pl.wendigo.chrome.domain.css
         }
 	}
 
-    /**
-     * Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)
-    */
-    @pl.wendigo.chrome.Experimental
-     fun takeCoverageDeltaTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<TakeCoverageDeltaResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java)
-    }
-
 	/**
 	 * The list of rules with an indication of whether these were used
 	 */
@@ -382,14 +220,6 @@ package pl.wendigo.chrome.domain.css
             it.value()
         }
 	}
-
-    /**
-     * The list of rules with an indication of whether these were used
-    */
-    @pl.wendigo.chrome.Experimental
-     fun stopRuleUsageTrackingTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<StopRuleUsageTrackingResponse>> {
-        return connectionRemote.runAndCaptureResponse("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java)
-    }
 
   
     /**

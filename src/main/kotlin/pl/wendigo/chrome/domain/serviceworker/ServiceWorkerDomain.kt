@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.serviceworker
         }
 	}
 
-    /**
-     * 
-    */
-     fun enableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.enable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.serviceworker
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun disableTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.disable", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.serviceworker
         }
 	}
 
-    /**
-     * 
-    */
-     fun unregisterTimed(input : UnregisterRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.unregister", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -61,13 +40,6 @@ package pl.wendigo.chrome.domain.serviceworker
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun updateRegistrationTimed(input : UpdateRegistrationRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.updateRegistration", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -78,13 +50,6 @@ package pl.wendigo.chrome.domain.serviceworker
         }
 	}
 
-    /**
-     * 
-    */
-     fun startWorkerTimed(input : StartWorkerRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.startWorker", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -93,13 +58,6 @@ package pl.wendigo.chrome.domain.serviceworker
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun skipWaitingTimed(input : SkipWaitingRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.skipWaiting", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -110,13 +68,6 @@ package pl.wendigo.chrome.domain.serviceworker
         }
 	}
 
-    /**
-     * 
-    */
-     fun stopWorkerTimed(input : StopWorkerRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.stopWorker", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -125,13 +76,6 @@ package pl.wendigo.chrome.domain.serviceworker
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun inspectWorkerTimed(input : InspectWorkerRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.inspectWorker", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * 
@@ -142,13 +86,6 @@ package pl.wendigo.chrome.domain.serviceworker
         }
 	}
 
-    /**
-     * 
-    */
-     fun setForceUpdateOnPageLoadTimed(input : SetForceUpdateOnPageLoadRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.setForceUpdateOnPageLoad", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -158,13 +95,6 @@ package pl.wendigo.chrome.domain.serviceworker
         }
 	}
 
-    /**
-     * 
-    */
-     fun deliverPushMessageTimed(input : DeliverPushMessageRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.deliverPushMessage", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * 
 	 */
@@ -173,13 +103,6 @@ package pl.wendigo.chrome.domain.serviceworker
             it.value()
         }
 	}
-
-    /**
-     * 
-    */
-     fun dispatchSyncEventTimed(input : DispatchSyncEventRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.dispatchSyncEvent", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**

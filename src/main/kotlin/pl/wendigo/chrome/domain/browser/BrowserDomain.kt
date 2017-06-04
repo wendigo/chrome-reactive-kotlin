@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.browser
         }
 	}
 
-    /**
-     * Get the browser window that contains the devtools target.
-    */
-     fun getWindowForTargetTimed(input : GetWindowForTargetRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetWindowForTargetResponse>> {
-        return connectionRemote.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java)
-    }
-
 	/**
 	 * Set position and/or size of the browser window.
 	 */
@@ -30,13 +23,6 @@ package pl.wendigo.chrome.domain.browser
         }
 	}
 
-    /**
-     * Set position and/or size of the browser window.
-    */
-     fun setWindowBoundsTimed(input : SetWindowBoundsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Get position and size of the browser window.
 	 */
@@ -45,13 +31,6 @@ package pl.wendigo.chrome.domain.browser
             it.value()
         }
 	}
-
-    /**
-     * Get position and size of the browser window.
-    */
-     fun getWindowBoundsTimed(input : GetWindowBoundsRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<GetWindowBoundsResponse>> {
-        return connectionRemote.runAndCaptureResponse("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java)
-    }
 
   
     /**

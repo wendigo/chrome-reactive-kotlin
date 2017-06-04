@@ -14,13 +14,6 @@ package pl.wendigo.chrome.domain.tracing
         }
 	}
 
-    /**
-     * Start trace events collection.
-    */
-     fun startTimed(input : StartRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
-
 	/**
 	 * Stop trace events collection.
 	 */
@@ -29,13 +22,6 @@ package pl.wendigo.chrome.domain.tracing
             it.value()
         }
 	}
-
-    /**
-     * Stop trace events collection.
-    */
-     fun endTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Tracing.end", null, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
 	/**
 	 * Gets supported tracing categories.
@@ -46,13 +32,6 @@ package pl.wendigo.chrome.domain.tracing
         }
 	}
 
-    /**
-     * Gets supported tracing categories.
-    */
-     fun getCategoriesTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<GetCategoriesResponse>> {
-        return connectionRemote.runAndCaptureResponse("Tracing.getCategories", null, GetCategoriesResponse::class.java)
-    }
-
 	/**
 	 * Request a global memory dump.
 	 */
@@ -62,13 +41,6 @@ package pl.wendigo.chrome.domain.tracing
         }
 	}
 
-    /**
-     * Request a global memory dump.
-    */
-     fun requestMemoryDumpTimed() : io.reactivex.Single<io.reactivex.schedulers.Timed<RequestMemoryDumpResponse>> {
-        return connectionRemote.runAndCaptureResponse("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java)
-    }
-
 	/**
 	 * Record a clock sync marker in the trace.
 	 */
@@ -77,13 +49,6 @@ package pl.wendigo.chrome.domain.tracing
             it.value()
         }
 	}
-
-    /**
-     * Record a clock sync marker in the trace.
-    */
-     fun recordClockSyncMarkerTimed(input : RecordClockSyncMarkerRequest) : io.reactivex.Single<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ResponseFrame>> {
-        return connectionRemote.runAndCaptureResponse("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.ResponseFrame::class.java)
-    }
 
   
     /**
