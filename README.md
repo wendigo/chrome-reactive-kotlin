@@ -2,17 +2,17 @@
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/pl.wendigo/chrome-reactive-kotlin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/pl.wendigo/chrome-reactive-kotlin)
 
-Chrome-reactive-kotlin is a low level [Chrome Debugging Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/) client written in [Kotlin](https://kotlinlang.org) and leveraging [RxJava2](https://github.com/ReactiveX/RxJava). 
+**chrome-reactive-kotlin** is a low level [Chrome DevTools Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/) client written in [Kotlin](https://kotlinlang.org) and leveraging [RxJava2](https://github.com/ReactiveX/RxJava) for easy composability. 
 
-Library exposes all protocol domains in a single, cohesive and highly composable fashion. It supports both headless and standalone Chrome versions and understands [BrowserContext](https://chromedevtools.github.io/debugger-protocol-viewer/tot/Target/) from Target domain.
+Library exposes all protocol domains in a single, cohesive and highly composable API. It supports both headless and standalone Chrome versions and understands [BrowserContext](https://chromedevtools.github.io/debugger-protocol-viewer/tot/Target/) from [Target]((https://chromedevtools.github.io/debugger-protocol-viewer/tot/Target/)) domain.
 
-For debugging purposes you can use my [chrome-protocol-proxy](https://github.com/wendigo/chrome-protocol-proxy).
+For debugging purposes you can use my other project: [chrome-protocol-proxy](https://github.com/wendigo/chrome-protocol-proxy).
 
 # Usage
 
 Add to your Kotlin or Java project (Gradle dependency): 
 
-```compile group: 'pl.wendigo', name: 'chrome-reactive-kotlin', version: '0.2.7'```
+```compile group: 'pl.wendigo', name: 'chrome-reactive-kotlin', version: '0.2.+'```
 
 # Example
 
