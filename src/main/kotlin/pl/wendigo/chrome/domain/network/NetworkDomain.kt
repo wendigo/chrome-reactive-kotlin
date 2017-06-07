@@ -1366,6 +1366,11 @@ data class RequestInterceptedEvent(
   val request : Request,
 
   /**
+   * How the requested resource will be used.
+   */
+  val resourceType : pl.wendigo.chrome.domain.page.ResourceType,
+
+  /**
    * HTTP response headers, only sent if a redirect was intercepted.
    */
   val redirectHeaders : Headers? = null,

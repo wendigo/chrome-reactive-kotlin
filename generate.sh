@@ -5,10 +5,12 @@ set -e
 
 browser="browser_protocol.json"
 js="js_protocol.json"
+version="master"
+
 trap "rm -f '$browser' '$js'" EXIT
 
 base='https://chromium.googlesource.com'
-curl -s "$base/chromium/src/+/master/third_party/WebKit/Source/core/inspector/browser_protocol.json?format=TEXT" | base64 --decode >"$browser"
+curl -s "$base/chromium/src/+/$version/third_party/WebKit/Source/core/inspector/browser_protocol.json?format=TEXT" | base64 --decode >"$browser"
 curl -s "$base/v8/v8/+/master/src/inspector/js_protocol.json?format=TEXT" | base64 --decode >"$js"
 node -p '
     const protocols = process.argv.slice(1).map((path) => JSON.parse(fs.readFileSync(path)));
