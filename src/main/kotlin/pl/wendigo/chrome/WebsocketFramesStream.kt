@@ -14,12 +14,12 @@ import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
 class WebsocketFramesStream : WebSocketListener, FramesStream {
-    private val messages: Subject<ResponseFrame>
+    private val messages: Subject<Timed<ResponseFrame>>
     private val mapper: FrameMapper
     private val connection: WebSocket
     private val client: OkHttpClient
 
-    constructor(uri: String, messages: Subject<ResponseFrame>, mapper: FrameMapper, client: OkHttpClient) : super() {
+    constructor(uri: String, messages: Subject<Timed<ResponseFrame>>, mapper: FrameMapper, client: OkHttpClient) : super() {
         this.messages = messages
         this.mapper = mapper
         this.client = client
@@ -30,7 +30,9 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
      * onMessage is called when new frame arrives on websocket.
      */
     override fun onMessage(webSocket: WebSocket?, text: String?) {
-        messages.onNext(mapper.deserialize(text!!, ResponseFrame::class.java))
+        messages.onNext(
+            Timed<ResponseFrame>(mapper.deserialize(text!!, ResponseFrame::class.java), System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+        )
     }
 
     /**
@@ -85,7 +87,7 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
      * Returns all frames.
      */
     override fun frames() : Observable<Timed<ResponseFrame>> {
-        return messages.timestamp(TimeUnit.NANOSECONDS)
+        return messages
     }
 
     /**
