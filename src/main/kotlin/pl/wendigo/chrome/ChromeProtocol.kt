@@ -221,6 +221,13 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
     }
 
     /**
+     * This domain facilitates obtaining document snapshots with DOM, layout, and style information.
+     */
+    val DOMSnapshot : pl.wendigo.chrome.domain.domsnapshot.DOMSnapshotDomain by lazy {
+        pl.wendigo.chrome.domain.domsnapshot.DOMSnapshotDomain(api)
+    }
+
+    /**
      * Input/Output operations for streams produced by DevTools.
      */
     val IO : pl.wendigo.chrome.domain.io.IODomain by lazy {
