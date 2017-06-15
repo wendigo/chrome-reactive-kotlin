@@ -182,16 +182,6 @@ package pl.wendigo.chrome.domain.css
 	}
 
 	/**
-	 * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getLayoutTreeAndStyles(input : GetLayoutTreeAndStylesRequest) : io.reactivex.Single<GetLayoutTreeAndStylesResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getLayoutTreeAndStyles", input, GetLayoutTreeAndStylesResponse::class.java).map {
-            it.value()
-        }
-	}
-
-	/**
 	 * Enables the selector recording.
 	 */
 	@pl.wendigo.chrome.Experimental
@@ -808,37 +798,6 @@ data class GetBackgroundColorsResponse(
    * The range of background colors behind this element, if it contains any visible text. If no visible text is present, this will be undefined. In the case of a flat background color, this will consist of simply that color. In the case of a gradient, this will consist of each of the color stops. For anything more complicated, this will be an empty array. Images will be ignored (as if the image had failed to load).
    */
   val backgroundColors : Array<String>? = null
-
-)
-
-/**
- * Represents requestFrame parameters that can be used with CSS.getLayoutTreeAndStyles method call.
- *
- * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
- */
-data class GetLayoutTreeAndStylesRequest (
-    /**
-     * Whitelist of computed styles to return.
-     */
-    val computedStyleWhitelist : Array<String>
-
-)
-
-/**
- * Represents responseFrame from CSS. method call.
- *
- * For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.
- */
-data class GetLayoutTreeAndStylesResponse(
-  /**
-   * 
-   */
-  val layoutTreeNodes : Array<LayoutTreeNode>,
-
-  /**
-   * 
-   */
-  val computedStyles : Array<ComputedStyle>
 
 )
 

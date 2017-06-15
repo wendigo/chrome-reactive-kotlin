@@ -2556,7 +2556,9 @@
                                 "no-referrer",
                                 "origin",
                                 "origin-when-cross-origin",
-                                "no-referrer-when-downgrade-origin-when-cross-origin"
+                                "same-origin",
+                                "strict-origin",
+                                "strict-origin-when-cross-origin"
                             ],
                             "description": "The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/"
                         },
@@ -3845,7 +3847,7 @@
                     "description": "Details of an intercepted HTTP request, which must be either allowed, blocked, modified or mocked.",
                     "parameters": [
                         {
-                            "name": "InterceptionId",
+                            "name": "interceptionId",
                             "$ref": "InterceptionId",
                             "description": "Each request the page makes will have a unique id, however if any redirects are encountered while processing that fetch, they will be reported with the same id as the original fetch."
                         },
@@ -4404,7 +4406,12 @@
                         {
                             "name": "response",
                             "type": "string",
-                            "description": "Response stataus text."
+                            "description": "Response status text."
+                        },
+                        {
+                            "name": "responseTime",
+                            "type": "number",
+                            "description": "Number of seconds since epoch."
                         }
                     ]
                 },
@@ -6827,60 +6834,6 @@
                     ],
                     "description": "Details of post layout rendered text positions. The exact layout should not be regarded as stable and may change between versions.",
                     "experimental": true
-                },
-                {
-                    "id": "LayoutTreeNode",
-                    "type": "object",
-                    "properties": [
-                        {
-                            "name": "nodeId",
-                            "$ref": "DOM.NodeId",
-                            "description": "The id of the related DOM node matching one from DOM.GetDocument."
-                        },
-                        {
-                            "name": "boundingBox",
-                            "$ref": "DOM.Rect",
-                            "description": "The absolute position bounding box."
-                        },
-                        {
-                            "name": "layoutText",
-                            "type": "string",
-                            "optional": true,
-                            "description": "Contents of the LayoutText if any"
-                        },
-                        {
-                            "name": "inlineTextNodes",
-                            "type": "array",
-                            "optional": true,
-                            "items": {
-                                "$ref": "InlineTextBox"
-                            },
-                            "description": "The post layout inline text nodes, if any."
-                        },
-                        {
-                            "name": "styleIndex",
-                            "type": "integer",
-                            "optional": true,
-                            "description": "Index into the computedStyles array returned by getLayoutTreeAndStyles."
-                        }
-                    ],
-                    "description": "Details of an element in the DOM tree with a LayoutObject.",
-                    "experimental": true
-                },
-                {
-                    "id": "ComputedStyle",
-                    "type": "object",
-                    "properties": [
-                        {
-                            "name": "properties",
-                            "type": "array",
-                            "items": {
-                                "$ref": "CSSComputedStyleProperty"
-                            }
-                        }
-                    ],
-                    "description": "A subset of the full ComputedStyle as defined by the request whitelist.",
-                    "experimental": true
                 }
             ],
             "commands": [
@@ -7300,37 +7253,6 @@
                             "optional": true
                         }
                     ],
-                    "experimental": true
-                },
-                {
-                    "name": "getLayoutTreeAndStyles",
-                    "parameters": [
-                        {
-                            "name": "computedStyleWhitelist",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            },
-                            "description": "Whitelist of computed styles to return."
-                        }
-                    ],
-                    "returns": [
-                        {
-                            "name": "layoutTreeNodes",
-                            "type": "array",
-                            "items": {
-                                "$ref": "LayoutTreeNode"
-                            }
-                        },
-                        {
-                            "name": "computedStyles",
-                            "type": "array",
-                            "items": {
-                                "$ref": "ComputedStyle"
-                            }
-                        }
-                    ],
-                    "description": "For the main document and any content documents, return the LayoutTreeNodes and a whitelisted subset of the computed style. It only returns pushed nodes, on way to pull all nodes is to call DOM.getDocument with a depth of -1.",
                     "experimental": true
                 },
                 {
@@ -11941,6 +11863,13 @@
                             "$ref": "StackTrace",
                             "optional": true,
                             "description": "Stack trace captured when the call was made."
+                        },
+                        {
+                            "name": "context",
+                            "type": "string",
+                            "optional": true,
+                            "experimental": true,
+                            "description": "Console context descriptor for calls on non-default console context (not console.*): 'anonymous#unique-logger-id' for call on unnamed context, 'name#unique-logger-id' for call on named context."
                         }
                     ]
                 },

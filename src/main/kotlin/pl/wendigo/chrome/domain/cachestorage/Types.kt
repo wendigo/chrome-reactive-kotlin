@@ -17,9 +17,14 @@ data class DataEntry(
   val request : String,
 
   /**
-   * Response stataus text.
+   * Response status text.
    */
-  val response : String
+  val response : String,
+
+  /**
+   * Number of seconds since epoch.
+   */
+  val responseTime : Double
 )
 
 /**

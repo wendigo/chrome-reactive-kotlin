@@ -1358,7 +1358,7 @@ data class RequestInterceptedEvent(
   /**
    * Each request the page makes will have a unique id, however if any redirects are encountered while processing that fetch, they will be reported with the same id as the original fetch.
    */
-  val InterceptionId : InterceptionId,
+  val interceptionId : InterceptionId,
 
   /**
    * 

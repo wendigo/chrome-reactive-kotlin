@@ -728,7 +728,12 @@ data class ConsoleAPICalledEvent(
   /**
    * Stack trace captured when the call was made.
    */
-  val stackTrace : StackTrace? = null
+  val stackTrace : StackTrace? = null,
+
+  /**
+   * Console context descriptor for calls on non-default console context (not console.*): 'anonymous#unique-logger-id' for call on unnamed context, 'name#unique-logger-id' for call on named context.
+   */
+  @pl.wendigo.chrome.Experimental val context : String? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "consoleAPICalled")
 
