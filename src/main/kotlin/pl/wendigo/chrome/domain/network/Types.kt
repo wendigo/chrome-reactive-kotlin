@@ -615,3 +615,50 @@ data class Cookie(
   val sameSite : CookieSameSite? = null
 )
 
+/**
+ * Authorization challenge for HTTP status code 401 or 407.
+ */
+
+data class AuthChallenge(
+  /**
+   * Source of the authentication challenge.
+   */
+  val source : String? = null,
+
+  /**
+   * Origin of the challenger.
+   */
+  val origin : String,
+
+  /**
+   * The authentication scheme used, such as basic or digest
+   */
+  val scheme : String,
+
+  /**
+   * The realm of the challenge. May be empty.
+   */
+  val realm : String
+)
+
+/**
+ * Response to an AuthChallenge.
+ */
+
+data class AuthChallengeResponse(
+  /**
+   * The decision on what to do in response to the authorization challenge.  Default means deferring to the default behavior of the net stack, which will likely either the Cancel authentication or display a popup dialog box.
+   */
+  val response : String,
+
+  /**
+   * The username to provide, possibly empty. Should only be set if response is ProvideCredentials.
+   */
+  val username : String? = null,
+
+  /**
+   * The password to provide, possibly empty. Should only be set if response is ProvideCredentials.
+   */
+  val password : String? = null
+)
+

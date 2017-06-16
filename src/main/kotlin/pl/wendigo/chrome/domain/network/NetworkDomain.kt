@@ -902,34 +902,39 @@ data class ContinueInterceptedRequestRequest (
     val interceptionId : InterceptionId,
 
     /**
-     * If set this causes the request to fail with the given reason.
+     * If set this causes the request to fail with the given reason. Must not be set in response to an authChallenge.
      */
     val errorReason : ErrorReason? = null,
 
     /**
-     * If set the requests completes using with the provided base64 encoded raw response, including HTTP status line and headers etc...
+     * If set the requests completes using with the provided base64 encoded raw response, including HTTP status line and headers etc... Must not be set in response to an authChallenge.
      */
     val rawResponse : String? = null,
 
     /**
-     * If set the request url will be modified in a way that's not observable by page.
+     * If set the request url will be modified in a way that's not observable by page. Must not be set in response to an authChallenge.
      */
     val url : String? = null,
 
     /**
-     * If set this allows the request method to be overridden.
+     * If set this allows the request method to be overridden. Must not be set in response to an authChallenge.
      */
     val method : String? = null,
 
     /**
-     * If set this allows postData to be set.
+     * If set this allows postData to be set. Must not be set in response to an authChallenge.
      */
     val postData : String? = null,
 
     /**
-     * If set this allows the request headers to be changed.
+     * If set this allows the request headers to be changed. Must not be set in response to an authChallenge.
      */
-    val headers : Headers? = null
+    val headers : Headers? = null,
+
+    /**
+     * Response to a requestIntercepted with an authChallenge. Must not be set otherwise.
+     */
+    val authChallengeResponse : AuthChallengeResponse? = null
 
 )
 
@@ -1356,7 +1361,7 @@ data class EventSourceMessageReceivedEvent(
  */
 data class RequestInterceptedEvent(
   /**
-   * Each request the page makes will have a unique id, however if any redirects are encountered while processing that fetch, they will be reported with the same id as the original fetch.
+   * Each request the page makes will have a unique id, however if any redirects are encountered while processing that fetch, they will be reported with the same id as the original fetch. Likewise if HTTP authentication is needed then the same fetch id will be used.
    */
   val interceptionId : InterceptionId,
 
@@ -1383,7 +1388,12 @@ data class RequestInterceptedEvent(
   /**
    * Redirect location, only sent if a redirect was intercepted.
    */
-  val redirectUrl : String? = null
+  val redirectUrl : String? = null,
+
+  /**
+   * Details of the Authorization Challenge encountered. If this is set then continueInterceptedRequest must contain an authChallengeResponse.
+   */
+  val authChallenge : AuthChallenge? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "requestIntercepted")
 
