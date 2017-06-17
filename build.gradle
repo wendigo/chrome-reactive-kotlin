@@ -51,8 +51,11 @@ configurations {
 }
 
 compileKotlin {
-    kotlinOptions.languageVersion = "1.1"
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions {
+        languageVersion = "1.1"
+        jvmTarget = "1.8"
+        verbose = true
+    }
 }
 
 repositories {
