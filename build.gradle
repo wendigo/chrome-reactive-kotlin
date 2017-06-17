@@ -50,10 +50,6 @@ configurations {
     ktlint
 }
 
-configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-}
-
 compileKotlin {
     kotlinOptions.languageVersion = "1.1"
     kotlinOptions.jvmTarget = "1.8"
@@ -82,8 +78,8 @@ dependencies {
 modifyPom {
     project {
         name 'Chrome Reactive'
-        description 'Chrome Reactive - low level, remote chrome debugger protocol client'
-        url 'https://serafin.tech'
+        description 'Chrome Reactive - low level, remote chrome debugger protocol client (DevTools)'
+        url 'https://github.com/wendigo/chrome-reactive-kotlin'
         inceptionYear '2017'
 
         scm {
@@ -132,13 +128,13 @@ test {
 task ktlint(type: JavaExec) {
     main = "com.github.shyiko.ktlint.Main"
     classpath = configurations.ktlint
-    args "src/**/*.kt"
+    args = ["src/**/*.kt"]
 }
 
 task ktlintFormat(type: JavaExec) {
     main = "com.github.shyiko.ktlint.Main"
     classpath = configurations.ktlint
-    args "-F", "src/**/*.kt"
+    args = ["-F", "src/**/*.kt"]
 }
 
 dokka {
