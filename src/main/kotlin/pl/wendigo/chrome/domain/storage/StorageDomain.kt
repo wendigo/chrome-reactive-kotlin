@@ -14,6 +14,15 @@ package pl.wendigo.chrome.domain.storage
         }
 	}
 
+	/**
+	 * Returns usage and quota in bytes.
+	 */
+	 fun getUsageAndQuota(input : GetUsageAndQuotaRequest) : io.reactivex.Single<GetUsageAndQuotaResponse> {
+        return connectionRemote.runAndCaptureResponse("Storage.getUsageAndQuota", input, GetUsageAndQuotaResponse::class.java).map {
+            it.value()
+        }
+	}
+
   
     /**
      * Returns flowable capturing all Storage domains events.
@@ -42,4 +51,35 @@ data class ClearDataForOriginRequest (
 
 )
 
+
+/**
+ * Represents requestFrame parameters that can be used with Storage.getUsageAndQuota method call.
+ *
+ * Returns usage and quota in bytes.
+ */
+data class GetUsageAndQuotaRequest (
+    /**
+     * Security origin.
+     */
+    val origin : String
+
+)
+
+/**
+ * Represents responseFrame from Storage. method call.
+ *
+ * Returns usage and quota in bytes.
+ */
+data class GetUsageAndQuotaResponse(
+  /**
+   * Storage usage (bytes).
+   */
+  val usage : Double,
+
+  /**
+   * Storage quota (bytes).
+   */
+  val quota : Double
+
+)
 
