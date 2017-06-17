@@ -68,38 +68,38 @@ data class RemoteObject(
   @pl.wendigo.chrome.Experimental val preview : ObjectPreview? = null,
 
   /**
-   * 
+   *
    */
   @pl.wendigo.chrome.Experimental val customPreview : CustomPreview? = null
 )
 
 /**
- * 
+ *
  */
 
 data class CustomPreview(
   /**
-   * 
+   *
    */
   val header : String,
 
   /**
-   * 
+   *
    */
   val hasBody : Boolean,
 
   /**
-   * 
+   *
    */
   val formatterObjectId : RemoteObjectId,
 
   /**
-   * 
+   *
    */
   val bindRemoteObjectFunctionId : RemoteObjectId,
 
   /**
-   * 
+   *
    */
   val configObjectId : RemoteObjectId? = null
 )
@@ -132,16 +132,16 @@ data class ObjectPreview(
   /**
    * List of the properties.
    */
-  val properties : Array<PropertyPreview>,
+  val properties : List<PropertyPreview>,
 
   /**
    * List of the entries. Specified for <code>map</code> and <code>set</code> subtype values only.
    */
-  val entries : Array<EntryPreview>? = null
+  val entries : List<EntryPreview>? = null
 )
 
 /**
- * 
+ *
  */
 
 data class PropertyPreview(
@@ -172,7 +172,7 @@ data class PropertyPreview(
 )
 
 /**
- * 
+ *
  */
 
 data class EntryPreview(
@@ -413,7 +413,7 @@ data class StackTrace(
   /**
    * JavaScript function name.
    */
-  val callFrames : Array<CallFrame>,
+  val callFrames : List<CallFrame>,
 
   /**
    * Asynchronous JavaScript stack trace that preceded this stack, if available.

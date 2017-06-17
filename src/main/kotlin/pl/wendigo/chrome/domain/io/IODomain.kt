@@ -3,27 +3,25 @@ package pl.wendigo.chrome.domain.io
 /**
  * Input/Output operations for streams produced by DevTools.
  */
-@pl.wendigo.chrome.Experimental class IODomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Read a chunk of the stream
-	 */
-	 fun read(input : ReadRequest) : io.reactivex.Single<ReadResponse> {
+class IODomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Read a chunk of the stream
+     */
+    fun read(input : ReadRequest) : io.reactivex.Single<ReadResponse> {
         return connectionRemote.runAndCaptureResponse("IO.read", input, ReadResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Close the stream, discard any temporary backing storage.
-	 */
-	 fun close(input : CloseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Close the stream, discard any temporary backing storage.
+     */
+    fun close(input : CloseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Returns flowable capturing all IO domains events.
      */
@@ -86,5 +84,4 @@ data class CloseRequest (
     val handle : StreamHandle
 
 )
-
 

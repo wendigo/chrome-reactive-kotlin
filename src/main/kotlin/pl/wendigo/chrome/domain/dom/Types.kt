@@ -28,7 +28,7 @@ data class BackendNode(
   val nodeName : String,
 
   /**
-   * 
+   *
    */
   val backendNodeId : BackendNodeId
 )
@@ -111,12 +111,12 @@ data class Node(
   /**
    * Child nodes of this node when requested with children.
    */
-  val children : Array<Node>? = null,
+  val children : List<Node>? = null,
 
   /**
    * Attributes of the <code>Element</code> node in the form of flat array <code>[name1, value1, name2, value2]</code>.
    */
-  val attributes : Array<String>? = null,
+  val attributes : List<String>? = null,
 
   /**
    * Document URL that <code>Document</code> or <code>FrameOwner</code> node points to.
@@ -181,7 +181,7 @@ data class Node(
   /**
    * Shadow root list for given element host.
    */
-  @pl.wendigo.chrome.Experimental val shadowRoots : Array<Node>? = null,
+  @pl.wendigo.chrome.Experimental val shadowRoots : List<Node>? = null,
 
   /**
    * Content document fragment for template elements.
@@ -191,7 +191,7 @@ data class Node(
   /**
    * Pseudo elements associated with this node.
    */
-  @pl.wendigo.chrome.Experimental val pseudoElements : Array<Node>? = null,
+  @pl.wendigo.chrome.Experimental val pseudoElements : List<Node>? = null,
 
   /**
    * Import document for the HTMLImport links.
@@ -201,7 +201,7 @@ data class Node(
   /**
    * Distributed nodes for given insertion point.
    */
-  @pl.wendigo.chrome.Experimental val distributedNodes : Array<BackendNode>? = null,
+  @pl.wendigo.chrome.Experimental val distributedNodes : List<BackendNode>? = null,
 
   /**
    * Whether the node is SVG.
@@ -239,7 +239,7 @@ data class RGBA(
  * An array of quad vertices, x immediately followed by y for each point, points clock-wise.
  */
 
-typealias Quad = Array<Double>
+typealias Quad = List<Double>
 
 /**
  * Box model.
@@ -295,12 +295,12 @@ data class ShapeOutsideInfo(
   /**
    * Shape coordinate details
    */
-  val shape : Array<Any>,
+  val shape : List<Any>,
 
   /**
    * Margin shape bounds
    */
-  val marginShape : Array<Any>
+  val marginShape : List<Any>
 )
 
 /**

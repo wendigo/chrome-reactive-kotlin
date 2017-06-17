@@ -3,22 +3,19 @@ package {{Package}}.domain.{{Domain.LowerName}}
 /**
  * {{#if Domain.Description}}{{{Domain.Description}}}{{else}}{{Domain.Name}}Domain represents remote debugger protocol domain.{{/if}}
  */
-{{#if Domain.Experimental}}@{{Package}}.Experimental {{/if}}{{#if Domain.Deprecated}}@{{Package}}.Deprecated {{/if}}class {{Domain.Name}}Domain internal constructor(private val connectionRemote : {{Package}}.DebuggerProtocol) {
-
-  {{#each Domain.Commands}}
-	/**
-	 * {{{Description}}}
-	 */
-	{{#if Experimental}}@{{Package}}.Experimental
-  {{/if}}{{#if Deprecated}}@{{Package}}.Deprecated
-  {{/if}} fun {{Name}}({{#if HasInputParams}}input : {{SimpleName}}Request{{/if}}) : io.reactivex.Single<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}> {
+class {{Domain.Name}}Domain internal constructor(private val connectionRemote : {{Package}}.DebuggerProtocol) {
+{{#each Domain.Commands}}
+    /**
+     * {{{Description}}}
+     */
+    fun {{Name}}({{#if HasInputParams}}input : {{SimpleName}}Request{{/if}}) : io.reactivex.Single<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}> {
         return connectionRemote.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}::class.java).map {
             it.value()
         }
-	}
+    }
 
-	{{/each}}
-  {{#each Domain.Events}}
+{{/each}}
+{{#each Domain.Events}}
     /**
      * {{#if Description}}{{{Description}}}{{else}}Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
      */
@@ -31,10 +28,11 @@ package {{Package}}.domain.{{Domain.LowerName}}
     /**
      * {{#if Description}}{{{Description}}}{{else}}Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
      */
-     fun {{Name}}Timed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ProtocolEvent{{/if}}>> {
+    fun {{Name}}Timed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ProtocolEvent{{/if}}>> {
         return connectionRemote.captureEvents("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ProtocolEvent{{/if}}::class.java)
-     }
-    {{/each}}
+    }
+
+{{/each}}
 
     /**
      * Returns flowable capturing all {{Domain.Name}} domains events.

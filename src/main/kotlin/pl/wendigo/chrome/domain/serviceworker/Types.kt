@@ -6,23 +6,23 @@ package pl.wendigo.chrome.domain.serviceworker
 
 data class ServiceWorkerRegistration(
   /**
-   * 
+   *
    */
   val registrationId : String,
 
   /**
-   * 
+   *
    */
   val scopeURL : String,
 
   /**
-   * 
+   *
    */
   val isDeleted : Boolean
 )
 
 /**
- * 
+ *
  */
 enum class ServiceWorkerVersionRunningStatus {
     @com.fasterxml.jackson.annotation.JsonProperty("stopped") STOPPED,
@@ -32,7 +32,7 @@ enum class ServiceWorkerVersionRunningStatus {
 }
 
 /**
- * 
+ *
  */
 enum class ServiceWorkerVersionStatus {
     @com.fasterxml.jackson.annotation.JsonProperty("new") NEW,
@@ -49,27 +49,27 @@ enum class ServiceWorkerVersionStatus {
 
 data class ServiceWorkerVersion(
   /**
-   * 
+   *
    */
   val versionId : String,
 
   /**
-   * 
+   *
    */
   val registrationId : String,
 
   /**
-   * 
+   *
    */
   val scriptURL : String,
 
   /**
-   * 
+   *
    */
   val runningStatus : ServiceWorkerVersionRunningStatus,
 
   /**
-   * 
+   *
    */
   val status : ServiceWorkerVersionStatus,
 
@@ -84,12 +84,12 @@ data class ServiceWorkerVersion(
   val scriptResponseTime : Double? = null,
 
   /**
-   * 
+   *
    */
-  val controlledClients : Array<pl.wendigo.chrome.domain.target.TargetID>? = null,
+  val controlledClients : List<pl.wendigo.chrome.domain.target.TargetID>? = null,
 
   /**
-   * 
+   *
    */
   val targetId : pl.wendigo.chrome.domain.target.TargetID? = null
 )
@@ -100,32 +100,32 @@ data class ServiceWorkerVersion(
 
 data class ServiceWorkerErrorMessage(
   /**
-   * 
+   *
    */
   val errorMessage : String,
 
   /**
-   * 
+   *
    */
   val registrationId : String,
 
   /**
-   * 
+   *
    */
   val versionId : String,
 
   /**
-   * 
+   *
    */
   val sourceURL : String,
 
   /**
-   * 
+   *
    */
   val lineNumber : Int,
 
   /**
-   * 
+   *
    */
   val columnNumber : Int
 )

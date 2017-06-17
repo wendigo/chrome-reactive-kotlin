@@ -223,7 +223,7 @@ func (p Parameter) GetFormattedType() string {
 		case "number":
 			return "Double"
 		case "array":
-			return fmt.Sprintf("Array<%s>", p.GetParameterArrayType())
+			return fmt.Sprintf("List<%s>", p.GetParameterArrayType())
 		case "object":
 			return "String"
 		case "any":
@@ -273,7 +273,7 @@ func (t Type) GetFormattedType() string {
 		case "number":
 			return "Double"
 		case "array":
-			return fmt.Sprintf("Array<%s>", t.GetParameterArrayType())
+			return fmt.Sprintf("List<%s>", t.GetParameterArrayType())
 		case "object":
 			return "String"
 		case "any":

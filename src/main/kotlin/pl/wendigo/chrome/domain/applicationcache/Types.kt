@@ -49,7 +49,7 @@ data class ApplicationCache(
   /**
    * Application cache resources.
    */
-  val resources : Array<ApplicationCacheResource>
+  val resources : List<ApplicationCacheResource>
 )
 
 /**

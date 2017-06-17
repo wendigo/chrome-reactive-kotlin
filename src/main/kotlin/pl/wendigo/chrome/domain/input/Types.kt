@@ -1,7 +1,7 @@
 package pl.wendigo.chrome.domain.input
 
 /**
- * 
+ *
  */
 
 data class TouchPoint(
@@ -47,7 +47,7 @@ data class TouchPoint(
 )
 
 /**
- * 
+ *
  */
 enum class GestureSourceType {
     @com.fasterxml.jackson.annotation.JsonProperty("default") DEFAULT,

@@ -7,7 +7,7 @@ package pl.wendigo.chrome.domain.tracing
 typealias MemoryDumpConfig = Map<String, Any>
 
 /**
- * 
+ *
  */
 
 data class TraceConfig(
@@ -34,17 +34,17 @@ data class TraceConfig(
   /**
    * Included category filters.
    */
-  val includedCategories : Array<String>? = null,
+  val includedCategories : List<String>? = null,
 
   /**
    * Excluded category filters.
    */
-  val excludedCategories : Array<String>? = null,
+  val excludedCategories : List<String>? = null,
 
   /**
    * Configuration to synthesize the delays in tracing.
    */
-  val syntheticDelays : Array<String>? = null,
+  val syntheticDelays : List<String>? = null,
 
   /**
    * Configuration for memory dump triggers. Used only when "memory-infra" category is enabled.

@@ -4,164 +4,150 @@ package pl.wendigo.chrome.domain.emulation
  * This domain emulates different environments for the page.
  */
 class EmulationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
-	 */
-	 fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
+     */
+    fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setDeviceMetricsOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Clears the overriden device metrics.
-	 */
-	 fun clearDeviceMetricsOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Clears the overriden device metrics.
+     */
+    fun clearDeviceMetricsOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.clearDeviceMetricsOverride", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Overrides the visible area of the page. The change is hidden from the page, i.e. the observable scroll position and page scale does not change. In effect, the command moves the specified area of the page into the top-left corner of the frame.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun forceViewport(input : ForceViewportRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Overrides the visible area of the page. The change is hidden from the page, i.e. the observable scroll position and page scale does not change. In effect, the command moves the specified area of the page into the top-left corner of the frame.
+     */
+    fun forceViewport(input : ForceViewportRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.forceViewport", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Resets the visible area of the page to the original viewport, undoing any effects of the <code>forceViewport</code> command.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun resetViewport() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Resets the visible area of the page to the original viewport, undoing any effects of the <code>forceViewport</code> command.
+     */
+    fun resetViewport() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.resetViewport", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Requests that page scale factor is reset to initial values.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun resetPageScaleFactor() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Requests that page scale factor is reset to initial values.
+     */
+    fun resetPageScaleFactor() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.resetPageScaleFactor", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Sets a specified page scale factor.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setPageScaleFactor(input : SetPageScaleFactorRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Sets a specified page scale factor.
+     */
+    fun setPageScaleFactor(input : SetPageScaleFactorRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setPageScaleFactor", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Resizes the frame/viewport of the page. Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported on Android.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setVisibleSize(input : SetVisibleSizeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Resizes the frame/viewport of the page. Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported on Android.
+     */
+    fun setVisibleSize(input : SetVisibleSizeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setVisibleSize", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Switches script execution in the page.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setScriptExecutionDisabled(input : SetScriptExecutionDisabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Switches script execution in the page.
+     */
+    fun setScriptExecutionDisabled(input : SetScriptExecutionDisabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setScriptExecutionDisabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
+     */
+    fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Clears the overriden Geolocation Position and Error.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun clearGeolocationOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Clears the overriden Geolocation Position and Error.
+     */
+    fun clearGeolocationOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.clearGeolocationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Toggles mouse event-based touch event emulation.
-	 */
-	 fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Toggles mouse event-based touch event emulation.
+     */
+    fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setTouchEmulationEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Emulates the given media for CSS media queries.
-	 */
-	 fun setEmulatedMedia(input : SetEmulatedMediaRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Emulates the given media for CSS media queries.
+     */
+    fun setEmulatedMedia(input : SetEmulatedMediaRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setEmulatedMedia", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Enables CPU throttling to emulate slow CPUs.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setCPUThrottlingRate(input : SetCPUThrottlingRateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Enables CPU throttling to emulate slow CPUs.
+     */
+    fun setCPUThrottlingRate(input : SetCPUThrottlingRateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setCPUThrottlingRate", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Tells whether emulation is supported.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun canEmulate() : io.reactivex.Single<CanEmulateResponse> {
+    /**
+     * Tells whether emulation is supported.
+     */
+    fun canEmulate() : io.reactivex.Single<CanEmulateResponse> {
         return connectionRemote.runAndCaptureResponse("Emulation.canEmulate", null, CanEmulateResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets the current virtual time policy.  Note this supersedes any previous time budget.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setVirtualTimePolicy(input : SetVirtualTimePolicyRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets the current virtual time policy.  Note this supersedes any previous time budget.
+     */
+    fun setVirtualTimePolicy(input : SetVirtualTimePolicyRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Sets or clears an override of the default background color of the frame. This override is used if the content does not specify one.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setDefaultBackgroundColorOverride(input : SetDefaultBackgroundColorOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Sets or clears an override of the default background color of the frame. This override is used if the content does not specify one.
+     */
+    fun setDefaultBackgroundColorOverride(input : SetDefaultBackgroundColorOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setDefaultBackgroundColorOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Notification sent after the virual time budget for the current VirtualTimePolicy has run out.
      */
@@ -174,9 +160,9 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     /**
      * Notification sent after the virual time budget for the current VirtualTimePolicy has run out.
      */
-     fun virtualTimeBudgetExpiredTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+    fun virtualTimeBudgetExpiredTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
         return connectionRemote.captureEvents("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.ProtocolEvent::class.java)
-     }
+    }
 
     /**
      * Returns flowable capturing all Emulation domains events.
@@ -260,9 +246,6 @@ data class SetDeviceMetricsOverrideRequest (
 
 )
 
-
-
-
 /**
  * Represents requestFrame parameters that can be used with Emulation.forceViewport method call.
  *
@@ -286,11 +269,6 @@ data class ForceViewportRequest (
 
 )
 
-
-
-
-
-
 /**
  * Represents requestFrame parameters that can be used with Emulation.setPageScaleFactor method call.
  *
@@ -303,7 +281,6 @@ data class SetPageScaleFactorRequest (
     val pageScaleFactor : Double
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Emulation.setVisibleSize method call.
@@ -323,7 +300,6 @@ data class SetVisibleSizeRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Emulation.setScriptExecutionDisabled method call.
  *
@@ -336,7 +312,6 @@ data class SetScriptExecutionDisabledRequest (
     val value : Boolean
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Emulation.setGeolocationOverride method call.
@@ -361,9 +336,6 @@ data class SetGeolocationOverrideRequest (
 
 )
 
-
-
-
 /**
  * Represents requestFrame parameters that can be used with Emulation.setTouchEmulationEnabled method call.
  *
@@ -382,7 +354,6 @@ data class SetTouchEmulationEnabledRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Emulation.setEmulatedMedia method call.
  *
@@ -396,7 +367,6 @@ data class SetEmulatedMediaRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Emulation.setCPUThrottlingRate method call.
  *
@@ -409,8 +379,6 @@ data class SetCPUThrottlingRateRequest (
     val rate : Double
 
 )
-
-
 
 /**
  * Represents responseFrame from Emulation. method call.
@@ -432,7 +400,7 @@ data class CanEmulateResponse(
  */
 data class SetVirtualTimePolicyRequest (
     /**
-     * 
+     *
      */
     val policy : VirtualTimePolicy,
 
@@ -442,7 +410,6 @@ data class SetVirtualTimePolicyRequest (
     val budget : Int? = null
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Emulation.setDefaultBackgroundColorOverride method call.
@@ -456,6 +423,4 @@ data class SetDefaultBackgroundColorOverrideRequest (
     val color : pl.wendigo.chrome.domain.dom.RGBA? = null
 
 )
-
-
 

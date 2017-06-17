@@ -120,12 +120,12 @@ data class FrameResourceTree(
   /**
    * Child frames.
    */
-  val childFrames : Array<FrameResourceTree>? = null,
+  val childFrames : List<FrameResourceTree>? = null,
 
   /**
    * Information about frame resources.
    */
-  val resources : Array<FrameResource>
+  val resources : List<FrameResource>
 )
 
 /**

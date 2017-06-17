@@ -24,7 +24,7 @@ data class SamplingHeapProfileNode(
   /**
    * Child nodes.
    */
-  val children : Array<SamplingHeapProfileNode>
+  val children : List<SamplingHeapProfileNode>
 )
 
 /**
@@ -33,7 +33,7 @@ data class SamplingHeapProfileNode(
 
 data class SamplingHeapProfile(
   /**
-   * 
+   *
    */
   val head : SamplingHeapProfileNode
 )

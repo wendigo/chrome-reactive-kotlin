@@ -3,27 +3,25 @@ package pl.wendigo.chrome.domain.tethering
 /**
  * The Tethering domain defines methods and events for browser port binding.
  */
-@pl.wendigo.chrome.Experimental class TetheringDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Request browser port binding.
-	 */
-	 fun bind(input : BindRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+class TetheringDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Request browser port binding.
+     */
+    fun bind(input : BindRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Request browser port unbinding.
-	 */
-	 fun unbind(input : UnbindRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Request browser port unbinding.
+     */
+    fun unbind(input : UnbindRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Informs that port was successfully bound and got a specified connection id.
      */
@@ -36,9 +34,9 @@ package pl.wendigo.chrome.domain.tethering
     /**
      * Informs that port was successfully bound and got a specified connection id.
      */
-     fun acceptedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AcceptedEvent>> {
+    fun acceptedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AcceptedEvent>> {
         return connectionRemote.captureEvents("Tethering.accepted", AcceptedEvent::class.java)
-     }
+    }
 
     /**
      * Returns flowable capturing all Tethering domains events.
@@ -62,7 +60,6 @@ data class BindRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Tethering.unbind method call.
  *
@@ -75,7 +72,6 @@ data class UnbindRequest (
     val port : Int
 
 )
-
 
 /**
  * Represents responseFrame from Tethering. method call.

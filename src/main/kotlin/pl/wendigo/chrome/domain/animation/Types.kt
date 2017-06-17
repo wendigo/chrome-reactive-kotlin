@@ -125,7 +125,7 @@ data class KeyframesRule(
   /**
    * List of animation keyframes.
    */
-  val keyframes : Array<KeyframeStyle>
+  val keyframes : List<KeyframeStyle>
 )
 
 /**

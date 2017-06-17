@@ -69,7 +69,7 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
      * Sends frame over the connection.
      */
     override fun send(frame: RequestFrame) : Single<Boolean> {
-       return Single
+        return Single
             .just(frame)
             .flatMap { mapper.serialize(it) }
             .map { connection.send(it) }

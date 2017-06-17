@@ -4,85 +4,78 @@ package pl.wendigo.chrome.domain.input
  * InputDomain represents remote debugger protocol domain.
  */
 class InputDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Ignores input events (useful while auditing page).
-	 */
-	 fun setIgnoreInputEvents(input : SetIgnoreInputEventsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Ignores input events (useful while auditing page).
+     */
+    fun setIgnoreInputEvents(input : SetIgnoreInputEventsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Input.setIgnoreInputEvents", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Dispatches a key event to the page.
-	 */
-	 fun dispatchKeyEvent(input : DispatchKeyEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Dispatches a key event to the page.
+     */
+    fun dispatchKeyEvent(input : DispatchKeyEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Input.dispatchKeyEvent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Dispatches a mouse event to the page.
-	 */
-	 fun dispatchMouseEvent(input : DispatchMouseEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Dispatches a mouse event to the page.
+     */
+    fun dispatchMouseEvent(input : DispatchMouseEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Input.dispatchMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Dispatches a touch event to the page.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun dispatchTouchEvent(input : DispatchTouchEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Dispatches a touch event to the page.
+     */
+    fun dispatchTouchEvent(input : DispatchTouchEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Input.dispatchTouchEvent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Emulates touch event from the mouse event parameters.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun emulateTouchFromMouseEvent(input : EmulateTouchFromMouseEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Emulates touch event from the mouse event parameters.
+     */
+    fun emulateTouchFromMouseEvent(input : EmulateTouchFromMouseEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Input.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun synthesizePinchGesture(input : SynthesizePinchGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
+     */
+    fun synthesizePinchGesture(input : SynthesizePinchGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Input.synthesizePinchGesture", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun synthesizeScrollGesture(input : SynthesizeScrollGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
+     */
+    fun synthesizeScrollGesture(input : SynthesizeScrollGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Input.synthesizeScrollGesture", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun synthesizeTapGesture(input : SynthesizeTapGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
+     */
+    fun synthesizeTapGesture(input : SynthesizeTapGestureRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Input.synthesizeTapGesture", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Returns flowable capturing all Input domains events.
      */
@@ -104,7 +97,6 @@ data class SetIgnoreInputEventsRequest (
     val ignore : Boolean
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Input.dispatchKeyEvent method call.
@@ -179,7 +171,6 @@ data class DispatchKeyEventRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Input.dispatchMouseEvent method call.
  *
@@ -223,7 +214,6 @@ data class DispatchMouseEventRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Input.dispatchTouchEvent method call.
  *
@@ -238,7 +228,7 @@ data class DispatchTouchEventRequest (
     /**
      * Touch points.
      */
-    val touchPoints : Array<TouchPoint>,
+    val touchPoints : List<TouchPoint>,
 
     /**
      * Bit field representing pressed modifier keys. Alt=1, Ctrl=2, Meta/Command=4, Shift=8 (default: 0).
@@ -251,7 +241,6 @@ data class DispatchTouchEventRequest (
     val timestamp : Double? = null
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Input.emulateTouchFromMouseEvent method call.
@@ -306,7 +295,6 @@ data class EmulateTouchFromMouseEventRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Input.synthesizePinchGesture method call.
  *
@@ -339,7 +327,6 @@ data class SynthesizePinchGestureRequest (
     val gestureSourceType : GestureSourceType? = null
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Input.synthesizeScrollGesture method call.
@@ -409,7 +396,6 @@ data class SynthesizeScrollGestureRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Input.synthesizeTapGesture method call.
  *
@@ -442,5 +428,4 @@ data class SynthesizeTapGestureRequest (
     val gestureSourceType : GestureSourceType? = null
 
 )
-
 

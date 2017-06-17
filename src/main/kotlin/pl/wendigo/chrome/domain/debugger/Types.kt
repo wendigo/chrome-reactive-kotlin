@@ -39,12 +39,12 @@ data class Location(
 
 data class ScriptPosition(
   /**
-   * 
+   *
    */
   val lineNumber : Int,
 
   /**
-   * 
+   *
    */
   val columnNumber : Int
 )
@@ -77,7 +77,7 @@ data class CallFrame(
   /**
    * Scope chain for this call frame.
    */
-  val scopeChain : Array<Scope>,
+  val scopeChain : List<Scope>,
 
   /**
    * <code>this</code> object for this call frame.
@@ -106,7 +106,7 @@ data class Scope(
   @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object : pl.wendigo.chrome.domain.runtime.RemoteObject,
 
   /**
-   * 
+   *
    */
   val name : String? = null,
 
@@ -138,7 +138,7 @@ data class SearchMatch(
 )
 
 /**
- * 
+ *
  */
 
 data class BreakLocation(
@@ -158,7 +158,7 @@ data class BreakLocation(
   val columnNumber : Int? = null,
 
   /**
-   * 
+   *
    */
   val type : String? = null
 )

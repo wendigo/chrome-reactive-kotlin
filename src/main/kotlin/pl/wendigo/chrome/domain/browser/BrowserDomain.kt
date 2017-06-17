@@ -3,36 +3,34 @@ package pl.wendigo.chrome.domain.browser
 /**
  * The Browser domain defines methods and events for browser managing.
  */
-@pl.wendigo.chrome.Experimental class BrowserDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Get the browser window that contains the devtools target.
-	 */
-	 fun getWindowForTarget(input : GetWindowForTargetRequest) : io.reactivex.Single<GetWindowForTargetResponse> {
+class BrowserDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Get the browser window that contains the devtools target.
+     */
+    fun getWindowForTarget(input : GetWindowForTargetRequest) : io.reactivex.Single<GetWindowForTargetResponse> {
         return connectionRemote.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Set position and/or size of the browser window.
-	 */
-	 fun setWindowBounds(input : SetWindowBoundsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Set position and/or size of the browser window.
+     */
+    fun setWindowBounds(input : SetWindowBoundsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Get position and size of the browser window.
-	 */
-	 fun getWindowBounds(input : GetWindowBoundsRequest) : io.reactivex.Single<GetWindowBoundsResponse> {
+    /**
+     * Get position and size of the browser window.
+     */
+    fun getWindowBounds(input : GetWindowBoundsRequest) : io.reactivex.Single<GetWindowBoundsResponse> {
         return connectionRemote.runAndCaptureResponse("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Returns flowable capturing all Browser domains events.
      */
@@ -90,7 +88,6 @@ data class SetWindowBoundsRequest (
     val bounds : Bounds
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Browser.getWindowBounds method call.

@@ -4,366 +4,348 @@ package pl.wendigo.chrome.domain.dom
  * This domain exposes DOM read/write operations. Each DOM Node is represented with its mirror object that has an <code>id</code>. This <code>id</code> can be used to get additional information on the Node, resolve it into the JavaScript object wrapper, etc. It is important that client receives DOM events only for the nodes that are known to the client. Backend keeps track of the nodes that were sent to the client and never sends the same node twice. It is client's responsibility to collect information about the nodes that were sent to the client.<p>Note that <code>iframe</code> owner elements will return corresponding document elements as their child nodes.</p>
  */
 class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Enables DOM agent for the given page.
-	 */
-	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Enables DOM agent for the given page.
+     */
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Disables DOM agent for the given page.
-	 */
-	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Disables DOM agent for the given page.
+     */
+    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns the root DOM node (and optionally the subtree) to the caller.
-	 */
-	 fun getDocument(input : GetDocumentRequest) : io.reactivex.Single<GetDocumentResponse> {
+    /**
+     * Returns the root DOM node (and optionally the subtree) to the caller.
+     */
+    fun getDocument(input : GetDocumentRequest) : io.reactivex.Single<GetDocumentResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getDocument", input, GetDocumentResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns the root DOM node (and optionally the subtree) to the caller.
-	 */
-	 fun getFlattenedDocument(input : GetFlattenedDocumentRequest) : io.reactivex.Single<GetFlattenedDocumentResponse> {
+    /**
+     * Returns the root DOM node (and optionally the subtree) to the caller.
+     */
+    fun getFlattenedDocument(input : GetFlattenedDocumentRequest) : io.reactivex.Single<GetFlattenedDocumentResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Collects class names for the node with given id and all of it's child nodes.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun collectClassNamesFromSubtree(input : CollectClassNamesFromSubtreeRequest) : io.reactivex.Single<CollectClassNamesFromSubtreeResponse> {
+    /**
+     * Collects class names for the node with given id and all of it's child nodes.
+     */
+    fun collectClassNamesFromSubtree(input : CollectClassNamesFromSubtreeRequest) : io.reactivex.Single<CollectClassNamesFromSubtreeResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.collectClassNamesFromSubtree", input, CollectClassNamesFromSubtreeResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Requests that children of the node with given id are returned to the caller in form of <code>setChildNodes</code> events where not only immediate children are retrieved, but all children down to the specified depth.
-	 */
-	 fun requestChildNodes(input : RequestChildNodesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Requests that children of the node with given id are returned to the caller in form of <code>setChildNodes</code> events where not only immediate children are retrieved, but all children down to the specified depth.
+     */
+    fun requestChildNodes(input : RequestChildNodesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.requestChildNodes", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Executes <code>querySelector</code> on a given node.
-	 */
-	 fun querySelector(input : QuerySelectorRequest) : io.reactivex.Single<QuerySelectorResponse> {
+    /**
+     * Executes <code>querySelector</code> on a given node.
+     */
+    fun querySelector(input : QuerySelectorRequest) : io.reactivex.Single<QuerySelectorResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.querySelector", input, QuerySelectorResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Executes <code>querySelectorAll</code> on a given node.
-	 */
-	 fun querySelectorAll(input : QuerySelectorAllRequest) : io.reactivex.Single<QuerySelectorAllResponse> {
+    /**
+     * Executes <code>querySelectorAll</code> on a given node.
+     */
+    fun querySelectorAll(input : QuerySelectorAllRequest) : io.reactivex.Single<QuerySelectorAllResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.querySelectorAll", input, QuerySelectorAllResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Sets node name for a node with given id.
-	 */
-	 fun setNodeName(input : SetNodeNameRequest) : io.reactivex.Single<SetNodeNameResponse> {
+    /**
+     * Sets node name for a node with given id.
+     */
+    fun setNodeName(input : SetNodeNameRequest) : io.reactivex.Single<SetNodeNameResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.setNodeName", input, SetNodeNameResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Sets node value for a node with given id.
-	 */
-	 fun setNodeValue(input : SetNodeValueRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Sets node value for a node with given id.
+     */
+    fun setNodeValue(input : SetNodeValueRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setNodeValue", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Removes node with given id.
-	 */
-	 fun removeNode(input : RemoveNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Removes node with given id.
+     */
+    fun removeNode(input : RemoveNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.removeNode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Sets attribute for an element with given id.
-	 */
-	 fun setAttributeValue(input : SetAttributeValueRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Sets attribute for an element with given id.
+     */
+    fun setAttributeValue(input : SetAttributeValueRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setAttributeValue", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Sets attributes on element with given id. This method is useful when user edits some existing attribute value and types in several attribute name/value pairs.
-	 */
-	 fun setAttributesAsText(input : SetAttributesAsTextRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Sets attributes on element with given id. This method is useful when user edits some existing attribute value and types in several attribute name/value pairs.
+     */
+    fun setAttributesAsText(input : SetAttributesAsTextRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setAttributesAsText", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Removes attribute with given name from an element with given id.
-	 */
-	 fun removeAttribute(input : RemoveAttributeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Removes attribute with given name from an element with given id.
+     */
+    fun removeAttribute(input : RemoveAttributeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.removeAttribute", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns node's HTML markup.
-	 */
-	 fun getOuterHTML(input : GetOuterHTMLRequest) : io.reactivex.Single<GetOuterHTMLResponse> {
+    /**
+     * Returns node's HTML markup.
+     */
+    fun getOuterHTML(input : GetOuterHTMLRequest) : io.reactivex.Single<GetOuterHTMLResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getOuterHTML", input, GetOuterHTMLResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Sets node HTML markup, returns new node id.
-	 */
-	 fun setOuterHTML(input : SetOuterHTMLRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Sets node HTML markup, returns new node id.
+     */
+    fun setOuterHTML(input : SetOuterHTMLRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setOuterHTML", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun performSearch(input : PerformSearchRequest) : io.reactivex.Single<PerformSearchResponse> {
+    /**
+     * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
+     */
+    fun performSearch(input : PerformSearchRequest) : io.reactivex.Single<PerformSearchResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.performSearch", input, PerformSearchResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getSearchResults(input : GetSearchResultsRequest) : io.reactivex.Single<GetSearchResultsResponse> {
+    /**
+     * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
+     */
+    fun getSearchResults(input : GetSearchResultsRequest) : io.reactivex.Single<GetSearchResultsResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getSearchResults", input, GetSearchResultsResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Discards search results from the session with the given id. <code>getSearchResults</code> should no longer be called for that search.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun discardSearchResults(input : DiscardSearchResultsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Discards search results from the session with the given id. <code>getSearchResults</code> should no longer be called for that search.
+     */
+    fun discardSearchResults(input : DiscardSearchResultsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.discardSearchResults", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.
-	 */
-	 fun requestNode(input : RequestNodeRequest) : io.reactivex.Single<RequestNodeResponse> {
+    /**
+     * Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.
+     */
+    fun requestNode(input : RequestNodeRequest) : io.reactivex.Single<RequestNodeResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.requestNode", input, RequestNodeResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Highlights given rectangle.
-	 */
-	 fun highlightRect() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Highlights given rectangle.
+     */
+    fun highlightRect() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.highlightRect", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Highlights DOM node.
-	 */
-	 fun highlightNode() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Highlights DOM node.
+     */
+    fun highlightNode() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.highlightNode", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Hides any highlight.
-	 */
-	 fun hideHighlight() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Hides any highlight.
+     */
+    fun hideHighlight() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.hideHighlight", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Requests that the node is sent to the caller given its path. // FIXME, use XPath
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun pushNodeByPathToFrontend(input : PushNodeByPathToFrontendRequest) : io.reactivex.Single<PushNodeByPathToFrontendResponse> {
+    /**
+     * Requests that the node is sent to the caller given its path. // FIXME, use XPath
+     */
+    fun pushNodeByPathToFrontend(input : PushNodeByPathToFrontendRequest) : io.reactivex.Single<PushNodeByPathToFrontendResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.pushNodeByPathToFrontend", input, PushNodeByPathToFrontendResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Requests that a batch of nodes is sent to the caller given their backend node ids.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun pushNodesByBackendIdsToFrontend(input : PushNodesByBackendIdsToFrontendRequest) : io.reactivex.Single<PushNodesByBackendIdsToFrontendResponse> {
+    /**
+     * Requests that a batch of nodes is sent to the caller given their backend node ids.
+     */
+    fun pushNodesByBackendIdsToFrontend(input : PushNodesByBackendIdsToFrontendRequest) : io.reactivex.Single<PushNodesByBackendIdsToFrontendResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.pushNodesByBackendIdsToFrontend", input, PushNodesByBackendIdsToFrontendResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setInspectedNode(input : SetInspectedNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
+     */
+    fun setInspectedNode(input : SetInspectedNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setInspectedNode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Resolves JavaScript node object for given node id.
-	 */
-	 fun resolveNode(input : ResolveNodeRequest) : io.reactivex.Single<ResolveNodeResponse> {
+    /**
+     * Resolves JavaScript node object for given node id.
+     */
+    fun resolveNode(input : ResolveNodeRequest) : io.reactivex.Single<ResolveNodeResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.resolveNode", input, ResolveNodeResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns attributes for the specified node.
-	 */
-	 fun getAttributes(input : GetAttributesRequest) : io.reactivex.Single<GetAttributesResponse> {
+    /**
+     * Returns attributes for the specified node.
+     */
+    fun getAttributes(input : GetAttributesRequest) : io.reactivex.Single<GetAttributesResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getAttributes", input, GetAttributesResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Creates a deep copy of the specified node and places it into the target container before the given anchor.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun copyTo(input : CopyToRequest) : io.reactivex.Single<CopyToResponse> {
+    /**
+     * Creates a deep copy of the specified node and places it into the target container before the given anchor.
+     */
+    fun copyTo(input : CopyToRequest) : io.reactivex.Single<CopyToResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.copyTo", input, CopyToResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Moves node into the new container, places it before the given anchor.
-	 */
-	 fun moveTo(input : MoveToRequest) : io.reactivex.Single<MoveToResponse> {
+    /**
+     * Moves node into the new container, places it before the given anchor.
+     */
+    fun moveTo(input : MoveToRequest) : io.reactivex.Single<MoveToResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.moveTo", input, MoveToResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Undoes the last performed action.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun undo() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Undoes the last performed action.
+     */
+    fun undo() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.undo", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Re-does the last undone action.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun redo() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Re-does the last undone action.
+     */
+    fun redo() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.redo", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Marks last undoable state.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun markUndoableState() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Marks last undoable state.
+     */
+    fun markUndoableState() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.markUndoableState", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Focuses the given element.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun focus(input : FocusRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Focuses the given element.
+     */
+    fun focus(input : FocusRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.focus", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Sets files for the given file input element.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setFileInputFiles(input : SetFileInputFilesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Sets files for the given file input element.
+     */
+    fun setFileInputFiles(input : SetFileInputFilesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setFileInputFiles", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns boxes for the currently selected nodes.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getBoxModel(input : GetBoxModelRequest) : io.reactivex.Single<GetBoxModelResponse> {
+    /**
+     * Returns boxes for the currently selected nodes.
+     */
+    fun getBoxModel(input : GetBoxModelRequest) : io.reactivex.Single<GetBoxModelResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getBoxModel", input, GetBoxModelResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns node id at given location.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getNodeForLocation(input : GetNodeForLocationRequest) : io.reactivex.Single<GetNodeForLocationResponse> {
+    /**
+     * Returns node id at given location.
+     */
+    fun getNodeForLocation(input : GetNodeForLocationRequest) : io.reactivex.Single<GetNodeForLocationResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getNodeForLocation", input, GetNodeForLocationResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns the id of the nearest ancestor that is a relayout boundary.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getRelayoutBoundary(input : GetRelayoutBoundaryRequest) : io.reactivex.Single<GetRelayoutBoundaryResponse> {
+    /**
+     * Returns the id of the nearest ancestor that is a relayout boundary.
+     */
+    fun getRelayoutBoundary(input : GetRelayoutBoundaryRequest) : io.reactivex.Single<GetRelayoutBoundaryResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getRelayoutBoundary", input, GetRelayoutBoundaryResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Fired when <code>Document</code> has been totally updated. Node ids are no longer valid.
      */
@@ -376,9 +358,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Fired when <code>Document</code> has been totally updated. Node ids are no longer valid.
      */
-     fun documentUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+    fun documentUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
         return connectionRemote.captureEvents("DOM.documentUpdated", pl.wendigo.chrome.ProtocolEvent::class.java)
-     }
+    }
 
     /**
      * Fired when backend wants to provide client with the missing DOM structure. This happens upon most of the calls requesting node ids.
@@ -392,9 +374,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Fired when backend wants to provide client with the missing DOM structure. This happens upon most of the calls requesting node ids.
      */
-     fun setChildNodesTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<SetChildNodesEvent>> {
+    fun setChildNodesTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<SetChildNodesEvent>> {
         return connectionRemote.captureEvents("DOM.setChildNodes", SetChildNodesEvent::class.java)
-     }
+    }
 
     /**
      * Fired when <code>Element</code>'s attribute is modified.
@@ -408,9 +390,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Fired when <code>Element</code>'s attribute is modified.
      */
-     fun attributeModifiedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AttributeModifiedEvent>> {
+    fun attributeModifiedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AttributeModifiedEvent>> {
         return connectionRemote.captureEvents("DOM.attributeModified", AttributeModifiedEvent::class.java)
-     }
+    }
 
     /**
      * Fired when <code>Element</code>'s attribute is removed.
@@ -424,9 +406,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Fired when <code>Element</code>'s attribute is removed.
      */
-     fun attributeRemovedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AttributeRemovedEvent>> {
+    fun attributeRemovedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AttributeRemovedEvent>> {
         return connectionRemote.captureEvents("DOM.attributeRemoved", AttributeRemovedEvent::class.java)
-     }
+    }
 
     /**
      * Fired when <code>Element</code>'s inline style is modified via a CSS property modification.
@@ -440,9 +422,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Fired when <code>Element</code>'s inline style is modified via a CSS property modification.
      */
-     fun inlineStyleInvalidatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<InlineStyleInvalidatedEvent>> {
+    fun inlineStyleInvalidatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<InlineStyleInvalidatedEvent>> {
         return connectionRemote.captureEvents("DOM.inlineStyleInvalidated", InlineStyleInvalidatedEvent::class.java)
-     }
+    }
 
     /**
      * Mirrors <code>DOMCharacterDataModified</code> event.
@@ -456,9 +438,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Mirrors <code>DOMCharacterDataModified</code> event.
      */
-     fun characterDataModifiedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<CharacterDataModifiedEvent>> {
+    fun characterDataModifiedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<CharacterDataModifiedEvent>> {
         return connectionRemote.captureEvents("DOM.characterDataModified", CharacterDataModifiedEvent::class.java)
-     }
+    }
 
     /**
      * Fired when <code>Container</code>'s child node count has changed.
@@ -472,9 +454,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Fired when <code>Container</code>'s child node count has changed.
      */
-     fun childNodeCountUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeCountUpdatedEvent>> {
+    fun childNodeCountUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeCountUpdatedEvent>> {
         return connectionRemote.captureEvents("DOM.childNodeCountUpdated", ChildNodeCountUpdatedEvent::class.java)
-     }
+    }
 
     /**
      * Mirrors <code>DOMNodeInserted</code> event.
@@ -488,9 +470,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Mirrors <code>DOMNodeInserted</code> event.
      */
-     fun childNodeInsertedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeInsertedEvent>> {
+    fun childNodeInsertedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeInsertedEvent>> {
         return connectionRemote.captureEvents("DOM.childNodeInserted", ChildNodeInsertedEvent::class.java)
-     }
+    }
 
     /**
      * Mirrors <code>DOMNodeRemoved</code> event.
@@ -504,9 +486,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Mirrors <code>DOMNodeRemoved</code> event.
      */
-     fun childNodeRemovedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeRemovedEvent>> {
+    fun childNodeRemovedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeRemovedEvent>> {
         return connectionRemote.captureEvents("DOM.childNodeRemoved", ChildNodeRemovedEvent::class.java)
-     }
+    }
 
     /**
      * Called when shadow root is pushed into the element.
@@ -520,9 +502,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Called when shadow root is pushed into the element.
      */
-     fun shadowRootPushedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ShadowRootPushedEvent>> {
+    fun shadowRootPushedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ShadowRootPushedEvent>> {
         return connectionRemote.captureEvents("DOM.shadowRootPushed", ShadowRootPushedEvent::class.java)
-     }
+    }
 
     /**
      * Called when shadow root is popped from the element.
@@ -536,9 +518,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Called when shadow root is popped from the element.
      */
-     fun shadowRootPoppedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ShadowRootPoppedEvent>> {
+    fun shadowRootPoppedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ShadowRootPoppedEvent>> {
         return connectionRemote.captureEvents("DOM.shadowRootPopped", ShadowRootPoppedEvent::class.java)
-     }
+    }
 
     /**
      * Called when a pseudo element is added to an element.
@@ -552,9 +534,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Called when a pseudo element is added to an element.
      */
-     fun pseudoElementAddedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<PseudoElementAddedEvent>> {
+    fun pseudoElementAddedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<PseudoElementAddedEvent>> {
         return connectionRemote.captureEvents("DOM.pseudoElementAdded", PseudoElementAddedEvent::class.java)
-     }
+    }
 
     /**
      * Called when a pseudo element is removed from an element.
@@ -568,9 +550,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Called when a pseudo element is removed from an element.
      */
-     fun pseudoElementRemovedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<PseudoElementRemovedEvent>> {
+    fun pseudoElementRemovedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<PseudoElementRemovedEvent>> {
         return connectionRemote.captureEvents("DOM.pseudoElementRemoved", PseudoElementRemovedEvent::class.java)
-     }
+    }
 
     /**
      * Called when distrubution is changed.
@@ -584,9 +566,9 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     /**
      * Called when distrubution is changed.
      */
-     fun distributedNodesUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DistributedNodesUpdatedEvent>> {
+    fun distributedNodesUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DistributedNodesUpdatedEvent>> {
         return connectionRemote.captureEvents("DOM.distributedNodesUpdated", DistributedNodesUpdatedEvent::class.java)
-     }
+    }
 
     /**
      * Returns flowable capturing all DOM domains events.
@@ -597,9 +579,6 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
         }
     }
 }
-
-
-
 
 /**
  * Represents requestFrame parameters that can be used with DOM.getDocument method call.
@@ -659,7 +638,7 @@ data class GetFlattenedDocumentResponse(
   /**
    * Resulting node.
    */
-  val nodes : Array<Node>
+  val nodes : List<Node>
 
 )
 
@@ -685,7 +664,7 @@ data class CollectClassNamesFromSubtreeResponse(
   /**
    * Class name list.
    */
-  val classNames : Array<String>
+  val classNames : List<String>
 
 )
 
@@ -711,7 +690,6 @@ data class RequestChildNodesRequest (
     @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with DOM.querySelector method call.
@@ -771,7 +749,7 @@ data class QuerySelectorAllResponse(
   /**
    * Query selector result.
    */
-  val nodeIds : Array<NodeId>
+  val nodeIds : List<NodeId>
 
 )
 
@@ -824,7 +802,6 @@ data class SetNodeValueRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with DOM.removeNode method call.
  *
@@ -837,7 +814,6 @@ data class RemoveNodeRequest (
     val nodeId : NodeId
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with DOM.setAttributeValue method call.
@@ -862,7 +838,6 @@ data class SetAttributeValueRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with DOM.setAttributesAsText method call.
  *
@@ -886,7 +861,6 @@ data class SetAttributesAsTextRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with DOM.removeAttribute method call.
  *
@@ -904,7 +878,6 @@ data class RemoveAttributeRequest (
     val name : String
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with DOM.getOuterHTML method call.
@@ -949,7 +922,6 @@ data class SetOuterHTMLRequest (
     val outerHTML : String
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with DOM.performSearch method call.
@@ -1019,7 +991,7 @@ data class GetSearchResultsResponse(
   /**
    * Ids of the search result nodes.
    */
-  val nodeIds : Array<NodeId>
+  val nodeIds : List<NodeId>
 
 )
 
@@ -1035,7 +1007,6 @@ data class DiscardSearchResultsRequest (
     val searchId : String
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with DOM.requestNode method call.
@@ -1062,12 +1033,6 @@ data class RequestNodeResponse(
   val nodeId : NodeId
 
 )
-
-
-
-
-
-
 
 /**
  * Represents requestFrame parameters that can be used with DOM.pushNodeByPathToFrontend method call.
@@ -1104,7 +1069,7 @@ data class PushNodesByBackendIdsToFrontendRequest (
     /**
      * The array of backend node ids.
      */
-    val backendNodeIds : Array<BackendNodeId>
+    val backendNodeIds : List<BackendNodeId>
 
 )
 
@@ -1117,7 +1082,7 @@ data class PushNodesByBackendIdsToFrontendResponse(
   /**
    * The array of ids of pushed nodes that correspond to the backend ids specified in backendNodeIds.
    */
-  val nodeIds : Array<NodeId>
+  val nodeIds : List<NodeId>
 
 )
 
@@ -1133,7 +1098,6 @@ data class SetInspectedNodeRequest (
     val nodeId : NodeId
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with DOM.resolveNode method call.
@@ -1188,7 +1152,7 @@ data class GetAttributesResponse(
   /**
    * An interleaved array of node attribute names and values.
    */
-  val attributes : Array<String>
+  val attributes : List<String>
 
 )
 
@@ -1264,12 +1228,6 @@ data class MoveToResponse(
 
 )
 
-
-
-
-
-
-
 /**
  * Represents requestFrame parameters that can be used with DOM.focus method call.
  *
@@ -1282,7 +1240,6 @@ data class FocusRequest (
     val nodeId : NodeId
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with DOM.setFileInputFiles method call.
@@ -1298,10 +1255,9 @@ data class SetFileInputFilesRequest (
     /**
      * Array of file paths to set.
      */
-    val files : Array<String>
+    val files : List<String>
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with DOM.getBoxModel method call.
@@ -1391,7 +1347,6 @@ data class GetRelayoutBoundaryResponse(
 
 )
 
-
 /**
  * Represents responseFrame from DOM. method call.
  *
@@ -1406,7 +1361,7 @@ data class SetChildNodesEvent(
   /**
    * Child nodes array.
    */
-  val nodes : Array<Node>
+  val nodes : List<Node>
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "setChildNodes")
 
@@ -1460,7 +1415,7 @@ data class InlineStyleInvalidatedEvent(
   /**
    * Ids of the nodes for which the inline styles have been invalidated.
    */
-  val nodeIds : Array<NodeId>
+  val nodeIds : List<NodeId>
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "inlineStyleInvalidated")
 
@@ -1627,7 +1582,7 @@ data class DistributedNodesUpdatedEvent(
   /**
    * Distributed nodes for given insertion point.
    */
-  val distributedNodes : Array<BackendNode>
+  val distributedNodes : List<BackendNode>
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "distributedNodesUpdated")
 

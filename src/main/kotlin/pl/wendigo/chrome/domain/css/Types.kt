@@ -1,7 +1,7 @@
 package pl.wendigo.chrome.domain.css
 
 /**
- * 
+ *
  */
 
 typealias StyleSheetId = String
@@ -29,7 +29,7 @@ data class PseudoElementMatches(
   /**
    * Matches of CSS rules applicable to the pseudo style.
    */
-  val matches : Array<RuleMatch>
+  val matches : List<RuleMatch>
 )
 
 /**
@@ -45,7 +45,7 @@ data class InheritedStyleEntry(
   /**
    * Matches of CSS rules matching the ancestor node in the style inheritance chain.
    */
-  val matchedCSSRules : Array<RuleMatch>
+  val matchedCSSRules : List<RuleMatch>
 )
 
 /**
@@ -61,7 +61,7 @@ data class RuleMatch(
   /**
    * Matching selector indices in the rule's selectorList selectors (0-based).
    */
-  val matchingSelectors : Array<Int>
+  val matchingSelectors : List<Int>
 )
 
 /**
@@ -88,7 +88,7 @@ data class SelectorList(
   /**
    * Selectors in the list.
    */
-  val selectors : Array<Value>,
+  val selectors : List<Value>,
 
   /**
    * Rule selector text.
@@ -195,7 +195,7 @@ data class CSSRule(
   /**
    * Media list array (for rules involving media queries). The array enumerates media queries starting with the innermost one, going outwards.
    */
-  val media : Array<CSSMedia>? = null
+  val media : List<CSSMedia>? = null
 )
 
 /**
@@ -251,7 +251,7 @@ data class SourceRange(
 )
 
 /**
- * 
+ *
  */
 
 data class ShorthandEntry(
@@ -272,7 +272,7 @@ data class ShorthandEntry(
 )
 
 /**
- * 
+ *
  */
 
 data class CSSComputedStyleProperty(
@@ -300,12 +300,12 @@ data class CSSStyle(
   /**
    * CSS properties in the style.
    */
-  val cssProperties : Array<CSSProperty>,
+  val cssProperties : List<CSSProperty>,
 
   /**
    * Computed values for all shorthands found in the style.
    */
-  val shorthandEntries : Array<ShorthandEntry>,
+  val shorthandEntries : List<ShorthandEntry>,
 
   /**
    * Style declaration text (if available).
@@ -397,7 +397,7 @@ data class CSSMedia(
   /**
    * Array of media queries.
    */
-  @pl.wendigo.chrome.Experimental val mediaList : Array<MediaQuery>? = null
+  @pl.wendigo.chrome.Experimental val mediaList : List<MediaQuery>? = null
 )
 
 /**
@@ -408,7 +408,7 @@ data class MediaQuery(
   /**
    * Array of media query expressions.
    */
-  val expressions : Array<MediaQueryExpression>,
+  val expressions : List<MediaQueryExpression>,
 
   /**
    * Whether the media query condition is satisfied.
@@ -481,7 +481,7 @@ data class CSSKeyframesRule(
   /**
    * List of keyframes.
    */
-  val keyframes : Array<CSSKeyframeRule>
+  val keyframes : List<CSSKeyframeRule>
 )
 
 /**

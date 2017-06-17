@@ -303,7 +303,7 @@ data class SecurityDetails(
   /**
    * Subject Alternative Name (SAN) DNS names and IP addresses.
    */
-  val sanList : Array<String>,
+  val sanList : List<String>,
 
   /**
    * Name of the issuing CA.
@@ -323,7 +323,7 @@ data class SecurityDetails(
   /**
    * List of signed certificate timestamps (SCTs).
    */
-  val signedCertificateTimestampList : Array<SignedCertificateTimestamp>
+  val signedCertificateTimestampList : List<SignedCertificateTimestamp>
 )
 
 /**

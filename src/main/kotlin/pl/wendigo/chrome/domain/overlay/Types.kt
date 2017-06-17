@@ -21,7 +21,7 @@ data class HighlightConfig(
   val showExtensionLines : Boolean? = null,
 
   /**
-   * 
+   *
    */
   val displayAsMaterial : Boolean? = null,
 
@@ -67,7 +67,7 @@ data class HighlightConfig(
 )
 
 /**
- * 
+ *
  */
 enum class InspectMode {
     @com.fasterxml.jackson.annotation.JsonProperty("searchForNode") SEARCHFORNODE,

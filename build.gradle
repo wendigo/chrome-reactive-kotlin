@@ -1,7 +1,7 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.2-4'
-	        dokka_version = '0.9.13'
+		kotlinVersion = '1.1.2-5'
+        dokka_version = '0.9.14'
 	}
 	
 	repositories {
@@ -15,10 +15,14 @@ buildscript {
         	classpath group: 'org.jetbrains.kotlin', name: 'kotlin-noarg', version: kotlinVersion
         	classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
 
-        	classpath 'pl.allegro.tech.build:axion-release-plugin:1.5.0'
+        	classpath 'pl.allegro.tech.build:axion-release-plugin:1.7.0'
         	classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
-        	classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3'
+        	classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.9.0'
     	}
+}
+
+plugins {
+  id 'com.github.ben-manes.versions' version '0.15.0'
 }
 
 apply plugin: 'kotlin'
@@ -62,6 +66,7 @@ repositories {
 dependencies {
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.8.7'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.7'
+
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.8.0'
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlinVersion
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: kotlinVersion
@@ -69,9 +74,10 @@ dependencies {
     compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.0'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
 
-    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
 
-    ktlint group: 'com.github.shyiko', name: 'ktlint', version: '0.6.1' }
+    ktlint group: 'com.github.shyiko', name: 'ktlint', version: '0.8.2'
+}
 
 modifyPom {
     project {

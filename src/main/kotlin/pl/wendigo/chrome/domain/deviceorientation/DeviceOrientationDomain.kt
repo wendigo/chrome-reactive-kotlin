@@ -3,27 +3,25 @@ package pl.wendigo.chrome.domain.deviceorientation
 /**
  * DeviceOrientationDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class DeviceOrientationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Overrides the Device Orientation.
-	 */
-	 fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+class DeviceOrientationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Overrides the Device Orientation.
+     */
+    fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DeviceOrientation.setDeviceOrientationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Clears the overridden Device Orientation.
-	 */
-	 fun clearDeviceOrientationOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Clears the overridden Device Orientation.
+     */
+    fun clearDeviceOrientationOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DeviceOrientation.clearDeviceOrientationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Returns flowable capturing all DeviceOrientation domains events.
      */
@@ -55,7 +53,4 @@ data class SetDeviceOrientationOverrideRequest (
     val gamma : Double
 
 )
-
-
-
 

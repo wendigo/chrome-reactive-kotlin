@@ -3,135 +3,133 @@ package pl.wendigo.chrome.domain.target
 /**
  * Supports additional targets discovery and allows to attach to them.
  */
-@pl.wendigo.chrome.Experimental class TargetDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Controls whether to discover available targets and notify via <code>targetCreated/targetDestroyed</code> events.
-	 */
-	 fun setDiscoverTargets(input : SetDiscoverTargetsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+class TargetDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Controls whether to discover available targets and notify via <code>targetCreated/targetDestroyed</code> events.
+     */
+    fun setDiscoverTargets(input : SetDiscoverTargetsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Target.setDiscoverTargets", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Controls whether to automatically attach to new targets which are considered to be related to this one. When turned on, attaches to all existing related targets as well. When turned off, automatically detaches from all currently attached targets.
-	 */
-	 fun setAutoAttach(input : SetAutoAttachRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Controls whether to automatically attach to new targets which are considered to be related to this one. When turned on, attaches to all existing related targets as well. When turned off, automatically detaches from all currently attached targets.
+     */
+    fun setAutoAttach(input : SetAutoAttachRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Target.setAutoAttach", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * 
-	 */
-	 fun setAttachToFrames(input : SetAttachToFramesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     *
+     */
+    fun setAttachToFrames(input : SetAttachToFramesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Target.setAttachToFrames", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Enables target discovery for the specified locations, when <code>setDiscoverTargets</code> was set to <code>true</code>.
-	 */
-	 fun setRemoteLocations(input : SetRemoteLocationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Enables target discovery for the specified locations, when <code>setDiscoverTargets</code> was set to <code>true</code>.
+     */
+    fun setRemoteLocations(input : SetRemoteLocationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Target.setRemoteLocations", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Sends protocol message to the target with given id.
-	 */
-	 fun sendMessageToTarget(input : SendMessageToTargetRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Sends protocol message to the target with given id.
+     */
+    fun sendMessageToTarget(input : SendMessageToTargetRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Target.sendMessageToTarget", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns information about a target.
-	 */
-	 fun getTargetInfo(input : GetTargetInfoRequest) : io.reactivex.Single<GetTargetInfoResponse> {
+    /**
+     * Returns information about a target.
+     */
+    fun getTargetInfo(input : GetTargetInfoRequest) : io.reactivex.Single<GetTargetInfoResponse> {
         return connectionRemote.runAndCaptureResponse("Target.getTargetInfo", input, GetTargetInfoResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Activates (focuses) the target.
-	 */
-	 fun activateTarget(input : ActivateTargetRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Activates (focuses) the target.
+     */
+    fun activateTarget(input : ActivateTargetRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Target.activateTarget", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Closes the target. If the target is a page that gets closed too.
-	 */
-	 fun closeTarget(input : CloseTargetRequest) : io.reactivex.Single<CloseTargetResponse> {
+    /**
+     * Closes the target. If the target is a page that gets closed too.
+     */
+    fun closeTarget(input : CloseTargetRequest) : io.reactivex.Single<CloseTargetResponse> {
         return connectionRemote.runAndCaptureResponse("Target.closeTarget", input, CloseTargetResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Attaches to the target with given id.
-	 */
-	 fun attachToTarget(input : AttachToTargetRequest) : io.reactivex.Single<AttachToTargetResponse> {
+    /**
+     * Attaches to the target with given id.
+     */
+    fun attachToTarget(input : AttachToTargetRequest) : io.reactivex.Single<AttachToTargetResponse> {
         return connectionRemote.runAndCaptureResponse("Target.attachToTarget", input, AttachToTargetResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Detaches from the target with given id.
-	 */
-	 fun detachFromTarget(input : DetachFromTargetRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Detaches from the target with given id.
+     */
+    fun detachFromTarget(input : DetachFromTargetRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Target.detachFromTarget", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than one.
-	 */
-	 fun createBrowserContext() : io.reactivex.Single<CreateBrowserContextResponse> {
+    /**
+     * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than one.
+     */
+    fun createBrowserContext() : io.reactivex.Single<CreateBrowserContextResponse> {
         return connectionRemote.runAndCaptureResponse("Target.createBrowserContext", null, CreateBrowserContextResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Deletes a BrowserContext, will fail of any open page uses it.
-	 */
-	 fun disposeBrowserContext(input : DisposeBrowserContextRequest) : io.reactivex.Single<DisposeBrowserContextResponse> {
+    /**
+     * Deletes a BrowserContext, will fail of any open page uses it.
+     */
+    fun disposeBrowserContext(input : DisposeBrowserContextRequest) : io.reactivex.Single<DisposeBrowserContextResponse> {
         return connectionRemote.runAndCaptureResponse("Target.disposeBrowserContext", input, DisposeBrowserContextResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Creates a new page.
-	 */
-	 fun createTarget(input : CreateTargetRequest) : io.reactivex.Single<CreateTargetResponse> {
+    /**
+     * Creates a new page.
+     */
+    fun createTarget(input : CreateTargetRequest) : io.reactivex.Single<CreateTargetResponse> {
         return connectionRemote.runAndCaptureResponse("Target.createTarget", input, CreateTargetResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Retrieves a list of available targets.
-	 */
-	 fun getTargets() : io.reactivex.Single<GetTargetsResponse> {
+    /**
+     * Retrieves a list of available targets.
+     */
+    fun getTargets() : io.reactivex.Single<GetTargetsResponse> {
         return connectionRemote.runAndCaptureResponse("Target.getTargets", null, GetTargetsResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Issued when a possible inspection target is created.
      */
@@ -144,9 +142,9 @@ package pl.wendigo.chrome.domain.target
     /**
      * Issued when a possible inspection target is created.
      */
-     fun targetCreatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<TargetCreatedEvent>> {
+    fun targetCreatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<TargetCreatedEvent>> {
         return connectionRemote.captureEvents("Target.targetCreated", TargetCreatedEvent::class.java)
-     }
+    }
 
     /**
      * Issued when a target is destroyed.
@@ -160,9 +158,9 @@ package pl.wendigo.chrome.domain.target
     /**
      * Issued when a target is destroyed.
      */
-     fun targetDestroyedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<TargetDestroyedEvent>> {
+    fun targetDestroyedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<TargetDestroyedEvent>> {
         return connectionRemote.captureEvents("Target.targetDestroyed", TargetDestroyedEvent::class.java)
-     }
+    }
 
     /**
      * Issued when attached to target because of auto-attach or <code>attachToTarget</code> command.
@@ -176,9 +174,9 @@ package pl.wendigo.chrome.domain.target
     /**
      * Issued when attached to target because of auto-attach or <code>attachToTarget</code> command.
      */
-     fun attachedToTargetTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AttachedToTargetEvent>> {
+    fun attachedToTargetTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AttachedToTargetEvent>> {
         return connectionRemote.captureEvents("Target.attachedToTarget", AttachedToTargetEvent::class.java)
-     }
+    }
 
     /**
      * Issued when detached from target for any reason (including <code>detachFromTarget</code> command).
@@ -192,9 +190,9 @@ package pl.wendigo.chrome.domain.target
     /**
      * Issued when detached from target for any reason (including <code>detachFromTarget</code> command).
      */
-     fun detachedFromTargetTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DetachedFromTargetEvent>> {
+    fun detachedFromTargetTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DetachedFromTargetEvent>> {
         return connectionRemote.captureEvents("Target.detachedFromTarget", DetachedFromTargetEvent::class.java)
-     }
+    }
 
     /**
      * Notifies about new protocol message from attached target.
@@ -208,9 +206,9 @@ package pl.wendigo.chrome.domain.target
     /**
      * Notifies about new protocol message from attached target.
      */
-     fun receivedMessageFromTargetTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ReceivedMessageFromTargetEvent>> {
+    fun receivedMessageFromTargetTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ReceivedMessageFromTargetEvent>> {
         return connectionRemote.captureEvents("Target.receivedMessageFromTarget", ReceivedMessageFromTargetEvent::class.java)
-     }
+    }
 
     /**
      * Returns flowable capturing all Target domains events.
@@ -234,7 +232,6 @@ data class SetDiscoverTargetsRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Target.setAutoAttach method call.
  *
@@ -253,11 +250,10 @@ data class SetAutoAttachRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Target.setAttachToFrames method call.
  *
- * 
+ *
  */
 data class SetAttachToFramesRequest (
     /**
@@ -266,7 +262,6 @@ data class SetAttachToFramesRequest (
     val value : Boolean
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Target.setRemoteLocations method call.
@@ -277,10 +272,9 @@ data class SetRemoteLocationsRequest (
     /**
      * List of remote locations.
      */
-    val locations : Array<RemoteLocation>
+    val locations : List<RemoteLocation>
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Target.sendMessageToTarget method call.
@@ -289,17 +283,16 @@ data class SetRemoteLocationsRequest (
  */
 data class SendMessageToTargetRequest (
     /**
-     * 
+     *
      */
     val targetId : TargetID,
 
     /**
-     * 
+     *
      */
     val message : String
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Target.getTargetInfo method call.
@@ -308,7 +301,7 @@ data class SendMessageToTargetRequest (
  */
 data class GetTargetInfoRequest (
     /**
-     * 
+     *
      */
     val targetId : TargetID
 
@@ -321,7 +314,7 @@ data class GetTargetInfoRequest (
  */
 data class GetTargetInfoResponse(
   /**
-   * 
+   *
    */
   val targetInfo : TargetInfo
 
@@ -334,12 +327,11 @@ data class GetTargetInfoResponse(
  */
 data class ActivateTargetRequest (
     /**
-     * 
+     *
      */
     val targetId : TargetID
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Target.closeTarget method call.
@@ -348,7 +340,7 @@ data class ActivateTargetRequest (
  */
 data class CloseTargetRequest (
     /**
-     * 
+     *
      */
     val targetId : TargetID
 
@@ -361,7 +353,7 @@ data class CloseTargetRequest (
  */
 data class CloseTargetResponse(
   /**
-   * 
+   *
    */
   val success : Boolean
 
@@ -374,7 +366,7 @@ data class CloseTargetResponse(
  */
 data class AttachToTargetRequest (
     /**
-     * 
+     *
      */
     val targetId : TargetID
 
@@ -400,13 +392,11 @@ data class AttachToTargetResponse(
  */
 data class DetachFromTargetRequest (
     /**
-     * 
+     *
      */
     val targetId : TargetID
 
 )
-
-
 
 /**
  * Represents responseFrame from Target. method call.
@@ -428,7 +418,7 @@ data class CreateBrowserContextResponse(
  */
 data class DisposeBrowserContextRequest (
     /**
-     * 
+     *
      */
     val browserContextId : BrowserContextID
 
@@ -441,7 +431,7 @@ data class DisposeBrowserContextRequest (
  */
 data class DisposeBrowserContextResponse(
   /**
-   * 
+   *
    */
   val success : Boolean
 
@@ -488,7 +478,6 @@ data class CreateTargetResponse(
 
 )
 
-
 /**
  * Represents responseFrame from Target. method call.
  *
@@ -498,7 +487,7 @@ data class GetTargetsResponse(
   /**
    * The list of targets.
    */
-  val targetInfos : Array<TargetInfo>
+  val targetInfos : List<TargetInfo>
 
 )
 
@@ -509,7 +498,7 @@ data class GetTargetsResponse(
  */
 data class TargetCreatedEvent(
   /**
-   * 
+   *
    */
   val targetInfo : TargetInfo
 
@@ -522,7 +511,7 @@ data class TargetCreatedEvent(
  */
 data class TargetDestroyedEvent(
   /**
-   * 
+   *
    */
   val targetId : TargetID
 
@@ -535,12 +524,12 @@ data class TargetDestroyedEvent(
  */
 data class AttachedToTargetEvent(
   /**
-   * 
+   *
    */
   val targetInfo : TargetInfo,
 
   /**
-   * 
+   *
    */
   val waitingForDebugger : Boolean
 
@@ -553,7 +542,7 @@ data class AttachedToTargetEvent(
  */
 data class DetachedFromTargetEvent(
   /**
-   * 
+   *
    */
   val targetId : TargetID
 
@@ -566,12 +555,12 @@ data class DetachedFromTargetEvent(
  */
 data class ReceivedMessageFromTargetEvent(
   /**
-   * 
+   *
    */
   val targetId : TargetID,
 
   /**
-   * 
+   *
    */
   val message : String
 

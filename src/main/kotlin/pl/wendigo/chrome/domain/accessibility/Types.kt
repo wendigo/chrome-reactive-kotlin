@@ -107,7 +107,7 @@ data class AXValueSource(
 )
 
 /**
- * 
+ *
  */
 
 data class AXRelatedNode(
@@ -128,7 +128,7 @@ data class AXRelatedNode(
 )
 
 /**
- * 
+ *
  */
 
 data class AXProperty(
@@ -161,12 +161,12 @@ data class AXValue(
   /**
    * One or more related nodes, if applicable.
    */
-  val relatedNodes : Array<AXRelatedNode>? = null,
+  val relatedNodes : List<AXRelatedNode>? = null,
 
   /**
    * The sources which contributed to the computation of this property.
    */
-  val sources : Array<AXValueSource>? = null
+  val sources : List<AXValueSource>? = null
 )
 
 /**
@@ -252,7 +252,7 @@ data class AXNode(
   /**
    * Collection of reasons why this node is hidden.
    */
-  val ignoredReasons : Array<AXProperty>? = null,
+  val ignoredReasons : List<AXProperty>? = null,
 
   /**
    * This <code>Node</code>'s role, whether explicit or implicit.
@@ -277,12 +277,12 @@ data class AXNode(
   /**
    * All other properties
    */
-  val properties : Array<AXProperty>? = null,
+  val properties : List<AXProperty>? = null,
 
   /**
    * IDs for each of this node's child nodes.
    */
-  val childIds : Array<AXNodeId>? = null,
+  val childIds : List<AXNodeId>? = null,
 
   /**
    * The backend ID for the associated DOM node, if any.

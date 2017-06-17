@@ -3,90 +3,88 @@ package pl.wendigo.chrome.domain.layertree
 /**
  * LayerTreeDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class LayerTreeDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Enables compositing tree inspection.
-	 */
-	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+class LayerTreeDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Enables compositing tree inspection.
+     */
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Disables compositing tree inspection.
-	 */
-	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Disables compositing tree inspection.
+     */
+    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Provides the reasons why the given layer was composited.
-	 */
-	 fun compositingReasons(input : CompositingReasonsRequest) : io.reactivex.Single<CompositingReasonsResponse> {
+    /**
+     * Provides the reasons why the given layer was composited.
+     */
+    fun compositingReasons(input : CompositingReasonsRequest) : io.reactivex.Single<CompositingReasonsResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns the layer snapshot identifier.
-	 */
-	 fun makeSnapshot(input : MakeSnapshotRequest) : io.reactivex.Single<MakeSnapshotResponse> {
+    /**
+     * Returns the layer snapshot identifier.
+     */
+    fun makeSnapshot(input : MakeSnapshotRequest) : io.reactivex.Single<MakeSnapshotResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns the snapshot identifier.
-	 */
-	 fun loadSnapshot(input : LoadSnapshotRequest) : io.reactivex.Single<LoadSnapshotResponse> {
+    /**
+     * Returns the snapshot identifier.
+     */
+    fun loadSnapshot(input : LoadSnapshotRequest) : io.reactivex.Single<LoadSnapshotResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Releases layer snapshot captured by the back-end.
-	 */
-	 fun releaseSnapshot(input : ReleaseSnapshotRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Releases layer snapshot captured by the back-end.
+     */
+    fun releaseSnapshot(input : ReleaseSnapshotRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * 
-	 */
-	 fun profileSnapshot(input : ProfileSnapshotRequest) : io.reactivex.Single<ProfileSnapshotResponse> {
+    /**
+     *
+     */
+    fun profileSnapshot(input : ProfileSnapshotRequest) : io.reactivex.Single<ProfileSnapshotResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Replays the layer snapshot and returns the resulting bitmap.
-	 */
-	 fun replaySnapshot(input : ReplaySnapshotRequest) : io.reactivex.Single<ReplaySnapshotResponse> {
+    /**
+     * Replays the layer snapshot and returns the resulting bitmap.
+     */
+    fun replaySnapshot(input : ReplaySnapshotRequest) : io.reactivex.Single<ReplaySnapshotResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Replays the layer snapshot and returns canvas log.
-	 */
-	 fun snapshotCommandLog(input : SnapshotCommandLogRequest) : io.reactivex.Single<SnapshotCommandLogResponse> {
+    /**
+     * Replays the layer snapshot and returns canvas log.
+     */
+    fun snapshotCommandLog(input : SnapshotCommandLogRequest) : io.reactivex.Single<SnapshotCommandLogResponse> {
         return connectionRemote.runAndCaptureResponse("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Returns observable capturing all LayerTree.layerTreeDidChange events.
      */
@@ -99,9 +97,9 @@ package pl.wendigo.chrome.domain.layertree
     /**
      * Returns observable capturing all LayerTree.layerTreeDidChange events.
      */
-     fun layerTreeDidChangeTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LayerTreeDidChangeEvent>> {
+    fun layerTreeDidChangeTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LayerTreeDidChangeEvent>> {
         return connectionRemote.captureEvents("LayerTree.layerTreeDidChange", LayerTreeDidChangeEvent::class.java)
-     }
+    }
 
     /**
      * Returns observable capturing all LayerTree.layerPainted events.
@@ -115,9 +113,9 @@ package pl.wendigo.chrome.domain.layertree
     /**
      * Returns observable capturing all LayerTree.layerPainted events.
      */
-     fun layerPaintedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LayerPaintedEvent>> {
+    fun layerPaintedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LayerPaintedEvent>> {
         return connectionRemote.captureEvents("LayerTree.layerPainted", LayerPaintedEvent::class.java)
-     }
+    }
 
     /**
      * Returns flowable capturing all LayerTree domains events.
@@ -128,9 +126,6 @@ package pl.wendigo.chrome.domain.layertree
         }
     }
 }
-
-
-
 
 /**
  * Represents requestFrame parameters that can be used with LayerTree.compositingReasons method call.
@@ -154,7 +149,7 @@ data class CompositingReasonsResponse(
   /**
    * A list of strings specifying reasons for the given layer to become composited.
    */
-  val compositingReasons : Array<String>
+  val compositingReasons : List<String>
 
 )
 
@@ -193,7 +188,7 @@ data class LoadSnapshotRequest (
     /**
      * An array of tiles composing the snapshot.
      */
-    val tiles : Array<PictureTile>
+    val tiles : List<PictureTile>
 
 )
 
@@ -223,11 +218,10 @@ data class ReleaseSnapshotRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with LayerTree.profileSnapshot method call.
  *
- * 
+ *
  */
 data class ProfileSnapshotRequest (
     /**
@@ -255,13 +249,13 @@ data class ProfileSnapshotRequest (
 /**
  * Represents responseFrame from LayerTree. method call.
  *
- * 
+ *
  */
 data class ProfileSnapshotResponse(
   /**
    * The array of paint profiles, one per run.
    */
-  val timings : Array<PaintProfile>
+  val timings : List<PaintProfile>
 
 )
 
@@ -328,27 +322,27 @@ data class SnapshotCommandLogResponse(
   /**
    * The array of canvas function calls.
    */
-  val commandLog : Array<Any>
+  val commandLog : List<Any>
 
 )
 
 /**
  * Represents responseFrame from LayerTree. method call.
  *
- * 
+ *
  */
 data class LayerTreeDidChangeEvent(
   /**
    * Layer tree, absent if not in the comspositing mode.
    */
-  val layers : Array<Layer>? = null
+  val layers : List<Layer>? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "LayerTree", name = "layerTreeDidChange")
 
 /**
  * Represents responseFrame from LayerTree. method call.
  *
- * 
+ *
  */
 data class LayerPaintedEvent(
   /**

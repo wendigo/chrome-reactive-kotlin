@@ -23,7 +23,7 @@ data class ProfileNode(
   /**
    * Child node ids.
    */
-  val children : Array<Int>? = null,
+  val children : List<Int>? = null,
 
   /**
    * The reason of being not optimized. The function may be deoptimized or marked as don't optimize.
@@ -33,7 +33,7 @@ data class ProfileNode(
   /**
    * An array of source position ticks.
    */
-  @pl.wendigo.chrome.Experimental val positionTicks : Array<PositionTickInfo>? = null
+  @pl.wendigo.chrome.Experimental val positionTicks : List<PositionTickInfo>? = null
 )
 
 /**
@@ -44,7 +44,7 @@ data class Profile(
   /**
    * The list of profile nodes. First item is the root node.
    */
-  val nodes : Array<ProfileNode>,
+  val nodes : List<ProfileNode>,
 
   /**
    * Profiling start timestamp in microseconds.
@@ -59,12 +59,12 @@ data class Profile(
   /**
    * Ids of samples top nodes.
    */
-  val samples : Array<Int>? = null,
+  val samples : List<Int>? = null,
 
   /**
    * Time intervals between adjacent samples in microseconds. The first delta is relative to the profile startTime.
    */
-  val timeDeltas : Array<Int>? = null
+  val timeDeltas : List<Int>? = null
 )
 
 /**
@@ -117,7 +117,7 @@ data class FunctionCoverage(
   /**
    * Source ranges inside the function with coverage data.
    */
-  val ranges : Array<CoverageRange>
+  val ranges : List<CoverageRange>
 )
 
 /**
@@ -138,6 +138,6 @@ data class ScriptCoverage(
   /**
    * Functions contained in the script that has coverage data.
    */
-  val functions : Array<FunctionCoverage>
+  val functions : List<FunctionCoverage>
 )
 

@@ -3,36 +3,34 @@ package pl.wendigo.chrome.domain.memory
 /**
  * MemoryDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class MemoryDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * 
-	 */
-	 fun getDOMCounters() : io.reactivex.Single<GetDOMCountersResponse> {
+class MemoryDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     *
+     */
+    fun getDOMCounters() : io.reactivex.Single<GetDOMCountersResponse> {
         return connectionRemote.runAndCaptureResponse("Memory.getDOMCounters", null, GetDOMCountersResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Enable/disable suppressing memory pressure notifications in all processes.
-	 */
-	 fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Enable/disable suppressing memory pressure notifications in all processes.
+     */
+    fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Simulate a memory pressure notification in all processes.
-	 */
-	 fun simulatePressureNotification(input : SimulatePressureNotificationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Simulate a memory pressure notification in all processes.
+     */
+    fun simulatePressureNotification(input : SimulatePressureNotificationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Returns flowable capturing all Memory domains events.
      */
@@ -46,21 +44,21 @@ package pl.wendigo.chrome.domain.memory
 /**
  * Represents responseFrame from Memory. method call.
  *
- * 
+ *
  */
 data class GetDOMCountersResponse(
   /**
-   * 
+   *
    */
   val documents : Int,
 
   /**
-   * 
+   *
    */
   val nodes : Int,
 
   /**
-   * 
+   *
    */
   val jsEventListeners : Int
 
@@ -79,7 +77,6 @@ data class SetPressureNotificationsSuppressedRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with Memory.simulatePressureNotification method call.
  *
@@ -92,5 +89,4 @@ data class SimulatePressureNotificationRequest (
     val level : PressureLevel
 
 )
-
 

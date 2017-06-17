@@ -21,3 +21,6 @@ node -p '
 git diff protocol.json
 
 go run generator.go
+
+./gradlew ktlintFormat
+./gradlew ktlint

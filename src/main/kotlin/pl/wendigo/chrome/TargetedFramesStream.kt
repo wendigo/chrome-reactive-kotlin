@@ -2,7 +2,6 @@ package pl.wendigo.chrome
 
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.Timed
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.domain.target.BrowserContextID

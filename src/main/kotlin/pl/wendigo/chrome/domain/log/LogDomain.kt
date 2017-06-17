@@ -3,54 +3,52 @@ package pl.wendigo.chrome.domain.log
 /**
  * Provides access to log entries.
  */
-@pl.wendigo.chrome.Experimental class LogDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Enables log domain, sends the entries collected so far to the client by means of the <code>entryAdded</code> notification.
-	 */
-	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+class LogDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Enables log domain, sends the entries collected so far to the client by means of the <code>entryAdded</code> notification.
+     */
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Log.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Disables log domain, prevents further log entries from being reported to the client.
-	 */
-	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Disables log domain, prevents further log entries from being reported to the client.
+     */
+    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Log.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Clears the log.
-	 */
-	 fun clear() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Clears the log.
+     */
+    fun clear() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Log.clear", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * start violation reporting.
-	 */
-	 fun startViolationsReport(input : StartViolationsReportRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * start violation reporting.
+     */
+    fun startViolationsReport(input : StartViolationsReportRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Log.startViolationsReport", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Stop violation reporting.
-	 */
-	 fun stopViolationsReport() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Stop violation reporting.
+     */
+    fun stopViolationsReport() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Log.stopViolationsReport", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Issued when new message was logged.
      */
@@ -63,9 +61,9 @@ package pl.wendigo.chrome.domain.log
     /**
      * Issued when new message was logged.
      */
-     fun entryAddedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<EntryAddedEvent>> {
+    fun entryAddedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<EntryAddedEvent>> {
         return connectionRemote.captureEvents("Log.entryAdded", EntryAddedEvent::class.java)
-     }
+    }
 
     /**
      * Returns flowable capturing all Log domains events.
@@ -77,11 +75,6 @@ package pl.wendigo.chrome.domain.log
     }
 }
 
-
-
-
-
-
 /**
  * Represents requestFrame parameters that can be used with Log.startViolationsReport method call.
  *
@@ -91,12 +84,9 @@ data class StartViolationsReportRequest (
     /**
      * Configuration for violations.
      */
-    val config : Array<ViolationSetting>
+    val config : List<ViolationSetting>
 
 )
-
-
-
 
 /**
  * Represents responseFrame from Log. method call.

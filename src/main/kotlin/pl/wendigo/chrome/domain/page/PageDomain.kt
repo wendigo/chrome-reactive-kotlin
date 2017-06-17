@@ -4,351 +4,321 @@ package pl.wendigo.chrome.domain.page
  * Actions and events related to the inspected page belong to the page domain.
  */
 class PageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Enables page domain notifications.
-	 */
-	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Enables page domain notifications.
+     */
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Disables page domain notifications.
-	 */
-	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Disables page domain notifications.
+     */
+    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * 
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun addScriptToEvaluateOnLoad(input : AddScriptToEvaluateOnLoadRequest) : io.reactivex.Single<AddScriptToEvaluateOnLoadResponse> {
+    /**
+     *
+     */
+    fun addScriptToEvaluateOnLoad(input : AddScriptToEvaluateOnLoadRequest) : io.reactivex.Single<AddScriptToEvaluateOnLoadResponse> {
         return connectionRemote.runAndCaptureResponse("Page.addScriptToEvaluateOnLoad", input, AddScriptToEvaluateOnLoadResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * 
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun removeScriptToEvaluateOnLoad(input : RemoveScriptToEvaluateOnLoadRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     *
+     */
+    fun removeScriptToEvaluateOnLoad(input : RemoveScriptToEvaluateOnLoadRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.removeScriptToEvaluateOnLoad", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Controls whether browser will open a new inspector window for connected pages.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setAutoAttachToCreatedPages(input : SetAutoAttachToCreatedPagesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Controls whether browser will open a new inspector window for connected pages.
+     */
+    fun setAutoAttachToCreatedPages(input : SetAutoAttachToCreatedPagesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.setAutoAttachToCreatedPages", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Reloads given page optionally ignoring the cache.
-	 */
-	 fun reload(input : ReloadRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Reloads given page optionally ignoring the cache.
+     */
+    fun reload(input : ReloadRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.reload", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Navigates current page to the given URL.
-	 */
-	 fun navigate(input : NavigateRequest) : io.reactivex.Single<NavigateResponse> {
+    /**
+     * Navigates current page to the given URL.
+     */
+    fun navigate(input : NavigateRequest) : io.reactivex.Single<NavigateResponse> {
         return connectionRemote.runAndCaptureResponse("Page.navigate", input, NavigateResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Force the page stop all navigations and pending resource fetches.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun stopLoading() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Force the page stop all navigations and pending resource fetches.
+     */
+    fun stopLoading() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.stopLoading", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns navigation history for the current page.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getNavigationHistory() : io.reactivex.Single<GetNavigationHistoryResponse> {
+    /**
+     * Returns navigation history for the current page.
+     */
+    fun getNavigationHistory() : io.reactivex.Single<GetNavigationHistoryResponse> {
         return connectionRemote.runAndCaptureResponse("Page.getNavigationHistory", null, GetNavigationHistoryResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Navigates current page to the given history entry.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun navigateToHistoryEntry(input : NavigateToHistoryEntryRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Navigates current page to the given history entry.
+     */
+    fun navigateToHistoryEntry(input : NavigateToHistoryEntryRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.navigateToHistoryEntry", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getCookies() : io.reactivex.Single<GetCookiesResponse> {
+    /**
+     * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
+     */
+    fun getCookies() : io.reactivex.Single<GetCookiesResponse> {
         return connectionRemote.runAndCaptureResponse("Page.getCookies", null, GetCookiesResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Deletes browser cookie with given name, domain and path.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Deletes browser cookie with given name, domain and path.
+     */
+    fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.deleteCookie", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns present frame / resource tree structure.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getResourceTree() : io.reactivex.Single<GetResourceTreeResponse> {
+    /**
+     * Returns present frame / resource tree structure.
+     */
+    fun getResourceTree() : io.reactivex.Single<GetResourceTreeResponse> {
         return connectionRemote.runAndCaptureResponse("Page.getResourceTree", null, GetResourceTreeResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns content of the given resource.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getResourceContent(input : GetResourceContentRequest) : io.reactivex.Single<GetResourceContentResponse> {
+    /**
+     * Returns content of the given resource.
+     */
+    fun getResourceContent(input : GetResourceContentRequest) : io.reactivex.Single<GetResourceContentResponse> {
         return connectionRemote.runAndCaptureResponse("Page.getResourceContent", input, GetResourceContentResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Searches for given string in resource content.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun searchInResource(input : SearchInResourceRequest) : io.reactivex.Single<SearchInResourceResponse> {
+    /**
+     * Searches for given string in resource content.
+     */
+    fun searchInResource(input : SearchInResourceRequest) : io.reactivex.Single<SearchInResourceResponse> {
         return connectionRemote.runAndCaptureResponse("Page.searchInResource", input, SearchInResourceResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Sets given markup as the document's HTML.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setDocumentContent(input : SetDocumentContentRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Sets given markup as the document's HTML.
+     */
+    fun setDocumentContent(input : SetDocumentContentRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.setDocumentContent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
+     */
+    fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.setDeviceMetricsOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Clears the overriden device metrics.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun clearDeviceMetricsOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Clears the overriden device metrics.
+     */
+    fun clearDeviceMetricsOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
-	 */
-	 fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
+     */
+    fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.setGeolocationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Clears the overriden Geolocation Position and Error.
-	 */
-	 fun clearGeolocationOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Clears the overriden Geolocation Position and Error.
+     */
+    fun clearGeolocationOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.clearGeolocationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Overrides the Device Orientation.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Overrides the Device Orientation.
+     */
+    fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.setDeviceOrientationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Clears the overridden Device Orientation.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun clearDeviceOrientationOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Clears the overridden Device Orientation.
+     */
+    fun clearDeviceOrientationOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Toggles mouse event-based touch event emulation.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Toggles mouse event-based touch event emulation.
+     */
+    fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.setTouchEmulationEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Capture page screenshot.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun captureScreenshot(input : CaptureScreenshotRequest) : io.reactivex.Single<CaptureScreenshotResponse> {
+    /**
+     * Capture page screenshot.
+     */
+    fun captureScreenshot(input : CaptureScreenshotRequest) : io.reactivex.Single<CaptureScreenshotResponse> {
         return connectionRemote.runAndCaptureResponse("Page.captureScreenshot", input, CaptureScreenshotResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Print page as PDF.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun printToPDF(input : PrintToPDFRequest) : io.reactivex.Single<PrintToPDFResponse> {
+    /**
+     * Print page as PDF.
+     */
+    fun printToPDF(input : PrintToPDFRequest) : io.reactivex.Single<PrintToPDFResponse> {
         return connectionRemote.runAndCaptureResponse("Page.printToPDF", input, PrintToPDFResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Starts sending each frame using the <code>screencastFrame</code> event.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun startScreencast(input : StartScreencastRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Starts sending each frame using the <code>screencastFrame</code> event.
+     */
+    fun startScreencast(input : StartScreencastRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.startScreencast", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Stops sending each frame in the <code>screencastFrame</code>.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun stopScreencast() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Stops sending each frame in the <code>screencastFrame</code>.
+     */
+    fun stopScreencast() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.stopScreencast", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Acknowledges that a screencast frame has been received by the frontend.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun screencastFrameAck(input : ScreencastFrameAckRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Acknowledges that a screencast frame has been received by the frontend.
+     */
+    fun screencastFrameAck(input : ScreencastFrameAckRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.screencastFrameAck", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
-	 */
-	 fun handleJavaScriptDialog(input : HandleJavaScriptDialogRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
+     */
+    fun handleJavaScriptDialog(input : HandleJavaScriptDialogRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.handleJavaScriptDialog", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * 
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getAppManifest() : io.reactivex.Single<GetAppManifestResponse> {
+    /**
+     *
+     */
+    fun getAppManifest() : io.reactivex.Single<GetAppManifestResponse> {
         return connectionRemote.runAndCaptureResponse("Page.getAppManifest", null, GetAppManifestResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * 
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun requestAppBanner() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     *
+     */
+    fun requestAppBanner() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.requestAppBanner", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Toggles navigation throttling which allows programatic control over navigation and redirect response.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun setControlNavigations(input : SetControlNavigationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Toggles navigation throttling which allows programatic control over navigation and redirect response.
+     */
+    fun setControlNavigations(input : SetControlNavigationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.setControlNavigations", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Should be sent in response to a navigationRequested or a redirectRequested event, telling the browser how to handle the navigation.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun processNavigation(input : ProcessNavigationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Should be sent in response to a navigationRequested or a redirectRequested event, telling the browser how to handle the navigation.
+     */
+    fun processNavigation(input : ProcessNavigationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.processNavigation", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun getLayoutMetrics() : io.reactivex.Single<GetLayoutMetricsResponse> {
+    /**
+     * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
+     */
+    fun getLayoutMetrics() : io.reactivex.Single<GetLayoutMetricsResponse> {
         return connectionRemote.runAndCaptureResponse("Page.getLayoutMetrics", null, GetLayoutMetricsResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Creates an isolated world for the given frame.
-	 */
-	@pl.wendigo.chrome.Experimental
-   fun createIsolatedWorld(input : CreateIsolatedWorldRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Creates an isolated world for the given frame.
+     */
+    fun createIsolatedWorld(input : CreateIsolatedWorldRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.createIsolatedWorld", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Returns observable capturing all Page.domContentEventFired events.
      */
@@ -361,9 +331,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Returns observable capturing all Page.domContentEventFired events.
      */
-     fun domContentEventFiredTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DomContentEventFiredEvent>> {
+    fun domContentEventFiredTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DomContentEventFiredEvent>> {
         return connectionRemote.captureEvents("Page.domContentEventFired", DomContentEventFiredEvent::class.java)
-     }
+    }
 
     /**
      * Returns observable capturing all Page.loadEventFired events.
@@ -377,9 +347,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Returns observable capturing all Page.loadEventFired events.
      */
-     fun loadEventFiredTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LoadEventFiredEvent>> {
+    fun loadEventFiredTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LoadEventFiredEvent>> {
         return connectionRemote.captureEvents("Page.loadEventFired", LoadEventFiredEvent::class.java)
-     }
+    }
 
     /**
      * Fired when frame has been attached to its parent.
@@ -393,9 +363,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when frame has been attached to its parent.
      */
-     fun frameAttachedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameAttachedEvent>> {
+    fun frameAttachedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameAttachedEvent>> {
         return connectionRemote.captureEvents("Page.frameAttached", FrameAttachedEvent::class.java)
-     }
+    }
 
     /**
      * Fired once navigation of the frame has completed. Frame is now associated with the new loader.
@@ -409,9 +379,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired once navigation of the frame has completed. Frame is now associated with the new loader.
      */
-     fun frameNavigatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameNavigatedEvent>> {
+    fun frameNavigatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameNavigatedEvent>> {
         return connectionRemote.captureEvents("Page.frameNavigated", FrameNavigatedEvent::class.java)
-     }
+    }
 
     /**
      * Fired when frame has been detached from its parent.
@@ -425,9 +395,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when frame has been detached from its parent.
      */
-     fun frameDetachedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameDetachedEvent>> {
+    fun frameDetachedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameDetachedEvent>> {
         return connectionRemote.captureEvents("Page.frameDetached", FrameDetachedEvent::class.java)
-     }
+    }
 
     /**
      * Fired when frame has started loading.
@@ -441,9 +411,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when frame has started loading.
      */
-     fun frameStartedLoadingTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameStartedLoadingEvent>> {
+    fun frameStartedLoadingTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameStartedLoadingEvent>> {
         return connectionRemote.captureEvents("Page.frameStartedLoading", FrameStartedLoadingEvent::class.java)
-     }
+    }
 
     /**
      * Fired when frame has stopped loading.
@@ -457,9 +427,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when frame has stopped loading.
      */
-     fun frameStoppedLoadingTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameStoppedLoadingEvent>> {
+    fun frameStoppedLoadingTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameStoppedLoadingEvent>> {
         return connectionRemote.captureEvents("Page.frameStoppedLoading", FrameStoppedLoadingEvent::class.java)
-     }
+    }
 
     /**
      * Fired when frame schedules a potential navigation.
@@ -473,9 +443,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when frame schedules a potential navigation.
      */
-     fun frameScheduledNavigationTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameScheduledNavigationEvent>> {
+    fun frameScheduledNavigationTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameScheduledNavigationEvent>> {
         return connectionRemote.captureEvents("Page.frameScheduledNavigation", FrameScheduledNavigationEvent::class.java)
-     }
+    }
 
     /**
      * Fired when frame no longer has a scheduled navigation.
@@ -489,9 +459,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when frame no longer has a scheduled navigation.
      */
-     fun frameClearedScheduledNavigationTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameClearedScheduledNavigationEvent>> {
+    fun frameClearedScheduledNavigationTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FrameClearedScheduledNavigationEvent>> {
         return connectionRemote.captureEvents("Page.frameClearedScheduledNavigation", FrameClearedScheduledNavigationEvent::class.java)
-     }
+    }
 
     /**
      * Returns observable capturing all Page.frameResized events.
@@ -505,9 +475,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Returns observable capturing all Page.frameResized events.
      */
-     fun frameResizedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+    fun frameResizedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
         return connectionRemote.captureEvents("Page.frameResized", pl.wendigo.chrome.ProtocolEvent::class.java)
-     }
+    }
 
     /**
      * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to open.
@@ -521,9 +491,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to open.
      */
-     fun javascriptDialogOpeningTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<JavascriptDialogOpeningEvent>> {
+    fun javascriptDialogOpeningTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<JavascriptDialogOpeningEvent>> {
         return connectionRemote.captureEvents("Page.javascriptDialogOpening", JavascriptDialogOpeningEvent::class.java)
-     }
+    }
 
     /**
      * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been closed.
@@ -537,9 +507,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been closed.
      */
-     fun javascriptDialogClosedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<JavascriptDialogClosedEvent>> {
+    fun javascriptDialogClosedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<JavascriptDialogClosedEvent>> {
         return connectionRemote.captureEvents("Page.javascriptDialogClosed", JavascriptDialogClosedEvent::class.java)
-     }
+    }
 
     /**
      * Compressed image data requested by the <code>startScreencast</code>.
@@ -553,9 +523,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Compressed image data requested by the <code>startScreencast</code>.
      */
-     fun screencastFrameTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ScreencastFrameEvent>> {
+    fun screencastFrameTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ScreencastFrameEvent>> {
         return connectionRemote.captureEvents("Page.screencastFrame", ScreencastFrameEvent::class.java)
-     }
+    }
 
     /**
      * Fired when the page with currently enabled screencast was shown or hidden </code>.
@@ -569,9 +539,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when the page with currently enabled screencast was shown or hidden </code>.
      */
-     fun screencastVisibilityChangedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ScreencastVisibilityChangedEvent>> {
+    fun screencastVisibilityChangedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ScreencastVisibilityChangedEvent>> {
         return connectionRemote.captureEvents("Page.screencastVisibilityChanged", ScreencastVisibilityChangedEvent::class.java)
-     }
+    }
 
     /**
      * Fired when interstitial page was shown
@@ -585,9 +555,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when interstitial page was shown
      */
-     fun interstitialShownTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+    fun interstitialShownTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
         return connectionRemote.captureEvents("Page.interstitialShown", pl.wendigo.chrome.ProtocolEvent::class.java)
-     }
+    }
 
     /**
      * Fired when interstitial page was hidden
@@ -601,9 +571,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when interstitial page was hidden
      */
-     fun interstitialHiddenTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+    fun interstitialHiddenTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
         return connectionRemote.captureEvents("Page.interstitialHidden", pl.wendigo.chrome.ProtocolEvent::class.java)
-     }
+    }
 
     /**
      * Fired when a navigation is started if navigation throttles are enabled.  The navigation will be deferred until processNavigation is called.
@@ -617,9 +587,9 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Fired when a navigation is started if navigation throttles are enabled.  The navigation will be deferred until processNavigation is called.
      */
-     fun navigationRequestedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<NavigationRequestedEvent>> {
+    fun navigationRequestedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<NavigationRequestedEvent>> {
         return connectionRemote.captureEvents("Page.navigationRequested", NavigationRequestedEvent::class.java)
-     }
+    }
 
     /**
      * Returns flowable capturing all Page domains events.
@@ -631,17 +601,14 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 }
 
-
-
-
 /**
  * Represents requestFrame parameters that can be used with Page.addScriptToEvaluateOnLoad method call.
  *
- * 
+ *
  */
 data class AddScriptToEvaluateOnLoadRequest (
     /**
-     * 
+     *
      */
     val scriptSource : String
 
@@ -650,7 +617,7 @@ data class AddScriptToEvaluateOnLoadRequest (
 /**
  * Represents responseFrame from Page. method call.
  *
- * 
+ *
  */
 data class AddScriptToEvaluateOnLoadResponse(
   /**
@@ -663,16 +630,15 @@ data class AddScriptToEvaluateOnLoadResponse(
 /**
  * Represents requestFrame parameters that can be used with Page.removeScriptToEvaluateOnLoad method call.
  *
- * 
+ *
  */
 data class RemoveScriptToEvaluateOnLoadRequest (
     /**
-     * 
+     *
      */
     val identifier : ScriptIdentifier
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Page.setAutoAttachToCreatedPages method call.
@@ -686,7 +652,6 @@ data class SetAutoAttachToCreatedPagesRequest (
     val autoAttach : Boolean
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Page.reload method call.
@@ -705,7 +670,6 @@ data class ReloadRequest (
     val scriptToEvaluateOnLoad : String? = null
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Page.navigate method call.
@@ -743,9 +707,6 @@ data class NavigateResponse(
 
 )
 
-
-
-
 /**
  * Represents responseFrame from Page. method call.
  *
@@ -760,7 +721,7 @@ data class GetNavigationHistoryResponse(
   /**
    * Array of navigation history entries.
    */
-  val entries : Array<NavigationEntry>
+  val entries : List<NavigationEntry>
 
 )
 
@@ -777,8 +738,6 @@ data class NavigateToHistoryEntryRequest (
 
 )
 
-
-
 /**
  * Represents responseFrame from Page. method call.
  *
@@ -788,7 +747,7 @@ data class GetCookiesResponse(
   /**
    * Array of cookie objects.
    */
-  val cookies : Array<pl.wendigo.chrome.domain.network.Cookie>
+  val cookies : List<pl.wendigo.chrome.domain.network.Cookie>
 
 )
 
@@ -809,8 +768,6 @@ data class DeleteCookieRequest (
     val url : String
 
 )
-
-
 
 /**
  * Represents responseFrame from Page. method call.
@@ -903,7 +860,7 @@ data class SearchInResourceResponse(
   /**
    * List of search matches.
    */
-  val result : Array<pl.wendigo.chrome.domain.debugger.SearchMatch>
+  val result : List<pl.wendigo.chrome.domain.debugger.SearchMatch>
 
 )
 
@@ -924,7 +881,6 @@ data class SetDocumentContentRequest (
     val html : String
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Page.setDeviceMetricsOverride method call.
@@ -999,9 +955,6 @@ data class SetDeviceMetricsOverrideRequest (
 
 )
 
-
-
-
 /**
  * Represents requestFrame parameters that can be used with Page.setGeolocationOverride method call.
  *
@@ -1024,9 +977,6 @@ data class SetGeolocationOverrideRequest (
     val accuracy : Double? = null
 
 )
-
-
-
 
 /**
  * Represents requestFrame parameters that can be used with Page.setDeviceOrientationOverride method call.
@@ -1051,9 +1001,6 @@ data class SetDeviceOrientationOverrideRequest (
 
 )
 
-
-
-
 /**
  * Represents requestFrame parameters that can be used with Page.setTouchEmulationEnabled method call.
  *
@@ -1071,7 +1018,6 @@ data class SetTouchEmulationEnabledRequest (
     val configuration : String? = null
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Page.captureScreenshot method call.
@@ -1218,9 +1164,6 @@ data class StartScreencastRequest (
 
 )
 
-
-
-
 /**
  * Represents requestFrame parameters that can be used with Page.screencastFrameAck method call.
  *
@@ -1233,7 +1176,6 @@ data class ScreencastFrameAckRequest (
     val sessionId : Int
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Page.handleJavaScriptDialog method call.
@@ -1253,12 +1195,10 @@ data class HandleJavaScriptDialogRequest (
 
 )
 
-
-
 /**
  * Represents responseFrame from Page. method call.
  *
- * 
+ *
  */
 data class GetAppManifestResponse(
   /**
@@ -1267,9 +1207,9 @@ data class GetAppManifestResponse(
   val url : String,
 
   /**
-   * 
+   *
    */
-  val errors : Array<AppManifestError>,
+  val errors : List<AppManifestError>,
 
   /**
    * Manifest content.
@@ -1278,8 +1218,6 @@ data class GetAppManifestResponse(
 
 )
 
-
-
 /**
  * Represents requestFrame parameters that can be used with Page.setControlNavigations method call.
  *
@@ -1287,12 +1225,11 @@ data class GetAppManifestResponse(
  */
 data class SetControlNavigationsRequest (
     /**
-     * 
+     *
      */
     val enabled : Boolean
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Page.processNavigation method call.
@@ -1301,18 +1238,16 @@ data class SetControlNavigationsRequest (
  */
 data class ProcessNavigationRequest (
     /**
-     * 
+     *
      */
     val response : NavigationResponse,
 
     /**
-     * 
+     *
      */
     val navigationId : Int
 
 )
-
-
 
 /**
  * Represents responseFrame from Page. method call.
@@ -1360,15 +1295,14 @@ data class CreateIsolatedWorldRequest (
 
 )
 
-
 /**
  * Represents responseFrame from Page. method call.
  *
- * 
+ *
  */
 data class DomContentEventFiredEvent(
   /**
-   * 
+   *
    */
   val timestamp : Double
 
@@ -1377,11 +1311,11 @@ data class DomContentEventFiredEvent(
 /**
  * Represents responseFrame from Page. method call.
  *
- * 
+ *
  */
 data class LoadEventFiredEvent(
   /**
-   * 
+   *
    */
   val timestamp : Double
 
@@ -1493,7 +1427,6 @@ data class FrameClearedScheduledNavigationEvent(
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameClearedScheduledNavigation")
 
-
 /**
  * Represents responseFrame from Page. method call.
  *
@@ -1561,8 +1494,6 @@ data class ScreencastVisibilityChangedEvent(
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "screencastVisibilityChanged")
 
-
-
 /**
  * Represents responseFrame from Page. method call.
  *
@@ -1580,7 +1511,7 @@ data class NavigationRequestedEvent(
   val isRedirect : Boolean,
 
   /**
-   * 
+   *
    */
   val navigationId : Int,
 

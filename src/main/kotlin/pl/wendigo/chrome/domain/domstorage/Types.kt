@@ -20,5 +20,5 @@ data class StorageId(
  * DOM Storage item.
  */
 
-typealias Item = Array<String>
+typealias Item = List<String>
 

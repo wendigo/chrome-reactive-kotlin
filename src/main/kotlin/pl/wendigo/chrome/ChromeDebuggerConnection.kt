@@ -6,7 +6,6 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.Timed
 import io.reactivex.subjects.ReplaySubject
 import okhttp3.OkHttpClient
-import okhttp3.Protocol
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 
@@ -28,7 +27,7 @@ internal class ChromeDebuggerConnection constructor(
      * Closes connection to remote debugger.
      */
     override fun close() {
-       frames.close()
+        frames.close()
     }
 
     /**

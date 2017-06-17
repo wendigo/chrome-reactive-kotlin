@@ -92,7 +92,7 @@ data class Layer(
   /**
    * Transformation matrix for layer, default is identity matrix
    */
-  val transform : Array<Double>? = null,
+  val transform : List<Double>? = null,
 
   /**
    * Transform anchor point X, absent if no transform specified
@@ -127,12 +127,12 @@ data class Layer(
   /**
    * Rectangles scrolling on main thread only.
    */
-  val scrollRects : Array<ScrollRect>? = null
+  val scrollRects : List<ScrollRect>? = null
 )
 
 /**
  * Array of timings, one per paint step.
  */
 
-typealias PaintProfile = Array<Double>
+typealias PaintProfile = List<Double>
 

@@ -3,72 +3,70 @@ package pl.wendigo.chrome.domain.indexeddb
 /**
  * IndexedDBDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class IndexedDBDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Enables events from backend.
-	 */
-	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+class IndexedDBDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Enables events from backend.
+     */
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Disables events from backend.
-	 */
-	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Disables events from backend.
+     */
+    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Requests database names for given security origin.
-	 */
-	 fun requestDatabaseNames(input : RequestDatabaseNamesRequest) : io.reactivex.Single<RequestDatabaseNamesResponse> {
+    /**
+     * Requests database names for given security origin.
+     */
+    fun requestDatabaseNames(input : RequestDatabaseNamesRequest) : io.reactivex.Single<RequestDatabaseNamesResponse> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Requests database with given name in given frame.
-	 */
-	 fun requestDatabase(input : RequestDatabaseRequest) : io.reactivex.Single<RequestDatabaseResponse> {
+    /**
+     * Requests database with given name in given frame.
+     */
+    fun requestDatabase(input : RequestDatabaseRequest) : io.reactivex.Single<RequestDatabaseResponse> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Requests data from object store or index.
-	 */
-	 fun requestData(input : RequestDataRequest) : io.reactivex.Single<RequestDataResponse> {
+    /**
+     * Requests data from object store or index.
+     */
+    fun requestData(input : RequestDataRequest) : io.reactivex.Single<RequestDataResponse> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.requestData", input, RequestDataResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Clears all entries from an object store.
-	 */
-	 fun clearObjectStore(input : ClearObjectStoreRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Clears all entries from an object store.
+     */
+    fun clearObjectStore(input : ClearObjectStoreRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Deletes a database.
-	 */
-	 fun deleteDatabase(input : DeleteDatabaseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Deletes a database.
+     */
+    fun deleteDatabase(input : DeleteDatabaseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Returns flowable capturing all IndexedDB domains events.
      */
@@ -78,9 +76,6 @@ package pl.wendigo.chrome.domain.indexeddb
         }
     }
 }
-
-
-
 
 /**
  * Represents requestFrame parameters that can be used with IndexedDB.requestDatabaseNames method call.
@@ -104,7 +99,7 @@ data class RequestDatabaseNamesResponse(
   /**
    * Database names for origin.
    */
-  val databaseNames : Array<String>
+  val databaseNames : List<String>
 
 )
 
@@ -191,7 +186,7 @@ data class RequestDataResponse(
   /**
    * Array of object store data entries.
    */
-  val objectStoreDataEntries : Array<DataEntry>,
+  val objectStoreDataEntries : List<DataEntry>,
 
   /**
    * If true, there are more entries to fetch in the given range.
@@ -223,7 +218,6 @@ data class ClearObjectStoreRequest (
 
 )
 
-
 /**
  * Represents requestFrame parameters that can be used with IndexedDB.deleteDatabase method call.
  *
@@ -241,5 +235,4 @@ data class DeleteDatabaseRequest (
     val databaseName : String
 
 )
-
 

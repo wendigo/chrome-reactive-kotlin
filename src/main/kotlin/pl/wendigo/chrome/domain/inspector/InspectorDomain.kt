@@ -3,27 +3,25 @@ package pl.wendigo.chrome.domain.inspector
 /**
  * InspectorDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class InspectorDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Enables inspector domain notifications.
-	 */
-	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+class InspectorDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Enables inspector domain notifications.
+     */
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Inspector.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Disables inspector domain notifications.
-	 */
-	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Disables inspector domain notifications.
+     */
+    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Inspector.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Fired when remote debugging connection is about to be terminated. Contains detach reason.
      */
@@ -36,9 +34,9 @@ package pl.wendigo.chrome.domain.inspector
     /**
      * Fired when remote debugging connection is about to be terminated. Contains detach reason.
      */
-     fun detachedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DetachedEvent>> {
+    fun detachedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DetachedEvent>> {
         return connectionRemote.captureEvents("Inspector.detached", DetachedEvent::class.java)
-     }
+    }
 
     /**
      * Fired when debugging target has crashed
@@ -52,9 +50,9 @@ package pl.wendigo.chrome.domain.inspector
     /**
      * Fired when debugging target has crashed
      */
-     fun targetCrashedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+    fun targetCrashedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
         return connectionRemote.captureEvents("Inspector.targetCrashed", pl.wendigo.chrome.ProtocolEvent::class.java)
-     }
+    }
 
     /**
      * Returns flowable capturing all Inspector domains events.
@@ -65,9 +63,6 @@ package pl.wendigo.chrome.domain.inspector
         }
     }
 }
-
-
-
 
 /**
  * Represents responseFrame from Inspector. method call.
@@ -81,5 +76,4 @@ data class DetachedEvent(
   val reason : String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Inspector", name = "detached")
-
 

@@ -14,11 +14,11 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
      * Register event eventNameToClassMapping
      */
     init {
-      api.registerEventMappings(mapOf(
-      {{#each Protocol.EventMappings}}
-      "{{EventName}}" to {{Class}}::class.java{{#unless @last}},{{/unless}}
-      {{/each}}
-      ))
+        api.registerEventMappings(mapOf(
+        {{#each Protocol.EventMappings}}
+            "{{EventName}}" to {{Class}}::class.java{{#unless @last}},{{/unless}}
+        {{/each}}
+        ))
     }
 
     {{#each Protocol.Domains}}
@@ -34,16 +34,16 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
      * Returns flowable capturing all events.
      */
     fun Events() : io.reactivex.Flowable<ProtocolEvent> {
-      return api.captureAllEvents().map {
-        it.value()
-      }
+        return api.captureAllEvents().map {
+            it.value()
+        }
     }
 
     /**
      * Closes debugging session.
      */
     override fun close() {
-      return api.close()
+        return api.close()
     }
 
     /**

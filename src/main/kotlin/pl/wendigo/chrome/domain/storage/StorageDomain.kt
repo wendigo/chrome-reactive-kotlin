@@ -3,27 +3,25 @@ package pl.wendigo.chrome.domain.storage
 /**
  * StorageDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class StorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Clears storage for origin.
-	 */
-	 fun clearDataForOrigin(input : ClearDataForOriginRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+class StorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Clears storage for origin.
+     */
+    fun clearDataForOrigin(input : ClearDataForOriginRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Storage.clearDataForOrigin", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Returns usage and quota in bytes.
-	 */
-	 fun getUsageAndQuota(input : GetUsageAndQuotaRequest) : io.reactivex.Single<GetUsageAndQuotaResponse> {
+    /**
+     * Returns usage and quota in bytes.
+     */
+    fun getUsageAndQuota(input : GetUsageAndQuotaRequest) : io.reactivex.Single<GetUsageAndQuotaResponse> {
         return connectionRemote.runAndCaptureResponse("Storage.getUsageAndQuota", input, GetUsageAndQuotaResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Returns flowable capturing all Storage domains events.
      */
@@ -50,7 +48,6 @@ data class ClearDataForOriginRequest (
     val storageTypes : String
 
 )
-
 
 /**
  * Represents requestFrame parameters that can be used with Storage.getUsageAndQuota method call.

@@ -18,7 +18,7 @@ data class DatabaseWithObjectStores(
   /**
    * Object stores in this database.
    */
-  val objectStores : Array<ObjectStore>
+  val objectStores : List<ObjectStore>
 )
 
 /**
@@ -44,7 +44,7 @@ data class ObjectStore(
   /**
    * Indexes in this object store.
    */
-  val indexes : Array<ObjectStoreIndex>
+  val indexes : List<ObjectStoreIndex>
 )
 
 /**
@@ -101,7 +101,7 @@ data class Key(
   /**
    * Array value.
    */
-  val array : Array<Key>? = null
+  val array : List<Key>? = null
 )
 
 /**
@@ -169,6 +169,6 @@ data class KeyPath(
   /**
    * Array value.
    */
-  val array : Array<String>? = null
+  val array : List<String>? = null
 )
 

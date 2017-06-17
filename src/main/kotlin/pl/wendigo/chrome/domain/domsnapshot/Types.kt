@@ -28,17 +28,17 @@ data class DOMNode(
   /**
    * The indexes of the node's child nodes in the <code>domNodes</code> array returned by <code>getSnapshot</code>, if any.
    */
-  val childNodeIndexes : Array<Int>? = null,
+  val childNodeIndexes : List<Int>? = null,
 
   /**
    * Attributes of an <code>Element</code> node.
    */
-  val attributes : Array<NameValue>? = null,
+  val attributes : List<NameValue>? = null,
 
   /**
    * Indexes of pseudo elements associated with this node in the <code>domNodes</code> array returned by <code>getSnapshot</code>, if any.
    */
-  val pseudoElementIndexes : Array<Int>? = null,
+  val pseudoElementIndexes : List<Int>? = null,
 
   /**
    * The index of the node's related layout tree node in the <code>layoutTreeNodes</code> array returned by <code>getSnapshot</code>, if any.
@@ -114,7 +114,7 @@ data class LayoutTreeNode(
   /**
    * The post-layout inline text nodes, if any.
    */
-  val inlineTextNodes : Array<pl.wendigo.chrome.domain.css.InlineTextBox>? = null,
+  val inlineTextNodes : List<pl.wendigo.chrome.domain.css.InlineTextBox>? = null,
 
   /**
    * Index into the <code>computedStyles</code> array returned by <code>getSnapshot</code>.
@@ -130,7 +130,7 @@ data class ComputedStyle(
   /**
    * Name/value pairs of computed style properties.
    */
-  val properties : Array<NameValue>
+  val properties : List<NameValue>
 )
 
 /**

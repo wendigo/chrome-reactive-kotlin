@@ -34,7 +34,7 @@ data class GPUInfo(
   /**
    * The graphics devices on the system. Element 0 is the primary GPU.
    */
-  val devices : Array<GPUDevice>,
+  val devices : List<GPUDevice>,
 
   /**
    * An optional dictionary of additional GPU related attributes.
@@ -49,6 +49,6 @@ data class GPUInfo(
   /**
    * An optional array of GPU driver bug workarounds.
    */
-  val driverBugWorkarounds : Array<String>
+  val driverBugWorkarounds : List<String>
 )
 

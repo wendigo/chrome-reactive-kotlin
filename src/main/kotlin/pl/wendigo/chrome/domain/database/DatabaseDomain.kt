@@ -3,45 +3,43 @@ package pl.wendigo.chrome.domain.database
 /**
  * DatabaseDomain represents remote debugger protocol domain.
  */
-@pl.wendigo.chrome.Experimental class DatabaseDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
-
-	/**
-	 * Enables database tracking, database events will now be delivered to the client.
-	 */
-	 fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+class DatabaseDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+    /**
+     * Enables database tracking, database events will now be delivered to the client.
+     */
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * Disables database tracking, prevents database events from being sent to the client.
-	 */
-	 fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    /**
+     * Disables database tracking, prevents database events from being sent to the client.
+     */
+    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Database.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * 
-	 */
-	 fun getDatabaseTableNames(input : GetDatabaseTableNamesRequest) : io.reactivex.Single<GetDatabaseTableNamesResponse> {
+    /**
+     *
+     */
+    fun getDatabaseTableNames(input : GetDatabaseTableNamesRequest) : io.reactivex.Single<GetDatabaseTableNamesResponse> {
         return connectionRemote.runAndCaptureResponse("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-	/**
-	 * 
-	 */
-	 fun executeSQL(input : ExecuteSQLRequest) : io.reactivex.Single<ExecuteSQLResponse> {
+    /**
+     *
+     */
+    fun executeSQL(input : ExecuteSQLRequest) : io.reactivex.Single<ExecuteSQLResponse> {
         return connectionRemote.runAndCaptureResponse("Database.executeSQL", input, ExecuteSQLResponse::class.java).map {
             it.value()
         }
-	}
+    }
 
-  
     /**
      * Returns observable capturing all Database.addDatabase events.
      */
@@ -54,9 +52,9 @@ package pl.wendigo.chrome.domain.database
     /**
      * Returns observable capturing all Database.addDatabase events.
      */
-     fun addDatabaseTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AddDatabaseEvent>> {
+    fun addDatabaseTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AddDatabaseEvent>> {
         return connectionRemote.captureEvents("Database.addDatabase", AddDatabaseEvent::class.java)
-     }
+    }
 
     /**
      * Returns flowable capturing all Database domains events.
@@ -68,17 +66,14 @@ package pl.wendigo.chrome.domain.database
     }
 }
 
-
-
-
 /**
  * Represents requestFrame parameters that can be used with Database.getDatabaseTableNames method call.
  *
- * 
+ *
  */
 data class GetDatabaseTableNamesRequest (
     /**
-     * 
+     *
      */
     val databaseId : DatabaseId
 
@@ -87,29 +82,29 @@ data class GetDatabaseTableNamesRequest (
 /**
  * Represents responseFrame from Database. method call.
  *
- * 
+ *
  */
 data class GetDatabaseTableNamesResponse(
   /**
-   * 
+   *
    */
-  val tableNames : Array<String>
+  val tableNames : List<String>
 
 )
 
 /**
  * Represents requestFrame parameters that can be used with Database.executeSQL method call.
  *
- * 
+ *
  */
 data class ExecuteSQLRequest (
     /**
-     * 
+     *
      */
     val databaseId : DatabaseId,
 
     /**
-     * 
+     *
      */
     val query : String
 
@@ -118,21 +113,21 @@ data class ExecuteSQLRequest (
 /**
  * Represents responseFrame from Database. method call.
  *
- * 
+ *
  */
 data class ExecuteSQLResponse(
   /**
-   * 
+   *
    */
-  val columnNames : Array<String>? = null,
+  val columnNames : List<String>? = null,
 
   /**
-   * 
+   *
    */
-  val values : Array<Any>? = null,
+  val values : List<Any>? = null,
 
   /**
-   * 
+   *
    */
   val sqlError : Error? = null
 
@@ -141,11 +136,11 @@ data class ExecuteSQLResponse(
 /**
  * Represents responseFrame from Database. method call.
  *
- * 
+ *
  */
 data class AddDatabaseEvent(
   /**
-   * 
+   *
    */
   val database : Database
 

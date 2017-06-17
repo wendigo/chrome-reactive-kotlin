@@ -1,7 +1,7 @@
 package pl.wendigo.chrome.domain.browser
 
 /**
- * 
+ *
  */
 
 typealias WindowID = Int

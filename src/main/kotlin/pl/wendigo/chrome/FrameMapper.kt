@@ -12,7 +12,8 @@ import io.reactivex.Single
 class FrameMapper {
 
     companion object {
-        private val mapper: ObjectMapper = ObjectMapper().registerModule(KotlinModule())
+        private val mapper: ObjectMapper = ObjectMapper()
+                .registerModule(KotlinModule())
                 .setSerializationInclusion(JsonInclude.Include.NON_NULL)
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     }
