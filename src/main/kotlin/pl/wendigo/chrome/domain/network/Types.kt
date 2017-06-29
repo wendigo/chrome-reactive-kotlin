@@ -549,12 +549,12 @@ data class Initiator(
   val stack : pl.wendigo.chrome.domain.runtime.StackTrace? = null,
 
   /**
-   * Initiator URL, set for Parser type only.
+   * Initiator URL, set for Parser type or for Script type (when script is importing module).
    */
   val url : String? = null,
 
   /**
-   * Initiator line number, set for Parser type only (0-based).
+   * Initiator line number, set for Parser type or for Script type (when script is importing module) (0-based).
    */
   val lineNumber : Double? = null
 )

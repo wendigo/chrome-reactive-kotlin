@@ -313,8 +313,8 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     /**
      * Creates an isolated world for the given frame.
      */
-    fun createIsolatedWorld(input : CreateIsolatedWorldRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Page.createIsolatedWorld", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun createIsolatedWorld(input : CreateIsolatedWorldRequest) : io.reactivex.Single<CreateIsolatedWorldResponse> {
+        return connectionRemote.runAndCaptureResponse("Page.createIsolatedWorld", input, CreateIsolatedWorldResponse::class.java).map {
             it.value()
         }
     }
@@ -1292,6 +1292,19 @@ data class CreateIsolatedWorldRequest (
      * Whether or not universal access should be granted to the isolated world. This is a powerful option, use with caution.
      */
     val grantUniveralAccess : Boolean? = null
+
+)
+
+/**
+ * Represents responseFrame from Page. method call.
+ *
+ * Creates an isolated world for the given frame.
+ */
+data class CreateIsolatedWorldResponse(
+  /**
+   * Execution context of the isolated world.
+   */
+  val executionContextId : pl.wendigo.chrome.domain.runtime.ExecutionContextId
 
 )
 

@@ -76,7 +76,12 @@ data class GetUsageAndQuotaResponse(
   /**
    * Storage quota (bytes).
    */
-  val quota : Double
+  val quota : Double,
+
+  /**
+   * Storage usage per type (bytes).
+   */
+  val usageBreakdown : List<UsageForType>
 
 )
 

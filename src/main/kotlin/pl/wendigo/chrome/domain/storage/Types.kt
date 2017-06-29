@@ -13,6 +13,23 @@ enum class StorageType {
     @com.fasterxml.jackson.annotation.JsonProperty("websql") WEBSQL,
     @com.fasterxml.jackson.annotation.JsonProperty("service_workers") SERVICE_WORKERS,
     @com.fasterxml.jackson.annotation.JsonProperty("cache_storage") CACHE_STORAGE,
-    @com.fasterxml.jackson.annotation.JsonProperty("all") ALL;
+    @com.fasterxml.jackson.annotation.JsonProperty("all") ALL,
+    @com.fasterxml.jackson.annotation.JsonProperty("other") OTHER;
 }
+
+/**
+ * Usage for a storage type.
+ */
+
+data class UsageForType(
+  /**
+   * Name of storage type.
+   */
+  val storageType : StorageType,
+
+  /**
+   * Storage usage (bytes).
+   */
+  val usage : Double
+)
 
