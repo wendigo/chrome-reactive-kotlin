@@ -56,6 +56,11 @@ data class DOMNode(
   val baseURL : String? = null,
 
   /**
+   * Only set for documents, contains the document's content language.
+   */
+  val contentLanguage : String? = null,
+
+  /**
    * <code>DocumentType</code> node's publicId.
    */
   val publicId : String? = null,
@@ -88,7 +93,12 @@ data class DOMNode(
   /**
    * Type of a pseudo element node.
    */
-  val pseudoType : pl.wendigo.chrome.domain.dom.PseudoType? = null
+  val pseudoType : pl.wendigo.chrome.domain.dom.PseudoType? = null,
+
+  /**
+   * Whether this DOM node responds to mouse clicks. This includes nodes that have had click event listeners attached via JavaScript as well as anchor tags that naturally navigate when clicked.
+   */
+  val isClickable : Boolean? = null
 )
 
 /**

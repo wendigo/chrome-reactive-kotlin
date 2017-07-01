@@ -115,6 +115,7 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
             "Target.receivedMessageFromTarget" to pl.wendigo.chrome.domain.target.ReceivedMessageFromTargetEvent::class.java,
             "Target.targetCreated" to pl.wendigo.chrome.domain.target.TargetCreatedEvent::class.java,
             "Target.targetDestroyed" to pl.wendigo.chrome.domain.target.TargetDestroyedEvent::class.java,
+            "Target.targetInfoChanged" to pl.wendigo.chrome.domain.target.TargetInfoChangedEvent::class.java,
             "Tethering.accepted" to pl.wendigo.chrome.domain.tethering.AcceptedEvent::class.java,
             "Tracing.bufferUsage" to pl.wendigo.chrome.domain.tracing.BufferUsageEvent::class.java,
             "Tracing.dataCollected" to pl.wendigo.chrome.domain.tracing.DataCollectedEvent::class.java,

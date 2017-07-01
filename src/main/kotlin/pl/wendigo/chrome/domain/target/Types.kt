@@ -35,7 +35,12 @@ data class TargetInfo(
   /**
    *
    */
-  val url : String
+  val url : String,
+
+  /**
+   * Whether the target has an attached client.
+   */
+  val attached : Boolean
 )
 
 /**

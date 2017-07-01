@@ -5,7 +5,7 @@ package pl.wendigo.chrome.domain.target
  */
 class TargetDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Controls whether to discover available targets and notify via <code>targetCreated/targetDestroyed</code> events.
+     * Controls whether to discover available targets and notify via <code>targetCreated/targetInfoChanged/targetDestroyed</code> events.
      */
     fun setDiscoverTargets(input : SetDiscoverTargetsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Target.setDiscoverTargets", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -147,6 +147,22 @@ class TargetDomain internal constructor(private val connectionRemote : pl.wendig
     }
 
     /**
+     * Issued when some information about a target has changed. This only happens between <code>targetCreated</code> and <code>targetDestroyed</code>.
+     */
+    fun targetInfoChanged() : io.reactivex.Flowable<TargetInfoChangedEvent> {
+        return targetInfoChangedTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Issued when some information about a target has changed. This only happens between <code>targetCreated</code> and <code>targetDestroyed</code>.
+     */
+    fun targetInfoChangedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<TargetInfoChangedEvent>> {
+        return connectionRemote.captureEvents("Target.targetInfoChanged", TargetInfoChangedEvent::class.java)
+    }
+
+    /**
      * Issued when a target is destroyed.
      */
     fun targetDestroyed() : io.reactivex.Flowable<TargetDestroyedEvent> {
@@ -222,7 +238,7 @@ class TargetDomain internal constructor(private val connectionRemote : pl.wendig
 /**
  * Represents requestFrame parameters that can be used with Target.setDiscoverTargets method call.
  *
- * Controls whether to discover available targets and notify via <code>targetCreated/targetDestroyed</code> events.
+ * Controls whether to discover available targets and notify via <code>targetCreated/targetInfoChanged/targetDestroyed</code> events.
  */
 data class SetDiscoverTargetsRequest (
     /**
@@ -503,6 +519,19 @@ data class TargetCreatedEvent(
   val targetInfo : TargetInfo
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Target", name = "targetCreated")
+
+/**
+ * Represents responseFrame from Target. method call.
+ *
+ * Issued when some information about a target has changed. This only happens between <code>targetCreated</code> and <code>targetDestroyed</code>.
+ */
+data class TargetInfoChangedEvent(
+  /**
+   *
+   */
+  val targetInfo : TargetInfo
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Target", name = "targetInfoChanged")
 
 /**
  * Represents responseFrame from Target. method call.
