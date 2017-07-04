@@ -938,12 +938,7 @@ data class RequestWillBeSentEvent(
   val requestId : RequestId,
 
   /**
-   * Frame identifier.
-   */
-  @pl.wendigo.chrome.Experimental val frameId : pl.wendigo.chrome.domain.page.FrameId,
-
-  /**
-   * Loader identifier.
+   * Loader identifier. Empty string if the request is fetched form worker.
    */
   val loaderId : LoaderId,
 
@@ -980,7 +975,12 @@ data class RequestWillBeSentEvent(
   /**
    * Type of this resource.
    */
-  @pl.wendigo.chrome.Experimental val type : pl.wendigo.chrome.domain.page.ResourceType? = null
+  @pl.wendigo.chrome.Experimental val type : pl.wendigo.chrome.domain.page.ResourceType? = null,
+
+  /**
+   * Frame identifier.
+   */
+  @pl.wendigo.chrome.Experimental val frameId : pl.wendigo.chrome.domain.page.FrameId? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "requestWillBeSent")
 
@@ -1009,12 +1009,7 @@ data class ResponseReceivedEvent(
   val requestId : RequestId,
 
   /**
-   * Frame identifier.
-   */
-  @pl.wendigo.chrome.Experimental val frameId : pl.wendigo.chrome.domain.page.FrameId,
-
-  /**
-   * Loader identifier.
+   * Loader identifier. Empty string if the request is fetched form worker.
    */
   val loaderId : LoaderId,
 
@@ -1031,7 +1026,12 @@ data class ResponseReceivedEvent(
   /**
    * Response data.
    */
-  val response : Response
+  val response : Response,
+
+  /**
+   * Frame identifier.
+   */
+  @pl.wendigo.chrome.Experimental val frameId : pl.wendigo.chrome.domain.page.FrameId? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "responseReceived")
 
