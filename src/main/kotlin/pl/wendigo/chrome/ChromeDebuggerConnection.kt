@@ -5,7 +5,6 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.Timed
 import io.reactivex.subjects.ReplaySubject
-import okhttp3.ConnectionPool
 import okhttp3.OkHttpClient
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong

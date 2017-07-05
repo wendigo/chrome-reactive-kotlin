@@ -8,7 +8,6 @@ import pl.wendigo.chrome.domain.target.BrowserContextID
 import pl.wendigo.chrome.domain.target.CloseTargetRequest
 import pl.wendigo.chrome.domain.target.DisposeBrowserContextRequest
 import pl.wendigo.chrome.domain.target.SendMessageToTargetRequest
-import pl.wendigo.chrome.domain.target.TargetDomain
 import pl.wendigo.chrome.domain.target.TargetID
 
 /**
