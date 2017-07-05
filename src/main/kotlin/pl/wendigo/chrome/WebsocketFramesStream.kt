@@ -100,8 +100,6 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
             client.connectionPool().evictAll()
         } catch (e : Exception) {
             logger.warn("caught exception while closing: {}", e)
-        } finally {
-            client.dispatcher().executorService().shutdown()
         }
 
         messages.onComplete()

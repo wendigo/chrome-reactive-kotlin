@@ -16,7 +16,7 @@ import pl.wendigo.chrome.domain.target.TargetID
  */
 class TargetedFramesStream(
     private val mapper : FrameMapper,
-    private val target : TargetDomain,
+    private val api : ChromeProtocol,
     private val targetId : TargetID,
     private val browserContextID : BrowserContextID
 ) : FramesStream {
@@ -35,7 +35,7 @@ class TargetedFramesStream(
 
     override fun send(frame : RequestFrame) : Single<Boolean> {
         return mapper.serialize(frame).flatMap { message ->
-            target.sendMessageToTarget(SendMessageToTargetRequest(
+            api.Target.sendMessageToTarget(SendMessageToTargetRequest(
                     targetId = targetId,
                     message = message
             ))
@@ -48,7 +48,7 @@ class TargetedFramesStream(
     }
 
     override fun frames() : Observable<Timed<ResponseFrame>> {
-        return target.receivedMessageFromTargetTimed().filter { message ->
+        return api.Target.receivedMessageFromTargetTimed().filter { message ->
             message.value().targetId == targetId
         }
         .map { frame ->
@@ -59,12 +59,14 @@ class TargetedFramesStream(
 
     override fun close() {
         try {
-            val response = target.closeTarget(CloseTargetRequest(targetId)).flatMap {
-                target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
+            val response = api.Target.closeTarget(CloseTargetRequest(targetId)).flatMap {
+                api.Target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
             }
             .blockingGet()
 
             logger.info("Closed target {} with status {}", targetId, response)
+
+            api.close()
 
         } catch (e : Exception) {
             logger.info("Could not close target: {}", e)
