@@ -96,10 +96,12 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     override fun close() {
         try {
             connection.close(1000, "Goodbye!")
+            connection.cancel()
             client.connectionPool().evictAll()
-            client.dispatcher().executorService().shutdown()
         } catch (e : Exception) {
             logger.warn("caught exception while closing: {}", e)
+        } finally {
+            client.dispatcher().executorService().shutdown()
         }
 
         messages.onComplete()
