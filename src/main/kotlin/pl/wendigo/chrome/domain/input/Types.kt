@@ -55,3 +55,9 @@ enum class GestureSourceType {
     @com.fasterxml.jackson.annotation.JsonProperty("mouse") MOUSE;
 }
 
+/**
+ * UTC time in seconds, counted from January 1, 1970.
+ */
+
+typealias TimeSinceEpoch = Double
+

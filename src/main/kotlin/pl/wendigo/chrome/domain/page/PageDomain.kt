@@ -23,7 +23,7 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
-     *
+     * Deprecated, please use addScriptToEvaluateOnNewDocument instead.
      */
     fun addScriptToEvaluateOnLoad(input : AddScriptToEvaluateOnLoadRequest) : io.reactivex.Single<AddScriptToEvaluateOnLoadResponse> {
         return connectionRemote.runAndCaptureResponse("Page.addScriptToEvaluateOnLoad", input, AddScriptToEvaluateOnLoadResponse::class.java).map {
@@ -32,10 +32,28 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
-     *
+     * Deprecated, please use removeScriptToEvaluateOnNewDocument instead.
      */
     fun removeScriptToEvaluateOnLoad(input : RemoveScriptToEvaluateOnLoadRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Page.removeScriptToEvaluateOnLoad", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Evaluates given script in every frame upon creation (before loading frame's scripts).
+     */
+    fun addScriptToEvaluateOnNewDocument(input : AddScriptToEvaluateOnNewDocumentRequest) : io.reactivex.Single<AddScriptToEvaluateOnNewDocumentResponse> {
+        return connectionRemote.runAndCaptureResponse("Page.addScriptToEvaluateOnNewDocument", input, AddScriptToEvaluateOnNewDocumentResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Removes given script from the list.
+     */
+    fun removeScriptToEvaluateOnNewDocument(input : RemoveScriptToEvaluateOnNewDocumentRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Page.removeScriptToEvaluateOnNewDocument", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -604,7 +622,7 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
 /**
  * Represents requestFrame parameters that can be used with Page.addScriptToEvaluateOnLoad method call.
  *
- *
+ * Deprecated, please use addScriptToEvaluateOnNewDocument instead.
  */
 data class AddScriptToEvaluateOnLoadRequest (
     /**
@@ -617,7 +635,7 @@ data class AddScriptToEvaluateOnLoadRequest (
 /**
  * Represents responseFrame from Page. method call.
  *
- *
+ * Deprecated, please use addScriptToEvaluateOnNewDocument instead.
  */
 data class AddScriptToEvaluateOnLoadResponse(
   /**
@@ -630,9 +648,48 @@ data class AddScriptToEvaluateOnLoadResponse(
 /**
  * Represents requestFrame parameters that can be used with Page.removeScriptToEvaluateOnLoad method call.
  *
- *
+ * Deprecated, please use removeScriptToEvaluateOnNewDocument instead.
  */
 data class RemoveScriptToEvaluateOnLoadRequest (
+    /**
+     *
+     */
+    val identifier : ScriptIdentifier
+
+)
+
+/**
+ * Represents requestFrame parameters that can be used with Page.addScriptToEvaluateOnNewDocument method call.
+ *
+ * Evaluates given script in every frame upon creation (before loading frame's scripts).
+ */
+data class AddScriptToEvaluateOnNewDocumentRequest (
+    /**
+     *
+     */
+    val source : String
+
+)
+
+/**
+ * Represents responseFrame from Page. method call.
+ *
+ * Evaluates given script in every frame upon creation (before loading frame's scripts).
+ */
+data class AddScriptToEvaluateOnNewDocumentResponse(
+  /**
+   * Identifier of the added script.
+   */
+  val identifier : ScriptIdentifier
+
+)
+
+/**
+ * Represents requestFrame parameters that can be used with Page.removeScriptToEvaluateOnNewDocument method call.
+ *
+ * Removes given script from the list.
+ */
+data class RemoveScriptToEvaluateOnNewDocumentRequest (
     /**
      *
      */
@@ -1317,7 +1374,7 @@ data class DomContentEventFiredEvent(
   /**
    *
    */
-  val timestamp : Double
+  val timestamp : pl.wendigo.chrome.domain.network.MonotonicTime
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "domContentEventFired")
 
@@ -1330,7 +1387,7 @@ data class LoadEventFiredEvent(
   /**
    *
    */
-  val timestamp : Double
+  val timestamp : pl.wendigo.chrome.domain.network.MonotonicTime
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "loadEventFired")
 

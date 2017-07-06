@@ -7,6 +7,15 @@ package pl.wendigo.chrome.domain.security
 typealias CertificateId = Int
 
 /**
+ * A description of mixed content (HTTP resources on HTTPS pages), as defined by https://www.w3.org/TR/mixed-content/#categories
+ */
+enum class MixedContentType {
+    @com.fasterxml.jackson.annotation.JsonProperty("blockable") BLOCKABLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("optionally-blockable") OPTIONALLY_BLOCKABLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("none") NONE;
+}
+
+/**
  * The security level of a page or resource.
  */
 enum class SecurityState {
@@ -41,7 +50,12 @@ data class SecurityStateExplanation(
   /**
    * True if the page has a certificate.
    */
-  val hasCertificate : Boolean
+  val hasCertificate : Boolean,
+
+  /**
+   * The type of mixed content described by the explanation.
+   */
+  val mixedContentType : MixedContentType
 )
 
 /**

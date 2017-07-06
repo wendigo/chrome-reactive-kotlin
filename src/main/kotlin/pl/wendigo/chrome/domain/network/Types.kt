@@ -37,10 +37,16 @@ enum class ErrorReason {
 }
 
 /**
- * Number of seconds since epoch.
+ * UTC time in seconds, counted from January 1, 1970.
  */
 
-typealias Timestamp = Double
+typealias TimeSinceEpoch = Double
+
+/**
+ * Monotonically increasing time in seconds since an arbitrary point in the past.
+ */
+
+typealias MonotonicTime = Double
 
 /**
  * Request / response headers as keys / values of JSON object.
@@ -194,9 +200,9 @@ data class Request(
   val postData : String? = null,
 
   /**
-   * The mixed content status of the request, as defined in http://www.w3.org/TR/mixed-content/
+   * The mixed content type of the request.
    */
-  val mixedContentType : String? = null,
+  val mixedContentType : pl.wendigo.chrome.domain.security.MixedContentType? = null,
 
   /**
    * Priority of the resource request at the time request is sent.
@@ -242,7 +248,7 @@ data class SignedCertificateTimestamp(
   /**
    * Issuance date.
    */
-  val timestamp : Timestamp,
+  val timestamp : TimeSinceEpoch,
 
   /**
    * Hash algorithm.
@@ -313,12 +319,12 @@ data class SecurityDetails(
   /**
    * Certificate valid from date.
    */
-  val validFrom : Timestamp,
+  val validFrom : TimeSinceEpoch,
 
   /**
    * Certificate valid to (expiration) date
    */
-  val validTo : Timestamp,
+  val validTo : TimeSinceEpoch,
 
   /**
    * List of signed certificate timestamps (SCTs).

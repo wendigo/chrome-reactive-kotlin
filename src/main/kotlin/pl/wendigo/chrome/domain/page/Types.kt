@@ -89,7 +89,7 @@ data class FrameResource(
   /**
    * last-modified timestamp as reported by server.
    */
-  val lastModified : pl.wendigo.chrome.domain.network.Timestamp? = null,
+  val lastModified : pl.wendigo.chrome.domain.network.TimeSinceEpoch? = null,
 
   /**
    * Resource content size.
@@ -221,7 +221,7 @@ data class ScreencastFrameMetadata(
   /**
    * Frame swap timestamp.
    */
-  @pl.wendigo.chrome.Experimental val timestamp : Double? = null
+  @pl.wendigo.chrome.Experimental val timestamp : pl.wendigo.chrome.domain.network.TimeSinceEpoch? = null
 )
 
 /**

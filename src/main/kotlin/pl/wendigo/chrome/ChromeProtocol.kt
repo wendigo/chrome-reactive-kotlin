@@ -406,7 +406,7 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
             )).flatMap { (targetId) -> Target.attachToTarget(AttachToTargetRequest(targetId = targetId)).map {
                     HeadlessChromeProtocol(api = ChromeDebuggerConnection(TargetedFramesStream(
                             mapper,
-                            this,
+                            Target,
                             targetId,
                             browserContextId
                         ), mapper),

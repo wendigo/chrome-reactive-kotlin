@@ -709,7 +709,7 @@ data class SetCookieRequest (
     /**
      * If omitted, the cookie becomes a session cookie.
      */
-    val expirationDate : Timestamp? = null
+    val expirationDate : TimeSinceEpoch? = null
 
 )
 
@@ -922,7 +922,7 @@ data class ResourceChangedPriorityEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp
+  val timestamp : MonotonicTime
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "resourceChangedPriority")
 
@@ -955,12 +955,12 @@ data class RequestWillBeSentEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
-   * UTC Timestamp.
+   * Timestamp.
    */
-  @pl.wendigo.chrome.Experimental val wallTime : Timestamp,
+  @pl.wendigo.chrome.Experimental val wallTime : TimeSinceEpoch,
 
   /**
    * Request initiator.
@@ -1016,7 +1016,7 @@ data class ResponseReceivedEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
    * Resource type.
@@ -1049,7 +1049,7 @@ data class DataReceivedEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
    * Data chunk length.
@@ -1077,7 +1077,7 @@ data class LoadingFinishedEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
    * Total number of bytes received for this request.
@@ -1100,7 +1100,7 @@ data class LoadingFailedEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
    * Resource type.
@@ -1138,12 +1138,12 @@ data class WebSocketWillSendHandshakeRequestEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
    * UTC Timestamp.
    */
-  @pl.wendigo.chrome.Experimental val wallTime : Timestamp,
+  @pl.wendigo.chrome.Experimental val wallTime : TimeSinceEpoch,
 
   /**
    * WebSocket request data.
@@ -1166,7 +1166,7 @@ data class WebSocketHandshakeResponseReceivedEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
    * WebSocket response data.
@@ -1212,7 +1212,7 @@ data class WebSocketClosedEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp
+  val timestamp : MonotonicTime
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "webSocketClosed")
 
@@ -1230,7 +1230,7 @@ data class WebSocketFrameReceivedEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
    * WebSocket response data.
@@ -1253,7 +1253,7 @@ data class WebSocketFrameErrorEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
    * WebSocket frame error message.
@@ -1276,7 +1276,7 @@ data class WebSocketFrameSentEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
    * WebSocket response data.
@@ -1299,7 +1299,7 @@ data class EventSourceMessageReceivedEvent(
   /**
    * Timestamp.
    */
-  val timestamp : Timestamp,
+  val timestamp : MonotonicTime,
 
   /**
    * Message type.
