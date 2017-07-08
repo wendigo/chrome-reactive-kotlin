@@ -196,8 +196,8 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      *
      */
-    fun enableRequestInterception(input : EnableRequestInterceptionRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.enableRequestInterception", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun setRequestInterceptionEnabled(input : SetRequestInterceptionEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.setRequestInterceptionEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -843,11 +843,11 @@ data class GetCertificateResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.enableRequestInterception method call.
+ * Represents requestFrame parameters that can be used with Network.setRequestInterceptionEnabled method call.
  *
  *
  */
-data class EnableRequestInterceptionRequest (
+data class SetRequestInterceptionEnabledRequest (
     /**
      * Whether or not HTTP requests should be intercepted and Network.requestIntercepted events sent.
      */
