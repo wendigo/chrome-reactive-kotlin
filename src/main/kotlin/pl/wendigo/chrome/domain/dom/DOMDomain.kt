@@ -239,7 +239,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Resolves JavaScript node object for given node id.
+     * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
      */
     fun resolveNode(input : ResolveNodeRequest) : io.reactivex.Single<ResolveNodeResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.resolveNode", input, ResolveNodeResponse::class.java).map {
@@ -1102,13 +1102,18 @@ data class SetInspectedNodeRequest (
 /**
  * Represents requestFrame parameters that can be used with DOM.resolveNode method call.
  *
- * Resolves JavaScript node object for given node id.
+ * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
  */
 data class ResolveNodeRequest (
     /**
      * Id of the node to resolve.
      */
-    val nodeId : NodeId,
+    val nodeId : NodeId? = null,
+
+    /**
+     * Backend identifier of the node to resolve.
+     */
+    val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
 
     /**
      * Symbolic group name that can be used to release multiple objects.
@@ -1120,7 +1125,7 @@ data class ResolveNodeRequest (
 /**
  * Represents responseFrame from DOM. method call.
  *
- * Resolves JavaScript node object for given node id.
+ * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
  */
 data class ResolveNodeResponse(
   /**
