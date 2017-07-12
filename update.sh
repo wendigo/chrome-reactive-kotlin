@@ -39,7 +39,10 @@ then
 	git add .
 	git commit -m "Update to newest protocol"
 	git push origin
+	printf "${GREEN}Releasing new version!\n${NC}"
+	./gradlew release
 	printf "${GREEN}All done!\n${NC}"
+
 else
 	printf "${GREEN}No changes to the protocol.\n${NC}"
 fi
