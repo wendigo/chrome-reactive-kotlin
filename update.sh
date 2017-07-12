@@ -22,7 +22,7 @@ node -p '
     JSON.stringify(protocols[0], null, 4);
 ' "$browser" "$js" >protocol.json
 
-git diff protocol.json
+git --no-pager diff protocol.json
 
 if [[ -n $(git status -s) ]];
 then
