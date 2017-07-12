@@ -1093,6 +1093,11 @@ data class CaptureScreenshotRequest (
     val quality : Int? = null,
 
     /**
+     * Capture the screenshot of a given region only.
+     */
+    @pl.wendigo.chrome.Experimental val clip : Viewport? = null,
+
+    /**
      * Capture the screenshot from the surface, rather than the view. Defaults to true.
      */
     @pl.wendigo.chrome.Experimental val fromSurface : Boolean? = null

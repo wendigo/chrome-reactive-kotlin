@@ -336,3 +336,34 @@ data class VisualViewport(
   val scale : Double
 )
 
+/**
+ * Viewport for capturing screenshot.
+ */
+
+data class Viewport(
+  /**
+   * X offset in CSS pixels.
+   */
+  val x : Double,
+
+  /**
+   * Y offset in CSS pixels
+   */
+  val y : Double,
+
+  /**
+   * Rectangle width in CSS pixels
+   */
+  val width : Double,
+
+  /**
+   * Rectangle height in CSS pixels
+   */
+  val height : Double,
+
+  /**
+   * Page scale factor.
+   */
+  val scale : Double
+)
+
