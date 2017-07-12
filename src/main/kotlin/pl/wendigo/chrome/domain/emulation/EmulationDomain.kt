@@ -23,24 +23,6 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
-     * Overrides the visible area of the page. The change is hidden from the page, i.e. the observable scroll position and page scale does not change. In effect, the command moves the specified area of the page into the top-left corner of the frame.
-     */
-    fun forceViewport(input : ForceViewportRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Emulation.forceViewport", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Resets the visible area of the page to the original viewport, undoing any effects of the <code>forceViewport</code> command.
-     */
-    fun resetViewport() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Emulation.resetViewport", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Requests that page scale factor is reset to initial values.
      */
     fun resetPageScaleFactor() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -59,7 +41,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
-     * Resizes the frame/viewport of the page. Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported on Android.
+     * Deprecated, does nothing. Please use setDeviceMetricsOverride instead.
      */
     fun setVisibleSize(input : SetVisibleSizeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setVisibleSize", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -202,7 +184,7 @@ data class SetDeviceMetricsOverrideRequest (
     /**
      * Whether a view that exceeds the available browser window area should be scaled down to fit.
      */
-    val fitWindow : Boolean,
+    val fitWindow : Boolean? = null,
 
     /**
      * Scale to apply to resulting view image. Ignored in |fitWindow| mode.
@@ -247,29 +229,6 @@ data class SetDeviceMetricsOverrideRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Emulation.forceViewport method call.
- *
- * Overrides the visible area of the page. The change is hidden from the page, i.e. the observable scroll position and page scale does not change. In effect, the command moves the specified area of the page into the top-left corner of the frame.
- */
-data class ForceViewportRequest (
-    /**
-     * X coordinate of top-left corner of the area (CSS pixels).
-     */
-    val x : Double,
-
-    /**
-     * Y coordinate of top-left corner of the area (CSS pixels).
-     */
-    val y : Double,
-
-    /**
-     * Scale to apply to the area (relative to a page scale of 1.0).
-     */
-    val scale : Double
-
-)
-
-/**
  * Represents requestFrame parameters that can be used with Emulation.setPageScaleFactor method call.
  *
  * Sets a specified page scale factor.
@@ -285,7 +244,7 @@ data class SetPageScaleFactorRequest (
 /**
  * Represents requestFrame parameters that can be used with Emulation.setVisibleSize method call.
  *
- * Resizes the frame/viewport of the page. Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported on Android.
+ * Deprecated, does nothing. Please use setDeviceMetricsOverride instead.
  */
 data class SetVisibleSizeRequest (
     /**

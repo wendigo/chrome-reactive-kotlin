@@ -968,7 +968,7 @@ data class SetDeviceMetricsOverrideRequest (
     /**
      * Whether a view that exceeds the available browser window area should be scaled down to fit.
      */
-    val fitWindow : Boolean,
+    val fitWindow : Boolean? = null,
 
     /**
      * Scale to apply to resulting view image. Ignored in |fitWindow| mode.
