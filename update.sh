@@ -24,7 +24,13 @@ node -p '
 
 git diff protocol.json
 
-go run generator.go
+if [[ -n $(git status -s) ]];
+then
 
-./gradlew ktlintFormat
-./gradlew ktlint
+	go run generator.go
+	./gradlew ktlintFormat
+	./gradlew ktlint
+	git add .
+	git commit -m "Update to newest protocol"
+	git push origin
+fi
