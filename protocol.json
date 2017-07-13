@@ -6016,7 +6016,20 @@
                         {
                             "name": "nodeId",
                             "$ref": "NodeId",
-                            "description": "Id of the node to focus."
+                            "optional": true,
+                            "description": "Identifier of the node."
+                        },
+                        {
+                            "name": "backendNodeId",
+                            "$ref": "BackendNodeId",
+                            "optional": true,
+                            "description": "Identifier of the backend node."
+                        },
+                        {
+                            "name": "objectId",
+                            "$ref": "Runtime.RemoteObjectId",
+                            "optional": true,
+                            "description": "JavaScript object id of the node wrapper."
                         }
                     ],
                     "description": "Focuses the given element.",
@@ -6026,17 +6039,30 @@
                     "name": "setFileInputFiles",
                     "parameters": [
                         {
-                            "name": "nodeId",
-                            "$ref": "NodeId",
-                            "description": "Id of the file input node to set files for."
-                        },
-                        {
                             "name": "files",
                             "type": "array",
                             "items": {
                                 "type": "string"
                             },
                             "description": "Array of file paths to set."
+                        },
+                        {
+                            "name": "nodeId",
+                            "$ref": "NodeId",
+                            "optional": true,
+                            "description": "Identifier of the node."
+                        },
+                        {
+                            "name": "backendNodeId",
+                            "$ref": "BackendNodeId",
+                            "optional": true,
+                            "description": "Identifier of the backend node."
+                        },
+                        {
+                            "name": "objectId",
+                            "$ref": "Runtime.RemoteObjectId",
+                            "optional": true,
+                            "description": "JavaScript object id of the node wrapper."
                         }
                     ],
                     "description": "Sets files for the given file input element.",
@@ -6048,7 +6074,20 @@
                         {
                             "name": "nodeId",
                             "$ref": "NodeId",
-                            "description": "Id of the node to get box model for."
+                            "optional": true,
+                            "description": "Identifier of the node."
+                        },
+                        {
+                            "name": "backendNodeId",
+                            "$ref": "BackendNodeId",
+                            "optional": true,
+                            "description": "Identifier of the backend node."
+                        },
+                        {
+                            "name": "objectId",
+                            "$ref": "Runtime.RemoteObjectId",
+                            "optional": true,
+                            "description": "JavaScript object id of the node wrapper."
                         }
                     ],
                     "returns": [
@@ -8837,13 +8876,13 @@
                         },
                         {
                             "name": "x",
-                            "type": "integer",
-                            "description": "X coordinate of the event relative to the main frame's viewport."
+                            "type": "number",
+                            "description": "X coordinate of the event relative to the main frame's viewport in CSS pixels."
                         },
                         {
                             "name": "y",
-                            "type": "integer",
-                            "description": "Y coordinate of the event relative to the main frame's viewport. 0 refers to the top of the viewport and Y increases as it proceeds towards the bottom of the viewport."
+                            "type": "number",
+                            "description": "Y coordinate of the event relative to the main frame's viewport in CSS pixels. 0 refers to the top of the viewport and Y increases as it proceeds towards the bottom of the viewport."
                         },
                         {
                             "name": "modifiers",
@@ -8988,12 +9027,12 @@
                     "parameters": [
                         {
                             "name": "x",
-                            "type": "integer",
+                            "type": "number",
                             "description": "X coordinate of the start of the gesture in CSS pixels."
                         },
                         {
                             "name": "y",
-                            "type": "integer",
+                            "type": "number",
                             "description": "Y coordinate of the start of the gesture in CSS pixels."
                         },
                         {
@@ -9022,35 +9061,35 @@
                     "parameters": [
                         {
                             "name": "x",
-                            "type": "integer",
+                            "type": "number",
                             "description": "X coordinate of the start of the gesture in CSS pixels."
                         },
                         {
                             "name": "y",
-                            "type": "integer",
+                            "type": "number",
                             "description": "Y coordinate of the start of the gesture in CSS pixels."
                         },
                         {
                             "name": "xDistance",
-                            "type": "integer",
+                            "type": "number",
                             "optional": true,
                             "description": "The distance to scroll along the X axis (positive to scroll left)."
                         },
                         {
                             "name": "yDistance",
-                            "type": "integer",
+                            "type": "number",
                             "optional": true,
                             "description": "The distance to scroll along the Y axis (positive to scroll up)."
                         },
                         {
                             "name": "xOverscroll",
-                            "type": "integer",
+                            "type": "number",
                             "optional": true,
                             "description": "The number of additional pixels to scroll back along the X axis, in addition to the given distance."
                         },
                         {
                             "name": "yOverscroll",
-                            "type": "integer",
+                            "type": "number",
                             "optional": true,
                             "description": "The number of additional pixels to scroll back along the Y axis, in addition to the given distance."
                         },
@@ -9099,12 +9138,12 @@
                     "parameters": [
                         {
                             "name": "x",
-                            "type": "integer",
+                            "type": "number",
                             "description": "X coordinate of the start of the gesture in CSS pixels."
                         },
                         {
                             "name": "y",
-                            "type": "integer",
+                            "type": "number",
                             "description": "Y coordinate of the start of the gesture in CSS pixels."
                         },
                         {

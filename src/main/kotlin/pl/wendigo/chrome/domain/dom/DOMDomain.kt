@@ -1240,9 +1240,19 @@ data class MoveToResponse(
  */
 data class FocusRequest (
     /**
-     * Id of the node to focus.
+     * Identifier of the node.
      */
-    val nodeId : NodeId
+    val nodeId : NodeId? = null,
+
+    /**
+     * Identifier of the backend node.
+     */
+    val backendNodeId : BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node wrapper.
+     */
+    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
 
 )
 
@@ -1253,14 +1263,24 @@ data class FocusRequest (
  */
 data class SetFileInputFilesRequest (
     /**
-     * Id of the file input node to set files for.
-     */
-    val nodeId : NodeId,
-
-    /**
      * Array of file paths to set.
      */
-    val files : List<String>
+    val files : List<String>,
+
+    /**
+     * Identifier of the node.
+     */
+    val nodeId : NodeId? = null,
+
+    /**
+     * Identifier of the backend node.
+     */
+    val backendNodeId : BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node wrapper.
+     */
+    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
 
 )
 
@@ -1271,9 +1291,19 @@ data class SetFileInputFilesRequest (
  */
 data class GetBoxModelRequest (
     /**
-     * Id of the node to get box model for.
+     * Identifier of the node.
      */
-    val nodeId : NodeId
+    val nodeId : NodeId? = null,
+
+    /**
+     * Identifier of the backend node.
+     */
+    val backendNodeId : BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node wrapper.
+     */
+    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
 
 )
 

@@ -183,14 +183,14 @@ data class DispatchMouseEventRequest (
     val type : String,
 
     /**
-     * X coordinate of the event relative to the main frame's viewport.
+     * X coordinate of the event relative to the main frame's viewport in CSS pixels.
      */
-    val x : Int,
+    val x : Double,
 
     /**
-     * Y coordinate of the event relative to the main frame's viewport. 0 refers to the top of the viewport and Y increases as it proceeds towards the bottom of the viewport.
+     * Y coordinate of the event relative to the main frame's viewport in CSS pixels. 0 refers to the top of the viewport and Y increases as it proceeds towards the bottom of the viewport.
      */
-    val y : Int,
+    val y : Double,
 
     /**
      * Bit field representing pressed modifier keys. Alt=1, Ctrl=2, Meta/Command=4, Shift=8 (default: 0).
@@ -304,12 +304,12 @@ data class SynthesizePinchGestureRequest (
     /**
      * X coordinate of the start of the gesture in CSS pixels.
      */
-    val x : Int,
+    val x : Double,
 
     /**
      * Y coordinate of the start of the gesture in CSS pixels.
      */
-    val y : Int,
+    val y : Double,
 
     /**
      * Relative scale factor after zooming (>1.0 zooms in, <1.0 zooms out).
@@ -337,32 +337,32 @@ data class SynthesizeScrollGestureRequest (
     /**
      * X coordinate of the start of the gesture in CSS pixels.
      */
-    val x : Int,
+    val x : Double,
 
     /**
      * Y coordinate of the start of the gesture in CSS pixels.
      */
-    val y : Int,
+    val y : Double,
 
     /**
      * The distance to scroll along the X axis (positive to scroll left).
      */
-    val xDistance : Int? = null,
+    val xDistance : Double? = null,
 
     /**
      * The distance to scroll along the Y axis (positive to scroll up).
      */
-    val yDistance : Int? = null,
+    val yDistance : Double? = null,
 
     /**
      * The number of additional pixels to scroll back along the X axis, in addition to the given distance.
      */
-    val xOverscroll : Int? = null,
+    val xOverscroll : Double? = null,
 
     /**
      * The number of additional pixels to scroll back along the Y axis, in addition to the given distance.
      */
-    val yOverscroll : Int? = null,
+    val yOverscroll : Double? = null,
 
     /**
      * Prevent fling (default: true).
@@ -405,12 +405,12 @@ data class SynthesizeTapGestureRequest (
     /**
      * X coordinate of the start of the gesture in CSS pixels.
      */
-    val x : Int,
+    val x : Double,
 
     /**
      * Y coordinate of the start of the gesture in CSS pixels.
      */
-    val y : Int,
+    val y : Double,
 
     /**
      * Duration between touchdown and touchup events in ms (default: 50).
