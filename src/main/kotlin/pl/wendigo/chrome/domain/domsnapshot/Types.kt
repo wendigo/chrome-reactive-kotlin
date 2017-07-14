@@ -21,6 +21,26 @@ data class DOMNode(
   val nodeValue : String,
 
   /**
+   * Only set for textarea elements, contains the text value.
+   */
+  val textValue : String? = null,
+
+  /**
+   * Only set for input elements, contains the input's associated text value.
+   */
+  val inputValue : String? = null,
+
+  /**
+   * Only set for radio and checkbox input elements, indicates if the element has been checked
+   */
+  val inputChecked : Boolean? = null,
+
+  /**
+   * Only set for option elements, indicates if the element has been selected
+   */
+  val optionSelected : Boolean? = null,
+
+  /**
    * <code>Node</code>'s id, corresponds to DOM.Node.backendNodeId.
    */
   val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId,
