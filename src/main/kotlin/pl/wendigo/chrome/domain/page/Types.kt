@@ -63,7 +63,12 @@ data class Frame(
   /**
    * Frame document's mimeType as determined by the browser.
    */
-  val mimeType : String
+  val mimeType : String,
+
+  /**
+   * If the frame failed to load, this contains the URL that could not be loaded.
+   */
+  @pl.wendigo.chrome.Experimental val unreachableUrl : String? = null
 )
 
 /**

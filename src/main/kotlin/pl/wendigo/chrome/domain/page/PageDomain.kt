@@ -1176,7 +1176,12 @@ data class PrintToPDFRequest (
     /**
      * Paper ranges to print, e.g., '1-5, 8, 11-13'. Defaults to the empty string, which means print all pages.
      */
-    val pageRanges : String? = null
+    val pageRanges : String? = null,
+
+    /**
+     * Whether to silently ignore invalid but successfully parsed page ranges, such as '3-2'. Defaults to false.
+     */
+    val ignoreInvalidPageRanges : Boolean? = null
 
 )
 
