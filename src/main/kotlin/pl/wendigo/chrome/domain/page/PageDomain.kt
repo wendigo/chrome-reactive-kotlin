@@ -966,24 +966,9 @@ data class SetDeviceMetricsOverrideRequest (
     val mobile : Boolean,
 
     /**
-     * Whether a view that exceeds the available browser window area should be scaled down to fit.
-     */
-    val fitWindow : Boolean? = null,
-
-    /**
      * Scale to apply to resulting view image. Ignored in |fitWindow| mode.
      */
     val scale : Double? = null,
-
-    /**
-     * X offset to shift resulting view image by. Ignored in |fitWindow| mode.
-     */
-    val offsetX : Double? = null,
-
-    /**
-     * Y offset to shift resulting view image by. Ignored in |fitWindow| mode.
-     */
-    val offsetY : Double? = null,
 
     /**
      * Overriding screen width value in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
@@ -1004,6 +989,11 @@ data class SetDeviceMetricsOverrideRequest (
      * Overriding view Y position on screen in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
      */
     val positionY : Int? = null,
+
+    /**
+     * Do not set visible view size, rely upon explicit setVisibleSize call.
+     */
+    val dontSetVisibleSize : Boolean? = null,
 
     /**
      * Screen orientation override.

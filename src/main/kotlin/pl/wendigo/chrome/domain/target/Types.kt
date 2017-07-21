@@ -7,6 +7,12 @@ package pl.wendigo.chrome.domain.target
 typealias TargetID = String
 
 /**
+ * Unique identifier of attached debugging session.
+ */
+
+typealias SessionID = String
+
+/**
  *
  */
 

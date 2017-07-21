@@ -41,6 +41,15 @@ class CacheStorageDomain internal constructor(private val connectionRemote : pl.
     }
 
     /**
+     * Fetches cache entry.
+     */
+    fun requestCachedResponse(input : RequestCachedResponseRequest) : io.reactivex.Single<RequestCachedResponseResponse> {
+        return connectionRemote.runAndCaptureResponse("CacheStorage.requestCachedResponse", input, RequestCachedResponseResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns flowable capturing all CacheStorage domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -144,6 +153,37 @@ data class DeleteEntryRequest (
      * URL spec of the request.
      */
     val request : String
+
+)
+
+/**
+ * Represents requestFrame parameters that can be used with CacheStorage.requestCachedResponse method call.
+ *
+ * Fetches cache entry.
+ */
+data class RequestCachedResponseRequest (
+    /**
+     * Id of cache that contains the enty.
+     */
+    val cacheId : CacheId,
+
+    /**
+     * URL spec of the request.
+     */
+    val requestURL : String
+
+)
+
+/**
+ * Represents responseFrame from CacheStorage. method call.
+ *
+ * Fetches cache entry.
+ */
+data class RequestCachedResponseResponse(
+  /**
+   * Response read from the cache.
+   */
+  val response : CachedResponse
 
 )
 

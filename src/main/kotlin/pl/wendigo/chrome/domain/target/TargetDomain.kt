@@ -41,7 +41,7 @@ class TargetDomain internal constructor(private val connectionRemote : pl.wendig
     }
 
     /**
-     * Sends protocol message to the target with given id.
+     * Sends protocol message over session with given id.
      */
     fun sendMessageToTarget(input : SendMessageToTargetRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Target.sendMessageToTarget", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -86,7 +86,7 @@ class TargetDomain internal constructor(private val connectionRemote : pl.wendig
     }
 
     /**
-     * Detaches from the target with given id.
+     * Detaches session with given id.
      */
     fun detachFromTarget(input : DetachFromTargetRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Target.detachFromTarget", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -195,7 +195,7 @@ class TargetDomain internal constructor(private val connectionRemote : pl.wendig
     }
 
     /**
-     * Issued when detached from target for any reason (including <code>detachFromTarget</code> command).
+     * Issued when detached from target for any reason (including <code>detachFromTarget</code> command). Can be issued multiple times per target if multiple sessions have been attached to it.
      */
     fun detachedFromTarget() : io.reactivex.Flowable<DetachedFromTargetEvent> {
         return detachedFromTargetTimed().map {
@@ -204,14 +204,14 @@ class TargetDomain internal constructor(private val connectionRemote : pl.wendig
     }
 
     /**
-     * Issued when detached from target for any reason (including <code>detachFromTarget</code> command).
+     * Issued when detached from target for any reason (including <code>detachFromTarget</code> command). Can be issued multiple times per target if multiple sessions have been attached to it.
      */
     fun detachedFromTargetTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DetachedFromTargetEvent>> {
         return connectionRemote.captureEvents("Target.detachedFromTarget", DetachedFromTargetEvent::class.java)
     }
 
     /**
-     * Notifies about new protocol message from attached target.
+     * Notifies about a new protocol message received from the session (as reported in <code>attachedToTarget</code> event).
      */
     fun receivedMessageFromTarget() : io.reactivex.Flowable<ReceivedMessageFromTargetEvent> {
         return receivedMessageFromTargetTimed().map {
@@ -220,7 +220,7 @@ class TargetDomain internal constructor(private val connectionRemote : pl.wendig
     }
 
     /**
-     * Notifies about new protocol message from attached target.
+     * Notifies about a new protocol message received from the session (as reported in <code>attachedToTarget</code> event).
      */
     fun receivedMessageFromTargetTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ReceivedMessageFromTargetEvent>> {
         return connectionRemote.captureEvents("Target.receivedMessageFromTarget", ReceivedMessageFromTargetEvent::class.java)
@@ -295,18 +295,23 @@ data class SetRemoteLocationsRequest (
 /**
  * Represents requestFrame parameters that can be used with Target.sendMessageToTarget method call.
  *
- * Sends protocol message to the target with given id.
+ * Sends protocol message over session with given id.
  */
 data class SendMessageToTargetRequest (
     /**
      *
      */
-    val targetId : TargetID,
+    val message : String,
 
     /**
-     *
+     * Identifier of the session.
      */
-    val message : String
+    val sessionId : SessionID? = null,
+
+    /**
+     * Deprecated.
+     */
+    @pl.wendigo.chrome.Deprecated val targetId : TargetID? = null
 
 )
 
@@ -395,22 +400,27 @@ data class AttachToTargetRequest (
  */
 data class AttachToTargetResponse(
   /**
-   * Whether attach succeeded.
+   * Id assigned to the session.
    */
-  val success : Boolean
+  val sessionId : SessionID
 
 )
 
 /**
  * Represents requestFrame parameters that can be used with Target.detachFromTarget method call.
  *
- * Detaches from the target with given id.
+ * Detaches session with given id.
  */
 data class DetachFromTargetRequest (
     /**
-     *
+     * Session to detach.
      */
-    val targetId : TargetID
+    val sessionId : SessionID? = null,
+
+    /**
+     * Deprecated.
+     */
+    @pl.wendigo.chrome.Deprecated val targetId : TargetID? = null
 
 )
 
@@ -553,6 +563,11 @@ data class TargetDestroyedEvent(
  */
 data class AttachedToTargetEvent(
   /**
+   * Identifier assigned to the session used to send/receive messages.
+   */
+  val sessionId : SessionID,
+
+  /**
    *
    */
   val targetInfo : TargetInfo,
@@ -567,31 +582,41 @@ data class AttachedToTargetEvent(
 /**
  * Represents responseFrame from Target. method call.
  *
- * Issued when detached from target for any reason (including <code>detachFromTarget</code> command).
+ * Issued when detached from target for any reason (including <code>detachFromTarget</code> command). Can be issued multiple times per target if multiple sessions have been attached to it.
  */
 data class DetachedFromTargetEvent(
   /**
-   *
+   * Detached session identifier.
    */
-  val targetId : TargetID
+  val sessionId : SessionID,
+
+  /**
+   * Deprecated.
+   */
+  @pl.wendigo.chrome.Deprecated val targetId : TargetID? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Target", name = "detachedFromTarget")
 
 /**
  * Represents responseFrame from Target. method call.
  *
- * Notifies about new protocol message from attached target.
+ * Notifies about a new protocol message received from the session (as reported in <code>attachedToTarget</code> event).
  */
 data class ReceivedMessageFromTargetEvent(
   /**
-   *
+   * Identifier of a session which sends a message.
    */
-  val targetId : TargetID,
+  val sessionId : SessionID,
 
   /**
    *
    */
-  val message : String
+  val message : String,
+
+  /**
+   * Deprecated.
+   */
+  @pl.wendigo.chrome.Deprecated val targetId : TargetID? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Target", name = "receivedMessageFromTarget")
 

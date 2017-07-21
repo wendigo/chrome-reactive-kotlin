@@ -41,7 +41,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
-     * Deprecated, does nothing. Please use setDeviceMetricsOverride instead.
+     * Resizes the frame/viewport of the page. Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported on Android.
      */
     fun setVisibleSize(input : SetVisibleSizeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setVisibleSize", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -182,24 +182,9 @@ data class SetDeviceMetricsOverrideRequest (
     val mobile : Boolean,
 
     /**
-     * Whether a view that exceeds the available browser window area should be scaled down to fit.
-     */
-    val fitWindow : Boolean? = null,
-
-    /**
      * Scale to apply to resulting view image. Ignored in |fitWindow| mode.
      */
-    @pl.wendigo.chrome.Experimental val scale : Double? = null,
-
-    /**
-     * Not used.
-     */
-    @pl.wendigo.chrome.Experimental @pl.wendigo.chrome.Deprecated val offsetX : Double? = null,
-
-    /**
-     * Not used.
-     */
-    @pl.wendigo.chrome.Experimental @pl.wendigo.chrome.Deprecated val offsetY : Double? = null,
+    val scale : Double? = null,
 
     /**
      * Overriding screen width value in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
@@ -220,6 +205,11 @@ data class SetDeviceMetricsOverrideRequest (
      * Overriding view Y position on screen in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
      */
     @pl.wendigo.chrome.Experimental val positionY : Int? = null,
+
+    /**
+     * Do not set visible view size, rely upon explicit setVisibleSize call.
+     */
+    @pl.wendigo.chrome.Experimental val dontSetVisibleSize : Boolean? = null,
 
     /**
      * Screen orientation override.
@@ -244,7 +234,7 @@ data class SetPageScaleFactorRequest (
 /**
  * Represents requestFrame parameters that can be used with Emulation.setVisibleSize method call.
  *
- * Deprecated, does nothing. Please use setDeviceMetricsOverride instead.
+ * Resizes the frame/viewport of the page. Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported on Android.
  */
 data class SetVisibleSizeRequest (
     /**

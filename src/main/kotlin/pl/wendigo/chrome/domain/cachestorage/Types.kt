@@ -48,3 +48,19 @@ data class Cache(
   val cacheName : String
 )
 
+/**
+ * Cached response
+ */
+
+data class CachedResponse(
+  /**
+   * Response headers
+   */
+  val headers : String,
+
+  /**
+   * Entry content, base64-encoded.
+   */
+  val body : String
+)
+

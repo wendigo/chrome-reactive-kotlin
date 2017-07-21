@@ -23,6 +23,15 @@ class IODomain internal constructor(private val connectionRemote : pl.wendigo.ch
     }
 
     /**
+     * Return UUID of Blob object specified by a remote object id.
+     */
+    fun resolveBlob(input : ResolveBlobRequest) : io.reactivex.Single<ResolveBlobResponse> {
+        return connectionRemote.runAndCaptureResponse("IO.resolveBlob", input, ResolveBlobResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns flowable capturing all IO domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -82,6 +91,32 @@ data class CloseRequest (
      * Handle of the stream to close.
      */
     val handle : StreamHandle
+
+)
+
+/**
+ * Represents requestFrame parameters that can be used with IO.resolveBlob method call.
+ *
+ * Return UUID of Blob object specified by a remote object id.
+ */
+data class ResolveBlobRequest (
+    /**
+     * Object id of a Blob object wrapper.
+     */
+    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId
+
+)
+
+/**
+ * Represents responseFrame from IO. method call.
+ *
+ * Return UUID of Blob object specified by a remote object id.
+ */
+data class ResolveBlobResponse(
+  /**
+   * UUID of the specified Blob.
+   */
+  val uuid : String
 
 )
 
