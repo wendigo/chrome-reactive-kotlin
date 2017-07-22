@@ -70,6 +70,11 @@ data class ReadRequest (
  */
 data class ReadResponse(
   /**
+   * Set if the data is base64-encoded
+   */
+  val base64Encoded : Boolean? = null,
+
+  /**
    * Data that were read.
    */
   val data : String,
