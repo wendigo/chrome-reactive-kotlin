@@ -3,10 +3,11 @@ sudo: required
 language: groovy
 
 jdk:
-- oraclejdk8
+  - oraclejdk8
 
 script:
-- ./gradlew clean test -i
+  - ls -laR .
+  - ./gradlew clean test -i
 
 deploy:
   skip_cleanup: true
