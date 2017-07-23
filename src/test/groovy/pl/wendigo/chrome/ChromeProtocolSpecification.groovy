@@ -26,8 +26,5 @@ class ChromeProtocolSpecification extends Specification {
                 clientHeight == 768
                 clientWidth == 1024
             }
-
-        cleanup:
-            session.close()
     }
 }
