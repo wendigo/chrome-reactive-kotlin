@@ -6,7 +6,6 @@ jdk:
   - oraclejdk8
 
 script:
-  - ls -laR .
   - ./gradlew clean test --debug
 
 deploy:
@@ -22,5 +21,4 @@ services:
 
 before_install:
   - docker run -d -p 127.0.0.1:9222:9222 yukinying/chrome-headless:latest
-  - openssl aes-256-cbc -K $encrypted_76d841558dc7_key -iv $encrypted_76d841558dc7_iv
-    -in deploy/private.gpg.enc -out deploy/private.gpg -d
+  - openssl aes-256-cbc -K $encrypted_76d841558dc7_key -iv $encrypted_76d841558dc7_iv -in deploy/private.gpg.enc -out deploy/private.gpg -d
