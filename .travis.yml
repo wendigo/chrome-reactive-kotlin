@@ -1,8 +1,12 @@
+sudo: required
+
 language: java
 jdk:
 - oraclejdk8
+
 script:
 - ./gradlew build -i
+
 deploy:
   skip_cleanup: true
   provider: script
@@ -10,10 +14,11 @@ deploy:
   on:
     tags: true
     all_branches: true
-addons:
-  chrome: beta
 
-sudo: false
+services:
+  - docker
+
 before_install:
-- openssl aes-256-cbc -K $encrypted_76d841558dc7_key -iv $encrypted_76d841558dc7_iv
-  -in deploy/private.gpg.enc -out deploy/private.gpg -d
+  - docker run -d -p 127.0.0.1:9222:9222 yukinying/chrome-headless:latest
+  - openssl aes-256-cbc -K $encrypted_76d841558dc7_key -iv $encrypted_76d841558dc7_iv
+    -in deploy/private.gpg.enc -out deploy/private.gpg -d  
