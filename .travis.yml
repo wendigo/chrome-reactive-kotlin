@@ -7,7 +7,7 @@ jdk:
 
 script:
   - ls -laR .
-  - ./gradlew clean test -i
+  - ./gradlew clean test --debug
 
 deploy:
   skip_cleanup: true
