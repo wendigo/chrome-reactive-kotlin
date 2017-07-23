@@ -5,3 +5,4 @@ src/main/kotlin/pl/wendigo/chrome/Test.kt
 logs/
 browser_protocol.json
 js_protocol.json
+out
