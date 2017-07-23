@@ -1,6 +1,7 @@
 sudo: required
 
-language: java
+language: groovy
+
 jdk:
 - oraclejdk8
 
