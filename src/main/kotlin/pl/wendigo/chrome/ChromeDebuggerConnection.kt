@@ -10,8 +10,8 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 
 internal class ChromeDebuggerConnection constructor(
-        private val frames: FramesStream,
-        private val mapper: FrameMapper
+    private val frames: FramesStream,
+    private val mapper: FrameMapper
 ) : DebuggerProtocol {
     private val eventNameToClassMapping: ConcurrentHashMap<String, Class<out ProtocolEvent>> = ConcurrentHashMap()
     private val nextRequestId = AtomicLong(0)
@@ -59,7 +59,7 @@ internal class ChromeDebuggerConnection constructor(
             .filter { frame -> frame.value().method == name }
             .flatMapSingle { frame ->
                 mapper.deserializeEvent(frame.value(), outClazz).map {
-                    Timed<T>(it, frame.time(), frame.unit())
+                    Timed(it, frame.time(), frame.unit())
                 }
             }
             .subscribeOn(Schedulers.io())
@@ -73,7 +73,7 @@ internal class ChromeDebuggerConnection constructor(
         return frames.eventFrames()
             .flatMapSingle { frame ->
                 mapper.deserializeEvent(frame.value(), eventNameToClassMapping[frame.value().method] ?: ProtocolEvent::class.java).map {
-                    Timed<ProtocolEvent>(it, frame.time(), frame.unit())
+                    Timed(it, frame.time(), frame.unit())
                 }
             }
             .subscribeOn(Schedulers.io())
@@ -96,7 +96,7 @@ internal class ChromeDebuggerConnection constructor(
             )
         }
 
-        val client by lazy {
+        private val client by lazy {
             OkHttpClient()
         }
     }

@@ -10,6 +10,9 @@ deploy:
   on:
     tags: true
     all_branches: true
+addons:
+  chrome: beta
+
 sudo: false
 before_install:
 - openssl aes-256-cbc -K $encrypted_76d841558dc7_key -iv $encrypted_76d841558dc7_iv

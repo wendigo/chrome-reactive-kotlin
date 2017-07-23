@@ -1,8 +1,5 @@
 package {{Package}}
 
-import io.reactivex.Single
-import pl.wendigo.chrome.domain.target.CreateTargetRequest
-import pl.wendigo.chrome.domain.target.AttachToTargetRequest
 import java.io.Closeable
 
 /**
@@ -46,43 +43,25 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
         return api.close()
     }
 
-    /**
-     * Opens new headless session if it's supported.
-     */
-    fun headless(url : String, width : Int = 1024, height: Int = 768) : Single<HeadlessChromeProtocol> {
-        val mapper = FrameMapper()
-
-        return Target.createBrowserContext().flatMap { (browserContextId) ->
-            Target.createTarget(CreateTargetRequest(
-                url = url,
-                browserContextId = browserContextId,
-                height = height,
-                width = width
-            )).flatMap { (targetId) -> Target.attachToTarget(AttachToTargetRequest(targetId = targetId)).map {
-                    HeadlessChromeProtocol(api = ChromeDebuggerConnection(TargetedFramesStream(
-                            mapper,
-                            this,
-                            targetId,
-                            browserContextId
-                        ), mapper),
-                        url = url,
-                        height = height,
-                        width = width,
-                        targetId = targetId,
-                        browserContextId = browserContextId
-                    )
-                }
-            }
-        }
-    }
-
     companion object {
 
         /**
          * Opens new debugging session via chrome debugging protocol for given InspectablePage.
          */
+        @JvmStatic @JvmOverloads
         fun openSession(page: InspectablePage, eventBufferSize: Int = 128) : ChromeProtocol {
             return ChromeProtocol(ChromeDebuggerConnection.openSession(page.webSocketDebuggerUrl!!, eventBufferSize))
+        }
+
+        /**
+         * Opens new headless debugging session via chrome debugging protocol for given InspectablePage.
+         *
+         * When opening headless session new browser context is created and communication goes through Target domain
+         * with target id/session id.
+         */
+        @JvmStatic @JvmOverloads
+        fun openHeadlessSession(page: InspectablePage, eventBufferSize: Int = 128, width : Int = 1024, height : Int = 768) : HeadlessChromeProtocol {
+            return HeadlessChromeProtocol.create(openSession(page, eventBufferSize), page.url, width, height)
         }
     }
 }
