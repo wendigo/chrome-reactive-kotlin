@@ -133,7 +133,7 @@ class DOMStorageDomain internal constructor(private val connectionRemote : pl.we
 }
 
 /**
- * Represents requestFrame parameters that can be used with DOMStorage.clear method call.
+ * Represents request frame that can be used with DOMStorage.clear method call.
  *
  *
  */
@@ -146,7 +146,7 @@ data class ClearRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOMStorage.getDOMStorageItems method call.
+ * Represents request frame that can be used with DOMStorage.getDOMStorageItems method call.
  *
  *
  */
@@ -159,7 +159,7 @@ data class GetDOMStorageItemsRequest (
 )
 
 /**
- * Represents responseFrame from DOMStorage. method call.
+ * Represents response frame for DOMStorage.getDOMStorageItems method call.
  *
  *
  */
@@ -172,7 +172,7 @@ data class GetDOMStorageItemsResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOMStorage.setDOMStorageItem method call.
+ * Represents request frame that can be used with DOMStorage.setDOMStorageItem method call.
  *
  *
  */
@@ -195,7 +195,7 @@ data class SetDOMStorageItemRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOMStorage.removeDOMStorageItem method call.
+ * Represents request frame that can be used with DOMStorage.removeDOMStorageItem method call.
  *
  *
  */
@@ -213,7 +213,7 @@ data class RemoveDOMStorageItemRequest (
 )
 
 /**
- * Represents responseFrame from DOMStorage. method call.
+ * Represents event frames for DOMStorage.domStorageItemsCleared
  *
  *
  */
@@ -226,7 +226,7 @@ data class DomStorageItemsClearedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOMStorage", name = "domStorageItemsCleared")
 
 /**
- * Represents responseFrame from DOMStorage. method call.
+ * Represents event frames for DOMStorage.domStorageItemRemoved
  *
  *
  */
@@ -244,7 +244,7 @@ data class DomStorageItemRemovedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOMStorage", name = "domStorageItemRemoved")
 
 /**
- * Represents responseFrame from DOMStorage. method call.
+ * Represents event frames for DOMStorage.domStorageItemAdded
  *
  *
  */
@@ -267,7 +267,7 @@ data class DomStorageItemAddedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOMStorage", name = "domStorageItemAdded")
 
 /**
- * Represents responseFrame from DOMStorage. method call.
+ * Represents event frames for DOMStorage.domStorageItemUpdated
  *
  *
  */

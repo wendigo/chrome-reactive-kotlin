@@ -42,7 +42,7 @@ class MemoryDomain internal constructor(private val connectionRemote : pl.wendig
 }
 
 /**
- * Represents responseFrame from Memory. method call.
+ * Represents response frame for Memory.getDOMCounters method call.
  *
  *
  */
@@ -65,7 +65,7 @@ data class GetDOMCountersResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Memory.setPressureNotificationsSuppressed method call.
+ * Represents request frame that can be used with Memory.setPressureNotificationsSuppressed method call.
  *
  * Enable/disable suppressing memory pressure notifications in all processes.
  */
@@ -78,7 +78,7 @@ data class SetPressureNotificationsSuppressedRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Memory.simulatePressureNotification method call.
+ * Represents request frame that can be used with Memory.simulatePressureNotification method call.
  *
  * Simulate a memory pressure notification in all processes.
  */

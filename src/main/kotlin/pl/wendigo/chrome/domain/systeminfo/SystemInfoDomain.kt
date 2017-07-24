@@ -24,7 +24,7 @@ class SystemInfoDomain internal constructor(private val connectionRemote : pl.we
 }
 
 /**
- * Represents responseFrame from SystemInfo. method call.
+ * Represents response frame for SystemInfo.getInfo method call.
  *
  * Returns information about the system.
  */

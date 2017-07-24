@@ -67,7 +67,7 @@ class DatabaseDomain internal constructor(private val connectionRemote : pl.wend
 }
 
 /**
- * Represents requestFrame parameters that can be used with Database.getDatabaseTableNames method call.
+ * Represents request frame that can be used with Database.getDatabaseTableNames method call.
  *
  *
  */
@@ -80,7 +80,7 @@ data class GetDatabaseTableNamesRequest (
 )
 
 /**
- * Represents responseFrame from Database. method call.
+ * Represents response frame for Database.getDatabaseTableNames method call.
  *
  *
  */
@@ -93,7 +93,7 @@ data class GetDatabaseTableNamesResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Database.executeSQL method call.
+ * Represents request frame that can be used with Database.executeSQL method call.
  *
  *
  */
@@ -111,7 +111,7 @@ data class ExecuteSQLRequest (
 )
 
 /**
- * Represents responseFrame from Database. method call.
+ * Represents response frame for Database.executeSQL method call.
  *
  *
  */
@@ -134,7 +134,7 @@ data class ExecuteSQLResponse(
 )
 
 /**
- * Represents responseFrame from Database. method call.
+ * Represents event frames for Database.addDatabase
  *
  *
  */

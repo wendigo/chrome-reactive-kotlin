@@ -32,7 +32,7 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
     }
 }
 /**
- * Represents requestFrame parameters that can be used with Storage.clearDataForOrigin method call.
+ * Represents request frame that can be used with Storage.clearDataForOrigin method call.
  *
  * Clears storage for origin.
  */
@@ -50,7 +50,7 @@ data class ClearDataForOriginRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Storage.getUsageAndQuota method call.
+ * Represents request frame that can be used with Storage.getUsageAndQuota method call.
  *
  * Returns usage and quota in bytes.
  */
@@ -63,7 +63,7 @@ data class GetUsageAndQuotaRequest (
 )
 
 /**
- * Represents responseFrame from Storage. method call.
+ * Represents response frame for Storage.getUsageAndQuota method call.
  *
  * Returns usage and quota in bytes.
  */

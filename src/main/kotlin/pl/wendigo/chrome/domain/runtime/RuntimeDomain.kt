@@ -243,7 +243,7 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 }
 /**
- * Represents requestFrame parameters that can be used with Runtime.evaluate method call.
+ * Represents request frame that can be used with Runtime.evaluate method call.
  *
  * Evaluates expression on global object.
  */
@@ -296,7 +296,7 @@ data class EvaluateRequest (
 )
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents response frame for Runtime.evaluate method call.
  *
  * Evaluates expression on global object.
  */
@@ -314,7 +314,7 @@ data class EvaluateResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Runtime.awaitPromise method call.
+ * Represents request frame that can be used with Runtime.awaitPromise method call.
  *
  * Add handler to promise with given promise object id.
  */
@@ -337,7 +337,7 @@ data class AwaitPromiseRequest (
 )
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents response frame for Runtime.awaitPromise method call.
  *
  * Add handler to promise with given promise object id.
  */
@@ -355,7 +355,7 @@ data class AwaitPromiseResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Runtime.callFunctionOn method call.
+ * Represents request frame that can be used with Runtime.callFunctionOn method call.
  *
  * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
  */
@@ -403,7 +403,7 @@ data class CallFunctionOnRequest (
 )
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents response frame for Runtime.callFunctionOn method call.
  *
  * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
  */
@@ -421,7 +421,7 @@ data class CallFunctionOnResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Runtime.getProperties method call.
+ * Represents request frame that can be used with Runtime.getProperties method call.
  *
  * Returns properties of a given object. Object group of the result is inherited from the target object.
  */
@@ -449,7 +449,7 @@ data class GetPropertiesRequest (
 )
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents response frame for Runtime.getProperties method call.
  *
  * Returns properties of a given object. Object group of the result is inherited from the target object.
  */
@@ -472,7 +472,7 @@ data class GetPropertiesResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Runtime.releaseObject method call.
+ * Represents request frame that can be used with Runtime.releaseObject method call.
  *
  * Releases remote object with given id.
  */
@@ -485,7 +485,7 @@ data class ReleaseObjectRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Runtime.releaseObjectGroup method call.
+ * Represents request frame that can be used with Runtime.releaseObjectGroup method call.
  *
  * Releases all remote objects that belong to a given group.
  */
@@ -498,7 +498,7 @@ data class ReleaseObjectGroupRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Runtime.setCustomObjectFormatterEnabled method call.
+ * Represents request frame that can be used with Runtime.setCustomObjectFormatterEnabled method call.
  *
  *
  */
@@ -511,7 +511,7 @@ data class SetCustomObjectFormatterEnabledRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Runtime.compileScript method call.
+ * Represents request frame that can be used with Runtime.compileScript method call.
  *
  * Compiles expression.
  */
@@ -539,7 +539,7 @@ data class CompileScriptRequest (
 )
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents response frame for Runtime.compileScript method call.
  *
  * Compiles expression.
  */
@@ -557,7 +557,7 @@ data class CompileScriptResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Runtime.runScript method call.
+ * Represents request frame that can be used with Runtime.runScript method call.
  *
  * Runs script with given id in a given context.
  */
@@ -605,7 +605,7 @@ data class RunScriptRequest (
 )
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents response frame for Runtime.runScript method call.
  *
  * Runs script with given id in a given context.
  */
@@ -623,7 +623,7 @@ data class RunScriptResponse(
 )
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents event frames for Runtime.executionContextCreated
  *
  * Issued when new execution context is created.
  */
@@ -636,7 +636,7 @@ data class ExecutionContextCreatedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "executionContextCreated")
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents event frames for Runtime.executionContextDestroyed
  *
  * Issued when execution context is destroyed.
  */
@@ -649,7 +649,7 @@ data class ExecutionContextDestroyedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "executionContextDestroyed")
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents event frames for Runtime.exceptionThrown
  *
  * Issued when exception was thrown and unhandled.
  */
@@ -667,7 +667,7 @@ data class ExceptionThrownEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "exceptionThrown")
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents event frames for Runtime.exceptionRevoked
  *
  * Issued when unhandled exception was revoked.
  */
@@ -685,7 +685,7 @@ data class ExceptionRevokedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "exceptionRevoked")
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents event frames for Runtime.consoleAPICalled
  *
  * Issued when console API was called.
  */
@@ -723,7 +723,7 @@ data class ConsoleAPICalledEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "consoleAPICalled")
 
 /**
- * Represents responseFrame from Runtime. method call.
+ * Represents event frames for Runtime.inspectRequested
  *
  * Issued when object should be inspected (for example, as a result of inspect() command line API call).
  */

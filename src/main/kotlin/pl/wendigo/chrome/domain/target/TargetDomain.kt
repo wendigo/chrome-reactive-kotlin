@@ -236,7 +236,7 @@ class TargetDomain internal constructor(private val connectionRemote : pl.wendig
     }
 }
 /**
- * Represents requestFrame parameters that can be used with Target.setDiscoverTargets method call.
+ * Represents request frame that can be used with Target.setDiscoverTargets method call.
  *
  * Controls whether to discover available targets and notify via <code>targetCreated/targetInfoChanged/targetDestroyed</code> events.
  */
@@ -249,7 +249,7 @@ data class SetDiscoverTargetsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.setAutoAttach method call.
+ * Represents request frame that can be used with Target.setAutoAttach method call.
  *
  * Controls whether to automatically attach to new targets which are considered to be related to this one. When turned on, attaches to all existing related targets as well. When turned off, automatically detaches from all currently attached targets.
  */
@@ -267,7 +267,7 @@ data class SetAutoAttachRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.setAttachToFrames method call.
+ * Represents request frame that can be used with Target.setAttachToFrames method call.
  *
  *
  */
@@ -280,7 +280,7 @@ data class SetAttachToFramesRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.setRemoteLocations method call.
+ * Represents request frame that can be used with Target.setRemoteLocations method call.
  *
  * Enables target discovery for the specified locations, when <code>setDiscoverTargets</code> was set to <code>true</code>.
  */
@@ -293,7 +293,7 @@ data class SetRemoteLocationsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.sendMessageToTarget method call.
+ * Represents request frame that can be used with Target.sendMessageToTarget method call.
  *
  * Sends protocol message over session with given id.
  */
@@ -316,7 +316,7 @@ data class SendMessageToTargetRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.getTargetInfo method call.
+ * Represents request frame that can be used with Target.getTargetInfo method call.
  *
  * Returns information about a target.
  */
@@ -329,7 +329,7 @@ data class GetTargetInfoRequest (
 )
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents response frame for Target.getTargetInfo method call.
  *
  * Returns information about a target.
  */
@@ -342,7 +342,7 @@ data class GetTargetInfoResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.activateTarget method call.
+ * Represents request frame that can be used with Target.activateTarget method call.
  *
  * Activates (focuses) the target.
  */
@@ -355,7 +355,7 @@ data class ActivateTargetRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.closeTarget method call.
+ * Represents request frame that can be used with Target.closeTarget method call.
  *
  * Closes the target. If the target is a page that gets closed too.
  */
@@ -368,7 +368,7 @@ data class CloseTargetRequest (
 )
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents response frame for Target.closeTarget method call.
  *
  * Closes the target. If the target is a page that gets closed too.
  */
@@ -381,7 +381,7 @@ data class CloseTargetResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.attachToTarget method call.
+ * Represents request frame that can be used with Target.attachToTarget method call.
  *
  * Attaches to the target with given id.
  */
@@ -394,7 +394,7 @@ data class AttachToTargetRequest (
 )
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents response frame for Target.attachToTarget method call.
  *
  * Attaches to the target with given id.
  */
@@ -407,7 +407,7 @@ data class AttachToTargetResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.detachFromTarget method call.
+ * Represents request frame that can be used with Target.detachFromTarget method call.
  *
  * Detaches session with given id.
  */
@@ -425,7 +425,7 @@ data class DetachFromTargetRequest (
 )
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents response frame for Target.createBrowserContext method call.
  *
  * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than one.
  */
@@ -438,7 +438,7 @@ data class CreateBrowserContextResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.disposeBrowserContext method call.
+ * Represents request frame that can be used with Target.disposeBrowserContext method call.
  *
  * Deletes a BrowserContext, will fail of any open page uses it.
  */
@@ -451,7 +451,7 @@ data class DisposeBrowserContextRequest (
 )
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents response frame for Target.disposeBrowserContext method call.
  *
  * Deletes a BrowserContext, will fail of any open page uses it.
  */
@@ -464,7 +464,7 @@ data class DisposeBrowserContextResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Target.createTarget method call.
+ * Represents request frame that can be used with Target.createTarget method call.
  *
  * Creates a new page.
  */
@@ -492,7 +492,7 @@ data class CreateTargetRequest (
 )
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents response frame for Target.createTarget method call.
  *
  * Creates a new page.
  */
@@ -505,7 +505,7 @@ data class CreateTargetResponse(
 )
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents response frame for Target.getTargets method call.
  *
  * Retrieves a list of available targets.
  */
@@ -518,7 +518,7 @@ data class GetTargetsResponse(
 )
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents event frames for Target.targetCreated
  *
  * Issued when a possible inspection target is created.
  */
@@ -531,7 +531,7 @@ data class TargetCreatedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Target", name = "targetCreated")
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents event frames for Target.targetInfoChanged
  *
  * Issued when some information about a target has changed. This only happens between <code>targetCreated</code> and <code>targetDestroyed</code>.
  */
@@ -544,7 +544,7 @@ data class TargetInfoChangedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Target", name = "targetInfoChanged")
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents event frames for Target.targetDestroyed
  *
  * Issued when a target is destroyed.
  */
@@ -557,7 +557,7 @@ data class TargetDestroyedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Target", name = "targetDestroyed")
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents event frames for Target.attachedToTarget
  *
  * Issued when attached to target because of auto-attach or <code>attachToTarget</code> command.
  */
@@ -580,7 +580,7 @@ data class AttachedToTargetEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Target", name = "attachedToTarget")
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents event frames for Target.detachedFromTarget
  *
  * Issued when detached from target for any reason (including <code>detachFromTarget</code> command). Can be issued multiple times per target if multiple sessions have been attached to it.
  */
@@ -598,7 +598,7 @@ data class DetachedFromTargetEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Target", name = "detachedFromTarget")
 
 /**
- * Represents responseFrame from Target. method call.
+ * Represents event frames for Target.receivedMessageFromTarget
  *
  * Notifies about a new protocol message received from the session (as reported in <code>attachedToTarget</code> event).
  */

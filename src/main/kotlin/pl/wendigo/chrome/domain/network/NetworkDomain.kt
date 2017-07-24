@@ -477,7 +477,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
     }
 }
 /**
- * Represents requestFrame parameters that can be used with Network.enable method call.
+ * Represents request frame that can be used with Network.enable method call.
  *
  * Enables network tracking, network events will now be delivered to the client.
  */
@@ -495,7 +495,7 @@ data class EnableRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.setUserAgentOverride method call.
+ * Represents request frame that can be used with Network.setUserAgentOverride method call.
  *
  * Allows overriding user agent with the given string.
  */
@@ -508,7 +508,7 @@ data class SetUserAgentOverrideRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.setExtraHTTPHeaders method call.
+ * Represents request frame that can be used with Network.setExtraHTTPHeaders method call.
  *
  * Specifies whether to always send extra HTTP headers with the requests from this page.
  */
@@ -521,7 +521,7 @@ data class SetExtraHTTPHeadersRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.getResponseBody method call.
+ * Represents request frame that can be used with Network.getResponseBody method call.
  *
  * Returns content served for the given request.
  */
@@ -534,7 +534,7 @@ data class GetResponseBodyRequest (
 )
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents response frame for Network.getResponseBody method call.
  *
  * Returns content served for the given request.
  */
@@ -552,7 +552,7 @@ data class GetResponseBodyResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.setBlockedURLs method call.
+ * Represents request frame that can be used with Network.setBlockedURLs method call.
  *
  * Blocks URLs from loading.
  */
@@ -565,7 +565,7 @@ data class SetBlockedURLsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.replayXHR method call.
+ * Represents request frame that can be used with Network.replayXHR method call.
  *
  * This method sends a new XMLHttpRequest which is identical to the original one. The following parameters should be identical: method, url, async, request body, extra headers, withCredentials attribute, user, password.
  */
@@ -578,7 +578,7 @@ data class ReplayXHRRequest (
 )
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents response frame for Network.canClearBrowserCache method call.
  *
  * Tells whether clearing browser cache is supported.
  */
@@ -591,7 +591,7 @@ data class CanClearBrowserCacheResponse(
 )
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents response frame for Network.canClearBrowserCookies method call.
  *
  * Tells whether clearing browser cookies is supported.
  */
@@ -604,7 +604,7 @@ data class CanClearBrowserCookiesResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.getCookies method call.
+ * Represents request frame that can be used with Network.getCookies method call.
  *
  * Returns all browser cookies for the current URL. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
  */
@@ -617,7 +617,7 @@ data class GetCookiesRequest (
 )
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents response frame for Network.getCookies method call.
  *
  * Returns all browser cookies for the current URL. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
  */
@@ -630,7 +630,7 @@ data class GetCookiesResponse(
 )
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents response frame for Network.getAllCookies method call.
  *
  * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
  */
@@ -643,7 +643,7 @@ data class GetAllCookiesResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.deleteCookie method call.
+ * Represents request frame that can be used with Network.deleteCookie method call.
  *
  * Deletes browser cookie with given name, domain and path.
  */
@@ -661,7 +661,7 @@ data class DeleteCookieRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.setCookie method call.
+ * Represents request frame that can be used with Network.setCookie method call.
  *
  * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
  */
@@ -714,7 +714,7 @@ data class SetCookieRequest (
 )
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents response frame for Network.setCookie method call.
  *
  * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
  */
@@ -727,7 +727,7 @@ data class SetCookieResponse(
 )
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents response frame for Network.canEmulateNetworkConditions method call.
  *
  * Tells whether emulation of network conditions is supported.
  */
@@ -740,7 +740,7 @@ data class CanEmulateNetworkConditionsResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.emulateNetworkConditions method call.
+ * Represents request frame that can be used with Network.emulateNetworkConditions method call.
  *
  * Activates emulation of network conditions.
  */
@@ -773,7 +773,7 @@ data class EmulateNetworkConditionsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.setCacheDisabled method call.
+ * Represents request frame that can be used with Network.setCacheDisabled method call.
  *
  * Toggles ignoring cache for each request. If <code>true</code>, cache will not be used.
  */
@@ -786,7 +786,7 @@ data class SetCacheDisabledRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.setBypassServiceWorker method call.
+ * Represents request frame that can be used with Network.setBypassServiceWorker method call.
  *
  * Toggles ignoring of service worker for each request.
  */
@@ -799,7 +799,7 @@ data class SetBypassServiceWorkerRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.setDataSizeLimitsForTest method call.
+ * Represents request frame that can be used with Network.setDataSizeLimitsForTest method call.
  *
  * For testing.
  */
@@ -817,7 +817,7 @@ data class SetDataSizeLimitsForTestRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.getCertificate method call.
+ * Represents request frame that can be used with Network.getCertificate method call.
  *
  * Returns the DER-encoded certificate.
  */
@@ -830,7 +830,7 @@ data class GetCertificateRequest (
 )
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents response frame for Network.getCertificate method call.
  *
  * Returns the DER-encoded certificate.
  */
@@ -843,7 +843,7 @@ data class GetCertificateResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.setRequestInterceptionEnabled method call.
+ * Represents request frame that can be used with Network.setRequestInterceptionEnabled method call.
  *
  *
  */
@@ -856,7 +856,7 @@ data class SetRequestInterceptionEnabledRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Network.continueInterceptedRequest method call.
+ * Represents request frame that can be used with Network.continueInterceptedRequest method call.
  *
  * Response to Network.requestIntercepted which either modifies the request to continue with any modifications, or blocks it, or completes it with the provided response bytes. If a network fetch occurs as a result which encounters a redirect an additional Network.requestIntercepted event will be sent with the same InterceptionId.
  */
@@ -904,7 +904,7 @@ data class ContinueInterceptedRequestRequest (
 )
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.resourceChangedPriority
  *
  * Fired when resource loading priority is changed
  */
@@ -927,7 +927,7 @@ data class ResourceChangedPriorityEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "resourceChangedPriority")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.requestWillBeSent
  *
  * Fired when page is about to send HTTP request.
  */
@@ -985,7 +985,7 @@ data class RequestWillBeSentEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "requestWillBeSent")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.requestServedFromCache
  *
  * Fired if request ended up loading from cache.
  */
@@ -998,7 +998,7 @@ data class RequestServedFromCacheEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "requestServedFromCache")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.responseReceived
  *
  * Fired when HTTP response is available.
  */
@@ -1036,7 +1036,7 @@ data class ResponseReceivedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "responseReceived")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.dataReceived
  *
  * Fired when data chunk was received over the network.
  */
@@ -1064,7 +1064,7 @@ data class DataReceivedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "dataReceived")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.loadingFinished
  *
  * Fired when HTTP request has finished loading.
  */
@@ -1087,7 +1087,7 @@ data class LoadingFinishedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "loadingFinished")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.loadingFailed
  *
  * Fired when HTTP request has failed to load.
  */
@@ -1125,7 +1125,7 @@ data class LoadingFailedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "loadingFailed")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.webSocketWillSendHandshakeRequest
  *
  * Fired when WebSocket is about to initiate handshake.
  */
@@ -1153,7 +1153,7 @@ data class WebSocketWillSendHandshakeRequestEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "webSocketWillSendHandshakeRequest")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.webSocketHandshakeResponseReceived
  *
  * Fired when WebSocket handshake response becomes available.
  */
@@ -1176,7 +1176,7 @@ data class WebSocketHandshakeResponseReceivedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "webSocketHandshakeResponseReceived")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.webSocketCreated
  *
  * Fired upon WebSocket creation.
  */
@@ -1199,7 +1199,7 @@ data class WebSocketCreatedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "webSocketCreated")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.webSocketClosed
  *
  * Fired when WebSocket is closed.
  */
@@ -1217,7 +1217,7 @@ data class WebSocketClosedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "webSocketClosed")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.webSocketFrameReceived
  *
  * Fired when WebSocket frame is received.
  */
@@ -1240,7 +1240,7 @@ data class WebSocketFrameReceivedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "webSocketFrameReceived")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.webSocketFrameError
  *
  * Fired when WebSocket frame error occurs.
  */
@@ -1263,7 +1263,7 @@ data class WebSocketFrameErrorEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "webSocketFrameError")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.webSocketFrameSent
  *
  * Fired when WebSocket frame is sent.
  */
@@ -1286,7 +1286,7 @@ data class WebSocketFrameSentEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "webSocketFrameSent")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.eventSourceMessageReceived
  *
  * Fired when EventSource message is received.
  */
@@ -1319,7 +1319,7 @@ data class EventSourceMessageReceivedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "eventSourceMessageReceived")
 
 /**
- * Represents responseFrame from Network. method call.
+ * Represents event frames for Network.requestIntercepted
  *
  * Details of an intercepted HTTP request, which must be either allowed, blocked, modified or mocked.
  */

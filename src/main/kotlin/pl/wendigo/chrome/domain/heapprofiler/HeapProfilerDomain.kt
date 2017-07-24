@@ -194,7 +194,7 @@ class HeapProfilerDomain internal constructor(private val connectionRemote : pl.
 }
 
 /**
- * Represents requestFrame parameters that can be used with HeapProfiler.startTrackingHeapObjects method call.
+ * Represents request frame that can be used with HeapProfiler.startTrackingHeapObjects method call.
  *
  *
  */
@@ -207,7 +207,7 @@ data class StartTrackingHeapObjectsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with HeapProfiler.stopTrackingHeapObjects method call.
+ * Represents request frame that can be used with HeapProfiler.stopTrackingHeapObjects method call.
  *
  *
  */
@@ -220,7 +220,7 @@ data class StopTrackingHeapObjectsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with HeapProfiler.takeHeapSnapshot method call.
+ * Represents request frame that can be used with HeapProfiler.takeHeapSnapshot method call.
  *
  *
  */
@@ -233,7 +233,7 @@ data class TakeHeapSnapshotRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with HeapProfiler.getObjectByHeapObjectId method call.
+ * Represents request frame that can be used with HeapProfiler.getObjectByHeapObjectId method call.
  *
  *
  */
@@ -251,7 +251,7 @@ data class GetObjectByHeapObjectIdRequest (
 )
 
 /**
- * Represents responseFrame from HeapProfiler. method call.
+ * Represents response frame for HeapProfiler.getObjectByHeapObjectId method call.
  *
  *
  */
@@ -264,7 +264,7 @@ data class GetObjectByHeapObjectIdResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with HeapProfiler.addInspectedHeapObject method call.
+ * Represents request frame that can be used with HeapProfiler.addInspectedHeapObject method call.
  *
  * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
  */
@@ -277,7 +277,7 @@ data class AddInspectedHeapObjectRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with HeapProfiler.getHeapObjectId method call.
+ * Represents request frame that can be used with HeapProfiler.getHeapObjectId method call.
  *
  *
  */
@@ -290,7 +290,7 @@ data class GetHeapObjectIdRequest (
 )
 
 /**
- * Represents responseFrame from HeapProfiler. method call.
+ * Represents response frame for HeapProfiler.getHeapObjectId method call.
  *
  *
  */
@@ -303,7 +303,7 @@ data class GetHeapObjectIdResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with HeapProfiler.startSampling method call.
+ * Represents request frame that can be used with HeapProfiler.startSampling method call.
  *
  *
  */
@@ -316,7 +316,7 @@ data class StartSamplingRequest (
 )
 
 /**
- * Represents responseFrame from HeapProfiler. method call.
+ * Represents response frame for HeapProfiler.stopSampling method call.
  *
  *
  */
@@ -329,7 +329,7 @@ data class StopSamplingResponse(
 )
 
 /**
- * Represents responseFrame from HeapProfiler. method call.
+ * Represents event frames for HeapProfiler.addHeapSnapshotChunk
  *
  *
  */
@@ -342,7 +342,7 @@ data class AddHeapSnapshotChunkEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "HeapProfiler", name = "addHeapSnapshotChunk")
 
 /**
- * Represents responseFrame from HeapProfiler. method call.
+ * Represents event frames for HeapProfiler.reportHeapSnapshotProgress
  *
  *
  */
@@ -365,7 +365,7 @@ data class ReportHeapSnapshotProgressEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "HeapProfiler", name = "reportHeapSnapshotProgress")
 
 /**
- * Represents responseFrame from HeapProfiler. method call.
+ * Represents event frames for HeapProfiler.lastSeenObjectId
  *
  * If heap objects tracking has been started then backend regularly sends a current value for last seen object id and corresponding timestamp. If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
  */
@@ -383,7 +383,7 @@ data class LastSeenObjectIdEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "HeapProfiler", name = "lastSeenObjectId")
 
 /**
- * Represents responseFrame from HeapProfiler. method call.
+ * Represents event frames for HeapProfiler.heapStatsUpdate
  *
  * If heap objects tracking has been started then backend may send update for one or more fragments
  */

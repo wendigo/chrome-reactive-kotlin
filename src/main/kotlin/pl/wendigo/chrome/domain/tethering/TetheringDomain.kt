@@ -48,7 +48,7 @@ class TetheringDomain internal constructor(private val connectionRemote : pl.wen
     }
 }
 /**
- * Represents requestFrame parameters that can be used with Tethering.bind method call.
+ * Represents request frame that can be used with Tethering.bind method call.
  *
  * Request browser port binding.
  */
@@ -61,7 +61,7 @@ data class BindRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Tethering.unbind method call.
+ * Represents request frame that can be used with Tethering.unbind method call.
  *
  * Request browser port unbinding.
  */
@@ -74,7 +74,7 @@ data class UnbindRequest (
 )
 
 /**
- * Represents responseFrame from Tethering. method call.
+ * Represents event frames for Tethering.accepted
  *
  * Informs that port was successfully bound and got a specified connection id.
  */

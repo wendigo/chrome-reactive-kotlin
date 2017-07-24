@@ -128,7 +128,7 @@ class LayerTreeDomain internal constructor(private val connectionRemote : pl.wen
 }
 
 /**
- * Represents requestFrame parameters that can be used with LayerTree.compositingReasons method call.
+ * Represents request frame that can be used with LayerTree.compositingReasons method call.
  *
  * Provides the reasons why the given layer was composited.
  */
@@ -141,7 +141,7 @@ data class CompositingReasonsRequest (
 )
 
 /**
- * Represents responseFrame from LayerTree. method call.
+ * Represents response frame for LayerTree.compositingReasons method call.
  *
  * Provides the reasons why the given layer was composited.
  */
@@ -154,7 +154,7 @@ data class CompositingReasonsResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with LayerTree.makeSnapshot method call.
+ * Represents request frame that can be used with LayerTree.makeSnapshot method call.
  *
  * Returns the layer snapshot identifier.
  */
@@ -167,7 +167,7 @@ data class MakeSnapshotRequest (
 )
 
 /**
- * Represents responseFrame from LayerTree. method call.
+ * Represents response frame for LayerTree.makeSnapshot method call.
  *
  * Returns the layer snapshot identifier.
  */
@@ -180,7 +180,7 @@ data class MakeSnapshotResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with LayerTree.loadSnapshot method call.
+ * Represents request frame that can be used with LayerTree.loadSnapshot method call.
  *
  * Returns the snapshot identifier.
  */
@@ -193,7 +193,7 @@ data class LoadSnapshotRequest (
 )
 
 /**
- * Represents responseFrame from LayerTree. method call.
+ * Represents response frame for LayerTree.loadSnapshot method call.
  *
  * Returns the snapshot identifier.
  */
@@ -206,7 +206,7 @@ data class LoadSnapshotResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with LayerTree.releaseSnapshot method call.
+ * Represents request frame that can be used with LayerTree.releaseSnapshot method call.
  *
  * Releases layer snapshot captured by the back-end.
  */
@@ -219,7 +219,7 @@ data class ReleaseSnapshotRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with LayerTree.profileSnapshot method call.
+ * Represents request frame that can be used with LayerTree.profileSnapshot method call.
  *
  *
  */
@@ -247,7 +247,7 @@ data class ProfileSnapshotRequest (
 )
 
 /**
- * Represents responseFrame from LayerTree. method call.
+ * Represents response frame for LayerTree.profileSnapshot method call.
  *
  *
  */
@@ -260,7 +260,7 @@ data class ProfileSnapshotResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with LayerTree.replaySnapshot method call.
+ * Represents request frame that can be used with LayerTree.replaySnapshot method call.
  *
  * Replays the layer snapshot and returns the resulting bitmap.
  */
@@ -288,7 +288,7 @@ data class ReplaySnapshotRequest (
 )
 
 /**
- * Represents responseFrame from LayerTree. method call.
+ * Represents response frame for LayerTree.replaySnapshot method call.
  *
  * Replays the layer snapshot and returns the resulting bitmap.
  */
@@ -301,7 +301,7 @@ data class ReplaySnapshotResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with LayerTree.snapshotCommandLog method call.
+ * Represents request frame that can be used with LayerTree.snapshotCommandLog method call.
  *
  * Replays the layer snapshot and returns canvas log.
  */
@@ -314,7 +314,7 @@ data class SnapshotCommandLogRequest (
 )
 
 /**
- * Represents responseFrame from LayerTree. method call.
+ * Represents response frame for LayerTree.snapshotCommandLog method call.
  *
  * Replays the layer snapshot and returns canvas log.
  */
@@ -327,7 +327,7 @@ data class SnapshotCommandLogResponse(
 )
 
 /**
- * Represents responseFrame from LayerTree. method call.
+ * Represents event frames for LayerTree.layerTreeDidChange
  *
  *
  */
@@ -340,7 +340,7 @@ data class LayerTreeDidChangeEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "LayerTree", name = "layerTreeDidChange")
 
 /**
- * Represents responseFrame from LayerTree. method call.
+ * Represents event frames for LayerTree.layerPainted
  *
  *
  */

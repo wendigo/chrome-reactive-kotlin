@@ -32,7 +32,7 @@ class DeviceOrientationDomain internal constructor(private val connectionRemote 
     }
 }
 /**
- * Represents requestFrame parameters that can be used with DeviceOrientation.setDeviceOrientationOverride method call.
+ * Represents request frame that can be used with DeviceOrientation.setDeviceOrientationOverride method call.
  *
  * Overrides the Device Orientation.
  */

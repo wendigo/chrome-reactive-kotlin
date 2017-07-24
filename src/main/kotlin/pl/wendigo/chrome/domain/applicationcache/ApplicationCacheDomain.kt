@@ -83,7 +83,7 @@ class ApplicationCacheDomain internal constructor(private val connectionRemote :
 }
 
 /**
- * Represents responseFrame from ApplicationCache. method call.
+ * Represents response frame for ApplicationCache.getFramesWithManifests method call.
  *
  * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
  */
@@ -96,7 +96,7 @@ data class GetFramesWithManifestsResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with ApplicationCache.getManifestForFrame method call.
+ * Represents request frame that can be used with ApplicationCache.getManifestForFrame method call.
  *
  * Returns manifest URL for document in the given frame.
  */
@@ -109,7 +109,7 @@ data class GetManifestForFrameRequest (
 )
 
 /**
- * Represents responseFrame from ApplicationCache. method call.
+ * Represents response frame for ApplicationCache.getManifestForFrame method call.
  *
  * Returns manifest URL for document in the given frame.
  */
@@ -122,7 +122,7 @@ data class GetManifestForFrameResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with ApplicationCache.getApplicationCacheForFrame method call.
+ * Represents request frame that can be used with ApplicationCache.getApplicationCacheForFrame method call.
  *
  * Returns relevant application cache data for the document in given frame.
  */
@@ -135,7 +135,7 @@ data class GetApplicationCacheForFrameRequest (
 )
 
 /**
- * Represents responseFrame from ApplicationCache. method call.
+ * Represents response frame for ApplicationCache.getApplicationCacheForFrame method call.
  *
  * Returns relevant application cache data for the document in given frame.
  */
@@ -148,7 +148,7 @@ data class GetApplicationCacheForFrameResponse(
 )
 
 /**
- * Represents responseFrame from ApplicationCache. method call.
+ * Represents event frames for ApplicationCache.applicationCacheStatusUpdated
  *
  *
  */
@@ -171,7 +171,7 @@ data class ApplicationCacheStatusUpdatedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "ApplicationCache", name = "applicationCacheStatusUpdated")
 
 /**
- * Represents responseFrame from ApplicationCache. method call.
+ * Represents event frames for ApplicationCache.networkStateUpdated
  *
  *
  */

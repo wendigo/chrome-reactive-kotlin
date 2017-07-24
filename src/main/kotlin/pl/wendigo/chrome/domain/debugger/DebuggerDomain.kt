@@ -320,7 +320,7 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
 }
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.setBreakpointsActive method call.
+ * Represents request frame that can be used with Debugger.setBreakpointsActive method call.
  *
  * Activates / deactivates all breakpoints on the page.
  */
@@ -333,7 +333,7 @@ data class SetBreakpointsActiveRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.setSkipAllPauses method call.
+ * Represents request frame that can be used with Debugger.setSkipAllPauses method call.
  *
  * Makes page not interrupt on any pauses (breakpoint, exception, dom exception etc).
  */
@@ -346,7 +346,7 @@ data class SetSkipAllPausesRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.setBreakpointByUrl method call.
+ * Represents request frame that can be used with Debugger.setBreakpointByUrl method call.
  *
  * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in <code>locations</code> property. Further matching script parsing will result in subsequent <code>breakpointResolved</code> events issued. This logical breakpoint will survive page reloads.
  */
@@ -379,7 +379,7 @@ data class SetBreakpointByUrlRequest (
 )
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents response frame for Debugger.setBreakpointByUrl method call.
  *
  * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in <code>locations</code> property. Further matching script parsing will result in subsequent <code>breakpointResolved</code> events issued. This logical breakpoint will survive page reloads.
  */
@@ -397,7 +397,7 @@ data class SetBreakpointByUrlResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.setBreakpoint method call.
+ * Represents request frame that can be used with Debugger.setBreakpoint method call.
  *
  * Sets JavaScript breakpoint at a given location.
  */
@@ -415,7 +415,7 @@ data class SetBreakpointRequest (
 )
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents response frame for Debugger.setBreakpoint method call.
  *
  * Sets JavaScript breakpoint at a given location.
  */
@@ -433,7 +433,7 @@ data class SetBreakpointResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.removeBreakpoint method call.
+ * Represents request frame that can be used with Debugger.removeBreakpoint method call.
  *
  * Removes JavaScript breakpoint.
  */
@@ -446,7 +446,7 @@ data class RemoveBreakpointRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.getPossibleBreakpoints method call.
+ * Represents request frame that can be used with Debugger.getPossibleBreakpoints method call.
  *
  * Returns possible locations for breakpoint. scriptId in start and end range locations should be the same.
  */
@@ -469,7 +469,7 @@ data class GetPossibleBreakpointsRequest (
 )
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents response frame for Debugger.getPossibleBreakpoints method call.
  *
  * Returns possible locations for breakpoint. scriptId in start and end range locations should be the same.
  */
@@ -482,7 +482,7 @@ data class GetPossibleBreakpointsResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.continueToLocation method call.
+ * Represents request frame that can be used with Debugger.continueToLocation method call.
  *
  * Continues execution until specific location is reached.
  */
@@ -500,7 +500,7 @@ data class ContinueToLocationRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.searchInContent method call.
+ * Represents request frame that can be used with Debugger.searchInContent method call.
  *
  * Searches for given string in script content.
  */
@@ -528,7 +528,7 @@ data class SearchInContentRequest (
 )
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents response frame for Debugger.searchInContent method call.
  *
  * Searches for given string in script content.
  */
@@ -541,7 +541,7 @@ data class SearchInContentResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.setScriptSource method call.
+ * Represents request frame that can be used with Debugger.setScriptSource method call.
  *
  * Edits JavaScript source live.
  */
@@ -564,7 +564,7 @@ data class SetScriptSourceRequest (
 )
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents response frame for Debugger.setScriptSource method call.
  *
  * Edits JavaScript source live.
  */
@@ -592,7 +592,7 @@ data class SetScriptSourceResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.restartFrame method call.
+ * Represents request frame that can be used with Debugger.restartFrame method call.
  *
  * Restarts particular call frame from the beginning.
  */
@@ -605,7 +605,7 @@ data class RestartFrameRequest (
 )
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents response frame for Debugger.restartFrame method call.
  *
  * Restarts particular call frame from the beginning.
  */
@@ -623,7 +623,7 @@ data class RestartFrameResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.getScriptSource method call.
+ * Represents request frame that can be used with Debugger.getScriptSource method call.
  *
  * Returns source for the script with given id.
  */
@@ -636,7 +636,7 @@ data class GetScriptSourceRequest (
 )
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents response frame for Debugger.getScriptSource method call.
  *
  * Returns source for the script with given id.
  */
@@ -649,7 +649,7 @@ data class GetScriptSourceResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.setPauseOnExceptions method call.
+ * Represents request frame that can be used with Debugger.setPauseOnExceptions method call.
  *
  * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or no exceptions. Initial pause on exceptions state is <code>none</code>.
  */
@@ -662,7 +662,7 @@ data class SetPauseOnExceptionsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.evaluateOnCallFrame method call.
+ * Represents request frame that can be used with Debugger.evaluateOnCallFrame method call.
  *
  * Evaluates expression on a given call frame.
  */
@@ -710,7 +710,7 @@ data class EvaluateOnCallFrameRequest (
 )
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents response frame for Debugger.evaluateOnCallFrame method call.
  *
  * Evaluates expression on a given call frame.
  */
@@ -728,7 +728,7 @@ data class EvaluateOnCallFrameResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.setVariableValue method call.
+ * Represents request frame that can be used with Debugger.setVariableValue method call.
  *
  * Changes value of variable in a callframe. Object-based scopes are not supported and must be mutated manually.
  */
@@ -756,7 +756,7 @@ data class SetVariableValueRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.setAsyncCallStackDepth method call.
+ * Represents request frame that can be used with Debugger.setAsyncCallStackDepth method call.
  *
  * Enables or disables async call stacks tracking.
  */
@@ -769,7 +769,7 @@ data class SetAsyncCallStackDepthRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.setBlackboxPatterns method call.
+ * Represents request frame that can be used with Debugger.setBlackboxPatterns method call.
  *
  * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in scripts with url matching one of the patterns. VM will try to leave blackboxed script by performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
  */
@@ -782,7 +782,7 @@ data class SetBlackboxPatternsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Debugger.setBlackboxedRanges method call.
+ * Represents request frame that can be used with Debugger.setBlackboxedRanges method call.
  *
  * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted scripts by performing 'step in' several times, finally resorting to 'step out' if unsuccessful. Positions array contains positions where blackbox state is changed. First interval isn't blackboxed. Array should be sorted.
  */
@@ -800,7 +800,7 @@ data class SetBlackboxedRangesRequest (
 )
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents event frames for Debugger.scriptParsed
  *
  * Fired when virtual machine parses script. This event is also fired for all known and uncollected scripts upon enabling debugger.
  */
@@ -883,7 +883,7 @@ data class ScriptParsedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Debugger", name = "scriptParsed")
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents event frames for Debugger.scriptFailedToParse
  *
  * Fired when virtual machine fails to parse the script.
  */
@@ -961,7 +961,7 @@ data class ScriptFailedToParseEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Debugger", name = "scriptFailedToParse")
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents event frames for Debugger.breakpointResolved
  *
  * Fired when breakpoint is resolved to an actual script and location.
  */
@@ -979,7 +979,7 @@ data class BreakpointResolvedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Debugger", name = "breakpointResolved")
 
 /**
- * Represents responseFrame from Debugger. method call.
+ * Represents event frames for Debugger.paused
  *
  * Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
  */

@@ -59,7 +59,7 @@ class CacheStorageDomain internal constructor(private val connectionRemote : pl.
     }
 }
 /**
- * Represents requestFrame parameters that can be used with CacheStorage.requestCacheNames method call.
+ * Represents request frame that can be used with CacheStorage.requestCacheNames method call.
  *
  * Requests cache names.
  */
@@ -72,7 +72,7 @@ data class RequestCacheNamesRequest (
 )
 
 /**
- * Represents responseFrame from CacheStorage. method call.
+ * Represents response frame for CacheStorage.requestCacheNames method call.
  *
  * Requests cache names.
  */
@@ -85,7 +85,7 @@ data class RequestCacheNamesResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with CacheStorage.requestEntries method call.
+ * Represents request frame that can be used with CacheStorage.requestEntries method call.
  *
  * Requests data from cache.
  */
@@ -108,7 +108,7 @@ data class RequestEntriesRequest (
 )
 
 /**
- * Represents responseFrame from CacheStorage. method call.
+ * Represents response frame for CacheStorage.requestEntries method call.
  *
  * Requests data from cache.
  */
@@ -126,7 +126,7 @@ data class RequestEntriesResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with CacheStorage.deleteCache method call.
+ * Represents request frame that can be used with CacheStorage.deleteCache method call.
  *
  * Deletes a cache.
  */
@@ -139,7 +139,7 @@ data class DeleteCacheRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with CacheStorage.deleteEntry method call.
+ * Represents request frame that can be used with CacheStorage.deleteEntry method call.
  *
  * Deletes a cache entry.
  */
@@ -157,7 +157,7 @@ data class DeleteEntryRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with CacheStorage.requestCachedResponse method call.
+ * Represents request frame that can be used with CacheStorage.requestCachedResponse method call.
  *
  * Fetches cache entry.
  */
@@ -175,7 +175,7 @@ data class RequestCachedResponseRequest (
 )
 
 /**
- * Represents responseFrame from CacheStorage. method call.
+ * Represents response frame for CacheStorage.requestCachedResponse method call.
  *
  * Fetches cache entry.
  */

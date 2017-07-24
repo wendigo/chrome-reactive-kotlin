@@ -86,7 +86,7 @@ class InputDomain internal constructor(private val connectionRemote : pl.wendigo
     }
 }
 /**
- * Represents requestFrame parameters that can be used with Input.setIgnoreInputEvents method call.
+ * Represents request frame that can be used with Input.setIgnoreInputEvents method call.
  *
  * Ignores input events (useful while auditing page).
  */
@@ -99,7 +99,7 @@ data class SetIgnoreInputEventsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Input.dispatchKeyEvent method call.
+ * Represents request frame that can be used with Input.dispatchKeyEvent method call.
  *
  * Dispatches a key event to the page.
  */
@@ -172,7 +172,7 @@ data class DispatchKeyEventRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Input.dispatchMouseEvent method call.
+ * Represents request frame that can be used with Input.dispatchMouseEvent method call.
  *
  * Dispatches a mouse event to the page.
  */
@@ -215,7 +215,7 @@ data class DispatchMouseEventRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Input.dispatchTouchEvent method call.
+ * Represents request frame that can be used with Input.dispatchTouchEvent method call.
  *
  * Dispatches a touch event to the page.
  */
@@ -243,7 +243,7 @@ data class DispatchTouchEventRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Input.emulateTouchFromMouseEvent method call.
+ * Represents request frame that can be used with Input.emulateTouchFromMouseEvent method call.
  *
  * Emulates touch event from the mouse event parameters.
  */
@@ -296,7 +296,7 @@ data class EmulateTouchFromMouseEventRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Input.synthesizePinchGesture method call.
+ * Represents request frame that can be used with Input.synthesizePinchGesture method call.
  *
  * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
  */
@@ -329,7 +329,7 @@ data class SynthesizePinchGestureRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Input.synthesizeScrollGesture method call.
+ * Represents request frame that can be used with Input.synthesizeScrollGesture method call.
  *
  * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
  */
@@ -397,7 +397,7 @@ data class SynthesizeScrollGestureRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Input.synthesizeTapGesture method call.
+ * Represents request frame that can be used with Input.synthesizeTapGesture method call.
  *
  * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
  */

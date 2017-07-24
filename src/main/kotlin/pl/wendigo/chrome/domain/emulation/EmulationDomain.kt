@@ -156,7 +156,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     }
 }
 /**
- * Represents requestFrame parameters that can be used with Emulation.setDeviceMetricsOverride method call.
+ * Represents request frame that can be used with Emulation.setDeviceMetricsOverride method call.
  *
  * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
  */
@@ -219,7 +219,7 @@ data class SetDeviceMetricsOverrideRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Emulation.setPageScaleFactor method call.
+ * Represents request frame that can be used with Emulation.setPageScaleFactor method call.
  *
  * Sets a specified page scale factor.
  */
@@ -232,7 +232,7 @@ data class SetPageScaleFactorRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Emulation.setVisibleSize method call.
+ * Represents request frame that can be used with Emulation.setVisibleSize method call.
  *
  * Resizes the frame/viewport of the page. Note that this does not affect the frame's container (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported on Android.
  */
@@ -250,7 +250,7 @@ data class SetVisibleSizeRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Emulation.setScriptExecutionDisabled method call.
+ * Represents request frame that can be used with Emulation.setScriptExecutionDisabled method call.
  *
  * Switches script execution in the page.
  */
@@ -263,7 +263,7 @@ data class SetScriptExecutionDisabledRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Emulation.setGeolocationOverride method call.
+ * Represents request frame that can be used with Emulation.setGeolocationOverride method call.
  *
  * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
  */
@@ -286,7 +286,7 @@ data class SetGeolocationOverrideRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Emulation.setTouchEmulationEnabled method call.
+ * Represents request frame that can be used with Emulation.setTouchEmulationEnabled method call.
  *
  * Toggles mouse event-based touch event emulation.
  */
@@ -304,7 +304,7 @@ data class SetTouchEmulationEnabledRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Emulation.setEmulatedMedia method call.
+ * Represents request frame that can be used with Emulation.setEmulatedMedia method call.
  *
  * Emulates the given media for CSS media queries.
  */
@@ -317,7 +317,7 @@ data class SetEmulatedMediaRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Emulation.setCPUThrottlingRate method call.
+ * Represents request frame that can be used with Emulation.setCPUThrottlingRate method call.
  *
  * Enables CPU throttling to emulate slow CPUs.
  */
@@ -330,7 +330,7 @@ data class SetCPUThrottlingRateRequest (
 )
 
 /**
- * Represents responseFrame from Emulation. method call.
+ * Represents response frame for Emulation.canEmulate method call.
  *
  * Tells whether emulation is supported.
  */
@@ -343,7 +343,7 @@ data class CanEmulateResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Emulation.setVirtualTimePolicy method call.
+ * Represents request frame that can be used with Emulation.setVirtualTimePolicy method call.
  *
  * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets the current virtual time policy.  Note this supersedes any previous time budget.
  */
@@ -361,7 +361,7 @@ data class SetVirtualTimePolicyRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Emulation.setDefaultBackgroundColorOverride method call.
+ * Represents request frame that can be used with Emulation.setDefaultBackgroundColorOverride method call.
  *
  * Sets or clears an override of the default background color of the frame. This override is used if the content does not specify one.
  */

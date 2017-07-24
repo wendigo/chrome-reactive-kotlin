@@ -191,7 +191,7 @@ class OverlayDomain internal constructor(private val connectionRemote : pl.wendi
 }
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.setShowPaintRects method call.
+ * Represents request frame that can be used with Overlay.setShowPaintRects method call.
  *
  * Requests that backend shows paint rectangles
  */
@@ -204,7 +204,7 @@ data class SetShowPaintRectsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.setShowDebugBorders method call.
+ * Represents request frame that can be used with Overlay.setShowDebugBorders method call.
  *
  * Requests that backend shows debug borders on layers
  */
@@ -217,7 +217,7 @@ data class SetShowDebugBordersRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.setShowFPSCounter method call.
+ * Represents request frame that can be used with Overlay.setShowFPSCounter method call.
  *
  * Requests that backend shows the FPS counter
  */
@@ -230,7 +230,7 @@ data class SetShowFPSCounterRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.setShowScrollBottleneckRects method call.
+ * Represents request frame that can be used with Overlay.setShowScrollBottleneckRects method call.
  *
  * Requests that backend shows scroll bottleneck rects
  */
@@ -243,7 +243,7 @@ data class SetShowScrollBottleneckRectsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.setShowViewportSizeOnResize method call.
+ * Represents request frame that can be used with Overlay.setShowViewportSizeOnResize method call.
  *
  * Paints viewport size upon main frame resize.
  */
@@ -256,7 +256,7 @@ data class SetShowViewportSizeOnResizeRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.setPausedInDebuggerMessage method call.
+ * Represents request frame that can be used with Overlay.setPausedInDebuggerMessage method call.
  *
  *
  */
@@ -269,7 +269,7 @@ data class SetPausedInDebuggerMessageRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.setSuspended method call.
+ * Represents request frame that can be used with Overlay.setSuspended method call.
  *
  *
  */
@@ -282,7 +282,7 @@ data class SetSuspendedRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.setInspectMode method call.
+ * Represents request frame that can be used with Overlay.setInspectMode method call.
  *
  * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
  */
@@ -300,7 +300,7 @@ data class SetInspectModeRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.highlightRect method call.
+ * Represents request frame that can be used with Overlay.highlightRect method call.
  *
  * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
  */
@@ -338,7 +338,7 @@ data class HighlightRectRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.highlightQuad method call.
+ * Represents request frame that can be used with Overlay.highlightQuad method call.
  *
  * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
  */
@@ -361,7 +361,7 @@ data class HighlightQuadRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.highlightNode method call.
+ * Represents request frame that can be used with Overlay.highlightNode method call.
  *
  * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
  */
@@ -389,7 +389,7 @@ data class HighlightNodeRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.highlightFrame method call.
+ * Represents request frame that can be used with Overlay.highlightFrame method call.
  *
  * Highlights owner element of the frame with given id.
  */
@@ -412,7 +412,7 @@ data class HighlightFrameRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Overlay.getHighlightObjectForTest method call.
+ * Represents request frame that can be used with Overlay.getHighlightObjectForTest method call.
  *
  * For testing.
  */
@@ -425,7 +425,7 @@ data class GetHighlightObjectForTestRequest (
 )
 
 /**
- * Represents responseFrame from Overlay. method call.
+ * Represents response frame for Overlay.getHighlightObjectForTest method call.
  *
  * For testing.
  */
@@ -438,7 +438,7 @@ data class GetHighlightObjectForTestResponse(
 )
 
 /**
- * Represents responseFrame from Overlay. method call.
+ * Represents event frames for Overlay.nodeHighlightRequested
  *
  * Fired when the node should be highlighted. This happens after call to <code>setInspectMode</code>.
  */
@@ -451,7 +451,7 @@ data class NodeHighlightRequestedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Overlay", name = "nodeHighlightRequested")
 
 /**
- * Represents responseFrame from Overlay. method call.
+ * Represents event frames for Overlay.inspectNodeRequested
  *
  * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code> or when user manually inspects an element.
  */

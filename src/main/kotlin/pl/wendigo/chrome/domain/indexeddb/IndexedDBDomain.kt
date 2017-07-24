@@ -78,7 +78,7 @@ class IndexedDBDomain internal constructor(private val connectionRemote : pl.wen
 }
 
 /**
- * Represents requestFrame parameters that can be used with IndexedDB.requestDatabaseNames method call.
+ * Represents request frame that can be used with IndexedDB.requestDatabaseNames method call.
  *
  * Requests database names for given security origin.
  */
@@ -91,7 +91,7 @@ data class RequestDatabaseNamesRequest (
 )
 
 /**
- * Represents responseFrame from IndexedDB. method call.
+ * Represents response frame for IndexedDB.requestDatabaseNames method call.
  *
  * Requests database names for given security origin.
  */
@@ -104,7 +104,7 @@ data class RequestDatabaseNamesResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with IndexedDB.requestDatabase method call.
+ * Represents request frame that can be used with IndexedDB.requestDatabase method call.
  *
  * Requests database with given name in given frame.
  */
@@ -122,7 +122,7 @@ data class RequestDatabaseRequest (
 )
 
 /**
- * Represents responseFrame from IndexedDB. method call.
+ * Represents response frame for IndexedDB.requestDatabase method call.
  *
  * Requests database with given name in given frame.
  */
@@ -135,7 +135,7 @@ data class RequestDatabaseResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with IndexedDB.requestData method call.
+ * Represents request frame that can be used with IndexedDB.requestData method call.
  *
  * Requests data from object store or index.
  */
@@ -178,7 +178,7 @@ data class RequestDataRequest (
 )
 
 /**
- * Represents responseFrame from IndexedDB. method call.
+ * Represents response frame for IndexedDB.requestData method call.
  *
  * Requests data from object store or index.
  */
@@ -196,7 +196,7 @@ data class RequestDataResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with IndexedDB.clearObjectStore method call.
+ * Represents request frame that can be used with IndexedDB.clearObjectStore method call.
  *
  * Clears all entries from an object store.
  */
@@ -219,7 +219,7 @@ data class ClearObjectStoreRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with IndexedDB.deleteDatabase method call.
+ * Represents request frame that can be used with IndexedDB.deleteDatabase method call.
  *
  * Deletes a database.
  */

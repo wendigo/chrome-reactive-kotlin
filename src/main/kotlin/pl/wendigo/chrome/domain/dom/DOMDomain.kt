@@ -581,7 +581,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
 }
 
 /**
- * Represents requestFrame parameters that can be used with DOM.getDocument method call.
+ * Represents request frame that can be used with DOM.getDocument method call.
  *
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
@@ -599,7 +599,7 @@ data class GetDocumentRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.getDocument method call.
  *
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
@@ -612,7 +612,7 @@ data class GetDocumentResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.getFlattenedDocument method call.
+ * Represents request frame that can be used with DOM.getFlattenedDocument method call.
  *
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
@@ -630,7 +630,7 @@ data class GetFlattenedDocumentRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.getFlattenedDocument method call.
  *
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
@@ -643,7 +643,7 @@ data class GetFlattenedDocumentResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.collectClassNamesFromSubtree method call.
+ * Represents request frame that can be used with DOM.collectClassNamesFromSubtree method call.
  *
  * Collects class names for the node with given id and all of it's child nodes.
  */
@@ -656,7 +656,7 @@ data class CollectClassNamesFromSubtreeRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.collectClassNamesFromSubtree method call.
  *
  * Collects class names for the node with given id and all of it's child nodes.
  */
@@ -669,7 +669,7 @@ data class CollectClassNamesFromSubtreeResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.requestChildNodes method call.
+ * Represents request frame that can be used with DOM.requestChildNodes method call.
  *
  * Requests that children of the node with given id are returned to the caller in form of <code>setChildNodes</code> events where not only immediate children are retrieved, but all children down to the specified depth.
  */
@@ -692,7 +692,7 @@ data class RequestChildNodesRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.querySelector method call.
+ * Represents request frame that can be used with DOM.querySelector method call.
  *
  * Executes <code>querySelector</code> on a given node.
  */
@@ -710,7 +710,7 @@ data class QuerySelectorRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.querySelector method call.
  *
  * Executes <code>querySelector</code> on a given node.
  */
@@ -723,7 +723,7 @@ data class QuerySelectorResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.querySelectorAll method call.
+ * Represents request frame that can be used with DOM.querySelectorAll method call.
  *
  * Executes <code>querySelectorAll</code> on a given node.
  */
@@ -741,7 +741,7 @@ data class QuerySelectorAllRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.querySelectorAll method call.
  *
  * Executes <code>querySelectorAll</code> on a given node.
  */
@@ -754,7 +754,7 @@ data class QuerySelectorAllResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.setNodeName method call.
+ * Represents request frame that can be used with DOM.setNodeName method call.
  *
  * Sets node name for a node with given id.
  */
@@ -772,7 +772,7 @@ data class SetNodeNameRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.setNodeName method call.
  *
  * Sets node name for a node with given id.
  */
@@ -785,7 +785,7 @@ data class SetNodeNameResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.setNodeValue method call.
+ * Represents request frame that can be used with DOM.setNodeValue method call.
  *
  * Sets node value for a node with given id.
  */
@@ -803,7 +803,7 @@ data class SetNodeValueRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.removeNode method call.
+ * Represents request frame that can be used with DOM.removeNode method call.
  *
  * Removes node with given id.
  */
@@ -816,7 +816,7 @@ data class RemoveNodeRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.setAttributeValue method call.
+ * Represents request frame that can be used with DOM.setAttributeValue method call.
  *
  * Sets attribute for an element with given id.
  */
@@ -839,7 +839,7 @@ data class SetAttributeValueRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.setAttributesAsText method call.
+ * Represents request frame that can be used with DOM.setAttributesAsText method call.
  *
  * Sets attributes on element with given id. This method is useful when user edits some existing attribute value and types in several attribute name/value pairs.
  */
@@ -862,7 +862,7 @@ data class SetAttributesAsTextRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.removeAttribute method call.
+ * Represents request frame that can be used with DOM.removeAttribute method call.
  *
  * Removes attribute with given name from an element with given id.
  */
@@ -880,7 +880,7 @@ data class RemoveAttributeRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.getOuterHTML method call.
+ * Represents request frame that can be used with DOM.getOuterHTML method call.
  *
  * Returns node's HTML markup.
  */
@@ -893,7 +893,7 @@ data class GetOuterHTMLRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.getOuterHTML method call.
  *
  * Returns node's HTML markup.
  */
@@ -906,7 +906,7 @@ data class GetOuterHTMLResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.setOuterHTML method call.
+ * Represents request frame that can be used with DOM.setOuterHTML method call.
  *
  * Sets node HTML markup, returns new node id.
  */
@@ -924,7 +924,7 @@ data class SetOuterHTMLRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.performSearch method call.
+ * Represents request frame that can be used with DOM.performSearch method call.
  *
  * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
  */
@@ -942,7 +942,7 @@ data class PerformSearchRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.performSearch method call.
  *
  * Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.
  */
@@ -960,7 +960,7 @@ data class PerformSearchResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.getSearchResults method call.
+ * Represents request frame that can be used with DOM.getSearchResults method call.
  *
  * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
  */
@@ -983,7 +983,7 @@ data class GetSearchResultsRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.getSearchResults method call.
  *
  * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
  */
@@ -996,7 +996,7 @@ data class GetSearchResultsResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.discardSearchResults method call.
+ * Represents request frame that can be used with DOM.discardSearchResults method call.
  *
  * Discards search results from the session with the given id. <code>getSearchResults</code> should no longer be called for that search.
  */
@@ -1009,7 +1009,7 @@ data class DiscardSearchResultsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.requestNode method call.
+ * Represents request frame that can be used with DOM.requestNode method call.
  *
  * Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.
  */
@@ -1022,7 +1022,7 @@ data class RequestNodeRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.requestNode method call.
  *
  * Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.
  */
@@ -1035,7 +1035,7 @@ data class RequestNodeResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.pushNodeByPathToFrontend method call.
+ * Represents request frame that can be used with DOM.pushNodeByPathToFrontend method call.
  *
  * Requests that the node is sent to the caller given its path. // FIXME, use XPath
  */
@@ -1048,7 +1048,7 @@ data class PushNodeByPathToFrontendRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.pushNodeByPathToFrontend method call.
  *
  * Requests that the node is sent to the caller given its path. // FIXME, use XPath
  */
@@ -1061,7 +1061,7 @@ data class PushNodeByPathToFrontendResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.pushNodesByBackendIdsToFrontend method call.
+ * Represents request frame that can be used with DOM.pushNodesByBackendIdsToFrontend method call.
  *
  * Requests that a batch of nodes is sent to the caller given their backend node ids.
  */
@@ -1074,7 +1074,7 @@ data class PushNodesByBackendIdsToFrontendRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.pushNodesByBackendIdsToFrontend method call.
  *
  * Requests that a batch of nodes is sent to the caller given their backend node ids.
  */
@@ -1087,7 +1087,7 @@ data class PushNodesByBackendIdsToFrontendResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.setInspectedNode method call.
+ * Represents request frame that can be used with DOM.setInspectedNode method call.
  *
  * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
  */
@@ -1100,7 +1100,7 @@ data class SetInspectedNodeRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.resolveNode method call.
+ * Represents request frame that can be used with DOM.resolveNode method call.
  *
  * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
  */
@@ -1123,7 +1123,7 @@ data class ResolveNodeRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.resolveNode method call.
  *
  * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
  */
@@ -1136,7 +1136,7 @@ data class ResolveNodeResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.getAttributes method call.
+ * Represents request frame that can be used with DOM.getAttributes method call.
  *
  * Returns attributes for the specified node.
  */
@@ -1149,7 +1149,7 @@ data class GetAttributesRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.getAttributes method call.
  *
  * Returns attributes for the specified node.
  */
@@ -1162,7 +1162,7 @@ data class GetAttributesResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.copyTo method call.
+ * Represents request frame that can be used with DOM.copyTo method call.
  *
  * Creates a deep copy of the specified node and places it into the target container before the given anchor.
  */
@@ -1185,7 +1185,7 @@ data class CopyToRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.copyTo method call.
  *
  * Creates a deep copy of the specified node and places it into the target container before the given anchor.
  */
@@ -1198,7 +1198,7 @@ data class CopyToResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.moveTo method call.
+ * Represents request frame that can be used with DOM.moveTo method call.
  *
  * Moves node into the new container, places it before the given anchor.
  */
@@ -1221,7 +1221,7 @@ data class MoveToRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.moveTo method call.
  *
  * Moves node into the new container, places it before the given anchor.
  */
@@ -1234,7 +1234,7 @@ data class MoveToResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.focus method call.
+ * Represents request frame that can be used with DOM.focus method call.
  *
  * Focuses the given element.
  */
@@ -1257,7 +1257,7 @@ data class FocusRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.setFileInputFiles method call.
+ * Represents request frame that can be used with DOM.setFileInputFiles method call.
  *
  * Sets files for the given file input element.
  */
@@ -1285,7 +1285,7 @@ data class SetFileInputFilesRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.getBoxModel method call.
+ * Represents request frame that can be used with DOM.getBoxModel method call.
  *
  * Returns boxes for the currently selected nodes.
  */
@@ -1308,7 +1308,7 @@ data class GetBoxModelRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.getBoxModel method call.
  *
  * Returns boxes for the currently selected nodes.
  */
@@ -1321,7 +1321,7 @@ data class GetBoxModelResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.getNodeForLocation method call.
+ * Represents request frame that can be used with DOM.getNodeForLocation method call.
  *
  * Returns node id at given location.
  */
@@ -1344,7 +1344,7 @@ data class GetNodeForLocationRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.getNodeForLocation method call.
  *
  * Returns node id at given location.
  */
@@ -1357,7 +1357,7 @@ data class GetNodeForLocationResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with DOM.getRelayoutBoundary method call.
+ * Represents request frame that can be used with DOM.getRelayoutBoundary method call.
  *
  * Returns the id of the nearest ancestor that is a relayout boundary.
  */
@@ -1370,7 +1370,7 @@ data class GetRelayoutBoundaryRequest (
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents response frame for DOM.getRelayoutBoundary method call.
  *
  * Returns the id of the nearest ancestor that is a relayout boundary.
  */
@@ -1383,7 +1383,7 @@ data class GetRelayoutBoundaryResponse(
 )
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.setChildNodes
  *
  * Fired when backend wants to provide client with the missing DOM structure. This happens upon most of the calls requesting node ids.
  */
@@ -1401,7 +1401,7 @@ data class SetChildNodesEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "setChildNodes")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.attributeModified
  *
  * Fired when <code>Element</code>'s attribute is modified.
  */
@@ -1424,7 +1424,7 @@ data class AttributeModifiedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "attributeModified")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.attributeRemoved
  *
  * Fired when <code>Element</code>'s attribute is removed.
  */
@@ -1442,7 +1442,7 @@ data class AttributeRemovedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "attributeRemoved")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.inlineStyleInvalidated
  *
  * Fired when <code>Element</code>'s inline style is modified via a CSS property modification.
  */
@@ -1455,7 +1455,7 @@ data class InlineStyleInvalidatedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "inlineStyleInvalidated")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.characterDataModified
  *
  * Mirrors <code>DOMCharacterDataModified</code> event.
  */
@@ -1473,7 +1473,7 @@ data class CharacterDataModifiedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "characterDataModified")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.childNodeCountUpdated
  *
  * Fired when <code>Container</code>'s child node count has changed.
  */
@@ -1491,7 +1491,7 @@ data class ChildNodeCountUpdatedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "childNodeCountUpdated")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.childNodeInserted
  *
  * Mirrors <code>DOMNodeInserted</code> event.
  */
@@ -1514,7 +1514,7 @@ data class ChildNodeInsertedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "childNodeInserted")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.childNodeRemoved
  *
  * Mirrors <code>DOMNodeRemoved</code> event.
  */
@@ -1532,7 +1532,7 @@ data class ChildNodeRemovedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "childNodeRemoved")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.shadowRootPushed
  *
  * Called when shadow root is pushed into the element.
  */
@@ -1550,7 +1550,7 @@ data class ShadowRootPushedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "shadowRootPushed")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.shadowRootPopped
  *
  * Called when shadow root is popped from the element.
  */
@@ -1568,7 +1568,7 @@ data class ShadowRootPoppedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "shadowRootPopped")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.pseudoElementAdded
  *
  * Called when a pseudo element is added to an element.
  */
@@ -1586,7 +1586,7 @@ data class PseudoElementAddedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "pseudoElementAdded")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.pseudoElementRemoved
  *
  * Called when a pseudo element is removed from an element.
  */
@@ -1604,7 +1604,7 @@ data class PseudoElementRemovedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "pseudoElementRemoved")
 
 /**
- * Represents responseFrame from DOM. method call.
+ * Represents event frames for DOM.distributedNodesUpdated
  *
  * Called when distrubution is changed.
  */

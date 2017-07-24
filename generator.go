@@ -144,7 +144,8 @@ func (c Command) OutputDataClass() string {
 
 	return raymond.MustRender(template, struct {
 		Type Command
-	}{Type: c})
+		Description string
+	}{Type: c, Description: fmt.Sprintf("Represents response frame for %s.%s method call.", currentDomain, c.Name)})
 }
 
 func (c Command) HasReturnValue() bool {
@@ -330,7 +331,8 @@ func (e Event) OutputDataClass() string {
 
 	return raymond.MustRender(template, struct {
 		Type Event
-	}{Type: e})
+		Description string
+	}{Type: e, Description: fmt.Sprintf("Represents event frames for %s.%s", currentDomain, e.Name)})
 }
 
 func (e Event) SimpleName() string {

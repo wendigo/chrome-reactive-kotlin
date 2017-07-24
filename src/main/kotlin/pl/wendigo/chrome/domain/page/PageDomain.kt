@@ -620,7 +620,7 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
 }
 
 /**
- * Represents requestFrame parameters that can be used with Page.addScriptToEvaluateOnLoad method call.
+ * Represents request frame that can be used with Page.addScriptToEvaluateOnLoad method call.
  *
  * Deprecated, please use addScriptToEvaluateOnNewDocument instead.
  */
@@ -633,7 +633,7 @@ data class AddScriptToEvaluateOnLoadRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.addScriptToEvaluateOnLoad method call.
  *
  * Deprecated, please use addScriptToEvaluateOnNewDocument instead.
  */
@@ -646,7 +646,7 @@ data class AddScriptToEvaluateOnLoadResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.removeScriptToEvaluateOnLoad method call.
+ * Represents request frame that can be used with Page.removeScriptToEvaluateOnLoad method call.
  *
  * Deprecated, please use removeScriptToEvaluateOnNewDocument instead.
  */
@@ -659,7 +659,7 @@ data class RemoveScriptToEvaluateOnLoadRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.addScriptToEvaluateOnNewDocument method call.
+ * Represents request frame that can be used with Page.addScriptToEvaluateOnNewDocument method call.
  *
  * Evaluates given script in every frame upon creation (before loading frame's scripts).
  */
@@ -672,7 +672,7 @@ data class AddScriptToEvaluateOnNewDocumentRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.addScriptToEvaluateOnNewDocument method call.
  *
  * Evaluates given script in every frame upon creation (before loading frame's scripts).
  */
@@ -685,7 +685,7 @@ data class AddScriptToEvaluateOnNewDocumentResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.removeScriptToEvaluateOnNewDocument method call.
+ * Represents request frame that can be used with Page.removeScriptToEvaluateOnNewDocument method call.
  *
  * Removes given script from the list.
  */
@@ -698,7 +698,7 @@ data class RemoveScriptToEvaluateOnNewDocumentRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.setAutoAttachToCreatedPages method call.
+ * Represents request frame that can be used with Page.setAutoAttachToCreatedPages method call.
  *
  * Controls whether browser will open a new inspector window for connected pages.
  */
@@ -711,7 +711,7 @@ data class SetAutoAttachToCreatedPagesRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.reload method call.
+ * Represents request frame that can be used with Page.reload method call.
  *
  * Reloads given page optionally ignoring the cache.
  */
@@ -729,7 +729,7 @@ data class ReloadRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.navigate method call.
+ * Represents request frame that can be used with Page.navigate method call.
  *
  * Navigates current page to the given URL.
  */
@@ -752,7 +752,7 @@ data class NavigateRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.navigate method call.
  *
  * Navigates current page to the given URL.
  */
@@ -765,7 +765,7 @@ data class NavigateResponse(
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.getNavigationHistory method call.
  *
  * Returns navigation history for the current page.
  */
@@ -783,7 +783,7 @@ data class GetNavigationHistoryResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.navigateToHistoryEntry method call.
+ * Represents request frame that can be used with Page.navigateToHistoryEntry method call.
  *
  * Navigates current page to the given history entry.
  */
@@ -796,7 +796,7 @@ data class NavigateToHistoryEntryRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.getCookies method call.
  *
  * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the <code>cookies</code> field.
  */
@@ -809,7 +809,7 @@ data class GetCookiesResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.deleteCookie method call.
+ * Represents request frame that can be used with Page.deleteCookie method call.
  *
  * Deletes browser cookie with given name, domain and path.
  */
@@ -827,7 +827,7 @@ data class DeleteCookieRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.getResourceTree method call.
  *
  * Returns present frame / resource tree structure.
  */
@@ -840,7 +840,7 @@ data class GetResourceTreeResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.getResourceContent method call.
+ * Represents request frame that can be used with Page.getResourceContent method call.
  *
  * Returns content of the given resource.
  */
@@ -858,7 +858,7 @@ data class GetResourceContentRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.getResourceContent method call.
  *
  * Returns content of the given resource.
  */
@@ -876,7 +876,7 @@ data class GetResourceContentResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.searchInResource method call.
+ * Represents request frame that can be used with Page.searchInResource method call.
  *
  * Searches for given string in resource content.
  */
@@ -909,7 +909,7 @@ data class SearchInResourceRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.searchInResource method call.
  *
  * Searches for given string in resource content.
  */
@@ -922,7 +922,7 @@ data class SearchInResourceResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.setDocumentContent method call.
+ * Represents request frame that can be used with Page.setDocumentContent method call.
  *
  * Sets given markup as the document's HTML.
  */
@@ -940,7 +940,7 @@ data class SetDocumentContentRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.setDeviceMetricsOverride method call.
+ * Represents request frame that can be used with Page.setDeviceMetricsOverride method call.
  *
  * Overrides the values of device screen dimensions (window.screen.width, window.screen.height, window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media query results).
  */
@@ -1003,7 +1003,7 @@ data class SetDeviceMetricsOverrideRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.setGeolocationOverride method call.
+ * Represents request frame that can be used with Page.setGeolocationOverride method call.
  *
  * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position unavailable.
  */
@@ -1026,7 +1026,7 @@ data class SetGeolocationOverrideRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.setDeviceOrientationOverride method call.
+ * Represents request frame that can be used with Page.setDeviceOrientationOverride method call.
  *
  * Overrides the Device Orientation.
  */
@@ -1049,7 +1049,7 @@ data class SetDeviceOrientationOverrideRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.setTouchEmulationEnabled method call.
+ * Represents request frame that can be used with Page.setTouchEmulationEnabled method call.
  *
  * Toggles mouse event-based touch event emulation.
  */
@@ -1067,7 +1067,7 @@ data class SetTouchEmulationEnabledRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.captureScreenshot method call.
+ * Represents request frame that can be used with Page.captureScreenshot method call.
  *
  * Capture page screenshot.
  */
@@ -1095,7 +1095,7 @@ data class CaptureScreenshotRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.captureScreenshot method call.
  *
  * Capture page screenshot.
  */
@@ -1108,7 +1108,7 @@ data class CaptureScreenshotResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.printToPDF method call.
+ * Represents request frame that can be used with Page.printToPDF method call.
  *
  * Print page as PDF.
  */
@@ -1176,7 +1176,7 @@ data class PrintToPDFRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.printToPDF method call.
  *
  * Print page as PDF.
  */
@@ -1189,7 +1189,7 @@ data class PrintToPDFResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.startScreencast method call.
+ * Represents request frame that can be used with Page.startScreencast method call.
  *
  * Starts sending each frame using the <code>screencastFrame</code> event.
  */
@@ -1222,7 +1222,7 @@ data class StartScreencastRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.screencastFrameAck method call.
+ * Represents request frame that can be used with Page.screencastFrameAck method call.
  *
  * Acknowledges that a screencast frame has been received by the frontend.
  */
@@ -1235,7 +1235,7 @@ data class ScreencastFrameAckRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.handleJavaScriptDialog method call.
+ * Represents request frame that can be used with Page.handleJavaScriptDialog method call.
  *
  * Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
  */
@@ -1253,7 +1253,7 @@ data class HandleJavaScriptDialogRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.getAppManifest method call.
  *
  *
  */
@@ -1276,7 +1276,7 @@ data class GetAppManifestResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.setControlNavigations method call.
+ * Represents request frame that can be used with Page.setControlNavigations method call.
  *
  * Toggles navigation throttling which allows programatic control over navigation and redirect response.
  */
@@ -1289,7 +1289,7 @@ data class SetControlNavigationsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.processNavigation method call.
+ * Represents request frame that can be used with Page.processNavigation method call.
  *
  * Should be sent in response to a navigationRequested or a redirectRequested event, telling the browser how to handle the navigation.
  */
@@ -1307,7 +1307,7 @@ data class ProcessNavigationRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.getLayoutMetrics method call.
  *
  * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
  */
@@ -1330,7 +1330,7 @@ data class GetLayoutMetricsResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Page.createIsolatedWorld method call.
+ * Represents request frame that can be used with Page.createIsolatedWorld method call.
  *
  * Creates an isolated world for the given frame.
  */
@@ -1353,7 +1353,7 @@ data class CreateIsolatedWorldRequest (
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents response frame for Page.createIsolatedWorld method call.
  *
  * Creates an isolated world for the given frame.
  */
@@ -1366,7 +1366,7 @@ data class CreateIsolatedWorldResponse(
 )
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.domContentEventFired
  *
  *
  */
@@ -1379,7 +1379,7 @@ data class DomContentEventFiredEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "domContentEventFired")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.loadEventFired
  *
  *
  */
@@ -1392,7 +1392,7 @@ data class LoadEventFiredEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "loadEventFired")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.frameAttached
  *
  * Fired when frame has been attached to its parent.
  */
@@ -1415,7 +1415,7 @@ data class FrameAttachedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameAttached")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.frameNavigated
  *
  * Fired once navigation of the frame has completed. Frame is now associated with the new loader.
  */
@@ -1428,7 +1428,7 @@ data class FrameNavigatedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameNavigated")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.frameDetached
  *
  * Fired when frame has been detached from its parent.
  */
@@ -1441,7 +1441,7 @@ data class FrameDetachedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameDetached")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.frameStartedLoading
  *
  * Fired when frame has started loading.
  */
@@ -1454,7 +1454,7 @@ data class FrameStartedLoadingEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameStartedLoading")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.frameStoppedLoading
  *
  * Fired when frame has stopped loading.
  */
@@ -1467,7 +1467,7 @@ data class FrameStoppedLoadingEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameStoppedLoading")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.frameScheduledNavigation
  *
  * Fired when frame schedules a potential navigation.
  */
@@ -1490,7 +1490,7 @@ data class FrameScheduledNavigationEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameScheduledNavigation")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.frameClearedScheduledNavigation
  *
  * Fired when frame no longer has a scheduled navigation.
  */
@@ -1503,7 +1503,7 @@ data class FrameClearedScheduledNavigationEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameClearedScheduledNavigation")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.javascriptDialogOpening
  *
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to open.
  */
@@ -1521,7 +1521,7 @@ data class JavascriptDialogOpeningEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "javascriptDialogOpening")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.javascriptDialogClosed
  *
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been closed.
  */
@@ -1534,7 +1534,7 @@ data class JavascriptDialogClosedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "javascriptDialogClosed")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.screencastFrame
  *
  * Compressed image data requested by the <code>startScreencast</code>.
  */
@@ -1557,7 +1557,7 @@ data class ScreencastFrameEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "screencastFrame")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.screencastVisibilityChanged
  *
  * Fired when the page with currently enabled screencast was shown or hidden </code>.
  */
@@ -1570,7 +1570,7 @@ data class ScreencastVisibilityChangedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "screencastVisibilityChanged")
 
 /**
- * Represents responseFrame from Page. method call.
+ * Represents event frames for Page.navigationRequested
  *
  * Fired when a navigation is started if navigation throttles are enabled.  The navigation will be deferred until processNavigation is called.
  */

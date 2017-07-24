@@ -107,7 +107,7 @@ class TracingDomain internal constructor(private val connectionRemote : pl.wendi
     }
 }
 /**
- * Represents requestFrame parameters that can be used with Tracing.start method call.
+ * Represents request frame that can be used with Tracing.start method call.
  *
  * Start trace events collection.
  */
@@ -140,7 +140,7 @@ data class StartRequest (
 )
 
 /**
- * Represents responseFrame from Tracing. method call.
+ * Represents response frame for Tracing.getCategories method call.
  *
  * Gets supported tracing categories.
  */
@@ -153,7 +153,7 @@ data class GetCategoriesResponse(
 )
 
 /**
- * Represents responseFrame from Tracing. method call.
+ * Represents response frame for Tracing.requestMemoryDump method call.
  *
  * Request a global memory dump.
  */
@@ -171,7 +171,7 @@ data class RequestMemoryDumpResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Tracing.recordClockSyncMarker method call.
+ * Represents request frame that can be used with Tracing.recordClockSyncMarker method call.
  *
  * Record a clock sync marker in the trace.
  */
@@ -184,7 +184,7 @@ data class RecordClockSyncMarkerRequest (
 )
 
 /**
- * Represents responseFrame from Tracing. method call.
+ * Represents event frames for Tracing.dataCollected
  *
  * Contains an bucket of collected trace events. When tracing is stopped collected events will be send as a sequence of dataCollected events followed by tracingComplete event.
  */
@@ -197,7 +197,7 @@ data class DataCollectedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Tracing", name = "dataCollected")
 
 /**
- * Represents responseFrame from Tracing. method call.
+ * Represents event frames for Tracing.tracingComplete
  *
  * Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via dataCollected events.
  */
@@ -210,7 +210,7 @@ data class TracingCompleteEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Tracing", name = "tracingComplete")
 
 /**
- * Represents responseFrame from Tracing. method call.
+ * Represents event frames for Tracing.bufferUsage
  *
  *
  */

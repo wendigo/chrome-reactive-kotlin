@@ -153,7 +153,7 @@ class AnimationDomain internal constructor(private val connectionRemote : pl.wen
 }
 
 /**
- * Represents responseFrame from Animation. method call.
+ * Represents response frame for Animation.getPlaybackRate method call.
  *
  * Gets the playback rate of the document timeline.
  */
@@ -166,7 +166,7 @@ data class GetPlaybackRateResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Animation.setPlaybackRate method call.
+ * Represents request frame that can be used with Animation.setPlaybackRate method call.
  *
  * Sets the playback rate of the document timeline.
  */
@@ -179,7 +179,7 @@ data class SetPlaybackRateRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Animation.getCurrentTime method call.
+ * Represents request frame that can be used with Animation.getCurrentTime method call.
  *
  * Returns the current time of the an animation.
  */
@@ -192,7 +192,7 @@ data class GetCurrentTimeRequest (
 )
 
 /**
- * Represents responseFrame from Animation. method call.
+ * Represents response frame for Animation.getCurrentTime method call.
  *
  * Returns the current time of the an animation.
  */
@@ -205,7 +205,7 @@ data class GetCurrentTimeResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Animation.setPaused method call.
+ * Represents request frame that can be used with Animation.setPaused method call.
  *
  * Sets the paused state of a set of animations.
  */
@@ -223,7 +223,7 @@ data class SetPausedRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Animation.setTiming method call.
+ * Represents request frame that can be used with Animation.setTiming method call.
  *
  * Sets the timing of an animation node.
  */
@@ -246,7 +246,7 @@ data class SetTimingRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Animation.seekAnimations method call.
+ * Represents request frame that can be used with Animation.seekAnimations method call.
  *
  * Seek a set of animations to a particular time within each animation.
  */
@@ -264,7 +264,7 @@ data class SeekAnimationsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Animation.releaseAnimations method call.
+ * Represents request frame that can be used with Animation.releaseAnimations method call.
  *
  * Releases a set of animations to no longer be manipulated.
  */
@@ -277,7 +277,7 @@ data class ReleaseAnimationsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Animation.resolveAnimation method call.
+ * Represents request frame that can be used with Animation.resolveAnimation method call.
  *
  * Gets the remote object of the Animation.
  */
@@ -290,7 +290,7 @@ data class ResolveAnimationRequest (
 )
 
 /**
- * Represents responseFrame from Animation. method call.
+ * Represents response frame for Animation.resolveAnimation method call.
  *
  * Gets the remote object of the Animation.
  */
@@ -303,7 +303,7 @@ data class ResolveAnimationResponse(
 )
 
 /**
- * Represents responseFrame from Animation. method call.
+ * Represents event frames for Animation.animationCreated
  *
  * Event for each animation that has been created.
  */
@@ -316,7 +316,7 @@ data class AnimationCreatedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Animation", name = "animationCreated")
 
 /**
- * Represents responseFrame from Animation. method call.
+ * Represents event frames for Animation.animationStarted
  *
  * Event for animation that has been started.
  */
@@ -329,7 +329,7 @@ data class AnimationStartedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Animation", name = "animationStarted")
 
 /**
- * Represents responseFrame from Animation. method call.
+ * Represents event frames for Animation.animationCanceled
  *
  * Event for when an animation has been cancelled.
  */

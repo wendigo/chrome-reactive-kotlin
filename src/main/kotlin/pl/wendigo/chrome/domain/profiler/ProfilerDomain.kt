@@ -128,7 +128,7 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 }
 
 /**
- * Represents requestFrame parameters that can be used with Profiler.setSamplingInterval method call.
+ * Represents request frame that can be used with Profiler.setSamplingInterval method call.
  *
  * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
  */
@@ -141,7 +141,7 @@ data class SetSamplingIntervalRequest (
 )
 
 /**
- * Represents responseFrame from Profiler. method call.
+ * Represents response frame for Profiler.stop method call.
  *
  *
  */
@@ -154,7 +154,7 @@ data class StopResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Profiler.startPreciseCoverage method call.
+ * Represents request frame that can be used with Profiler.startPreciseCoverage method call.
  *
  * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.
  */
@@ -167,7 +167,7 @@ data class StartPreciseCoverageRequest (
 )
 
 /**
- * Represents responseFrame from Profiler. method call.
+ * Represents response frame for Profiler.takePreciseCoverage method call.
  *
  * Collect coverage data for the current isolate, and resets execution counters. Precise code coverage needs to have started.
  */
@@ -180,7 +180,7 @@ data class TakePreciseCoverageResponse(
 )
 
 /**
- * Represents responseFrame from Profiler. method call.
+ * Represents response frame for Profiler.getBestEffortCoverage method call.
  *
  * Collect coverage data for the current isolate. The coverage data may be incomplete due to garbage collection.
  */
@@ -193,7 +193,7 @@ data class GetBestEffortCoverageResponse(
 )
 
 /**
- * Represents responseFrame from Profiler. method call.
+ * Represents event frames for Profiler.consoleProfileStarted
  *
  * Sent when new profile recording is started using console.profile() call.
  */
@@ -216,7 +216,7 @@ data class ConsoleProfileStartedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Profiler", name = "consoleProfileStarted")
 
 /**
- * Represents responseFrame from Profiler. method call.
+ * Represents event frames for Profiler.consoleProfileFinished
  *
  *
  */

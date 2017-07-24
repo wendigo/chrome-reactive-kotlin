@@ -76,7 +76,7 @@ class LogDomain internal constructor(private val connectionRemote : pl.wendigo.c
 }
 
 /**
- * Represents requestFrame parameters that can be used with Log.startViolationsReport method call.
+ * Represents request frame that can be used with Log.startViolationsReport method call.
  *
  * start violation reporting.
  */
@@ -89,7 +89,7 @@ data class StartViolationsReportRequest (
 )
 
 /**
- * Represents responseFrame from Log. method call.
+ * Represents event frames for Log.entryAdded
  *
  * Issued when new message was logged.
  */

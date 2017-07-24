@@ -65,7 +65,7 @@ class InspectorDomain internal constructor(private val connectionRemote : pl.wen
 }
 
 /**
- * Represents responseFrame from Inspector. method call.
+ * Represents event frames for Inspector.detached
  *
  * Fired when remote debugging connection is about to be terminated. Contains detach reason.
  */

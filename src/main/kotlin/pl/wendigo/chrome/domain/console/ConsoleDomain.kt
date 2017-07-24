@@ -58,7 +58,7 @@ class ConsoleDomain internal constructor(private val connectionRemote : pl.wendi
 }
 
 /**
- * Represents responseFrame from Console. method call.
+ * Represents event frames for Console.messageAdded
  *
  * Issued when new console message is added.
  */

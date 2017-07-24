@@ -23,7 +23,7 @@ class DOMSnapshotDomain internal constructor(private val connectionRemote : pl.w
     }
 }
 /**
- * Represents requestFrame parameters that can be used with DOMSnapshot.getSnapshot method call.
+ * Represents request frame that can be used with DOMSnapshot.getSnapshot method call.
  *
  * Returns a document snapshot, including the full DOM tree of the root node (including iframes, template contents, and imported documents) in a flattened array, as well as layout and white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is flattened.
  */
@@ -36,7 +36,7 @@ data class GetSnapshotRequest (
 )
 
 /**
- * Represents responseFrame from DOMSnapshot. method call.
+ * Represents response frame for DOMSnapshot.getSnapshot method call.
  *
  * Returns a document snapshot, including the full DOM tree of the root node (including iframes, template contents, and imported documents) in a flattened array, as well as layout and white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is flattened.
  */

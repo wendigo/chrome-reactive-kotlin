@@ -92,7 +92,7 @@ class SecurityDomain internal constructor(private val connectionRemote : pl.wend
 }
 
 /**
- * Represents requestFrame parameters that can be used with Security.handleCertificateError method call.
+ * Represents request frame that can be used with Security.handleCertificateError method call.
  *
  * Handles a certificate error that fired a certificateError event.
  */
@@ -110,7 +110,7 @@ data class HandleCertificateErrorRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Security.setOverrideCertificateErrors method call.
+ * Represents request frame that can be used with Security.setOverrideCertificateErrors method call.
  *
  * Enable/disable overriding certificate errors. If enabled, all certificate error events need to be handled by the DevTools client and should be answered with handleCertificateError commands.
  */
@@ -123,7 +123,7 @@ data class SetOverrideCertificateErrorsRequest (
 )
 
 /**
- * Represents responseFrame from Security. method call.
+ * Represents event frames for Security.securityStateChanged
  *
  * The security state of the page changed.
  */
@@ -156,7 +156,7 @@ data class SecurityStateChangedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Security", name = "securityStateChanged")
 
 /**
- * Represents responseFrame from Security. method call.
+ * Represents event frames for Security.certificateError
  *
  * There is a certificate error. If overriding certificate errors is enabled, then it should be handled with the handleCertificateError command. Note: this event does not fire if the certificate error has been allowed internally.
  */

@@ -41,7 +41,7 @@ class IODomain internal constructor(private val connectionRemote : pl.wendigo.ch
     }
 }
 /**
- * Represents requestFrame parameters that can be used with IO.read method call.
+ * Represents request frame that can be used with IO.read method call.
  *
  * Read a chunk of the stream
  */
@@ -64,7 +64,7 @@ data class ReadRequest (
 )
 
 /**
- * Represents responseFrame from IO. method call.
+ * Represents response frame for IO.read method call.
  *
  * Read a chunk of the stream
  */
@@ -87,7 +87,7 @@ data class ReadResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with IO.close method call.
+ * Represents request frame that can be used with IO.close method call.
  *
  * Close the stream, discard any temporary backing storage.
  */
@@ -100,7 +100,7 @@ data class CloseRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with IO.resolveBlob method call.
+ * Represents request frame that can be used with IO.resolveBlob method call.
  *
  * Return UUID of Blob object specified by a remote object id.
  */
@@ -113,7 +113,7 @@ data class ResolveBlobRequest (
 )
 
 /**
- * Represents responseFrame from IO. method call.
+ * Represents response frame for IO.resolveBlob method call.
  *
  * Return UUID of Blob object specified by a remote object id.
  */

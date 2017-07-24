@@ -24,7 +24,7 @@ class SchemaDomain internal constructor(private val connectionRemote : pl.wendig
 }
 
 /**
- * Represents responseFrame from Schema. method call.
+ * Represents response frame for Schema.getDomains method call.
  *
  * Returns supported domains.
  */

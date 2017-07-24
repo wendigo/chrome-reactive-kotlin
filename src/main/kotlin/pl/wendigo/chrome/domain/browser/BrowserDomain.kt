@@ -41,7 +41,7 @@ class BrowserDomain internal constructor(private val connectionRemote : pl.wendi
     }
 }
 /**
- * Represents requestFrame parameters that can be used with Browser.getWindowForTarget method call.
+ * Represents request frame that can be used with Browser.getWindowForTarget method call.
  *
  * Get the browser window that contains the devtools target.
  */
@@ -54,7 +54,7 @@ data class GetWindowForTargetRequest (
 )
 
 /**
- * Represents responseFrame from Browser. method call.
+ * Represents response frame for Browser.getWindowForTarget method call.
  *
  * Get the browser window that contains the devtools target.
  */
@@ -72,7 +72,7 @@ data class GetWindowForTargetResponse(
 )
 
 /**
- * Represents requestFrame parameters that can be used with Browser.setWindowBounds method call.
+ * Represents request frame that can be used with Browser.setWindowBounds method call.
  *
  * Set position and/or size of the browser window.
  */
@@ -90,7 +90,7 @@ data class SetWindowBoundsRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with Browser.getWindowBounds method call.
+ * Represents request frame that can be used with Browser.getWindowBounds method call.
  *
  * Get position and size of the browser window.
  */
@@ -103,7 +103,7 @@ data class GetWindowBoundsRequest (
 )
 
 /**
- * Represents responseFrame from Browser. method call.
+ * Represents response frame for Browser.getWindowBounds method call.
  *
  * Get position and size of the browser window.
  */

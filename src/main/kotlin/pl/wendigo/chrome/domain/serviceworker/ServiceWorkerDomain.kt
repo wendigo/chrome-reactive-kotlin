@@ -162,7 +162,7 @@ class ServiceWorkerDomain internal constructor(private val connectionRemote : pl
 }
 
 /**
- * Represents requestFrame parameters that can be used with ServiceWorker.unregister method call.
+ * Represents request frame that can be used with ServiceWorker.unregister method call.
  *
  *
  */
@@ -175,7 +175,7 @@ data class UnregisterRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with ServiceWorker.updateRegistration method call.
+ * Represents request frame that can be used with ServiceWorker.updateRegistration method call.
  *
  *
  */
@@ -188,7 +188,7 @@ data class UpdateRegistrationRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with ServiceWorker.startWorker method call.
+ * Represents request frame that can be used with ServiceWorker.startWorker method call.
  *
  *
  */
@@ -201,7 +201,7 @@ data class StartWorkerRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with ServiceWorker.skipWaiting method call.
+ * Represents request frame that can be used with ServiceWorker.skipWaiting method call.
  *
  *
  */
@@ -214,7 +214,7 @@ data class SkipWaitingRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with ServiceWorker.stopWorker method call.
+ * Represents request frame that can be used with ServiceWorker.stopWorker method call.
  *
  *
  */
@@ -227,7 +227,7 @@ data class StopWorkerRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with ServiceWorker.inspectWorker method call.
+ * Represents request frame that can be used with ServiceWorker.inspectWorker method call.
  *
  *
  */
@@ -240,7 +240,7 @@ data class InspectWorkerRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with ServiceWorker.setForceUpdateOnPageLoad method call.
+ * Represents request frame that can be used with ServiceWorker.setForceUpdateOnPageLoad method call.
  *
  *
  */
@@ -253,7 +253,7 @@ data class SetForceUpdateOnPageLoadRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with ServiceWorker.deliverPushMessage method call.
+ * Represents request frame that can be used with ServiceWorker.deliverPushMessage method call.
  *
  *
  */
@@ -276,7 +276,7 @@ data class DeliverPushMessageRequest (
 )
 
 /**
- * Represents requestFrame parameters that can be used with ServiceWorker.dispatchSyncEvent method call.
+ * Represents request frame that can be used with ServiceWorker.dispatchSyncEvent method call.
  *
  *
  */
@@ -304,7 +304,7 @@ data class DispatchSyncEventRequest (
 )
 
 /**
- * Represents responseFrame from ServiceWorker. method call.
+ * Represents event frames for ServiceWorker.workerRegistrationUpdated
  *
  *
  */
@@ -317,7 +317,7 @@ data class WorkerRegistrationUpdatedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "ServiceWorker", name = "workerRegistrationUpdated")
 
 /**
- * Represents responseFrame from ServiceWorker. method call.
+ * Represents event frames for ServiceWorker.workerVersionUpdated
  *
  *
  */
@@ -330,7 +330,7 @@ data class WorkerVersionUpdatedEvent(
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "ServiceWorker", name = "workerVersionUpdated")
 
 /**
- * Represents responseFrame from ServiceWorker. method call.
+ * Represents event frames for ServiceWorker.workerErrorReported
  *
  *
  */

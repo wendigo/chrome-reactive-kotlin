@@ -23,7 +23,7 @@ class AccessibilityDomain internal constructor(private val connectionRemote : pl
     }
 }
 /**
- * Represents requestFrame parameters that can be used with Accessibility.getPartialAXTree method call.
+ * Represents request frame that can be used with Accessibility.getPartialAXTree method call.
  *
  * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
  */
@@ -41,7 +41,7 @@ data class GetPartialAXTreeRequest (
 )
 
 /**
- * Represents responseFrame from Accessibility. method call.
+ * Represents response frame for Accessibility.getPartialAXTree method call.
  *
  * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
  */
