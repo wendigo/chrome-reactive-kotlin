@@ -1480,7 +1480,12 @@ data class FrameScheduledNavigationEvent(
   /**
    * Delay (in seconds) until the navigation is scheduled to begin. The navigation is not guaranteed to start.
    */
-  val delay : Double
+  val delay : Double,
+
+  /**
+   * The reason for the navigation.
+   */
+  @pl.wendigo.chrome.Experimental val reason : String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameScheduledNavigation")
 
