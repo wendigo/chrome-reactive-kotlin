@@ -1294,6 +1294,10 @@
                             "description": "Execution context of the isolated world."
                         }
                     ]
+                },
+                {
+                    "name": "bringToFront",
+                    "description": "Brings page to front (activates tab)."
                 }
             ],
             "events": [

@@ -338,6 +338,15 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
+     * Brings page to front (activates tab).
+     */
+    fun bringToFront() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Page.bringToFront", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns observable capturing all Page.domContentEventFired events.
      */
     fun domContentEventFired() : io.reactivex.Flowable<DomContentEventFiredEvent> {
