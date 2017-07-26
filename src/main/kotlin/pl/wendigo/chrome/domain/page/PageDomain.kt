@@ -1494,7 +1494,12 @@ data class FrameScheduledNavigationEvent(
   /**
    * The reason for the navigation.
    */
-  @pl.wendigo.chrome.Experimental val reason : String
+  @pl.wendigo.chrome.Experimental val reason : String,
+
+  /**
+   * The destination URL for the scheduled navigation.
+   */
+  @pl.wendigo.chrome.Experimental val url : String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameScheduledNavigation")
 
