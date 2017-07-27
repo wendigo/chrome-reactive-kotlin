@@ -29,6 +29,32 @@ data class ScrollRect(
 )
 
 /**
+ * Sticky position constraints.
+ */
+
+data class StickyPositionConstraint(
+  /**
+   * Layout rectangle of the sticky element before being shifted
+   */
+  val stickyBoxRect : pl.wendigo.chrome.domain.dom.Rect,
+
+  /**
+   * Layout rectangle of the containing block of the sticky element
+   */
+  val containingBlockRect : pl.wendigo.chrome.domain.dom.Rect,
+
+  /**
+   * The nearest sticky layer that shifts the sticky box
+   */
+  val nearestLayerShiftingStickyBox : LayerId? = null,
+
+  /**
+   * The nearest sticky layer that shifts the containing block
+   */
+  val nearestLayerShiftingContainingBlock : LayerId? = null
+)
+
+/**
  * Serialized fragment of layer picture along with its offset within the layer.
  */
 
@@ -127,7 +153,12 @@ data class Layer(
   /**
    * Rectangles scrolling on main thread only.
    */
-  val scrollRects : List<ScrollRect>? = null
+  val scrollRects : List<ScrollRect>? = null,
+
+  /**
+   * Sticky position constraint information
+   */
+  val stickyPositionConstraint : StickyPositionConstraint? = null
 )
 
 /**
