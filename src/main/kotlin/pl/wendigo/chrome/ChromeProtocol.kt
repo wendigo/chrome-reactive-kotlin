@@ -76,6 +76,7 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
             "Network.webSocketWillSendHandshakeRequest" to pl.wendigo.chrome.domain.network.WebSocketWillSendHandshakeRequestEvent::class.java,
             "Overlay.inspectNodeRequested" to pl.wendigo.chrome.domain.overlay.InspectNodeRequestedEvent::class.java,
             "Overlay.nodeHighlightRequested" to pl.wendigo.chrome.domain.overlay.NodeHighlightRequestedEvent::class.java,
+            "Overlay.screenshotRequested" to pl.wendigo.chrome.domain.overlay.ScreenshotRequestedEvent::class.java,
             "Page.domContentEventFired" to pl.wendigo.chrome.domain.page.DomContentEventFiredEvent::class.java,
             "Page.frameAttached" to pl.wendigo.chrome.domain.page.FrameAttachedEvent::class.java,
             "Page.frameClearedScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameClearedScheduledNavigationEvent::class.java,

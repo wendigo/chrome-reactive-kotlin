@@ -620,6 +620,18 @@
                     "description": "Reloads given page optionally ignoring the cache."
                 },
                 {
+                    "name": "setAdBlockingEnabled",
+                    "description": "Enable Chrome's experimental ad filter on all sites.",
+                    "parameters": [
+                        {
+                            "name": "enabled",
+                            "type": "boolean",
+                            "description": "Whether to block ads."
+                        }
+                    ],
+                    "experimental": true
+                },
+                {
                     "name": "navigate",
                     "parameters": [
                         {
@@ -1892,6 +1904,17 @@
                             "name": "backendNodeId",
                             "$ref": "DOM.BackendNodeId",
                             "description": "Id of the node to inspect."
+                        }
+                    ]
+                },
+                {
+                    "name": "screenshotRequested",
+                    "description": "Fired when user asks to capture screenshot of some area on the page.",
+                    "parameters": [
+                        {
+                            "name": "viewport",
+                            "$ref": "Page.Viewport",
+                            "description": "Viewport to capture, in CSS."
                         }
                     ]
                 }

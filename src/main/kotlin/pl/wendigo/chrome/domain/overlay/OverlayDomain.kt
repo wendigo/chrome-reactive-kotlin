@@ -181,6 +181,22 @@ class OverlayDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     * Fired when user asks to capture screenshot of some area on the page.
+     */
+    fun screenshotRequested() : io.reactivex.Flowable<ScreenshotRequestedEvent> {
+        return screenshotRequestedTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Fired when user asks to capture screenshot of some area on the page.
+     */
+    fun screenshotRequestedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ScreenshotRequestedEvent>> {
+        return connectionRemote.captureEvents("Overlay.screenshotRequested", ScreenshotRequestedEvent::class.java)
+    }
+
+    /**
      * Returns flowable capturing all Overlay domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -462,4 +478,17 @@ data class InspectNodeRequestedEvent(
   val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Overlay", name = "inspectNodeRequested")
+
+/**
+ * Represents event frames for Overlay.screenshotRequested
+ *
+ * Fired when user asks to capture screenshot of some area on the page.
+ */
+data class ScreenshotRequestedEvent(
+  /**
+   * Viewport to capture, in CSS.
+   */
+  val viewport : pl.wendigo.chrome.domain.page.Viewport
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Overlay", name = "screenshotRequested")
 

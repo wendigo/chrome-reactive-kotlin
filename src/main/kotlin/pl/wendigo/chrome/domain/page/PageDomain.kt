@@ -77,6 +77,15 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
+     * Enable Chrome's experimental ad filter on all sites.
+     */
+    fun setAdBlockingEnabled(input : SetAdBlockingEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Page.setAdBlockingEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Navigates current page to the given URL.
      */
     fun navigate(input : NavigateRequest) : io.reactivex.Single<NavigateResponse> {
@@ -734,6 +743,19 @@ data class ReloadRequest (
      * If set, the script will be injected into all frames of the inspected page after reload.
      */
     val scriptToEvaluateOnLoad : String? = null
+
+)
+
+/**
+ * Represents request frame that can be used with Page.setAdBlockingEnabled method call.
+ *
+ * Enable Chrome's experimental ad filter on all sites.
+ */
+data class SetAdBlockingEnabledRequest (
+    /**
+     * Whether to block ads.
+     */
+    val enabled : Boolean
 
 )
 
