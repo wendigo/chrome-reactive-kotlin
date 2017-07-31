@@ -81,6 +81,11 @@ data class DOMNode(
   val contentLanguage : String? = null,
 
   /**
+   * Only set for documents, contains the document's character set encoding.
+   */
+  val documentEncoding : String? = null,
+
+  /**
    * <code>DocumentType</code> node's publicId.
    */
   val publicId : String? = null,
