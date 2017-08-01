@@ -311,24 +311,6 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
-     * Toggles navigation throttling which allows programatic control over navigation and redirect response.
-     */
-    fun setControlNavigations(input : SetControlNavigationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Page.setControlNavigations", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Should be sent in response to a navigationRequested or a redirectRequested event, telling the browser how to handle the navigation.
-     */
-    fun processNavigation(input : ProcessNavigationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Page.processNavigation", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
      */
     fun getLayoutMetrics() : io.reactivex.Single<GetLayoutMetricsResponse> {
@@ -609,22 +591,6 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
      */
     fun interstitialHiddenTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
         return connectionRemote.captureEvents("Page.interstitialHidden", pl.wendigo.chrome.ProtocolEvent::class.java)
-    }
-
-    /**
-     * Fired when a navigation is started if navigation throttles are enabled.  The navigation will be deferred until processNavigation is called.
-     */
-    fun navigationRequested() : io.reactivex.Flowable<NavigationRequestedEvent> {
-        return navigationRequestedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Fired when a navigation is started if navigation throttles are enabled.  The navigation will be deferred until processNavigation is called.
-     */
-    fun navigationRequestedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<NavigationRequestedEvent>> {
-        return connectionRemote.captureEvents("Page.navigationRequested", NavigationRequestedEvent::class.java)
     }
 
     /**
@@ -1307,37 +1273,6 @@ data class GetAppManifestResponse(
 )
 
 /**
- * Represents request frame that can be used with Page.setControlNavigations method call.
- *
- * Toggles navigation throttling which allows programatic control over navigation and redirect response.
- */
-data class SetControlNavigationsRequest (
-    /**
-     *
-     */
-    val enabled : Boolean
-
-)
-
-/**
- * Represents request frame that can be used with Page.processNavigation method call.
- *
- * Should be sent in response to a navigationRequested or a redirectRequested event, telling the browser how to handle the navigation.
- */
-data class ProcessNavigationRequest (
-    /**
-     *
-     */
-    val response : NavigationResponse,
-
-    /**
-     *
-     */
-    val navigationId : Int
-
-)
-
-/**
  * Represents response frame for Page.getLayoutMetrics method call.
  *
  * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
@@ -1604,32 +1539,4 @@ data class ScreencastVisibilityChangedEvent(
   val visible : Boolean
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "screencastVisibilityChanged")
-
-/**
- * Represents event frames for Page.navigationRequested
- *
- * Fired when a navigation is started if navigation throttles are enabled.  The navigation will be deferred until processNavigation is called.
- */
-data class NavigationRequestedEvent(
-  /**
-   * Whether the navigation is taking place in the main frame or in a subframe.
-   */
-  val isInMainFrame : Boolean,
-
-  /**
-   * Whether the navigation has encountered a server redirect or not.
-   */
-  val isRedirect : Boolean,
-
-  /**
-   *
-   */
-  val navigationId : Int,
-
-  /**
-   * URL of requested navigation.
-   */
-  val url : String
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "navigationRequested")
 

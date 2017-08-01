@@ -867,7 +867,7 @@ data class ContinueInterceptedRequestRequest (
     val interceptionId : InterceptionId,
 
     /**
-     * If set this causes the request to fail with the given reason. Must not be set in response to an authChallenge.
+     * If set this causes the request to fail with the given reason. Passing <code>Aborted</code> for requests marked with <code>isNavigationRequest</code> also cancels the navigation. Must not be set in response to an authChallenge.
      */
     val errorReason : ErrorReason? = null,
 
@@ -1338,6 +1338,11 @@ data class RequestInterceptedEvent(
    * How the requested resource will be used.
    */
   val resourceType : pl.wendigo.chrome.domain.page.ResourceType,
+
+  /**
+   * Whether this is a navigation request, which can abort the navigation completely.
+   */
+  val isNavigationRequest : Boolean,
 
   /**
    * HTTP response headers, only sent if a redirect was intercepted.
