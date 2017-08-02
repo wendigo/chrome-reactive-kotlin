@@ -1480,6 +1480,11 @@ data class FrameClearedScheduledNavigationEvent(
  */
 data class JavascriptDialogOpeningEvent(
   /**
+   * Frame url.
+   */
+  val url : String,
+
+  /**
    * Message that will be displayed by the dialog.
    */
   val message : String,
@@ -1487,7 +1492,12 @@ data class JavascriptDialogOpeningEvent(
   /**
    * Dialog type.
    */
-  val type : DialogType
+  val type : DialogType,
+
+  /**
+   * Default dialog prompt.
+   */
+  val defaultPrompt : String? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "javascriptDialogOpening")
 
@@ -1500,7 +1510,12 @@ data class JavascriptDialogClosedEvent(
   /**
    * Whether dialog was confirmed.
    */
-  val result : Boolean
+  val result : Boolean,
+
+  /**
+   * User input in case of prompt.
+   */
+  val userInput : String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "javascriptDialogClosed")
 

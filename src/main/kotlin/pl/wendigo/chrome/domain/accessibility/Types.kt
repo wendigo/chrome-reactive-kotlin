@@ -173,6 +173,7 @@ data class AXValue(
  * States which apply to every AX node.
  */
 enum class AXGlobalStates {
+    @com.fasterxml.jackson.annotation.JsonProperty("busy") BUSY,
     @com.fasterxml.jackson.annotation.JsonProperty("disabled") DISABLED,
     @com.fasterxml.jackson.annotation.JsonProperty("hidden") HIDDEN,
     @com.fasterxml.jackson.annotation.JsonProperty("hiddenRoot") HIDDENROOT,
@@ -188,7 +189,6 @@ enum class AXLiveRegionAttributes {
     @com.fasterxml.jackson.annotation.JsonProperty("live") LIVE,
     @com.fasterxml.jackson.annotation.JsonProperty("atomic") ATOMIC,
     @com.fasterxml.jackson.annotation.JsonProperty("relevant") RELEVANT,
-    @com.fasterxml.jackson.annotation.JsonProperty("busy") BUSY,
     @com.fasterxml.jackson.annotation.JsonProperty("root") ROOT;
 }
 
