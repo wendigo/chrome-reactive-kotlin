@@ -96,7 +96,7 @@ data class DOMNode(
   val systemId : String? = null,
 
   /**
-   * Frame ID for frame owner elements.
+   * Frame ID for frame owner elements and also for the document node.
    */
   val frameId : pl.wendigo.chrome.domain.page.FrameId? = null,
 
