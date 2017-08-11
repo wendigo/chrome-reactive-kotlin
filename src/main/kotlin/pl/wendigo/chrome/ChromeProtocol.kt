@@ -135,6 +135,13 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
     }
 
     /**
+     * Returns Performance domain object.
+     */
+    val Performance : pl.wendigo.chrome.domain.performance.PerformanceDomain by lazy {
+        pl.wendigo.chrome.domain.performance.PerformanceDomain(api)
+    }
+
+    /**
      * Actions and events related to the inspected page belong to the page domain.
      */
     val Page : pl.wendigo.chrome.domain.page.PageDomain by lazy {

@@ -77,10 +77,19 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
-     * Toggles mouse event-based touch event emulation.
+     * Enables touch on platforms which do not support them.
      */
     fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setTouchEmulationEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun setEmitTouchEventsForMouse(input : SetEmitTouchEventsForMouseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Emulation.setEmitTouchEventsForMouse", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -288,11 +297,29 @@ data class SetGeolocationOverrideRequest (
 /**
  * Represents request frame that can be used with Emulation.setTouchEmulationEnabled method call.
  *
- * Toggles mouse event-based touch event emulation.
+ * Enables touch on platforms which do not support them.
  */
 data class SetTouchEmulationEnabledRequest (
     /**
      * Whether the touch event emulation should be enabled.
+     */
+    val enabled : Boolean,
+
+    /**
+     * Maximum touch points supported. Defaults to one.
+     */
+    val maxTouchPoints : Int? = null
+
+)
+
+/**
+ * Represents request frame that can be used with Emulation.setEmitTouchEventsForMouse method call.
+ *
+ *
+ */
+data class SetEmitTouchEventsForMouseRequest (
+    /**
+     * Whether touch emulation based on mouse input should be enabled.
      */
     val enabled : Boolean,
 
