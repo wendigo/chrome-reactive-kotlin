@@ -23,15 +23,6 @@ class SecurityDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Displays native dialog with the certificate details.
-     */
-    fun showCertificateViewer() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Security.showCertificateViewer", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Handles a certificate error that fired a certificateError event.
      */
     fun handleCertificateError(input : HandleCertificateErrorRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {

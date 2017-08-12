@@ -14,6 +14,15 @@ class BrowserDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     * Returns version information.
+     */
+    fun getVersion() : io.reactivex.Single<GetVersionResponse> {
+        return connectionRemote.runAndCaptureResponse("Browser.getVersion", null, GetVersionResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Set position and/or size of the browser window.
      */
     fun setWindowBounds(input : SetWindowBoundsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -68,6 +77,39 @@ data class GetWindowForTargetResponse(
    * Bounds information of the window. When window state is 'minimized', the restored window position and size are returned.
    */
   val bounds : Bounds
+
+)
+
+/**
+ * Represents response frame for Browser.getVersion method call.
+ *
+ * Returns version information.
+ */
+data class GetVersionResponse(
+  /**
+   * Protocol version.
+   */
+  val protocolVersion : String,
+
+  /**
+   * Product name.
+   */
+  val product : String,
+
+  /**
+   * Product revision.
+   */
+  val revision : String,
+
+  /**
+   * User-Agent.
+   */
+  val userAgent : String,
+
+  /**
+   * V8 version.
+   */
+  val jsVersion : String
 
 )
 

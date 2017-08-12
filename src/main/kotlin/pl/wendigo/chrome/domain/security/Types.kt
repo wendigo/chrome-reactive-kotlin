@@ -48,14 +48,14 @@ data class SecurityStateExplanation(
   val description : String,
 
   /**
-   * True if the page has a certificate.
-   */
-  val hasCertificate : Boolean,
-
-  /**
    * The type of mixed content described by the explanation.
    */
-  val mixedContentType : MixedContentType
+  val mixedContentType : MixedContentType,
+
+  /**
+   * Page certificate.
+   */
+  val certificate : List<String>
 )
 
 /**
