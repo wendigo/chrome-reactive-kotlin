@@ -32,6 +32,22 @@ class PerformanceDomain internal constructor(private val connectionRemote : pl.w
     }
 
     /**
+     * Current values of the metrics.
+     */
+    fun metrics() : io.reactivex.Flowable<MetricsEvent> {
+        return metricsTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Current values of the metrics.
+     */
+    fun metricsTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<MetricsEvent>> {
+        return connectionRemote.captureEvents("Performance.metrics", MetricsEvent::class.java)
+    }
+
+    /**
      * Returns flowable capturing all Performance domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -53,4 +69,22 @@ data class GetMetricsResponse(
   val metrics : List<Metric>
 
 )
+
+/**
+ * Represents event frames for Performance.metrics
+ *
+ * Current values of the metrics.
+ */
+data class MetricsEvent(
+  /**
+   * Current values of the metrics.
+   */
+  val metrics : List<Metric>,
+
+  /**
+   * Timestamp title.
+   */
+  val title : String
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Performance", name = "metrics")
 
