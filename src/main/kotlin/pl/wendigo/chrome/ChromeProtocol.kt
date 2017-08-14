@@ -107,6 +107,8 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
             "ServiceWorker.workerErrorReported" to pl.wendigo.chrome.domain.serviceworker.WorkerErrorReportedEvent::class.java,
             "ServiceWorker.workerRegistrationUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerRegistrationUpdatedEvent::class.java,
             "ServiceWorker.workerVersionUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerVersionUpdatedEvent::class.java,
+            "Storage.cacheStorageContentUpdated" to pl.wendigo.chrome.domain.storage.CacheStorageContentUpdatedEvent::class.java,
+            "Storage.cacheStorageListUpdated" to pl.wendigo.chrome.domain.storage.CacheStorageListUpdatedEvent::class.java,
             "Target.attachedToTarget" to pl.wendigo.chrome.domain.target.AttachedToTargetEvent::class.java,
             "Target.detachedFromTarget" to pl.wendigo.chrome.domain.target.DetachedFromTargetEvent::class.java,
             "Target.receivedMessageFromTarget" to pl.wendigo.chrome.domain.target.ReceivedMessageFromTargetEvent::class.java,
