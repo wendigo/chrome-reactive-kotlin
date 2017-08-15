@@ -63,7 +63,12 @@ data class HighlightConfig(
   /**
    * Selectors to highlight relevant nodes.
    */
-  val selectorList : String? = null
+  val selectorList : String? = null,
+
+  /**
+   * The grid layout color (default: transparent).
+   */
+  val cssGridColor : pl.wendigo.chrome.domain.dom.RGBA? = null
 )
 
 /**

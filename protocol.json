@@ -1666,6 +1666,12 @@
                             "type": "string",
                             "optional": true,
                             "description": "Selectors to highlight relevant nodes."
+                        },
+                        {
+                            "name": "cssGridColor",
+                            "$ref": "DOM.RGBA",
+                            "optional": true,
+                            "description": "The grid layout color (default: transparent)."
                         }
                     ],
                     "description": "Configuration data for the highlighting of page elements."
@@ -12052,7 +12058,7 @@
                             "name": "awaitPromise",
                             "type": "boolean",
                             "optional": true,
-                            "description": "Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error."
+                            "description": "Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved."
                         }
                     ],
                     "returns": [
@@ -12159,7 +12165,7 @@
                             "name": "awaitPromise",
                             "type": "boolean",
                             "optional": true,
-                            "description": "Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error."
+                            "description": "Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved."
                         }
                     ],
                     "returns": [
@@ -12370,7 +12376,7 @@
                             "name": "awaitPromise",
                             "type": "boolean",
                             "optional": true,
-                            "description": "Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error."
+                            "description": "Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved."
                         }
                     ],
                     "returns": [

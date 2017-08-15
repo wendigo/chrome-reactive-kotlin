@@ -289,7 +289,7 @@ data class EvaluateRequest (
     @pl.wendigo.chrome.Experimental val userGesture : Boolean? = null,
 
     /**
-     * Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error.
+     * Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.
      */
     val awaitPromise : Boolean? = null
 
@@ -396,7 +396,7 @@ data class CallFunctionOnRequest (
     @pl.wendigo.chrome.Experimental val userGesture : Boolean? = null,
 
     /**
-     * Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error.
+     * Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.
      */
     val awaitPromise : Boolean? = null
 
@@ -598,7 +598,7 @@ data class RunScriptRequest (
     val generatePreview : Boolean? = null,
 
     /**
-     * Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error.
+     * Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.
      */
     val awaitPromise : Boolean? = null
 
