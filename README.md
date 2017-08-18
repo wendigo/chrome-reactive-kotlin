@@ -8,6 +8,8 @@ Library exposes all protocol domains in a single, cohesive and highly composable
 
 For debugging purposes you can use my other project: [chrome-protocol-proxy](https://github.com/wendigo/chrome-protocol-proxy).
 
+Please note that most up-to-date protocol is used at the moment.
+
 # Usage
 
 Add to your Kotlin or Java project (Gradle dependency): 
