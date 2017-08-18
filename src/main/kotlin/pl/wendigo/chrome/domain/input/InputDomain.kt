@@ -210,7 +210,17 @@ data class DispatchMouseEventRequest (
     /**
      * Number of times the mouse button was clicked (default: 0).
      */
-    val clickCount : Int? = null
+    val clickCount : Int? = null,
+
+    /**
+     * X delta in CSS pixels for mouse wheel event (default: 0).
+     */
+    val deltaX : Double? = null,
+
+    /**
+     * Y delta in CSS pixels for mouse wheel event (default: 0).
+     */
+    val deltaY : Double? = null
 
 )
 
@@ -221,12 +231,12 @@ data class DispatchMouseEventRequest (
  */
 data class DispatchTouchEventRequest (
     /**
-     * Type of the touch event.
+     * Type of the touch event. TouchEnd and TouchCancel must not contain any touch points, while TouchStart and TouchMove must contains at least one.
      */
     val type : String,
 
     /**
-     * Touch points.
+     * Active touch points on the touch device. One event per any changed point (compared to previous touch event in a sequence) is generated, emulating pressing/moving/releasing points one by one.
      */
     val touchPoints : List<TouchPoint>,
 

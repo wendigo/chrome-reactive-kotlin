@@ -122,10 +122,10 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Deletes browser cookie with given name, domain and path.
+     * Deletes browser cookies with matching name and url or domain/path pair.
      */
-    fun deleteCookie(input : DeleteCookieRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Network.deleteCookie", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun deleteCookies(input : DeleteCookiesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.deleteCookies", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -135,6 +135,15 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
      */
     fun setCookie(input : SetCookieRequest) : io.reactivex.Single<SetCookieResponse> {
         return connectionRemote.runAndCaptureResponse("Network.setCookie", input, SetCookieResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Sets given cookies.
+     */
+    fun setCookies(input : SetCookiesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Network.setCookies", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -643,20 +652,30 @@ data class GetAllCookiesResponse(
 )
 
 /**
- * Represents request frame that can be used with Network.deleteCookie method call.
+ * Represents request frame that can be used with Network.deleteCookies method call.
  *
- * Deletes browser cookie with given name, domain and path.
+ * Deletes browser cookies with matching name and url or domain/path pair.
  */
-data class DeleteCookieRequest (
+data class DeleteCookiesRequest (
     /**
-     * Name of the cookie to remove.
+     * Name of the cookies to remove.
      */
-    val cookieName : String,
+    val name : String,
 
     /**
-     * URL to match cooke domain and path.
+     * If specified, deletes all the cookies with the given name where domain and path match provided URL.
      */
-    val url : String
+    val url : String? = null,
+
+    /**
+     * If specified, deletes only cookies with the exact domain.
+     */
+    val domain : String? = null,
+
+    /**
+     * If specified, deletes only cookies with the exact path.
+     */
+    val path : String? = null
 
 )
 
@@ -667,49 +686,49 @@ data class DeleteCookieRequest (
  */
 data class SetCookieRequest (
     /**
-     * The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
-     */
-    val url : String,
-
-    /**
-     * The name of the cookie.
+     * Cookie name.
      */
     val name : String,
 
     /**
-     * The value of the cookie.
+     * Cookie value.
      */
     val value : String,
 
     /**
-     * If omitted, the cookie becomes a host-only cookie.
+     * The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
+     */
+    val url : String? = null,
+
+    /**
+     * Cookie domain.
      */
     val domain : String? = null,
 
     /**
-     * Defaults to the path portion of the url parameter.
+     * Cookie path.
      */
     val path : String? = null,
 
     /**
-     * Defaults ot false.
+     * True if cookie is secure.
      */
     val secure : Boolean? = null,
 
     /**
-     * Defaults to false.
+     * True if cookie is http-only.
      */
     val httpOnly : Boolean? = null,
 
     /**
-     * Defaults to browser default behavior.
+     * Cookie SameSite type.
      */
     val sameSite : CookieSameSite? = null,
 
     /**
-     * If omitted, the cookie becomes a session cookie.
+     * Cookie expiration date, session cookie if not set
      */
-    val expirationDate : TimeSinceEpoch? = null
+    val expires : TimeSinceEpoch? = null
 
 )
 
@@ -723,6 +742,19 @@ data class SetCookieResponse(
    * True if successfully set cookie.
    */
   val success : Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with Network.setCookies method call.
+ *
+ * Sets given cookies.
+ */
+data class SetCookiesRequest (
+    /**
+     * Cookies to be set.
+     */
+    val cookies : List<CookieParam>
 
 )
 

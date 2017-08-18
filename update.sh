@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 GREEN='\033[0;32m'
 NC='\033[0m'
 
@@ -24,8 +24,6 @@ node -p '
     protocols[0].domains.push(...protocols[1].domains);
     JSON.stringify(protocols[0], null, 4);
 ' "$browser" "$js" >protocol.json
-
-sed -i '' s/\"true\"/true/g protocol.json
 
 git --no-pager diff protocol.json
 

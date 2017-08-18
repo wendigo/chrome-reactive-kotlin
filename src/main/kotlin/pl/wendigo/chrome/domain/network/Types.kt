@@ -622,6 +622,57 @@ data class Cookie(
 )
 
 /**
+ * Cookie parameter object
+ */
+
+data class CookieParam(
+  /**
+   * Cookie name.
+   */
+  val name : String,
+
+  /**
+   * Cookie value.
+   */
+  val value : String,
+
+  /**
+   * The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
+   */
+  val url : String? = null,
+
+  /**
+   * Cookie domain.
+   */
+  val domain : String? = null,
+
+  /**
+   * Cookie path.
+   */
+  val path : String? = null,
+
+  /**
+   * True if cookie is secure.
+   */
+  val secure : Boolean? = null,
+
+  /**
+   * True if cookie is http-only.
+   */
+  val httpOnly : Boolean? = null,
+
+  /**
+   * Cookie SameSite type.
+   */
+  val sameSite : CookieSameSite? = null,
+
+  /**
+   * Cookie expiration date, session cookie if not set
+   */
+  val expires : TimeSinceEpoch? = null
+)
+
+/**
  * Authorization challenge for HTTP status code 401 or 407.
  */
 
