@@ -173,6 +173,13 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
     }
 
     /**
+     * Audits domain allows investigation of page violations and possible improvements.
+     */
+    val Audits : pl.wendigo.chrome.domain.audits.AuditsDomain by lazy {
+        pl.wendigo.chrome.domain.audits.AuditsDomain(api)
+    }
+
+    /**
      * Network domain allows tracking network activities of the page. It exposes information about http, file, data and other requests and responses, their headers, bodies, timing, etc.
      */
     val Network : pl.wendigo.chrome.domain.network.NetworkDomain by lazy {

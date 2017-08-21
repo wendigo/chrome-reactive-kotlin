@@ -886,9 +886,19 @@ data class RemoveAttributeRequest (
  */
 data class GetOuterHTMLRequest (
     /**
-     * Id of the node to get markup for.
+     * Identifier of the node.
      */
-    val nodeId : NodeId
+    val nodeId : NodeId? = null,
+
+    /**
+     * Identifier of the backend node.
+     */
+    val backendNodeId : BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node wrapper.
+     */
+    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
 
 )
 

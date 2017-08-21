@@ -122,6 +122,15 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     *
+     */
+    fun queryObjects(input : QueryObjectsRequest) : io.reactivex.Single<QueryObjectsResponse> {
+        return connectionRemote.runAndCaptureResponse("Runtime.queryObjects", input, QueryObjectsResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Issued when new execution context is created.
      */
     fun executionContextCreated() : io.reactivex.Flowable<ExecutionContextCreatedEvent> {
@@ -619,6 +628,32 @@ data class RunScriptResponse(
    * Exception details.
    */
   val exceptionDetails : ExceptionDetails? = null
+
+)
+
+/**
+ * Represents request frame that can be used with Runtime.queryObjects method call.
+ *
+ *
+ */
+data class QueryObjectsRequest (
+    /**
+     * Identifier of the constructor to return objects for.
+     */
+    val constructorObjectId : RemoteObjectId
+
+)
+
+/**
+ * Represents response frame for Runtime.queryObjects method call.
+ *
+ *
+ */
+data class QueryObjectsResponse(
+  /**
+   * Array with objects.
+   */
+  val objects : RemoteObject
 
 )
 
