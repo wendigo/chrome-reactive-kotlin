@@ -6,3 +6,6 @@ logs/
 browser_protocol.json
 js_protocol.json
 out
+*.iml
+*.ipr
+*.iws
