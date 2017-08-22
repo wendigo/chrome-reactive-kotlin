@@ -347,6 +347,15 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
+     * Describes node given its id, does not require domain to be enabled. Does not start tracking any objects, can be used for automation.
+     */
+    fun describeNode(input : DescribeNodeRequest) : io.reactivex.Single<DescribeNodeResponse> {
+        return connectionRemote.runAndCaptureResponse("DOM.describeNode", input, DescribeNodeResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Fired when <code>Document</code> has been totally updated. Node ids are no longer valid.
      */
     fun documentUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -1389,6 +1398,52 @@ data class GetRelayoutBoundaryResponse(
    * Relayout boundary node id for the given node.
    */
   val nodeId : NodeId
+
+)
+
+/**
+ * Represents request frame that can be used with DOM.describeNode method call.
+ *
+ * Describes node given its id, does not require domain to be enabled. Does not start tracking any objects, can be used for automation.
+ */
+data class DescribeNodeRequest (
+    /**
+     * Identifier of the node.
+     */
+    val nodeId : NodeId? = null,
+
+    /**
+     * Identifier of the backend node.
+     */
+    val backendNodeId : BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node wrapper.
+     */
+    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null,
+
+    /**
+     * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
+     */
+    @pl.wendigo.chrome.Experimental val depth : Int? = null,
+
+    /**
+     * Whether or not iframes and shadow roots should be traversed when returning the subtree (default is false).
+     */
+    @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
+
+)
+
+/**
+ * Represents response frame for DOM.describeNode method call.
+ *
+ * Describes node given its id, does not require domain to be enabled. Does not start tracking any objects, can be used for automation.
+ */
+data class DescribeNodeResponse(
+  /**
+   * Node description.
+   */
+  val node : Node
 
 )
 
