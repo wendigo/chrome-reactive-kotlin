@@ -90,6 +90,7 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
             "Page.interstitialShown" to pl.wendigo.chrome.ProtocolEvent::class.java,
             "Page.javascriptDialogClosed" to pl.wendigo.chrome.domain.page.JavascriptDialogClosedEvent::class.java,
             "Page.javascriptDialogOpening" to pl.wendigo.chrome.domain.page.JavascriptDialogOpeningEvent::class.java,
+            "Page.lifecycleEvent" to pl.wendigo.chrome.domain.page.LifecycleEventEvent::class.java,
             "Page.loadEventFired" to pl.wendigo.chrome.domain.page.LoadEventFiredEvent::class.java,
             "Page.screencastFrame" to pl.wendigo.chrome.domain.page.ScreencastFrameEvent::class.java,
             "Page.screencastVisibilityChanged" to pl.wendigo.chrome.domain.page.ScreencastVisibilityChangedEvent::class.java,

@@ -162,7 +162,12 @@ data class StartPreciseCoverageRequest (
     /**
      * Collect accurate call counts beyond simple 'covered' or 'not covered'.
      */
-    val callCount : Boolean? = null
+    val callCount : Boolean? = null,
+
+    /**
+     * Collect block-based coverage.
+     */
+    val detailed : Boolean? = null
 
 )
 

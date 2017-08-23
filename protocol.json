@@ -1352,6 +1352,29 @@
                 {
                     "name": "bringToFront",
                     "description": "Brings page to front (activates tab)."
+                },
+                {
+                    "name": "setDownloadBehavior",
+                    "description": "Set the behavior when downloading a file.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "behavior",
+                            "type": "string",
+                            "enum": [
+                                "deny",
+                                "allow",
+                                "default"
+                            ],
+                            "description": "Whether to allow all or deny all download requests, or use default Chrome behavior if available (otherwise deny)."
+                        },
+                        {
+                            "name": "downloadPath",
+                            "type": "string",
+                            "optional": true,
+                            "description": "The default path to save downloaded files to. This is requred if behavior is set to 'allow'"
+                        }
+                    ]
                 }
             ],
             "events": [
@@ -1372,6 +1395,20 @@
                             "$ref": "Network.MonotonicTime"
                         }
                     ]
+                },
+                {
+                    "name": "lifecycleEvent",
+                    "parameters": [
+                        {
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {
+                            "name": "timestamp",
+                            "$ref": "Network.MonotonicTime"
+                        }
+                    ],
+                    "description": "Fired for top level page lifecycle events such as navigation, load, paint, etc."
                 },
                 {
                     "name": "frameAttached",
@@ -14033,6 +14070,12 @@
                             "type": "boolean",
                             "optional": true,
                             "description": "Collect accurate call counts beyond simple 'covered' or 'not covered'."
+                        },
+                        {
+                            "name": "detailed",
+                            "type": "boolean",
+                            "optional": true,
+                            "description": "Collect block-based coverage."
                         }
                     ],
                     "description": "Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.",

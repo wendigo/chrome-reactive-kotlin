@@ -338,6 +338,15 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
+     * Set the behavior when downloading a file.
+     */
+    fun setDownloadBehavior(input : SetDownloadBehaviorRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Page.setDownloadBehavior", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns observable capturing all Page.domContentEventFired events.
      */
     fun domContentEventFired() : io.reactivex.Flowable<DomContentEventFiredEvent> {
@@ -367,6 +376,22 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
      */
     fun loadEventFiredTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LoadEventFiredEvent>> {
         return connectionRemote.captureEvents("Page.loadEventFired", LoadEventFiredEvent::class.java)
+    }
+
+    /**
+     * Fired for top level page lifecycle events such as navigation, load, paint, etc.
+     */
+    fun lifecycleEvent() : io.reactivex.Flowable<LifecycleEventEvent> {
+        return lifecycleEventTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Fired for top level page lifecycle events such as navigation, load, paint, etc.
+     */
+    fun lifecycleEventTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LifecycleEventEvent>> {
+        return connectionRemote.captureEvents("Page.lifecycleEvent", LifecycleEventEvent::class.java)
     }
 
     /**
@@ -1332,6 +1357,24 @@ data class CreateIsolatedWorldResponse(
 )
 
 /**
+ * Represents request frame that can be used with Page.setDownloadBehavior method call.
+ *
+ * Set the behavior when downloading a file.
+ */
+data class SetDownloadBehaviorRequest (
+    /**
+     * Whether to allow all or deny all download requests, or use default Chrome behavior if available (otherwise deny).
+     */
+    val behavior : String,
+
+    /**
+     * The default path to save downloaded files to. This is requred if behavior is set to 'allow'
+     */
+    val downloadPath : String? = null
+
+)
+
+/**
  * Represents event frames for Page.domContentEventFired
  *
  *
@@ -1356,6 +1399,24 @@ data class LoadEventFiredEvent(
   val timestamp : pl.wendigo.chrome.domain.network.MonotonicTime
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "loadEventFired")
+
+/**
+ * Represents event frames for Page.lifecycleEvent
+ *
+ * Fired for top level page lifecycle events such as navigation, load, paint, etc.
+ */
+data class LifecycleEventEvent(
+  /**
+   *
+   */
+  val name : String,
+
+  /**
+   *
+   */
+  val timestamp : pl.wendigo.chrome.domain.network.MonotonicTime
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "lifecycleEvent")
 
 /**
  * Represents event frames for Page.frameAttached
