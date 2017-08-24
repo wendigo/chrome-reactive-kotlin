@@ -638,9 +638,9 @@ data class RunScriptResponse(
  */
 data class QueryObjectsRequest (
     /**
-     * Identifier of the constructor to return objects for.
+     * Identifier of the prototype to return objects for.
      */
-    val constructorObjectId : RemoteObjectId
+    val prototypeObjectId : RemoteObjectId
 
 )
 
