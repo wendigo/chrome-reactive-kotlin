@@ -265,7 +265,7 @@ data class InternalPropertyDescriptor(
 
 data class CallArgument(
   /**
-   * Primitive value.
+   * Primitive value or serializable javascript object.
    */
   val value : Any? = null,
 

@@ -12079,7 +12079,7 @@
                             "name": "value",
                             "type": "any",
                             "optional": true,
-                            "description": "Primitive value."
+                            "description": "Primitive value or serializable javascript object."
                         },
                         {
                             "name": "unserializableValue",
