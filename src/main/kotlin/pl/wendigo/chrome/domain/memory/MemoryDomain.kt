@@ -14,6 +14,15 @@ class MemoryDomain internal constructor(private val connectionRemote : pl.wendig
     }
 
     /**
+     *
+     */
+    fun prepareForLeakDetection() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Memory.prepareForLeakDetection", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Enable/disable suppressing memory pressure notifications in all processes.
      */
     fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
