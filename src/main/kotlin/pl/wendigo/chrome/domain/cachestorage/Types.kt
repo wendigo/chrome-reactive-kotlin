@@ -12,19 +12,19 @@ typealias CacheId = String
 
 data class DataEntry(
   /**
-   * Request url spec.
+   * Request URL.
    */
-  val request : String,
-
-  /**
-   * Response status text.
-   */
-  val response : String,
+  val requestURL : String,
 
   /**
    * Number of seconds since epoch.
    */
-  val responseTime : Double
+  val responseTime : Double,
+
+  /**
+   * Response headers
+   */
+  val responseHeaders : List<Header>
 )
 
 /**
@@ -49,15 +49,26 @@ data class Cache(
 )
 
 /**
+ *
+ */
+
+data class Header(
+  /**
+   *
+   */
+  val name : String,
+
+  /**
+   *
+   */
+  val value : String
+)
+
+/**
  * Cached response
  */
 
 data class CachedResponse(
-  /**
-   * Response headers
-   */
-  val headers : String,
-
   /**
    * Entry content, base64-encoded.
    */
