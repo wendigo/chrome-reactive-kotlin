@@ -20,7 +20,7 @@ class Inspector(
      * Opens new page.
      */
     fun openNewPage(url : String? = null) : Single<InspectablePage> {
-        return runInspectorCommand("new?url=$url").map {
+        return runInspectorCommand("new?$url").map {
             mapper.deserialize(it, InspectablePage::class.java)
         }
     }
