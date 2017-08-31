@@ -17,9 +17,29 @@ data class DataEntry(
   val requestURL : String,
 
   /**
+   * Request method.
+   */
+  val requestMethod : String,
+
+  /**
+   * Request headers
+   */
+  val requestHeaders : List<Header>,
+
+  /**
    * Number of seconds since epoch.
    */
   val responseTime : Double,
+
+  /**
+   * HTTP response status code.
+   */
+  val responseStatus : Int,
+
+  /**
+   * HTTP response status text.
+   */
+  val responseStatusText : String,
 
   /**
    * Response headers

@@ -370,14 +370,14 @@ data class AwaitPromiseResponse(
  */
 data class CallFunctionOnRequest (
     /**
-     * Identifier of the object to call function on.
-     */
-    val objectId : RemoteObjectId,
-
-    /**
      * Declaration of the function to call.
      */
     val functionDeclaration : String,
+
+    /**
+     * Identifier of the object to call function on. Either objectId or executionContextId should be specified.
+     */
+    val objectId : RemoteObjectId? = null,
 
     /**
      * Call arguments. All call arguments must belong to the same JavaScript world as the target object.
@@ -407,7 +407,17 @@ data class CallFunctionOnRequest (
     /**
      * Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.
      */
-    val awaitPromise : Boolean? = null
+    val awaitPromise : Boolean? = null,
+
+    /**
+     * Specifies execution context which global object will be used to call function on. Either executionContextId or objectId should be specified.
+     */
+    val executionContextId : ExecutionContextId? = null,
+
+    /**
+     * Symbolic group name that can be used to release multiple objects. If objectGroup is not specified and objectId is, objectGroup will be inherited from object.
+     */
+    val objectGroup : String? = null
 
 )
 
