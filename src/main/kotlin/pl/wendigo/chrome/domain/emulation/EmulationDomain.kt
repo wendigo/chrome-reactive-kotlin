@@ -140,7 +140,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
-     * Notification sent after the virual time budget for the current VirtualTimePolicy has run out.
+     * Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
      */
     fun virtualTimeBudgetExpired() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return virtualTimeBudgetExpiredTimed().map {
@@ -149,10 +149,26 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
-     * Notification sent after the virual time budget for the current VirtualTimePolicy has run out.
+     * Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
      */
     fun virtualTimeBudgetExpiredTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
         return connectionRemote.captureEvents("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.ProtocolEvent::class.java)
+    }
+
+    /**
+     * Notification sent after the virtual time has paused.
+     */
+    fun virtualTimePaused() : io.reactivex.Flowable<VirtualTimePausedEvent> {
+        return virtualTimePausedTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Notification sent after the virtual time has paused.
+     */
+    fun virtualTimePausedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<VirtualTimePausedEvent>> {
+        return connectionRemote.captureEvents("Emulation.virtualTimePaused", VirtualTimePausedEvent::class.java)
     }
 
     /**
@@ -399,4 +415,17 @@ data class SetDefaultBackgroundColorOverrideRequest (
     val color : pl.wendigo.chrome.domain.dom.RGBA? = null
 
 )
+
+/**
+ * Represents event frames for Emulation.virtualTimePaused
+ *
+ * Notification sent after the virtual time has paused.
+ */
+data class VirtualTimePausedEvent(
+  /**
+   * The amount of virtual time that has elapsed in milliseconds since virtual time was first enabled.
+   */
+  val virtualTimeElapsed : Int
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Emulation", name = "virtualTimePaused")
 
