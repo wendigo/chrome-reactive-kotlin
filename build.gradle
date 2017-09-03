@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        kotlinVersion = '1.1.3-2'
+        kotlinVersion = '1.1.4-3'
         dokka_version = '0.9.15'
     }
 
@@ -15,7 +15,7 @@ buildscript {
         classpath group: 'org.jetbrains.kotlin', name: 'kotlin-noarg', version: kotlinVersion
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
 
-        classpath 'pl.allegro.tech.build:axion-release-plugin:1.7.1'
+        classpath 'pl.allegro.tech.build:axion-release-plugin:1.7.2'
         classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
         classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.11.0'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.15.0'
@@ -76,7 +76,7 @@ dependencies {
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
     testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
-    ktlint group: 'com.github.shyiko', name: 'ktlint', version: '0.9.1'
+    ktlint group: 'com.github.shyiko', name: 'ktlint', version: '0.9.2'
 }
 
 modifyPom {
