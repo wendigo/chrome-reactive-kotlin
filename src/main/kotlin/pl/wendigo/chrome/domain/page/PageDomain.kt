@@ -988,27 +988,27 @@ data class SetDeviceMetricsOverrideRequest (
     val mobile : Boolean,
 
     /**
-     * Scale to apply to resulting view image. Ignored in |fitWindow| mode.
+     * Scale to apply to resulting view image.
      */
     val scale : Double? = null,
 
     /**
-     * Overriding screen width value in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
+     * Overriding screen width value in pixels (minimum 0, maximum 10000000).
      */
     val screenWidth : Int? = null,
 
     /**
-     * Overriding screen height value in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
+     * Overriding screen height value in pixels (minimum 0, maximum 10000000).
      */
     val screenHeight : Int? = null,
 
     /**
-     * Overriding view X position on screen in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
+     * Overriding view X position on screen in pixels (minimum 0, maximum 10000000).
      */
     val positionX : Int? = null,
 
     /**
-     * Overriding view Y position on screen in pixels (minimum 0, maximum 10000000). Only used for |mobile==true|.
+     * Overriding view Y position on screen in pixels (minimum 0, maximum 10000000).
      */
     val positionY : Int? = null,
 
