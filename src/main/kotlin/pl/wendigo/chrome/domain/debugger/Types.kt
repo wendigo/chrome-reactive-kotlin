@@ -75,6 +75,11 @@ data class CallFrame(
   val location : Location,
 
   /**
+   * JavaScript script name or url.
+   */
+  val url : String,
+
+  /**
    * Scope chain for this call frame.
    */
   val scopeChain : List<Scope>,

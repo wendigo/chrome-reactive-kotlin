@@ -12951,6 +12951,11 @@
                             "description": "Location in the source code."
                         },
                         {
+                            "name": "url",
+                            "type": "string",
+                            "description": "JavaScript script name or url."
+                        },
+                        {
                             "name": "scopeChain",
                             "type": "array",
                             "items": {
