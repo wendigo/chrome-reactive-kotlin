@@ -783,17 +783,17 @@ data class EmulateNetworkConditionsRequest (
     val offline : Boolean,
 
     /**
-     * Additional latency (ms).
+     * Minimum latency from request sent to response headers received (ms).
      */
     val latency : Double,
 
     /**
-     * Maximal aggregated download throughput.
+     * Maximal aggregated download throughput (bytes/sec). -1 disables download throttling.
      */
     val downloadThroughput : Double,
 
     /**
-     * Maximal aggregated upload throughput.
+     * Maximal aggregated upload throughput (bytes/sec).  -1 disables upload throttling.
      */
     val uploadThroughput : Double,
 

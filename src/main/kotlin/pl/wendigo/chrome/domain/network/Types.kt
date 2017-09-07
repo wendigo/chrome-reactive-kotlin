@@ -55,7 +55,7 @@ typealias MonotonicTime = Double
 typealias Headers = Map<String, Any>
 
 /**
- * Loading priority of a resource request.
+ * The underlying connection technology that the browser is supposedly using.
  */
 enum class ConnectionType {
     @com.fasterxml.jackson.annotation.JsonProperty("none") NONE,
