@@ -146,3 +146,51 @@ data class ScriptCoverage(
   val functions : List<FunctionCoverage>
 )
 
+/**
+ * Describes a type collected during runtime.
+ */
+
+data class TypeObject(
+  /**
+   * Name of a type collected with type profiling.
+   */
+  val name : String
+)
+
+/**
+ * Source offset and types for a parameter or return value.
+ */
+
+data class TypeProfileEntry(
+  /**
+   * Source offset of the parameter or end of function for return values.
+   */
+  val offset : Int,
+
+  /**
+   * The types for this parameter or return value.
+   */
+  val types : List<TypeObject>
+)
+
+/**
+ * Type profile data collected during runtime for a JavaScript script.
+ */
+
+data class ScriptTypeProfile(
+  /**
+   * JavaScript script id.
+   */
+  val scriptId : pl.wendigo.chrome.domain.runtime.ScriptId,
+
+  /**
+   * JavaScript script name or url.
+   */
+  val url : String,
+
+  /**
+   * Type profile entries for parameters and return values of the functions in the script.
+   */
+  val entries : List<TypeProfileEntry>
+)
+

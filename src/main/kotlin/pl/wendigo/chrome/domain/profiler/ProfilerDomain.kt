@@ -86,6 +86,33 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
+     * Enable type profile.
+     */
+    fun startTypeProfile() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Profiler.startTypeProfile", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Disable type profile. Disabling releases type profile data collected so far.
+     */
+    fun stopTypeProfile() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Profiler.stopTypeProfile", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Collect type profile.
+     */
+    fun takeTypeProfile() : io.reactivex.Single<TakeTypeProfileResponse> {
+        return connectionRemote.runAndCaptureResponse("Profiler.takeTypeProfile", null, TakeTypeProfileResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Sent when new profile recording is started using console.profile() call.
      */
     fun consoleProfileStarted() : io.reactivex.Flowable<ConsoleProfileStartedEvent> {
@@ -194,6 +221,19 @@ data class GetBestEffortCoverageResponse(
    * Coverage data for the current isolate.
    */
   val result : List<ScriptCoverage>
+
+)
+
+/**
+ * Represents response frame for Profiler.takeTypeProfile method call.
+ *
+ * Collect type profile.
+ */
+data class TakeTypeProfileResponse(
+  /**
+   * Type profile for all scripts since startTypeProfile() was turned on.
+   */
+  val result : List<ScriptTypeProfile>
 
 )
 

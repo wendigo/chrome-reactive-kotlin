@@ -8,22 +8,22 @@ data class TouchPoint(
   /**
    * X coordinate of the event relative to the main frame's viewport in CSS pixels.
    */
-  val x : Int,
+  val x : Double,
 
   /**
    * Y coordinate of the event relative to the main frame's viewport in CSS pixels. 0 refers to the top of the viewport and Y increases as it proceeds towards the bottom of the viewport.
    */
-  val y : Int,
+  val y : Double,
 
   /**
-   * X radius of the touch area (default: 1).
+   * X radius of the touch area (default: 1.0).
    */
-  val radiusX : Int? = null,
+  val radiusX : Double? = null,
 
   /**
-   * Y radius of the touch area (default: 1).
+   * Y radius of the touch area (default: 1.0).
    */
-  val radiusY : Int? = null,
+  val radiusY : Double? = null,
 
   /**
    * Rotation angle (default: 0.0).
