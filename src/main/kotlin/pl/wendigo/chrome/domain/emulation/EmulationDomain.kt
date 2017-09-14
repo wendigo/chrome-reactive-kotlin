@@ -131,6 +131,15 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
+     * Overrides value returned by the javascript navigator object.
+     */
+    fun setNavigatorOverrides(input : SetNavigatorOverridesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Emulation.setNavigatorOverrides", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Sets or clears an override of the default background color of the frame. This override is used if the content does not specify one.
      */
     fun setDefaultBackgroundColorOverride(input : SetDefaultBackgroundColorOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -400,6 +409,19 @@ data class SetVirtualTimePolicyRequest (
      * If set, after this many virtual milliseconds have elapsed virtual time will be paused and a virtualTimeBudgetExpired event is sent.
      */
     val budget : Int? = null
+
+)
+
+/**
+ * Represents request frame that can be used with Emulation.setNavigatorOverrides method call.
+ *
+ * Overrides value returned by the javascript navigator object.
+ */
+data class SetNavigatorOverridesRequest (
+    /**
+     * The platform navigator.platform should return.
+     */
+    val platform : String
 
 )
 
