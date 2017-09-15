@@ -70,6 +70,15 @@ class ServiceWorkerDomain internal constructor(private val connectionRemote : pl
     /**
      *
      */
+    fun stopAllWorkers() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("ServiceWorker.stopAllWorkers", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
     fun inspectWorker(input : InspectWorkerRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("ServiceWorker.inspectWorker", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()

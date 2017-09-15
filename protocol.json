@@ -9155,6 +9155,9 @@
                     ]
                 },
                 {
+                    "name": "stopAllWorkers"
+                },
+                {
                     "name": "inspectWorker",
                     "parameters": [
                         {
