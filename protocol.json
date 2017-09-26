@@ -3001,7 +3001,7 @@
                         },
                         {
                             "name": "status",
-                            "type": "number",
+                            "type": "integer",
                             "description": "HTTP response status code."
                         },
                         {
@@ -3125,7 +3125,7 @@
                     "properties": [
                         {
                             "name": "status",
-                            "type": "number",
+                            "type": "integer",
                             "description": "HTTP response status code."
                         },
                         {

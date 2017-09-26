@@ -357,7 +357,7 @@ data class Response(
   /**
    * HTTP response status code.
    */
-  val status : Double,
+  val status : Int,
 
   /**
    * HTTP response status text.
@@ -464,7 +464,7 @@ data class WebSocketResponse(
   /**
    * HTTP response status code.
    */
-  val status : Double,
+  val status : Int,
 
   /**
    * HTTP response status text.
