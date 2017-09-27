@@ -40,8 +40,8 @@ class TargetedFramesStream(
         }
     }
 
-    override fun eventFrames() : Observable<Timed<ResponseFrame>> {
-        return frames().filter { it.value().isEvent() }
+    override fun eventFrames() : Observable<Timed<ResponseFrame>> = frames().filter {
+        it.value().isEvent()
     }
 
     override fun frames() : Observable<Timed<ResponseFrame>> {
@@ -69,7 +69,7 @@ class TargetedFramesStream(
             api.close()
 
         } catch (e : Exception) {
-            logger.info("Could not close target: {}", e)
+            logger.info("Could not close target due to exception ${e.message}")
         }
     }
 

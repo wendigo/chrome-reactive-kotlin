@@ -41,8 +41,8 @@ internal class ChromeDebuggerConnection constructor(
                 params = params
             )
         }.flatMap { request ->
-            frames.send(request).flatMap { result ->
-                if (result == true) {
+            frames.send(request).flatMap { sent ->
+                if (sent) {
                     frames.getResponse(request, clazz)
                 } else {
                     Single.error(RequestFailed(request, "Could not enqueue message"))

@@ -79,16 +79,14 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     /**
      * Returns all event frames.
      */
-    override fun eventFrames() : Observable<Timed<ResponseFrame>> {
-        return frames().filter { it.value().isEvent() }
+    override fun eventFrames() : Observable<Timed<ResponseFrame>> = frames().filter {
+        it.value().isEvent()
     }
 
     /**
      * Returns all frames.
      */
-    override fun frames() : Observable<Timed<ResponseFrame>> {
-        return messages
-    }
+    override fun frames() : Observable<Timed<ResponseFrame>> = messages
 
     /**
      * Closes stream
@@ -99,10 +97,14 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
             connection.cancel()
             client.connectionPool().evictAll()
         } catch (e : Exception) {
-            logger.warn("caught exception while closing: {}", e)
+            logger.warn("caught exception while closing: ${e.message}")
         }
 
-        messages.onComplete()
+        try {
+            messages.onComplete()
+        } catch (e : Exception) {
+            logger.warn("caught exception while completing subject: ${e.message}")
+        }
     }
 
     companion object {

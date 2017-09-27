@@ -16,9 +16,8 @@ open class ProtocolEvent(
         /**
          * Creates parameterless ProtocolEvent from given name (protocol domain + event name)
          */
-        internal fun fromMethodName(methodName: String): ProtocolEvent {
-            val parts = methodName.split(".", limit = 2, ignoreCase = true)
-            return ProtocolEvent(domain = parts[0], name = parts[1])
+        internal fun fromMethodName(methodName: String) = methodName.split(".", limit = 2, ignoreCase = true).run {
+            ProtocolEvent(domain = this[0], name = this[1])
         }
     }
 }

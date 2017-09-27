@@ -7,9 +7,7 @@ class HeadlessChromeProtocol(
     api : DebuggerProtocol,
     val session: HeadlessSession
 ) : ChromeProtocol(api) {
-    override fun toString(): String {
-        return "HeadlessChromeProtocol(session=$session)"
-    }
+    override fun toString(): String = "HeadlessChromeProtocol(session=$session)"
 
     companion object {
         @JvmOverloads
