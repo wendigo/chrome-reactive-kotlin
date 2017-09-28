@@ -158,7 +158,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
+     * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the search with the given identifier.
      */
     fun getSearchResults(input : GetSearchResultsRequest) : io.reactivex.Single<GetSearchResultsResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getSearchResults", input, GetSearchResultsResponse::class.java).map {
@@ -981,7 +981,7 @@ data class PerformSearchResponse(
 /**
  * Represents request frame that can be used with DOM.getSearchResults method call.
  *
- * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
+ * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the search with the given identifier.
  */
 data class GetSearchResultsRequest (
     /**
@@ -1004,7 +1004,7 @@ data class GetSearchResultsRequest (
 /**
  * Represents response frame for DOM.getSearchResults method call.
  *
- * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the sarch with the given identifier.
+ * Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the search with the given identifier.
  */
 data class GetSearchResultsResponse(
   /**

@@ -723,7 +723,7 @@ data class ExceptionRevokedEvent(
   val reason : String,
 
   /**
-   * The id of revoked exception, as reported in <code>exceptionUnhandled</code>.
+   * The id of revoked exception, as reported in <code>exceptionThrown</code>.
    */
   val exceptionId : Int
 
