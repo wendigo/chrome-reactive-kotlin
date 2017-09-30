@@ -48,7 +48,12 @@ data class LogEntry(
   /**
    * Identifier of the worker associated with this entry.
    */
-  val workerId : String? = null
+  val workerId : String? = null,
+
+  /**
+   * Call arguments.
+   */
+  val args : List<pl.wendigo.chrome.domain.runtime.RemoteObject>? = null
 )
 
 /**
