@@ -41,14 +41,14 @@ data class Animation(
   val currentTime : Double,
 
   /**
-   * <code>Animation</code>'s source animation node.
-   */
-  val source : AnimationEffect,
-
-  /**
    * Animation type of <code>Animation</code>.
    */
   val type : String,
+
+  /**
+   * <code>Animation</code>'s source animation node.
+   */
+  val source : AnimationEffect? = null,
 
   /**
    * A unique ID for <code>Animation</code> representing the sources that triggered this CSS animation/transition.
@@ -99,7 +99,7 @@ data class AnimationEffect(
   /**
    * <code>AnimationEffect</code>'s target node.
    */
-  val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId,
+  val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
 
   /**
    * <code>AnimationEffect</code>'s keyframes.
