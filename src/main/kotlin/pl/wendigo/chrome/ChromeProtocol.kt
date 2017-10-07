@@ -47,6 +47,7 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
             "Debugger.resumed" to pl.wendigo.chrome.ProtocolEvent::class.java,
             "Debugger.scriptFailedToParse" to pl.wendigo.chrome.domain.debugger.ScriptFailedToParseEvent::class.java,
             "Debugger.scriptParsed" to pl.wendigo.chrome.domain.debugger.ScriptParsedEvent::class.java,
+            "Emulation.virtualTimeAdvanced" to pl.wendigo.chrome.domain.emulation.VirtualTimeAdvancedEvent::class.java,
             "Emulation.virtualTimeBudgetExpired" to pl.wendigo.chrome.ProtocolEvent::class.java,
             "Emulation.virtualTimePaused" to pl.wendigo.chrome.domain.emulation.VirtualTimePausedEvent::class.java,
             "HeapProfiler.addHeapSnapshotChunk" to pl.wendigo.chrome.domain.heapprofiler.AddHeapSnapshotChunkEvent::class.java,

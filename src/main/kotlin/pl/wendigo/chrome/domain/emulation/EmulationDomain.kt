@@ -165,6 +165,22 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
+     * Notification sent after the virtual time has advanced.
+     */
+    fun virtualTimeAdvanced() : io.reactivex.Flowable<VirtualTimeAdvancedEvent> {
+        return virtualTimeAdvancedTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Notification sent after the virtual time has advanced.
+     */
+    fun virtualTimeAdvancedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<VirtualTimeAdvancedEvent>> {
+        return connectionRemote.captureEvents("Emulation.virtualTimeAdvanced", VirtualTimeAdvancedEvent::class.java)
+    }
+
+    /**
      * Notification sent after the virtual time has paused.
      */
     fun virtualTimePaused() : io.reactivex.Flowable<VirtualTimePausedEvent> {
@@ -437,6 +453,19 @@ data class SetDefaultBackgroundColorOverrideRequest (
     val color : pl.wendigo.chrome.domain.dom.RGBA? = null
 
 )
+
+/**
+ * Represents event frames for Emulation.virtualTimeAdvanced
+ *
+ * Notification sent after the virtual time has advanced.
+ */
+data class VirtualTimeAdvancedEvent(
+  /**
+   * The amount of virtual time that has elapsed in milliseconds since virtual time was first enabled.
+   */
+  val virtualTimeElapsed : Int
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Emulation", name = "virtualTimeAdvanced")
 
 /**
  * Represents event frames for Emulation.virtualTimePaused
