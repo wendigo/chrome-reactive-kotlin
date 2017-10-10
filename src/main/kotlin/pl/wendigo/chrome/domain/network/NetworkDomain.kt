@@ -203,7 +203,7 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Sets the requests to intercept that match a the provided patterns.
+     * Sets the requests to intercept that match a the provided patterns and optionally resource types.
      */
     fun setRequestInterceptionEnabled(input : SetRequestInterceptionEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Network.setRequestInterceptionEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -877,7 +877,7 @@ data class GetCertificateResponse(
 /**
  * Represents request frame that can be used with Network.setRequestInterceptionEnabled method call.
  *
- * Sets the requests to intercept that match a the provided patterns.
+ * Sets the requests to intercept that match a the provided patterns and optionally resource types.
  */
 data class SetRequestInterceptionEnabledRequest (
     /**
@@ -888,7 +888,12 @@ data class SetRequestInterceptionEnabledRequest (
     /**
      * URLs matching any of these patterns will be forwarded and wait for the corresponding continueInterceptedRequest call. Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is backslash. If omitted equivalent to ['*'] (intercept all).
      */
-    val patterns : List<String>? = null
+    val patterns : List<String>? = null,
+
+    /**
+     * If set, only requests for matching resource types will be intercepted.
+     */
+    val resourceTypes : List<pl.wendigo.chrome.domain.page.ResourceType>? = null
 
 )
 

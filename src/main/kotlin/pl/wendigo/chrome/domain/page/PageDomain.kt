@@ -619,6 +619,22 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
+     * Fired when window.open() was called
+     */
+    fun windowOpen() : io.reactivex.Flowable<WindowOpenEvent> {
+        return windowOpenTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Fired when window.open() was called
+     */
+    fun windowOpenTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WindowOpenEvent>> {
+        return connectionRemote.captureEvents("Page.windowOpen", WindowOpenEvent::class.java)
+    }
+
+    /**
      * Returns flowable capturing all Page domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -1407,6 +1423,11 @@ data class LoadEventFiredEvent(
  */
 data class LifecycleEventEvent(
   /**
+   * Id of the frame.
+   */
+  val frameId : FrameId,
+
+  /**
    *
    */
   val name : String,
@@ -1615,4 +1636,32 @@ data class ScreencastVisibilityChangedEvent(
   val visible : Boolean
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "screencastVisibilityChanged")
+
+/**
+ * Represents event frames for Page.windowOpen
+ *
+ * Fired when window.open() was called
+ */
+data class WindowOpenEvent(
+  /**
+   * The URL for the new window.
+   */
+  val url : String,
+
+  /**
+   * Window name passed to window.open().
+   */
+  val windowName : String,
+
+  /**
+   * Window features passed to window.open().
+   */
+  val windowFeatures : String,
+
+  /**
+   * Whether or not window.open() was triggered by user gesture.
+   */
+  val userGesture : Boolean
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "windowOpen")
 

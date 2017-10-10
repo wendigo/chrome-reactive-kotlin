@@ -96,6 +96,7 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
             "Page.loadEventFired" to pl.wendigo.chrome.domain.page.LoadEventFiredEvent::class.java,
             "Page.screencastFrame" to pl.wendigo.chrome.domain.page.ScreencastFrameEvent::class.java,
             "Page.screencastVisibilityChanged" to pl.wendigo.chrome.domain.page.ScreencastVisibilityChangedEvent::class.java,
+            "Page.windowOpen" to pl.wendigo.chrome.domain.page.WindowOpenEvent::class.java,
             "Performance.metrics" to pl.wendigo.chrome.domain.performance.MetricsEvent::class.java,
             "Profiler.consoleProfileFinished" to pl.wendigo.chrome.domain.profiler.ConsoleProfileFinishedEvent::class.java,
             "Profiler.consoleProfileStarted" to pl.wendigo.chrome.domain.profiler.ConsoleProfileStartedEvent::class.java,

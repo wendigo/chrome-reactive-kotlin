@@ -1403,6 +1403,11 @@
                     "name": "lifecycleEvent",
                     "parameters": [
                         {
+                            "name": "frameId",
+                            "$ref": "FrameId",
+                            "description": "Id of the frame."
+                        },
+                        {
                             "name": "name",
                             "type": "string"
                         },
@@ -1620,6 +1625,33 @@
                 {
                     "name": "interstitialHidden",
                     "description": "Fired when interstitial page was hidden"
+                },
+                {
+                    "name": "windowOpen",
+                    "description": "Fired when window.open() was called",
+                    "parameters": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "description": "The URL for the new window."
+                        },
+                        {
+                            "name": "windowName",
+                            "type": "string",
+                            "description": "Window name passed to window.open()."
+                        },
+                        {
+                            "name": "windowFeatures",
+                            "type": "string",
+                            "description": "Window features passed to window.open()."
+                        },
+                        {
+                            "name": "userGesture",
+                            "type": "boolean",
+                            "description": "Whether or not window.open() was triggered by user gesture."
+                        }
+                    ],
+                    "experimental": true
                 }
             ]
         },
@@ -3827,7 +3859,7 @@
                 },
                 {
                     "name": "setRequestInterceptionEnabled",
-                    "description": "Sets the requests to intercept that match a the provided patterns.",
+                    "description": "Sets the requests to intercept that match a the provided patterns and optionally resource types.",
                     "parameters": [
                         {
                             "name": "enabled",
@@ -3842,6 +3874,15 @@
                                 "type": "string"
                             },
                             "description": "URLs matching any of these patterns will be forwarded and wait for the corresponding continueInterceptedRequest call. Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is backslash. If omitted equivalent to ['*'] (intercept all)."
+                        },
+                        {
+                            "name": "resourceTypes",
+                            "type": "array",
+                            "optional": true,
+                            "items": {
+                                "$ref": "Page.ResourceType"
+                            },
+                            "description": "If set, only requests for matching resource types will be intercepted."
                         }
                     ],
                     "experimental": true
@@ -13218,6 +13259,13 @@
                             "type": "string",
                             "optional": true,
                             "description": "Regex pattern for the URLs of the resources to set breakpoints on. Either <code>url</code> or <code>urlRegex</code> must be specified."
+                        },
+                        {
+                            "name": "scriptHash",
+                            "type": "string",
+                            "optional": true,
+                            "experimental": true,
+                            "description": "Script hash of the resources to set breakpoint on."
                         },
                         {
                             "name": "columnNumber",

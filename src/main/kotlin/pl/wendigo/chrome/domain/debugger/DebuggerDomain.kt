@@ -367,6 +367,11 @@ data class SetBreakpointByUrlRequest (
     val urlRegex : String? = null,
 
     /**
+     * Script hash of the resources to set breakpoint on.
+     */
+    @pl.wendigo.chrome.Experimental val scriptHash : String? = null,
+
+    /**
      * Offset in the line to set breakpoint at.
      */
     val columnNumber : Int? = null,
