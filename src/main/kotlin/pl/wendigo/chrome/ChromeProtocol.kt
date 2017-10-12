@@ -50,6 +50,8 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
             "Emulation.virtualTimeAdvanced" to pl.wendigo.chrome.domain.emulation.VirtualTimeAdvancedEvent::class.java,
             "Emulation.virtualTimeBudgetExpired" to pl.wendigo.chrome.ProtocolEvent::class.java,
             "Emulation.virtualTimePaused" to pl.wendigo.chrome.domain.emulation.VirtualTimePausedEvent::class.java,
+            "HeadlessExperimental.mainFrameReadyForScreenshots" to pl.wendigo.chrome.ProtocolEvent::class.java,
+            "HeadlessExperimental.needsBeginFramesChanged" to pl.wendigo.chrome.domain.headlessexperimental.NeedsBeginFramesChangedEvent::class.java,
             "HeapProfiler.addHeapSnapshotChunk" to pl.wendigo.chrome.domain.heapprofiler.AddHeapSnapshotChunkEvent::class.java,
             "HeapProfiler.heapStatsUpdate" to pl.wendigo.chrome.domain.heapprofiler.HeapStatsUpdateEvent::class.java,
             "HeapProfiler.lastSeenObjectId" to pl.wendigo.chrome.domain.heapprofiler.LastSeenObjectIdEvent::class.java,
@@ -267,6 +269,13 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
      */
     val Target : pl.wendigo.chrome.domain.target.TargetDomain by lazy {
         pl.wendigo.chrome.domain.target.TargetDomain(api)
+    }
+
+    /**
+     * This domain provides experimental commands only supported in headless mode.
+     */
+    val HeadlessExperimental : pl.wendigo.chrome.domain.headlessexperimental.HeadlessExperimentalDomain by lazy {
+        pl.wendigo.chrome.domain.headlessexperimental.HeadlessExperimentalDomain(api)
     }
 
     /**

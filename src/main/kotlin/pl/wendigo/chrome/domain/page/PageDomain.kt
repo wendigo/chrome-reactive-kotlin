@@ -1036,7 +1036,12 @@ data class SetDeviceMetricsOverrideRequest (
     /**
      * Screen orientation override.
      */
-    val screenOrientation : pl.wendigo.chrome.domain.emulation.ScreenOrientation? = null
+    val screenOrientation : pl.wendigo.chrome.domain.emulation.ScreenOrientation? = null,
+
+    /**
+     * The viewport dimensions and scale. If not set, the override is cleared.
+     */
+    val viewport : Viewport? = null
 
 )
 

@@ -46,7 +46,12 @@ data class TargetInfo(
   /**
    * Whether the target has an attached client.
    */
-  val attached : Boolean
+  val attached : Boolean,
+
+  /**
+   * Opener target Id
+   */
+  val openerId : TargetID? = null
 )
 
 /**

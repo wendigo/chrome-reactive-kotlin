@@ -264,7 +264,12 @@ data class SetDeviceMetricsOverrideRequest (
     /**
      * Screen orientation override.
      */
-    val screenOrientation : ScreenOrientation? = null
+    val screenOrientation : ScreenOrientation? = null,
+
+    /**
+     * If set, the visible area of the page will be overridden to this viewport. This viewport change is not observed by the page, e.g. viewport-relative elements do not change positions.
+     */
+    @pl.wendigo.chrome.Experimental val viewport : pl.wendigo.chrome.domain.page.Viewport? = null
 
 )
 

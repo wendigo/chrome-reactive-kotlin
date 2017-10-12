@@ -5,6 +5,15 @@ package pl.wendigo.chrome.domain.browser
  */
 class BrowserDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
+     * Close browser gracefully.
+     */
+    fun close() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Browser.close", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Get the browser window that contains the devtools target.
      */
     fun getWindowForTarget(input : GetWindowForTargetRequest) : io.reactivex.Single<GetWindowForTargetResponse> {
@@ -49,6 +58,7 @@ class BrowserDomain internal constructor(private val connectionRemote : pl.wendi
         }
     }
 }
+
 /**
  * Represents request frame that can be used with Browser.getWindowForTarget method call.
  *

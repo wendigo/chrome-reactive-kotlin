@@ -487,7 +487,12 @@ data class CreateTargetRequest (
     /**
      * The browser context to create the page in (headless chrome only).
      */
-    val browserContextId : BrowserContextID? = null
+    val browserContextId : BrowserContextID? = null,
+
+    /**
+     * Whether BeginFrames for this target will be controlled via DevTools (headless chrome only, not supported on MacOS yet, false by default).
+     */
+    @pl.wendigo.chrome.Experimental val enableBeginFrameControl : Boolean? = null
 
 )
 
