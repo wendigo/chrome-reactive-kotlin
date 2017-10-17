@@ -131,6 +131,15 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     * Returns all let, const and class variables from global scope.
+     */
+    fun globalLexicalScopeNames(input : GlobalLexicalScopeNamesRequest) : io.reactivex.Single<GlobalLexicalScopeNamesResponse> {
+        return connectionRemote.runAndCaptureResponse("Runtime.globalLexicalScopeNames", input, GlobalLexicalScopeNamesResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Issued when new execution context is created.
      */
     fun executionContextCreated() : io.reactivex.Flowable<ExecutionContextCreatedEvent> {
@@ -664,6 +673,32 @@ data class QueryObjectsResponse(
    * Array with objects.
    */
   val objects : RemoteObject
+
+)
+
+/**
+ * Represents request frame that can be used with Runtime.globalLexicalScopeNames method call.
+ *
+ * Returns all let, const and class variables from global scope.
+ */
+data class GlobalLexicalScopeNamesRequest (
+    /**
+     * Specifies in which execution context to lookup global scope variables.
+     */
+    val executionContextId : ExecutionContextId? = null
+
+)
+
+/**
+ * Represents response frame for Runtime.globalLexicalScopeNames method call.
+ *
+ * Returns all let, const and class variables from global scope.
+ */
+data class GlobalLexicalScopeNamesResponse(
+  /**
+   *
+   */
+  val names : List<String>
 
 )
 
