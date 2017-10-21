@@ -167,7 +167,12 @@ data class DispatchKeyEventRequest (
     /**
      * Whether the event was a system key event (default: false).
      */
-    val isSystemKey : Boolean? = null
+    val isSystemKey : Boolean? = null,
+
+    /**
+     * Whether the event was from the left or right side of the keyboard. 1=Left, 2=Right (default: 0).
+     */
+    @pl.wendigo.chrome.Experimental val location : Int? = null
 
 )
 

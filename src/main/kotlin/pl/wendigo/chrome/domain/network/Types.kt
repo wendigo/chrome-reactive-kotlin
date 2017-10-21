@@ -719,3 +719,19 @@ data class AuthChallengeResponse(
   val password : String? = null
 )
 
+/**
+ * Request pattern for interception.
+ */
+
+data class RequestPattern(
+  /**
+   * Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is backslash. Omitting is equivalent to "*".
+   */
+  val urlPattern : String? = null,
+
+  /**
+   * If set, only requests for matching resource types will be intercepted.
+   */
+  val resourceType : pl.wendigo.chrome.domain.page.ResourceType? = null
+)
+
