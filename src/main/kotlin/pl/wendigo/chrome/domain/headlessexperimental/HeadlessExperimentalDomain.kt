@@ -113,6 +113,11 @@ data class BeginFrameResponse(
   val hasDamage : Boolean,
 
   /**
+   * Whether the main frame submitted a new display frame in response to this BeginFrame.
+   */
+  val mainFrameContentUpdated : Boolean,
+
+  /**
    * Base64-encoded image data of the screenshot, if one was requested and successfully taken.
    */
   val screenshotData : String? = null
