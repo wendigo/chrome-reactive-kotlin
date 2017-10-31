@@ -149,6 +149,15 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
+     * Returns present frame tree structure.
+     */
+    fun getFrameTree() : io.reactivex.Single<GetFrameTreeResponse> {
+        return connectionRemote.runAndCaptureResponse("Page.getFrameTree", null, GetFrameTreeResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns content of the given resource.
      */
     fun getResourceContent(input : GetResourceContentRequest) : io.reactivex.Single<GetResourceContentResponse> {
@@ -874,6 +883,19 @@ data class GetResourceTreeResponse(
    * Present frame / resource tree structure.
    */
   val frameTree : FrameResourceTree
+
+)
+
+/**
+ * Represents response frame for Page.getFrameTree method call.
+ *
+ * Returns present frame tree structure.
+ */
+data class GetFrameTreeResponse(
+  /**
+   * Present frame tree structure.
+   */
+  val frameTree : FrameTree
 
 )
 

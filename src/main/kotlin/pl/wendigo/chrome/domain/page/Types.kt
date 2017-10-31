@@ -134,6 +134,22 @@ data class FrameResourceTree(
 )
 
 /**
+ * Information about the Frame hierarchy.
+ */
+
+data class FrameTree(
+  /**
+   * Frame information for this tree item.
+   */
+  val frame : Frame,
+
+  /**
+   * Child frames.
+   */
+  val childFrames : List<FrameTree>? = null
+)
+
+/**
  * Unique script identifier.
  */
 

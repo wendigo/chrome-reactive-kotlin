@@ -1367,6 +1367,11 @@ data class RequestInterceptedEvent(
   val request : Request,
 
   /**
+   * The id of the frame that initiated the request.
+   */
+  val frameId : pl.wendigo.chrome.domain.page.FrameId,
+
+  /**
    * How the requested resource will be used.
    */
   val resourceType : pl.wendigo.chrome.domain.page.ResourceType,
