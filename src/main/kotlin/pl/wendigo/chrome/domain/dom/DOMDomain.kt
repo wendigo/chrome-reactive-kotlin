@@ -320,7 +320,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Returns boxes for the currently selected nodes.
+     * Returns boxes for the given node.
      */
     fun getBoxModel(input : GetBoxModelRequest) : io.reactivex.Single<GetBoxModelResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getBoxModel", input, GetBoxModelResponse::class.java).map {
@@ -598,12 +598,12 @@ data class GetDocumentRequest (
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
      */
-    @pl.wendigo.chrome.Experimental val depth : Int? = null,
+    val depth : Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree (default is false).
      */
-    @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
+    val pierce : Boolean? = null
 
 )
 
@@ -629,12 +629,12 @@ data class GetFlattenedDocumentRequest (
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
      */
-    @pl.wendigo.chrome.Experimental val depth : Int? = null,
+    val depth : Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree (default is false).
      */
-    @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
+    val pierce : Boolean? = null
 
 )
 
@@ -691,12 +691,12 @@ data class RequestChildNodesRequest (
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
      */
-    @pl.wendigo.chrome.Experimental val depth : Int? = null,
+    val depth : Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the sub-tree (default is false).
      */
-    @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
+    val pierce : Boolean? = null
 
 )
 
@@ -956,7 +956,7 @@ data class PerformSearchRequest (
     /**
      * True to search in user agent shadow DOM.
      */
-    @pl.wendigo.chrome.Experimental val includeUserAgentShadowDOM : Boolean? = null
+    val includeUserAgentShadowDOM : Boolean? = null
 
 )
 
@@ -1306,7 +1306,7 @@ data class SetFileInputFilesRequest (
 /**
  * Represents request frame that can be used with DOM.getBoxModel method call.
  *
- * Returns boxes for the currently selected nodes.
+ * Returns boxes for the given node.
  */
 data class GetBoxModelRequest (
     /**
@@ -1329,7 +1329,7 @@ data class GetBoxModelRequest (
 /**
  * Represents response frame for DOM.getBoxModel method call.
  *
- * Returns boxes for the currently selected nodes.
+ * Returns boxes for the given node.
  */
 data class GetBoxModelResponse(
   /**
@@ -1425,12 +1425,12 @@ data class DescribeNodeRequest (
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
      */
-    @pl.wendigo.chrome.Experimental val depth : Int? = null,
+    val depth : Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree (default is false).
      */
-    @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
+    val pierce : Boolean? = null
 
 )
 

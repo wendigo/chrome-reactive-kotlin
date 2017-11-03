@@ -402,12 +402,12 @@ data class Response(
   /**
    * Remote IP address.
    */
-  @pl.wendigo.chrome.Experimental val remoteIPAddress : String? = null,
+  val remoteIPAddress : String? = null,
 
   /**
    * Remote port.
    */
-  @pl.wendigo.chrome.Experimental val remotePort : Int? = null,
+  val remotePort : Int? = null,
 
   /**
    * Specifies that the request was served from the disk cache.

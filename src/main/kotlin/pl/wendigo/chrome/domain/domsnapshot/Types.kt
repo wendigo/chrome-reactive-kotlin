@@ -127,6 +127,27 @@ data class DOMNode(
 )
 
 /**
+ * Details of post layout rendered text positions. The exact layout should not be regarded as stable and may change between versions.
+ */
+
+data class InlineTextBox(
+  /**
+   * The absolute position bounding box.
+   */
+  val boundingBox : pl.wendigo.chrome.domain.dom.Rect,
+
+  /**
+   * The starting index in characters, for this post layout textbox substring.
+   */
+  val startCharacterIndex : Int,
+
+  /**
+   * The number of characters in this post layout textbox substring.
+   */
+  val numCharacters : Int
+)
+
+/**
  * Details of an element in the DOM tree with a LayoutObject.
  */
 
@@ -149,7 +170,7 @@ data class LayoutTreeNode(
   /**
    * The post-layout inline text nodes, if any.
    */
-  val inlineTextNodes : List<pl.wendigo.chrome.domain.css.InlineTextBox>? = null,
+  val inlineTextNodes : List<InlineTextBox>? = null,
 
   /**
    * Index into the <code>computedStyles</code> array returned by <code>getSnapshot</code>.

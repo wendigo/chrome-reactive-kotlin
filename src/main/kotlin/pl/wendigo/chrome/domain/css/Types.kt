@@ -164,7 +164,7 @@ data class CSSStyleSheetHeader(
   /**
    * Size of the content (in characters).
    */
-  @pl.wendigo.chrome.Experimental val length : Double
+  val length : Double
 )
 
 /**
@@ -397,7 +397,7 @@ data class CSSMedia(
   /**
    * Array of media queries.
    */
-  @pl.wendigo.chrome.Experimental val mediaList : List<MediaQuery>? = null
+  val mediaList : List<MediaQuery>? = null
 )
 
 /**
@@ -529,26 +529,5 @@ data class StyleDeclarationEdit(
    * New style text.
    */
   val text : String
-)
-
-/**
- * Details of post layout rendered text positions. The exact layout should not be regarded as stable and may change between versions.
- */
-
-data class InlineTextBox(
-  /**
-   * The absolute position bounding box.
-   */
-  val boundingBox : pl.wendigo.chrome.domain.dom.Rect,
-
-  /**
-   * The starting index in characters, for this post layout textbox substring.
-   */
-  val startCharacterIndex : Int,
-
-  /**
-   * The number of characters in this post layout textbox substring.
-   */
-  val numCharacters : Int
 )
 

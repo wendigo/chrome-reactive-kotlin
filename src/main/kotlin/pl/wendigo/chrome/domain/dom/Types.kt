@@ -76,12 +76,12 @@ data class Node(
   /**
    * The id of the parent node if any.
    */
-  @pl.wendigo.chrome.Experimental val parentId : NodeId? = null,
+  val parentId : NodeId? = null,
 
   /**
    * The BackendNodeId for this node.
    */
-  @pl.wendigo.chrome.Experimental val backendNodeId : BackendNodeId,
+  val backendNodeId : BackendNodeId,
 
   /**
    * <code>Node</code>'s nodeType.
@@ -126,7 +126,7 @@ data class Node(
   /**
    * Base URL that <code>Document</code> or <code>FrameOwner</code> node uses for URL completion.
    */
-  @pl.wendigo.chrome.Experimental val baseURL : String? = null,
+  val baseURL : String? = null,
 
   /**
    * <code>DocumentType</code>'s publicId.
@@ -171,7 +171,7 @@ data class Node(
   /**
    * Frame ID for frame owner elements.
    */
-  @pl.wendigo.chrome.Experimental val frameId : pl.wendigo.chrome.domain.page.FrameId? = null,
+  val frameId : pl.wendigo.chrome.domain.page.FrameId? = null,
 
   /**
    * Content document for frame owner elements.
@@ -181,17 +181,17 @@ data class Node(
   /**
    * Shadow root list for given element host.
    */
-  @pl.wendigo.chrome.Experimental val shadowRoots : List<Node>? = null,
+  val shadowRoots : List<Node>? = null,
 
   /**
    * Content document fragment for template elements.
    */
-  @pl.wendigo.chrome.Experimental val templateContent : Node? = null,
+  val templateContent : Node? = null,
 
   /**
    * Pseudo elements associated with this node.
    */
-  @pl.wendigo.chrome.Experimental val pseudoElements : List<Node>? = null,
+  val pseudoElements : List<Node>? = null,
 
   /**
    * Import document for the HTMLImport links.
@@ -201,12 +201,12 @@ data class Node(
   /**
    * Distributed nodes for given insertion point.
    */
-  @pl.wendigo.chrome.Experimental val distributedNodes : List<BackendNode>? = null,
+  val distributedNodes : List<BackendNode>? = null,
 
   /**
    * Whether the node is SVG.
    */
-  @pl.wendigo.chrome.Experimental val isSVG : Boolean? = null
+  val isSVG : Boolean? = null
 )
 
 /**

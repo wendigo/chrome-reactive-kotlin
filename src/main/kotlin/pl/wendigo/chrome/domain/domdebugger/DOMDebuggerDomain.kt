@@ -232,12 +232,12 @@ data class GetEventListenersRequest (
     /**
      * The maximum depth at which Node children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
      */
-    @pl.wendigo.chrome.Experimental val depth : Int? = null,
+    val depth : Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree (default is false). Reports listeners for all contexts if pierce is enabled.
      */
-    @pl.wendigo.chrome.Experimental val pierce : Boolean? = null
+    val pierce : Boolean? = null
 
 )
 

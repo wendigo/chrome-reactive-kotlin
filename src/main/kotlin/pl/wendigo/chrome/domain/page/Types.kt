@@ -282,15 +282,6 @@ data class AppManifestError(
 )
 
 /**
- * Proceed: allow the navigation; Cancel: cancel the navigation; CancelAndIgnore: cancels the navigation and makes the requester of the navigation acts like the request was never made.
- */
-enum class NavigationResponse {
-    @com.fasterxml.jackson.annotation.JsonProperty("Proceed") PROCEED,
-    @com.fasterxml.jackson.annotation.JsonProperty("Cancel") CANCEL,
-    @com.fasterxml.jackson.annotation.JsonProperty("CancelAndIgnore") CANCELANDIGNORE;
-}
-
-/**
  * Layout viewport position and dimensions.
  */
 

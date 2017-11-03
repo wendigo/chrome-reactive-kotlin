@@ -68,6 +68,15 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
+     * Controls whether page will emit lifecycle events.
+     */
+    fun setLifecycleEventsEnabled(input : SetLifecycleEventsEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Page.setLifecycleEventsEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Reloads given page optionally ignoring the cache.
      */
     fun reload(input : ReloadRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -628,7 +637,7 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
-     * Fired when window.open() was called
+     * Fired when a new window is going to be opened, via window.open(), link click, form submission, etc.
      */
     fun windowOpen() : io.reactivex.Flowable<WindowOpenEvent> {
         return windowOpenTimed().map {
@@ -637,7 +646,7 @@ class PageDomain internal constructor(private val connectionRemote : pl.wendigo.
     }
 
     /**
-     * Fired when window.open() was called
+     * Fired when a new window is going to be opened, via window.open(), link click, form submission, etc.
      */
     fun windowOpenTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WindowOpenEvent>> {
         return connectionRemote.captureEvents("Page.windowOpen", WindowOpenEvent::class.java)
@@ -745,6 +754,19 @@ data class SetAutoAttachToCreatedPagesRequest (
 )
 
 /**
+ * Represents request frame that can be used with Page.setLifecycleEventsEnabled method call.
+ *
+ * Controls whether page will emit lifecycle events.
+ */
+data class SetLifecycleEventsEnabledRequest (
+    /**
+     * If true, starts emitting lifecycle events.
+     */
+    val enabled : Boolean
+
+)
+
+/**
  * Represents request frame that can be used with Page.reload method call.
  *
  * Reloads given page optionally ignoring the cache.
@@ -789,12 +811,12 @@ data class NavigateRequest (
     /**
      * Referrer URL.
      */
-    @pl.wendigo.chrome.Experimental val referrer : String? = null,
+    val referrer : String? = null,
 
     /**
      * Intended transition type.
      */
-    @pl.wendigo.chrome.Experimental val transitionType : TransitionType? = null
+    val transitionType : TransitionType? = null
 
 )
 
@@ -807,7 +829,12 @@ data class NavigateResponse(
   /**
    * Frame id that will be navigated.
    */
-  @pl.wendigo.chrome.Experimental val frameId : FrameId
+  val frameId : FrameId,
+
+  /**
+   * Loader id that will be used during navigation.
+   */
+  @pl.wendigo.chrome.Experimental val loaderId : pl.wendigo.chrome.domain.network.LoaderId
 
 )
 
@@ -1150,7 +1177,7 @@ data class CaptureScreenshotRequest (
     /**
      * Capture the screenshot of a given region only.
      */
-    @pl.wendigo.chrome.Experimental val clip : Viewport? = null,
+    val clip : Viewport? = null,
 
     /**
      * Capture the screenshot from the surface, rather than the view. Defaults to true.
@@ -1455,6 +1482,11 @@ data class LifecycleEventEvent(
   val frameId : FrameId,
 
   /**
+   * Loader identifier. Empty string if the request is fetched from worker.
+   */
+  val loaderId : pl.wendigo.chrome.domain.network.LoaderId,
+
+  /**
    *
    */
   val name : String,
@@ -1485,7 +1517,7 @@ data class FrameAttachedEvent(
   /**
    * JavaScript stack trace of when frame was attached, only set if frame initiated from script.
    */
-  @pl.wendigo.chrome.Experimental val stack : pl.wendigo.chrome.domain.runtime.StackTrace? = null
+  val stack : pl.wendigo.chrome.domain.runtime.StackTrace? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameAttached")
 
@@ -1560,12 +1592,12 @@ data class FrameScheduledNavigationEvent(
   /**
    * The reason for the navigation.
    */
-  @pl.wendigo.chrome.Experimental val reason : String,
+  val reason : String,
 
   /**
    * The destination URL for the scheduled navigation.
    */
-  @pl.wendigo.chrome.Experimental val url : String
+  val url : String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameScheduledNavigation")
 
@@ -1667,7 +1699,7 @@ data class ScreencastVisibilityChangedEvent(
 /**
  * Represents event frames for Page.windowOpen
  *
- * Fired when window.open() was called
+ * Fired when a new window is going to be opened, via window.open(), link click, form submission, etc.
  */
 data class WindowOpenEvent(
   /**
@@ -1676,17 +1708,17 @@ data class WindowOpenEvent(
   val url : String,
 
   /**
-   * Window name passed to window.open().
+   * Window name.
    */
   val windowName : String,
 
   /**
-   * Window features passed to window.open().
+   * An array of enabled window features.
    */
-  val windowFeatures : String,
+  val windowFeatures : List<String>,
 
   /**
-   * Whether or not window.open() was triggered by user gesture.
+   * Whether or not it was triggered by user gesture.
    */
   val userGesture : Boolean
 

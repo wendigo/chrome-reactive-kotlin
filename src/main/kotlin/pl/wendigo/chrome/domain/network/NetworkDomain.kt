@@ -970,7 +970,7 @@ data class RequestWillBeSentEvent(
   val requestId : RequestId,
 
   /**
-   * Loader identifier. Empty string if the request is fetched form worker.
+   * Loader identifier. Empty string if the request is fetched from worker.
    */
   val loaderId : LoaderId,
 
@@ -992,7 +992,7 @@ data class RequestWillBeSentEvent(
   /**
    * Timestamp.
    */
-  @pl.wendigo.chrome.Experimental val wallTime : TimeSinceEpoch,
+  val wallTime : TimeSinceEpoch,
 
   /**
    * Request initiator.
@@ -1007,12 +1007,12 @@ data class RequestWillBeSentEvent(
   /**
    * Type of this resource.
    */
-  @pl.wendigo.chrome.Experimental val type : pl.wendigo.chrome.domain.page.ResourceType? = null,
+  val type : pl.wendigo.chrome.domain.page.ResourceType? = null,
 
   /**
    * Frame identifier.
    */
-  @pl.wendigo.chrome.Experimental val frameId : pl.wendigo.chrome.domain.page.FrameId? = null
+  val frameId : pl.wendigo.chrome.domain.page.FrameId? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "requestWillBeSent")
 
@@ -1041,7 +1041,7 @@ data class ResponseReceivedEvent(
   val requestId : RequestId,
 
   /**
-   * Loader identifier. Empty string if the request is fetched form worker.
+   * Loader identifier. Empty string if the request is fetched from worker.
    */
   val loaderId : LoaderId,
 
@@ -1063,7 +1063,7 @@ data class ResponseReceivedEvent(
   /**
    * Frame identifier.
    */
-  @pl.wendigo.chrome.Experimental val frameId : pl.wendigo.chrome.domain.page.FrameId? = null
+  val frameId : pl.wendigo.chrome.domain.page.FrameId? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "responseReceived")
 
@@ -1152,7 +1152,7 @@ data class LoadingFailedEvent(
   /**
    * The reason why loading was blocked, if any.
    */
-  @pl.wendigo.chrome.Experimental val blockedReason : BlockedReason? = null
+  val blockedReason : BlockedReason? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "loadingFailed")
 
@@ -1175,7 +1175,7 @@ data class WebSocketWillSendHandshakeRequestEvent(
   /**
    * UTC Timestamp.
    */
-  @pl.wendigo.chrome.Experimental val wallTime : TimeSinceEpoch,
+  val wallTime : TimeSinceEpoch,
 
   /**
    * WebSocket request data.
