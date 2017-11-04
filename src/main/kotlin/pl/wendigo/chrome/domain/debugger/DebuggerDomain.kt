@@ -203,6 +203,15 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
+     * Changes return value in top frame. Available only at return break position.
+     */
+    fun setReturnValue(input : SetReturnValueRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Debugger.setReturnValue", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Enables or disables async call stacks tracking.
      */
     fun setAsyncCallStackDepth(input : SetAsyncCallStackDepthRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -757,6 +766,19 @@ data class SetVariableValueRequest (
      * Id of callframe that holds variable.
      */
     val callFrameId : CallFrameId
+
+)
+
+/**
+ * Represents request frame that can be used with Debugger.setReturnValue method call.
+ *
+ * Changes return value in top frame. Available only at return break position.
+ */
+data class SetReturnValueRequest (
+    /**
+     * New return value.
+     */
+    val newValue : pl.wendigo.chrome.domain.runtime.CallArgument
 
 )
 
