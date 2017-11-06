@@ -86,6 +86,15 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
+     *
+     */
+    fun pauseOnAsyncTask(input : PauseOnAsyncTaskRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Debugger.pauseOnAsyncTask", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Steps over the statement.
      */
     fun stepOver() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -97,8 +106,8 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     /**
      * Steps into the function call.
      */
-    fun stepInto() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Debugger.stepInto", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun stepInto(input : StepIntoRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Debugger.stepInto", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -122,7 +131,7 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Steps into next scheduled async task if any is scheduled before next pause. Returns success when async task is actually scheduled, returns error if no task were scheduled or another scheduleStepIntoAsync was called.
+     * This method is deprecated - use Debugger.stepInto with breakOnAsyncCall and Debugger.pauseOnAsyncTask instead. Steps into next scheduled async task if any is scheduled before next pause. Returns success when async task is actually scheduled, returns error if no task were scheduled or another scheduleStepIntoAsync was called.
      */
     fun scheduleStepIntoAsync() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Debugger.scheduleStepIntoAsync", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -510,6 +519,32 @@ data class ContinueToLocationRequest (
      *
      */
     @pl.wendigo.chrome.Experimental val targetCallFrames : String? = null
+
+)
+
+/**
+ * Represents request frame that can be used with Debugger.pauseOnAsyncTask method call.
+ *
+ *
+ */
+data class PauseOnAsyncTaskRequest (
+    /**
+     * Debugger will pause when given async task is started.
+     */
+    val asyncTaskId : pl.wendigo.chrome.domain.runtime.AsyncTaskId
+
+)
+
+/**
+ * Represents request frame that can be used with Debugger.stepInto method call.
+ *
+ * Steps into the function call.
+ */
+data class StepIntoRequest (
+    /**
+     * Debugger will issue additional Debugger.paused notification if any async task is scheduled before next pause.
+     */
+    @pl.wendigo.chrome.Experimental val breakOnAsyncCall : Boolean? = null
 
 )
 
@@ -1034,7 +1069,12 @@ data class PausedEvent(
   /**
    * Async stack trace, if any.
    */
-  val asyncStackTrace : pl.wendigo.chrome.domain.runtime.StackTrace? = null
+  val asyncStackTrace : pl.wendigo.chrome.domain.runtime.StackTrace? = null,
+
+  /**
+   * Scheduled async task id.
+   */
+  @pl.wendigo.chrome.Experimental val scheduledAsyncTaskId : pl.wendigo.chrome.domain.runtime.AsyncTaskId? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Debugger", name = "paused")
 

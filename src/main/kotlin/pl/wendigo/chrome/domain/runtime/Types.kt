@@ -426,3 +426,9 @@ data class StackTrace(
   @pl.wendigo.chrome.Experimental val promiseCreationFrame : CallFrame? = null
 )
 
+/**
+ *
+ */
+
+typealias AsyncTaskId = String
+
