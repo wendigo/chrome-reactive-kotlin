@@ -104,6 +104,15 @@ class HeapProfilerDomain internal constructor(private val connectionRemote : pl.
     }
 
     /**
+     *
+     */
+    fun getSamplingProfile() : io.reactivex.Single<GetSamplingProfileResponse> {
+        return connectionRemote.runAndCaptureResponse("HeapProfiler.getSamplingProfile", null, GetSamplingProfileResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns observable capturing all HeapProfiler.addHeapSnapshotChunk events.
      */
     fun addHeapSnapshotChunk() : io.reactivex.Flowable<AddHeapSnapshotChunkEvent> {
@@ -323,6 +332,19 @@ data class StartSamplingRequest (
 data class StopSamplingResponse(
   /**
    * Recorded sampling heap profile.
+   */
+  val profile : SamplingHeapProfile
+
+)
+
+/**
+ * Represents response frame for HeapProfiler.getSamplingProfile method call.
+ *
+ *
+ */
+data class GetSamplingProfileResponse(
+  /**
+   * Return the sampling profile being collected.
    */
   val profile : SamplingHeapProfile
 
