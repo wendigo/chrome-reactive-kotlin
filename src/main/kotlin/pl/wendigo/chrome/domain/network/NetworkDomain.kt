@@ -221,6 +221,15 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     * Returns content served for the given currently intercepted request.
+     */
+    fun getResponseBodyForInterception(input : GetResponseBodyForInterceptionRequest) : io.reactivex.Single<GetResponseBodyForInterceptionResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.getResponseBodyForInterception", input, GetResponseBodyForInterceptionResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Fired when resource loading priority is changed
      */
     fun resourceChangedPriority() : io.reactivex.Flowable<ResourceChangedPriorityEvent> {
@@ -936,6 +945,37 @@ data class ContinueInterceptedRequestRequest (
 )
 
 /**
+ * Represents request frame that can be used with Network.getResponseBodyForInterception method call.
+ *
+ * Returns content served for the given currently intercepted request.
+ */
+data class GetResponseBodyForInterceptionRequest (
+    /**
+     * Identifier for the intercepted request to get body for.
+     */
+    val interceptionId : InterceptionId
+
+)
+
+/**
+ * Represents response frame for Network.getResponseBodyForInterception method call.
+ *
+ * Returns content served for the given currently intercepted request.
+ */
+data class GetResponseBodyForInterceptionResponse(
+  /**
+   * Response body.
+   */
+  val body : String,
+
+  /**
+   * True, if content was sent as base64.
+   */
+  val base64Encoded : Boolean
+
+)
+
+/**
  * Represents event frames for Network.resourceChangedPriority
  *
  * Fired when resource loading priority is changed
@@ -1382,16 +1422,6 @@ data class RequestInterceptedEvent(
   val isNavigationRequest : Boolean,
 
   /**
-   * HTTP response headers, only sent if a redirect was intercepted.
-   */
-  val redirectHeaders : Headers? = null,
-
-  /**
-   * HTTP response code, only sent if a redirect was intercepted.
-   */
-  val redirectStatusCode : Int? = null,
-
-  /**
    * Redirect location, only sent if a redirect was intercepted.
    */
   val redirectUrl : String? = null,
@@ -1399,7 +1429,22 @@ data class RequestInterceptedEvent(
   /**
    * Details of the Authorization Challenge encountered. If this is set then continueInterceptedRequest must contain an authChallengeResponse.
    */
-  val authChallenge : AuthChallenge? = null
+  val authChallenge : AuthChallenge? = null,
+
+  /**
+   * Response error if intercepted at response stage or if redirect occurred while intercepting request.
+   */
+  val responseErrorReason : ErrorReason? = null,
+
+  /**
+   * Response code if intercepted at response stage or if redirect occurred while intercepting request or auth retry occurred.
+   */
+  val responseStatusCode : Int? = null,
+
+  /**
+   * Response headers if intercepted at the response stage or if redirect occurred while intercepting request or auth retry occurred.
+   */
+  val responseHeaders : Headers? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "requestIntercepted")
 

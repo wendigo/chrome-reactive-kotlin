@@ -720,6 +720,14 @@ data class AuthChallengeResponse(
 )
 
 /**
+ * Stages of the interception to begin intercepting. Request will intercept before the request is sent. Response will intercept after the response is received.
+ */
+enum class InterceptionStage {
+    @com.fasterxml.jackson.annotation.JsonProperty("Request") REQUEST,
+    @com.fasterxml.jackson.annotation.JsonProperty("HeadersReceived") HEADERSRECEIVED;
+}
+
+/**
  * Request pattern for interception.
  */
 
@@ -732,6 +740,11 @@ data class RequestPattern(
   /**
    * If set, only requests for matching resource types will be intercepted.
    */
-  val resourceType : pl.wendigo.chrome.domain.page.ResourceType? = null
+  val resourceType : pl.wendigo.chrome.domain.page.ResourceType? = null,
+
+  /**
+   * Stage at wich to begin intercepting requests. Default is Request.
+   */
+  val interceptionStage : InterceptionStage? = null
 )
 
