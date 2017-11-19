@@ -135,7 +135,7 @@ data class AXProperty(
   /**
    * The name of this property.
    */
-  val name : String,
+  val name : AXPropertyName,
 
   /**
    * The value of this property.
@@ -170,32 +170,20 @@ data class AXValue(
 )
 
 /**
- * States which apply to every AX node.
+ * Values of AXProperty name: from &apos;busy&apos; to &apos;roledescription&apos; - states which apply to every AX node, from &apos;live&apos; to &apos;root&apos; - attributes which apply to nodes in live regions, from &apos;autocomplete&apos; to &apos;valuetext&apos; - attributes which apply to widgets, from &apos;checked&apos; to &apos;selected&apos; - states which apply to widgets, from &apos;activedescendant&apos; to &apos;owns&apos; - relationships between elements other than parent/child/sibling.
  */
-enum class AXGlobalStates {
+enum class AXPropertyName {
     @com.fasterxml.jackson.annotation.JsonProperty("busy") BUSY,
     @com.fasterxml.jackson.annotation.JsonProperty("disabled") DISABLED,
     @com.fasterxml.jackson.annotation.JsonProperty("hidden") HIDDEN,
     @com.fasterxml.jackson.annotation.JsonProperty("hiddenRoot") HIDDENROOT,
     @com.fasterxml.jackson.annotation.JsonProperty("invalid") INVALID,
     @com.fasterxml.jackson.annotation.JsonProperty("keyshortcuts") KEYSHORTCUTS,
-    @com.fasterxml.jackson.annotation.JsonProperty("roledescription") ROLEDESCRIPTION;
-}
-
-/**
- * Attributes which apply to nodes in live regions.
- */
-enum class AXLiveRegionAttributes {
+    @com.fasterxml.jackson.annotation.JsonProperty("roledescription") ROLEDESCRIPTION,
     @com.fasterxml.jackson.annotation.JsonProperty("live") LIVE,
     @com.fasterxml.jackson.annotation.JsonProperty("atomic") ATOMIC,
     @com.fasterxml.jackson.annotation.JsonProperty("relevant") RELEVANT,
-    @com.fasterxml.jackson.annotation.JsonProperty("root") ROOT;
-}
-
-/**
- * Attributes which apply to widgets.
- */
-enum class AXWidgetAttributes {
+    @com.fasterxml.jackson.annotation.JsonProperty("root") ROOT,
     @com.fasterxml.jackson.annotation.JsonProperty("autocomplete") AUTOCOMPLETE,
     @com.fasterxml.jackson.annotation.JsonProperty("haspopup") HASPOPUP,
     @com.fasterxml.jackson.annotation.JsonProperty("level") LEVEL,
@@ -206,24 +194,12 @@ enum class AXWidgetAttributes {
     @com.fasterxml.jackson.annotation.JsonProperty("required") REQUIRED,
     @com.fasterxml.jackson.annotation.JsonProperty("valuemin") VALUEMIN,
     @com.fasterxml.jackson.annotation.JsonProperty("valuemax") VALUEMAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("valuetext") VALUETEXT;
-}
-
-/**
- * States which apply to widgets.
- */
-enum class AXWidgetStates {
+    @com.fasterxml.jackson.annotation.JsonProperty("valuetext") VALUETEXT,
     @com.fasterxml.jackson.annotation.JsonProperty("checked") CHECKED,
     @com.fasterxml.jackson.annotation.JsonProperty("expanded") EXPANDED,
     @com.fasterxml.jackson.annotation.JsonProperty("modal") MODAL,
     @com.fasterxml.jackson.annotation.JsonProperty("pressed") PRESSED,
-    @com.fasterxml.jackson.annotation.JsonProperty("selected") SELECTED;
-}
-
-/**
- * Relationships between elements other than parent/child/sibling.
- */
-enum class AXRelationshipAttributes {
+    @com.fasterxml.jackson.annotation.JsonProperty("selected") SELECTED,
     @com.fasterxml.jackson.annotation.JsonProperty("activedescendant") ACTIVEDESCENDANT,
     @com.fasterxml.jackson.annotation.JsonProperty("controls") CONTROLS,
     @com.fasterxml.jackson.annotation.JsonProperty("describedby") DESCRIBEDBY,

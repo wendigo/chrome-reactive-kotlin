@@ -124,8 +124,8 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     /**
      * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets the current virtual time policy.  Note this supersedes any previous time budget.
      */
-    fun setVirtualTimePolicy(input : SetVirtualTimePolicyRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun setVirtualTimePolicy(input : SetVirtualTimePolicyRequest) : io.reactivex.Single<SetVirtualTimePolicyResponse> {
+        return connectionRemote.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, SetVirtualTimePolicyResponse::class.java).map {
             it.value()
         }
     }
@@ -429,12 +429,25 @@ data class SetVirtualTimePolicyRequest (
     /**
      * If set, after this many virtual milliseconds have elapsed virtual time will be paused and a virtualTimeBudgetExpired event is sent.
      */
-    val budget : Int? = null,
+    val budget : Double? = null,
 
     /**
      * If set this specifies the maximum number of tasks that can be run before virtual is forced forwards to prevent deadlock.
      */
     val maxVirtualTimeTaskStarvationCount : Int? = null
+
+)
+
+/**
+ * Represents response frame for Emulation.setVirtualTimePolicy method call.
+ *
+ * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets the current virtual time policy.  Note this supersedes any previous time budget.
+ */
+data class SetVirtualTimePolicyResponse(
+  /**
+   * Absolute timestamp at which virtual time was first enabled (milliseconds since epoch).
+   */
+  val virtualTimeBase : pl.wendigo.chrome.domain.runtime.Timestamp
 
 )
 
@@ -473,7 +486,7 @@ data class VirtualTimeAdvancedEvent(
   /**
    * The amount of virtual time that has elapsed in milliseconds since virtual time was first enabled.
    */
-  val virtualTimeElapsed : Int
+  val virtualTimeElapsed : Double
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Emulation", name = "virtualTimeAdvanced")
 
@@ -486,7 +499,7 @@ data class VirtualTimePausedEvent(
   /**
    * The amount of virtual time that has elapsed in milliseconds since virtual time was first enabled.
    */
-  val virtualTimeElapsed : Int
+  val virtualTimeElapsed : Double
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Emulation", name = "virtualTimePaused")
 

@@ -2072,7 +2072,8 @@
             "description": "This domain emulates different environments for the page.",
             "dependencies": [
                 "DOM",
-                "Page"
+                "Page",
+                "Runtime"
             ],
             "types": [
                 {
@@ -2351,7 +2352,7 @@
                         },
                         {
                             "name": "budget",
-                            "type": "integer",
+                            "type": "number",
                             "optional": true,
                             "description": "If set, after this many virtual milliseconds have elapsed virtual time will be paused and a virtualTimeBudgetExpired event is sent."
                         },
@@ -2360,6 +2361,13 @@
                             "type": "integer",
                             "optional": true,
                             "description": "If set this specifies the maximum number of tasks that can be run before virtual is forced forwards to prevent deadlock."
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "virtualTimeBase",
+                            "$ref": "Runtime.Timestamp",
+                            "description": "Absolute timestamp at which virtual time was first enabled (milliseconds since epoch)."
                         }
                     ],
                     "experimental": true
@@ -2401,7 +2409,7 @@
                     "parameters": [
                         {
                             "name": "virtualTimeElapsed",
-                            "type": "integer",
+                            "type": "number",
                             "description": "The amount of virtual time that has elapsed in milliseconds since virtual time was first enabled."
                         }
                     ],
@@ -2413,7 +2421,7 @@
                     "parameters": [
                         {
                             "name": "virtualTimeElapsed",
-                            "type": "integer",
+                            "type": "number",
                             "description": "The amount of virtual time that has elapsed in milliseconds since virtual time was first enabled."
                         }
                     ],
@@ -2700,6 +2708,7 @@
             "domain": "Network",
             "description": "Network domain allows tracking network activities of the page. It exposes information about http, file, data and other requests and responses, their headers, bodies, timing, etc.",
             "dependencies": [
+                "Debugger",
                 "Runtime",
                 "Security"
             ],
@@ -3579,6 +3588,45 @@
                             "description": "User agent to use."
                         }
                     ]
+                },
+                {
+                    "name": "searchInResponseBody",
+                    "description": "Searches for given string in response content.",
+                    "parameters": [
+                        {
+                            "name": "requestId",
+                            "$ref": "RequestId",
+                            "description": "Identifier of the network response to search."
+                        },
+                        {
+                            "name": "query",
+                            "type": "string",
+                            "description": "String to search for."
+                        },
+                        {
+                            "name": "caseSensitive",
+                            "type": "boolean",
+                            "optional": true,
+                            "description": "If true, search is case sensitive."
+                        },
+                        {
+                            "name": "isRegex",
+                            "type": "boolean",
+                            "optional": true,
+                            "description": "If true, treats string parameter as regex."
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "result",
+                            "type": "array",
+                            "items": {
+                                "$ref": "Debugger.SearchMatch"
+                            },
+                            "description": "List of search matches."
+                        }
+                    ],
+                    "experimental": true
                 },
                 {
                     "name": "setExtraHTTPHeaders",
@@ -11119,7 +11167,7 @@
                     "properties": [
                         {
                             "name": "name",
-                            "type": "string",
+                            "$ref": "AXPropertyName",
                             "description": "The name of this property."
                         },
                         {
@@ -11166,7 +11214,7 @@
                     "description": "A single computed AX property."
                 },
                 {
-                    "id": "AXGlobalStates",
+                    "id": "AXPropertyName",
                     "type": "string",
                     "enum": [
                         "busy",
@@ -11175,25 +11223,11 @@
                         "hiddenRoot",
                         "invalid",
                         "keyshortcuts",
-                        "roledescription"
-                    ],
-                    "description": "States which apply to every AX node."
-                },
-                {
-                    "id": "AXLiveRegionAttributes",
-                    "type": "string",
-                    "enum": [
+                        "roledescription",
                         "live",
                         "atomic",
                         "relevant",
-                        "root"
-                    ],
-                    "description": "Attributes which apply to nodes in live regions."
-                },
-                {
-                    "id": "AXWidgetAttributes",
-                    "type": "string",
-                    "enum": [
+                        "root",
                         "autocomplete",
                         "haspopup",
                         "level",
@@ -11204,26 +11238,12 @@
                         "required",
                         "valuemin",
                         "valuemax",
-                        "valuetext"
-                    ],
-                    "description": "Attributes which apply to widgets."
-                },
-                {
-                    "id": "AXWidgetStates",
-                    "type": "string",
-                    "enum": [
+                        "valuetext",
                         "checked",
                         "expanded",
                         "modal",
                         "pressed",
-                        "selected"
-                    ],
-                    "description": "States which apply to widgets."
-                },
-                {
-                    "id": "AXRelationshipAttributes",
-                    "type": "string",
-                    "enum": [
+                        "selected",
                         "activedescendant",
                         "controls",
                         "describedby",
@@ -11233,7 +11253,7 @@
                         "labelledby",
                         "owns"
                     ],
-                    "description": "Relationships between elements other than parent/child/sibling."
+                    "description": "Values of AXProperty name: from 'busy' to 'roledescription' - states which apply to every AX node, from 'live' to 'root' - attributes which apply to nodes in live regions, from 'autocomplete' to 'valuetext' - attributes which apply to widgets, from 'checked' to 'selected' - states which apply to widgets, from 'activedescendant' to 'owns' - relationships between elements other than parent/child/sibling."
                 },
                 {
                     "id": "AXNode",

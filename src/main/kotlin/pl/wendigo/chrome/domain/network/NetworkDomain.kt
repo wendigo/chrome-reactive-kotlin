@@ -32,6 +32,15 @@ class NetworkDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     * Searches for given string in response content.
+     */
+    fun searchInResponseBody(input : SearchInResponseBodyRequest) : io.reactivex.Single<SearchInResponseBodyResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.searchInResponseBody", input, SearchInResponseBodyResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Specifies whether to always send extra HTTP headers with the requests from this page.
      */
     fun setExtraHTTPHeaders(input : SetExtraHTTPHeadersRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -522,6 +531,47 @@ data class SetUserAgentOverrideRequest (
      * User agent to use.
      */
     val userAgent : String
+
+)
+
+/**
+ * Represents request frame that can be used with Network.searchInResponseBody method call.
+ *
+ * Searches for given string in response content.
+ */
+data class SearchInResponseBodyRequest (
+    /**
+     * Identifier of the network response to search.
+     */
+    val requestId : RequestId,
+
+    /**
+     * String to search for.
+     */
+    val query : String,
+
+    /**
+     * If true, search is case sensitive.
+     */
+    val caseSensitive : Boolean? = null,
+
+    /**
+     * If true, treats string parameter as regex.
+     */
+    val isRegex : Boolean? = null
+
+)
+
+/**
+ * Represents response frame for Network.searchInResponseBody method call.
+ *
+ * Searches for given string in response content.
+ */
+data class SearchInResponseBodyResponse(
+  /**
+   * List of search matches.
+   */
+  val result : List<pl.wendigo.chrome.domain.debugger.SearchMatch>
 
 )
 
