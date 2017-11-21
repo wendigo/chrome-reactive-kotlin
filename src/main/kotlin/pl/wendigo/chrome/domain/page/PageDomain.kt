@@ -832,6 +832,11 @@ data class NavigateResponse(
   val frameId : FrameId,
 
   /**
+   * Loader identifier.
+   */
+  @pl.wendigo.chrome.Experimental val loaderId : pl.wendigo.chrome.domain.network.LoaderId? = null,
+
+  /**
    * User friendly error message, present if and only if navigation has failed.
    */
   val errorText : String? = null
