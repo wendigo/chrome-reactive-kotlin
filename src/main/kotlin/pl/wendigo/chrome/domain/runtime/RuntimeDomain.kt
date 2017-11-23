@@ -304,7 +304,7 @@ data class EvaluateRequest (
     /**
      * Whether execution should be treated as initiated by user in the UI.
      */
-    @pl.wendigo.chrome.Experimental val userGesture : Boolean? = null,
+    val userGesture : Boolean? = null,
 
     /**
      * Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.
@@ -411,7 +411,7 @@ data class CallFunctionOnRequest (
     /**
      * Whether execution should be treated as initiated by user in the UI.
      */
-    @pl.wendigo.chrome.Experimental val userGesture : Boolean? = null,
+    val userGesture : Boolean? = null,
 
     /**
      * Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.

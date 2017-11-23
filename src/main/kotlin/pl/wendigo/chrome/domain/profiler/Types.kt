@@ -18,7 +18,7 @@ data class ProfileNode(
   /**
    * Number of samples where this node was on top of the call stack.
    */
-  @pl.wendigo.chrome.Experimental val hitCount : Int? = null,
+  val hitCount : Int? = null,
 
   /**
    * Child node ids.
@@ -33,7 +33,7 @@ data class ProfileNode(
   /**
    * An array of source position ticks.
    */
-  @pl.wendigo.chrome.Experimental val positionTicks : List<PositionTickInfo>? = null
+  val positionTicks : List<PositionTickInfo>? = null
 )
 
 /**

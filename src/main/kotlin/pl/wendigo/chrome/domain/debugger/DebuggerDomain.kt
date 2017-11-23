@@ -7,8 +7,8 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     /**
      * Enables debugger for the given page. Clients should not assume that the debugging has been enabled until the result for this command is received.
      */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Debugger.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun enable() : io.reactivex.Single<EnableResponse> {
+        return connectionRemote.runAndCaptureResponse("Debugger.enable", null, EnableResponse::class.java).map {
             it.value()
         }
     }
@@ -88,8 +88,8 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     /**
      *
      */
-    fun pauseOnAsyncTask(input : PauseOnAsyncTaskRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Debugger.pauseOnAsyncTask", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun pauseOnAsyncCall(input : PauseOnAsyncCallRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Debugger.pauseOnAsyncCall", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -144,6 +144,15 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
      */
     fun resume() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Debugger.resume", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns stack trace with given <code>stackTraceId</code>.
+     */
+    fun getStackTrace(input : GetStackTraceRequest) : io.reactivex.Single<GetStackTraceResponse> {
+        return connectionRemote.runAndCaptureResponse("Debugger.getStackTrace", input, GetStackTraceResponse::class.java).map {
             it.value()
         }
     }
@@ -338,6 +347,19 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
 }
 
 /**
+ * Represents response frame for Debugger.enable method call.
+ *
+ * Enables debugger for the given page. Clients should not assume that the debugging has been enabled until the result for this command is received.
+ */
+data class EnableResponse(
+  /**
+   * Unique identifier of the debugger.
+   */
+  @pl.wendigo.chrome.Experimental val debuggerId : pl.wendigo.chrome.domain.runtime.UniqueDebuggerId
+
+)
+
+/**
  * Represents request frame that can be used with Debugger.setBreakpointsActive method call.
  *
  * Activates / deactivates all breakpoints on the page.
@@ -387,7 +409,7 @@ data class SetBreakpointByUrlRequest (
     /**
      * Script hash of the resources to set breakpoint on.
      */
-    @pl.wendigo.chrome.Experimental val scriptHash : String? = null,
+    val scriptHash : String? = null,
 
     /**
      * Offset in the line to set breakpoint at.
@@ -518,20 +540,20 @@ data class ContinueToLocationRequest (
     /**
      *
      */
-    @pl.wendigo.chrome.Experimental val targetCallFrames : String? = null
+    val targetCallFrames : String? = null
 
 )
 
 /**
- * Represents request frame that can be used with Debugger.pauseOnAsyncTask method call.
+ * Represents request frame that can be used with Debugger.pauseOnAsyncCall method call.
  *
  *
  */
-data class PauseOnAsyncTaskRequest (
+data class PauseOnAsyncCallRequest (
     /**
-     * Debugger will pause when given async task is started.
+     * Debugger will pause when async call with given stack trace is started.
      */
-    val asyncTaskId : pl.wendigo.chrome.domain.runtime.AsyncTaskId
+    val parentStackTraceId : pl.wendigo.chrome.domain.runtime.StackTraceId
 
 )
 
@@ -545,6 +567,32 @@ data class StepIntoRequest (
      * Debugger will issue additional Debugger.paused notification if any async task is scheduled before next pause.
      */
     @pl.wendigo.chrome.Experimental val breakOnAsyncCall : Boolean? = null
+
+)
+
+/**
+ * Represents request frame that can be used with Debugger.getStackTrace method call.
+ *
+ * Returns stack trace with given <code>stackTraceId</code>.
+ */
+data class GetStackTraceRequest (
+    /**
+     *
+     */
+    val stackTraceId : pl.wendigo.chrome.domain.runtime.StackTraceId
+
+)
+
+/**
+ * Represents response frame for Debugger.getStackTrace method call.
+ *
+ * Returns stack trace with given <code>stackTraceId</code>.
+ */
+data class GetStackTraceResponse(
+  /**
+   *
+   */
+  val stackTrace : pl.wendigo.chrome.domain.runtime.StackTrace
 
 )
 
@@ -634,6 +682,11 @@ data class SetScriptSourceResponse(
   val asyncStackTrace : pl.wendigo.chrome.domain.runtime.StackTrace? = null,
 
   /**
+   * Async stack trace, if any.
+   */
+  @pl.wendigo.chrome.Experimental val asyncStackTraceId : pl.wendigo.chrome.domain.runtime.StackTraceId? = null,
+
+  /**
    * Exception details if any.
    */
   val exceptionDetails : pl.wendigo.chrome.domain.runtime.ExceptionDetails? = null
@@ -667,7 +720,12 @@ data class RestartFrameResponse(
   /**
    * Async stack trace, if any.
    */
-  val asyncStackTrace : pl.wendigo.chrome.domain.runtime.StackTrace? = null
+  val asyncStackTrace : pl.wendigo.chrome.domain.runtime.StackTrace? = null,
+
+  /**
+   * Async stack trace, if any.
+   */
+  @pl.wendigo.chrome.Experimental val asyncStackTraceId : pl.wendigo.chrome.domain.runtime.StackTraceId? = null
 
 )
 
@@ -754,7 +812,7 @@ data class EvaluateOnCallFrameRequest (
     /**
      * Whether to throw an exception if side effect cannot be ruled out during evaluation.
      */
-    @pl.wendigo.chrome.Experimental val throwOnSideEffect : Boolean? = null
+    val throwOnSideEffect : Boolean? = null
 
 )
 
@@ -925,17 +983,17 @@ data class ScriptParsedEvent(
   /**
    * True, if this script has sourceURL.
    */
-  @pl.wendigo.chrome.Experimental val hasSourceURL : Boolean? = null,
+  val hasSourceURL : Boolean? = null,
 
   /**
    * True, if this script is ES6 module.
    */
-  @pl.wendigo.chrome.Experimental val isModule : Boolean? = null,
+  val isModule : Boolean? = null,
 
   /**
    * This script length.
    */
-  @pl.wendigo.chrome.Experimental val length : Int? = null,
+  val length : Int? = null,
 
   /**
    * JavaScript top stack frame of where the script parsed event was triggered if available.
@@ -1003,17 +1061,17 @@ data class ScriptFailedToParseEvent(
   /**
    * True, if this script has sourceURL.
    */
-  @pl.wendigo.chrome.Experimental val hasSourceURL : Boolean? = null,
+  val hasSourceURL : Boolean? = null,
 
   /**
    * True, if this script is ES6 module.
    */
-  @pl.wendigo.chrome.Experimental val isModule : Boolean? = null,
+  val isModule : Boolean? = null,
 
   /**
    * This script length.
    */
-  @pl.wendigo.chrome.Experimental val length : Int? = null,
+  val length : Int? = null,
 
   /**
    * JavaScript top stack frame of where the script parsed event was triggered if available.
@@ -1072,9 +1130,14 @@ data class PausedEvent(
   val asyncStackTrace : pl.wendigo.chrome.domain.runtime.StackTrace? = null,
 
   /**
-   * Scheduled async task id.
+   * Async stack trace, if any.
    */
-  @pl.wendigo.chrome.Experimental val scheduledAsyncTaskId : pl.wendigo.chrome.domain.runtime.AsyncTaskId? = null
+  @pl.wendigo.chrome.Experimental val asyncStackTraceId : pl.wendigo.chrome.domain.runtime.StackTraceId? = null,
+
+  /**
+   * Just scheduled async call will have this stack trace as parent stack during async execution. This field is available only after <code>Debugger.stepInto</code> call with <code>breakOnAsynCall</code> flag.
+   */
+  @pl.wendigo.chrome.Experimental val asyncCallStackTraceId : pl.wendigo.chrome.domain.runtime.StackTraceId? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Debugger", name = "paused")
 

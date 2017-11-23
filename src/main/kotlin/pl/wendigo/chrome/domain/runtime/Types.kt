@@ -421,14 +421,30 @@ data class StackTrace(
   val parent : StackTrace? = null,
 
   /**
-   * Creation frame of the Promise which produced the next synchronous trace when resolved, if available.
+   * Asynchronous JavaScript stack trace that preceded this stack, if available.
    */
-  @pl.wendigo.chrome.Experimental val promiseCreationFrame : CallFrame? = null
+  @pl.wendigo.chrome.Experimental val parentId : StackTraceId? = null
 )
 
 /**
- *
+ * Unique identifier of current debugger.
  */
 
-typealias AsyncTaskId = String
+typealias UniqueDebuggerId = String
+
+/**
+ * If &lt;code&gt;debuggerId&lt;/code&gt; is set stack trace comes from another debugger and can be resolved there. This allows to track cross-debugger calls. See &lt;code&gt;Runtime.StackTrace&lt;/code&gt; and &lt;code&gt;Debugger.paused&lt;/code&gt; for usages.
+ */
+
+data class StackTraceId(
+  /**
+   *
+   */
+  val id : String,
+
+  /**
+   *
+   */
+  val debuggerId : UniqueDebuggerId? = null
+)
 

@@ -234,7 +234,7 @@ data class SetDeviceMetricsOverrideRequest (
     /**
      * Scale to apply to resulting view image.
      */
-    val scale : Double? = null,
+    @pl.wendigo.chrome.Experimental val scale : Double? = null,
 
     /**
      * Overriding screen width value in pixels (minimum 0, maximum 10000000).

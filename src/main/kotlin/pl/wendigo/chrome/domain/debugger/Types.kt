@@ -67,7 +67,7 @@ data class CallFrame(
   /**
    * Location in the source code.
    */
-  @pl.wendigo.chrome.Experimental val functionLocation : Location? = null,
+  val functionLocation : Location? = null,
 
   /**
    * Location in the source code.

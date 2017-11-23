@@ -834,7 +834,7 @@ data class NavigateResponse(
   /**
    * Loader identifier.
    */
-  @pl.wendigo.chrome.Experimental val loaderId : pl.wendigo.chrome.domain.network.LoaderId? = null,
+  val loaderId : pl.wendigo.chrome.domain.network.LoaderId? = null,
 
   /**
    * User friendly error message, present if and only if navigation has failed.

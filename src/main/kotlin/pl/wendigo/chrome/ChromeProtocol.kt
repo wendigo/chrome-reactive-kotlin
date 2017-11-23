@@ -363,7 +363,7 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
     }
 
     /**
-     * Provides information about the protocol schema.
+     * This domain is deprecated.
      */
     val Schema : pl.wendigo.chrome.domain.schema.SchemaDomain by lazy {
         pl.wendigo.chrome.domain.schema.SchemaDomain(api)

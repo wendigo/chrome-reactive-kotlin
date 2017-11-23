@@ -18,7 +18,7 @@ data class Animation(
   /**
    * <code>Animation</code>'s internal paused state.
    */
-  @pl.wendigo.chrome.Experimental val pausedState : Boolean,
+  val pausedState : Boolean,
 
   /**
    * <code>Animation</code>'s play state.
