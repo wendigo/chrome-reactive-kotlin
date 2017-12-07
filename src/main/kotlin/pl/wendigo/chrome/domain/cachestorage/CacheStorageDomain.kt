@@ -5,24 +5,6 @@ package pl.wendigo.chrome.domain.cachestorage
  */
 class CacheStorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Requests cache names.
-     */
-    fun requestCacheNames(input : RequestCacheNamesRequest) : io.reactivex.Single<RequestCacheNamesResponse> {
-        return connectionRemote.runAndCaptureResponse("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Requests data from cache.
-     */
-    fun requestEntries(input : RequestEntriesRequest) : io.reactivex.Single<RequestEntriesResponse> {
-        return connectionRemote.runAndCaptureResponse("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Deletes a cache.
      */
     fun deleteCache(input : DeleteCacheRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -41,10 +23,28 @@ class CacheStorageDomain internal constructor(private val connectionRemote : pl.
     }
 
     /**
+     * Requests cache names.
+     */
+    fun requestCacheNames(input : RequestCacheNamesRequest) : io.reactivex.Single<RequestCacheNamesResponse> {
+        return connectionRemote.runAndCaptureResponse("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Fetches cache entry.
      */
     fun requestCachedResponse(input : RequestCachedResponseRequest) : io.reactivex.Single<RequestCachedResponseResponse> {
         return connectionRemote.runAndCaptureResponse("CacheStorage.requestCachedResponse", input, RequestCachedResponseResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Requests data from cache.
+     */
+    fun requestEntries(input : RequestEntriesRequest) : io.reactivex.Single<RequestEntriesResponse> {
+        return connectionRemote.runAndCaptureResponse("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java).map {
             it.value()
         }
     }
@@ -58,6 +58,37 @@ class CacheStorageDomain internal constructor(private val connectionRemote : pl.
         }
     }
 }
+/**
+ * Represents request frame that can be used with CacheStorage.deleteCache method call.
+ *
+ * Deletes a cache.
+ */
+data class DeleteCacheRequest (
+    /**
+     * Id of cache for deletion.
+     */
+    val cacheId : CacheId
+
+)
+
+/**
+ * Represents request frame that can be used with CacheStorage.deleteEntry method call.
+ *
+ * Deletes a cache entry.
+ */
+data class DeleteEntryRequest (
+    /**
+     * Id of cache where the entry will be deleted.
+     */
+    val cacheId : CacheId,
+
+    /**
+     * URL spec of the request.
+     */
+    val request : String
+
+)
+
 /**
  * Represents request frame that can be used with CacheStorage.requestCacheNames method call.
  *
@@ -81,6 +112,37 @@ data class RequestCacheNamesResponse(
    * Caches for the security origin.
    */
   val caches : List<Cache>
+
+)
+
+/**
+ * Represents request frame that can be used with CacheStorage.requestCachedResponse method call.
+ *
+ * Fetches cache entry.
+ */
+data class RequestCachedResponseRequest (
+    /**
+     * Id of cache that contains the enty.
+     */
+    val cacheId : CacheId,
+
+    /**
+     * URL spec of the request.
+     */
+    val requestURL : String
+
+)
+
+/**
+ * Represents response frame for CacheStorage.requestCachedResponse method call.
+ *
+ * Fetches cache entry.
+ */
+data class RequestCachedResponseResponse(
+  /**
+   * Response read from the cache.
+   */
+  val response : CachedResponse
 
 )
 
@@ -122,68 +184,6 @@ data class RequestEntriesResponse(
    * If true, there are more entries to fetch in the given range.
    */
   val hasMore : Boolean
-
-)
-
-/**
- * Represents request frame that can be used with CacheStorage.deleteCache method call.
- *
- * Deletes a cache.
- */
-data class DeleteCacheRequest (
-    /**
-     * Id of cache for deletion.
-     */
-    val cacheId : CacheId
-
-)
-
-/**
- * Represents request frame that can be used with CacheStorage.deleteEntry method call.
- *
- * Deletes a cache entry.
- */
-data class DeleteEntryRequest (
-    /**
-     * Id of cache where the entry will be deleted.
-     */
-    val cacheId : CacheId,
-
-    /**
-     * URL spec of the request.
-     */
-    val request : String
-
-)
-
-/**
- * Represents request frame that can be used with CacheStorage.requestCachedResponse method call.
- *
- * Fetches cache entry.
- */
-data class RequestCachedResponseRequest (
-    /**
-     * Id of cache that contains the enty.
-     */
-    val cacheId : CacheId,
-
-    /**
-     * URL spec of the request.
-     */
-    val requestURL : String
-
-)
-
-/**
- * Represents response frame for CacheStorage.requestCachedResponse method call.
- *
- * Fetches cache entry.
- */
-data class RequestCachedResponseResponse(
-  /**
-   * Response read from the cache.
-   */
-  val response : CachedResponse
 
 )
 

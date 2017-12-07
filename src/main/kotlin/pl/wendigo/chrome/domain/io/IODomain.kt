@@ -5,19 +5,19 @@ package pl.wendigo.chrome.domain.io
  */
 class IODomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Read a chunk of the stream
+     * Close the stream, discard any temporary backing storage.
      */
-    fun read(input : ReadRequest) : io.reactivex.Single<ReadResponse> {
-        return connectionRemote.runAndCaptureResponse("IO.read", input, ReadResponse::class.java).map {
+    fun close(input : CloseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Close the stream, discard any temporary backing storage.
+     * Read a chunk of the stream
      */
-    fun close(input : CloseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun read(input : ReadRequest) : io.reactivex.Single<ReadResponse> {
+        return connectionRemote.runAndCaptureResponse("IO.read", input, ReadResponse::class.java).map {
             it.value()
         }
     }
@@ -41,6 +41,19 @@ class IODomain internal constructor(private val connectionRemote : pl.wendigo.ch
     }
 }
 /**
+ * Represents request frame that can be used with IO.close method call.
+ *
+ * Close the stream, discard any temporary backing storage.
+ */
+data class CloseRequest (
+    /**
+     * Handle of the stream to close.
+     */
+    val handle : StreamHandle
+
+)
+
+/**
  * Represents request frame that can be used with IO.read method call.
  *
  * Read a chunk of the stream
@@ -52,7 +65,8 @@ data class ReadRequest (
     val handle : StreamHandle,
 
     /**
-     * Seek to the specified offset before reading (if not specificed, proceed with offset following the last read).
+     * Seek to the specified offset before reading (if not specificed, proceed with offset
+following the last read).
      */
     val offset : Int? = null,
 
@@ -83,19 +97,6 @@ data class ReadResponse(
    * Set if the end-of-file condition occured while reading.
    */
   val eof : Boolean
-
-)
-
-/**
- * Represents request frame that can be used with IO.close method call.
- *
- * Close the stream, discard any temporary backing storage.
- */
-data class CloseRequest (
-    /**
-     * Handle of the stream to close.
-     */
-    val handle : StreamHandle
 
 )
 

@@ -47,7 +47,8 @@ data class GetPartialAXTreeRequest (
  */
 data class GetPartialAXTreeResponse(
   /**
-   * The <code>Accessibility.AXNode</code> for this DOM node, if it exists, plus its ancestors, siblings and children, if requested.
+   * The `Accessibility.AXNode` for this DOM node, if it exists, plus its ancestors, siblings and
+children, if requested.
    */
   val nodes : List<AXNode>
 

@@ -7,7 +7,9 @@ package pl.wendigo.chrome.domain.css
 typealias StyleSheetId = String
 
 /**
- * Stylesheet type: &quot;injected&quot; for stylesheets injected via extension, &quot;user-agent&quot; for user-agent stylesheets, &quot;inspector&quot; for stylesheets created by the inspector (i.e. those holding the &quot;via inspector&quot; rules), &quot;regular&quot; for regular stylesheets.
+ * Stylesheet type: &quot;injected&quot; for stylesheets injected via extension, &quot;user-agent&quot; for user-agent
+stylesheets, &quot;inspector&quot; for stylesheets created by the inspector (i.e. those holding the &quot;via
+inspector&quot; rules), &quot;regular&quot; for regular stylesheets.
  */
 enum class StyleSheetOrigin {
     @com.fasterxml.jackson.annotation.JsonProperty("injected") INJECTED,
@@ -147,7 +149,8 @@ data class CSSStyleSheetHeader(
   val hasSourceURL : Boolean? = null,
 
   /**
-   * Whether this stylesheet is created for STYLE tag by parser. This flag is not set for document.written STYLE tags.
+   * Whether this stylesheet is created for STYLE tag by parser. This flag is not set for
+document.written STYLE tags.
    */
   val isInline : Boolean,
 
@@ -173,7 +176,8 @@ data class CSSStyleSheetHeader(
 
 data class CSSRule(
   /**
-   * The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
+   * The css style sheet identifier (absent for user agent stylesheet and user-specified
+stylesheet rules) this rule came from.
    */
   val styleSheetId : StyleSheetId? = null,
 
@@ -193,7 +197,8 @@ data class CSSRule(
   val style : CSSStyle,
 
   /**
-   * Media list array (for rules involving media queries). The array enumerates media queries starting with the innermost one, going outwards.
+   * Media list array (for rules involving media queries). The array enumerates media queries
+starting with the innermost one, going outwards.
    */
   val media : List<CSSMedia>? = null
 )
@@ -204,7 +209,8 @@ data class CSSRule(
 
 data class RuleUsage(
   /**
-   * The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
+   * The css style sheet identifier (absent for user agent stylesheet and user-specified
+stylesheet rules) this rule came from.
    */
   val styleSheetId : StyleSheetId,
 
@@ -266,7 +272,7 @@ data class ShorthandEntry(
   val value : String,
 
   /**
-   * Whether the property has "!important" annotation (implies <code>false</code> if absent).
+   * Whether the property has "!important" annotation (implies `false` if absent).
    */
   val important : Boolean? = null
 )
@@ -293,7 +299,8 @@ data class CSSComputedStyleProperty(
 
 data class CSSStyle(
   /**
-   * The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
+   * The css style sheet identifier (absent for user agent stylesheet and user-specified
+stylesheet rules) this rule came from.
    */
   val styleSheetId : StyleSheetId? = null,
 
@@ -334,12 +341,12 @@ data class CSSProperty(
   val value : String,
 
   /**
-   * Whether the property has "!important" annotation (implies <code>false</code> if absent).
+   * Whether the property has "!important" annotation (implies `false` if absent).
    */
   val important : Boolean? = null,
 
   /**
-   * Whether the property is implicit (implies <code>false</code> if absent).
+   * Whether the property is implicit (implies `false` if absent).
    */
   val implicit : Boolean? = null,
 
@@ -349,7 +356,7 @@ data class CSSProperty(
   val text : String? = null,
 
   /**
-   * Whether the property is understood by the browser (implies <code>true</code> if absent).
+   * Whether the property is understood by the browser (implies `true` if absent).
    */
   val parsedOk : Boolean? = null,
 
@@ -375,7 +382,10 @@ data class CSSMedia(
   val text : String,
 
   /**
-   * Source of the media query: "mediaRule" if specified by a @media rule, "importRule" if specified by an @import rule, "linkedSheet" if specified by a "media" attribute in a linked stylesheet's LINK tag, "inlineSheet" if specified by a "media" attribute in an inline stylesheet's STYLE tag.
+   * Source of the media query: "mediaRule" if specified by a @media rule, "importRule" if
+specified by an @import rule, "linkedSheet" if specified by a "media" attribute in a linked
+stylesheet's LINK tag, "inlineSheet" if specified by a "media" attribute in an inline
+stylesheet's STYLE tag.
    */
   val source : String,
 
@@ -385,7 +395,8 @@ data class CSSMedia(
   val sourceURL : String? = null,
 
   /**
-   * The associated rule (@media or @import) header range in the enclosing stylesheet (if available).
+   * The associated rule (@media or @import) header range in the enclosing stylesheet (if
+available).
    */
   val range : SourceRange? = null,
 
@@ -490,7 +501,8 @@ data class CSSKeyframesRule(
 
 data class CSSKeyframeRule(
   /**
-   * The css style sheet identifier (absent for user agent stylesheet and user-specified stylesheet rules) this rule came from.
+   * The css style sheet identifier (absent for user agent stylesheet and user-specified
+stylesheet rules) this rule came from.
    */
   val styleSheetId : StyleSheetId? = null,
 

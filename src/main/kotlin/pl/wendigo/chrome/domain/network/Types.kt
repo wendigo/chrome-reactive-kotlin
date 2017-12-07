@@ -70,7 +70,8 @@ enum class ConnectionType {
 }
 
 /**
- * Represents the cookie&apos;s &apos;SameSite&apos; status: https://tools.ietf.org/html/draft-west-first-party-cookies
+ * Represents the cookie&apos;s &apos;SameSite&apos; status:
+https://tools.ietf.org/html/draft-west-first-party-cookies
  */
 enum class CookieSameSite {
     @com.fasterxml.jackson.annotation.JsonProperty("Strict") STRICT,
@@ -83,7 +84,8 @@ enum class CookieSameSite {
 
 data class ResourceTiming(
   /**
-   * Timing's requestTime is a baseline in seconds, while the other numbers are ticks in milliseconds relatively to this requestTime.
+   * Timing's requestTime is a baseline in seconds, while the other numbers are ticks in
+milliseconds relatively to this requestTime.
    */
   val requestTime : Double,
 
@@ -560,7 +562,8 @@ data class Initiator(
   val url : String? = null,
 
   /**
-   * Initiator line number, set for Parser type or for Script type (when script is importing module) (0-based).
+   * Initiator line number, set for Parser type or for Script type (when script is importing
+module) (0-based).
    */
   val lineNumber : Double? = null
 )
@@ -637,7 +640,8 @@ data class CookieParam(
   val value : String,
 
   /**
-   * The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
+   * The request-URI to associate with the setting of the cookie. This value can affect the
+default domain and path values of the created cookie.
    */
   val url : String? = null,
 
@@ -704,23 +708,28 @@ data class AuthChallenge(
 
 data class AuthChallengeResponse(
   /**
-   * The decision on what to do in response to the authorization challenge.  Default means deferring to the default behavior of the net stack, which will likely either the Cancel authentication or display a popup dialog box.
+   * The decision on what to do in response to the authorization challenge.  Default means
+deferring to the default behavior of the net stack, which will likely either the Cancel
+authentication or display a popup dialog box.
    */
   val response : String,
 
   /**
-   * The username to provide, possibly empty. Should only be set if response is ProvideCredentials.
+   * The username to provide, possibly empty. Should only be set if response is
+ProvideCredentials.
    */
   val username : String? = null,
 
   /**
-   * The password to provide, possibly empty. Should only be set if response is ProvideCredentials.
+   * The password to provide, possibly empty. Should only be set if response is
+ProvideCredentials.
    */
   val password : String? = null
 )
 
 /**
- * Stages of the interception to begin intercepting. Request will intercept before the request is sent. Response will intercept after the response is received.
+ * Stages of the interception to begin intercepting. Request will intercept before the request is
+sent. Response will intercept after the response is received.
  */
 enum class InterceptionStage {
     @com.fasterxml.jackson.annotation.JsonProperty("Request") REQUEST,
@@ -733,7 +742,8 @@ enum class InterceptionStage {
 
 data class RequestPattern(
   /**
-   * Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is backslash. Omitting is equivalent to "*".
+   * Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is
+backslash. Omitting is equivalent to "*".
    */
   val urlPattern : String? = null,
 

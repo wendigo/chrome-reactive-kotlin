@@ -5,19 +5,19 @@ package pl.wendigo.chrome.domain.security
  */
 class SecurityDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Enables tracking security state changes.
+     * Disables tracking security state changes.
      */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Disables tracking security state changes.
+     * Enables tracking security state changes.
      */
-    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -32,12 +32,33 @@ class SecurityDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Enable/disable overriding certificate errors. If enabled, all certificate error events need to be handled by the DevTools client and should be answered with handleCertificateError commands.
+     * Enable/disable overriding certificate errors. If enabled, all certificate error events need to
+be handled by the DevTools client and should be answered with handleCertificateError commands.
      */
     fun setOverrideCertificateErrors(input : SetOverrideCertificateErrorsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Security.setOverrideCertificateErrors", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
+    }
+
+    /**
+     * There is a certificate error. If overriding certificate errors is enabled, then it should be
+handled with the handleCertificateError command. Note: this event does not fire if the
+certificate error has been allowed internally.
+     */
+    fun certificateError() : io.reactivex.Flowable<CertificateErrorEvent> {
+        return certificateErrorTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * There is a certificate error. If overriding certificate errors is enabled, then it should be
+handled with the handleCertificateError command. Note: this event does not fire if the
+certificate error has been allowed internally.
+     */
+    fun certificateErrorTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<CertificateErrorEvent>> {
+        return connectionRemote.captureEvents("Security.certificateError", CertificateErrorEvent::class.java)
     }
 
     /**
@@ -54,22 +75,6 @@ class SecurityDomain internal constructor(private val connectionRemote : pl.wend
      */
     fun securityStateChangedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<SecurityStateChangedEvent>> {
         return connectionRemote.captureEvents("Security.securityStateChanged", SecurityStateChangedEvent::class.java)
-    }
-
-    /**
-     * There is a certificate error. If overriding certificate errors is enabled, then it should be handled with the handleCertificateError command. Note: this event does not fire if the certificate error has been allowed internally.
-     */
-    fun certificateError() : io.reactivex.Flowable<CertificateErrorEvent> {
-        return certificateErrorTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * There is a certificate error. If overriding certificate errors is enabled, then it should be handled with the handleCertificateError command. Note: this event does not fire if the certificate error has been allowed internally.
-     */
-    fun certificateErrorTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<CertificateErrorEvent>> {
-        return connectionRemote.captureEvents("Security.certificateError", CertificateErrorEvent::class.java)
     }
 
     /**
@@ -103,7 +108,8 @@ data class HandleCertificateErrorRequest (
 /**
  * Represents request frame that can be used with Security.setOverrideCertificateErrors method call.
  *
- * Enable/disable overriding certificate errors. If enabled, all certificate error events need to be handled by the DevTools client and should be answered with handleCertificateError commands.
+ * Enable/disable overriding certificate errors. If enabled, all certificate error events need to
+be handled by the DevTools client and should be answered with handleCertificateError commands.
  */
 data class SetOverrideCertificateErrorsRequest (
     /**
@@ -114,42 +120,11 @@ data class SetOverrideCertificateErrorsRequest (
 )
 
 /**
- * Represents event frames for Security.securityStateChanged
- *
- * The security state of the page changed.
- */
-data class SecurityStateChangedEvent(
-  /**
-   * Security state.
-   */
-  val securityState : SecurityState,
-
-  /**
-   * True if the page was loaded over cryptographic transport such as HTTPS.
-   */
-  val schemeIsCryptographic : Boolean,
-
-  /**
-   * List of explanations for the security state. If the overall security state is `insecure` or `warning`, at least one corresponding explanation should be included.
-   */
-  val explanations : List<SecurityStateExplanation>,
-
-  /**
-   * Information about insecure content on the page.
-   */
-  val insecureContentStatus : InsecureContentStatus,
-
-  /**
-   * Overrides user-visible description of the state.
-   */
-  val summary : String? = null
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Security", name = "securityStateChanged")
-
-/**
  * Represents event frames for Security.certificateError
  *
- * There is a certificate error. If overriding certificate errors is enabled, then it should be handled with the handleCertificateError command. Note: this event does not fire if the certificate error has been allowed internally.
+ * There is a certificate error. If overriding certificate errors is enabled, then it should be
+handled with the handleCertificateError command. Note: this event does not fire if the
+certificate error has been allowed internally.
  */
 data class CertificateErrorEvent(
   /**
@@ -168,4 +143,38 @@ data class CertificateErrorEvent(
   val requestURL : String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Security", name = "certificateError")
+
+/**
+ * Represents event frames for Security.securityStateChanged
+ *
+ * The security state of the page changed.
+ */
+data class SecurityStateChangedEvent(
+  /**
+   * Security state.
+   */
+  val securityState : SecurityState,
+
+  /**
+   * True if the page was loaded over cryptographic transport such as HTTPS.
+   */
+  val schemeIsCryptographic : Boolean,
+
+  /**
+   * List of explanations for the security state. If the overall security state is `insecure` or
+`warning`, at least one corresponding explanation should be included.
+   */
+  val explanations : List<SecurityStateExplanation>,
+
+  /**
+   * Information about insecure content on the page.
+   */
+  val insecureContentStatus : InsecureContentStatus,
+
+  /**
+   * Overrides user-visible description of the state.
+   */
+  val summary : String? = null
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Security", name = "securityStateChanged")
 

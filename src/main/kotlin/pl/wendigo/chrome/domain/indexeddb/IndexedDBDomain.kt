@@ -5,51 +5,6 @@ package pl.wendigo.chrome.domain.indexeddb
  */
 class IndexedDBDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Enables events from backend.
-     */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Disables events from backend.
-     */
-    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Requests database names for given security origin.
-     */
-    fun requestDatabaseNames(input : RequestDatabaseNamesRequest) : io.reactivex.Single<RequestDatabaseNamesResponse> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Requests database with given name in given frame.
-     */
-    fun requestDatabase(input : RequestDatabaseRequest) : io.reactivex.Single<RequestDatabaseResponse> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Requests data from object store or index.
-     */
-    fun requestData(input : RequestDataRequest) : io.reactivex.Single<RequestDataResponse> {
-        return connectionRemote.runAndCaptureResponse("IndexedDB.requestData", input, RequestDataResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Clears all entries from an object store.
      */
     fun clearObjectStore(input : ClearObjectStoreRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -68,6 +23,51 @@ class IndexedDBDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
+     * Disables events from backend.
+     */
+    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Enables events from backend.
+     */
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Requests data from object store or index.
+     */
+    fun requestData(input : RequestDataRequest) : io.reactivex.Single<RequestDataResponse> {
+        return connectionRemote.runAndCaptureResponse("IndexedDB.requestData", input, RequestDataResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Requests database with given name in given frame.
+     */
+    fun requestDatabase(input : RequestDatabaseRequest) : io.reactivex.Single<RequestDatabaseResponse> {
+        return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Requests database names for given security origin.
+     */
+    fun requestDatabaseNames(input : RequestDatabaseNamesRequest) : io.reactivex.Single<RequestDatabaseNamesResponse> {
+        return connectionRemote.runAndCaptureResponse("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns flowable capturing all IndexedDB domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -76,39 +76,35 @@ class IndexedDBDomain internal constructor(private val connectionRemote : pl.wen
         }
     }
 }
-
 /**
- * Represents request frame that can be used with IndexedDB.requestDatabaseNames method call.
+ * Represents request frame that can be used with IndexedDB.clearObjectStore method call.
  *
- * Requests database names for given security origin.
+ * Clears all entries from an object store.
  */
-data class RequestDatabaseNamesRequest (
+data class ClearObjectStoreRequest (
     /**
      * Security origin.
      */
-    val securityOrigin : String
+    val securityOrigin : String,
+
+    /**
+     * Database name.
+     */
+    val databaseName : String,
+
+    /**
+     * Object store name.
+     */
+    val objectStoreName : String
 
 )
 
 /**
- * Represents response frame for IndexedDB.requestDatabaseNames method call.
+ * Represents request frame that can be used with IndexedDB.deleteDatabase method call.
  *
- * Requests database names for given security origin.
+ * Deletes a database.
  */
-data class RequestDatabaseNamesResponse(
-  /**
-   * Database names for origin.
-   */
-  val databaseNames : List<String>
-
-)
-
-/**
- * Represents request frame that can be used with IndexedDB.requestDatabase method call.
- *
- * Requests database with given name in given frame.
- */
-data class RequestDatabaseRequest (
+data class DeleteDatabaseRequest (
     /**
      * Security origin.
      */
@@ -118,19 +114,6 @@ data class RequestDatabaseRequest (
      * Database name.
      */
     val databaseName : String
-
-)
-
-/**
- * Represents response frame for IndexedDB.requestDatabase method call.
- *
- * Requests database with given name in given frame.
- */
-data class RequestDatabaseResponse(
-  /**
-   * Database with an array of object stores.
-   */
-  val databaseWithObjectStores : DatabaseWithObjectStores
 
 )
 
@@ -196,34 +179,11 @@ data class RequestDataResponse(
 )
 
 /**
- * Represents request frame that can be used with IndexedDB.clearObjectStore method call.
+ * Represents request frame that can be used with IndexedDB.requestDatabase method call.
  *
- * Clears all entries from an object store.
+ * Requests database with given name in given frame.
  */
-data class ClearObjectStoreRequest (
-    /**
-     * Security origin.
-     */
-    val securityOrigin : String,
-
-    /**
-     * Database name.
-     */
-    val databaseName : String,
-
-    /**
-     * Object store name.
-     */
-    val objectStoreName : String
-
-)
-
-/**
- * Represents request frame that can be used with IndexedDB.deleteDatabase method call.
- *
- * Deletes a database.
- */
-data class DeleteDatabaseRequest (
+data class RequestDatabaseRequest (
     /**
      * Security origin.
      */
@@ -233,6 +193,45 @@ data class DeleteDatabaseRequest (
      * Database name.
      */
     val databaseName : String
+
+)
+
+/**
+ * Represents response frame for IndexedDB.requestDatabase method call.
+ *
+ * Requests database with given name in given frame.
+ */
+data class RequestDatabaseResponse(
+  /**
+   * Database with an array of object stores.
+   */
+  val databaseWithObjectStores : DatabaseWithObjectStores
+
+)
+
+/**
+ * Represents request frame that can be used with IndexedDB.requestDatabaseNames method call.
+ *
+ * Requests database names for given security origin.
+ */
+data class RequestDatabaseNamesRequest (
+    /**
+     * Security origin.
+     */
+    val securityOrigin : String
+
+)
+
+/**
+ * Represents response frame for IndexedDB.requestDatabaseNames method call.
+ *
+ * Requests database names for given security origin.
+ */
+data class RequestDatabaseNamesResponse(
+  /**
+   * Database names for origin.
+   */
+  val databaseNames : List<String>
 
 )
 

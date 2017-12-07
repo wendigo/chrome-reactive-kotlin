@@ -15,22 +15,22 @@ enum class DOMBreakpointType {
 
 data class EventListener(
   /**
-   * <code>EventListener</code>'s type.
+   * `EventListener`'s type.
    */
   val type : String,
 
   /**
-   * <code>EventListener</code>'s useCapture.
+   * `EventListener`'s useCapture.
    */
   val useCapture : Boolean,
 
   /**
-   * <code>EventListener</code>'s passive flag.
+   * `EventListener`'s passive flag.
    */
   val passive : Boolean,
 
   /**
-   * <code>EventListener</code>'s once flag.
+   * `EventListener`'s once flag.
    */
   val once : Boolean,
 

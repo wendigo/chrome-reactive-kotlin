@@ -7,7 +7,8 @@ package pl.wendigo.chrome.domain.security
 typealias CertificateId = Int
 
 /**
- * A description of mixed content (HTTP resources on HTTPS pages), as defined by https://www.w3.org/TR/mixed-content/#categories
+ * A description of mixed content (HTTP resources on HTTPS pages), as defined by
+https://www.w3.org/TR/mixed-content/#categories
  */
 enum class MixedContentType {
     @com.fasterxml.jackson.annotation.JsonProperty("blockable") BLOCKABLE,
@@ -78,12 +79,14 @@ data class InsecureContentStatus(
   val containedMixedForm : Boolean,
 
   /**
-   * True if the page was loaded over HTTPS without certificate errors, and ran content such as scripts that were loaded with certificate errors.
+   * True if the page was loaded over HTTPS without certificate errors, and ran content such as
+scripts that were loaded with certificate errors.
    */
   val ranContentWithCertErrors : Boolean,
 
   /**
-   * True if the page was loaded over HTTPS without certificate errors, and displayed content such as images that were loaded with certificate errors.
+   * True if the page was loaded over HTTPS without certificate errors, and displayed content
+such as images that were loaded with certificate errors.
    */
   val displayedContentWithCertErrors : Boolean,
 
@@ -99,7 +102,8 @@ data class InsecureContentStatus(
 )
 
 /**
- * The action to take when a certificate error occurs. continue will continue processing the request and cancel will cancel the request.
+ * The action to take when a certificate error occurs. continue will continue processing the
+request and cancel will cancel the request.
  */
 enum class CertificateErrorAction {
     @com.fasterxml.jackson.annotation.JsonProperty("continue") CONTINUE,

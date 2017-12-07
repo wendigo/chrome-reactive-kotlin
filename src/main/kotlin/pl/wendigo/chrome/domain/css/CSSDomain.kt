@@ -1,14 +1,38 @@
 package pl.wendigo.chrome.domain.css
 
 /**
- * This domain exposes CSS read/write operations. All CSS objects (stylesheets, rules, and styles) have an associated <code>id</code> used in subsequent operations on the related object. Each object type has a specific <code>id</code> structure, and those are not interchangeable between objects of different kinds. CSS objects can be loaded using the <code>get*ForNode()</code> calls (which accept a DOM node id). A client can also keep track of stylesheets via the <code>styleSheetAdded</code>/<code>styleSheetRemoved</code> events and subsequently load the required stylesheet contents using the <code>getStyleSheet[Text]()</code> methods.
+ * This domain exposes CSS read/write operations. All CSS objects (stylesheets, rules, and styles)
+have an associated `id` used in subsequent operations on the related object. Each object type has
+a specific `id` structure, and those are not interchangeable between objects of different kinds.
+CSS objects can be loaded using the `get*ForNode()` calls (which accept a DOM node id). A client
+can also keep track of stylesheets via the `styleSheetAdded`/`styleSheetRemoved` events and
+subsequently load the required stylesheet contents using the `getStyleSheet[Text]()` methods.
  */
 class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been enabled until the result of this command is received.
+     * Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the
+position specified by `location`.
      */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun addRule(input : AddRuleRequest) : io.reactivex.Single<AddRuleResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.addRule", input, AddRuleResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns all class names from specified stylesheet.
+     */
+    fun collectClassNames(input : CollectClassNamesRequest) : io.reactivex.Single<CollectClassNamesResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
+     */
+    fun createStyleSheet(input : CreateStyleSheetRequest) : io.reactivex.Single<CreateStyleSheetResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java).map {
             it.value()
         }
     }
@@ -23,25 +47,36 @@ class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Returns requested styles for a DOM node identified by <code>nodeId</code>.
+     * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been
+enabled until the result of this command is received.
      */
-    fun getMatchedStylesForNode(input : GetMatchedStylesForNodeRequest) : io.reactivex.Single<GetMatchedStylesForNodeResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java).map {
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.
+     * Ensures that the given node will have specified pseudo-classes whenever its style is computed by
+the browser.
      */
-    fun getInlineStylesForNode(input : GetInlineStylesForNodeRequest) : io.reactivex.Single<GetInlineStylesForNodeResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java).map {
+    fun forcePseudoState(input : ForcePseudoStateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Returns the computed style for a DOM node identified by <code>nodeId</code>.
+     *
+     */
+    fun getBackgroundColors(input : GetBackgroundColorsRequest) : io.reactivex.Single<GetBackgroundColorsResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns the computed style for a DOM node identified by `nodeId`.
      */
     fun getComputedStyleForNode(input : GetComputedStyleForNodeRequest) : io.reactivex.Single<GetComputedStyleForNodeResponse> {
         return connectionRemote.runAndCaptureResponse("CSS.getComputedStyleForNode", input, GetComputedStyleForNodeResponse::class.java).map {
@@ -50,7 +85,36 @@ class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Requests information about platform fonts which we used to render child TextNodes in the given node.
+     * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM
+attributes) for a DOM node identified by `nodeId`.
+     */
+    fun getInlineStylesForNode(input : GetInlineStylesForNodeRequest) : io.reactivex.Single<GetInlineStylesForNodeResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns requested styles for a DOM node identified by `nodeId`.
+     */
+    fun getMatchedStylesForNode(input : GetMatchedStylesForNodeRequest) : io.reactivex.Single<GetMatchedStylesForNodeResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns all media queries parsed by the rendering engine.
+     */
+    fun getMediaQueries() : io.reactivex.Single<GetMediaQueriesResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Requests information about platform fonts which we used to render child TextNodes in the given
+node.
      */
     fun getPlatformFontsForNode(input : GetPlatformFontsForNodeRequest) : io.reactivex.Single<GetPlatformFontsForNodeResponse> {
         return connectionRemote.runAndCaptureResponse("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java).map {
@@ -68,28 +132,11 @@ class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Returns all class names from specified stylesheet.
+     * Find a rule with the given active property for the given node and set the new value for this
+property
      */
-    fun collectClassNames(input : CollectClassNamesRequest) : io.reactivex.Single<CollectClassNamesResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Sets the new stylesheet text.
-     */
-    fun setStyleSheetText(input : SetStyleSheetTextRequest) : io.reactivex.Single<SetStyleSheetTextResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Modifies the rule selector.
-     */
-    fun setRuleSelector(input : SetRuleSelectorRequest) : io.reactivex.Single<SetRuleSelectorResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java).map {
+    fun setEffectivePropertyValueForNode(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -104,15 +151,6 @@ class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Applies specified style edits one after another in the given order.
-     */
-    fun setStyleTexts(input : SetStyleTextsRequest) : io.reactivex.Single<SetStyleTextsResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Modifies the rule selector.
      */
     fun setMediaText(input : SetMediaTextRequest) : io.reactivex.Single<SetMediaTextResponse> {
@@ -122,55 +160,28 @@ class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.
+     * Modifies the rule selector.
      */
-    fun createStyleSheet(input : CreateStyleSheetRequest) : io.reactivex.Single<CreateStyleSheetResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java).map {
+    fun setRuleSelector(input : SetRuleSelectorRequest) : io.reactivex.Single<SetRuleSelectorResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.
+     * Sets the new stylesheet text.
      */
-    fun addRule(input : AddRuleRequest) : io.reactivex.Single<AddRuleResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.addRule", input, AddRuleResponse::class.java).map {
+    fun setStyleSheetText(input : SetStyleSheetTextRequest) : io.reactivex.Single<SetStyleSheetTextResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.
+     * Applies specified style edits one after another in the given order.
      */
-    fun forcePseudoState(input : ForcePseudoStateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Returns all media queries parsed by the rendering engine.
-     */
-    fun getMediaQueries() : io.reactivex.Single<GetMediaQueriesResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Find a rule with the given active property for the given node and set the new value for this property
-     */
-    fun setEffectivePropertyValueForNode(input : SetEffectivePropertyValueForNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
-    fun getBackgroundColors(input : GetBackgroundColorsRequest) : io.reactivex.Single<GetBackgroundColorsResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java).map {
+    fun setStyleTexts(input : SetStyleTextsRequest) : io.reactivex.Single<SetStyleTextsResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java).map {
             it.value()
         }
     }
@@ -185,15 +196,6 @@ class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)
-     */
-    fun takeCoverageDelta() : io.reactivex.Single<TakeCoverageDeltaResponse> {
-        return connectionRemote.runAndCaptureResponse("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * The list of rules with an indication of whether these were used
      */
     fun stopRuleUsageTracking() : io.reactivex.Single<StopRuleUsageTrackingResponse> {
@@ -203,19 +205,13 @@ class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Fires whenever a MediaQuery result changes (for example, after a browser window has been resized.) The current implementation considers only viewport-dependent media features.
+     * Obtain list of rules that became used since last call to this method (or since start of coverage
+instrumentation)
      */
-    fun mediaQueryResultChanged() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return mediaQueryResultChangedTimed().map {
+    fun takeCoverageDelta() : io.reactivex.Single<TakeCoverageDeltaResponse> {
+        return connectionRemote.runAndCaptureResponse("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java).map {
             it.value()
         }
-    }
-
-    /**
-     * Fires whenever a MediaQuery result changes (for example, after a browser window has been resized.) The current implementation considers only viewport-dependent media features.
-     */
-    fun mediaQueryResultChangedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
-        return connectionRemote.captureEvents("CSS.mediaQueryResultChanged", pl.wendigo.chrome.ProtocolEvent::class.java)
     }
 
     /**
@@ -235,19 +231,21 @@ class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Fired whenever a stylesheet is changed as a result of the client operation.
+     * Fires whenever a MediaQuery result changes (for example, after a browser window has been
+resized.) The current implementation considers only viewport-dependent media features.
      */
-    fun styleSheetChanged() : io.reactivex.Flowable<StyleSheetChangedEvent> {
-        return styleSheetChangedTimed().map {
+    fun mediaQueryResultChanged() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return mediaQueryResultChangedTimed().map {
             it.value()
         }
     }
 
     /**
-     * Fired whenever a stylesheet is changed as a result of the client operation.
+     * Fires whenever a MediaQuery result changes (for example, after a browser window has been
+resized.) The current implementation considers only viewport-dependent media features.
      */
-    fun styleSheetChangedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<StyleSheetChangedEvent>> {
-        return connectionRemote.captureEvents("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java)
+    fun mediaQueryResultChangedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+        return connectionRemote.captureEvents("CSS.mediaQueryResultChanged", pl.wendigo.chrome.ProtocolEvent::class.java)
     }
 
     /**
@@ -264,6 +262,22 @@ class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.c
      */
     fun styleSheetAddedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<StyleSheetAddedEvent>> {
         return connectionRemote.captureEvents("CSS.styleSheetAdded", StyleSheetAddedEvent::class.java)
+    }
+
+    /**
+     * Fired whenever a stylesheet is changed as a result of the client operation.
+     */
+    fun styleSheetChanged() : io.reactivex.Flowable<StyleSheetChangedEvent> {
+        return styleSheetChangedTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Fired whenever a stylesheet is changed as a result of the client operation.
+     */
+    fun styleSheetChangedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<StyleSheetChangedEvent>> {
+        return connectionRemote.captureEvents("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java)
     }
 
     /**
@@ -291,11 +305,224 @@ class CSSDomain internal constructor(private val connectionRemote : pl.wendigo.c
         }
     }
 }
+/**
+ * Represents request frame that can be used with CSS.addRule method call.
+ *
+ * Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the
+position specified by `location`.
+ */
+data class AddRuleRequest (
+    /**
+     * The css style sheet identifier where a new rule should be inserted.
+     */
+    val styleSheetId : StyleSheetId,
+
+    /**
+     * The text of a new rule.
+     */
+    val ruleText : String,
+
+    /**
+     * Text position of a new rule in the target style sheet.
+     */
+    val location : SourceRange
+
+)
+
+/**
+ * Represents response frame for CSS.addRule method call.
+ *
+ * Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the
+position specified by `location`.
+ */
+data class AddRuleResponse(
+  /**
+   * The newly created rule.
+   */
+  val rule : CSSRule
+
+)
+
+/**
+ * Represents request frame that can be used with CSS.collectClassNames method call.
+ *
+ * Returns all class names from specified stylesheet.
+ */
+data class CollectClassNamesRequest (
+    /**
+     *
+     */
+    val styleSheetId : StyleSheetId
+
+)
+
+/**
+ * Represents response frame for CSS.collectClassNames method call.
+ *
+ * Returns all class names from specified stylesheet.
+ */
+data class CollectClassNamesResponse(
+  /**
+   * Class name list.
+   */
+  val classNames : List<String>
+
+)
+
+/**
+ * Represents request frame that can be used with CSS.createStyleSheet method call.
+ *
+ * Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
+ */
+data class CreateStyleSheetRequest (
+    /**
+     * Identifier of the frame where "via-inspector" stylesheet should be created.
+     */
+    val frameId : pl.wendigo.chrome.domain.page.FrameId
+
+)
+
+/**
+ * Represents response frame for CSS.createStyleSheet method call.
+ *
+ * Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
+ */
+data class CreateStyleSheetResponse(
+  /**
+   * Identifier of the created "via-inspector" stylesheet.
+   */
+  val styleSheetId : StyleSheetId
+
+)
+
+/**
+ * Represents request frame that can be used with CSS.forcePseudoState method call.
+ *
+ * Ensures that the given node will have specified pseudo-classes whenever its style is computed by
+the browser.
+ */
+data class ForcePseudoStateRequest (
+    /**
+     * The element id for which to force the pseudo state.
+     */
+    val nodeId : pl.wendigo.chrome.domain.dom.NodeId,
+
+    /**
+     * Element pseudo classes to force when computing the element's style.
+     */
+    val forcedPseudoClasses : List<String>
+
+)
+
+/**
+ * Represents request frame that can be used with CSS.getBackgroundColors method call.
+ *
+ *
+ */
+data class GetBackgroundColorsRequest (
+    /**
+     * Id of the node to get background colors for.
+     */
+    val nodeId : pl.wendigo.chrome.domain.dom.NodeId
+
+)
+
+/**
+ * Represents response frame for CSS.getBackgroundColors method call.
+ *
+ *
+ */
+data class GetBackgroundColorsResponse(
+  /**
+   * The range of background colors behind this element, if it contains any visible text. If no
+visible text is present, this will be undefined. In the case of a flat background color,
+this will consist of simply that color. In the case of a gradient, this will consist of each
+of the color stops. For anything more complicated, this will be an empty array. Images will
+be ignored (as if the image had failed to load).
+   */
+  val backgroundColors : List<String>? = null,
+
+  /**
+   * The computed font size for this node, as a CSS computed value string (e.g. '12px').
+   */
+  val computedFontSize : String? = null,
+
+  /**
+   * The computed font weight for this node, as a CSS computed value string (e.g. 'normal' or
+'100').
+   */
+  val computedFontWeight : String? = null,
+
+  /**
+   * The computed font size for the document body, as a computed CSS value string (e.g. '16px').
+   */
+  val computedBodyFontSize : String? = null
+
+)
+
+/**
+ * Represents request frame that can be used with CSS.getComputedStyleForNode method call.
+ *
+ * Returns the computed style for a DOM node identified by `nodeId`.
+ */
+data class GetComputedStyleForNodeRequest (
+    /**
+     *
+     */
+    val nodeId : pl.wendigo.chrome.domain.dom.NodeId
+
+)
+
+/**
+ * Represents response frame for CSS.getComputedStyleForNode method call.
+ *
+ * Returns the computed style for a DOM node identified by `nodeId`.
+ */
+data class GetComputedStyleForNodeResponse(
+  /**
+   * Computed style for the specified DOM node.
+   */
+  val computedStyle : List<CSSComputedStyleProperty>
+
+)
+
+/**
+ * Represents request frame that can be used with CSS.getInlineStylesForNode method call.
+ *
+ * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM
+attributes) for a DOM node identified by `nodeId`.
+ */
+data class GetInlineStylesForNodeRequest (
+    /**
+     *
+     */
+    val nodeId : pl.wendigo.chrome.domain.dom.NodeId
+
+)
+
+/**
+ * Represents response frame for CSS.getInlineStylesForNode method call.
+ *
+ * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM
+attributes) for a DOM node identified by `nodeId`.
+ */
+data class GetInlineStylesForNodeResponse(
+  /**
+   * Inline style for the specified DOM node.
+   */
+  val inlineStyle : CSSStyle? = null,
+
+  /**
+   * Attribute-defined element style (e.g. resulting from "width=20 height=100%").
+   */
+  val attributesStyle : CSSStyle? = null
+
+)
 
 /**
  * Represents request frame that can be used with CSS.getMatchedStylesForNode method call.
  *
- * Returns requested styles for a DOM node identified by <code>nodeId</code>.
+ * Returns requested styles for a DOM node identified by `nodeId`.
  */
 data class GetMatchedStylesForNodeRequest (
     /**
@@ -308,7 +535,7 @@ data class GetMatchedStylesForNodeRequest (
 /**
  * Represents response frame for CSS.getMatchedStylesForNode method call.
  *
- * Returns requested styles for a DOM node identified by <code>nodeId</code>.
+ * Returns requested styles for a DOM node identified by `nodeId`.
  */
 data class GetMatchedStylesForNodeResponse(
   /**
@@ -344,66 +571,23 @@ data class GetMatchedStylesForNodeResponse(
 )
 
 /**
- * Represents request frame that can be used with CSS.getInlineStylesForNode method call.
+ * Represents response frame for CSS.getMediaQueries method call.
  *
- * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.
+ * Returns all media queries parsed by the rendering engine.
  */
-data class GetInlineStylesForNodeRequest (
-    /**
-     *
-     */
-    val nodeId : pl.wendigo.chrome.domain.dom.NodeId
-
-)
-
-/**
- * Represents response frame for CSS.getInlineStylesForNode method call.
- *
- * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.
- */
-data class GetInlineStylesForNodeResponse(
+data class GetMediaQueriesResponse(
   /**
-   * Inline style for the specified DOM node.
+   *
    */
-  val inlineStyle : CSSStyle? = null,
-
-  /**
-   * Attribute-defined element style (e.g. resulting from "width=20 height=100%").
-   */
-  val attributesStyle : CSSStyle? = null
-
-)
-
-/**
- * Represents request frame that can be used with CSS.getComputedStyleForNode method call.
- *
- * Returns the computed style for a DOM node identified by <code>nodeId</code>.
- */
-data class GetComputedStyleForNodeRequest (
-    /**
-     *
-     */
-    val nodeId : pl.wendigo.chrome.domain.dom.NodeId
-
-)
-
-/**
- * Represents response frame for CSS.getComputedStyleForNode method call.
- *
- * Returns the computed style for a DOM node identified by <code>nodeId</code>.
- */
-data class GetComputedStyleForNodeResponse(
-  /**
-   * Computed style for the specified DOM node.
-   */
-  val computedStyle : List<CSSComputedStyleProperty>
+  val medias : List<CSSMedia>
 
 )
 
 /**
  * Represents request frame that can be used with CSS.getPlatformFontsForNode method call.
  *
- * Requests information about platform fonts which we used to render child TextNodes in the given node.
+ * Requests information about platform fonts which we used to render child TextNodes in the given
+node.
  */
 data class GetPlatformFontsForNodeRequest (
     /**
@@ -416,7 +600,8 @@ data class GetPlatformFontsForNodeRequest (
 /**
  * Represents response frame for CSS.getPlatformFontsForNode method call.
  *
- * Requests information about platform fonts which we used to render child TextNodes in the given node.
+ * Requests information about platform fonts which we used to render child TextNodes in the given
+node.
  */
 data class GetPlatformFontsForNodeResponse(
   /**
@@ -453,95 +638,26 @@ data class GetStyleSheetTextResponse(
 )
 
 /**
- * Represents request frame that can be used with CSS.collectClassNames method call.
+ * Represents request frame that can be used with CSS.setEffectivePropertyValueForNode method call.
  *
- * Returns all class names from specified stylesheet.
+ * Find a rule with the given active property for the given node and set the new value for this
+property
  */
-data class CollectClassNamesRequest (
+data class SetEffectivePropertyValueForNodeRequest (
     /**
-     *
+     * The element id for which to set property.
      */
-    val styleSheetId : StyleSheetId
-
-)
-
-/**
- * Represents response frame for CSS.collectClassNames method call.
- *
- * Returns all class names from specified stylesheet.
- */
-data class CollectClassNamesResponse(
-  /**
-   * Class name list.
-   */
-  val classNames : List<String>
-
-)
-
-/**
- * Represents request frame that can be used with CSS.setStyleSheetText method call.
- *
- * Sets the new stylesheet text.
- */
-data class SetStyleSheetTextRequest (
-    /**
-     *
-     */
-    val styleSheetId : StyleSheetId,
+    val nodeId : pl.wendigo.chrome.domain.dom.NodeId,
 
     /**
      *
      */
-    val text : String
-
-)
-
-/**
- * Represents response frame for CSS.setStyleSheetText method call.
- *
- * Sets the new stylesheet text.
- */
-data class SetStyleSheetTextResponse(
-  /**
-   * URL of source map associated with script (if any).
-   */
-  val sourceMapURL : String? = null
-
-)
-
-/**
- * Represents request frame that can be used with CSS.setRuleSelector method call.
- *
- * Modifies the rule selector.
- */
-data class SetRuleSelectorRequest (
-    /**
-     *
-     */
-    val styleSheetId : StyleSheetId,
+    val propertyName : String,
 
     /**
      *
      */
-    val range : SourceRange,
-
-    /**
-     *
-     */
-    val selector : String
-
-)
-
-/**
- * Represents response frame for CSS.setRuleSelector method call.
- *
- * Modifies the rule selector.
- */
-data class SetRuleSelectorResponse(
-  /**
-   * The resulting selector list after modification.
-   */
-  val selectorList : SelectorList
+    val value : String
 
 )
 
@@ -582,32 +698,6 @@ data class SetKeyframeKeyResponse(
 )
 
 /**
- * Represents request frame that can be used with CSS.setStyleTexts method call.
- *
- * Applies specified style edits one after another in the given order.
- */
-data class SetStyleTextsRequest (
-    /**
-     *
-     */
-    val edits : List<StyleDeclarationEdit>
-
-)
-
-/**
- * Represents response frame for CSS.setStyleTexts method call.
- *
- * Applies specified style edits one after another in the given order.
- */
-data class SetStyleTextsResponse(
-  /**
-   * The resulting styles after modification.
-   */
-  val styles : List<CSSStyle>
-
-)
-
-/**
  * Represents request frame that can be used with CSS.setMediaText method call.
  *
  * Modifies the rule selector.
@@ -644,172 +734,95 @@ data class SetMediaTextResponse(
 )
 
 /**
- * Represents request frame that can be used with CSS.createStyleSheet method call.
+ * Represents request frame that can be used with CSS.setRuleSelector method call.
  *
- * Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.
+ * Modifies the rule selector.
  */
-data class CreateStyleSheetRequest (
+data class SetRuleSelectorRequest (
     /**
-     * Identifier of the frame where "via-inspector" stylesheet should be created.
-     */
-    val frameId : pl.wendigo.chrome.domain.page.FrameId
-
-)
-
-/**
- * Represents response frame for CSS.createStyleSheet method call.
- *
- * Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.
- */
-data class CreateStyleSheetResponse(
-  /**
-   * Identifier of the created "via-inspector" stylesheet.
-   */
-  val styleSheetId : StyleSheetId
-
-)
-
-/**
- * Represents request frame that can be used with CSS.addRule method call.
- *
- * Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.
- */
-data class AddRuleRequest (
-    /**
-     * The css style sheet identifier where a new rule should be inserted.
+     *
      */
     val styleSheetId : StyleSheetId,
 
     /**
-     * The text of a new rule.
+     *
      */
-    val ruleText : String,
-
-    /**
-     * Text position of a new rule in the target style sheet.
-     */
-    val location : SourceRange
-
-)
-
-/**
- * Represents response frame for CSS.addRule method call.
- *
- * Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.
- */
-data class AddRuleResponse(
-  /**
-   * The newly created rule.
-   */
-  val rule : CSSRule
-
-)
-
-/**
- * Represents request frame that can be used with CSS.forcePseudoState method call.
- *
- * Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.
- */
-data class ForcePseudoStateRequest (
-    /**
-     * The element id for which to force the pseudo state.
-     */
-    val nodeId : pl.wendigo.chrome.domain.dom.NodeId,
-
-    /**
-     * Element pseudo classes to force when computing the element's style.
-     */
-    val forcedPseudoClasses : List<String>
-
-)
-
-/**
- * Represents response frame for CSS.getMediaQueries method call.
- *
- * Returns all media queries parsed by the rendering engine.
- */
-data class GetMediaQueriesResponse(
-  /**
-   *
-   */
-  val medias : List<CSSMedia>
-
-)
-
-/**
- * Represents request frame that can be used with CSS.setEffectivePropertyValueForNode method call.
- *
- * Find a rule with the given active property for the given node and set the new value for this property
- */
-data class SetEffectivePropertyValueForNodeRequest (
-    /**
-     * The element id for which to set property.
-     */
-    val nodeId : pl.wendigo.chrome.domain.dom.NodeId,
+    val range : SourceRange,
 
     /**
      *
      */
-    val propertyName : String,
+    val selector : String
+
+)
+
+/**
+ * Represents response frame for CSS.setRuleSelector method call.
+ *
+ * Modifies the rule selector.
+ */
+data class SetRuleSelectorResponse(
+  /**
+   * The resulting selector list after modification.
+   */
+  val selectorList : SelectorList
+
+)
+
+/**
+ * Represents request frame that can be used with CSS.setStyleSheetText method call.
+ *
+ * Sets the new stylesheet text.
+ */
+data class SetStyleSheetTextRequest (
+    /**
+     *
+     */
+    val styleSheetId : StyleSheetId,
 
     /**
      *
      */
-    val value : String
+    val text : String
 
 )
 
 /**
- * Represents request frame that can be used with CSS.getBackgroundColors method call.
+ * Represents response frame for CSS.setStyleSheetText method call.
  *
- *
+ * Sets the new stylesheet text.
  */
-data class GetBackgroundColorsRequest (
+data class SetStyleSheetTextResponse(
+  /**
+   * URL of source map associated with script (if any).
+   */
+  val sourceMapURL : String? = null
+
+)
+
+/**
+ * Represents request frame that can be used with CSS.setStyleTexts method call.
+ *
+ * Applies specified style edits one after another in the given order.
+ */
+data class SetStyleTextsRequest (
     /**
-     * Id of the node to get background colors for.
+     *
      */
-    val nodeId : pl.wendigo.chrome.domain.dom.NodeId
+    val edits : List<StyleDeclarationEdit>
 
 )
 
 /**
- * Represents response frame for CSS.getBackgroundColors method call.
+ * Represents response frame for CSS.setStyleTexts method call.
  *
- *
+ * Applies specified style edits one after another in the given order.
  */
-data class GetBackgroundColorsResponse(
+data class SetStyleTextsResponse(
   /**
-   * The range of background colors behind this element, if it contains any visible text. If no visible text is present, this will be undefined. In the case of a flat background color, this will consist of simply that color. In the case of a gradient, this will consist of each of the color stops. For anything more complicated, this will be an empty array. Images will be ignored (as if the image had failed to load).
+   * The resulting styles after modification.
    */
-  val backgroundColors : List<String>? = null,
-
-  /**
-   * The computed font size for this node, as a CSS computed value string (e.g. '12px').
-   */
-  val computedFontSize : String? = null,
-
-  /**
-   * The computed font weight for this node, as a CSS computed value string (e.g. 'normal' or '100').
-   */
-  val computedFontWeight : String? = null,
-
-  /**
-   * The computed font size for the document body, as a computed CSS value string (e.g. '16px').
-   */
-  val computedBodyFontSize : String? = null
-
-)
-
-/**
- * Represents response frame for CSS.takeCoverageDelta method call.
- *
- * Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)
- */
-data class TakeCoverageDeltaResponse(
-  /**
-   *
-   */
-  val coverage : List<RuleUsage>
+  val styles : List<CSSStyle>
 
 )
 
@@ -827,17 +840,18 @@ data class StopRuleUsageTrackingResponse(
 )
 
 /**
- * Represents event frames for CSS.styleSheetChanged
+ * Represents response frame for CSS.takeCoverageDelta method call.
  *
- * Fired whenever a stylesheet is changed as a result of the client operation.
+ * Obtain list of rules that became used since last call to this method (or since start of coverage
+instrumentation)
  */
-data class StyleSheetChangedEvent(
+data class TakeCoverageDeltaResponse(
   /**
    *
    */
-  val styleSheetId : StyleSheetId
+  val coverage : List<RuleUsage>
 
-) : pl.wendigo.chrome.ProtocolEvent(domain = "CSS", name = "styleSheetChanged")
+)
 
 /**
  * Represents event frames for CSS.styleSheetAdded
@@ -851,6 +865,19 @@ data class StyleSheetAddedEvent(
   val header : CSSStyleSheetHeader
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "CSS", name = "styleSheetAdded")
+
+/**
+ * Represents event frames for CSS.styleSheetChanged
+ *
+ * Fired whenever a stylesheet is changed as a result of the client operation.
+ */
+data class StyleSheetChangedEvent(
+  /**
+   *
+   */
+  val styleSheetId : StyleSheetId
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "CSS", name = "styleSheetChanged")
 
 /**
  * Represents event frames for CSS.styleSheetRemoved

@@ -6,17 +6,17 @@ package pl.wendigo.chrome.domain.domsnapshot
 
 data class DOMNode(
   /**
-   * <code>Node</code>'s nodeType.
+   * `Node`'s nodeType.
    */
   val nodeType : Int,
 
   /**
-   * <code>Node</code>'s nodeName.
+   * `Node`'s nodeName.
    */
   val nodeName : String,
 
   /**
-   * <code>Node</code>'s nodeValue.
+   * `Node`'s nodeValue.
    */
   val nodeValue : String,
 
@@ -41,37 +41,40 @@ data class DOMNode(
   val optionSelected : Boolean? = null,
 
   /**
-   * <code>Node</code>'s id, corresponds to DOM.Node.backendNodeId.
+   * `Node`'s id, corresponds to DOM.Node.backendNodeId.
    */
   val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId,
 
   /**
-   * The indexes of the node's child nodes in the <code>domNodes</code> array returned by <code>getSnapshot</code>, if any.
+   * The indexes of the node's child nodes in the `domNodes` array returned by `getSnapshot`, if
+any.
    */
   val childNodeIndexes : List<Int>? = null,
 
   /**
-   * Attributes of an <code>Element</code> node.
+   * Attributes of an `Element` node.
    */
   val attributes : List<NameValue>? = null,
 
   /**
-   * Indexes of pseudo elements associated with this node in the <code>domNodes</code> array returned by <code>getSnapshot</code>, if any.
+   * Indexes of pseudo elements associated with this node in the `domNodes` array returned by
+`getSnapshot`, if any.
    */
   val pseudoElementIndexes : List<Int>? = null,
 
   /**
-   * The index of the node's related layout tree node in the <code>layoutTreeNodes</code> array returned by <code>getSnapshot</code>, if any.
+   * The index of the node's related layout tree node in the `layoutTreeNodes` array returned by
+`getSnapshot`, if any.
    */
   val layoutNodeIndex : Int? = null,
 
   /**
-   * Document URL that <code>Document</code> or <code>FrameOwner</code> node points to.
+   * Document URL that `Document` or `FrameOwner` node points to.
    */
   val documentURL : String? = null,
 
   /**
-   * Base URL that <code>Document</code> or <code>FrameOwner</code> node uses for URL completion.
+   * Base URL that `Document` or `FrameOwner` node uses for URL completion.
    */
   val baseURL : String? = null,
 
@@ -86,12 +89,12 @@ data class DOMNode(
   val documentEncoding : String? = null,
 
   /**
-   * <code>DocumentType</code> node's publicId.
+   * `DocumentType` node's publicId.
    */
   val publicId : String? = null,
 
   /**
-   * <code>DocumentType</code> node's systemId.
+   * `DocumentType` node's systemId.
    */
   val systemId : String? = null,
 
@@ -101,17 +104,20 @@ data class DOMNode(
   val frameId : pl.wendigo.chrome.domain.page.FrameId? = null,
 
   /**
-   * The index of a frame owner element's content document in the <code>domNodes</code> array returned by <code>getSnapshot</code>, if any.
+   * The index of a frame owner element's content document in the `domNodes` array returned by
+`getSnapshot`, if any.
    */
   val contentDocumentIndex : Int? = null,
 
   /**
-   * Index of the imported document's node of a link element in the <code>domNodes</code> array returned by <code>getSnapshot</code>, if any.
+   * Index of the imported document's node of a link element in the `domNodes` array returned by
+`getSnapshot`, if any.
    */
   val importedDocumentIndex : Int? = null,
 
   /**
-   * Index of the content node of a template element in the <code>domNodes</code> array returned by <code>getSnapshot</code>.
+   * Index of the content node of a template element in the `domNodes` array returned by
+`getSnapshot`.
    */
   val templateContentIndex : Int? = null,
 
@@ -121,13 +127,16 @@ data class DOMNode(
   val pseudoType : pl.wendigo.chrome.domain.dom.PseudoType? = null,
 
   /**
-   * Whether this DOM node responds to mouse clicks. This includes nodes that have had click event listeners attached via JavaScript as well as anchor tags that naturally navigate when clicked.
+   * Whether this DOM node responds to mouse clicks. This includes nodes that have had click
+event listeners attached via JavaScript as well as anchor tags that naturally navigate when
+clicked.
    */
   val isClickable : Boolean? = null
 )
 
 /**
- * Details of post layout rendered text positions. The exact layout should not be regarded as stable and may change between versions.
+ * Details of post layout rendered text positions. The exact layout should not be regarded as
+stable and may change between versions.
  */
 
 data class InlineTextBox(
@@ -153,7 +162,7 @@ data class InlineTextBox(
 
 data class LayoutTreeNode(
   /**
-   * The index of the related DOM node in the <code>domNodes</code> array returned by <code>getSnapshot</code>.
+   * The index of the related DOM node in the `domNodes` array returned by `getSnapshot`.
    */
   val domNodeIndex : Int,
 
@@ -173,7 +182,7 @@ data class LayoutTreeNode(
   val inlineTextNodes : List<InlineTextBox>? = null,
 
   /**
-   * Index into the <code>computedStyles</code> array returned by <code>getSnapshot</code>.
+   * Index into the `computedStyles` array returned by `getSnapshot`.
    */
   val styleIndex : Int? = null
 )

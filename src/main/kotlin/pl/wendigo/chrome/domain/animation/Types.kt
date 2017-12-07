@@ -6,52 +6,53 @@ package pl.wendigo.chrome.domain.animation
 
 data class Animation(
   /**
-   * <code>Animation</code>'s id.
+   * `Animation`'s id.
    */
   val id : String,
 
   /**
-   * <code>Animation</code>'s name.
+   * `Animation`'s name.
    */
   val name : String,
 
   /**
-   * <code>Animation</code>'s internal paused state.
+   * `Animation`'s internal paused state.
    */
   val pausedState : Boolean,
 
   /**
-   * <code>Animation</code>'s play state.
+   * `Animation`'s play state.
    */
   val playState : String,
 
   /**
-   * <code>Animation</code>'s playback rate.
+   * `Animation`'s playback rate.
    */
   val playbackRate : Double,
 
   /**
-   * <code>Animation</code>'s start time.
+   * `Animation`'s start time.
    */
   val startTime : Double,
 
   /**
-   * <code>Animation</code>'s current time.
+   * `Animation`'s current time.
    */
   val currentTime : Double,
 
   /**
-   * Animation type of <code>Animation</code>.
+   * Animation type of `Animation`.
    */
   val type : String,
 
   /**
-   * <code>Animation</code>'s source animation node.
+   * `Animation`'s source animation node.
    */
   val source : AnimationEffect? = null,
 
   /**
-   * A unique ID for <code>Animation</code> representing the sources that triggered this CSS animation/transition.
+   * A unique ID for `Animation` representing the sources that triggered this CSS
+animation/transition.
    */
   val cssId : String? = null
 )
@@ -62,52 +63,52 @@ data class Animation(
 
 data class AnimationEffect(
   /**
-   * <code>AnimationEffect</code>'s delay.
+   * `AnimationEffect`'s delay.
    */
   val delay : Double,
 
   /**
-   * <code>AnimationEffect</code>'s end delay.
+   * `AnimationEffect`'s end delay.
    */
   val endDelay : Double,
 
   /**
-   * <code>AnimationEffect</code>'s iteration start.
+   * `AnimationEffect`'s iteration start.
    */
   val iterationStart : Double,
 
   /**
-   * <code>AnimationEffect</code>'s iterations.
+   * `AnimationEffect`'s iterations.
    */
   val iterations : Double,
 
   /**
-   * <code>AnimationEffect</code>'s iteration duration.
+   * `AnimationEffect`'s iteration duration.
    */
   val duration : Double,
 
   /**
-   * <code>AnimationEffect</code>'s playback direction.
+   * `AnimationEffect`'s playback direction.
    */
   val direction : String,
 
   /**
-   * <code>AnimationEffect</code>'s fill mode.
+   * `AnimationEffect`'s fill mode.
    */
   val fill : String,
 
   /**
-   * <code>AnimationEffect</code>'s target node.
+   * `AnimationEffect`'s target node.
    */
   val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
 
   /**
-   * <code>AnimationEffect</code>'s keyframes.
+   * `AnimationEffect`'s keyframes.
    */
   val keyframesRule : KeyframesRule? = null,
 
   /**
-   * <code>AnimationEffect</code>'s timing function.
+   * `AnimationEffect`'s timing function.
    */
   val easing : String
 )
@@ -139,7 +140,7 @@ data class KeyframeStyle(
   val offset : String,
 
   /**
-   * <code>AnimationEffect</code>'s timing function.
+   * `AnimationEffect`'s timing function.
    */
   val easing : String
 )

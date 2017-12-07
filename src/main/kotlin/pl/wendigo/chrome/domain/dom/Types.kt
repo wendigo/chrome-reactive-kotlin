@@ -7,7 +7,8 @@ package pl.wendigo.chrome.domain.dom
 typealias NodeId = Int
 
 /**
- * Unique DOM node identifier used to reference a node that may not have been pushed to the front-end.
+ * Unique DOM node identifier used to reference a node that may not have been pushed to the
+front-end.
  */
 
 typealias BackendNodeId = Int
@@ -18,12 +19,12 @@ typealias BackendNodeId = Int
 
 data class BackendNode(
   /**
-   * <code>Node</code>'s nodeType.
+   * `Node`'s nodeType.
    */
   val nodeType : Int,
 
   /**
-   * <code>Node</code>'s nodeName.
+   * `Node`'s nodeName.
    */
   val nodeName : String,
 
@@ -64,12 +65,15 @@ enum class ShadowRootType {
 }
 
 /**
- * DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes. DOMNode is a base node mirror type.
+ * DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes.
+DOMNode is a base node mirror type.
  */
 
 data class Node(
   /**
-   * Node identifier that is passed into the rest of the DOM messages as the <code>nodeId</code>. Backend will only push node with given <code>id</code> once. It is aware of all requested nodes and will only fire DOM events for nodes known to the client.
+   * Node identifier that is passed into the rest of the DOM messages as the `nodeId`. Backend
+will only push node with given `id` once. It is aware of all requested nodes and will only
+fire DOM events for nodes known to the client.
    */
   val nodeId : NodeId,
 
@@ -84,27 +88,27 @@ data class Node(
   val backendNodeId : BackendNodeId,
 
   /**
-   * <code>Node</code>'s nodeType.
+   * `Node`'s nodeType.
    */
   val nodeType : Int,
 
   /**
-   * <code>Node</code>'s nodeName.
+   * `Node`'s nodeName.
    */
   val nodeName : String,
 
   /**
-   * <code>Node</code>'s localName.
+   * `Node`'s localName.
    */
   val localName : String,
 
   /**
-   * <code>Node</code>'s nodeValue.
+   * `Node`'s nodeValue.
    */
   val nodeValue : String,
 
   /**
-   * Child count for <code>Container</code> nodes.
+   * Child count for `Container` nodes.
    */
   val childNodeCount : Int? = null,
 
@@ -114,47 +118,47 @@ data class Node(
   val children : List<Node>? = null,
 
   /**
-   * Attributes of the <code>Element</code> node in the form of flat array <code>[name1, value1, name2, value2]</code>.
+   * Attributes of the `Element` node in the form of flat array `[name1, value1, name2, value2]`.
    */
   val attributes : List<String>? = null,
 
   /**
-   * Document URL that <code>Document</code> or <code>FrameOwner</code> node points to.
+   * Document URL that `Document` or `FrameOwner` node points to.
    */
   val documentURL : String? = null,
 
   /**
-   * Base URL that <code>Document</code> or <code>FrameOwner</code> node uses for URL completion.
+   * Base URL that `Document` or `FrameOwner` node uses for URL completion.
    */
   val baseURL : String? = null,
 
   /**
-   * <code>DocumentType</code>'s publicId.
+   * `DocumentType`'s publicId.
    */
   val publicId : String? = null,
 
   /**
-   * <code>DocumentType</code>'s systemId.
+   * `DocumentType`'s systemId.
    */
   val systemId : String? = null,
 
   /**
-   * <code>DocumentType</code>'s internalSubset.
+   * `DocumentType`'s internalSubset.
    */
   val internalSubset : String? = null,
 
   /**
-   * <code>Document</code>'s XML version in case of XML documents.
+   * `Document`'s XML version in case of XML documents.
    */
   val xmlVersion : String? = null,
 
   /**
-   * <code>Attr</code>'s name.
+   * `Attr`'s name.
    */
   val name : String? = null,
 
   /**
-   * <code>Attr</code>'s value.
+   * `Attr`'s value.
    */
   val value : String? = null,
 

@@ -5,7 +5,10 @@ package pl.wendigo.chrome.domain.domsnapshot
  */
 class DOMSnapshotDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Returns a document snapshot, including the full DOM tree of the root node (including iframes, template contents, and imported documents) in a flattened array, as well as layout and white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is flattened.
+     * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
+template contents, and imported documents) in a flattened array, as well as layout and
+white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is
+flattened.
      */
     fun getSnapshot(input : GetSnapshotRequest) : io.reactivex.Single<GetSnapshotResponse> {
         return connectionRemote.runAndCaptureResponse("DOMSnapshot.getSnapshot", input, GetSnapshotResponse::class.java).map {
@@ -25,7 +28,10 @@ class DOMSnapshotDomain internal constructor(private val connectionRemote : pl.w
 /**
  * Represents request frame that can be used with DOMSnapshot.getSnapshot method call.
  *
- * Returns a document snapshot, including the full DOM tree of the root node (including iframes, template contents, and imported documents) in a flattened array, as well as layout and white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is flattened.
+ * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
+template contents, and imported documents) in a flattened array, as well as layout and
+white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is
+flattened.
  */
 data class GetSnapshotRequest (
     /**
@@ -38,7 +44,10 @@ data class GetSnapshotRequest (
 /**
  * Represents response frame for DOMSnapshot.getSnapshot method call.
  *
- * Returns a document snapshot, including the full DOM tree of the root node (including iframes, template contents, and imported documents) in a flattened array, as well as layout and white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is flattened.
+ * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
+template contents, and imported documents) in a flattened array, as well as layout and
+white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is
+flattened.
  */
 data class GetSnapshotResponse(
   /**

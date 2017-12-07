@@ -170,7 +170,11 @@ data class AXValue(
 )
 
 /**
- * Values of AXProperty name: from &apos;busy&apos; to &apos;roledescription&apos; - states which apply to every AX node, from &apos;live&apos; to &apos;root&apos; - attributes which apply to nodes in live regions, from &apos;autocomplete&apos; to &apos;valuetext&apos; - attributes which apply to widgets, from &apos;checked&apos; to &apos;selected&apos; - states which apply to widgets, from &apos;activedescendant&apos; to &apos;owns&apos; - relationships between elements other than parent/child/sibling.
+ * Values of AXProperty name: from &apos;busy&apos; to &apos;roledescription&apos; - states which apply to every AX
+node, from &apos;live&apos; to &apos;root&apos; - attributes which apply to nodes in live regions, from
+&apos;autocomplete&apos; to &apos;valuetext&apos; - attributes which apply to widgets, from &apos;checked&apos; to &apos;selected&apos;
+- states which apply to widgets, from &apos;activedescendant&apos; to &apos;owns&apos; - relationships between
+elements other than parent/child/sibling.
  */
 enum class AXPropertyName {
     @com.fasterxml.jackson.annotation.JsonProperty("busy") BUSY,
@@ -231,22 +235,22 @@ data class AXNode(
   val ignoredReasons : List<AXProperty>? = null,
 
   /**
-   * This <code>Node</code>'s role, whether explicit or implicit.
+   * This `Node`'s role, whether explicit or implicit.
    */
   val role : AXValue? = null,
 
   /**
-   * The accessible name for this <code>Node</code>.
+   * The accessible name for this `Node`.
    */
   val name : AXValue? = null,
 
   /**
-   * The accessible description for this <code>Node</code>.
+   * The accessible description for this `Node`.
    */
   val description : AXValue? = null,
 
   /**
-   * The value for this <code>Node</code>.
+   * The value for this `Node`.
    */
   val value : AXValue? = null,
 

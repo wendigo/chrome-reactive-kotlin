@@ -5,15 +5,6 @@ package pl.wendigo.chrome.domain.applicationcache
  */
 class ApplicationCacheDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
-     */
-    fun getFramesWithManifests() : io.reactivex.Single<GetFramesWithManifestsResponse> {
-        return connectionRemote.runAndCaptureResponse("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Enables application cache domain notifications.
      */
     fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -23,19 +14,29 @@ class ApplicationCacheDomain internal constructor(private val connectionRemote :
     }
 
     /**
-     * Returns manifest URL for document in the given frame.
+     * Returns relevant application cache data for the document in given frame.
      */
-    fun getManifestForFrame(input : GetManifestForFrameRequest) : io.reactivex.Single<GetManifestForFrameResponse> {
-        return connectionRemote.runAndCaptureResponse("ApplicationCache.getManifestForFrame", input, GetManifestForFrameResponse::class.java).map {
+    fun getApplicationCacheForFrame(input : GetApplicationCacheForFrameRequest) : io.reactivex.Single<GetApplicationCacheForFrameResponse> {
+        return connectionRemote.runAndCaptureResponse("ApplicationCache.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Returns relevant application cache data for the document in given frame.
+     * Returns array of frame identifiers with manifest urls for each frame containing a document
+associated with some application cache.
      */
-    fun getApplicationCacheForFrame(input : GetApplicationCacheForFrameRequest) : io.reactivex.Single<GetApplicationCacheForFrameResponse> {
-        return connectionRemote.runAndCaptureResponse("ApplicationCache.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java).map {
+    fun getFramesWithManifests() : io.reactivex.Single<GetFramesWithManifestsResponse> {
+        return connectionRemote.runAndCaptureResponse("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns manifest URL for document in the given frame.
+     */
+    fun getManifestForFrame(input : GetManifestForFrameRequest) : io.reactivex.Single<GetManifestForFrameResponse> {
+        return connectionRemote.runAndCaptureResponse("ApplicationCache.getManifestForFrame", input, GetManifestForFrameResponse::class.java).map {
             it.value()
         }
     }
@@ -83,13 +84,41 @@ class ApplicationCacheDomain internal constructor(private val connectionRemote :
 }
 
 /**
+ * Represents request frame that can be used with ApplicationCache.getApplicationCacheForFrame method call.
+ *
+ * Returns relevant application cache data for the document in given frame.
+ */
+data class GetApplicationCacheForFrameRequest (
+    /**
+     * Identifier of the frame containing document whose application cache is retrieved.
+     */
+    val frameId : pl.wendigo.chrome.domain.page.FrameId
+
+)
+
+/**
+ * Represents response frame for ApplicationCache.getApplicationCacheForFrame method call.
+ *
+ * Returns relevant application cache data for the document in given frame.
+ */
+data class GetApplicationCacheForFrameResponse(
+  /**
+   * Relevant application cache data for the document in given frame.
+   */
+  val applicationCache : ApplicationCache
+
+)
+
+/**
  * Represents response frame for ApplicationCache.getFramesWithManifests method call.
  *
- * Returns array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
+ * Returns array of frame identifiers with manifest urls for each frame containing a document
+associated with some application cache.
  */
 data class GetFramesWithManifestsResponse(
   /**
-   * Array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
+   * Array of frame identifiers with manifest urls for each frame containing a document
+associated with some application cache.
    */
   val frameIds : List<FrameWithManifest>
 
@@ -118,32 +147,6 @@ data class GetManifestForFrameResponse(
    * Manifest URL for document in the given frame.
    */
   val manifestURL : String
-
-)
-
-/**
- * Represents request frame that can be used with ApplicationCache.getApplicationCacheForFrame method call.
- *
- * Returns relevant application cache data for the document in given frame.
- */
-data class GetApplicationCacheForFrameRequest (
-    /**
-     * Identifier of the frame containing document whose application cache is retrieved.
-     */
-    val frameId : pl.wendigo.chrome.domain.page.FrameId
-
-)
-
-/**
- * Represents response frame for ApplicationCache.getApplicationCacheForFrame method call.
- *
- * Returns relevant application cache data for the document in given frame.
- */
-data class GetApplicationCacheForFrameResponse(
-  /**
-   * Relevant application cache data for the document in given frame.
-   */
-  val applicationCache : ApplicationCache
 
 )
 

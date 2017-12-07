@@ -5,10 +5,10 @@ package pl.wendigo.chrome.domain.log
  */
 class LogDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Enables log domain, sends the entries collected so far to the client by means of the <code>entryAdded</code> notification.
+     * Clears the log.
      */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Log.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun clear() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Log.clear", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -23,10 +23,11 @@ class LogDomain internal constructor(private val connectionRemote : pl.wendigo.c
     }
 
     /**
-     * Clears the log.
+     * Enables log domain, sends the entries collected so far to the client by means of the
+`entryAdded` notification.
      */
-    fun clear() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Log.clear", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Log.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }

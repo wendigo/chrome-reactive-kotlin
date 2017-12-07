@@ -5,15 +5,6 @@ package pl.wendigo.chrome.domain.tracing
  */
 class TracingDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Start trace events collection.
-     */
-    fun start(input : StartRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Stop trace events collection.
      */
     fun end() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -32,15 +23,6 @@ class TracingDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Request a global memory dump.
-     */
-    fun requestMemoryDump() : io.reactivex.Single<RequestMemoryDumpResponse> {
-        return connectionRemote.runAndCaptureResponse("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Record a clock sync marker in the trace.
      */
     fun recordClockSyncMarker(input : RecordClockSyncMarkerRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -50,35 +32,21 @@ class TracingDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Contains an bucket of collected trace events. When tracing is stopped collected events will be send as a sequence of dataCollected events followed by tracingComplete event.
+     * Request a global memory dump.
      */
-    fun dataCollected() : io.reactivex.Flowable<DataCollectedEvent> {
-        return dataCollectedTimed().map {
+    fun requestMemoryDump() : io.reactivex.Single<RequestMemoryDumpResponse> {
+        return connectionRemote.runAndCaptureResponse("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Contains an bucket of collected trace events. When tracing is stopped collected events will be send as a sequence of dataCollected events followed by tracingComplete event.
+     * Start trace events collection.
      */
-    fun dataCollectedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DataCollectedEvent>> {
-        return connectionRemote.captureEvents("Tracing.dataCollected", DataCollectedEvent::class.java)
-    }
-
-    /**
-     * Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via dataCollected events.
-     */
-    fun tracingComplete() : io.reactivex.Flowable<TracingCompleteEvent> {
-        return tracingCompleteTimed().map {
+    fun start(input : StartRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-    }
-
-    /**
-     * Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via dataCollected events.
-     */
-    fun tracingCompleteTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<TracingCompleteEvent>> {
-        return connectionRemote.captureEvents("Tracing.tracingComplete", TracingCompleteEvent::class.java)
     }
 
     /**
@@ -98,6 +66,42 @@ class TracingDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     * Contains an bucket of collected trace events. When tracing is stopped collected events will be
+send as a sequence of dataCollected events followed by tracingComplete event.
+     */
+    fun dataCollected() : io.reactivex.Flowable<DataCollectedEvent> {
+        return dataCollectedTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Contains an bucket of collected trace events. When tracing is stopped collected events will be
+send as a sequence of dataCollected events followed by tracingComplete event.
+     */
+    fun dataCollectedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DataCollectedEvent>> {
+        return connectionRemote.captureEvents("Tracing.dataCollected", DataCollectedEvent::class.java)
+    }
+
+    /**
+     * Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+delivered via dataCollected events.
+     */
+    fun tracingComplete() : io.reactivex.Flowable<TracingCompleteEvent> {
+        return tracingCompleteTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+delivered via dataCollected events.
+     */
+    fun tracingCompleteTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<TracingCompleteEvent>> {
+        return connectionRemote.captureEvents("Tracing.tracingComplete", TracingCompleteEvent::class.java)
+    }
+
+    /**
      * Returns flowable capturing all Tracing domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -106,38 +110,6 @@ class TracingDomain internal constructor(private val connectionRemote : pl.wendi
         }
     }
 }
-/**
- * Represents request frame that can be used with Tracing.start method call.
- *
- * Start trace events collection.
- */
-data class StartRequest (
-    /**
-     * Category/tag filter
-     */
-    @pl.wendigo.chrome.Deprecated val categories : String? = null,
-
-    /**
-     * Tracing options
-     */
-    @pl.wendigo.chrome.Deprecated val options : String? = null,
-
-    /**
-     * If set, the agent will issue bufferUsage events at this interval, specified in milliseconds
-     */
-    val bufferUsageReportingInterval : Double? = null,
-
-    /**
-     * Whether to report trace events as series of dataCollected events or to save trace to a stream (defaults to <code>ReportEvents</code>).
-     */
-    val transferMode : String? = null,
-
-    /**
-     *
-     */
-    val traceConfig : TraceConfig? = null
-
-)
 
 /**
  * Represents response frame for Tracing.getCategories method call.
@@ -149,6 +121,19 @@ data class GetCategoriesResponse(
    * A list of supported tracing categories.
    */
   val categories : List<String>
+
+)
+
+/**
+ * Represents request frame that can be used with Tracing.recordClockSyncMarker method call.
+ *
+ * Record a clock sync marker in the trace.
+ */
+data class RecordClockSyncMarkerRequest (
+    /**
+     * The ID of this clock sync marker
+     */
+    val syncId : String
 
 )
 
@@ -171,22 +156,75 @@ data class RequestMemoryDumpResponse(
 )
 
 /**
- * Represents request frame that can be used with Tracing.recordClockSyncMarker method call.
+ * Represents request frame that can be used with Tracing.start method call.
  *
- * Record a clock sync marker in the trace.
+ * Start trace events collection.
  */
-data class RecordClockSyncMarkerRequest (
+data class StartRequest (
     /**
-     * The ID of this clock sync marker
+     * Category/tag filter
      */
-    val syncId : String
+    @pl.wendigo.chrome.Deprecated val categories : String? = null,
+
+    /**
+     * Tracing options
+     */
+    @pl.wendigo.chrome.Deprecated val options : String? = null,
+
+    /**
+     * If set, the agent will issue bufferUsage events at this interval, specified in milliseconds
+     */
+    val bufferUsageReportingInterval : Double? = null,
+
+    /**
+     * Whether to report trace events as series of dataCollected events or to save trace to a
+stream (defaults to `ReportEvents`).
+     */
+    val transferMode : String? = null,
+
+    /**
+     * Compression format to use. This only applies when using `ReturnAsStream`
+transfer mode (defaults to `none`)
+     */
+    val streamCompression : StreamCompression? = null,
+
+    /**
+     *
+     */
+    val traceConfig : TraceConfig? = null
 
 )
 
 /**
+ * Represents event frames for Tracing.bufferUsage
+ *
+ *
+ */
+data class BufferUsageEvent(
+  /**
+   * A number in range [0..1] that indicates the used size of event buffer as a fraction of its
+total size.
+   */
+  val percentFull : Double? = null,
+
+  /**
+   * An approximate number of events in the trace log.
+   */
+  val eventCount : Double? = null,
+
+  /**
+   * A number in range [0..1] that indicates the used size of event buffer as a fraction of its
+total size.
+   */
+  val value : Double? = null
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Tracing", name = "bufferUsage")
+
+/**
  * Represents event frames for Tracing.dataCollected
  *
- * Contains an bucket of collected trace events. When tracing is stopped collected events will be send as a sequence of dataCollected events followed by tracingComplete event.
+ * Contains an bucket of collected trace events. When tracing is stopped collected events will be
+send as a sequence of dataCollected events followed by tracingComplete event.
  */
 data class DataCollectedEvent(
   /**
@@ -199,36 +237,19 @@ data class DataCollectedEvent(
 /**
  * Represents event frames for Tracing.tracingComplete
  *
- * Signals that tracing is stopped and there is no trace buffers pending flush, all data were delivered via dataCollected events.
+ * Signals that tracing is stopped and there is no trace buffers pending flush, all data were
+delivered via dataCollected events.
  */
 data class TracingCompleteEvent(
   /**
    * A handle of the stream that holds resulting trace data.
    */
-  val stream : pl.wendigo.chrome.domain.io.StreamHandle? = null
+  val stream : pl.wendigo.chrome.domain.io.StreamHandle? = null,
+
+  /**
+   * Compression format of returned stream.
+   */
+  val streamCompression : StreamCompression? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Tracing", name = "tracingComplete")
-
-/**
- * Represents event frames for Tracing.bufferUsage
- *
- *
- */
-data class BufferUsageEvent(
-  /**
-   * A number in range [0..1] that indicates the used size of event buffer as a fraction of its total size.
-   */
-  val percentFull : Double? = null,
-
-  /**
-   * An approximate number of events in the trace log.
-   */
-  val eventCount : Double? = null,
-
-  /**
-   * A number in range [0..1] that indicates the used size of event buffer as a fraction of its total size.
-   */
-  val value : Double? = null
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Tracing", name = "bufferUsage")
 

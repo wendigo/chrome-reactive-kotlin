@@ -132,185 +132,10 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
     }
 
     /**
-     * Returns Inspector domain object.
+     * Returns Accessibility domain object.
      */
-    val Inspector : pl.wendigo.chrome.domain.inspector.InspectorDomain by lazy {
-        pl.wendigo.chrome.domain.inspector.InspectorDomain(api)
-    }
-
-    /**
-     * Returns Memory domain object.
-     */
-    val Memory : pl.wendigo.chrome.domain.memory.MemoryDomain by lazy {
-        pl.wendigo.chrome.domain.memory.MemoryDomain(api)
-    }
-
-    /**
-     * Returns Performance domain object.
-     */
-    val Performance : pl.wendigo.chrome.domain.performance.PerformanceDomain by lazy {
-        pl.wendigo.chrome.domain.performance.PerformanceDomain(api)
-    }
-
-    /**
-     * Actions and events related to the inspected page belong to the page domain.
-     */
-    val Page : pl.wendigo.chrome.domain.page.PageDomain by lazy {
-        pl.wendigo.chrome.domain.page.PageDomain(api)
-    }
-
-    /**
-     * This domain provides various functionality related to drawing atop the inspected page.
-     */
-    val Overlay : pl.wendigo.chrome.domain.overlay.OverlayDomain by lazy {
-        pl.wendigo.chrome.domain.overlay.OverlayDomain(api)
-    }
-
-    /**
-     * This domain emulates different environments for the page.
-     */
-    val Emulation : pl.wendigo.chrome.domain.emulation.EmulationDomain by lazy {
-        pl.wendigo.chrome.domain.emulation.EmulationDomain(api)
-    }
-
-    /**
-     * Security
-     */
-    val Security : pl.wendigo.chrome.domain.security.SecurityDomain by lazy {
-        pl.wendigo.chrome.domain.security.SecurityDomain(api)
-    }
-
-    /**
-     * Audits domain allows investigation of page violations and possible improvements.
-     */
-    val Audits : pl.wendigo.chrome.domain.audits.AuditsDomain by lazy {
-        pl.wendigo.chrome.domain.audits.AuditsDomain(api)
-    }
-
-    /**
-     * Network domain allows tracking network activities of the page. It exposes information about http, file, data and other requests and responses, their headers, bodies, timing, etc.
-     */
-    val Network : pl.wendigo.chrome.domain.network.NetworkDomain by lazy {
-        pl.wendigo.chrome.domain.network.NetworkDomain(api)
-    }
-
-    /**
-     * Returns Database domain object.
-     */
-    val Database : pl.wendigo.chrome.domain.database.DatabaseDomain by lazy {
-        pl.wendigo.chrome.domain.database.DatabaseDomain(api)
-    }
-
-    /**
-     * Returns IndexedDB domain object.
-     */
-    val IndexedDB : pl.wendigo.chrome.domain.indexeddb.IndexedDBDomain by lazy {
-        pl.wendigo.chrome.domain.indexeddb.IndexedDBDomain(api)
-    }
-
-    /**
-     * Returns CacheStorage domain object.
-     */
-    val CacheStorage : pl.wendigo.chrome.domain.cachestorage.CacheStorageDomain by lazy {
-        pl.wendigo.chrome.domain.cachestorage.CacheStorageDomain(api)
-    }
-
-    /**
-     * Query and modify DOM storage.
-     */
-    val DOMStorage : pl.wendigo.chrome.domain.domstorage.DOMStorageDomain by lazy {
-        pl.wendigo.chrome.domain.domstorage.DOMStorageDomain(api)
-    }
-
-    /**
-     * Returns ApplicationCache domain object.
-     */
-    val ApplicationCache : pl.wendigo.chrome.domain.applicationcache.ApplicationCacheDomain by lazy {
-        pl.wendigo.chrome.domain.applicationcache.ApplicationCacheDomain(api)
-    }
-
-    /**
-     * This domain exposes DOM read/write operations. Each DOM Node is represented with its mirror object that has an <code>id</code>. This <code>id</code> can be used to get additional information on the Node, resolve it into the JavaScript object wrapper, etc. It is important that client receives DOM events only for the nodes that are known to the client. Backend keeps track of the nodes that were sent to the client and never sends the same node twice. It is client's responsibility to collect information about the nodes that were sent to the client.<p>Note that <code>iframe</code> owner elements will return corresponding document elements as their child nodes.</p>
-     */
-    val DOM : pl.wendigo.chrome.domain.dom.DOMDomain by lazy {
-        pl.wendigo.chrome.domain.dom.DOMDomain(api)
-    }
-
-    /**
-     * This domain exposes CSS read/write operations. All CSS objects (stylesheets, rules, and styles) have an associated <code>id</code> used in subsequent operations on the related object. Each object type has a specific <code>id</code> structure, and those are not interchangeable between objects of different kinds. CSS objects can be loaded using the <code>get*ForNode()</code> calls (which accept a DOM node id). A client can also keep track of stylesheets via the <code>styleSheetAdded</code>/<code>styleSheetRemoved</code> events and subsequently load the required stylesheet contents using the <code>getStyleSheet[Text]()</code> methods.
-     */
-    val CSS : pl.wendigo.chrome.domain.css.CSSDomain by lazy {
-        pl.wendigo.chrome.domain.css.CSSDomain(api)
-    }
-
-    /**
-     * This domain facilitates obtaining document snapshots with DOM, layout, and style information.
-     */
-    val DOMSnapshot : pl.wendigo.chrome.domain.domsnapshot.DOMSnapshotDomain by lazy {
-        pl.wendigo.chrome.domain.domsnapshot.DOMSnapshotDomain(api)
-    }
-
-    /**
-     * Input/Output operations for streams produced by DevTools.
-     */
-    val IO : pl.wendigo.chrome.domain.io.IODomain by lazy {
-        pl.wendigo.chrome.domain.io.IODomain(api)
-    }
-
-    /**
-     * DOM debugging allows setting breakpoints on particular DOM operations and events. JavaScript execution will stop on these operations as if there was a regular breakpoint set.
-     */
-    val DOMDebugger : pl.wendigo.chrome.domain.domdebugger.DOMDebuggerDomain by lazy {
-        pl.wendigo.chrome.domain.domdebugger.DOMDebuggerDomain(api)
-    }
-
-    /**
-     * Supports additional targets discovery and allows to attach to them.
-     */
-    val Target : pl.wendigo.chrome.domain.target.TargetDomain by lazy {
-        pl.wendigo.chrome.domain.target.TargetDomain(api)
-    }
-
-    /**
-     * This domain provides experimental commands only supported in headless mode.
-     */
-    val HeadlessExperimental : pl.wendigo.chrome.domain.headlessexperimental.HeadlessExperimentalDomain by lazy {
-        pl.wendigo.chrome.domain.headlessexperimental.HeadlessExperimentalDomain(api)
-    }
-
-    /**
-     * Returns ServiceWorker domain object.
-     */
-    val ServiceWorker : pl.wendigo.chrome.domain.serviceworker.ServiceWorkerDomain by lazy {
-        pl.wendigo.chrome.domain.serviceworker.ServiceWorkerDomain(api)
-    }
-
-    /**
-     * Returns Input domain object.
-     */
-    val Input : pl.wendigo.chrome.domain.input.InputDomain by lazy {
-        pl.wendigo.chrome.domain.input.InputDomain(api)
-    }
-
-    /**
-     * Returns LayerTree domain object.
-     */
-    val LayerTree : pl.wendigo.chrome.domain.layertree.LayerTreeDomain by lazy {
-        pl.wendigo.chrome.domain.layertree.LayerTreeDomain(api)
-    }
-
-    /**
-     * Returns DeviceOrientation domain object.
-     */
-    val DeviceOrientation : pl.wendigo.chrome.domain.deviceorientation.DeviceOrientationDomain by lazy {
-        pl.wendigo.chrome.domain.deviceorientation.DeviceOrientationDomain(api)
-    }
-
-    /**
-     * Returns Tracing domain object.
-     */
-    val Tracing : pl.wendigo.chrome.domain.tracing.TracingDomain by lazy {
-        pl.wendigo.chrome.domain.tracing.TracingDomain(api)
+    val Accessibility : pl.wendigo.chrome.domain.accessibility.AccessibilityDomain by lazy {
+        pl.wendigo.chrome.domain.accessibility.AccessibilityDomain(api)
     }
 
     /**
@@ -321,38 +146,17 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
     }
 
     /**
-     * Returns Accessibility domain object.
+     * Returns ApplicationCache domain object.
      */
-    val Accessibility : pl.wendigo.chrome.domain.accessibility.AccessibilityDomain by lazy {
-        pl.wendigo.chrome.domain.accessibility.AccessibilityDomain(api)
+    val ApplicationCache : pl.wendigo.chrome.domain.applicationcache.ApplicationCacheDomain by lazy {
+        pl.wendigo.chrome.domain.applicationcache.ApplicationCacheDomain(api)
     }
 
     /**
-     * Returns Storage domain object.
+     * Audits domain allows investigation of page violations and possible improvements.
      */
-    val Storage : pl.wendigo.chrome.domain.storage.StorageDomain by lazy {
-        pl.wendigo.chrome.domain.storage.StorageDomain(api)
-    }
-
-    /**
-     * Provides access to log entries.
-     */
-    val Log : pl.wendigo.chrome.domain.log.LogDomain by lazy {
-        pl.wendigo.chrome.domain.log.LogDomain(api)
-    }
-
-    /**
-     * The SystemInfo domain defines methods and events for querying low-level system information.
-     */
-    val SystemInfo : pl.wendigo.chrome.domain.systeminfo.SystemInfoDomain by lazy {
-        pl.wendigo.chrome.domain.systeminfo.SystemInfoDomain(api)
-    }
-
-    /**
-     * The Tethering domain defines methods and events for browser port binding.
-     */
-    val Tethering : pl.wendigo.chrome.domain.tethering.TetheringDomain by lazy {
-        pl.wendigo.chrome.domain.tethering.TetheringDomain(api)
+    val Audits : pl.wendigo.chrome.domain.audits.AuditsDomain by lazy {
+        pl.wendigo.chrome.domain.audits.AuditsDomain(api)
     }
 
     /**
@@ -363,24 +167,212 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
     }
 
     /**
-     * This domain is deprecated.
+     * This domain exposes CSS read/write operations. All CSS objects (stylesheets, rules, and styles)
+have an associated `id` used in subsequent operations on the related object. Each object type has
+a specific `id` structure, and those are not interchangeable between objects of different kinds.
+CSS objects can be loaded using the `get*ForNode()` calls (which accept a DOM node id). A client
+can also keep track of stylesheets via the `styleSheetAdded`/`styleSheetRemoved` events and
+subsequently load the required stylesheet contents using the `getStyleSheet[Text]()` methods.
      */
-    val Schema : pl.wendigo.chrome.domain.schema.SchemaDomain by lazy {
-        pl.wendigo.chrome.domain.schema.SchemaDomain(api)
+    val CSS : pl.wendigo.chrome.domain.css.CSSDomain by lazy {
+        pl.wendigo.chrome.domain.css.CSSDomain(api)
     }
 
     /**
-     * Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects. Evaluation results are returned as mirror object that expose object type, string representation and unique identifier that can be used for further object reference. Original objects are maintained in memory unless they are either explicitly released or are released along with the other objects in their object group.
+     * Returns CacheStorage domain object.
      */
-    val Runtime : pl.wendigo.chrome.domain.runtime.RuntimeDomain by lazy {
-        pl.wendigo.chrome.domain.runtime.RuntimeDomain(api)
+    val CacheStorage : pl.wendigo.chrome.domain.cachestorage.CacheStorageDomain by lazy {
+        pl.wendigo.chrome.domain.cachestorage.CacheStorageDomain(api)
     }
 
     /**
-     * Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing breakpoints, stepping through execution, exploring stack traces, etc.
+     * This domain exposes DOM read/write operations. Each DOM Node is represented with its mirror object
+that has an `id`. This `id` can be used to get additional information on the Node, resolve it into
+the JavaScript object wrapper, etc. It is important that client receives DOM events only for the
+nodes that are known to the client. Backend keeps track of the nodes that were sent to the client
+and never sends the same node twice. It is client's responsibility to collect information about
+the nodes that were sent to the client.<p>Note that `iframe` owner elements will return
+corresponding document elements as their child nodes.</p>
      */
-    val Debugger : pl.wendigo.chrome.domain.debugger.DebuggerDomain by lazy {
-        pl.wendigo.chrome.domain.debugger.DebuggerDomain(api)
+    val DOM : pl.wendigo.chrome.domain.dom.DOMDomain by lazy {
+        pl.wendigo.chrome.domain.dom.DOMDomain(api)
+    }
+
+    /**
+     * DOM debugging allows setting breakpoints on particular DOM operations and events. JavaScript
+execution will stop on these operations as if there was a regular breakpoint set.
+     */
+    val DOMDebugger : pl.wendigo.chrome.domain.domdebugger.DOMDebuggerDomain by lazy {
+        pl.wendigo.chrome.domain.domdebugger.DOMDebuggerDomain(api)
+    }
+
+    /**
+     * This domain facilitates obtaining document snapshots with DOM, layout, and style information.
+     */
+    val DOMSnapshot : pl.wendigo.chrome.domain.domsnapshot.DOMSnapshotDomain by lazy {
+        pl.wendigo.chrome.domain.domsnapshot.DOMSnapshotDomain(api)
+    }
+
+    /**
+     * Query and modify DOM storage.
+     */
+    val DOMStorage : pl.wendigo.chrome.domain.domstorage.DOMStorageDomain by lazy {
+        pl.wendigo.chrome.domain.domstorage.DOMStorageDomain(api)
+    }
+
+    /**
+     * Returns Database domain object.
+     */
+    val Database : pl.wendigo.chrome.domain.database.DatabaseDomain by lazy {
+        pl.wendigo.chrome.domain.database.DatabaseDomain(api)
+    }
+
+    /**
+     * Returns DeviceOrientation domain object.
+     */
+    val DeviceOrientation : pl.wendigo.chrome.domain.deviceorientation.DeviceOrientationDomain by lazy {
+        pl.wendigo.chrome.domain.deviceorientation.DeviceOrientationDomain(api)
+    }
+
+    /**
+     * This domain emulates different environments for the page.
+     */
+    val Emulation : pl.wendigo.chrome.domain.emulation.EmulationDomain by lazy {
+        pl.wendigo.chrome.domain.emulation.EmulationDomain(api)
+    }
+
+    /**
+     * This domain provides experimental commands only supported in headless mode.
+     */
+    val HeadlessExperimental : pl.wendigo.chrome.domain.headlessexperimental.HeadlessExperimentalDomain by lazy {
+        pl.wendigo.chrome.domain.headlessexperimental.HeadlessExperimentalDomain(api)
+    }
+
+    /**
+     * Input/Output operations for streams produced by DevTools.
+     */
+    val IO : pl.wendigo.chrome.domain.io.IODomain by lazy {
+        pl.wendigo.chrome.domain.io.IODomain(api)
+    }
+
+    /**
+     * Returns IndexedDB domain object.
+     */
+    val IndexedDB : pl.wendigo.chrome.domain.indexeddb.IndexedDBDomain by lazy {
+        pl.wendigo.chrome.domain.indexeddb.IndexedDBDomain(api)
+    }
+
+    /**
+     * Returns Input domain object.
+     */
+    val Input : pl.wendigo.chrome.domain.input.InputDomain by lazy {
+        pl.wendigo.chrome.domain.input.InputDomain(api)
+    }
+
+    /**
+     * Returns Inspector domain object.
+     */
+    val Inspector : pl.wendigo.chrome.domain.inspector.InspectorDomain by lazy {
+        pl.wendigo.chrome.domain.inspector.InspectorDomain(api)
+    }
+
+    /**
+     * Returns LayerTree domain object.
+     */
+    val LayerTree : pl.wendigo.chrome.domain.layertree.LayerTreeDomain by lazy {
+        pl.wendigo.chrome.domain.layertree.LayerTreeDomain(api)
+    }
+
+    /**
+     * Provides access to log entries.
+     */
+    val Log : pl.wendigo.chrome.domain.log.LogDomain by lazy {
+        pl.wendigo.chrome.domain.log.LogDomain(api)
+    }
+
+    /**
+     * Returns Memory domain object.
+     */
+    val Memory : pl.wendigo.chrome.domain.memory.MemoryDomain by lazy {
+        pl.wendigo.chrome.domain.memory.MemoryDomain(api)
+    }
+
+    /**
+     * Network domain allows tracking network activities of the page. It exposes information about http,
+file, data and other requests and responses, their headers, bodies, timing, etc.
+     */
+    val Network : pl.wendigo.chrome.domain.network.NetworkDomain by lazy {
+        pl.wendigo.chrome.domain.network.NetworkDomain(api)
+    }
+
+    /**
+     * This domain provides various functionality related to drawing atop the inspected page.
+     */
+    val Overlay : pl.wendigo.chrome.domain.overlay.OverlayDomain by lazy {
+        pl.wendigo.chrome.domain.overlay.OverlayDomain(api)
+    }
+
+    /**
+     * Actions and events related to the inspected page belong to the page domain.
+     */
+    val Page : pl.wendigo.chrome.domain.page.PageDomain by lazy {
+        pl.wendigo.chrome.domain.page.PageDomain(api)
+    }
+
+    /**
+     * Returns Performance domain object.
+     */
+    val Performance : pl.wendigo.chrome.domain.performance.PerformanceDomain by lazy {
+        pl.wendigo.chrome.domain.performance.PerformanceDomain(api)
+    }
+
+    /**
+     * Security
+     */
+    val Security : pl.wendigo.chrome.domain.security.SecurityDomain by lazy {
+        pl.wendigo.chrome.domain.security.SecurityDomain(api)
+    }
+
+    /**
+     * Returns ServiceWorker domain object.
+     */
+    val ServiceWorker : pl.wendigo.chrome.domain.serviceworker.ServiceWorkerDomain by lazy {
+        pl.wendigo.chrome.domain.serviceworker.ServiceWorkerDomain(api)
+    }
+
+    /**
+     * Returns Storage domain object.
+     */
+    val Storage : pl.wendigo.chrome.domain.storage.StorageDomain by lazy {
+        pl.wendigo.chrome.domain.storage.StorageDomain(api)
+    }
+
+    /**
+     * The SystemInfo domain defines methods and events for querying low-level system information.
+     */
+    val SystemInfo : pl.wendigo.chrome.domain.systeminfo.SystemInfoDomain by lazy {
+        pl.wendigo.chrome.domain.systeminfo.SystemInfoDomain(api)
+    }
+
+    /**
+     * Supports additional targets discovery and allows to attach to them.
+     */
+    val Target : pl.wendigo.chrome.domain.target.TargetDomain by lazy {
+        pl.wendigo.chrome.domain.target.TargetDomain(api)
+    }
+
+    /**
+     * The Tethering domain defines methods and events for browser port binding.
+     */
+    val Tethering : pl.wendigo.chrome.domain.tethering.TetheringDomain by lazy {
+        pl.wendigo.chrome.domain.tethering.TetheringDomain(api)
+    }
+
+    /**
+     * Returns Tracing domain object.
+     */
+    val Tracing : pl.wendigo.chrome.domain.tracing.TracingDomain by lazy {
+        pl.wendigo.chrome.domain.tracing.TracingDomain(api)
     }
 
     /**
@@ -391,10 +383,10 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
     }
 
     /**
-     * Returns Profiler domain object.
+     * Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing breakpoints, stepping through execution, exploring stack traces, etc.
      */
-    val Profiler : pl.wendigo.chrome.domain.profiler.ProfilerDomain by lazy {
-        pl.wendigo.chrome.domain.profiler.ProfilerDomain(api)
+    val Debugger : pl.wendigo.chrome.domain.debugger.DebuggerDomain by lazy {
+        pl.wendigo.chrome.domain.debugger.DebuggerDomain(api)
     }
 
     /**
@@ -402,6 +394,27 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
      */
     val HeapProfiler : pl.wendigo.chrome.domain.heapprofiler.HeapProfilerDomain by lazy {
         pl.wendigo.chrome.domain.heapprofiler.HeapProfilerDomain(api)
+    }
+
+    /**
+     * Returns Profiler domain object.
+     */
+    val Profiler : pl.wendigo.chrome.domain.profiler.ProfilerDomain by lazy {
+        pl.wendigo.chrome.domain.profiler.ProfilerDomain(api)
+    }
+
+    /**
+     * Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects. Evaluation results are returned as mirror object that expose object type, string representation and unique identifier that can be used for further object reference. Original objects are maintained in memory unless they are either explicitly released or are released along with the other objects in their object group.
+     */
+    val Runtime : pl.wendigo.chrome.domain.runtime.RuntimeDomain by lazy {
+        pl.wendigo.chrome.domain.runtime.RuntimeDomain(api)
+    }
+
+    /**
+     * This domain is deprecated.
+     */
+    val Schema : pl.wendigo.chrome.domain.schema.SchemaDomain by lazy {
+        pl.wendigo.chrome.domain.schema.SchemaDomain(api)
     }
 
     /**

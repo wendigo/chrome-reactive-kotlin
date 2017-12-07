@@ -5,15 +5,6 @@ package pl.wendigo.chrome.domain.database
  */
 class DatabaseDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Enables database tracking, database events will now be delivered to the client.
-     */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Disables database tracking, prevents database events from being sent to the client.
      */
     fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -23,10 +14,10 @@ class DatabaseDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     *
+     * Enables database tracking, database events will now be delivered to the client.
      */
-    fun getDatabaseTableNames(input : GetDatabaseTableNamesRequest) : io.reactivex.Single<GetDatabaseTableNamesResponse> {
-        return connectionRemote.runAndCaptureResponse("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java).map {
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -36,6 +27,15 @@ class DatabaseDomain internal constructor(private val connectionRemote : pl.wend
      */
     fun executeSQL(input : ExecuteSQLRequest) : io.reactivex.Single<ExecuteSQLResponse> {
         return connectionRemote.runAndCaptureResponse("Database.executeSQL", input, ExecuteSQLResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun getDatabaseTableNames(input : GetDatabaseTableNamesRequest) : io.reactivex.Single<GetDatabaseTableNamesResponse> {
+        return connectionRemote.runAndCaptureResponse("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java).map {
             it.value()
         }
     }
@@ -65,32 +65,6 @@ class DatabaseDomain internal constructor(private val connectionRemote : pl.wend
         }
     }
 }
-
-/**
- * Represents request frame that can be used with Database.getDatabaseTableNames method call.
- *
- *
- */
-data class GetDatabaseTableNamesRequest (
-    /**
-     *
-     */
-    val databaseId : DatabaseId
-
-)
-
-/**
- * Represents response frame for Database.getDatabaseTableNames method call.
- *
- *
- */
-data class GetDatabaseTableNamesResponse(
-  /**
-   *
-   */
-  val tableNames : List<String>
-
-)
 
 /**
  * Represents request frame that can be used with Database.executeSQL method call.
@@ -130,6 +104,32 @@ data class ExecuteSQLResponse(
    *
    */
   val sqlError : Error? = null
+
+)
+
+/**
+ * Represents request frame that can be used with Database.getDatabaseTableNames method call.
+ *
+ *
+ */
+data class GetDatabaseTableNamesRequest (
+    /**
+     *
+     */
+    val databaseId : DatabaseId
+
+)
+
+/**
+ * Represents response frame for Database.getDatabaseTableNames method call.
+ *
+ *
+ */
+data class GetDatabaseTableNamesResponse(
+  /**
+   *
+   */
+  val tableNames : List<String>
 
 )
 

@@ -5,15 +5,6 @@ package pl.wendigo.chrome.domain.overlay
  */
 class OverlayDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Enables domain notifications.
-     */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Overlay.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Disables domain notifications.
      */
     fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -23,10 +14,84 @@ class OverlayDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Requests that backend shows paint rectangles
+     * Enables domain notifications.
      */
-    fun setShowPaintRects(input : SetShowPaintRectsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setShowPaintRects", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Overlay.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * For testing.
+     */
+    fun getHighlightObjectForTest(input : GetHighlightObjectForTestRequest) : io.reactivex.Single<GetHighlightObjectForTestResponse> {
+        return connectionRemote.runAndCaptureResponse("Overlay.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Hides any highlight.
+     */
+    fun hideHighlight() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Overlay.hideHighlight", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Highlights owner element of the frame with given id.
+     */
+    fun highlightFrame(input : HighlightFrameRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Overlay.highlightFrame", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or
+objectId must be specified.
+     */
+    fun highlightNode(input : HighlightNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Overlay.highlightNode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
+     */
+    fun highlightQuad(input : HighlightQuadRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Overlay.highlightQuad", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
+     */
+    fun highlightRect(input : HighlightRectRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Overlay.highlightRect", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted.
+Backend then generates 'inspectNodeRequested' event upon element selection.
+     */
+    fun setInspectMode(input : SetInspectModeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Overlay.setInspectMode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun setPausedInDebuggerMessage(input : SetPausedInDebuggerMessageRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Overlay.setPausedInDebuggerMessage", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -45,6 +110,15 @@ class OverlayDomain internal constructor(private val connectionRemote : pl.wendi
      */
     fun setShowFPSCounter(input : SetShowFPSCounterRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Overlay.setShowFPSCounter", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Requests that backend shows paint rectangles
+     */
+    fun setShowPaintRects(input : SetShowPaintRectsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Overlay.setShowPaintRects", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -70,15 +144,6 @@ class OverlayDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      *
      */
-    fun setPausedInDebuggerMessage(input : SetPausedInDebuggerMessageRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setPausedInDebuggerMessage", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
     fun setSuspended(input : SetSuspendedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Overlay.setSuspended", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
@@ -86,86 +151,8 @@ class OverlayDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
-     */
-    fun setInspectMode(input : SetInspectModeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Overlay.setInspectMode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
-     */
-    fun highlightRect(input : HighlightRectRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Overlay.highlightRect", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
-     */
-    fun highlightQuad(input : HighlightQuadRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Overlay.highlightQuad", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
-     */
-    fun highlightNode(input : HighlightNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Overlay.highlightNode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Highlights owner element of the frame with given id.
-     */
-    fun highlightFrame(input : HighlightFrameRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Overlay.highlightFrame", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Hides any highlight.
-     */
-    fun hideHighlight() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Overlay.hideHighlight", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * For testing.
-     */
-    fun getHighlightObjectForTest(input : GetHighlightObjectForTestRequest) : io.reactivex.Single<GetHighlightObjectForTestResponse> {
-        return connectionRemote.runAndCaptureResponse("Overlay.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Fired when the node should be highlighted. This happens after call to <code>setInspectMode</code>.
-     */
-    fun nodeHighlightRequested() : io.reactivex.Flowable<NodeHighlightRequestedEvent> {
-        return nodeHighlightRequestedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Fired when the node should be highlighted. This happens after call to <code>setInspectMode</code>.
-     */
-    fun nodeHighlightRequestedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<NodeHighlightRequestedEvent>> {
-        return connectionRemote.captureEvents("Overlay.nodeHighlightRequested", NodeHighlightRequestedEvent::class.java)
-    }
-
-    /**
-     * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code> or when user manually inspects an element.
+     * Fired when the node should be inspected. This happens after call to `setInspectMode` or when
+user manually inspects an element.
      */
     fun inspectNodeRequested() : io.reactivex.Flowable<InspectNodeRequestedEvent> {
         return inspectNodeRequestedTimed().map {
@@ -174,10 +161,27 @@ class OverlayDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code> or when user manually inspects an element.
+     * Fired when the node should be inspected. This happens after call to `setInspectMode` or when
+user manually inspects an element.
      */
     fun inspectNodeRequestedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<InspectNodeRequestedEvent>> {
         return connectionRemote.captureEvents("Overlay.inspectNodeRequested", InspectNodeRequestedEvent::class.java)
+    }
+
+    /**
+     * Fired when the node should be highlighted. This happens after call to `setInspectMode`.
+     */
+    fun nodeHighlightRequested() : io.reactivex.Flowable<NodeHighlightRequestedEvent> {
+        return nodeHighlightRequestedTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Fired when the node should be highlighted. This happens after call to `setInspectMode`.
+     */
+    fun nodeHighlightRequestedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<NodeHighlightRequestedEvent>> {
+        return connectionRemote.captureEvents("Overlay.nodeHighlightRequested", NodeHighlightRequestedEvent::class.java)
     }
 
     /**
@@ -207,111 +211,103 @@ class OverlayDomain internal constructor(private val connectionRemote : pl.wendi
 }
 
 /**
- * Represents request frame that can be used with Overlay.setShowPaintRects method call.
+ * Represents request frame that can be used with Overlay.getHighlightObjectForTest method call.
  *
- * Requests that backend shows paint rectangles
+ * For testing.
  */
-data class SetShowPaintRectsRequest (
+data class GetHighlightObjectForTestRequest (
     /**
-     * True for showing paint rectangles
+     * Id of the node to get highlight object for.
      */
-    val result : Boolean
+    val nodeId : pl.wendigo.chrome.domain.dom.NodeId
 
 )
 
 /**
- * Represents request frame that can be used with Overlay.setShowDebugBorders method call.
+ * Represents response frame for Overlay.getHighlightObjectForTest method call.
  *
- * Requests that backend shows debug borders on layers
+ * For testing.
  */
-data class SetShowDebugBordersRequest (
-    /**
-     * True for showing debug borders
-     */
-    val show : Boolean
+data class GetHighlightObjectForTestResponse(
+  /**
+   * Highlight data for the node.
+   */
+  val highlight : String
 
 )
 
 /**
- * Represents request frame that can be used with Overlay.setShowFPSCounter method call.
+ * Represents request frame that can be used with Overlay.highlightFrame method call.
  *
- * Requests that backend shows the FPS counter
+ * Highlights owner element of the frame with given id.
  */
-data class SetShowFPSCounterRequest (
+data class HighlightFrameRequest (
     /**
-     * True for showing the FPS counter
+     * Identifier of the frame to highlight.
      */
-    val show : Boolean
+    val frameId : pl.wendigo.chrome.domain.page.FrameId,
+
+    /**
+     * The content box highlight fill color (default: transparent).
+     */
+    val contentColor : pl.wendigo.chrome.domain.dom.RGBA? = null,
+
+    /**
+     * The content box highlight outline color (default: transparent).
+     */
+    val contentOutlineColor : pl.wendigo.chrome.domain.dom.RGBA? = null
 
 )
 
 /**
- * Represents request frame that can be used with Overlay.setShowScrollBottleneckRects method call.
+ * Represents request frame that can be used with Overlay.highlightNode method call.
  *
- * Requests that backend shows scroll bottleneck rects
+ * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or
+objectId must be specified.
  */
-data class SetShowScrollBottleneckRectsRequest (
+data class HighlightNodeRequest (
     /**
-     * True for showing scroll bottleneck rects
+     * A descriptor for the highlight appearance.
      */
-    val show : Boolean
+    val highlightConfig : HighlightConfig,
+
+    /**
+     * Identifier of the node to highlight.
+     */
+    val nodeId : pl.wendigo.chrome.domain.dom.NodeId? = null,
+
+    /**
+     * Identifier of the backend node to highlight.
+     */
+    val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node to be highlighted.
+     */
+    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
 
 )
 
 /**
- * Represents request frame that can be used with Overlay.setShowViewportSizeOnResize method call.
+ * Represents request frame that can be used with Overlay.highlightQuad method call.
  *
- * Paints viewport size upon main frame resize.
+ * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
  */
-data class SetShowViewportSizeOnResizeRequest (
+data class HighlightQuadRequest (
     /**
-     * Whether to paint size or not.
+     * Quad to highlight
      */
-    val show : Boolean
-
-)
-
-/**
- * Represents request frame that can be used with Overlay.setPausedInDebuggerMessage method call.
- *
- *
- */
-data class SetPausedInDebuggerMessageRequest (
-    /**
-     * The message to display, also triggers resume and step over controls.
-     */
-    val message : String? = null
-
-)
-
-/**
- * Represents request frame that can be used with Overlay.setSuspended method call.
- *
- *
- */
-data class SetSuspendedRequest (
-    /**
-     * Whether overlay should be suspended and not consume any resources until resumed.
-     */
-    val suspended : Boolean
-
-)
-
-/**
- * Represents request frame that can be used with Overlay.setInspectMode method call.
- *
- * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted. Backend then generates 'inspectNodeRequested' event upon element selection.
- */
-data class SetInspectModeRequest (
-    /**
-     * Set an inspection mode.
-     */
-    val mode : InspectMode,
+    val quad : pl.wendigo.chrome.domain.dom.Quad,
 
     /**
-     * A descriptor for the highlight appearance of hovered-over nodes. May be omitted if <code>enabled == false</code>.
+     * The highlight fill color (default: transparent).
      */
-    val highlightConfig : HighlightConfig? = null
+    val color : pl.wendigo.chrome.domain.dom.RGBA? = null,
+
+    /**
+     * The highlight outline color (default: transparent).
+     */
+    val outlineColor : pl.wendigo.chrome.domain.dom.RGBA? = null
 
 )
 
@@ -354,122 +350,121 @@ data class HighlightRectRequest (
 )
 
 /**
- * Represents request frame that can be used with Overlay.highlightQuad method call.
+ * Represents request frame that can be used with Overlay.setInspectMode method call.
  *
- * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
+ * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted.
+Backend then generates 'inspectNodeRequested' event upon element selection.
  */
-data class HighlightQuadRequest (
+data class SetInspectModeRequest (
     /**
-     * Quad to highlight
+     * Set an inspection mode.
      */
-    val quad : pl.wendigo.chrome.domain.dom.Quad,
+    val mode : InspectMode,
 
     /**
-     * The highlight fill color (default: transparent).
+     * A descriptor for the highlight appearance of hovered-over nodes. May be omitted if `enabled
+== false`.
      */
-    val color : pl.wendigo.chrome.domain.dom.RGBA? = null,
-
-    /**
-     * The highlight outline color (default: transparent).
-     */
-    val outlineColor : pl.wendigo.chrome.domain.dom.RGBA? = null
+    val highlightConfig : HighlightConfig? = null
 
 )
 
 /**
- * Represents request frame that can be used with Overlay.highlightNode method call.
+ * Represents request frame that can be used with Overlay.setPausedInDebuggerMessage method call.
  *
- * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or objectId must be specified.
+ *
  */
-data class HighlightNodeRequest (
+data class SetPausedInDebuggerMessageRequest (
     /**
-     * A descriptor for the highlight appearance.
+     * The message to display, also triggers resume and step over controls.
      */
-    val highlightConfig : HighlightConfig,
-
-    /**
-     * Identifier of the node to highlight.
-     */
-    val nodeId : pl.wendigo.chrome.domain.dom.NodeId? = null,
-
-    /**
-     * Identifier of the backend node to highlight.
-     */
-    val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
-
-    /**
-     * JavaScript object id of the node to be highlighted.
-     */
-    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    val message : String? = null
 
 )
 
 /**
- * Represents request frame that can be used with Overlay.highlightFrame method call.
+ * Represents request frame that can be used with Overlay.setShowDebugBorders method call.
  *
- * Highlights owner element of the frame with given id.
+ * Requests that backend shows debug borders on layers
  */
-data class HighlightFrameRequest (
+data class SetShowDebugBordersRequest (
     /**
-     * Identifier of the frame to highlight.
+     * True for showing debug borders
      */
-    val frameId : pl.wendigo.chrome.domain.page.FrameId,
-
-    /**
-     * The content box highlight fill color (default: transparent).
-     */
-    val contentColor : pl.wendigo.chrome.domain.dom.RGBA? = null,
-
-    /**
-     * The content box highlight outline color (default: transparent).
-     */
-    val contentOutlineColor : pl.wendigo.chrome.domain.dom.RGBA? = null
+    val show : Boolean
 
 )
 
 /**
- * Represents request frame that can be used with Overlay.getHighlightObjectForTest method call.
+ * Represents request frame that can be used with Overlay.setShowFPSCounter method call.
  *
- * For testing.
+ * Requests that backend shows the FPS counter
  */
-data class GetHighlightObjectForTestRequest (
+data class SetShowFPSCounterRequest (
     /**
-     * Id of the node to get highlight object for.
+     * True for showing the FPS counter
      */
-    val nodeId : pl.wendigo.chrome.domain.dom.NodeId
+    val show : Boolean
 
 )
 
 /**
- * Represents response frame for Overlay.getHighlightObjectForTest method call.
+ * Represents request frame that can be used with Overlay.setShowPaintRects method call.
  *
- * For testing.
+ * Requests that backend shows paint rectangles
  */
-data class GetHighlightObjectForTestResponse(
-  /**
-   * Highlight data for the node.
-   */
-  val highlight : String
+data class SetShowPaintRectsRequest (
+    /**
+     * True for showing paint rectangles
+     */
+    val result : Boolean
 
 )
 
 /**
- * Represents event frames for Overlay.nodeHighlightRequested
+ * Represents request frame that can be used with Overlay.setShowScrollBottleneckRects method call.
  *
- * Fired when the node should be highlighted. This happens after call to <code>setInspectMode</code>.
+ * Requests that backend shows scroll bottleneck rects
  */
-data class NodeHighlightRequestedEvent(
-  /**
-   *
-   */
-  val nodeId : pl.wendigo.chrome.domain.dom.NodeId
+data class SetShowScrollBottleneckRectsRequest (
+    /**
+     * True for showing scroll bottleneck rects
+     */
+    val show : Boolean
 
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Overlay", name = "nodeHighlightRequested")
+)
+
+/**
+ * Represents request frame that can be used with Overlay.setShowViewportSizeOnResize method call.
+ *
+ * Paints viewport size upon main frame resize.
+ */
+data class SetShowViewportSizeOnResizeRequest (
+    /**
+     * Whether to paint size or not.
+     */
+    val show : Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with Overlay.setSuspended method call.
+ *
+ *
+ */
+data class SetSuspendedRequest (
+    /**
+     * Whether overlay should be suspended and not consume any resources until resumed.
+     */
+    val suspended : Boolean
+
+)
 
 /**
  * Represents event frames for Overlay.inspectNodeRequested
  *
- * Fired when the node should be inspected. This happens after call to <code>setInspectMode</code> or when user manually inspects an element.
+ * Fired when the node should be inspected. This happens after call to `setInspectMode` or when
+user manually inspects an element.
  */
 data class InspectNodeRequestedEvent(
   /**
@@ -478,6 +473,19 @@ data class InspectNodeRequestedEvent(
   val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Overlay", name = "inspectNodeRequested")
+
+/**
+ * Represents event frames for Overlay.nodeHighlightRequested
+ *
+ * Fired when the node should be highlighted. This happens after call to `setInspectMode`.
+ */
+data class NodeHighlightRequestedEvent(
+  /**
+   *
+   */
+  val nodeId : pl.wendigo.chrome.domain.dom.NodeId
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Overlay", name = "nodeHighlightRequested")
 
 /**
  * Represents event frames for Overlay.screenshotRequested

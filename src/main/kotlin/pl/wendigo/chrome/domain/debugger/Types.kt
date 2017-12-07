@@ -18,7 +18,7 @@ typealias CallFrameId = String
 
 data class Location(
   /**
-   * Script identifier as reported in the <code>Debugger.scriptParsed</code>.
+   * Script identifier as reported in the `Debugger.scriptParsed`.
    */
   val scriptId : pl.wendigo.chrome.domain.runtime.ScriptId,
 
@@ -85,7 +85,7 @@ data class CallFrame(
   val scopeChain : List<Scope>,
 
   /**
-   * <code>this</code> object for this call frame.
+   * `this` object for this call frame.
    */
   @get:com.fasterxml.jackson.annotation.JsonProperty("this") val _this : pl.wendigo.chrome.domain.runtime.RemoteObject,
 
@@ -106,7 +106,7 @@ data class Scope(
   val type : String,
 
   /**
-   * Object representing the scope. For <code>global</code> and <code>with</code> scopes it represents the actual object; for the rest of the scopes, it is artificial transient object enumerating scope variables as its properties.
+   * Object representing the scope. For `global` and `with` scopes it represents the actual object; for the rest of the scopes, it is artificial transient object enumerating scope variables as its properties.
    */
   @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object : pl.wendigo.chrome.domain.runtime.RemoteObject,
 
@@ -148,7 +148,7 @@ data class SearchMatch(
 
 data class BreakLocation(
   /**
-   * Script identifier as reported in the <code>Debugger.scriptParsed</code>.
+   * Script identifier as reported in the `Debugger.scriptParsed`.
    */
   val scriptId : pl.wendigo.chrome.domain.runtime.ScriptId,
 

@@ -5,15 +5,6 @@ package pl.wendigo.chrome.domain.runtime
  */
 class RuntimeDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Evaluates expression on global object.
-     */
-    fun evaluate(input : EvaluateRequest) : io.reactivex.Single<EvaluateResponse> {
-        return connectionRemote.runAndCaptureResponse("Runtime.evaluate", input, EvaluateResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Add handler to promise with given promise object id.
      */
     fun awaitPromise(input : AwaitPromiseRequest) : io.reactivex.Single<AwaitPromiseResponse> {
@@ -32,10 +23,73 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     * Compiles expression.
+     */
+    fun compileScript(input : CompileScriptRequest) : io.reactivex.Single<CompileScriptResponse> {
+        return connectionRemote.runAndCaptureResponse("Runtime.compileScript", input, CompileScriptResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Disables reporting of execution contexts creation.
+     */
+    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Discards collected exceptions and console API calls.
+     */
+    fun discardConsoleEntries() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Enables reporting of execution contexts creation by means of `executionContextCreated` event. When the reporting gets enabled the event will be sent immediately for each existing execution context.
+     */
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Evaluates expression on global object.
+     */
+    fun evaluate(input : EvaluateRequest) : io.reactivex.Single<EvaluateResponse> {
+        return connectionRemote.runAndCaptureResponse("Runtime.evaluate", input, EvaluateResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns properties of a given object. Object group of the result is inherited from the target object.
      */
     fun getProperties(input : GetPropertiesRequest) : io.reactivex.Single<GetPropertiesResponse> {
         return connectionRemote.runAndCaptureResponse("Runtime.getProperties", input, GetPropertiesResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns all let, const and class variables from global scope.
+     */
+    fun globalLexicalScopeNames(input : GlobalLexicalScopeNamesRequest) : io.reactivex.Single<GlobalLexicalScopeNamesResponse> {
+        return connectionRemote.runAndCaptureResponse("Runtime.globalLexicalScopeNames", input, GlobalLexicalScopeNamesResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun queryObjects(input : QueryObjectsRequest) : io.reactivex.Single<QueryObjectsResponse> {
+        return connectionRemote.runAndCaptureResponse("Runtime.queryObjects", input, QueryObjectsResponse::class.java).map {
             it.value()
         }
     }
@@ -68,28 +122,10 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Enables reporting of execution contexts creation by means of <code>executionContextCreated</code> event. When the reporting gets enabled the event will be sent immediately for each existing execution context.
+     * Runs script with given id in a given context.
      */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Disables reporting of execution contexts creation.
-     */
-    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Discards collected exceptions and console API calls.
-     */
-    fun discardConsoleEntries() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun runScript(input : RunScriptRequest) : io.reactivex.Single<RunScriptResponse> {
+        return connectionRemote.runAndCaptureResponse("Runtime.runScript", input, RunScriptResponse::class.java).map {
             it.value()
         }
     }
@@ -104,39 +140,51 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Compiles expression.
+     * Issued when console API was called.
      */
-    fun compileScript(input : CompileScriptRequest) : io.reactivex.Single<CompileScriptResponse> {
-        return connectionRemote.runAndCaptureResponse("Runtime.compileScript", input, CompileScriptResponse::class.java).map {
+    fun consoleAPICalled() : io.reactivex.Flowable<ConsoleAPICalledEvent> {
+        return consoleAPICalledTimed().map {
             it.value()
         }
     }
 
     /**
-     * Runs script with given id in a given context.
+     * Issued when console API was called.
      */
-    fun runScript(input : RunScriptRequest) : io.reactivex.Single<RunScriptResponse> {
-        return connectionRemote.runAndCaptureResponse("Runtime.runScript", input, RunScriptResponse::class.java).map {
+    fun consoleAPICalledTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ConsoleAPICalledEvent>> {
+        return connectionRemote.captureEvents("Runtime.consoleAPICalled", ConsoleAPICalledEvent::class.java)
+    }
+
+    /**
+     * Issued when unhandled exception was revoked.
+     */
+    fun exceptionRevoked() : io.reactivex.Flowable<ExceptionRevokedEvent> {
+        return exceptionRevokedTimed().map {
             it.value()
         }
     }
 
     /**
-     *
+     * Issued when unhandled exception was revoked.
      */
-    fun queryObjects(input : QueryObjectsRequest) : io.reactivex.Single<QueryObjectsResponse> {
-        return connectionRemote.runAndCaptureResponse("Runtime.queryObjects", input, QueryObjectsResponse::class.java).map {
+    fun exceptionRevokedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ExceptionRevokedEvent>> {
+        return connectionRemote.captureEvents("Runtime.exceptionRevoked", ExceptionRevokedEvent::class.java)
+    }
+
+    /**
+     * Issued when exception was thrown and unhandled.
+     */
+    fun exceptionThrown() : io.reactivex.Flowable<ExceptionThrownEvent> {
+        return exceptionThrownTimed().map {
             it.value()
         }
     }
 
     /**
-     * Returns all let, const and class variables from global scope.
+     * Issued when exception was thrown and unhandled.
      */
-    fun globalLexicalScopeNames(input : GlobalLexicalScopeNamesRequest) : io.reactivex.Single<GlobalLexicalScopeNamesResponse> {
-        return connectionRemote.runAndCaptureResponse("Runtime.globalLexicalScopeNames", input, GlobalLexicalScopeNamesResponse::class.java).map {
-            it.value()
-        }
+    fun exceptionThrownTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ExceptionThrownEvent>> {
+        return connectionRemote.captureEvents("Runtime.exceptionThrown", ExceptionThrownEvent::class.java)
     }
 
     /**
@@ -188,54 +236,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Issued when exception was thrown and unhandled.
-     */
-    fun exceptionThrown() : io.reactivex.Flowable<ExceptionThrownEvent> {
-        return exceptionThrownTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Issued when exception was thrown and unhandled.
-     */
-    fun exceptionThrownTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ExceptionThrownEvent>> {
-        return connectionRemote.captureEvents("Runtime.exceptionThrown", ExceptionThrownEvent::class.java)
-    }
-
-    /**
-     * Issued when unhandled exception was revoked.
-     */
-    fun exceptionRevoked() : io.reactivex.Flowable<ExceptionRevokedEvent> {
-        return exceptionRevokedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Issued when unhandled exception was revoked.
-     */
-    fun exceptionRevokedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ExceptionRevokedEvent>> {
-        return connectionRemote.captureEvents("Runtime.exceptionRevoked", ExceptionRevokedEvent::class.java)
-    }
-
-    /**
-     * Issued when console API was called.
-     */
-    fun consoleAPICalled() : io.reactivex.Flowable<ConsoleAPICalledEvent> {
-        return consoleAPICalledTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Issued when console API was called.
-     */
-    fun consoleAPICalledTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ConsoleAPICalledEvent>> {
-        return connectionRemote.captureEvents("Runtime.consoleAPICalled", ConsoleAPICalledEvent::class.java)
-    }
-
-    /**
      * Issued when object should be inspected (for example, as a result of inspect() command line API call).
      */
     fun inspectRequested() : io.reactivex.Flowable<InspectRequestedEvent> {
@@ -260,77 +260,6 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
         }
     }
 }
-/**
- * Represents request frame that can be used with Runtime.evaluate method call.
- *
- * Evaluates expression on global object.
- */
-data class EvaluateRequest (
-    /**
-     * Expression to evaluate.
-     */
-    val expression : String,
-
-    /**
-     * Symbolic group name that can be used to release multiple objects.
-     */
-    val objectGroup : String? = null,
-
-    /**
-     * Determines whether Command Line API should be available during the evaluation.
-     */
-    val includeCommandLineAPI : Boolean? = null,
-
-    /**
-     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides <code>setPauseOnException</code> state.
-     */
-    val silent : Boolean? = null,
-
-    /**
-     * Specifies in which execution context to perform evaluation. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
-     */
-    val contextId : ExecutionContextId? = null,
-
-    /**
-     * Whether the result is expected to be a JSON object that should be sent by value.
-     */
-    val returnByValue : Boolean? = null,
-
-    /**
-     * Whether preview should be generated for the result.
-     */
-    @pl.wendigo.chrome.Experimental val generatePreview : Boolean? = null,
-
-    /**
-     * Whether execution should be treated as initiated by user in the UI.
-     */
-    val userGesture : Boolean? = null,
-
-    /**
-     * Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.
-     */
-    val awaitPromise : Boolean? = null
-
-)
-
-/**
- * Represents response frame for Runtime.evaluate method call.
- *
- * Evaluates expression on global object.
- */
-data class EvaluateResponse(
-  /**
-   * Evaluation result.
-   */
-  val result : RemoteObject,
-
-  /**
-   * Exception details.
-   */
-  val exceptionDetails : ExceptionDetails? = null
-
-)
-
 /**
  * Represents request frame that can be used with Runtime.awaitPromise method call.
  *
@@ -394,7 +323,7 @@ data class CallFunctionOnRequest (
     val arguments : List<CallArgument>? = null,
 
     /**
-     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides <code>setPauseOnException</code> state.
+     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides `setPauseOnException` state.
      */
     val silent : Boolean? = null,
 
@@ -414,7 +343,7 @@ data class CallFunctionOnRequest (
     val userGesture : Boolean? = null,
 
     /**
-     * Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.
+     * Whether execution should `await` for resulting value and return once awaited promise is resolved.
      */
     val awaitPromise : Boolean? = null,
 
@@ -438,6 +367,123 @@ data class CallFunctionOnRequest (
 data class CallFunctionOnResponse(
   /**
    * Call result.
+   */
+  val result : RemoteObject,
+
+  /**
+   * Exception details.
+   */
+  val exceptionDetails : ExceptionDetails? = null
+
+)
+
+/**
+ * Represents request frame that can be used with Runtime.compileScript method call.
+ *
+ * Compiles expression.
+ */
+data class CompileScriptRequest (
+    /**
+     * Expression to compile.
+     */
+    val expression : String,
+
+    /**
+     * Source url to be set for the script.
+     */
+    val sourceURL : String,
+
+    /**
+     * Specifies whether the compiled script should be persisted.
+     */
+    val persistScript : Boolean,
+
+    /**
+     * Specifies in which execution context to perform script run. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
+     */
+    val executionContextId : ExecutionContextId? = null
+
+)
+
+/**
+ * Represents response frame for Runtime.compileScript method call.
+ *
+ * Compiles expression.
+ */
+data class CompileScriptResponse(
+  /**
+   * Id of the script.
+   */
+  val scriptId : ScriptId? = null,
+
+  /**
+   * Exception details.
+   */
+  val exceptionDetails : ExceptionDetails? = null
+
+)
+
+/**
+ * Represents request frame that can be used with Runtime.evaluate method call.
+ *
+ * Evaluates expression on global object.
+ */
+data class EvaluateRequest (
+    /**
+     * Expression to evaluate.
+     */
+    val expression : String,
+
+    /**
+     * Symbolic group name that can be used to release multiple objects.
+     */
+    val objectGroup : String? = null,
+
+    /**
+     * Determines whether Command Line API should be available during the evaluation.
+     */
+    val includeCommandLineAPI : Boolean? = null,
+
+    /**
+     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides `setPauseOnException` state.
+     */
+    val silent : Boolean? = null,
+
+    /**
+     * Specifies in which execution context to perform evaluation. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
+     */
+    val contextId : ExecutionContextId? = null,
+
+    /**
+     * Whether the result is expected to be a JSON object that should be sent by value.
+     */
+    val returnByValue : Boolean? = null,
+
+    /**
+     * Whether preview should be generated for the result.
+     */
+    @pl.wendigo.chrome.Experimental val generatePreview : Boolean? = null,
+
+    /**
+     * Whether execution should be treated as initiated by user in the UI.
+     */
+    val userGesture : Boolean? = null,
+
+    /**
+     * Whether execution should `await` for resulting value and return once awaited promise is resolved.
+     */
+    val awaitPromise : Boolean? = null
+
+)
+
+/**
+ * Represents response frame for Runtime.evaluate method call.
+ *
+ * Evaluates expression on global object.
+ */
+data class EvaluateResponse(
+  /**
+   * Evaluation result.
    */
   val result : RemoteObject,
 
@@ -500,153 +546,28 @@ data class GetPropertiesResponse(
 )
 
 /**
- * Represents request frame that can be used with Runtime.releaseObject method call.
+ * Represents request frame that can be used with Runtime.globalLexicalScopeNames method call.
  *
- * Releases remote object with given id.
+ * Returns all let, const and class variables from global scope.
  */
-data class ReleaseObjectRequest (
+data class GlobalLexicalScopeNamesRequest (
     /**
-     * Identifier of the object to release.
-     */
-    val objectId : RemoteObjectId
-
-)
-
-/**
- * Represents request frame that can be used with Runtime.releaseObjectGroup method call.
- *
- * Releases all remote objects that belong to a given group.
- */
-data class ReleaseObjectGroupRequest (
-    /**
-     * Symbolic object group name.
-     */
-    val objectGroup : String
-
-)
-
-/**
- * Represents request frame that can be used with Runtime.setCustomObjectFormatterEnabled method call.
- *
- *
- */
-data class SetCustomObjectFormatterEnabledRequest (
-    /**
-     *
-     */
-    val enabled : Boolean
-
-)
-
-/**
- * Represents request frame that can be used with Runtime.compileScript method call.
- *
- * Compiles expression.
- */
-data class CompileScriptRequest (
-    /**
-     * Expression to compile.
-     */
-    val expression : String,
-
-    /**
-     * Source url to be set for the script.
-     */
-    val sourceURL : String,
-
-    /**
-     * Specifies whether the compiled script should be persisted.
-     */
-    val persistScript : Boolean,
-
-    /**
-     * Specifies in which execution context to perform script run. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
+     * Specifies in which execution context to lookup global scope variables.
      */
     val executionContextId : ExecutionContextId? = null
 
 )
 
 /**
- * Represents response frame for Runtime.compileScript method call.
+ * Represents response frame for Runtime.globalLexicalScopeNames method call.
  *
- * Compiles expression.
+ * Returns all let, const and class variables from global scope.
  */
-data class CompileScriptResponse(
+data class GlobalLexicalScopeNamesResponse(
   /**
-   * Id of the script.
+   *
    */
-  val scriptId : ScriptId? = null,
-
-  /**
-   * Exception details.
-   */
-  val exceptionDetails : ExceptionDetails? = null
-
-)
-
-/**
- * Represents request frame that can be used with Runtime.runScript method call.
- *
- * Runs script with given id in a given context.
- */
-data class RunScriptRequest (
-    /**
-     * Id of the script to run.
-     */
-    val scriptId : ScriptId,
-
-    /**
-     * Specifies in which execution context to perform script run. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
-     */
-    val executionContextId : ExecutionContextId? = null,
-
-    /**
-     * Symbolic group name that can be used to release multiple objects.
-     */
-    val objectGroup : String? = null,
-
-    /**
-     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides <code>setPauseOnException</code> state.
-     */
-    val silent : Boolean? = null,
-
-    /**
-     * Determines whether Command Line API should be available during the evaluation.
-     */
-    val includeCommandLineAPI : Boolean? = null,
-
-    /**
-     * Whether the result is expected to be a JSON object which should be sent by value.
-     */
-    val returnByValue : Boolean? = null,
-
-    /**
-     * Whether preview should be generated for the result.
-     */
-    val generatePreview : Boolean? = null,
-
-    /**
-     * Whether execution should <code>await</code> for resulting value and return once awaited promise is resolved.
-     */
-    val awaitPromise : Boolean? = null
-
-)
-
-/**
- * Represents response frame for Runtime.runScript method call.
- *
- * Runs script with given id in a given context.
- */
-data class RunScriptResponse(
-  /**
-   * Run result.
-   */
-  val result : RemoteObject,
-
-  /**
-   * Exception details.
-   */
-  val exceptionDetails : ExceptionDetails? = null
+  val names : List<String>
 
 )
 
@@ -677,92 +598,109 @@ data class QueryObjectsResponse(
 )
 
 /**
- * Represents request frame that can be used with Runtime.globalLexicalScopeNames method call.
+ * Represents request frame that can be used with Runtime.releaseObject method call.
  *
- * Returns all let, const and class variables from global scope.
+ * Releases remote object with given id.
  */
-data class GlobalLexicalScopeNamesRequest (
+data class ReleaseObjectRequest (
     /**
-     * Specifies in which execution context to lookup global scope variables.
+     * Identifier of the object to release.
      */
-    val executionContextId : ExecutionContextId? = null
+    val objectId : RemoteObjectId
 
 )
 
 /**
- * Represents response frame for Runtime.globalLexicalScopeNames method call.
+ * Represents request frame that can be used with Runtime.releaseObjectGroup method call.
  *
- * Returns all let, const and class variables from global scope.
+ * Releases all remote objects that belong to a given group.
  */
-data class GlobalLexicalScopeNamesResponse(
-  /**
-   *
-   */
-  val names : List<String>
+data class ReleaseObjectGroupRequest (
+    /**
+     * Symbolic object group name.
+     */
+    val objectGroup : String
 
 )
 
 /**
- * Represents event frames for Runtime.executionContextCreated
+ * Represents request frame that can be used with Runtime.runScript method call.
  *
- * Issued when new execution context is created.
+ * Runs script with given id in a given context.
  */
-data class ExecutionContextCreatedEvent(
-  /**
-   * A newly created execution context.
-   */
-  val context : ExecutionContextDescription
+data class RunScriptRequest (
+    /**
+     * Id of the script to run.
+     */
+    val scriptId : ScriptId,
 
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "executionContextCreated")
+    /**
+     * Specifies in which execution context to perform script run. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
+     */
+    val executionContextId : ExecutionContextId? = null,
+
+    /**
+     * Symbolic group name that can be used to release multiple objects.
+     */
+    val objectGroup : String? = null,
+
+    /**
+     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides `setPauseOnException` state.
+     */
+    val silent : Boolean? = null,
+
+    /**
+     * Determines whether Command Line API should be available during the evaluation.
+     */
+    val includeCommandLineAPI : Boolean? = null,
+
+    /**
+     * Whether the result is expected to be a JSON object which should be sent by value.
+     */
+    val returnByValue : Boolean? = null,
+
+    /**
+     * Whether preview should be generated for the result.
+     */
+    val generatePreview : Boolean? = null,
+
+    /**
+     * Whether execution should `await` for resulting value and return once awaited promise is resolved.
+     */
+    val awaitPromise : Boolean? = null
+
+)
 
 /**
- * Represents event frames for Runtime.executionContextDestroyed
+ * Represents response frame for Runtime.runScript method call.
  *
- * Issued when execution context is destroyed.
+ * Runs script with given id in a given context.
  */
-data class ExecutionContextDestroyedEvent(
+data class RunScriptResponse(
   /**
-   * Id of the destroyed context
+   * Run result.
    */
-  val executionContextId : ExecutionContextId
+  val result : RemoteObject,
 
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "executionContextDestroyed")
+  /**
+   * Exception details.
+   */
+  val exceptionDetails : ExceptionDetails? = null
+
+)
 
 /**
- * Represents event frames for Runtime.exceptionThrown
+ * Represents request frame that can be used with Runtime.setCustomObjectFormatterEnabled method call.
  *
- * Issued when exception was thrown and unhandled.
- */
-data class ExceptionThrownEvent(
-  /**
-   * Timestamp of the exception.
-   */
-  val timestamp : Timestamp,
-
-  /**
-   *
-   */
-  val exceptionDetails : ExceptionDetails
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "exceptionThrown")
-
-/**
- * Represents event frames for Runtime.exceptionRevoked
  *
- * Issued when unhandled exception was revoked.
  */
-data class ExceptionRevokedEvent(
-  /**
-   * Reason describing why exception was revoked.
-   */
-  val reason : String,
+data class SetCustomObjectFormatterEnabledRequest (
+    /**
+     *
+     */
+    val enabled : Boolean
 
-  /**
-   * The id of revoked exception, as reported in <code>exceptionThrown</code>.
-   */
-  val exceptionId : Int
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "exceptionRevoked")
+)
 
 /**
  * Represents event frames for Runtime.consoleAPICalled
@@ -801,6 +739,68 @@ data class ConsoleAPICalledEvent(
   @pl.wendigo.chrome.Experimental val context : String? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "consoleAPICalled")
+
+/**
+ * Represents event frames for Runtime.exceptionRevoked
+ *
+ * Issued when unhandled exception was revoked.
+ */
+data class ExceptionRevokedEvent(
+  /**
+   * Reason describing why exception was revoked.
+   */
+  val reason : String,
+
+  /**
+   * The id of revoked exception, as reported in `exceptionThrown`.
+   */
+  val exceptionId : Int
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "exceptionRevoked")
+
+/**
+ * Represents event frames for Runtime.exceptionThrown
+ *
+ * Issued when exception was thrown and unhandled.
+ */
+data class ExceptionThrownEvent(
+  /**
+   * Timestamp of the exception.
+   */
+  val timestamp : Timestamp,
+
+  /**
+   *
+   */
+  val exceptionDetails : ExceptionDetails
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "exceptionThrown")
+
+/**
+ * Represents event frames for Runtime.executionContextCreated
+ *
+ * Issued when new execution context is created.
+ */
+data class ExecutionContextCreatedEvent(
+  /**
+   * A newly created execution context.
+   */
+  val context : ExecutionContextDescription
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "executionContextCreated")
+
+/**
+ * Represents event frames for Runtime.executionContextDestroyed
+ *
+ * Issued when execution context is destroyed.
+ */
+data class ExecutionContextDestroyedEvent(
+  /**
+   * Id of the destroyed context
+   */
+  val executionContextId : ExecutionContextId
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Runtime", name = "executionContextDestroyed")
 
 /**
  * Represents event frames for Runtime.inspectRequested

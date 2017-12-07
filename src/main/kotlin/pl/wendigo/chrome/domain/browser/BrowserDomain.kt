@@ -14,28 +14,10 @@ class BrowserDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Get the browser window that contains the devtools target.
-     */
-    fun getWindowForTarget(input : GetWindowForTargetRequest) : io.reactivex.Single<GetWindowForTargetResponse> {
-        return connectionRemote.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Returns version information.
      */
     fun getVersion() : io.reactivex.Single<GetVersionResponse> {
         return connectionRemote.runAndCaptureResponse("Browser.getVersion", null, GetVersionResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Set position and/or size of the browser window.
-     */
-    fun setWindowBounds(input : SetWindowBoundsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -50,6 +32,24 @@ class BrowserDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     * Get the browser window that contains the devtools target.
+     */
+    fun getWindowForTarget(input : GetWindowForTargetRequest) : io.reactivex.Single<GetWindowForTargetResponse> {
+        return connectionRemote.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Set position and/or size of the browser window.
+     */
+    fun setWindowBounds(input : SetWindowBoundsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns flowable capturing all Browser domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -58,37 +58,6 @@ class BrowserDomain internal constructor(private val connectionRemote : pl.wendi
         }
     }
 }
-
-/**
- * Represents request frame that can be used with Browser.getWindowForTarget method call.
- *
- * Get the browser window that contains the devtools target.
- */
-data class GetWindowForTargetRequest (
-    /**
-     * Devtools agent host id.
-     */
-    val targetId : pl.wendigo.chrome.domain.target.TargetID
-
-)
-
-/**
- * Represents response frame for Browser.getWindowForTarget method call.
- *
- * Get the browser window that contains the devtools target.
- */
-data class GetWindowForTargetResponse(
-  /**
-   * Browser window id.
-   */
-  val windowId : WindowID,
-
-  /**
-   * Bounds information of the window. When window state is 'minimized', the restored window position and size are returned.
-   */
-  val bounds : Bounds
-
-)
 
 /**
  * Represents response frame for Browser.getVersion method call.
@@ -124,24 +93,6 @@ data class GetVersionResponse(
 )
 
 /**
- * Represents request frame that can be used with Browser.setWindowBounds method call.
- *
- * Set position and/or size of the browser window.
- */
-data class SetWindowBoundsRequest (
-    /**
-     * Browser window id.
-     */
-    val windowId : WindowID,
-
-    /**
-     * New window bounds. The 'minimized', 'maximized' and 'fullscreen' states cannot be combined with 'left', 'top', 'width' or 'height'. Leaves unspecified fields unchanged.
-     */
-    val bounds : Bounds
-
-)
-
-/**
  * Represents request frame that can be used with Browser.getWindowBounds method call.
  *
  * Get position and size of the browser window.
@@ -161,9 +112,61 @@ data class GetWindowBoundsRequest (
  */
 data class GetWindowBoundsResponse(
   /**
-   * Bounds information of the window. When window state is 'minimized', the restored window position and size are returned.
+   * Bounds information of the window. When window state is 'minimized', the restored window
+position and size are returned.
    */
   val bounds : Bounds
+
+)
+
+/**
+ * Represents request frame that can be used with Browser.getWindowForTarget method call.
+ *
+ * Get the browser window that contains the devtools target.
+ */
+data class GetWindowForTargetRequest (
+    /**
+     * Devtools agent host id.
+     */
+    val targetId : pl.wendigo.chrome.domain.target.TargetID
+
+)
+
+/**
+ * Represents response frame for Browser.getWindowForTarget method call.
+ *
+ * Get the browser window that contains the devtools target.
+ */
+data class GetWindowForTargetResponse(
+  /**
+   * Browser window id.
+   */
+  val windowId : WindowID,
+
+  /**
+   * Bounds information of the window. When window state is 'minimized', the restored window
+position and size are returned.
+   */
+  val bounds : Bounds
+
+)
+
+/**
+ * Represents request frame that can be used with Browser.setWindowBounds method call.
+ *
+ * Set position and/or size of the browser window.
+ */
+data class SetWindowBoundsRequest (
+    /**
+     * Browser window id.
+     */
+    val windowId : WindowID,
+
+    /**
+     * New window bounds. The 'minimized', 'maximized' and 'fullscreen' states cannot be combined
+with 'left', 'top', 'width' or 'height'. Leaves unspecified fields unchanged.
+     */
+    val bounds : Bounds
 
 )
 

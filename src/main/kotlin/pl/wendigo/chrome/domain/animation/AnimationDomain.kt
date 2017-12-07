@@ -5,15 +5,6 @@ package pl.wendigo.chrome.domain.animation
  */
 class AnimationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Enables animation domain notifications.
-     */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Disables animation domain notifications.
      */
     fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -23,19 +14,10 @@ class AnimationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
-     * Gets the playback rate of the document timeline.
+     * Enables animation domain notifications.
      */
-    fun getPlaybackRate() : io.reactivex.Single<GetPlaybackRateResponse> {
-        return connectionRemote.runAndCaptureResponse("Animation.getPlaybackRate", null, GetPlaybackRateResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Sets the playback rate of the document timeline.
-     */
-    fun setPlaybackRate(input : SetPlaybackRateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.setPlaybackRate", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -50,28 +32,10 @@ class AnimationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
-     * Sets the paused state of a set of animations.
+     * Gets the playback rate of the document timeline.
      */
-    fun setPaused(input : SetPausedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.setPaused", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Sets the timing of an animation node.
-     */
-    fun setTiming(input : SetTimingRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.setTiming", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     * Seek a set of animations to a particular time within each animation.
-     */
-    fun seekAnimations(input : SeekAnimationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Animation.seekAnimations", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun getPlaybackRate() : io.reactivex.Single<GetPlaybackRateResponse> {
+        return connectionRemote.runAndCaptureResponse("Animation.getPlaybackRate", null, GetPlaybackRateResponse::class.java).map {
             it.value()
         }
     }
@@ -92,6 +56,58 @@ class AnimationDomain internal constructor(private val connectionRemote : pl.wen
         return connectionRemote.runAndCaptureResponse("Animation.resolveAnimation", input, ResolveAnimationResponse::class.java).map {
             it.value()
         }
+    }
+
+    /**
+     * Seek a set of animations to a particular time within each animation.
+     */
+    fun seekAnimations(input : SeekAnimationsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.seekAnimations", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Sets the paused state of a set of animations.
+     */
+    fun setPaused(input : SetPausedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.setPaused", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Sets the playback rate of the document timeline.
+     */
+    fun setPlaybackRate(input : SetPlaybackRateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.setPlaybackRate", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Sets the timing of an animation node.
+     */
+    fun setTiming(input : SetTimingRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Animation.setTiming", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Event for when an animation has been cancelled.
+     */
+    fun animationCanceled() : io.reactivex.Flowable<AnimationCanceledEvent> {
+        return animationCanceledTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Event for when an animation has been cancelled.
+     */
+    fun animationCanceledTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AnimationCanceledEvent>> {
+        return connectionRemote.captureEvents("Animation.animationCanceled", AnimationCanceledEvent::class.java)
     }
 
     /**
@@ -127,22 +143,6 @@ class AnimationDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
-     * Event for when an animation has been cancelled.
-     */
-    fun animationCanceled() : io.reactivex.Flowable<AnimationCanceledEvent> {
-        return animationCanceledTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Event for when an animation has been cancelled.
-     */
-    fun animationCanceledTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AnimationCanceledEvent>> {
-        return connectionRemote.captureEvents("Animation.animationCanceled", AnimationCanceledEvent::class.java)
-    }
-
-    /**
      * Returns flowable capturing all Animation domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -151,32 +151,6 @@ class AnimationDomain internal constructor(private val connectionRemote : pl.wen
         }
     }
 }
-
-/**
- * Represents response frame for Animation.getPlaybackRate method call.
- *
- * Gets the playback rate of the document timeline.
- */
-data class GetPlaybackRateResponse(
-  /**
-   * Playback rate for animations on page.
-   */
-  val playbackRate : Double
-
-)
-
-/**
- * Represents request frame that can be used with Animation.setPlaybackRate method call.
- *
- * Sets the playback rate of the document timeline.
- */
-data class SetPlaybackRateRequest (
-    /**
-     * Playback rate for animations on page
-     */
-    val playbackRate : Double
-
-)
 
 /**
  * Represents request frame that can be used with Animation.getCurrentTime method call.
@@ -205,61 +179,15 @@ data class GetCurrentTimeResponse(
 )
 
 /**
- * Represents request frame that can be used with Animation.setPaused method call.
+ * Represents response frame for Animation.getPlaybackRate method call.
  *
- * Sets the paused state of a set of animations.
+ * Gets the playback rate of the document timeline.
  */
-data class SetPausedRequest (
-    /**
-     * Animations to set the pause state of.
-     */
-    val animations : List<String>,
-
-    /**
-     * Paused state to set to.
-     */
-    val paused : Boolean
-
-)
-
-/**
- * Represents request frame that can be used with Animation.setTiming method call.
- *
- * Sets the timing of an animation node.
- */
-data class SetTimingRequest (
-    /**
-     * Animation id.
-     */
-    val animationId : String,
-
-    /**
-     * Duration of the animation.
-     */
-    val duration : Double,
-
-    /**
-     * Delay of the animation.
-     */
-    val delay : Double
-
-)
-
-/**
- * Represents request frame that can be used with Animation.seekAnimations method call.
- *
- * Seek a set of animations to a particular time within each animation.
- */
-data class SeekAnimationsRequest (
-    /**
-     * List of animation ids to seek.
-     */
-    val animations : List<String>,
-
-    /**
-     * Set the current time of each animation.
-     */
-    val currentTime : Double
+data class GetPlaybackRateResponse(
+  /**
+   * Playback rate for animations on page.
+   */
+  val playbackRate : Double
 
 )
 
@@ -303,6 +231,91 @@ data class ResolveAnimationResponse(
 )
 
 /**
+ * Represents request frame that can be used with Animation.seekAnimations method call.
+ *
+ * Seek a set of animations to a particular time within each animation.
+ */
+data class SeekAnimationsRequest (
+    /**
+     * List of animation ids to seek.
+     */
+    val animations : List<String>,
+
+    /**
+     * Set the current time of each animation.
+     */
+    val currentTime : Double
+
+)
+
+/**
+ * Represents request frame that can be used with Animation.setPaused method call.
+ *
+ * Sets the paused state of a set of animations.
+ */
+data class SetPausedRequest (
+    /**
+     * Animations to set the pause state of.
+     */
+    val animations : List<String>,
+
+    /**
+     * Paused state to set to.
+     */
+    val paused : Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with Animation.setPlaybackRate method call.
+ *
+ * Sets the playback rate of the document timeline.
+ */
+data class SetPlaybackRateRequest (
+    /**
+     * Playback rate for animations on page
+     */
+    val playbackRate : Double
+
+)
+
+/**
+ * Represents request frame that can be used with Animation.setTiming method call.
+ *
+ * Sets the timing of an animation node.
+ */
+data class SetTimingRequest (
+    /**
+     * Animation id.
+     */
+    val animationId : String,
+
+    /**
+     * Duration of the animation.
+     */
+    val duration : Double,
+
+    /**
+     * Delay of the animation.
+     */
+    val delay : Double
+
+)
+
+/**
+ * Represents event frames for Animation.animationCanceled
+ *
+ * Event for when an animation has been cancelled.
+ */
+data class AnimationCanceledEvent(
+  /**
+   * Id of the animation that was cancelled.
+   */
+  val id : String
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "Animation", name = "animationCanceled")
+
+/**
  * Represents event frames for Animation.animationCreated
  *
  * Event for each animation that has been created.
@@ -327,17 +340,4 @@ data class AnimationStartedEvent(
   val animation : Animation
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Animation", name = "animationStarted")
-
-/**
- * Represents event frames for Animation.animationCanceled
- *
- * Event for when an animation has been cancelled.
- */
-data class AnimationCanceledEvent(
-  /**
-   * Id of the animation that was cancelled.
-   */
-  val id : String
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Animation", name = "animationCanceled")
 

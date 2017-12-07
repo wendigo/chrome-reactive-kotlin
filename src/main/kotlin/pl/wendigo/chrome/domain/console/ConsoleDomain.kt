@@ -5,10 +5,10 @@ package pl.wendigo.chrome.domain.console
  */
 class ConsoleDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Enables console domain, sends the messages collected so far to the client by means of the <code>messageAdded</code> notification.
+     * Does nothing.
      */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Console.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun clearMessages() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Console.clearMessages", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -23,10 +23,10 @@ class ConsoleDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Does nothing.
+     * Enables console domain, sends the messages collected so far to the client by means of the `messageAdded` notification.
      */
-    fun clearMessages() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Console.clearMessages", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Console.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }

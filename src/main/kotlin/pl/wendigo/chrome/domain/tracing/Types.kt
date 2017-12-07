@@ -52,3 +52,11 @@ data class TraceConfig(
   val memoryDumpConfig : MemoryDumpConfig? = null
 )
 
+/**
+ * Compression type to use for traces returned via streams.
+ */
+enum class StreamCompression {
+    @com.fasterxml.jackson.annotation.JsonProperty("none") NONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("gzip") GZIP;
+}
+

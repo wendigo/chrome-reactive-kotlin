@@ -5,7 +5,8 @@ package pl.wendigo.chrome.domain.audits
  */
 class AuditsDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Returns the response body and size if it were re-encoded with the specified settings. Only applies to images.
+     * Returns the response body and size if it were re-encoded with the specified settings. Only
+applies to images.
      */
     fun getEncodedResponse(input : GetEncodedResponseRequest) : io.reactivex.Single<GetEncodedResponseResponse> {
         return connectionRemote.runAndCaptureResponse("Audits.getEncodedResponse", input, GetEncodedResponseResponse::class.java).map {
@@ -25,7 +26,8 @@ class AuditsDomain internal constructor(private val connectionRemote : pl.wendig
 /**
  * Represents request frame that can be used with Audits.getEncodedResponse method call.
  *
- * Returns the response body and size if it were re-encoded with the specified settings. Only applies to images.
+ * Returns the response body and size if it were re-encoded with the specified settings. Only
+applies to images.
  */
 data class GetEncodedResponseRequest (
     /**
@@ -53,7 +55,8 @@ data class GetEncodedResponseRequest (
 /**
  * Represents response frame for Audits.getEncodedResponse method call.
  *
- * Returns the response body and size if it were re-encoded with the specified settings. Only applies to images.
+ * Returns the response body and size if it were re-encoded with the specified settings. Only
+applies to images.
  */
 data class GetEncodedResponseResponse(
   /**

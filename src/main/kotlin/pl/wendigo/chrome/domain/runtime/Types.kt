@@ -33,12 +33,12 @@ data class RemoteObject(
   val type : String,
 
   /**
-   * Object subtype hint. Specified for <code>object</code> type values only.
+   * Object subtype hint. Specified for `object` type values only.
    */
   val subtype : String? = null,
 
   /**
-   * Object class (constructor) name. Specified for <code>object</code> type values only.
+   * Object class (constructor) name. Specified for `object` type values only.
    */
   val className : String? = null,
 
@@ -48,7 +48,7 @@ data class RemoteObject(
   val value : Any? = null,
 
   /**
-   * Primitive value which can not be JSON-stringified does not have <code>value</code>, but gets this property.
+   * Primitive value which can not be JSON-stringified does not have `value`, but gets this property.
    */
   val unserializableValue : UnserializableValue? = null,
 
@@ -63,7 +63,7 @@ data class RemoteObject(
   val objectId : RemoteObjectId? = null,
 
   /**
-   * Preview containing abbreviated property values. Specified for <code>object</code> type values only.
+   * Preview containing abbreviated property values. Specified for `object` type values only.
    */
   @pl.wendigo.chrome.Experimental val preview : ObjectPreview? = null,
 
@@ -115,7 +115,7 @@ data class ObjectPreview(
   val type : String,
 
   /**
-   * Object subtype hint. Specified for <code>object</code> type values only.
+   * Object subtype hint. Specified for `object` type values only.
    */
   val subtype : String? = null,
 
@@ -135,7 +135,7 @@ data class ObjectPreview(
   val properties : List<PropertyPreview>,
 
   /**
-   * List of the entries. Specified for <code>map</code> and <code>set</code> subtype values only.
+   * List of the entries. Specified for `map` and `set` subtype values only.
    */
   val entries : List<EntryPreview>? = null
 )
@@ -166,7 +166,7 @@ data class PropertyPreview(
   val valuePreview : ObjectPreview? = null,
 
   /**
-   * Object subtype hint. Specified for <code>object</code> type values only.
+   * Object subtype hint. Specified for `object` type values only.
    */
   val subtype : String? = null
 )
@@ -208,12 +208,12 @@ data class PropertyDescriptor(
   val writable : Boolean? = null,
 
   /**
-   * A function which serves as a getter for the property, or <code>undefined</code> if there is no getter (accessor descriptors only).
+   * A function which serves as a getter for the property, or `undefined` if there is no getter (accessor descriptors only).
    */
   val get : RemoteObject? = null,
 
   /**
-   * A function which serves as a setter for the property, or <code>undefined</code> if there is no setter (accessor descriptors only).
+   * A function which serves as a setter for the property, or `undefined` if there is no setter (accessor descriptors only).
    */
   val set : RemoteObject? = null,
 
@@ -238,7 +238,7 @@ data class PropertyDescriptor(
   val isOwn : Boolean? = null,
 
   /**
-   * Property symbol object, if the property is of the <code>symbol</code> type.
+   * Property symbol object, if the property is of the `symbol` type.
    */
   val symbol : RemoteObject? = null
 )
@@ -260,7 +260,7 @@ data class InternalPropertyDescriptor(
 )
 
 /**
- * Represents function call argument. Either remote object id &lt;code&gt;objectId&lt;/code&gt;, primitive &lt;code&gt;value&lt;/code&gt;, unserializable primitive value or neither of (for undefined) them should be specified.
+ * Represents function call argument. Either remote object id `objectId`, primitive `value`, unserializable primitive value or neither of (for undefined) them should be specified.
  */
 
 data class CallArgument(
@@ -433,7 +433,7 @@ data class StackTrace(
 typealias UniqueDebuggerId = String
 
 /**
- * If &lt;code&gt;debuggerId&lt;/code&gt; is set stack trace comes from another debugger and can be resolved there. This allows to track cross-debugger calls. See &lt;code&gt;Runtime.StackTrace&lt;/code&gt; and &lt;code&gt;Debugger.paused&lt;/code&gt; for usages.
+ * If `debuggerId` is set stack trace comes from another debugger and can be resolved there. This allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages.
  */
 
 data class StackTraceId(

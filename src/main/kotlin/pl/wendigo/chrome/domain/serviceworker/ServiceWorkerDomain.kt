@@ -7,8 +7,8 @@ class ServiceWorkerDomain internal constructor(private val connectionRemote : pl
     /**
      *
      */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun deliverPushMessage(input : DeliverPushMessageRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("ServiceWorker.deliverPushMessage", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -25,8 +25,8 @@ class ServiceWorkerDomain internal constructor(private val connectionRemote : pl
     /**
      *
      */
-    fun unregister(input : UnregisterRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.unregister", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun dispatchSyncEvent(input : DispatchSyncEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("ServiceWorker.dispatchSyncEvent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -34,44 +34,8 @@ class ServiceWorkerDomain internal constructor(private val connectionRemote : pl
     /**
      *
      */
-    fun updateRegistration(input : UpdateRegistrationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.updateRegistration", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
-    fun startWorker(input : StartWorkerRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.startWorker", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
-    fun skipWaiting(input : SkipWaitingRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.skipWaiting", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
-    fun stopWorker(input : StopWorkerRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.stopWorker", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
-    fun stopAllWorkers() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.stopAllWorkers", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("ServiceWorker.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -97,8 +61,8 @@ class ServiceWorkerDomain internal constructor(private val connectionRemote : pl
     /**
      *
      */
-    fun deliverPushMessage(input : DeliverPushMessageRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.deliverPushMessage", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun skipWaiting(input : SkipWaitingRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("ServiceWorker.skipWaiting", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -106,10 +70,62 @@ class ServiceWorkerDomain internal constructor(private val connectionRemote : pl
     /**
      *
      */
-    fun dispatchSyncEvent(input : DispatchSyncEventRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("ServiceWorker.dispatchSyncEvent", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun startWorker(input : StartWorkerRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("ServiceWorker.startWorker", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
+    }
+
+    /**
+     *
+     */
+    fun stopAllWorkers() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("ServiceWorker.stopAllWorkers", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun stopWorker(input : StopWorkerRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("ServiceWorker.stopWorker", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun unregister(input : UnregisterRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("ServiceWorker.unregister", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun updateRegistration(input : UpdateRegistrationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("ServiceWorker.updateRegistration", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns observable capturing all ServiceWorker.workerErrorReported events.
+     */
+    fun workerErrorReported() : io.reactivex.Flowable<WorkerErrorReportedEvent> {
+        return workerErrorReportedTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns observable capturing all ServiceWorker.workerErrorReported events.
+     */
+    fun workerErrorReportedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WorkerErrorReportedEvent>> {
+        return connectionRemote.captureEvents("ServiceWorker.workerErrorReported", WorkerErrorReportedEvent::class.java)
     }
 
     /**
@@ -145,22 +161,6 @@ class ServiceWorkerDomain internal constructor(private val connectionRemote : pl
     }
 
     /**
-     * Returns observable capturing all ServiceWorker.workerErrorReported events.
-     */
-    fun workerErrorReported() : io.reactivex.Flowable<WorkerErrorReportedEvent> {
-        return workerErrorReportedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Returns observable capturing all ServiceWorker.workerErrorReported events.
-     */
-    fun workerErrorReportedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<WorkerErrorReportedEvent>> {
-        return connectionRemote.captureEvents("ServiceWorker.workerErrorReported", WorkerErrorReportedEvent::class.java)
-    }
-
-    /**
      * Returns flowable capturing all ServiceWorker domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -169,98 +169,6 @@ class ServiceWorkerDomain internal constructor(private val connectionRemote : pl
         }
     }
 }
-
-/**
- * Represents request frame that can be used with ServiceWorker.unregister method call.
- *
- *
- */
-data class UnregisterRequest (
-    /**
-     *
-     */
-    val scopeURL : String
-
-)
-
-/**
- * Represents request frame that can be used with ServiceWorker.updateRegistration method call.
- *
- *
- */
-data class UpdateRegistrationRequest (
-    /**
-     *
-     */
-    val scopeURL : String
-
-)
-
-/**
- * Represents request frame that can be used with ServiceWorker.startWorker method call.
- *
- *
- */
-data class StartWorkerRequest (
-    /**
-     *
-     */
-    val scopeURL : String
-
-)
-
-/**
- * Represents request frame that can be used with ServiceWorker.skipWaiting method call.
- *
- *
- */
-data class SkipWaitingRequest (
-    /**
-     *
-     */
-    val scopeURL : String
-
-)
-
-/**
- * Represents request frame that can be used with ServiceWorker.stopWorker method call.
- *
- *
- */
-data class StopWorkerRequest (
-    /**
-     *
-     */
-    val versionId : String
-
-)
-
-/**
- * Represents request frame that can be used with ServiceWorker.inspectWorker method call.
- *
- *
- */
-data class InspectWorkerRequest (
-    /**
-     *
-     */
-    val versionId : String
-
-)
-
-/**
- * Represents request frame that can be used with ServiceWorker.setForceUpdateOnPageLoad method call.
- *
- *
- */
-data class SetForceUpdateOnPageLoadRequest (
-    /**
-     *
-     */
-    val forceUpdateOnPageLoad : Boolean
-
-)
-
 /**
  * Represents request frame that can be used with ServiceWorker.deliverPushMessage method call.
  *
@@ -313,6 +221,110 @@ data class DispatchSyncEventRequest (
 )
 
 /**
+ * Represents request frame that can be used with ServiceWorker.inspectWorker method call.
+ *
+ *
+ */
+data class InspectWorkerRequest (
+    /**
+     *
+     */
+    val versionId : String
+
+)
+
+/**
+ * Represents request frame that can be used with ServiceWorker.setForceUpdateOnPageLoad method call.
+ *
+ *
+ */
+data class SetForceUpdateOnPageLoadRequest (
+    /**
+     *
+     */
+    val forceUpdateOnPageLoad : Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with ServiceWorker.skipWaiting method call.
+ *
+ *
+ */
+data class SkipWaitingRequest (
+    /**
+     *
+     */
+    val scopeURL : String
+
+)
+
+/**
+ * Represents request frame that can be used with ServiceWorker.startWorker method call.
+ *
+ *
+ */
+data class StartWorkerRequest (
+    /**
+     *
+     */
+    val scopeURL : String
+
+)
+
+/**
+ * Represents request frame that can be used with ServiceWorker.stopWorker method call.
+ *
+ *
+ */
+data class StopWorkerRequest (
+    /**
+     *
+     */
+    val versionId : String
+
+)
+
+/**
+ * Represents request frame that can be used with ServiceWorker.unregister method call.
+ *
+ *
+ */
+data class UnregisterRequest (
+    /**
+     *
+     */
+    val scopeURL : String
+
+)
+
+/**
+ * Represents request frame that can be used with ServiceWorker.updateRegistration method call.
+ *
+ *
+ */
+data class UpdateRegistrationRequest (
+    /**
+     *
+     */
+    val scopeURL : String
+
+)
+
+/**
+ * Represents event frames for ServiceWorker.workerErrorReported
+ *
+ *
+ */
+data class WorkerErrorReportedEvent(
+  /**
+   *
+   */
+  val errorMessage : ServiceWorkerErrorMessage
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "ServiceWorker", name = "workerErrorReported")
+
+/**
  * Represents event frames for ServiceWorker.workerRegistrationUpdated
  *
  *
@@ -337,17 +349,4 @@ data class WorkerVersionUpdatedEvent(
   val versions : List<ServiceWorkerVersion>
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "ServiceWorker", name = "workerVersionUpdated")
-
-/**
- * Represents event frames for ServiceWorker.workerErrorReported
- *
- *
- */
-data class WorkerErrorReportedEvent(
-  /**
-   *
-   */
-  val errorMessage : ServiceWorkerErrorMessage
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "ServiceWorker", name = "workerErrorReported")
 

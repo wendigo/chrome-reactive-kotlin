@@ -11,7 +11,8 @@ data class TouchPoint(
   val x : Double,
 
   /**
-   * Y coordinate of the event relative to the main frame's viewport in CSS pixels. 0 refers to the top of the viewport and Y increases as it proceeds towards the bottom of the viewport.
+   * Y coordinate of the event relative to the main frame's viewport in CSS pixels. 0 refers to
+the top of the viewport and Y increases as it proceeds towards the bottom of the viewport.
    */
   val y : Double,
 
