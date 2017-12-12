@@ -1,7 +1,11 @@
 package pl.wendigo.chrome.domain.runtime
 
 /**
- * Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects. Evaluation results are returned as mirror object that expose object type, string representation and unique identifier that can be used for further object reference. Original objects are maintained in memory unless they are either explicitly released or are released along with the other objects in their object group.
+ * Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects.
+Evaluation results are returned as mirror object that expose object type, string representation
+and unique identifier that can be used for further object reference. Original objects are
+maintained in memory unless they are either explicitly released or are released along with the
+other objects in their object group.
  */
 class RuntimeDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
@@ -14,7 +18,8 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
+     * Calls function with given declaration on the given object. Object group of the result is
+inherited from the target object.
      */
     fun callFunctionOn(input : CallFunctionOnRequest) : io.reactivex.Single<CallFunctionOnResponse> {
         return connectionRemote.runAndCaptureResponse("Runtime.callFunctionOn", input, CallFunctionOnResponse::class.java).map {
@@ -50,7 +55,9 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Enables reporting of execution contexts creation by means of `executionContextCreated` event. When the reporting gets enabled the event will be sent immediately for each existing execution context.
+     * Enables reporting of execution contexts creation by means of `executionContextCreated` event.
+When the reporting gets enabled the event will be sent immediately for each existing execution
+context.
      */
     fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -68,7 +75,8 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Returns properties of a given object. Object group of the result is inherited from the target object.
+     * Returns properties of a given object. Object group of the result is inherited from the target
+object.
      */
     fun getProperties(input : GetPropertiesRequest) : io.reactivex.Single<GetPropertiesResponse> {
         return connectionRemote.runAndCaptureResponse("Runtime.getProperties", input, GetPropertiesResponse::class.java).map {
@@ -236,7 +244,8 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Issued when object should be inspected (for example, as a result of inspect() command line API call).
+     * Issued when object should be inspected (for example, as a result of inspect() command line API
+call).
      */
     fun inspectRequested() : io.reactivex.Flowable<InspectRequestedEvent> {
         return inspectRequestedTimed().map {
@@ -245,7 +254,8 @@ class RuntimeDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Issued when object should be inspected (for example, as a result of inspect() command line API call).
+     * Issued when object should be inspected (for example, as a result of inspect() command line API
+call).
      */
     fun inspectRequestedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<InspectRequestedEvent>> {
         return connectionRemote.captureEvents("Runtime.inspectRequested", InspectRequestedEvent::class.java)
@@ -304,7 +314,8 @@ data class AwaitPromiseResponse(
 /**
  * Represents request frame that can be used with Runtime.callFunctionOn method call.
  *
- * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
+ * Calls function with given declaration on the given object. Object group of the result is
+inherited from the target object.
  */
 data class CallFunctionOnRequest (
     /**
@@ -313,17 +324,20 @@ data class CallFunctionOnRequest (
     val functionDeclaration : String,
 
     /**
-     * Identifier of the object to call function on. Either objectId or executionContextId should be specified.
+     * Identifier of the object to call function on. Either objectId or executionContextId should
+be specified.
      */
     val objectId : RemoteObjectId? = null,
 
     /**
-     * Call arguments. All call arguments must belong to the same JavaScript world as the target object.
+     * Call arguments. All call arguments must belong to the same JavaScript world as the target
+object.
      */
     val arguments : List<CallArgument>? = null,
 
     /**
-     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides `setPauseOnException` state.
+     * In silent mode exceptions thrown during evaluation are not reported and do not pause
+execution. Overrides `setPauseOnException` state.
      */
     val silent : Boolean? = null,
 
@@ -343,17 +357,20 @@ data class CallFunctionOnRequest (
     val userGesture : Boolean? = null,
 
     /**
-     * Whether execution should `await` for resulting value and return once awaited promise is resolved.
+     * Whether execution should `await` for resulting value and return once awaited promise is
+resolved.
      */
     val awaitPromise : Boolean? = null,
 
     /**
-     * Specifies execution context which global object will be used to call function on. Either executionContextId or objectId should be specified.
+     * Specifies execution context which global object will be used to call function on. Either
+executionContextId or objectId should be specified.
      */
     val executionContextId : ExecutionContextId? = null,
 
     /**
-     * Symbolic group name that can be used to release multiple objects. If objectGroup is not specified and objectId is, objectGroup will be inherited from object.
+     * Symbolic group name that can be used to release multiple objects. If objectGroup is not
+specified and objectId is, objectGroup will be inherited from object.
      */
     val objectGroup : String? = null
 
@@ -362,7 +379,8 @@ data class CallFunctionOnRequest (
 /**
  * Represents response frame for Runtime.callFunctionOn method call.
  *
- * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
+ * Calls function with given declaration on the given object. Object group of the result is
+inherited from the target object.
  */
 data class CallFunctionOnResponse(
   /**
@@ -399,7 +417,8 @@ data class CompileScriptRequest (
     val persistScript : Boolean,
 
     /**
-     * Specifies in which execution context to perform script run. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
+     * Specifies in which execution context to perform script run. If the parameter is omitted the
+evaluation will be performed in the context of the inspected page.
      */
     val executionContextId : ExecutionContextId? = null
 
@@ -445,12 +464,14 @@ data class EvaluateRequest (
     val includeCommandLineAPI : Boolean? = null,
 
     /**
-     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides `setPauseOnException` state.
+     * In silent mode exceptions thrown during evaluation are not reported and do not pause
+execution. Overrides `setPauseOnException` state.
      */
     val silent : Boolean? = null,
 
     /**
-     * Specifies in which execution context to perform evaluation. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
+     * Specifies in which execution context to perform evaluation. If the parameter is omitted the
+evaluation will be performed in the context of the inspected page.
      */
     val contextId : ExecutionContextId? = null,
 
@@ -470,7 +491,8 @@ data class EvaluateRequest (
     val userGesture : Boolean? = null,
 
     /**
-     * Whether execution should `await` for resulting value and return once awaited promise is resolved.
+     * Whether execution should `await` for resulting value and return once awaited promise is
+resolved.
      */
     val awaitPromise : Boolean? = null
 
@@ -497,7 +519,8 @@ data class EvaluateResponse(
 /**
  * Represents request frame that can be used with Runtime.getProperties method call.
  *
- * Returns properties of a given object. Object group of the result is inherited from the target object.
+ * Returns properties of a given object. Object group of the result is inherited from the target
+object.
  */
 data class GetPropertiesRequest (
     /**
@@ -506,12 +529,14 @@ data class GetPropertiesRequest (
     val objectId : RemoteObjectId,
 
     /**
-     * If true, returns properties belonging only to the element itself, not to its prototype chain.
+     * If true, returns properties belonging only to the element itself, not to its prototype
+chain.
      */
     val ownProperties : Boolean? = null,
 
     /**
-     * If true, returns accessor properties (with getter/setter) only; internal properties are not returned either.
+     * If true, returns accessor properties (with getter/setter) only; internal properties are not
+returned either.
      */
     @pl.wendigo.chrome.Experimental val accessorPropertiesOnly : Boolean? = null,
 
@@ -525,7 +550,8 @@ data class GetPropertiesRequest (
 /**
  * Represents response frame for Runtime.getProperties method call.
  *
- * Returns properties of a given object. Object group of the result is inherited from the target object.
+ * Returns properties of a given object. Object group of the result is inherited from the target
+object.
  */
 data class GetPropertiesResponse(
   /**
@@ -635,7 +661,8 @@ data class RunScriptRequest (
     val scriptId : ScriptId,
 
     /**
-     * Specifies in which execution context to perform script run. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
+     * Specifies in which execution context to perform script run. If the parameter is omitted the
+evaluation will be performed in the context of the inspected page.
      */
     val executionContextId : ExecutionContextId? = null,
 
@@ -645,7 +672,8 @@ data class RunScriptRequest (
     val objectGroup : String? = null,
 
     /**
-     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides `setPauseOnException` state.
+     * In silent mode exceptions thrown during evaluation are not reported and do not pause
+execution. Overrides `setPauseOnException` state.
      */
     val silent : Boolean? = null,
 
@@ -665,7 +693,8 @@ data class RunScriptRequest (
     val generatePreview : Boolean? = null,
 
     /**
-     * Whether execution should `await` for resulting value and return once awaited promise is resolved.
+     * Whether execution should `await` for resulting value and return once awaited promise is
+resolved.
      */
     val awaitPromise : Boolean? = null
 
@@ -734,7 +763,9 @@ data class ConsoleAPICalledEvent(
   val stackTrace : StackTrace? = null,
 
   /**
-   * Console context descriptor for calls on non-default console context (not console.*): 'anonymous#unique-logger-id' for call on unnamed context, 'name#unique-logger-id' for call on named context.
+   * Console context descriptor for calls on non-default console context (not console.*):
+'anonymous#unique-logger-id' for call on unnamed context, 'name#unique-logger-id' for call
+on named context.
    */
   @pl.wendigo.chrome.Experimental val context : String? = null
 
@@ -805,7 +836,8 @@ data class ExecutionContextDestroyedEvent(
 /**
  * Represents event frames for Runtime.inspectRequested
  *
- * Issued when object should be inspected (for example, as a result of inspect() command line API call).
+ * Issued when object should be inspected (for example, as a result of inspect() command line API
+call).
  */
 data class InspectRequestedEvent(
   /**

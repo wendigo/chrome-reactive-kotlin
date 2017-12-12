@@ -5,7 +5,8 @@ package pl.wendigo.chrome.domain.heapprofiler
  */
 class HeapProfilerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
+     * Enables console to refer to the node with given id via $x (see Command Line API for more details
+$x functions).
      */
     fun addInspectedHeapObject(input : AddInspectedHeapObjectRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.addInspectedHeapObject", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -145,7 +146,9 @@ class HeapProfilerDomain internal constructor(private val connectionRemote : pl.
     }
 
     /**
-     * If heap objects tracking has been started then backend regularly sends a current value for last seen object id and corresponding timestamp. If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+     * If heap objects tracking has been started then backend regularly sends a current value for last
+seen object id and corresponding timestamp. If the were changes in the heap since last event
+then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
      */
     fun lastSeenObjectId() : io.reactivex.Flowable<LastSeenObjectIdEvent> {
         return lastSeenObjectIdTimed().map {
@@ -154,7 +157,9 @@ class HeapProfilerDomain internal constructor(private val connectionRemote : pl.
     }
 
     /**
-     * If heap objects tracking has been started then backend regularly sends a current value for last seen object id and corresponding timestamp. If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+     * If heap objects tracking has been started then backend regularly sends a current value for last
+seen object id and corresponding timestamp. If the were changes in the heap since last event
+then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
      */
     fun lastSeenObjectIdTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<LastSeenObjectIdEvent>> {
         return connectionRemote.captureEvents("HeapProfiler.lastSeenObjectId", LastSeenObjectIdEvent::class.java)
@@ -204,7 +209,8 @@ class HeapProfilerDomain internal constructor(private val connectionRemote : pl.
 /**
  * Represents request frame that can be used with HeapProfiler.addInspectedHeapObject method call.
  *
- * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
+ * Enables console to refer to the node with given id via $x (see Command Line API for more details
+$x functions).
  */
 data class AddInspectedHeapObjectRequest (
     /**
@@ -291,7 +297,8 @@ data class GetSamplingProfileResponse(
  */
 data class StartSamplingRequest (
     /**
-     * Average sample interval in bytes. Poisson distribution is used for the intervals. The default value is 32768 bytes.
+     * Average sample interval in bytes. Poisson distribution is used for the intervals. The
+default value is 32768 bytes.
      */
     val samplingInterval : Double? = null
 
@@ -330,7 +337,8 @@ data class StopSamplingResponse(
  */
 data class StopTrackingHeapObjectsRequest (
     /**
-     * If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken when the tracking is stopped.
+     * If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken
+when the tracking is stopped.
      */
     val reportProgress : Boolean? = null
 
@@ -369,7 +377,9 @@ data class AddHeapSnapshotChunkEvent(
  */
 data class HeapStatsUpdateEvent(
   /**
-   * An array of triplets. Each triplet describes a fragment. The first integer is the fragment index, the second integer is a total count of objects for the fragment, the third integer is a total size of the objects for the fragment.
+   * An array of triplets. Each triplet describes a fragment. The first integer is the fragment
+index, the second integer is a total count of objects for the fragment, the third integer is
+a total size of the objects for the fragment.
    */
   val statsUpdate : List<Int>
 
@@ -378,7 +388,9 @@ data class HeapStatsUpdateEvent(
 /**
  * Represents event frames for HeapProfiler.lastSeenObjectId
  *
- * If heap objects tracking has been started then backend regularly sends a current value for last seen object id and corresponding timestamp. If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+ * If heap objects tracking has been started then backend regularly sends a current value for last
+seen object id and corresponding timestamp. If the were changes in the heap since last event
+then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
  */
 data class LastSeenObjectIdEvent(
   /**

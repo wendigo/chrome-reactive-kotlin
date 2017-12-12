@@ -23,7 +23,8 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Collect coverage data for the current isolate. The coverage data may be incomplete due to garbage collection.
+     * Collect coverage data for the current isolate. The coverage data may be incomplete due to
+garbage collection.
      */
     fun getBestEffortCoverage() : io.reactivex.Single<GetBestEffortCoverageResponse> {
         return connectionRemote.runAndCaptureResponse("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse::class.java).map {
@@ -50,7 +51,9 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.
+     * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code
+coverage may be incomplete. Enabling prevents running optimized code and resets execution
+counters.
      */
     fun startPreciseCoverage(input : StartPreciseCoverageRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Profiler.startPreciseCoverage", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -77,7 +80,8 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Disable precise code coverage. Disabling releases unnecessary execution count records and allows executing optimized code.
+     * Disable precise code coverage. Disabling releases unnecessary execution count records and allows
+executing optimized code.
      */
     fun stopPreciseCoverage() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -95,7 +99,8 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Collect coverage data for the current isolate, and resets execution counters. Precise code coverage needs to have started.
+     * Collect coverage data for the current isolate, and resets execution counters. Precise code
+coverage needs to have started.
      */
     fun takePreciseCoverage() : io.reactivex.Single<TakePreciseCoverageResponse> {
         return connectionRemote.runAndCaptureResponse("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse::class.java).map {
@@ -157,7 +162,8 @@ class ProfilerDomain internal constructor(private val connectionRemote : pl.wend
 /**
  * Represents response frame for Profiler.getBestEffortCoverage method call.
  *
- * Collect coverage data for the current isolate. The coverage data may be incomplete due to garbage collection.
+ * Collect coverage data for the current isolate. The coverage data may be incomplete due to
+garbage collection.
  */
 data class GetBestEffortCoverageResponse(
   /**
@@ -183,7 +189,9 @@ data class SetSamplingIntervalRequest (
 /**
  * Represents request frame that can be used with Profiler.startPreciseCoverage method call.
  *
- * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code coverage may be incomplete. Enabling prevents running optimized code and resets execution counters.
+ * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code
+coverage may be incomplete. Enabling prevents running optimized code and resets execution
+counters.
  */
 data class StartPreciseCoverageRequest (
     /**
@@ -214,7 +222,8 @@ data class StopResponse(
 /**
  * Represents response frame for Profiler.takePreciseCoverage method call.
  *
- * Collect coverage data for the current isolate, and resets execution counters. Precise code coverage needs to have started.
+ * Collect coverage data for the current isolate, and resets execution counters. Precise code
+coverage needs to have started.
  */
 data class TakePreciseCoverageResponse(
   /**

@@ -26,7 +26,8 @@ data class ProfileNode(
   val children : List<Int>? = null,
 
   /**
-   * The reason of being not optimized. The function may be deoptimized or marked as don't optimize.
+   * The reason of being not optimized. The function may be deoptimized or marked as don't
+optimize.
    */
   val deoptReason : String? = null,
 
@@ -62,7 +63,8 @@ data class Profile(
   val samples : List<Int>? = null,
 
   /**
-   * Time intervals between adjacent samples in microseconds. The first delta is relative to the profile startTime.
+   * Time intervals between adjacent samples in microseconds. The first delta is relative to the
+profile startTime.
    */
   val timeDeltas : List<Int>? = null
 )

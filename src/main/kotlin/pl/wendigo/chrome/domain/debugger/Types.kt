@@ -106,7 +106,9 @@ data class Scope(
   val type : String,
 
   /**
-   * Object representing the scope. For `global` and `with` scopes it represents the actual object; for the rest of the scopes, it is artificial transient object enumerating scope variables as its properties.
+   * Object representing the scope. For `global` and `with` scopes it represents the actual
+object; for the rest of the scopes, it is artificial transient object enumerating scope
+variables as its properties.
    */
   @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object : pl.wendigo.chrome.domain.runtime.RemoteObject,
 

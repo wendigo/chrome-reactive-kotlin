@@ -383,7 +383,8 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     }
 
     /**
-     * Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing breakpoints, stepping through execution, exploring stack traces, etc.
+     * Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing
+breakpoints, stepping through execution, exploring stack traces, etc.
      */
     val Debugger : pl.wendigo.chrome.domain.debugger.DebuggerDomain by lazy {
         pl.wendigo.chrome.domain.debugger.DebuggerDomain(api)
@@ -404,7 +405,11 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     }
 
     /**
-     * Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects. Evaluation results are returned as mirror object that expose object type, string representation and unique identifier that can be used for further object reference. Original objects are maintained in memory unless they are either explicitly released or are released along with the other objects in their object group.
+     * Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects.
+Evaluation results are returned as mirror object that expose object type, string representation
+and unique identifier that can be used for further object reference. Original objects are
+maintained in memory unless they are either explicitly released or are released along with the
+other objects in their object group.
      */
     val Runtime : pl.wendigo.chrome.domain.runtime.RuntimeDomain by lazy {
         pl.wendigo.chrome.domain.runtime.RuntimeDomain(api)

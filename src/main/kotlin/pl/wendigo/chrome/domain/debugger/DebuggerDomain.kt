@@ -1,7 +1,8 @@
 package pl.wendigo.chrome.domain.debugger
 
 /**
- * Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing breakpoints, stepping through execution, exploring stack traces, etc.
+ * Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing
+breakpoints, stepping through execution, exploring stack traces, etc.
  */
 class DebuggerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
     /**
@@ -23,7 +24,8 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Enables debugger for the given page. Clients should not assume that the debugging has been enabled until the result for this command is received.
+     * Enables debugger for the given page. Clients should not assume that the debugging has been
+enabled until the result for this command is received.
      */
     fun enable() : io.reactivex.Single<EnableResponse> {
         return connectionRemote.runAndCaptureResponse("Debugger.enable", null, EnableResponse::class.java).map {
@@ -41,7 +43,8 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Returns possible locations for breakpoint. scriptId in start and end range locations should be the same.
+     * Returns possible locations for breakpoint. scriptId in start and end range locations should be
+the same.
      */
     fun getPossibleBreakpoints(input : GetPossibleBreakpointsRequest) : io.reactivex.Single<GetPossibleBreakpointsResponse> {
         return connectionRemote.runAndCaptureResponse("Debugger.getPossibleBreakpoints", input, GetPossibleBreakpointsResponse::class.java).map {
@@ -113,7 +116,10 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * This method is deprecated - use Debugger.stepInto with breakOnAsyncCall and Debugger.pauseOnAsyncTask instead. Steps into next scheduled async task if any is scheduled before next pause. Returns success when async task is actually scheduled, returns error if no task were scheduled or another scheduleStepIntoAsync was called.
+     * This method is deprecated - use Debugger.stepInto with breakOnAsyncCall and
+Debugger.pauseOnAsyncTask instead. Steps into next scheduled async task if any is scheduled
+before next pause. Returns success when async task is actually scheduled, returns error if no
+task were scheduled or another scheduleStepIntoAsync was called.
      */
     fun scheduleStepIntoAsync() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Debugger.scheduleStepIntoAsync", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -140,7 +146,9 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in scripts with url matching one of the patterns. VM will try to leave blackboxed script by performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
+     * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in
+scripts with url matching one of the patterns. VM will try to leave blackboxed script by
+performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
      */
     fun setBlackboxPatterns(input : SetBlackboxPatternsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Debugger.setBlackboxPatterns", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -149,7 +157,10 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted scripts by performing 'step in' several times, finally resorting to 'step out' if unsuccessful. Positions array contains positions where blackbox state is changed. First interval isn't blackboxed. Array should be sorted.
+     * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted
+scripts by performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
+Positions array contains positions where blackbox state is changed. First interval isn't
+blackboxed. Array should be sorted.
      */
     fun setBlackboxedRanges(input : SetBlackboxedRangesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Debugger.setBlackboxedRanges", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -167,7 +178,10 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in `locations` property. Further matching script parsing will result in subsequent `breakpointResolved` events issued. This logical breakpoint will survive page reloads.
+     * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this
+command is issued, all existing parsed scripts will have breakpoints resolved and returned in
+`locations` property. Further matching script parsing will result in subsequent
+`breakpointResolved` events issued. This logical breakpoint will survive page reloads.
      */
     fun setBreakpointByUrl(input : SetBreakpointByUrlRequest) : io.reactivex.Single<SetBreakpointByUrlResponse> {
         return connectionRemote.runAndCaptureResponse("Debugger.setBreakpointByUrl", input, SetBreakpointByUrlResponse::class.java).map {
@@ -185,7 +199,8 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or no exceptions. Initial pause on exceptions state is `none`.
+     * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or
+no exceptions. Initial pause on exceptions state is `none`.
      */
     fun setPauseOnExceptions(input : SetPauseOnExceptionsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Debugger.setPauseOnExceptions", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -221,7 +236,8 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Changes value of variable in a callframe. Object-based scopes are not supported and must be mutated manually.
+     * Changes value of variable in a callframe. Object-based scopes are not supported and must be
+mutated manually.
      */
     fun setVariableValue(input : SetVariableValueRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Debugger.setVariableValue", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
@@ -321,7 +337,8 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Fired when virtual machine parses script. This event is also fired for all known and uncollected scripts upon enabling debugger.
+     * Fired when virtual machine parses script. This event is also fired for all known and uncollected
+scripts upon enabling debugger.
      */
     fun scriptParsed() : io.reactivex.Flowable<ScriptParsedEvent> {
         return scriptParsedTimed().map {
@@ -330,7 +347,8 @@ class DebuggerDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
-     * Fired when virtual machine parses script. This event is also fired for all known and uncollected scripts upon enabling debugger.
+     * Fired when virtual machine parses script. This event is also fired for all known and uncollected
+scripts upon enabling debugger.
      */
     fun scriptParsedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ScriptParsedEvent>> {
         return connectionRemote.captureEvents("Debugger.scriptParsed", ScriptParsedEvent::class.java)
@@ -366,7 +384,8 @@ data class ContinueToLocationRequest (
 /**
  * Represents response frame for Debugger.enable method call.
  *
- * Enables debugger for the given page. Clients should not assume that the debugging has been enabled until the result for this command is received.
+ * Enables debugger for the given page. Clients should not assume that the debugging has been
+enabled until the result for this command is received.
  */
 data class EnableResponse(
   /**
@@ -393,17 +412,20 @@ data class EvaluateOnCallFrameRequest (
     val expression : String,
 
     /**
-     * String object group name to put result into (allows rapid releasing resulting object handles using `releaseObjectGroup`).
+     * String object group name to put result into (allows rapid releasing resulting object handles
+using `releaseObjectGroup`).
      */
     val objectGroup : String? = null,
 
     /**
-     * Specifies whether command line API should be available to the evaluated expression, defaults to false.
+     * Specifies whether command line API should be available to the evaluated expression, defaults
+to false.
      */
     val includeCommandLineAPI : Boolean? = null,
 
     /**
-     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides `setPauseOnException` state.
+     * In silent mode exceptions thrown during evaluation are not reported and do not pause
+execution. Overrides `setPauseOnException` state.
      */
     val silent : Boolean? = null,
 
@@ -445,7 +467,8 @@ data class EvaluateOnCallFrameResponse(
 /**
  * Represents request frame that can be used with Debugger.getPossibleBreakpoints method call.
  *
- * Returns possible locations for breakpoint. scriptId in start and end range locations should be the same.
+ * Returns possible locations for breakpoint. scriptId in start and end range locations should be
+the same.
  */
 data class GetPossibleBreakpointsRequest (
     /**
@@ -454,7 +477,8 @@ data class GetPossibleBreakpointsRequest (
     val start : Location,
 
     /**
-     * End of range to search possible breakpoint locations in (excluding). When not specified, end of scripts is used as end of range.
+     * End of range to search possible breakpoint locations in (excluding). When not specified, end
+of scripts is used as end of range.
      */
     val end : Location? = null,
 
@@ -468,7 +492,8 @@ data class GetPossibleBreakpointsRequest (
 /**
  * Represents response frame for Debugger.getPossibleBreakpoints method call.
  *
- * Returns possible locations for breakpoint. scriptId in start and end range locations should be the same.
+ * Returns possible locations for breakpoint. scriptId in start and end range locations should be
+the same.
  */
 data class GetPossibleBreakpointsResponse(
   /**
@@ -640,7 +665,8 @@ data class SearchInContentResponse(
  */
 data class SetAsyncCallStackDepthRequest (
     /**
-     * Maximum depth of async call stacks. Setting to `0` will effectively disable collecting async call stacks (default).
+     * Maximum depth of async call stacks. Setting to `0` will effectively disable collecting async
+call stacks (default).
      */
     val maxDepth : Int
 
@@ -649,7 +675,9 @@ data class SetAsyncCallStackDepthRequest (
 /**
  * Represents request frame that can be used with Debugger.setBlackboxPatterns method call.
  *
- * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in scripts with url matching one of the patterns. VM will try to leave blackboxed script by performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
+ * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in
+scripts with url matching one of the patterns. VM will try to leave blackboxed script by
+performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
  */
 data class SetBlackboxPatternsRequest (
     /**
@@ -662,7 +690,10 @@ data class SetBlackboxPatternsRequest (
 /**
  * Represents request frame that can be used with Debugger.setBlackboxedRanges method call.
  *
- * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted scripts by performing 'step in' several times, finally resorting to 'step out' if unsuccessful. Positions array contains positions where blackbox state is changed. First interval isn't blackboxed. Array should be sorted.
+ * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted
+scripts by performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
+Positions array contains positions where blackbox state is changed. First interval isn't
+blackboxed. Array should be sorted.
  */
 data class SetBlackboxedRangesRequest (
     /**
@@ -689,7 +720,8 @@ data class SetBreakpointRequest (
     val location : Location,
 
     /**
-     * Expression to use as a breakpoint condition. When specified, debugger will only stop on the breakpoint if this expression evaluates to true.
+     * Expression to use as a breakpoint condition. When specified, debugger will only stop on the
+breakpoint if this expression evaluates to true.
      */
     val condition : String? = null
 
@@ -716,7 +748,10 @@ data class SetBreakpointResponse(
 /**
  * Represents request frame that can be used with Debugger.setBreakpointByUrl method call.
  *
- * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in `locations` property. Further matching script parsing will result in subsequent `breakpointResolved` events issued. This logical breakpoint will survive page reloads.
+ * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this
+command is issued, all existing parsed scripts will have breakpoints resolved and returned in
+`locations` property. Further matching script parsing will result in subsequent
+`breakpointResolved` events issued. This logical breakpoint will survive page reloads.
  */
 data class SetBreakpointByUrlRequest (
     /**
@@ -730,7 +765,8 @@ data class SetBreakpointByUrlRequest (
     val url : String? = null,
 
     /**
-     * Regex pattern for the URLs of the resources to set breakpoints on. Either `url` or `urlRegex` must be specified.
+     * Regex pattern for the URLs of the resources to set breakpoints on. Either `url` or
+`urlRegex` must be specified.
      */
     val urlRegex : String? = null,
 
@@ -745,7 +781,8 @@ data class SetBreakpointByUrlRequest (
     val columnNumber : Int? = null,
 
     /**
-     * Expression to use as a breakpoint condition. When specified, debugger will only stop on the breakpoint if this expression evaluates to true.
+     * Expression to use as a breakpoint condition. When specified, debugger will only stop on the
+breakpoint if this expression evaluates to true.
      */
     val condition : String? = null
 
@@ -754,7 +791,10 @@ data class SetBreakpointByUrlRequest (
 /**
  * Represents response frame for Debugger.setBreakpointByUrl method call.
  *
- * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this command is issued, all existing parsed scripts will have breakpoints resolved and returned in `locations` property. Further matching script parsing will result in subsequent `breakpointResolved` events issued. This logical breakpoint will survive page reloads.
+ * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this
+command is issued, all existing parsed scripts will have breakpoints resolved and returned in
+`locations` property. Further matching script parsing will result in subsequent
+`breakpointResolved` events issued. This logical breakpoint will survive page reloads.
  */
 data class SetBreakpointByUrlResponse(
   /**
@@ -785,7 +825,8 @@ data class SetBreakpointsActiveRequest (
 /**
  * Represents request frame that can be used with Debugger.setPauseOnExceptions method call.
  *
- * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or no exceptions. Initial pause on exceptions state is `none`.
+ * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or
+no exceptions. Initial pause on exceptions state is `none`.
  */
 data class SetPauseOnExceptionsRequest (
     /**
@@ -825,7 +866,8 @@ data class SetScriptSourceRequest (
     val scriptSource : String,
 
     /**
-     * If true the change will not actually be applied. Dry run may be used to get result description without actually modifying the code.
+     * If true the change will not actually be applied. Dry run may be used to get result
+description without actually modifying the code.
      */
     val dryRun : Boolean? = null
 
@@ -880,11 +922,13 @@ data class SetSkipAllPausesRequest (
 /**
  * Represents request frame that can be used with Debugger.setVariableValue method call.
  *
- * Changes value of variable in a callframe. Object-based scopes are not supported and must be mutated manually.
+ * Changes value of variable in a callframe. Object-based scopes are not supported and must be
+mutated manually.
  */
 data class SetVariableValueRequest (
     /**
-     * 0-based number of scope as was listed in scope chain. Only 'local', 'closure' and 'catch' scope types are allowed. Other scopes could be manipulated manually.
+     * 0-based number of scope as was listed in scope chain. Only 'local', 'closure' and 'catch'
+scope types are allowed. Other scopes could be manipulated manually.
      */
     val scopeNumber : Int,
 
@@ -912,7 +956,8 @@ data class SetVariableValueRequest (
  */
 data class StepIntoRequest (
     /**
-     * Debugger will issue additional Debugger.paused notification if any async task is scheduled before next pause.
+     * Debugger will issue additional Debugger.paused notification if any async task is scheduled
+before next pause.
      */
     @pl.wendigo.chrome.Experimental val breakOnAsyncCall : Boolean? = null
 
@@ -973,7 +1018,8 @@ data class PausedEvent(
   @pl.wendigo.chrome.Experimental val asyncStackTraceId : pl.wendigo.chrome.domain.runtime.StackTraceId? = null,
 
   /**
-   * Just scheduled async call will have this stack trace as parent stack during async execution. This field is available only after `Debugger.stepInto` call with `breakOnAsynCall` flag.
+   * Just scheduled async call will have this stack trace as parent stack during async execution.
+This field is available only after `Debugger.stepInto` call with `breakOnAsynCall` flag.
    */
   @pl.wendigo.chrome.Experimental val asyncCallStackTraceId : pl.wendigo.chrome.domain.runtime.StackTraceId? = null
 
@@ -1060,7 +1106,8 @@ data class ScriptFailedToParseEvent(
 /**
  * Represents event frames for Debugger.scriptParsed
  *
- * Fired when virtual machine parses script. This event is also fired for all known and uncollected scripts upon enabling debugger.
+ * Fired when virtual machine parses script. This event is also fired for all known and uncollected
+scripts upon enabling debugger.
  */
 data class ScriptParsedEvent(
   /**

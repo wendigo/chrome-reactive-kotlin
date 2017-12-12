@@ -48,7 +48,8 @@ data class RemoteObject(
   val value : Any? = null,
 
   /**
-   * Primitive value which can not be JSON-stringified does not have `value`, but gets this property.
+   * Primitive value which can not be JSON-stringified does not have `value`, but gets this
+property.
    */
   val unserializableValue : UnserializableValue? = null,
 
@@ -208,22 +209,26 @@ data class PropertyDescriptor(
   val writable : Boolean? = null,
 
   /**
-   * A function which serves as a getter for the property, or `undefined` if there is no getter (accessor descriptors only).
+   * A function which serves as a getter for the property, or `undefined` if there is no getter
+(accessor descriptors only).
    */
   val get : RemoteObject? = null,
 
   /**
-   * A function which serves as a setter for the property, or `undefined` if there is no setter (accessor descriptors only).
+   * A function which serves as a setter for the property, or `undefined` if there is no setter
+(accessor descriptors only).
    */
   val set : RemoteObject? = null,
 
   /**
-   * True if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object.
+   * True if the type of this property descriptor may be changed and if the property may be
+deleted from the corresponding object.
    */
   val configurable : Boolean,
 
   /**
-   * True if this property shows up during enumeration of the properties on the corresponding object.
+   * True if this property shows up during enumeration of the properties on the corresponding
+object.
    */
   val enumerable : Boolean,
 
@@ -260,7 +265,8 @@ data class InternalPropertyDescriptor(
 )
 
 /**
- * Represents function call argument. Either remote object id `objectId`, primitive `value`, unserializable primitive value or neither of (for undefined) them should be specified.
+ * Represents function call argument. Either remote object id `objectId`, primitive `value`,
+unserializable primitive value or neither of (for undefined) them should be specified.
  */
 
 data class CallArgument(
@@ -292,7 +298,8 @@ typealias ExecutionContextId = Int
 
 data class ExecutionContextDescription(
   /**
-   * Unique id of the execution context. It can be used to specify in which execution context script evaluation should be performed.
+   * Unique id of the execution context. It can be used to specify in which execution context
+script evaluation should be performed.
    */
   val id : ExecutionContextId,
 
@@ -313,7 +320,8 @@ data class ExecutionContextDescription(
 )
 
 /**
- * Detailed information about exception (or error) that was thrown during script compilation or execution.
+ * Detailed information about exception (or error) that was thrown during script compilation or
+execution.
  */
 
 data class ExceptionDetails(
@@ -406,7 +414,8 @@ data class CallFrame(
 
 data class StackTrace(
   /**
-   * String label of this stack trace. For async traces this may be a name of the function that initiated the async call.
+   * String label of this stack trace. For async traces this may be a name of the function that
+initiated the async call.
    */
   val description : String? = null,
 
@@ -433,7 +442,8 @@ data class StackTrace(
 typealias UniqueDebuggerId = String
 
 /**
- * If `debuggerId` is set stack trace comes from another debugger and can be resolved there. This allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages.
+ * If `debuggerId` is set stack trace comes from another debugger and can be resolved there. This
+allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages.
  */
 
 data class StackTraceId(

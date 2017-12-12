@@ -23,7 +23,8 @@ class ConsoleDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
-     * Enables console domain, sends the messages collected so far to the client by means of the `messageAdded` notification.
+     * Enables console domain, sends the messages collected so far to the client by means of the
+`messageAdded` notification.
      */
     fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Console.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {

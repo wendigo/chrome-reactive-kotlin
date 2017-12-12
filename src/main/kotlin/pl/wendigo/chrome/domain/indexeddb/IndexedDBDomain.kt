@@ -23,6 +23,15 @@ class IndexedDBDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
+     * Delete a range of entries from an object store
+     */
+    fun deleteObjectStoreEntries(input : DeleteObjectStoreEntriesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("IndexedDB.deleteObjectStoreEntries", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Disables events from backend.
      */
     fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -114,6 +123,34 @@ data class DeleteDatabaseRequest (
      * Database name.
      */
     val databaseName : String
+
+)
+
+/**
+ * Represents request frame that can be used with IndexedDB.deleteObjectStoreEntries method call.
+ *
+ * Delete a range of entries from an object store
+ */
+data class DeleteObjectStoreEntriesRequest (
+    /**
+     *
+     */
+    val securityOrigin : String,
+
+    /**
+     *
+     */
+    val databaseName : String,
+
+    /**
+     *
+     */
+    val objectStoreName : String,
+
+    /**
+     * Range of entry keys to delete
+     */
+    val keyRange : KeyRange
 
 )
 
