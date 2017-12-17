@@ -1103,7 +1103,25 @@ print all pages.
      * Whether to silently ignore invalid but successfully parsed page ranges, such as '3-2'.
 Defaults to false.
      */
-    val ignoreInvalidPageRanges : Boolean? = null
+    val ignoreInvalidPageRanges : Boolean? = null,
+
+    /**
+     * HTML template for the print header. Should be valid HTML markup with following
+classes used to inject printing values into them:
+- date - formatted print date
+- title - document title
+- url - document location
+- pageNumber - current page number
+- totalPages - total pages in the document
+
+For example, <span class=title></span> would generate span containing the title.
+     */
+    val headerTemplate : String? = null,
+
+    /**
+     * HTML template for the print footer. Should use the same format as the `headerTemplate`.
+     */
+    val footerTemplate : String? = null
 
 )
 
@@ -1133,6 +1151,7 @@ data class ReloadRequest (
 
     /**
      * If set, the script will be injected into all frames of the inspected page after reload.
+Argument will be ignored if reloading dataURL origin.
      */
     val scriptToEvaluateOnLoad : String? = null
 

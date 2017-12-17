@@ -38,6 +38,11 @@ data class SecurityStateExplanation(
   val securityState : SecurityState,
 
   /**
+   * Title describing the type of factor.
+   */
+  val title : String,
+
+  /**
    * Short phrase describing the type of factor.
    */
   val summary : String,
