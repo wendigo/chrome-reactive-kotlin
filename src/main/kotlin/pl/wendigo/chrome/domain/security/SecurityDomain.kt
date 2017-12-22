@@ -23,6 +23,15 @@ class SecurityDomain internal constructor(private val connectionRemote : pl.wend
     }
 
     /**
+     * Enable/disable whether all certificate errors should be ignored.
+     */
+    fun setIgnoreCertificateErrors(input : SetIgnoreCertificateErrorsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Security.setIgnoreCertificateErrors", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Handles a certificate error that fired a certificateError event.
      */
     fun handleCertificateError(input : HandleCertificateErrorRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -44,7 +53,8 @@ be handled by the DevTools client and should be answered with handleCertificateE
     /**
      * There is a certificate error. If overriding certificate errors is enabled, then it should be
 handled with the handleCertificateError command. Note: this event does not fire if the
-certificate error has been allowed internally.
+certificate error has been allowed internally. Only one client per target should override
+certificate errors at the same time.
      */
     fun certificateError() : io.reactivex.Flowable<CertificateErrorEvent> {
         return certificateErrorTimed().map {
@@ -55,7 +65,8 @@ certificate error has been allowed internally.
     /**
      * There is a certificate error. If overriding certificate errors is enabled, then it should be
 handled with the handleCertificateError command. Note: this event does not fire if the
-certificate error has been allowed internally.
+certificate error has been allowed internally. Only one client per target should override
+certificate errors at the same time.
      */
     fun certificateErrorTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<CertificateErrorEvent>> {
         return connectionRemote.captureEvents("Security.certificateError", CertificateErrorEvent::class.java)
@@ -86,6 +97,19 @@ certificate error has been allowed internally.
         }
     }
 }
+
+/**
+ * Represents request frame that can be used with Security.setIgnoreCertificateErrors method call.
+ *
+ * Enable/disable whether all certificate errors should be ignored.
+ */
+data class SetIgnoreCertificateErrorsRequest (
+    /**
+     * If true, all certificate errors will be ignored.
+     */
+    val ignore : Boolean
+
+)
 
 /**
  * Represents request frame that can be used with Security.handleCertificateError method call.
@@ -124,7 +148,8 @@ data class SetOverrideCertificateErrorsRequest (
  *
  * There is a certificate error. If overriding certificate errors is enabled, then it should be
 handled with the handleCertificateError command. Note: this event does not fire if the
-certificate error has been allowed internally.
+certificate error has been allowed internally. Only one client per target should override
+certificate errors at the same time.
  */
 data class CertificateErrorEvent(
   /**
