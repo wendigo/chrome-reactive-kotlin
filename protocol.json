@@ -8261,6 +8261,12 @@
                             "name": "encodedDataLength",
                             "description": "Total number of bytes received for this request.",
                             "type": "number"
+                        },
+                        {
+                            "name": "blockedCrossSiteDocument",
+                            "description": "Set when response was blocked due to being cross-site document response.",
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
@@ -9971,18 +9977,6 @@
                         {
                             "name": "enabled",
                             "description": "Whether to block ads.",
-                            "type": "boolean"
-                        }
-                    ]
-                },
-                {
-                    "name": "setAutoAttachToCreatedPages",
-                    "description": "Controls whether browser will open a new inspector window for connected pages.",
-                    "experimental": true,
-                    "parameters": [
-                        {
-                            "name": "autoAttach",
-                            "description": "If true, browser will open a new inspector window for every page created from this one.",
                             "type": "boolean"
                         }
                     ]

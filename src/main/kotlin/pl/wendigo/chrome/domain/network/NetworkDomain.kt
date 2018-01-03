@@ -1171,7 +1171,12 @@ data class LoadingFinishedEvent(
   /**
    * Total number of bytes received for this request.
    */
-  val encodedDataLength : Double
+  val encodedDataLength : Double,
+
+  /**
+   * Set when response was blocked due to being cross-site document response.
+   */
+  val blockedCrossSiteDocument : Boolean? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "loadingFinished")
 

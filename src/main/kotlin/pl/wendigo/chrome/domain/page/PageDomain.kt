@@ -267,15 +267,6 @@ information in the `cookies` field.
     }
 
     /**
-     * Controls whether browser will open a new inspector window for connected pages.
-     */
-    fun setAutoAttachToCreatedPages(input : SetAutoAttachToCreatedPagesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Page.setAutoAttachToCreatedPages", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Overrides the values of device screen dimensions (window.screen.width, window.screen.height,
 window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media
 query results).
@@ -1252,19 +1243,6 @@ data class SetAdBlockingEnabledRequest (
      * Whether to block ads.
      */
     val enabled : Boolean
-
-)
-
-/**
- * Represents request frame that can be used with Page.setAutoAttachToCreatedPages method call.
- *
- * Controls whether browser will open a new inspector window for connected pages.
- */
-data class SetAutoAttachToCreatedPagesRequest (
-    /**
-     * If true, browser will open a new inspector window for every page created from this one.
-     */
-    val autoAttach : Boolean
 
 )
 
