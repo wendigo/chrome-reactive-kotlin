@@ -37,7 +37,12 @@ data class GetSnapshotRequest (
     /**
      * Whitelist of computed styles to return.
      */
-    val computedStyleWhitelist : List<String>
+    val computedStyleWhitelist : List<String>,
+
+    /**
+     * Whether or not to retrieve details of DOM listeners (default false).
+     */
+    val includeEventListeners : Boolean? = null
 
 )
 

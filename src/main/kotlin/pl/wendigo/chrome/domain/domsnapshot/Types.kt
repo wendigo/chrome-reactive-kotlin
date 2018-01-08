@@ -131,7 +131,12 @@ any.
 event listeners attached via JavaScript as well as anchor tags that naturally navigate when
 clicked.
    */
-  val isClickable : Boolean? = null
+  val isClickable : Boolean? = null,
+
+  /**
+   * Details of the node's event listeners, if any.
+   */
+  val eventListeners : List<pl.wendigo.chrome.domain.domdebugger.EventListener>? = null
 )
 
 /**
