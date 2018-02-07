@@ -96,15 +96,6 @@ one.
     }
 
     /**
-     *
-     */
-    fun setAttachToFrames(input : SetAttachToFramesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("Target.setAttachToFrames", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      * Controls whether to automatically attach to new targets which are considered to be related to
 this one. When turned on, attaches to all existing related targets as well. When turned off,
 automatically detaches from all currently attached targets.
@@ -475,19 +466,6 @@ data class SendMessageToTargetRequest (
      * Deprecated.
      */
     @pl.wendigo.chrome.Deprecated val targetId : TargetID? = null
-
-)
-
-/**
- * Represents request frame that can be used with Target.setAttachToFrames method call.
- *
- *
- */
-data class SetAttachToFramesRequest (
-    /**
-     * Whether to attach to frames.
-     */
-    val value : Boolean
 
 )
 

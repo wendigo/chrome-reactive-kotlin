@@ -41,6 +41,43 @@ class MemoryDomain internal constructor(private val connectionRemote : pl.wendig
     }
 
     /**
+     * Start collecting native memory profile.
+     */
+    fun startSampling(input : StartSamplingRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Memory.startSampling", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Stop collecting native memory profile.
+     */
+    fun stopSampling() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Memory.stopSampling", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Retrieve native memory allocations profile collected since process startup.
+     */
+    fun getAllTimeSamplingProfile() : io.reactivex.Single<GetAllTimeSamplingProfileResponse> {
+        return connectionRemote.runAndCaptureResponse("Memory.getAllTimeSamplingProfile", null, GetAllTimeSamplingProfileResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Retrieve native memory allocations profile collected since last
+`startSampling` call.
+     */
+    fun getSamplingProfile() : io.reactivex.Single<GetSamplingProfileResponse> {
+        return connectionRemote.runAndCaptureResponse("Memory.getSamplingProfile", null, GetSamplingProfileResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns flowable capturing all Memory domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -96,6 +133,51 @@ data class SimulatePressureNotificationRequest (
      * Memory pressure level of the notification.
      */
     val level : PressureLevel
+
+)
+
+/**
+ * Represents request frame that can be used with Memory.startSampling method call.
+ *
+ * Start collecting native memory profile.
+ */
+data class StartSamplingRequest (
+    /**
+     * Average number of bytes between samples.
+     */
+    val samplingInterval : Int? = null,
+
+    /**
+     * Do not randomize intervals between samples.
+     */
+    val suppressRandomness : Boolean? = null
+
+)
+
+/**
+ * Represents response frame for Memory.getAllTimeSamplingProfile method call.
+ *
+ * Retrieve native memory allocations profile collected since process startup.
+ */
+data class GetAllTimeSamplingProfileResponse(
+  /**
+   *
+   */
+  val profile : SamplingProfile
+
+)
+
+/**
+ * Represents response frame for Memory.getSamplingProfile method call.
+ *
+ * Retrieve native memory allocations profile collected since last
+`startSampling` call.
+ */
+data class GetSamplingProfileResponse(
+  /**
+   *
+   */
+  val profile : SamplingProfile
 
 )
 

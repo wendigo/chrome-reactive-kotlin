@@ -136,7 +136,12 @@ clicked.
   /**
    * Details of the node's event listeners, if any.
    */
-  val eventListeners : List<pl.wendigo.chrome.domain.domdebugger.EventListener>? = null
+  val eventListeners : List<pl.wendigo.chrome.domain.domdebugger.EventListener>? = null,
+
+  /**
+   * The selected url for nodes with a srcset attribute.
+   */
+  val currentSourceURL : String? = null
 )
 
 /**

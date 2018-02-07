@@ -59,6 +59,7 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
             "HeapProfiler.resetProfiles" to pl.wendigo.chrome.ProtocolEvent::class.java,
             "Inspector.detached" to pl.wendigo.chrome.domain.inspector.DetachedEvent::class.java,
             "Inspector.targetCrashed" to pl.wendigo.chrome.ProtocolEvent::class.java,
+            "Inspector.targetReloadedAfterCrash" to pl.wendigo.chrome.ProtocolEvent::class.java,
             "LayerTree.layerPainted" to pl.wendigo.chrome.domain.layertree.LayerPaintedEvent::class.java,
             "LayerTree.layerTreeDidChange" to pl.wendigo.chrome.domain.layertree.LayerTreeDidChangeEvent::class.java,
             "Log.entryAdded" to pl.wendigo.chrome.domain.log.EntryAddedEvent::class.java,

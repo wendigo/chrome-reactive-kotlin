@@ -460,7 +460,13 @@ virtualTimeBudgetExpired event is sent.
      * If set this specifies the maximum number of tasks that can be run before virtual is forced
 forwards to prevent deadlock.
      */
-    val maxVirtualTimeTaskStarvationCount : Int? = null
+    val maxVirtualTimeTaskStarvationCount : Int? = null,
+
+    /**
+     * If set the virtual time policy change should be deferred until any frame starts navigating.
+Note any previous deferred policy change is superseded.
+     */
+    val waitForNavigation : Boolean? = null
 
 )
 

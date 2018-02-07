@@ -47,3 +47,50 @@ data class Bounds(
   val windowState : WindowState? = null
 )
 
+/**
+ * Chrome histogram bucket.
+ */
+
+data class Bucket(
+  /**
+   * Minimum value (inclusive).
+   */
+  val low : Int,
+
+  /**
+   * Maximum value (exclusive).
+   */
+  val high : Int,
+
+  /**
+   * Number of samples.
+   */
+  val count : Int
+)
+
+/**
+ * Chrome histogram.
+ */
+
+data class Histogram(
+  /**
+   * Name.
+   */
+  val name : String,
+
+  /**
+   * Sum of sample values.
+   */
+  val sum : Int,
+
+  /**
+   * Total number of samples.
+   */
+  val count : Int,
+
+  /**
+   * Buckets.
+   */
+  val buckets : List<Bucket>
+)
+

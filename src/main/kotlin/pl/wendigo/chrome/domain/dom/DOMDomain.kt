@@ -373,6 +373,15 @@ $x functions).
     }
 
     /**
+     * Returns iframe node that owns iframe with the given domain.
+     */
+    fun getFrameOwner(input : GetFrameOwnerRequest) : io.reactivex.Single<GetFrameOwnerResponse> {
+        return connectionRemote.runAndCaptureResponse("DOM.getFrameOwner", input, GetFrameOwnerResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Fired when `Element`'s attribute is modified.
      */
     fun attributeModified() : io.reactivex.Flowable<AttributeModifiedEvent> {
@@ -1491,6 +1500,32 @@ data class SetOuterHTMLRequest (
      * Outer HTML markup to set.
      */
     val outerHTML : String
+
+)
+
+/**
+ * Represents request frame that can be used with DOM.getFrameOwner method call.
+ *
+ * Returns iframe node that owns iframe with the given domain.
+ */
+data class GetFrameOwnerRequest (
+    /**
+     *
+     */
+    val frameId : pl.wendigo.chrome.domain.page.FrameId
+
+)
+
+/**
+ * Represents response frame for DOM.getFrameOwner method call.
+ *
+ * Returns iframe node that owns iframe with the given domain.
+ */
+data class GetFrameOwnerResponse(
+  /**
+   *
+   */
+  val nodeId : NodeId
 
 )
 

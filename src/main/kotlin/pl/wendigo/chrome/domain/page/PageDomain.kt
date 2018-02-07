@@ -351,6 +351,15 @@ unavailable.
     }
 
     /**
+     * Crashes renderer on the IO thread, generates minidumps.
+     */
+    fun crash() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Page.crash", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Stops sending each frame in the `screencastFrame`.
      */
     fun stopScreencast() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
@@ -988,7 +997,12 @@ data class NavigateRequest (
     /**
      * Intended transition type.
      */
-    val transitionType : TransitionType? = null
+    val transitionType : TransitionType? = null,
+
+    /**
+     * Frame id to navigate, if not specified navigates the top frame.
+     */
+    val frameId : FrameId? = null
 
 )
 
@@ -1112,7 +1126,13 @@ For example, <span class=title></span> would generate span containing the title.
     /**
      * HTML template for the print footer. Should use the same format as the `headerTemplate`.
      */
-    val footerTemplate : String? = null
+    val footerTemplate : String? = null,
+
+    /**
+     * Whether or not to prefer page size as defined by css. Defaults to false,
+in which case the content will be scaled to fit the paper size.
+     */
+    val preferCSSPageSize : Boolean? = null
 
 )
 

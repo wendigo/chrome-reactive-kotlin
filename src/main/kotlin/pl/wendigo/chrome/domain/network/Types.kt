@@ -202,6 +202,11 @@ data class Request(
   val postData : String? = null,
 
   /**
+   * True when the request has POST data. Note that postData might still be omitted when this flag is true when the data is too long.
+   */
+  val hasPostData : Boolean? = null,
+
+  /**
    * The mixed content type of the request.
    */
   val mixedContentType : pl.wendigo.chrome.domain.security.MixedContentType? = null,

@@ -137,6 +137,15 @@ detailed cookie information in the `cookies` field.
     }
 
     /**
+     * Returns post data sent with the request. Returns an error when no data was sent with the request.
+     */
+    fun getRequestPostData(input : GetRequestPostDataRequest) : io.reactivex.Single<GetRequestPostDataResponse> {
+        return connectionRemote.runAndCaptureResponse("Network.getRequestPostData", input, GetRequestPostDataResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns content served for the given currently intercepted request.
      */
     fun getResponseBodyForInterception(input : GetResponseBodyForInterceptionRequest) : io.reactivex.Single<GetResponseBodyForInterceptionResponse> {
@@ -686,7 +695,12 @@ data class EnableRequest (
     /**
      * Per-resource buffer size in bytes to use when preserving network payloads (XHRs, etc).
      */
-    @pl.wendigo.chrome.Experimental val maxResourceBufferSize : Int? = null
+    @pl.wendigo.chrome.Experimental val maxResourceBufferSize : Int? = null,
+
+    /**
+     * Longest post body size (in bytes) that would be included in requestWillBeSent notification
+     */
+    val maxPostDataSize : Int? = null
 
 )
 
@@ -786,6 +800,32 @@ data class GetResponseBodyResponse(
    * True, if content was sent as base64.
    */
   val base64Encoded : Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with Network.getRequestPostData method call.
+ *
+ * Returns post data sent with the request. Returns an error when no data was sent with the request.
+ */
+data class GetRequestPostDataRequest (
+    /**
+     * Identifier of the network request to get content for.
+     */
+    val requestId : RequestId
+
+)
+
+/**
+ * Represents response frame for Network.getRequestPostData method call.
+ *
+ * Returns post data sent with the request. Returns an error when no data was sent with the request.
+ */
+data class GetRequestPostDataResponse(
+  /**
+   * Base64-encoded request body.
+   */
+  val postData : String
 
 )
 

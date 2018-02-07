@@ -196,7 +196,8 @@ property
     }
 
     /**
-     * The list of rules with an indication of whether these were used
+     * Stop tracking rule usage and return the list of rules that were used since last call to
+`takeCoverageDelta` (or since start of coverage instrumentation)
      */
     fun stopRuleUsageTracking() : io.reactivex.Single<StopRuleUsageTrackingResponse> {
         return connectionRemote.runAndCaptureResponse("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java).map {
@@ -829,7 +830,8 @@ data class SetStyleTextsResponse(
 /**
  * Represents response frame for CSS.stopRuleUsageTracking method call.
  *
- * The list of rules with an indication of whether these were used
+ * Stop tracking rule usage and return the list of rules that were used since last call to
+`takeCoverageDelta` (or since start of coverage instrumentation)
  */
 data class StopRuleUsageTrackingResponse(
   /**

@@ -23,6 +23,24 @@ class BrowserDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     * Get Chrome histograms.
+     */
+    fun getHistograms(input : GetHistogramsRequest) : io.reactivex.Single<GetHistogramsResponse> {
+        return connectionRemote.runAndCaptureResponse("Browser.getHistograms", input, GetHistogramsResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Get a Chrome histogram by name.
+     */
+    fun getHistogram(input : GetHistogramRequest) : io.reactivex.Single<GetHistogramResponse> {
+        return connectionRemote.runAndCaptureResponse("Browser.getHistogram", input, GetHistogramResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Get position and size of the browser window.
      */
     fun getWindowBounds(input : GetWindowBoundsRequest) : io.reactivex.Single<GetWindowBoundsResponse> {
@@ -89,6 +107,60 @@ data class GetVersionResponse(
    * V8 version.
    */
   val jsVersion : String
+
+)
+
+/**
+ * Represents request frame that can be used with Browser.getHistograms method call.
+ *
+ * Get Chrome histograms.
+ */
+data class GetHistogramsRequest (
+    /**
+     * Requested substring in name. Only histograms which have query as a
+substring in their name are extracted. An empty or absent query returns
+all histograms.
+     */
+    val query : String? = null
+
+)
+
+/**
+ * Represents response frame for Browser.getHistograms method call.
+ *
+ * Get Chrome histograms.
+ */
+data class GetHistogramsResponse(
+  /**
+   * Histograms.
+   */
+  val histograms : List<Histogram>
+
+)
+
+/**
+ * Represents request frame that can be used with Browser.getHistogram method call.
+ *
+ * Get a Chrome histogram by name.
+ */
+data class GetHistogramRequest (
+    /**
+     * Requested histogram name.
+     */
+    val name : String
+
+)
+
+/**
+ * Represents response frame for Browser.getHistogram method call.
+ *
+ * Get a Chrome histogram by name.
+ */
+data class GetHistogramResponse(
+  /**
+   * Histogram.
+   */
+  val histogram : Histogram
 
 )
 

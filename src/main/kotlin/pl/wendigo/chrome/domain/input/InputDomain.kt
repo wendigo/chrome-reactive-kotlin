@@ -277,14 +277,14 @@ data class EmulateTouchFromMouseEventRequest (
     val y : Int,
 
     /**
-     * Time at which the event occurred.
-     */
-    val timestamp : TimeSinceEpoch,
-
-    /**
      * Mouse button.
      */
     val button : String,
+
+    /**
+     * Time at which the event occurred (default: current time).
+     */
+    val timestamp : TimeSinceEpoch? = null,
 
     /**
      * X delta in DIP for mouse wheel event (default: 0).

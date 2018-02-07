@@ -989,6 +989,60 @@
                             "$ref": "WindowState"
                         }
                     ]
+                },
+                {
+                    "id": "Bucket",
+                    "description": "Chrome histogram bucket.",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "low",
+                            "description": "Minimum value (inclusive).",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "high",
+                            "description": "Maximum value (exclusive).",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "count",
+                            "description": "Number of samples.",
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "id": "Histogram",
+                    "description": "Chrome histogram.",
+                    "experimental": true,
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "name",
+                            "description": "Name.",
+                            "type": "string"
+                        },
+                        {
+                            "name": "sum",
+                            "description": "Sum of sample values.",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "count",
+                            "description": "Total number of samples.",
+                            "type": "integer"
+                        },
+                        {
+                            "name": "buckets",
+                            "description": "Buckets.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "Bucket"
+                            }
+                        }
+                    ]
                 }
             ],
             "commands": [
@@ -1024,6 +1078,48 @@
                             "name": "jsVersion",
                             "description": "V8 version.",
                             "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "getHistograms",
+                    "description": "Get Chrome histograms.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "query",
+                            "description": "Requested substring in name. Only histograms which have query as a\nsubstring in their name are extracted. An empty or absent query returns\nall histograms.",
+                            "optional": true,
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "histograms",
+                            "description": "Histograms.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "Histogram"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getHistogram",
+                    "description": "Get a Chrome histogram by name.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "name",
+                            "description": "Requested histogram name.",
+                            "type": "string"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "histogram",
+                            "description": "Histogram.",
+                            "$ref": "Histogram"
                         }
                     ]
                 },
@@ -2138,7 +2234,7 @@
                 },
                 {
                     "name": "stopRuleUsageTracking",
-                    "description": "The list of rules with an indication of whether these were used",
+                    "description": "Stop tracking rule usage and return the list of rules that were used since last call to\n`takeCoverageDelta` (or since start of coverage instrumentation)",
                     "returns": [
                         {
                             "name": "ruleUsage",
@@ -3590,6 +3686,23 @@
                     "name": "undo",
                     "description": "Undoes the last performed action.",
                     "experimental": true
+                },
+                {
+                    "name": "getFrameOwner",
+                    "description": "Returns iframe node that owns iframe with the given domain.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "frameId",
+                            "$ref": "Page.FrameId"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "nodeId",
+                            "$ref": "NodeId"
+                        }
+                    ]
                 }
             ],
             "events": [
@@ -4229,6 +4342,12 @@
                             "items": {
                                 "$ref": "DOMDebugger.EventListener"
                             }
+                        },
+                        {
+                            "name": "currentSourceURL",
+                            "description": "The selected url for nodes with a srcset attribute.",
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 },
@@ -4998,6 +5117,12 @@
                             "description": "If set this specifies the maximum number of tasks that can be run before virtual is forced\nforwards to prevent deadlock.",
                             "optional": true,
                             "type": "integer"
+                        },
+                        {
+                            "name": "waitForNavigation",
+                            "description": "If set the virtual time policy change should be deferred until any frame starts navigating.\nNote any previous deferred policy change is superseded.",
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ],
                     "returns": [
@@ -5114,6 +5239,12 @@
                             "description": "The interval between BeginFrames that is reported to the compositor, in milliseconds.\nDefaults to a 60 frames/second interval, i.e. about 16.666 milliseconds.",
                             "optional": true,
                             "type": "number"
+                        },
+                        {
+                            "name": "noDisplayUpdates",
+                            "description": "Whether updates should not be committed and drawn onto the display. False by default. If\ntrue, only side effects of the BeginFrame will be run, such as layout and animations, but\nany visual updates may not be visible on the display or in screenshots.",
+                            "optional": true,
+                            "type": "boolean"
                         },
                         {
                             "name": "screenshot",
@@ -5935,11 +6066,6 @@
                             "type": "integer"
                         },
                         {
-                            "name": "timestamp",
-                            "description": "Time at which the event occurred.",
-                            "$ref": "TimeSinceEpoch"
-                        },
-                        {
                             "name": "button",
                             "description": "Mouse button.",
                             "type": "string",
@@ -5949,6 +6075,12 @@
                                 "middle",
                                 "right"
                             ]
+                        },
+                        {
+                            "name": "timestamp",
+                            "description": "Time at which the event occurred (default: current time).",
+                            "optional": true,
+                            "$ref": "TimeSinceEpoch"
                         },
                         {
                             "name": "deltaX",
@@ -6163,6 +6295,10 @@
                 {
                     "name": "targetCrashed",
                     "description": "Fired when debugging target has crashed"
+                },
+                {
+                    "name": "targetReloadedAfterCrash",
+                    "description": "Fired when debugging target has reloaded after crash"
                 }
             ]
         },
@@ -6755,6 +6891,45 @@
                         "moderate",
                         "critical"
                     ]
+                },
+                {
+                    "id": "SamplingProfileNode",
+                    "description": "Heap profile sample.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "size",
+                            "description": "Size of the sampled allocation.",
+                            "type": "number"
+                        },
+                        {
+                            "name": "count",
+                            "description": "Number of sampled allocations of that size.",
+                            "type": "number"
+                        },
+                        {
+                            "name": "stack",
+                            "description": "Execution stack at the point of allocation.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "SamplingProfile",
+                    "description": "Array of heap profile samples.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "samples",
+                            "type": "array",
+                            "items": {
+                                "$ref": "SamplingProfileNode"
+                            }
+                        }
+                    ]
                 }
             ],
             "commands": [
@@ -6797,6 +6972,48 @@
                             "name": "level",
                             "description": "Memory pressure level of the notification.",
                             "$ref": "PressureLevel"
+                        }
+                    ]
+                },
+                {
+                    "name": "startSampling",
+                    "description": "Start collecting native memory profile.",
+                    "parameters": [
+                        {
+                            "name": "samplingInterval",
+                            "description": "Average number of bytes between samples.",
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "suppressRandomness",
+                            "description": "Do not randomize intervals between samples.",
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "name": "stopSampling",
+                    "description": "Stop collecting native memory profile."
+                },
+                {
+                    "name": "getAllTimeSamplingProfile",
+                    "description": "Retrieve native memory allocations profile collected since process startup.",
+                    "returns": [
+                        {
+                            "name": "profile",
+                            "$ref": "SamplingProfile"
+                        }
+                    ]
+                },
+                {
+                    "name": "getSamplingProfile",
+                    "description": "Retrieve native memory allocations profile collected since last\n`startSampling` call.",
+                    "returns": [
+                        {
+                            "name": "profile",
+                            "$ref": "SamplingProfile"
                         }
                     ]
                 }
@@ -7013,6 +7230,12 @@
                             "description": "HTTP POST request data.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "hasPostData",
+                            "description": "True when the request has POST data. Note that postData might still be omitted when this flag is true when the data is too long.",
+                            "optional": true,
+                            "type": "boolean"
                         },
                         {
                             "name": "mixedContentType",
@@ -7830,6 +8053,12 @@
                             "experimental": true,
                             "optional": true,
                             "type": "integer"
+                        },
+                        {
+                            "name": "maxPostDataSize",
+                            "description": "Longest post body size (in bytes) that would be included in requestWillBeSent notification",
+                            "optional": true,
+                            "type": "integer"
                         }
                     ]
                 },
@@ -7913,6 +8142,24 @@
                             "name": "base64Encoded",
                             "description": "True, if content was sent as base64.",
                             "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "name": "getRequestPostData",
+                    "description": "Returns post data sent with the request. Returns an error when no data was sent with the request.",
+                    "parameters": [
+                        {
+                            "name": "requestId",
+                            "description": "Identifier of the network request to get content for.",
+                            "$ref": "RequestId"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "postData",
+                            "description": "Base64-encoded request body.",
+                            "type": "string"
                         }
                     ]
                 },
@@ -9755,6 +10002,12 @@
                             "description": "Intended transition type.",
                             "optional": true,
                             "$ref": "TransitionType"
+                        },
+                        {
+                            "name": "frameId",
+                            "description": "Frame id to navigate, if not specified navigates the top frame.",
+                            "optional": true,
+                            "$ref": "FrameId"
                         }
                     ],
                     "returns": [
@@ -9875,6 +10128,12 @@
                             "description": "HTML template for the print footer. Should use the same format as the `headerTemplate`.",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "preferCSSPageSize",
+                            "description": "Whether or not to prefer page size as defined by css. Defaults to false,\nin which case the content will be scaled to fit the paper size.",
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ],
                     "returns": [
@@ -10243,6 +10502,11 @@
                 {
                     "name": "stopLoading",
                     "description": "Force the page stop all navigations and pending resource fetches."
+                },
+                {
+                    "name": "crash",
+                    "description": "Crashes renderer on the IO thread, generates minidumps.",
+                    "experimental": true
                 },
                 {
                     "name": "stopScreencast",
@@ -11652,17 +11916,6 @@
                             "deprecated": true,
                             "optional": true,
                             "$ref": "TargetID"
-                        }
-                    ]
-                },
-                {
-                    "name": "setAttachToFrames",
-                    "experimental": true,
-                    "parameters": [
-                        {
-                            "name": "value",
-                            "description": "Whether to attach to frames.",
-                            "type": "boolean"
                         }
                     ]
                 },

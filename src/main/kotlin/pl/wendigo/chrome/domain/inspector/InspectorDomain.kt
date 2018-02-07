@@ -55,6 +55,22 @@ class InspectorDomain internal constructor(private val connectionRemote : pl.wen
     }
 
     /**
+     * Fired when debugging target has reloaded after crash
+     */
+    fun targetReloadedAfterCrash() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+        return targetReloadedAfterCrashTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Fired when debugging target has reloaded after crash
+     */
+    fun targetReloadedAfterCrashTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+        return connectionRemote.captureEvents("Inspector.targetReloadedAfterCrash", pl.wendigo.chrome.ProtocolEvent::class.java)
+    }
+
+    /**
      * Returns flowable capturing all Inspector domains events.
      */
     fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
