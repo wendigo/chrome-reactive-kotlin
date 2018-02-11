@@ -59,10 +59,21 @@ class MemoryDomain internal constructor(private val connectionRemote : pl.wendig
     }
 
     /**
-     * Retrieve native memory allocations profile collected since process startup.
+     * Retrieve native memory allocations profile
+collected since renderer process startup.
      */
     fun getAllTimeSamplingProfile() : io.reactivex.Single<GetAllTimeSamplingProfileResponse> {
         return connectionRemote.runAndCaptureResponse("Memory.getAllTimeSamplingProfile", null, GetAllTimeSamplingProfileResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Retrieve native memory allocations profile
+collected since browser process startup.
+     */
+    fun getBrowserSamplingProfile() : io.reactivex.Single<GetBrowserSamplingProfileResponse> {
+        return connectionRemote.runAndCaptureResponse("Memory.getBrowserSamplingProfile", null, GetBrowserSamplingProfileResponse::class.java).map {
             it.value()
         }
     }
@@ -157,9 +168,24 @@ data class StartSamplingRequest (
 /**
  * Represents response frame for Memory.getAllTimeSamplingProfile method call.
  *
- * Retrieve native memory allocations profile collected since process startup.
+ * Retrieve native memory allocations profile
+collected since renderer process startup.
  */
 data class GetAllTimeSamplingProfileResponse(
+  /**
+   *
+   */
+  val profile : SamplingProfile
+
+)
+
+/**
+ * Represents response frame for Memory.getBrowserSamplingProfile method call.
+ *
+ * Retrieve native memory allocations profile
+collected since browser process startup.
+ */
+data class GetBrowserSamplingProfileResponse(
   /**
    *
    */
