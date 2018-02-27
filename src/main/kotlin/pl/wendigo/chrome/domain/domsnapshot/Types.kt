@@ -127,6 +127,11 @@ any.
   val pseudoType : pl.wendigo.chrome.domain.dom.PseudoType? = null,
 
   /**
+   * Shadow root type.
+   */
+  val shadowRootType : pl.wendigo.chrome.domain.dom.ShadowRootType? = null,
+
+  /**
    * Whether this DOM node responds to mouse clicks. This includes nodes that have had click
 event listeners attached via JavaScript as well as anchor tags that naturally navigate when
 clicked.
@@ -156,12 +161,12 @@ data class InlineTextBox(
   val boundingBox : pl.wendigo.chrome.domain.dom.Rect,
 
   /**
-   * The starting index in characters, for this post layout textbox substring.
+   * The starting index in characters, for this post layout textbox substring. Characters that would be represented as a surrogate pair in UTF-16 have length 2.
    */
   val startCharacterIndex : Int,
 
   /**
-   * The number of characters in this post layout textbox substring.
+   * The number of characters in this post layout textbox substring. Characters that would be represented as a surrogate pair in UTF-16 have length 2.
    */
   val numCharacters : Int
 )
