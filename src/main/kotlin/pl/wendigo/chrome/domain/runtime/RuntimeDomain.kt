@@ -494,7 +494,12 @@ evaluation will be performed in the context of the inspected page.
      * Whether execution should `await` for resulting value and return once awaited promise is
 resolved.
      */
-    val awaitPromise : Boolean? = null
+    val awaitPromise : Boolean? = null,
+
+    /**
+     * Whether to throw an exception if side effect cannot be ruled out during evaluation.
+     */
+    @pl.wendigo.chrome.Experimental val throwOnSideEffect : Boolean? = null
 
 )
 
