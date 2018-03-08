@@ -11,7 +11,7 @@ class HeadlessChromeProtocol(
 
     companion object {
         @JvmOverloads
-        fun create(api : ChromeProtocol, url : String, width : Int = 1024, height: Int = 768) : HeadlessChromeProtocol {
+        fun create(api : ChromeProtocol, url : String, width : Int = 1024, height: Int = 768, enableBeginFrameControl : Boolean? = null) : HeadlessChromeProtocol {
             val mapper = FrameMapper()
 
             return api.Target.createBrowserContext().flatMap { (browserContextId) ->
@@ -19,7 +19,8 @@ class HeadlessChromeProtocol(
                         url = url,
                         browserContextId = browserContextId,
                         height = height,
-                        width = width
+                        width = width,
+                        enableBeginFrameControl = enableBeginFrameControl
                 )).flatMap { (targetId) ->
                     api.Target.attachToTarget(AttachToTargetRequest(targetId = targetId)).map { (sessionId) ->
                         val session = HeadlessSession(
