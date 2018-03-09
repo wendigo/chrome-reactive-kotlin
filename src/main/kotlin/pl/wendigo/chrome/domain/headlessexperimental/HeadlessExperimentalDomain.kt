@@ -7,10 +7,21 @@ class HeadlessExperimentalDomain internal constructor(private val connectionRemo
     /**
      * Sends a BeginFrame to the target and returns when the frame was completed. Optionally captures a
 screenshot from the resulting frame. Requires that the target was created with enabled
-BeginFrameControl.
+BeginFrameControl. Designed for use with --run-all-compositor-stages-before-draw, see also
+https://goo.gl/3zHXhB for more background.
      */
     fun beginFrame(input : BeginFrameRequest) : io.reactivex.Single<BeginFrameResponse> {
         return connectionRemote.runAndCaptureResponse("HeadlessExperimental.beginFrame", input, BeginFrameResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Puts the browser into deterministic mode.  Only effective for subsequently created web contents.
+Only supported in headless mode.  Once set there's no way of leaving deterministic mode.
+     */
+    fun enterDeterministicMode(input : EnterDeterministicModeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("HeadlessExperimental.enterDeterministicMode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -31,24 +42,6 @@ BeginFrameControl.
         return connectionRemote.runAndCaptureResponse("HeadlessExperimental.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
-    }
-
-    /**
-     * Issued when the main frame has first submitted a frame to the browser. May only be fired while a
-BeginFrame is in flight. Before this event, screenshotting requests may fail.
-     */
-    fun mainFrameReadyForScreenshots() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
-        return mainFrameReadyForScreenshotsTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Issued when the main frame has first submitted a frame to the browser. May only be fired while a
-BeginFrame is in flight. Before this event, screenshotting requests may fail.
-     */
-    fun mainFrameReadyForScreenshotsTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
-        return connectionRemote.captureEvents("HeadlessExperimental.mainFrameReadyForScreenshots", pl.wendigo.chrome.ProtocolEvent::class.java)
     }
 
     /**
@@ -81,7 +74,8 @@ BeginFrame is in flight. Before this event, screenshotting requests may fail.
  *
  * Sends a BeginFrame to the target and returns when the frame was completed. Optionally captures a
 screenshot from the resulting frame. Requires that the target was created with enabled
-BeginFrameControl.
+BeginFrameControl. Designed for use with --run-all-compositor-stages-before-draw, see also
+https://goo.gl/3zHXhB for more background.
  */
 data class BeginFrameRequest (
     /**
@@ -111,7 +105,8 @@ any visual updates may not be visible on the display or in screenshots.
 
     /**
      * If set, a screenshot of the frame will be captured and returned in the response. Otherwise,
-no screenshot will be captured.
+no screenshot will be captured. Note that capturing a screenshot can fail, for example,
+during renderer initialization. In such a case, no screenshot data will be returned.
      */
     val screenshot : ScreenshotParams? = null
 
@@ -122,24 +117,34 @@ no screenshot will be captured.
  *
  * Sends a BeginFrame to the target and returns when the frame was completed. Optionally captures a
 screenshot from the resulting frame. Requires that the target was created with enabled
-BeginFrameControl.
+BeginFrameControl. Designed for use with --run-all-compositor-stages-before-draw, see also
+https://goo.gl/3zHXhB for more background.
  */
 data class BeginFrameResponse(
   /**
    * Whether the BeginFrame resulted in damage and, thus, a new frame was committed to the
-display.
+display. Reported for diagnostic uses, may be removed in the future.
    */
   val hasDamage : Boolean,
-
-  /**
-   * Whether the main frame submitted a new display frame in response to this BeginFrame.
-   */
-  val mainFrameContentUpdated : Boolean,
 
   /**
    * Base64-encoded image data of the screenshot, if one was requested and successfully taken.
    */
   val screenshotData : String? = null
+
+)
+
+/**
+ * Represents request frame that can be used with HeadlessExperimental.enterDeterministicMode method call.
+ *
+ * Puts the browser into deterministic mode.  Only effective for subsequently created web contents.
+Only supported in headless mode.  Once set there's no way of leaving deterministic mode.
+ */
+data class EnterDeterministicModeRequest (
+    /**
+     * Number of seconds since the Epoch
+     */
+    val initialDate : Double? = null
 
 )
 

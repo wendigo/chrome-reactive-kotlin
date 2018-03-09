@@ -1352,7 +1352,12 @@ data class RequestWillBeSentEvent(
   /**
    * Frame identifier.
    */
-  val frameId : pl.wendigo.chrome.domain.page.FrameId? = null
+  val frameId : pl.wendigo.chrome.domain.page.FrameId? = null,
+
+  /**
+   * Whether the request is initiated by a user gesture. Defaults to false.
+   */
+  val hasUserGesture : Boolean? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "requestWillBeSent")
 

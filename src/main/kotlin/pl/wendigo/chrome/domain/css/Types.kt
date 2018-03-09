@@ -480,6 +480,52 @@ data class PlatformFontUsage(
 )
 
 /**
+ * Properties of a web font: https://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#font-descriptions
+ */
+
+data class FontFace(
+  /**
+   * The font-family.
+   */
+  val fontFamily : String,
+
+  /**
+   * The font-style.
+   */
+  val fontStyle : String,
+
+  /**
+   * The font-variant.
+   */
+  val fontVariant : String,
+
+  /**
+   * The font-weight.
+   */
+  val fontWeight : String,
+
+  /**
+   * The font-stretch.
+   */
+  val fontStretch : String,
+
+  /**
+   * The unicode-range.
+   */
+  val unicodeRange : String,
+
+  /**
+   * The src.
+   */
+  val src : String,
+
+  /**
+   * The resolved platform font family
+   */
+  val platformFontFamily : String
+)
+
+/**
  * CSS keyframes rule representation.
  */
 

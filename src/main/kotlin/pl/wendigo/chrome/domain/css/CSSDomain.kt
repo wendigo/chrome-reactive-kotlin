@@ -216,19 +216,21 @@ instrumentation)
     }
 
     /**
-     * Fires whenever a web font gets loaded.
+     * Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
+web font
      */
-    fun fontsUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun fontsUpdated() : io.reactivex.Flowable<FontsUpdatedEvent> {
         return fontsUpdatedTimed().map {
             it.value()
         }
     }
 
     /**
-     * Fires whenever a web font gets loaded.
+     * Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
+web font
      */
-    fun fontsUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
-        return connectionRemote.captureEvents("CSS.fontsUpdated", pl.wendigo.chrome.ProtocolEvent::class.java)
+    fun fontsUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<FontsUpdatedEvent>> {
+        return connectionRemote.captureEvents("CSS.fontsUpdated", FontsUpdatedEvent::class.java)
     }
 
     /**
@@ -854,6 +856,20 @@ data class TakeCoverageDeltaResponse(
   val coverage : List<RuleUsage>
 
 )
+
+/**
+ * Represents event frames for CSS.fontsUpdated
+ *
+ * Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
+web font
+ */
+data class FontsUpdatedEvent(
+  /**
+   * The web font that has loaded.
+   */
+  val font : FontFace? = null
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "CSS", name = "fontsUpdated")
 
 /**
  * Represents event frames for CSS.styleSheetAdded
