@@ -13,14 +13,11 @@ typealias ScriptId = String
 typealias RemoteObjectId = String
 
 /**
- * Primitive value which cannot be JSON-stringified.
+ * Primitive value which cannot be JSON-stringified. Includes values `-0`, `NaN`, `Infinity`,
+`-Infinity`, and bigint literals.
  */
-enum class UnserializableValue {
-    @com.fasterxml.jackson.annotation.JsonProperty("Infinity") PLUS_INFINITY,
-    @com.fasterxml.jackson.annotation.JsonProperty("NaN") NAN,
-    @com.fasterxml.jackson.annotation.JsonProperty("-Infinity") MINUS_INFINITY,
-    @com.fasterxml.jackson.annotation.JsonProperty("-0") ZERO;
-}
+
+typealias UnserializableValue = String
 
 /**
  * Mirror object referencing original JavaScript object.

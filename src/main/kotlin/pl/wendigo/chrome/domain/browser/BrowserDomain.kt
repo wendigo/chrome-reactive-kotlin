@@ -23,6 +23,16 @@ class BrowserDomain internal constructor(private val connectionRemote : pl.wendi
     }
 
     /**
+     * Returns the command line switches for the browser process if, and only if
+--enable-automation is on the commandline.
+     */
+    fun getBrowserCommandLine() : io.reactivex.Single<GetBrowserCommandLineResponse> {
+        return connectionRemote.runAndCaptureResponse("Browser.getBrowserCommandLine", null, GetBrowserCommandLineResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Get Chrome histograms.
      */
     fun getHistograms(input : GetHistogramsRequest) : io.reactivex.Single<GetHistogramsResponse> {
@@ -107,6 +117,20 @@ data class GetVersionResponse(
    * V8 version.
    */
   val jsVersion : String
+
+)
+
+/**
+ * Represents response frame for Browser.getBrowserCommandLine method call.
+ *
+ * Returns the command line switches for the browser process if, and only if
+--enable-automation is on the commandline.
+ */
+data class GetBrowserCommandLineResponse(
+  /**
+   * Commandline parameters
+   */
+  val arguments : List<String>
 
 )
 

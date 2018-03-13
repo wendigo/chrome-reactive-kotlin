@@ -19,9 +19,9 @@ data class SamplingProfileNode(
   val size : Double,
 
   /**
-   * Number of sampled allocations of that size.
+   * Total bytes attributed to this sample.
    */
-  val count : Double,
+  val total : Double,
 
   /**
    * Execution stack at the point of allocation.

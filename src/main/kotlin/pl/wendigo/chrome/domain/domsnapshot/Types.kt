@@ -161,12 +161,14 @@ data class InlineTextBox(
   val boundingBox : pl.wendigo.chrome.domain.dom.Rect,
 
   /**
-   * The starting index in characters, for this post layout textbox substring. Characters that would be represented as a surrogate pair in UTF-16 have length 2.
+   * The starting index in characters, for this post layout textbox substring. Characters that
+would be represented as a surrogate pair in UTF-16 have length 2.
    */
   val startCharacterIndex : Int,
 
   /**
-   * The number of characters in this post layout textbox substring. Characters that would be represented as a surrogate pair in UTF-16 have length 2.
+   * The number of characters in this post layout textbox substring. Characters that would be
+represented as a surrogate pair in UTF-16 have length 2.
    */
   val numCharacters : Int
 )
@@ -199,7 +201,14 @@ data class LayoutTreeNode(
   /**
    * Index into the `computedStyles` array returned by `getSnapshot`.
    */
-  val styleIndex : Int? = null
+  val styleIndex : Int? = null,
+
+  /**
+   * Global paint order index, which is determined by the stacking order of the nodes. Nodes
+that are painted together will have the same index. Only provided if includePaintOrder in
+getSnapshot was true.
+   */
+  val paintOrder : Int? = null
 )
 
 /**

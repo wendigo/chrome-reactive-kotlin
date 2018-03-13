@@ -42,7 +42,12 @@ data class GetSnapshotRequest (
     /**
      * Whether or not to retrieve details of DOM listeners (default false).
      */
-    val includeEventListeners : Boolean? = null
+    val includeEventListeners : Boolean? = null,
+
+    /**
+     * Whether to determine and include the paint order index of LayoutTreeNodes (default false).
+     */
+    val includePaintOrder : Boolean? = null
 
 )
 
