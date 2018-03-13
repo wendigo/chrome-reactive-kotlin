@@ -148,6 +148,16 @@ object.
     }
 
     /**
+     * Terminate current or next JavaScript execution.
+Will cancel the termination when the outer-most script execution ends.
+     */
+    fun terminateExecution() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Runtime.terminateExecution", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Issued when console API was called.
      */
     fun consoleAPICalled() : io.reactivex.Flowable<ConsoleAPICalledEvent> {
