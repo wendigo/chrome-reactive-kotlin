@@ -611,7 +611,12 @@ data class QueryObjectsRequest (
     /**
      * Identifier of the prototype to return objects for.
      */
-    val prototypeObjectId : RemoteObjectId
+    val prototypeObjectId : RemoteObjectId,
+
+    /**
+     * Symbolic group name that can be used to release the results.
+     */
+    val objectGroup : String? = null
 
 )
 
