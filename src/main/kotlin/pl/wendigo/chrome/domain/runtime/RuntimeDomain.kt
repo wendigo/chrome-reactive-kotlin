@@ -75,6 +75,25 @@ context.
     }
 
     /**
+     * Returns the isolate id.
+     */
+    fun getIsolateId() : io.reactivex.Single<GetIsolateIdResponse> {
+        return connectionRemote.runAndCaptureResponse("Runtime.getIsolateId", null, GetIsolateIdResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns the JavaScript heap usage.
+It is the total usage of the corresponding isolate not scoped to a particular Runtime.
+     */
+    fun getHeapUsage() : io.reactivex.Single<GetHeapUsageResponse> {
+        return connectionRemote.runAndCaptureResponse("Runtime.getHeapUsage", null, GetHeapUsageResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns properties of a given object. Object group of the result is inherited from the target
 object.
      */
@@ -143,6 +162,16 @@ object.
      */
     fun setCustomObjectFormatterEnabled(input : SetCustomObjectFormatterEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Terminate current or next JavaScript execution.
+Will cancel the termination when the outer-most script execution ends.
+     */
+    fun terminateExecution() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Runtime.terminateExecution", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -518,6 +547,38 @@ data class EvaluateResponse(
    * Exception details.
    */
   val exceptionDetails : ExceptionDetails? = null
+
+)
+
+/**
+ * Represents response frame for Runtime.getIsolateId method call.
+ *
+ * Returns the isolate id.
+ */
+data class GetIsolateIdResponse(
+  /**
+   * The isolate id.
+   */
+  val id : String
+
+)
+
+/**
+ * Represents response frame for Runtime.getHeapUsage method call.
+ *
+ * Returns the JavaScript heap usage.
+It is the total usage of the corresponding isolate not scoped to a particular Runtime.
+ */
+data class GetHeapUsageResponse(
+  /**
+   * Used heap size in bytes.
+   */
+  val usedSize : Double,
+
+  /**
+   * Allocated heap size in bytes.
+   */
+  val totalSize : Double
 
 )
 
