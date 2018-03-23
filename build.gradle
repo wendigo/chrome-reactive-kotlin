@@ -15,10 +15,10 @@ buildscript {
         classpath group: 'org.jetbrains.kotlin', name: 'kotlin-noarg', version: kotlinVersion
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
 
-        classpath 'pl.allegro.tech.build:axion-release-plugin:1.7.2'
+        classpath 'pl.allegro.tech.build:axion-release-plugin:1.9.0'
         classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
         classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.11.0'
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.15.0'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
 
     }
 }
