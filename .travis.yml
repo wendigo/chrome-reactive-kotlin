@@ -11,7 +11,9 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: deploy/nexus.sh
+  script:
+    - ./gradlew uploadArchives -i
+    - ./gradlew closeAndPromoteRepository
   on:
     tags: true
     all_branches: true
@@ -22,6 +24,7 @@ services:
 before_install:
   - docker run -d -p 127.0.0.1:9222:9222 yukinying/chrome-headless:latest
   - openssl aes-256-cbc -K $encrypted_76d841558dc7_key -iv $encrypted_76d841558dc7_iv -in deploy/private.gpg.enc -out deploy/private.gpg -d
+  - echo "nexusUsername=$sonatypeUser\nnexusPassword=$sonatypePassword\nsigning.keyId=$signingKeyId\nsigning.password=$signingPassword\nsigning.secretKeyRingFile=$TRAVIS_BUILD_DIR/deploy/private.gpg" > $TRAVIS_BUILD_DIR/gradle.properties
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
