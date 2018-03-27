@@ -94,10 +94,14 @@ uploadArchives {
             }
 
             pom.project {
-                name 'Chrome Reactive'
+                name 'chrome-reactive-kotlin'
                 description 'Chrome Reactive - low level, remote chrome debugger protocol client (DevTools)'
                 url 'https://github.com/wendigo/chrome-reactive-kotlin'
                 inceptionYear '2017'
+                version version
+                groupId group
+                artifactId 'chrome-reactive-kotlin'
+                packaging 'jar'
 
                 scm {
                     connection 'scm:git:https://github.com/wendigo/chrome-reactive-kotlin.git'
@@ -139,7 +143,7 @@ task sourcesJar(type: Jar) {
 }
 
 artifacts {
-    archives javadocJar, sourcesJar
+    archives jar
 }
 
 nexusStaging {
