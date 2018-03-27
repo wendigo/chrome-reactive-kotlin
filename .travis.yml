@@ -12,9 +12,7 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script:
-    - ./gradlew uploadArchives -i
-    - ./gradlew closeAndPromoteRepository
+  script: bash deploy/deploy.sh
   on:
     tags: true
     all_branches: true
