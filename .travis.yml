@@ -6,6 +6,7 @@ jdk:
   - oraclejdk8
 
 script:
+  - cat gradle.properties
   - ./gradlew clean test
 
 deploy:
