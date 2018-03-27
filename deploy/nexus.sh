@@ -1,4 +1,4 @@
-echo "Uploading archives"
-./gradlew uploadArchives -PnexusUsername=$sonatypeUser -PnexusPassword=$sonatypePassword -Psigning.keyId=$signingKeyId -Psigning.password=$signingPassword -Psigning.secretKeyRingFile=$TRAVIS_BUILD_DIR/deploy/private.gpg -i
-echo "Promoting repository"
-./gradlew closeAndPromoteRepository -PnexusUsername=$sonatypeUser -PnexusPassword=$sonatypePassword
+echo "nexusUsername=$sonatypeUser\nnexusPassword=$sonatypePassword\nsigning.keyId=$signingKeyId\nsigning.password=$signingPassword\nsigning.secretKeyRingFile=$TRAVIS_BUILD_DIR/deploy/private.gpg" > gradle.properties
+
+./gradlew uploadArchives -i
+./gradlew closeAndPromoteRepository
