@@ -1,2 +1,2 @@
 ./gradlew uploadArchives -i
-./gradlew closeAndPromoteRepository
+./gradlew closeAndReleaseRepository -i
