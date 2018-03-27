@@ -110,10 +110,21 @@ modifyPom {
     }
 }
 
+extraArchive {
+    sources = false
+    tests = true
+    javadoc = true
+}
+
+nexus {
+    sign = true
+}
+
 nexusStaging {
     packageGroup = 'pl.wendigo'
     numberOfRetries = 3
     delayBetweenRetriesInMillis = 1000000
+    stagingProfileId = 'pl.wendigo'
 }
 
 task wrapper(type: Wrapper) {
