@@ -94,7 +94,6 @@ uploadArchives {
             }
 
             pom.project {
-                name 'chrome-reactive-kotlin'
                 description 'Chrome Reactive - low level, remote chrome debugger protocol client (DevTools)'
                 url 'https://github.com/wendigo/chrome-reactive-kotlin'
                 inceptionYear '2017'
