@@ -139,7 +139,6 @@ nexusStaging {
     packageGroup = 'pl.wendigo'
     numberOfRetries = 3
     delayBetweenRetriesInMillis = 100000
-    stagingProfileId = '5028463f095590'
     username = nexusUsername
     password = nexusPassword
 }
