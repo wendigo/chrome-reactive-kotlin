@@ -19,6 +19,7 @@ buildscript {
         classpath group: 'io.codearte.gradle.nexus', name: 'gradle-nexus-staging-plugin', version: '0.21.1'
         classpath group: 'com.github.ben-manes', name: 'gradle-versions-plugin', version: '0.17.0'
         classpath group: 'org.jmailen.gradle', name: 'kotlinter-gradle', version: '2.1.1'
+        classpath group: 'de.marcphilipp.gradle', name: 'nexus-publish-plugin', version: '0.3.1'
     }
 }
 
@@ -30,6 +31,8 @@ apply plugin: 'pl.allegro.tech.build.axion-release'
 apply plugin: 'io.codearte.nexus-staging'
 apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'org.jmailen.kotlinter'
+apply plugin: 'de.marcphilipp.nexus-publish'
+
 
 scmVersion {
     tag {
@@ -76,50 +79,55 @@ signing {
     sign configurations.archives
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier = 'sources'
+}
 
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: nexusUsername, password: nexusPassword)
-            }
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier = 'javadoc'
+}
 
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: nexusUsername, password: nexusPassword)
-            }
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
 
-            pom.project {
-                description 'Chrome Reactive - low level, remote chrome debugger protocol client (DevTools)'
-                url 'https://github.com/wendigo/chrome-reactive-kotlin'
-                inceptionYear '2017'
-                version version
-                groupId group
-                artifactId 'chrome-reactive-kotlin'
-                packaging 'jar'
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+
+            pom {
+                description = 'Chrome Reactive - low level, remote chrome debugger protocol client (DevTools)'
+                url = 'https://github.com/wendigo/chrome-reactive-kotlin'
+                inceptionYear = '2017'
+                version = version
+                groupId = group
+                artifactId = 'chrome-reactive-kotlin'
+                packaging = 'jar'
 
                 scm {
-                    connection 'scm:git:https://github.com/wendigo/chrome-reactive-kotlin.git'
-                    url 'https://github.com/wendigo/chrome-reactive-kotlin'
-                    developerConnection 'scm:git:https://github.com/wendigo/chrome-reactive-kotlin.git'
-                }
-
-                scm {
-                    connection 'scm:git:https://github.com/wendigo/chrome-reactive-kotlin.git'
-                    url 'https://github.com/wendigo/chrome-reactive-kotlin'
+                    connection = 'scm:git:https://github.com/wendigo/chrome-reactive-kotlin.git'
+                    url = 'https://github.com/wendigo/chrome-reactive-kotlin'
+                    developerConnection = 'scm:git:https://github.com/wendigo/chrome-reactive-kotlin.git'
                 }
 
                 licenses {
                     license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name = 'The Apache Software License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                     }
                 }
 
                 developers {
                     developer {
-                        name 'Mateusz "Serafin" Gajewski'
-                        email 'contact@serafin.tech'
+                        name = 'Mateusz "Serafin" Gajewski'
+                        email = 'contact@wendigo.pl'
                     }
                 }
             }
@@ -127,9 +135,7 @@ uploadArchives {
     }
 }
 
-artifacts {
-    archives jar
-}
+
 
 nexusStaging {
     packageGroup = 'pl.wendigo'
@@ -137,6 +143,17 @@ nexusStaging {
     delayBetweenRetriesInMillis = 100000
     username = nexusUsername
     password = nexusPassword
+}
+
+nexusPublishing {
+    repositories {
+        myNexus {
+            nexusUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            snapshotRepositoryUrl = uri("hhttps://oss.sonatype.org/content/repositories/snapshots/")
+            username = project.property("nexusUsername")
+            password = project.property("nexusPassword")
+        }
+    }
 }
 
 wrapper {
@@ -164,4 +181,10 @@ kotlinter {
     experimentalRules = true
     disabledRules = []
     fileBatchSize = 30
+}
+
+nexusPublishing {
+    repositories {
+        sonatype()
+    }
 }

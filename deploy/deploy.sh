@@ -1,2 +1,2 @@
-./gradlew uploadArchives -i
+./gradlew publishToNexus -i
 ./gradlew closeAndReleaseRepository -i
