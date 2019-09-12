@@ -31,7 +31,6 @@ then
 	./gradlew formatKotlin
 	printf "${GREEN}Checking if code is formatted...\n${NC}"
 	./gradlew lintKotlin
-	exit
 	printf "${GREEN}Commiting changes...\n${NC}"
 	git add .
 	git commit -m "Update to newest protocol"
