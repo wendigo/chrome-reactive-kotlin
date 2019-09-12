@@ -9,11 +9,11 @@ and never sends the same node twice. It is client's responsibility to collect in
 the nodes that were sent to the client.<p>Note that `iframe` owner elements will return
 corresponding document elements as their child nodes.</p>
  */
-class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+class DOMDomain internal constructor(private val connectionRemote: pl.wendigo.chrome.DebuggerProtocol) {
     /**
      * Collects class names for the node with given id and all of it's child nodes.
      */
-    fun collectClassNamesFromSubtree(input : CollectClassNamesFromSubtreeRequest) : io.reactivex.Single<CollectClassNamesFromSubtreeResponse> {
+    fun collectClassNamesFromSubtree(input: CollectClassNamesFromSubtreeRequest): io.reactivex.Single<CollectClassNamesFromSubtreeResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.collectClassNamesFromSubtree", input, CollectClassNamesFromSubtreeResponse::class.java).map {
             it.value()
         }
@@ -23,7 +23,7 @@ class DOMDomain internal constructor(private val connectionRemote : pl.wendigo.c
      * Creates a deep copy of the specified node and places it into the target container before the
 given anchor.
      */
-    fun copyTo(input : CopyToRequest) : io.reactivex.Single<CopyToResponse> {
+    fun copyTo(input: CopyToRequest): io.reactivex.Single<CopyToResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.copyTo", input, CopyToResponse::class.java).map {
             it.value()
         }
@@ -33,7 +33,7 @@ given anchor.
      * Describes node given its id, does not require domain to be enabled. Does not start tracking any
 objects, can be used for automation.
      */
-    fun describeNode(input : DescribeNodeRequest) : io.reactivex.Single<DescribeNodeResponse> {
+    fun describeNode(input: DescribeNodeRequest): io.reactivex.Single<DescribeNodeResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.describeNode", input, DescribeNodeResponse::class.java).map {
             it.value()
         }
@@ -42,7 +42,7 @@ objects, can be used for automation.
     /**
      * Disables DOM agent for the given page.
      */
-    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun disable(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -52,7 +52,7 @@ objects, can be used for automation.
      * Discards search results from the session with the given id. `getSearchResults` should no longer
 be called for that search.
      */
-    fun discardSearchResults(input : DiscardSearchResultsRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun discardSearchResults(input: DiscardSearchResultsRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.discardSearchResults", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -61,7 +61,7 @@ be called for that search.
     /**
      * Enables DOM agent for the given page.
      */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun enable(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -70,7 +70,7 @@ be called for that search.
     /**
      * Focuses the given element.
      */
-    fun focus(input : FocusRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun focus(input: FocusRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.focus", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -79,7 +79,7 @@ be called for that search.
     /**
      * Returns attributes for the specified node.
      */
-    fun getAttributes(input : GetAttributesRequest) : io.reactivex.Single<GetAttributesResponse> {
+    fun getAttributes(input: GetAttributesRequest): io.reactivex.Single<GetAttributesResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getAttributes", input, GetAttributesResponse::class.java).map {
             it.value()
         }
@@ -88,8 +88,18 @@ be called for that search.
     /**
      * Returns boxes for the given node.
      */
-    fun getBoxModel(input : GetBoxModelRequest) : io.reactivex.Single<GetBoxModelResponse> {
+    fun getBoxModel(input: GetBoxModelRequest): io.reactivex.Single<GetBoxModelResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getBoxModel", input, GetBoxModelResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns quads that describe node position on the page. This method
+might return multiple quads for inline nodes.
+     */
+    fun getContentQuads(input: GetContentQuadsRequest): io.reactivex.Single<GetContentQuadsResponse> {
+        return connectionRemote.runAndCaptureResponse("DOM.getContentQuads", input, GetContentQuadsResponse::class.java).map {
             it.value()
         }
     }
@@ -97,7 +107,7 @@ be called for that search.
     /**
      * Returns the root DOM node (and optionally the subtree) to the caller.
      */
-    fun getDocument(input : GetDocumentRequest) : io.reactivex.Single<GetDocumentResponse> {
+    fun getDocument(input: GetDocumentRequest): io.reactivex.Single<GetDocumentResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getDocument", input, GetDocumentResponse::class.java).map {
             it.value()
         }
@@ -106,16 +116,17 @@ be called for that search.
     /**
      * Returns the root DOM node (and optionally the subtree) to the caller.
      */
-    fun getFlattenedDocument(input : GetFlattenedDocumentRequest) : io.reactivex.Single<GetFlattenedDocumentResponse> {
+    fun getFlattenedDocument(input: GetFlattenedDocumentRequest): io.reactivex.Single<GetFlattenedDocumentResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Returns node id at given location.
+     * Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is
+either returned or not.
      */
-    fun getNodeForLocation(input : GetNodeForLocationRequest) : io.reactivex.Single<GetNodeForLocationResponse> {
+    fun getNodeForLocation(input: GetNodeForLocationRequest): io.reactivex.Single<GetNodeForLocationResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getNodeForLocation", input, GetNodeForLocationResponse::class.java).map {
             it.value()
         }
@@ -124,7 +135,7 @@ be called for that search.
     /**
      * Returns node's HTML markup.
      */
-    fun getOuterHTML(input : GetOuterHTMLRequest) : io.reactivex.Single<GetOuterHTMLResponse> {
+    fun getOuterHTML(input: GetOuterHTMLRequest): io.reactivex.Single<GetOuterHTMLResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getOuterHTML", input, GetOuterHTMLResponse::class.java).map {
             it.value()
         }
@@ -133,7 +144,7 @@ be called for that search.
     /**
      * Returns the id of the nearest ancestor that is a relayout boundary.
      */
-    fun getRelayoutBoundary(input : GetRelayoutBoundaryRequest) : io.reactivex.Single<GetRelayoutBoundaryResponse> {
+    fun getRelayoutBoundary(input: GetRelayoutBoundaryRequest): io.reactivex.Single<GetRelayoutBoundaryResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getRelayoutBoundary", input, GetRelayoutBoundaryResponse::class.java).map {
             it.value()
         }
@@ -143,7 +154,7 @@ be called for that search.
      * Returns search results from given `fromIndex` to given `toIndex` from the search with the given
 identifier.
      */
-    fun getSearchResults(input : GetSearchResultsRequest) : io.reactivex.Single<GetSearchResultsResponse> {
+    fun getSearchResults(input: GetSearchResultsRequest): io.reactivex.Single<GetSearchResultsResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getSearchResults", input, GetSearchResultsResponse::class.java).map {
             it.value()
         }
@@ -152,7 +163,7 @@ identifier.
     /**
      * Hides any highlight.
      */
-    fun hideHighlight() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun hideHighlight(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.hideHighlight", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -161,7 +172,7 @@ identifier.
     /**
      * Highlights DOM node.
      */
-    fun highlightNode() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun highlightNode(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.highlightNode", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -170,7 +181,7 @@ identifier.
     /**
      * Highlights given rectangle.
      */
-    fun highlightRect() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun highlightRect(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.highlightRect", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -179,7 +190,7 @@ identifier.
     /**
      * Marks last undoable state.
      */
-    fun markUndoableState() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun markUndoableState(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.markUndoableState", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -188,7 +199,7 @@ identifier.
     /**
      * Moves node into the new container, places it before the given anchor.
      */
-    fun moveTo(input : MoveToRequest) : io.reactivex.Single<MoveToResponse> {
+    fun moveTo(input: MoveToRequest): io.reactivex.Single<MoveToResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.moveTo", input, MoveToResponse::class.java).map {
             it.value()
         }
@@ -198,7 +209,7 @@ identifier.
      * Searches for a given string in the DOM tree. Use `getSearchResults` to access search results or
 `cancelSearch` to end this search session.
      */
-    fun performSearch(input : PerformSearchRequest) : io.reactivex.Single<PerformSearchResponse> {
+    fun performSearch(input: PerformSearchRequest): io.reactivex.Single<PerformSearchResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.performSearch", input, PerformSearchResponse::class.java).map {
             it.value()
         }
@@ -207,7 +218,7 @@ identifier.
     /**
      * Requests that the node is sent to the caller given its path. // FIXME, use XPath
      */
-    fun pushNodeByPathToFrontend(input : PushNodeByPathToFrontendRequest) : io.reactivex.Single<PushNodeByPathToFrontendResponse> {
+    fun pushNodeByPathToFrontend(input: PushNodeByPathToFrontendRequest): io.reactivex.Single<PushNodeByPathToFrontendResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.pushNodeByPathToFrontend", input, PushNodeByPathToFrontendResponse::class.java).map {
             it.value()
         }
@@ -216,7 +227,7 @@ identifier.
     /**
      * Requests that a batch of nodes is sent to the caller given their backend node ids.
      */
-    fun pushNodesByBackendIdsToFrontend(input : PushNodesByBackendIdsToFrontendRequest) : io.reactivex.Single<PushNodesByBackendIdsToFrontendResponse> {
+    fun pushNodesByBackendIdsToFrontend(input: PushNodesByBackendIdsToFrontendRequest): io.reactivex.Single<PushNodesByBackendIdsToFrontendResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.pushNodesByBackendIdsToFrontend", input, PushNodesByBackendIdsToFrontendResponse::class.java).map {
             it.value()
         }
@@ -225,7 +236,7 @@ identifier.
     /**
      * Executes `querySelector` on a given node.
      */
-    fun querySelector(input : QuerySelectorRequest) : io.reactivex.Single<QuerySelectorResponse> {
+    fun querySelector(input: QuerySelectorRequest): io.reactivex.Single<QuerySelectorResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.querySelector", input, QuerySelectorResponse::class.java).map {
             it.value()
         }
@@ -234,7 +245,7 @@ identifier.
     /**
      * Executes `querySelectorAll` on a given node.
      */
-    fun querySelectorAll(input : QuerySelectorAllRequest) : io.reactivex.Single<QuerySelectorAllResponse> {
+    fun querySelectorAll(input: QuerySelectorAllRequest): io.reactivex.Single<QuerySelectorAllResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.querySelectorAll", input, QuerySelectorAllResponse::class.java).map {
             it.value()
         }
@@ -243,7 +254,7 @@ identifier.
     /**
      * Re-does the last undone action.
      */
-    fun redo() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun redo(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.redo", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -252,7 +263,7 @@ identifier.
     /**
      * Removes attribute with given name from an element with given id.
      */
-    fun removeAttribute(input : RemoveAttributeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun removeAttribute(input: RemoveAttributeRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.removeAttribute", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -261,7 +272,7 @@ identifier.
     /**
      * Removes node with given id.
      */
-    fun removeNode(input : RemoveNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun removeNode(input: RemoveNodeRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.removeNode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -272,7 +283,7 @@ identifier.
 `setChildNodes` events where not only immediate children are retrieved, but all children down to
 the specified depth.
      */
-    fun requestChildNodes(input : RequestChildNodesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun requestChildNodes(input: RequestChildNodesRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.requestChildNodes", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -283,7 +294,7 @@ the specified depth.
 nodes that form the path from the node to the root are also sent to the client as a series of
 `setChildNodes` notifications.
      */
-    fun requestNode(input : RequestNodeRequest) : io.reactivex.Single<RequestNodeResponse> {
+    fun requestNode(input: RequestNodeRequest): io.reactivex.Single<RequestNodeResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.requestNode", input, RequestNodeResponse::class.java).map {
             it.value()
         }
@@ -292,7 +303,7 @@ nodes that form the path from the node to the root are also sent to the client a
     /**
      * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
      */
-    fun resolveNode(input : ResolveNodeRequest) : io.reactivex.Single<ResolveNodeResponse> {
+    fun resolveNode(input: ResolveNodeRequest): io.reactivex.Single<ResolveNodeResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.resolveNode", input, ResolveNodeResponse::class.java).map {
             it.value()
         }
@@ -301,7 +312,7 @@ nodes that form the path from the node to the root are also sent to the client a
     /**
      * Sets attribute for an element with given id.
      */
-    fun setAttributeValue(input : SetAttributeValueRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setAttributeValue(input: SetAttributeValueRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setAttributeValue", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -311,7 +322,7 @@ nodes that form the path from the node to the root are also sent to the client a
      * Sets attributes on element with given id. This method is useful when user edits some existing
 attribute value and types in several attribute name/value pairs.
      */
-    fun setAttributesAsText(input : SetAttributesAsTextRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setAttributesAsText(input: SetAttributesAsTextRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setAttributesAsText", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -320,8 +331,36 @@ attribute value and types in several attribute name/value pairs.
     /**
      * Sets files for the given file input element.
      */
-    fun setFileInputFiles(input : SetFileInputFilesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setFileInputFiles(input: SetFileInputFilesRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setFileInputFiles", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Sets if stack traces should be captured for Nodes. See `Node.getNodeStackTraces`. Default is disabled.
+     */
+    fun setNodeStackTracesEnabled(input: SetNodeStackTracesEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("DOM.setNodeStackTracesEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation.
+     */
+    fun getNodeStackTraces(input: GetNodeStackTracesRequest): io.reactivex.Single<GetNodeStackTracesResponse> {
+        return connectionRemote.runAndCaptureResponse("DOM.getNodeStackTraces", input, GetNodeStackTracesResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns file information for the given
+File wrapper.
+     */
+    fun getFileInfo(input: GetFileInfoRequest): io.reactivex.Single<GetFileInfoResponse> {
+        return connectionRemote.runAndCaptureResponse("DOM.getFileInfo", input, GetFileInfoResponse::class.java).map {
             it.value()
         }
     }
@@ -330,7 +369,7 @@ attribute value and types in several attribute name/value pairs.
      * Enables console to refer to the node with given id via $x (see Command Line API for more details
 $x functions).
      */
-    fun setInspectedNode(input : SetInspectedNodeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setInspectedNode(input: SetInspectedNodeRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setInspectedNode", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -339,7 +378,7 @@ $x functions).
     /**
      * Sets node name for a node with given id.
      */
-    fun setNodeName(input : SetNodeNameRequest) : io.reactivex.Single<SetNodeNameResponse> {
+    fun setNodeName(input: SetNodeNameRequest): io.reactivex.Single<SetNodeNameResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.setNodeName", input, SetNodeNameResponse::class.java).map {
             it.value()
         }
@@ -348,7 +387,7 @@ $x functions).
     /**
      * Sets node value for a node with given id.
      */
-    fun setNodeValue(input : SetNodeValueRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setNodeValue(input: SetNodeValueRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setNodeValue", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -357,7 +396,7 @@ $x functions).
     /**
      * Sets node HTML markup, returns new node id.
      */
-    fun setOuterHTML(input : SetOuterHTMLRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setOuterHTML(input: SetOuterHTMLRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.setOuterHTML", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -366,7 +405,7 @@ $x functions).
     /**
      * Undoes the last performed action.
      */
-    fun undo() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun undo(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOM.undo", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -375,16 +414,16 @@ $x functions).
     /**
      * Returns iframe node that owns iframe with the given domain.
      */
-    fun getFrameOwner(input : GetFrameOwnerRequest) : io.reactivex.Single<GetFrameOwnerResponse> {
+    fun getFrameOwner(input: GetFrameOwnerRequest): io.reactivex.Single<GetFrameOwnerResponse> {
         return connectionRemote.runAndCaptureResponse("DOM.getFrameOwner", input, GetFrameOwnerResponse::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Fired when `Element`'s attribute is modified.
+     *  Fired when `Element`'s attribute is modified.
      */
-    fun attributeModified() : io.reactivex.Flowable<AttributeModifiedEvent> {
+    fun attributeModified(): io.reactivex.Flowable<AttributeModifiedEvent> {
         return attributeModifiedTimed().map {
             it.value()
         }
@@ -393,14 +432,14 @@ $x functions).
     /**
      * Fired when `Element`'s attribute is modified.
      */
-    fun attributeModifiedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AttributeModifiedEvent>> {
+    fun attributeModifiedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<AttributeModifiedEvent>> {
         return connectionRemote.captureEvents("DOM.attributeModified", AttributeModifiedEvent::class.java)
     }
 
     /**
-     * Fired when `Element`'s attribute is removed.
+     *  Fired when `Element`'s attribute is removed.
      */
-    fun attributeRemoved() : io.reactivex.Flowable<AttributeRemovedEvent> {
+    fun attributeRemoved(): io.reactivex.Flowable<AttributeRemovedEvent> {
         return attributeRemovedTimed().map {
             it.value()
         }
@@ -409,14 +448,14 @@ $x functions).
     /**
      * Fired when `Element`'s attribute is removed.
      */
-    fun attributeRemovedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AttributeRemovedEvent>> {
+    fun attributeRemovedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<AttributeRemovedEvent>> {
         return connectionRemote.captureEvents("DOM.attributeRemoved", AttributeRemovedEvent::class.java)
     }
 
     /**
-     * Mirrors `DOMCharacterDataModified` event.
+     *  Mirrors `DOMCharacterDataModified` event.
      */
-    fun characterDataModified() : io.reactivex.Flowable<CharacterDataModifiedEvent> {
+    fun characterDataModified(): io.reactivex.Flowable<CharacterDataModifiedEvent> {
         return characterDataModifiedTimed().map {
             it.value()
         }
@@ -425,14 +464,14 @@ $x functions).
     /**
      * Mirrors `DOMCharacterDataModified` event.
      */
-    fun characterDataModifiedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<CharacterDataModifiedEvent>> {
+    fun characterDataModifiedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<CharacterDataModifiedEvent>> {
         return connectionRemote.captureEvents("DOM.characterDataModified", CharacterDataModifiedEvent::class.java)
     }
 
     /**
-     * Fired when `Container`'s child node count has changed.
+     *  Fired when `Container`'s child node count has changed.
      */
-    fun childNodeCountUpdated() : io.reactivex.Flowable<ChildNodeCountUpdatedEvent> {
+    fun childNodeCountUpdated(): io.reactivex.Flowable<ChildNodeCountUpdatedEvent> {
         return childNodeCountUpdatedTimed().map {
             it.value()
         }
@@ -441,14 +480,14 @@ $x functions).
     /**
      * Fired when `Container`'s child node count has changed.
      */
-    fun childNodeCountUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeCountUpdatedEvent>> {
+    fun childNodeCountUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeCountUpdatedEvent>> {
         return connectionRemote.captureEvents("DOM.childNodeCountUpdated", ChildNodeCountUpdatedEvent::class.java)
     }
 
     /**
-     * Mirrors `DOMNodeInserted` event.
+     *  Mirrors `DOMNodeInserted` event.
      */
-    fun childNodeInserted() : io.reactivex.Flowable<ChildNodeInsertedEvent> {
+    fun childNodeInserted(): io.reactivex.Flowable<ChildNodeInsertedEvent> {
         return childNodeInsertedTimed().map {
             it.value()
         }
@@ -457,14 +496,14 @@ $x functions).
     /**
      * Mirrors `DOMNodeInserted` event.
      */
-    fun childNodeInsertedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeInsertedEvent>> {
+    fun childNodeInsertedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeInsertedEvent>> {
         return connectionRemote.captureEvents("DOM.childNodeInserted", ChildNodeInsertedEvent::class.java)
     }
 
     /**
-     * Mirrors `DOMNodeRemoved` event.
+     *  Mirrors `DOMNodeRemoved` event.
      */
-    fun childNodeRemoved() : io.reactivex.Flowable<ChildNodeRemovedEvent> {
+    fun childNodeRemoved(): io.reactivex.Flowable<ChildNodeRemovedEvent> {
         return childNodeRemovedTimed().map {
             it.value()
         }
@@ -473,14 +512,14 @@ $x functions).
     /**
      * Mirrors `DOMNodeRemoved` event.
      */
-    fun childNodeRemovedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeRemovedEvent>> {
+    fun childNodeRemovedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<ChildNodeRemovedEvent>> {
         return connectionRemote.captureEvents("DOM.childNodeRemoved", ChildNodeRemovedEvent::class.java)
     }
 
     /**
-     * Called when distrubution is changed.
+     *  Called when distrubution is changed.
      */
-    fun distributedNodesUpdated() : io.reactivex.Flowable<DistributedNodesUpdatedEvent> {
+    fun distributedNodesUpdated(): io.reactivex.Flowable<DistributedNodesUpdatedEvent> {
         return distributedNodesUpdatedTimed().map {
             it.value()
         }
@@ -489,14 +528,14 @@ $x functions).
     /**
      * Called when distrubution is changed.
      */
-    fun distributedNodesUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<DistributedNodesUpdatedEvent>> {
+    fun distributedNodesUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<DistributedNodesUpdatedEvent>> {
         return connectionRemote.captureEvents("DOM.distributedNodesUpdated", DistributedNodesUpdatedEvent::class.java)
     }
 
     /**
-     * Fired when `Document` has been totally updated. Node ids are no longer valid.
+     *  Fired when `Document` has been totally updated. Node ids are no longer valid.
      */
-    fun documentUpdated() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun documentUpdated(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return documentUpdatedTimed().map {
             it.value()
         }
@@ -505,14 +544,14 @@ $x functions).
     /**
      * Fired when `Document` has been totally updated. Node ids are no longer valid.
      */
-    fun documentUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+    fun documentUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
         return connectionRemote.captureEvents("DOM.documentUpdated", pl.wendigo.chrome.ProtocolEvent::class.java)
     }
 
     /**
-     * Fired when `Element`'s inline style is modified via a CSS property modification.
+     *  Fired when `Element`'s inline style is modified via a CSS property modification.
      */
-    fun inlineStyleInvalidated() : io.reactivex.Flowable<InlineStyleInvalidatedEvent> {
+    fun inlineStyleInvalidated(): io.reactivex.Flowable<InlineStyleInvalidatedEvent> {
         return inlineStyleInvalidatedTimed().map {
             it.value()
         }
@@ -521,14 +560,14 @@ $x functions).
     /**
      * Fired when `Element`'s inline style is modified via a CSS property modification.
      */
-    fun inlineStyleInvalidatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<InlineStyleInvalidatedEvent>> {
+    fun inlineStyleInvalidatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<InlineStyleInvalidatedEvent>> {
         return connectionRemote.captureEvents("DOM.inlineStyleInvalidated", InlineStyleInvalidatedEvent::class.java)
     }
 
     /**
-     * Called when a pseudo element is added to an element.
+     *  Called when a pseudo element is added to an element.
      */
-    fun pseudoElementAdded() : io.reactivex.Flowable<PseudoElementAddedEvent> {
+    fun pseudoElementAdded(): io.reactivex.Flowable<PseudoElementAddedEvent> {
         return pseudoElementAddedTimed().map {
             it.value()
         }
@@ -537,14 +576,14 @@ $x functions).
     /**
      * Called when a pseudo element is added to an element.
      */
-    fun pseudoElementAddedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<PseudoElementAddedEvent>> {
+    fun pseudoElementAddedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<PseudoElementAddedEvent>> {
         return connectionRemote.captureEvents("DOM.pseudoElementAdded", PseudoElementAddedEvent::class.java)
     }
 
     /**
-     * Called when a pseudo element is removed from an element.
+     *  Called when a pseudo element is removed from an element.
      */
-    fun pseudoElementRemoved() : io.reactivex.Flowable<PseudoElementRemovedEvent> {
+    fun pseudoElementRemoved(): io.reactivex.Flowable<PseudoElementRemovedEvent> {
         return pseudoElementRemovedTimed().map {
             it.value()
         }
@@ -553,15 +592,15 @@ $x functions).
     /**
      * Called when a pseudo element is removed from an element.
      */
-    fun pseudoElementRemovedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<PseudoElementRemovedEvent>> {
+    fun pseudoElementRemovedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<PseudoElementRemovedEvent>> {
         return connectionRemote.captureEvents("DOM.pseudoElementRemoved", PseudoElementRemovedEvent::class.java)
     }
 
     /**
-     * Fired when backend wants to provide client with the missing DOM structure. This happens upon
+     *  Fired when backend wants to provide client with the missing DOM structure. This happens upon
 most of the calls requesting node ids.
      */
-    fun setChildNodes() : io.reactivex.Flowable<SetChildNodesEvent> {
+    fun setChildNodes(): io.reactivex.Flowable<SetChildNodesEvent> {
         return setChildNodesTimed().map {
             it.value()
         }
@@ -571,14 +610,14 @@ most of the calls requesting node ids.
      * Fired when backend wants to provide client with the missing DOM structure. This happens upon
 most of the calls requesting node ids.
      */
-    fun setChildNodesTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<SetChildNodesEvent>> {
+    fun setChildNodesTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<SetChildNodesEvent>> {
         return connectionRemote.captureEvents("DOM.setChildNodes", SetChildNodesEvent::class.java)
     }
 
     /**
-     * Called when shadow root is popped from the element.
+     *  Called when shadow root is popped from the element.
      */
-    fun shadowRootPopped() : io.reactivex.Flowable<ShadowRootPoppedEvent> {
+    fun shadowRootPopped(): io.reactivex.Flowable<ShadowRootPoppedEvent> {
         return shadowRootPoppedTimed().map {
             it.value()
         }
@@ -587,14 +626,14 @@ most of the calls requesting node ids.
     /**
      * Called when shadow root is popped from the element.
      */
-    fun shadowRootPoppedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ShadowRootPoppedEvent>> {
+    fun shadowRootPoppedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<ShadowRootPoppedEvent>> {
         return connectionRemote.captureEvents("DOM.shadowRootPopped", ShadowRootPoppedEvent::class.java)
     }
 
     /**
-     * Called when shadow root is pushed into the element.
+     *  Called when shadow root is pushed into the element.
      */
-    fun shadowRootPushed() : io.reactivex.Flowable<ShadowRootPushedEvent> {
+    fun shadowRootPushed(): io.reactivex.Flowable<ShadowRootPushedEvent> {
         return shadowRootPushedTimed().map {
             it.value()
         }
@@ -603,14 +642,14 @@ most of the calls requesting node ids.
     /**
      * Called when shadow root is pushed into the element.
      */
-    fun shadowRootPushedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<ShadowRootPushedEvent>> {
+    fun shadowRootPushedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<ShadowRootPushedEvent>> {
         return connectionRemote.captureEvents("DOM.shadowRootPushed", ShadowRootPushedEvent::class.java)
     }
 
     /**
      * Returns flowable capturing all DOM domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "DOM"
         }
@@ -621,11 +660,11 @@ most of the calls requesting node ids.
  *
  * Collects class names for the node with given id and all of it's child nodes.
  */
-data class CollectClassNamesFromSubtreeRequest (
+data class CollectClassNamesFromSubtreeRequest(
     /**
      * Id of the node to collect class names.
      */
-    val nodeId : NodeId
+    val nodeId: NodeId
 
 )
 
@@ -635,10 +674,10 @@ data class CollectClassNamesFromSubtreeRequest (
  * Collects class names for the node with given id and all of it's child nodes.
  */
 data class CollectClassNamesFromSubtreeResponse(
-  /**
-   * Class name list.
-   */
-  val classNames : List<String>
+    /**  
+     * Class name list.  
+     */  
+    val classNames: List<String>
 
 )
 
@@ -648,22 +687,22 @@ data class CollectClassNamesFromSubtreeResponse(
  * Creates a deep copy of the specified node and places it into the target container before the
 given anchor.
  */
-data class CopyToRequest (
+data class CopyToRequest(
     /**
      * Id of the node to copy.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * Id of the element to drop the copy into.
      */
-    val targetNodeId : NodeId,
+    val targetNodeId: NodeId,
 
     /**
      * Drop the copy before this node (if absent, the copy becomes the last child of
 `targetNodeId`).
      */
-    val insertBeforeNodeId : NodeId? = null
+    val insertBeforeNodeId: NodeId? = null
 
 )
 
@@ -674,10 +713,10 @@ data class CopyToRequest (
 given anchor.
  */
 data class CopyToResponse(
-  /**
-   * Id of the node clone.
-   */
-  val nodeId : NodeId
+    /**  
+     * Id of the node clone.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -687,33 +726,33 @@ data class CopyToResponse(
  * Describes node given its id, does not require domain to be enabled. Does not start tracking any
 objects, can be used for automation.
  */
-data class DescribeNodeRequest (
+data class DescribeNodeRequest(
     /**
      * Identifier of the node.
      */
-    val nodeId : NodeId? = null,
+    val nodeId: NodeId? = null,
 
     /**
      * Identifier of the backend node.
      */
-    val backendNodeId : BackendNodeId? = null,
+    val backendNodeId: BackendNodeId? = null,
 
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null,
+    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null,
 
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
 entire subtree or provide an integer larger than 0.
      */
-    val depth : Int? = null,
+    val depth: Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree
 (default is false).
      */
-    val pierce : Boolean? = null
+    val pierce: Boolean? = null
 
 )
 
@@ -724,10 +763,10 @@ entire subtree or provide an integer larger than 0.
 objects, can be used for automation.
  */
 data class DescribeNodeResponse(
-  /**
-   * Node description.
-   */
-  val node : Node
+    /**  
+     * Node description.  
+     */  
+    val node: Node
 
 )
 
@@ -737,11 +776,11 @@ data class DescribeNodeResponse(
  * Discards search results from the session with the given id. `getSearchResults` should no longer
 be called for that search.
  */
-data class DiscardSearchResultsRequest (
+data class DiscardSearchResultsRequest(
     /**
      * Unique search session identifier.
      */
-    val searchId : String
+    val searchId: String
 
 )
 
@@ -750,21 +789,21 @@ data class DiscardSearchResultsRequest (
  *
  * Focuses the given element.
  */
-data class FocusRequest (
+data class FocusRequest(
     /**
      * Identifier of the node.
      */
-    val nodeId : NodeId? = null,
+    val nodeId: NodeId? = null,
 
     /**
      * Identifier of the backend node.
      */
-    val backendNodeId : BackendNodeId? = null,
+    val backendNodeId: BackendNodeId? = null,
 
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
 
 )
 
@@ -773,11 +812,11 @@ data class FocusRequest (
  *
  * Returns attributes for the specified node.
  */
-data class GetAttributesRequest (
+data class GetAttributesRequest(
     /**
      * Id of the node to retrieve attibutes for.
      */
-    val nodeId : NodeId
+    val nodeId: NodeId
 
 )
 
@@ -787,10 +826,10 @@ data class GetAttributesRequest (
  * Returns attributes for the specified node.
  */
 data class GetAttributesResponse(
-  /**
-   * An interleaved array of node attribute names and values.
-   */
-  val attributes : List<String>
+    /**  
+     * An interleaved array of node attribute names and values.  
+     */  
+    val attributes: List<String>
 
 )
 
@@ -799,21 +838,21 @@ data class GetAttributesResponse(
  *
  * Returns boxes for the given node.
  */
-data class GetBoxModelRequest (
+data class GetBoxModelRequest(
     /**
      * Identifier of the node.
      */
-    val nodeId : NodeId? = null,
+    val nodeId: NodeId? = null,
 
     /**
      * Identifier of the backend node.
      */
-    val backendNodeId : BackendNodeId? = null,
+    val backendNodeId: BackendNodeId? = null,
 
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
 
 )
 
@@ -823,10 +862,48 @@ data class GetBoxModelRequest (
  * Returns boxes for the given node.
  */
 data class GetBoxModelResponse(
-  /**
-   * Box model for the node.
-   */
-  val model : BoxModel
+    /**  
+     * Box model for the node.  
+     */  
+    val model: BoxModel
+
+)
+
+/**
+ * Represents request frame that can be used with DOM.getContentQuads method call.
+ *
+ * Returns quads that describe node position on the page. This method
+might return multiple quads for inline nodes.
+ */
+data class GetContentQuadsRequest(
+    /**
+     * Identifier of the node.
+     */
+    val nodeId: NodeId? = null,
+
+    /**
+     * Identifier of the backend node.
+     */
+    val backendNodeId: BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node wrapper.
+     */
+    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+
+)
+
+/**
+ * Represents response frame for DOM.getContentQuads method call.
+ *
+ * Returns quads that describe node position on the page. This method
+might return multiple quads for inline nodes.
+ */
+data class GetContentQuadsResponse(
+    /**  
+     * Quads that describe node layout relative to viewport.  
+     */  
+    val quads: List<Quad>
 
 )
 
@@ -835,18 +912,18 @@ data class GetBoxModelResponse(
  *
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
-data class GetDocumentRequest (
+data class GetDocumentRequest(
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
 entire subtree or provide an integer larger than 0.
      */
-    val depth : Int? = null,
+    val depth: Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree
 (default is false).
      */
-    val pierce : Boolean? = null
+    val pierce: Boolean? = null
 
 )
 
@@ -856,10 +933,10 @@ entire subtree or provide an integer larger than 0.
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
 data class GetDocumentResponse(
-  /**
-   * Resulting node.
-   */
-  val root : Node
+    /**  
+     * Resulting node.  
+     */  
+    val root: Node
 
 )
 
@@ -868,18 +945,18 @@ data class GetDocumentResponse(
  *
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
-data class GetFlattenedDocumentRequest (
+data class GetFlattenedDocumentRequest(
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
 entire subtree or provide an integer larger than 0.
      */
-    val depth : Int? = null,
+    val depth: Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree
 (default is false).
      */
-    val pierce : Boolean? = null
+    val pierce: Boolean? = null
 
 )
 
@@ -889,46 +966,63 @@ entire subtree or provide an integer larger than 0.
  * Returns the root DOM node (and optionally the subtree) to the caller.
  */
 data class GetFlattenedDocumentResponse(
-  /**
-   * Resulting node.
-   */
-  val nodes : List<Node>
+    /**  
+     * Resulting node.  
+     */  
+    val nodes: List<Node>
 
 )
 
 /**
  * Represents request frame that can be used with DOM.getNodeForLocation method call.
  *
- * Returns node id at given location.
+ * Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is
+either returned or not.
  */
-data class GetNodeForLocationRequest (
+data class GetNodeForLocationRequest(
     /**
      * X coordinate.
      */
-    val x : Int,
+    val x: Int,
 
     /**
      * Y coordinate.
      */
-    val y : Int,
+    val y: Int,
 
     /**
      * False to skip to the nearest non-UA shadow root ancestor (default: false).
      */
-    val includeUserAgentShadowDOM : Boolean? = null
+    val includeUserAgentShadowDOM: Boolean? = null,
+
+    /**
+     * Whether to ignore pointer-events: none on elements and hit test them.
+     */
+    val ignorePointerEventsNone: Boolean? = null
 
 )
 
 /**
  * Represents response frame for DOM.getNodeForLocation method call.
  *
- * Returns node id at given location.
+ * Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is
+either returned or not.
  */
 data class GetNodeForLocationResponse(
-  /**
-   * Id of the node at given coordinates.
-   */
-  val nodeId : NodeId
+    /**  
+     * Resulting node.  
+     */  
+    val backendNodeId: BackendNodeId,
+
+    /**  
+     * Frame this node belongs to.  
+     */  
+    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+
+    /**  
+     * Id of the node at given coordinates, only when enabled and requested document.  
+     */  
+    val nodeId: NodeId? = null
 
 )
 
@@ -937,21 +1031,21 @@ data class GetNodeForLocationResponse(
  *
  * Returns node's HTML markup.
  */
-data class GetOuterHTMLRequest (
+data class GetOuterHTMLRequest(
     /**
      * Identifier of the node.
      */
-    val nodeId : NodeId? = null,
+    val nodeId: NodeId? = null,
 
     /**
      * Identifier of the backend node.
      */
-    val backendNodeId : BackendNodeId? = null,
+    val backendNodeId: BackendNodeId? = null,
 
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
 
 )
 
@@ -961,10 +1055,10 @@ data class GetOuterHTMLRequest (
  * Returns node's HTML markup.
  */
 data class GetOuterHTMLResponse(
-  /**
-   * Outer HTML markup.
-   */
-  val outerHTML : String
+    /**  
+     * Outer HTML markup.  
+     */  
+    val outerHTML: String
 
 )
 
@@ -973,11 +1067,11 @@ data class GetOuterHTMLResponse(
  *
  * Returns the id of the nearest ancestor that is a relayout boundary.
  */
-data class GetRelayoutBoundaryRequest (
+data class GetRelayoutBoundaryRequest(
     /**
      * Id of the node.
      */
-    val nodeId : NodeId
+    val nodeId: NodeId
 
 )
 
@@ -987,10 +1081,10 @@ data class GetRelayoutBoundaryRequest (
  * Returns the id of the nearest ancestor that is a relayout boundary.
  */
 data class GetRelayoutBoundaryResponse(
-  /**
-   * Relayout boundary node id for the given node.
-   */
-  val nodeId : NodeId
+    /**  
+     * Relayout boundary node id for the given node.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1000,21 +1094,21 @@ data class GetRelayoutBoundaryResponse(
  * Returns search results from given `fromIndex` to given `toIndex` from the search with the given
 identifier.
  */
-data class GetSearchResultsRequest (
+data class GetSearchResultsRequest(
     /**
      * Unique search session identifier.
      */
-    val searchId : String,
+    val searchId: String,
 
     /**
      * Start index of the search result to be returned.
      */
-    val fromIndex : Int,
+    val fromIndex: Int,
 
     /**
      * End index of the search result to be returned.
      */
-    val toIndex : Int
+    val toIndex: Int
 
 )
 
@@ -1025,10 +1119,10 @@ data class GetSearchResultsRequest (
 identifier.
  */
 data class GetSearchResultsResponse(
-  /**
-   * Ids of the search result nodes.
-   */
-  val nodeIds : List<NodeId>
+    /**  
+     * Ids of the search result nodes.  
+     */  
+    val nodeIds: List<NodeId>
 
 )
 
@@ -1037,22 +1131,22 @@ data class GetSearchResultsResponse(
  *
  * Moves node into the new container, places it before the given anchor.
  */
-data class MoveToRequest (
+data class MoveToRequest(
     /**
      * Id of the node to move.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * Id of the element to drop the moved node into.
      */
-    val targetNodeId : NodeId,
+    val targetNodeId: NodeId,
 
     /**
      * Drop node before this one (if absent, the moved node becomes the last child of
 `targetNodeId`).
      */
-    val insertBeforeNodeId : NodeId? = null
+    val insertBeforeNodeId: NodeId? = null
 
 )
 
@@ -1062,10 +1156,10 @@ data class MoveToRequest (
  * Moves node into the new container, places it before the given anchor.
  */
 data class MoveToResponse(
-  /**
-   * New id of the moved node.
-   */
-  val nodeId : NodeId
+    /**  
+     * New id of the moved node.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1075,16 +1169,16 @@ data class MoveToResponse(
  * Searches for a given string in the DOM tree. Use `getSearchResults` to access search results or
 `cancelSearch` to end this search session.
  */
-data class PerformSearchRequest (
+data class PerformSearchRequest(
     /**
      * Plain text or query selector or XPath search query.
      */
-    val query : String,
+    val query: String,
 
     /**
      * True to search in user agent shadow DOM.
      */
-    val includeUserAgentShadowDOM : Boolean? = null
+    val includeUserAgentShadowDOM: Boolean? = null
 
 )
 
@@ -1095,15 +1189,15 @@ data class PerformSearchRequest (
 `cancelSearch` to end this search session.
  */
 data class PerformSearchResponse(
-  /**
-   * Unique search session identifier.
-   */
-  val searchId : String,
+    /**  
+     * Unique search session identifier.  
+     */  
+    val searchId: String,
 
-  /**
-   * Number of search results.
-   */
-  val resultCount : Int
+    /**  
+     * Number of search results.  
+     */  
+    val resultCount: Int
 
 )
 
@@ -1112,11 +1206,11 @@ data class PerformSearchResponse(
  *
  * Requests that the node is sent to the caller given its path. // FIXME, use XPath
  */
-data class PushNodeByPathToFrontendRequest (
+data class PushNodeByPathToFrontendRequest(
     /**
      * Path to node in the proprietary format.
      */
-    val path : String
+    val path: String
 
 )
 
@@ -1126,10 +1220,10 @@ data class PushNodeByPathToFrontendRequest (
  * Requests that the node is sent to the caller given its path. // FIXME, use XPath
  */
 data class PushNodeByPathToFrontendResponse(
-  /**
-   * Id of the node for given path.
-   */
-  val nodeId : NodeId
+    /**  
+     * Id of the node for given path.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1138,11 +1232,11 @@ data class PushNodeByPathToFrontendResponse(
  *
  * Requests that a batch of nodes is sent to the caller given their backend node ids.
  */
-data class PushNodesByBackendIdsToFrontendRequest (
+data class PushNodesByBackendIdsToFrontendRequest(
     /**
      * The array of backend node ids.
      */
-    val backendNodeIds : List<BackendNodeId>
+    val backendNodeIds: List<BackendNodeId>
 
 )
 
@@ -1152,11 +1246,11 @@ data class PushNodesByBackendIdsToFrontendRequest (
  * Requests that a batch of nodes is sent to the caller given their backend node ids.
  */
 data class PushNodesByBackendIdsToFrontendResponse(
-  /**
-   * The array of ids of pushed nodes that correspond to the backend ids specified in
-backendNodeIds.
-   */
-  val nodeIds : List<NodeId>
+    /**  
+     * The array of ids of pushed nodes that correspond to the backend ids specified in  
+  backendNodeIds.  
+     */  
+    val nodeIds: List<NodeId>
 
 )
 
@@ -1165,16 +1259,16 @@ backendNodeIds.
  *
  * Executes `querySelector` on a given node.
  */
-data class QuerySelectorRequest (
+data class QuerySelectorRequest(
     /**
      * Id of the node to query upon.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * Selector string.
      */
-    val selector : String
+    val selector: String
 
 )
 
@@ -1184,10 +1278,10 @@ data class QuerySelectorRequest (
  * Executes `querySelector` on a given node.
  */
 data class QuerySelectorResponse(
-  /**
-   * Query selector result.
-   */
-  val nodeId : NodeId
+    /**  
+     * Query selector result.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1196,16 +1290,16 @@ data class QuerySelectorResponse(
  *
  * Executes `querySelectorAll` on a given node.
  */
-data class QuerySelectorAllRequest (
+data class QuerySelectorAllRequest(
     /**
      * Id of the node to query upon.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * Selector string.
      */
-    val selector : String
+    val selector: String
 
 )
 
@@ -1215,10 +1309,10 @@ data class QuerySelectorAllRequest (
  * Executes `querySelectorAll` on a given node.
  */
 data class QuerySelectorAllResponse(
-  /**
-   * Query selector result.
-   */
-  val nodeIds : List<NodeId>
+    /**  
+     * Query selector result.  
+     */  
+    val nodeIds: List<NodeId>
 
 )
 
@@ -1227,16 +1321,16 @@ data class QuerySelectorAllResponse(
  *
  * Removes attribute with given name from an element with given id.
  */
-data class RemoveAttributeRequest (
+data class RemoveAttributeRequest(
     /**
      * Id of the element to remove attribute from.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * Name of the attribute to remove.
      */
-    val name : String
+    val name: String
 
 )
 
@@ -1245,11 +1339,11 @@ data class RemoveAttributeRequest (
  *
  * Removes node with given id.
  */
-data class RemoveNodeRequest (
+data class RemoveNodeRequest(
     /**
      * Id of the node to remove.
      */
-    val nodeId : NodeId
+    val nodeId: NodeId
 
 )
 
@@ -1260,23 +1354,23 @@ data class RemoveNodeRequest (
 `setChildNodes` events where not only immediate children are retrieved, but all children down to
 the specified depth.
  */
-data class RequestChildNodesRequest (
+data class RequestChildNodesRequest(
     /**
      * Id of the node to get children for.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
 entire subtree or provide an integer larger than 0.
      */
-    val depth : Int? = null,
+    val depth: Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the sub-tree
 (default is false).
      */
-    val pierce : Boolean? = null
+    val pierce: Boolean? = null
 
 )
 
@@ -1287,11 +1381,11 @@ entire subtree or provide an integer larger than 0.
 nodes that form the path from the node to the root are also sent to the client as a series of
 `setChildNodes` notifications.
  */
-data class RequestNodeRequest (
+data class RequestNodeRequest(
     /**
      * JavaScript object id to convert into node.
      */
-    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId
+    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId
 
 )
 
@@ -1303,10 +1397,10 @@ nodes that form the path from the node to the root are also sent to the client a
 `setChildNodes` notifications.
  */
 data class RequestNodeResponse(
-  /**
-   * Node id for given object.
-   */
-  val nodeId : NodeId
+    /**  
+     * Node id for given object.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1315,21 +1409,26 @@ data class RequestNodeResponse(
  *
  * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
  */
-data class ResolveNodeRequest (
+data class ResolveNodeRequest(
     /**
      * Id of the node to resolve.
      */
-    val nodeId : NodeId? = null,
+    val nodeId: NodeId? = null,
 
     /**
      * Backend identifier of the node to resolve.
      */
-    val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
 
     /**
      * Symbolic group name that can be used to release multiple objects.
      */
-    val objectGroup : String? = null
+    val objectGroup: String? = null,
+
+    /**
+     * Execution context in which to resolve the node.
+     */
+    val executionContextId: pl.wendigo.chrome.domain.runtime.ExecutionContextId? = null
 
 )
 
@@ -1339,10 +1438,10 @@ data class ResolveNodeRequest (
  * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
  */
 data class ResolveNodeResponse(
-  /**
-   * JavaScript object wrapper for given node.
-   */
-  @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object : pl.wendigo.chrome.domain.runtime.RemoteObject
+    /**  
+     * JavaScript object wrapper for given node.  
+     */  
+    @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: pl.wendigo.chrome.domain.runtime.RemoteObject
 
 )
 
@@ -1351,21 +1450,21 @@ data class ResolveNodeResponse(
  *
  * Sets attribute for an element with given id.
  */
-data class SetAttributeValueRequest (
+data class SetAttributeValueRequest(
     /**
      * Id of the element to set attribute for.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * Attribute name.
      */
-    val name : String,
+    val name: String,
 
     /**
      * Attribute value.
      */
-    val value : String
+    val value: String
 
 )
 
@@ -1375,22 +1474,22 @@ data class SetAttributeValueRequest (
  * Sets attributes on element with given id. This method is useful when user edits some existing
 attribute value and types in several attribute name/value pairs.
  */
-data class SetAttributesAsTextRequest (
+data class SetAttributesAsTextRequest(
     /**
      * Id of the element to set attributes for.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * Text with a number of attributes. Will parse this text using HTML parser.
      */
-    val text : String,
+    val text: String,
 
     /**
      * Attribute name to replace with new attributes derived from text in case text parsed
 successfully.
      */
-    val name : String? = null
+    val name: String? = null
 
 )
 
@@ -1399,26 +1498,93 @@ successfully.
  *
  * Sets files for the given file input element.
  */
-data class SetFileInputFilesRequest (
+data class SetFileInputFilesRequest(
     /**
      * Array of file paths to set.
      */
-    val files : List<String>,
+    val files: List<String>,
 
     /**
      * Identifier of the node.
      */
-    val nodeId : NodeId? = null,
+    val nodeId: NodeId? = null,
 
     /**
      * Identifier of the backend node.
      */
-    val backendNodeId : BackendNodeId? = null,
+    val backendNodeId: BackendNodeId? = null,
 
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+
+)
+
+/**
+ * Represents request frame that can be used with DOM.setNodeStackTracesEnabled method call.
+ *
+ * Sets if stack traces should be captured for Nodes. See `Node.getNodeStackTraces`. Default is disabled.
+ */
+data class SetNodeStackTracesEnabledRequest(
+    /**
+     * Enable or disable.
+     */
+    val enable: Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with DOM.getNodeStackTraces method call.
+ *
+ * Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation.
+ */
+data class GetNodeStackTracesRequest(
+    /**
+     * Id of the node to get stack traces for.
+     */
+    val nodeId: NodeId
+
+)
+
+/**
+ * Represents response frame for DOM.getNodeStackTraces method call.
+ *
+ * Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation.
+ */
+data class GetNodeStackTracesResponse(
+    /**  
+     * Creation stack trace, if available.  
+     */  
+    val creation: pl.wendigo.chrome.domain.runtime.StackTrace? = null
+
+)
+
+/**
+ * Represents request frame that can be used with DOM.getFileInfo method call.
+ *
+ * Returns file information for the given
+File wrapper.
+ */
+data class GetFileInfoRequest(
+    /**
+     * JavaScript object id of the node wrapper.
+     */
+    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId
+
+)
+
+/**
+ * Represents response frame for DOM.getFileInfo method call.
+ *
+ * Returns file information for the given
+File wrapper.
+ */
+data class GetFileInfoResponse(
+    /**  
+     *  
+     */  
+    val path: String
 
 )
 
@@ -1428,11 +1594,11 @@ data class SetFileInputFilesRequest (
  * Enables console to refer to the node with given id via $x (see Command Line API for more details
 $x functions).
  */
-data class SetInspectedNodeRequest (
+data class SetInspectedNodeRequest(
     /**
      * DOM node id to be accessible by means of $x command line API.
      */
-    val nodeId : NodeId
+    val nodeId: NodeId
 
 )
 
@@ -1441,16 +1607,16 @@ data class SetInspectedNodeRequest (
  *
  * Sets node name for a node with given id.
  */
-data class SetNodeNameRequest (
+data class SetNodeNameRequest(
     /**
      * Id of the node to set name for.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * New node's name.
      */
-    val name : String
+    val name: String
 
 )
 
@@ -1460,10 +1626,10 @@ data class SetNodeNameRequest (
  * Sets node name for a node with given id.
  */
 data class SetNodeNameResponse(
-  /**
-   * New node's id.
-   */
-  val nodeId : NodeId
+    /**  
+     * New node's id.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1472,16 +1638,16 @@ data class SetNodeNameResponse(
  *
  * Sets node value for a node with given id.
  */
-data class SetNodeValueRequest (
+data class SetNodeValueRequest(
     /**
      * Id of the node to set value for.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * New node's value.
      */
-    val value : String
+    val value: String
 
 )
 
@@ -1490,16 +1656,16 @@ data class SetNodeValueRequest (
  *
  * Sets node HTML markup, returns new node id.
  */
-data class SetOuterHTMLRequest (
+data class SetOuterHTMLRequest(
     /**
      * Id of the node to set markup for.
      */
-    val nodeId : NodeId,
+    val nodeId: NodeId,
 
     /**
      * Outer HTML markup to set.
      */
-    val outerHTML : String
+    val outerHTML: String
 
 )
 
@@ -1508,11 +1674,11 @@ data class SetOuterHTMLRequest (
  *
  * Returns iframe node that owns iframe with the given domain.
  */
-data class GetFrameOwnerRequest (
+data class GetFrameOwnerRequest(
     /**
      *
      */
-    val frameId : pl.wendigo.chrome.domain.page.FrameId
+    val frameId: pl.wendigo.chrome.domain.page.FrameId
 
 )
 
@@ -1522,10 +1688,15 @@ data class GetFrameOwnerRequest (
  * Returns iframe node that owns iframe with the given domain.
  */
 data class GetFrameOwnerResponse(
-  /**
-   *
-   */
-  val nodeId : NodeId
+    /**  
+     * Resulting node.  
+     */  
+    val backendNodeId: BackendNodeId,
+
+    /**  
+     * Id of the node at given coordinates, only when enabled and requested document.  
+     */  
+    val nodeId: NodeId? = null
 
 )
 
@@ -1535,20 +1706,20 @@ data class GetFrameOwnerResponse(
  * Fired when `Element`'s attribute is modified.
  */
 data class AttributeModifiedEvent(
-  /**
-   * Id of the node that has changed.
-   */
-  val nodeId : NodeId,
+    /**  
+     * Id of the node that has changed.  
+     */  
+    val nodeId: NodeId,
 
-  /**
-   * Attribute name.
-   */
-  val name : String,
+    /**  
+     * Attribute name.  
+     */  
+    val name: String,
 
-  /**
-   * Attribute value.
-   */
-  val value : String
+    /**  
+     * Attribute value.  
+     */  
+    val value: String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "attributeModified")
 
@@ -1558,15 +1729,15 @@ data class AttributeModifiedEvent(
  * Fired when `Element`'s attribute is removed.
  */
 data class AttributeRemovedEvent(
-  /**
-   * Id of the node that has changed.
-   */
-  val nodeId : NodeId,
+    /**  
+     * Id of the node that has changed.  
+     */  
+    val nodeId: NodeId,
 
-  /**
-   * A ttribute name.
-   */
-  val name : String
+    /**  
+     * A ttribute name.  
+     */  
+    val name: String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "attributeRemoved")
 
@@ -1576,15 +1747,15 @@ data class AttributeRemovedEvent(
  * Mirrors `DOMCharacterDataModified` event.
  */
 data class CharacterDataModifiedEvent(
-  /**
-   * Id of the node that has changed.
-   */
-  val nodeId : NodeId,
+    /**  
+     * Id of the node that has changed.  
+     */  
+    val nodeId: NodeId,
 
-  /**
-   * New text value.
-   */
-  val characterData : String
+    /**  
+     * New text value.  
+     */  
+    val characterData: String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "characterDataModified")
 
@@ -1594,15 +1765,15 @@ data class CharacterDataModifiedEvent(
  * Fired when `Container`'s child node count has changed.
  */
 data class ChildNodeCountUpdatedEvent(
-  /**
-   * Id of the node that has changed.
-   */
-  val nodeId : NodeId,
+    /**  
+     * Id of the node that has changed.  
+     */  
+    val nodeId: NodeId,
 
-  /**
-   * New node count.
-   */
-  val childNodeCount : Int
+    /**  
+     * New node count.  
+     */  
+    val childNodeCount: Int
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "childNodeCountUpdated")
 
@@ -1612,20 +1783,20 @@ data class ChildNodeCountUpdatedEvent(
  * Mirrors `DOMNodeInserted` event.
  */
 data class ChildNodeInsertedEvent(
-  /**
-   * Id of the node that has changed.
-   */
-  val parentNodeId : NodeId,
+    /**  
+     * Id of the node that has changed.  
+     */  
+    val parentNodeId: NodeId,
 
-  /**
-   * If of the previous siblint.
-   */
-  val previousNodeId : NodeId,
+    /**  
+     * If of the previous siblint.  
+     */  
+    val previousNodeId: NodeId,
 
-  /**
-   * Inserted node data.
-   */
-  val node : Node
+    /**  
+     * Inserted node data.  
+     */  
+    val node: Node
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "childNodeInserted")
 
@@ -1635,15 +1806,15 @@ data class ChildNodeInsertedEvent(
  * Mirrors `DOMNodeRemoved` event.
  */
 data class ChildNodeRemovedEvent(
-  /**
-   * Parent id.
-   */
-  val parentNodeId : NodeId,
+    /**  
+     * Parent id.  
+     */  
+    val parentNodeId: NodeId,
 
-  /**
-   * Id of the node that has been removed.
-   */
-  val nodeId : NodeId
+    /**  
+     * Id of the node that has been removed.  
+     */  
+    val nodeId: NodeId
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "childNodeRemoved")
 
@@ -1653,15 +1824,15 @@ data class ChildNodeRemovedEvent(
  * Called when distrubution is changed.
  */
 data class DistributedNodesUpdatedEvent(
-  /**
-   * Insertion point where distrubuted nodes were updated.
-   */
-  val insertionPointId : NodeId,
+    /**  
+     * Insertion point where distrubuted nodes were updated.  
+     */  
+    val insertionPointId: NodeId,
 
-  /**
-   * Distributed nodes for given insertion point.
-   */
-  val distributedNodes : List<BackendNode>
+    /**  
+     * Distributed nodes for given insertion point.  
+     */  
+    val distributedNodes: List<BackendNode>
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "distributedNodesUpdated")
 
@@ -1671,10 +1842,10 @@ data class DistributedNodesUpdatedEvent(
  * Fired when `Element`'s inline style is modified via a CSS property modification.
  */
 data class InlineStyleInvalidatedEvent(
-  /**
-   * Ids of the nodes for which the inline styles have been invalidated.
-   */
-  val nodeIds : List<NodeId>
+    /**  
+     * Ids of the nodes for which the inline styles have been invalidated.  
+     */  
+    val nodeIds: List<NodeId>
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "inlineStyleInvalidated")
 
@@ -1684,15 +1855,15 @@ data class InlineStyleInvalidatedEvent(
  * Called when a pseudo element is added to an element.
  */
 data class PseudoElementAddedEvent(
-  /**
-   * Pseudo element's parent element id.
-   */
-  val parentId : NodeId,
+    /**  
+     * Pseudo element's parent element id.  
+     */  
+    val parentId: NodeId,
 
-  /**
-   * The added pseudo element.
-   */
-  val pseudoElement : Node
+    /**  
+     * The added pseudo element.  
+     */  
+    val pseudoElement: Node
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "pseudoElementAdded")
 
@@ -1702,15 +1873,15 @@ data class PseudoElementAddedEvent(
  * Called when a pseudo element is removed from an element.
  */
 data class PseudoElementRemovedEvent(
-  /**
-   * Pseudo element's parent element id.
-   */
-  val parentId : NodeId,
+    /**  
+     * Pseudo element's parent element id.  
+     */  
+    val parentId: NodeId,
 
-  /**
-   * The removed pseudo element id.
-   */
-  val pseudoElementId : NodeId
+    /**  
+     * The removed pseudo element id.  
+     */  
+    val pseudoElementId: NodeId
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "pseudoElementRemoved")
 
@@ -1721,15 +1892,15 @@ data class PseudoElementRemovedEvent(
 most of the calls requesting node ids.
  */
 data class SetChildNodesEvent(
-  /**
-   * Parent node id to populate with children.
-   */
-  val parentId : NodeId,
+    /**  
+     * Parent node id to populate with children.  
+     */  
+    val parentId: NodeId,
 
-  /**
-   * Child nodes array.
-   */
-  val nodes : List<Node>
+    /**  
+     * Child nodes array.  
+     */  
+    val nodes: List<Node>
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "setChildNodes")
 
@@ -1739,15 +1910,15 @@ data class SetChildNodesEvent(
  * Called when shadow root is popped from the element.
  */
 data class ShadowRootPoppedEvent(
-  /**
-   * Host element id.
-   */
-  val hostId : NodeId,
+    /**  
+     * Host element id.  
+     */  
+    val hostId: NodeId,
 
-  /**
-   * Shadow root id.
-   */
-  val rootId : NodeId
+    /**  
+     * Shadow root id.  
+     */  
+    val rootId: NodeId
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "shadowRootPopped")
 
@@ -1757,15 +1928,14 @@ data class ShadowRootPoppedEvent(
  * Called when shadow root is pushed into the element.
  */
 data class ShadowRootPushedEvent(
-  /**
-   * Host element id.
-   */
-  val hostId : NodeId,
+    /**  
+     * Host element id.  
+     */  
+    val hostId: NodeId,
 
-  /**
-   * Shadow root.
-   */
-  val root : Node
+    /**  
+     * Shadow root.  
+     */  
+    val root: Node
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "DOM", name = "shadowRootPushed")
-

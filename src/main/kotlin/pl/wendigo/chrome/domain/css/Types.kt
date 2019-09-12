@@ -23,15 +23,15 @@ enum class StyleSheetOrigin {
  */
 
 data class PseudoElementMatches(
-  /**
-   * Pseudo element type.
-   */
-  val pseudoType : pl.wendigo.chrome.domain.dom.PseudoType,
+    /**  
+     * Pseudo element type.  
+     */  
+    val pseudoType: pl.wendigo.chrome.domain.dom.PseudoType,
 
-  /**
-   * Matches of CSS rules applicable to the pseudo style.
-   */
-  val matches : List<RuleMatch>
+    /**  
+     * Matches of CSS rules applicable to the pseudo style.  
+     */  
+    val matches: List<RuleMatch>
 )
 
 /**
@@ -39,15 +39,15 @@ data class PseudoElementMatches(
  */
 
 data class InheritedStyleEntry(
-  /**
-   * The ancestor node's inline style, if any, in the style inheritance chain.
-   */
-  val inlineStyle : CSSStyle? = null,
+    /**  
+     * The ancestor node's inline style, if any, in the style inheritance chain.  
+     */  
+    val inlineStyle: CSSStyle? = null,
 
-  /**
-   * Matches of CSS rules matching the ancestor node in the style inheritance chain.
-   */
-  val matchedCSSRules : List<RuleMatch>
+    /**  
+     * Matches of CSS rules matching the ancestor node in the style inheritance chain.  
+     */  
+    val matchedCSSRules: List<RuleMatch>
 )
 
 /**
@@ -55,15 +55,15 @@ data class InheritedStyleEntry(
  */
 
 data class RuleMatch(
-  /**
-   * CSS rule in the match.
-   */
-  val rule : CSSRule,
+    /**  
+     * CSS rule in the match.  
+     */  
+    val rule: CSSRule,
 
-  /**
-   * Matching selector indices in the rule's selectorList selectors (0-based).
-   */
-  val matchingSelectors : List<Int>
+    /**  
+     * Matching selector indices in the rule's selectorList selectors (0-based).  
+     */  
+    val matchingSelectors: List<Int>
 )
 
 /**
@@ -71,15 +71,15 @@ data class RuleMatch(
  */
 
 data class Value(
-  /**
-   * Value text.
-   */
-  val text : String,
+    /**  
+     * Value text.  
+     */  
+    val text: String,
 
-  /**
-   * Value range in the underlying resource (if available).
-   */
-  val range : SourceRange? = null
+    /**  
+     * Value range in the underlying resource (if available).  
+     */  
+    val range: SourceRange? = null
 )
 
 /**
@@ -87,15 +87,15 @@ data class Value(
  */
 
 data class SelectorList(
-  /**
-   * Selectors in the list.
-   */
-  val selectors : List<Value>,
+    /**  
+     * Selectors in the list.  
+     */  
+    val selectors: List<Value>,
 
-  /**
-   * Rule selector text.
-   */
-  val text : String
+    /**  
+     * Rule selector text.  
+     */  
+    val text: String
 )
 
 /**
@@ -103,71 +103,71 @@ data class SelectorList(
  */
 
 data class CSSStyleSheetHeader(
-  /**
-   * The stylesheet identifier.
-   */
-  val styleSheetId : StyleSheetId,
+    /**  
+     * The stylesheet identifier.  
+     */  
+    val styleSheetId: StyleSheetId,
 
-  /**
-   * Owner frame identifier.
-   */
-  val frameId : pl.wendigo.chrome.domain.page.FrameId,
+    /**  
+     * Owner frame identifier.  
+     */  
+    val frameId: pl.wendigo.chrome.domain.page.FrameId,
 
-  /**
-   * Stylesheet resource URL.
-   */
-  val sourceURL : String,
+    /**  
+     * Stylesheet resource URL.  
+     */  
+    val sourceURL: String,
 
-  /**
-   * URL of source map associated with the stylesheet (if any).
-   */
-  val sourceMapURL : String? = null,
+    /**  
+     * URL of source map associated with the stylesheet (if any).  
+     */  
+    val sourceMapURL: String? = null,
 
-  /**
-   * Stylesheet origin.
-   */
-  val origin : StyleSheetOrigin,
+    /**  
+     * Stylesheet origin.  
+     */  
+    val origin: StyleSheetOrigin,
 
-  /**
-   * Stylesheet title.
-   */
-  val title : String,
+    /**  
+     * Stylesheet title.  
+     */  
+    val title: String,
 
-  /**
-   * The backend id for the owner node of the stylesheet.
-   */
-  val ownerNode : pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    /**  
+     * The backend id for the owner node of the stylesheet.  
+     */  
+    val ownerNode: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
 
-  /**
-   * Denotes whether the stylesheet is disabled.
-   */
-  val disabled : Boolean,
+    /**  
+     * Denotes whether the stylesheet is disabled.  
+     */  
+    val disabled: Boolean,
 
-  /**
-   * Whether the sourceURL field value comes from the sourceURL comment.
-   */
-  val hasSourceURL : Boolean? = null,
+    /**  
+     * Whether the sourceURL field value comes from the sourceURL comment.  
+     */  
+    val hasSourceURL: Boolean? = null,
 
-  /**
-   * Whether this stylesheet is created for STYLE tag by parser. This flag is not set for
-document.written STYLE tags.
-   */
-  val isInline : Boolean,
+    /**  
+     * Whether this stylesheet is created for STYLE tag by parser. This flag is not set for  
+  document.written STYLE tags.  
+     */  
+    val isInline: Boolean,
 
-  /**
-   * Line offset of the stylesheet within the resource (zero based).
-   */
-  val startLine : Double,
+    /**  
+     * Line offset of the stylesheet within the resource (zero based).  
+     */  
+    val startLine: Double,
 
-  /**
-   * Column offset of the stylesheet within the resource (zero based).
-   */
-  val startColumn : Double,
+    /**  
+     * Column offset of the stylesheet within the resource (zero based).  
+     */  
+    val startColumn: Double,
 
-  /**
-   * Size of the content (in characters).
-   */
-  val length : Double
+    /**  
+     * Size of the content (in characters).  
+     */  
+    val length: Double
 )
 
 /**
@@ -175,32 +175,32 @@ document.written STYLE tags.
  */
 
 data class CSSRule(
-  /**
-   * The css style sheet identifier (absent for user agent stylesheet and user-specified
-stylesheet rules) this rule came from.
-   */
-  val styleSheetId : StyleSheetId? = null,
+    /**  
+     * The css style sheet identifier (absent for user agent stylesheet and user-specified  
+  stylesheet rules) this rule came from.  
+     */  
+    val styleSheetId: StyleSheetId? = null,
 
-  /**
-   * Rule selector data.
-   */
-  val selectorList : SelectorList,
+    /**  
+     * Rule selector data.  
+     */  
+    val selectorList: SelectorList,
 
-  /**
-   * Parent stylesheet's origin.
-   */
-  val origin : StyleSheetOrigin,
+    /**  
+     * Parent stylesheet's origin.  
+     */  
+    val origin: StyleSheetOrigin,
 
-  /**
-   * Associated style declaration.
-   */
-  val style : CSSStyle,
+    /**  
+     * Associated style declaration.  
+     */  
+    val style: CSSStyle,
 
-  /**
-   * Media list array (for rules involving media queries). The array enumerates media queries
-starting with the innermost one, going outwards.
-   */
-  val media : List<CSSMedia>? = null
+    /**  
+     * Media list array (for rules involving media queries). The array enumerates media queries  
+  starting with the innermost one, going outwards.  
+     */  
+    val media: List<CSSMedia>? = null
 )
 
 /**
@@ -208,26 +208,26 @@ starting with the innermost one, going outwards.
  */
 
 data class RuleUsage(
-  /**
-   * The css style sheet identifier (absent for user agent stylesheet and user-specified
-stylesheet rules) this rule came from.
-   */
-  val styleSheetId : StyleSheetId,
+    /**  
+     * The css style sheet identifier (absent for user agent stylesheet and user-specified  
+  stylesheet rules) this rule came from.  
+     */  
+    val styleSheetId: StyleSheetId,
 
-  /**
-   * Offset of the start of the rule (including selector) from the beginning of the stylesheet.
-   */
-  val startOffset : Double,
+    /**  
+     * Offset of the start of the rule (including selector) from the beginning of the stylesheet.  
+     */  
+    val startOffset: Double,
 
-  /**
-   * Offset of the end of the rule body from the beginning of the stylesheet.
-   */
-  val endOffset : Double,
+    /**  
+     * Offset of the end of the rule body from the beginning of the stylesheet.  
+     */  
+    val endOffset: Double,
 
-  /**
-   * Indicates whether the rule was actually used by some element in the page.
-   */
-  val used : Boolean
+    /**  
+     * Indicates whether the rule was actually used by some element in the page.  
+     */  
+    val used: Boolean
 )
 
 /**
@@ -235,25 +235,25 @@ stylesheet rules) this rule came from.
  */
 
 data class SourceRange(
-  /**
-   * Start line of range.
-   */
-  val startLine : Int,
+    /**  
+     * Start line of range.  
+     */  
+    val startLine: Int,
 
-  /**
-   * Start column of range (inclusive).
-   */
-  val startColumn : Int,
+    /**  
+     * Start column of range (inclusive).  
+     */  
+    val startColumn: Int,
 
-  /**
-   * End line of range
-   */
-  val endLine : Int,
+    /**  
+     * End line of range  
+     */  
+    val endLine: Int,
 
-  /**
-   * End column of range (exclusive).
-   */
-  val endColumn : Int
+    /**  
+     * End column of range (exclusive).  
+     */  
+    val endColumn: Int
 )
 
 /**
@@ -261,20 +261,20 @@ data class SourceRange(
  */
 
 data class ShorthandEntry(
-  /**
-   * Shorthand name.
-   */
-  val name : String,
+    /**  
+     * Shorthand name.  
+     */  
+    val name: String,
 
-  /**
-   * Shorthand value.
-   */
-  val value : String,
+    /**  
+     * Shorthand value.  
+     */  
+    val value: String,
 
-  /**
-   * Whether the property has "!important" annotation (implies `false` if absent).
-   */
-  val important : Boolean? = null
+    /**  
+     * Whether the property has "!important" annotation (implies `false` if absent).  
+     */  
+    val important: Boolean? = null
 )
 
 /**
@@ -282,15 +282,15 @@ data class ShorthandEntry(
  */
 
 data class CSSComputedStyleProperty(
-  /**
-   * Computed style property name.
-   */
-  val name : String,
+    /**  
+     * Computed style property name.  
+     */  
+    val name: String,
 
-  /**
-   * Computed style property value.
-   */
-  val value : String
+    /**  
+     * Computed style property value.  
+     */  
+    val value: String
 )
 
 /**
@@ -298,31 +298,31 @@ data class CSSComputedStyleProperty(
  */
 
 data class CSSStyle(
-  /**
-   * The css style sheet identifier (absent for user agent stylesheet and user-specified
-stylesheet rules) this rule came from.
-   */
-  val styleSheetId : StyleSheetId? = null,
+    /**  
+     * The css style sheet identifier (absent for user agent stylesheet and user-specified  
+  stylesheet rules) this rule came from.  
+     */  
+    val styleSheetId: StyleSheetId? = null,
 
-  /**
-   * CSS properties in the style.
-   */
-  val cssProperties : List<CSSProperty>,
+    /**  
+     * CSS properties in the style.  
+     */  
+    val cssProperties: List<CSSProperty>,
 
-  /**
-   * Computed values for all shorthands found in the style.
-   */
-  val shorthandEntries : List<ShorthandEntry>,
+    /**  
+     * Computed values for all shorthands found in the style.  
+     */  
+    val shorthandEntries: List<ShorthandEntry>,
 
-  /**
-   * Style declaration text (if available).
-   */
-  val cssText : String? = null,
+    /**  
+     * Style declaration text (if available).  
+     */  
+    val cssText: String? = null,
 
-  /**
-   * Style declaration range in the enclosing stylesheet (if available).
-   */
-  val range : SourceRange? = null
+    /**  
+     * Style declaration range in the enclosing stylesheet (if available).  
+     */  
+    val range: SourceRange? = null
 )
 
 /**
@@ -330,45 +330,45 @@ stylesheet rules) this rule came from.
  */
 
 data class CSSProperty(
-  /**
-   * The property name.
-   */
-  val name : String,
+    /**  
+     * The property name.  
+     */  
+    val name: String,
 
-  /**
-   * The property value.
-   */
-  val value : String,
+    /**  
+     * The property value.  
+     */  
+    val value: String,
 
-  /**
-   * Whether the property has "!important" annotation (implies `false` if absent).
-   */
-  val important : Boolean? = null,
+    /**  
+     * Whether the property has "!important" annotation (implies `false` if absent).  
+     */  
+    val important: Boolean? = null,
 
-  /**
-   * Whether the property is implicit (implies `false` if absent).
-   */
-  val implicit : Boolean? = null,
+    /**  
+     * Whether the property is implicit (implies `false` if absent).  
+     */  
+    val implicit: Boolean? = null,
 
-  /**
-   * The full property text as specified in the style.
-   */
-  val text : String? = null,
+    /**  
+     * The full property text as specified in the style.  
+     */  
+    val text: String? = null,
 
-  /**
-   * Whether the property is understood by the browser (implies `true` if absent).
-   */
-  val parsedOk : Boolean? = null,
+    /**  
+     * Whether the property is understood by the browser (implies `true` if absent).  
+     */  
+    val parsedOk: Boolean? = null,
 
-  /**
-   * Whether the property is disabled by the user (present for source-based properties only).
-   */
-  val disabled : Boolean? = null,
+    /**  
+     * Whether the property is disabled by the user (present for source-based properties only).  
+     */  
+    val disabled: Boolean? = null,
 
-  /**
-   * The entire property range in the enclosing style declaration (if available).
-   */
-  val range : SourceRange? = null
+    /**  
+     * The entire property range in the enclosing style declaration (if available).  
+     */  
+    val range: SourceRange? = null
 )
 
 /**
@@ -376,39 +376,39 @@ data class CSSProperty(
  */
 
 data class CSSMedia(
-  /**
-   * Media query text.
-   */
-  val text : String,
+    /**  
+     * Media query text.  
+     */  
+    val text: String,
 
-  /**
-   * Source of the media query: "mediaRule" if specified by a @media rule, "importRule" if
-specified by an @import rule, "linkedSheet" if specified by a "media" attribute in a linked
-stylesheet's LINK tag, "inlineSheet" if specified by a "media" attribute in an inline
-stylesheet's STYLE tag.
-   */
-  val source : String,
+    /**  
+     * Source of the media query: "mediaRule" if specified by a @media rule, "importRule" if  
+  specified by an @import rule, "linkedSheet" if specified by a "media" attribute in a linked  
+  stylesheet's LINK tag, "inlineSheet" if specified by a "media" attribute in an inline  
+  stylesheet's STYLE tag.  
+     */  
+    val source: String,
 
-  /**
-   * URL of the document containing the media query description.
-   */
-  val sourceURL : String? = null,
+    /**  
+     * URL of the document containing the media query description.  
+     */  
+    val sourceURL: String? = null,
 
-  /**
-   * The associated rule (@media or @import) header range in the enclosing stylesheet (if
-available).
-   */
-  val range : SourceRange? = null,
+    /**  
+     * The associated rule (@media or @import) header range in the enclosing stylesheet (if  
+  available).  
+     */  
+    val range: SourceRange? = null,
 
-  /**
-   * Identifier of the stylesheet containing this object (if exists).
-   */
-  val styleSheetId : StyleSheetId? = null,
+    /**  
+     * Identifier of the stylesheet containing this object (if exists).  
+     */  
+    val styleSheetId: StyleSheetId? = null,
 
-  /**
-   * Array of media queries.
-   */
-  val mediaList : List<MediaQuery>? = null
+    /**  
+     * Array of media queries.  
+     */  
+    val mediaList: List<MediaQuery>? = null
 )
 
 /**
@@ -416,15 +416,15 @@ available).
  */
 
 data class MediaQuery(
-  /**
-   * Array of media query expressions.
-   */
-  val expressions : List<MediaQueryExpression>,
+    /**  
+     * Array of media query expressions.  
+     */  
+    val expressions: List<MediaQueryExpression>,
 
-  /**
-   * Whether the media query condition is satisfied.
-   */
-  val active : Boolean
+    /**  
+     * Whether the media query condition is satisfied.  
+     */  
+    val active: Boolean
 )
 
 /**
@@ -432,30 +432,30 @@ data class MediaQuery(
  */
 
 data class MediaQueryExpression(
-  /**
-   * Media query expression value.
-   */
-  val value : Double,
+    /**  
+     * Media query expression value.  
+     */  
+    val value: Double,
 
-  /**
-   * Media query expression units.
-   */
-  val unit : String,
+    /**  
+     * Media query expression units.  
+     */  
+    val unit: String,
 
-  /**
-   * Media query expression feature.
-   */
-  val feature : String,
+    /**  
+     * Media query expression feature.  
+     */  
+    val feature: String,
 
-  /**
-   * The associated range of the value text in the enclosing stylesheet (if available).
-   */
-  val valueRange : SourceRange? = null,
+    /**  
+     * The associated range of the value text in the enclosing stylesheet (if available).  
+     */  
+    val valueRange: SourceRange? = null,
 
-  /**
-   * Computed length of media query expression (if applicable).
-   */
-  val computedLength : Double? = null
+    /**  
+     * Computed length of media query expression (if applicable).  
+     */  
+    val computedLength: Double? = null
 )
 
 /**
@@ -463,20 +463,20 @@ data class MediaQueryExpression(
  */
 
 data class PlatformFontUsage(
-  /**
-   * Font's family name reported by platform.
-   */
-  val familyName : String,
+    /**  
+     * Font's family name reported by platform.  
+     */  
+    val familyName: String,
 
-  /**
-   * Indicates if the font was downloaded or resolved locally.
-   */
-  val isCustomFont : Boolean,
+    /**  
+     * Indicates if the font was downloaded or resolved locally.  
+     */  
+    val isCustomFont: Boolean,
 
-  /**
-   * Amount of glyphs that were rendered with this font.
-   */
-  val glyphCount : Double
+    /**  
+     * Amount of glyphs that were rendered with this font.  
+     */  
+    val glyphCount: Double
 )
 
 /**
@@ -484,45 +484,45 @@ data class PlatformFontUsage(
  */
 
 data class FontFace(
-  /**
-   * The font-family.
-   */
-  val fontFamily : String,
+    /**  
+     * The font-family.  
+     */  
+    val fontFamily: String,
 
-  /**
-   * The font-style.
-   */
-  val fontStyle : String,
+    /**  
+     * The font-style.  
+     */  
+    val fontStyle: String,
 
-  /**
-   * The font-variant.
-   */
-  val fontVariant : String,
+    /**  
+     * The font-variant.  
+     */  
+    val fontVariant: String,
 
-  /**
-   * The font-weight.
-   */
-  val fontWeight : String,
+    /**  
+     * The font-weight.  
+     */  
+    val fontWeight: String,
 
-  /**
-   * The font-stretch.
-   */
-  val fontStretch : String,
+    /**  
+     * The font-stretch.  
+     */  
+    val fontStretch: String,
 
-  /**
-   * The unicode-range.
-   */
-  val unicodeRange : String,
+    /**  
+     * The unicode-range.  
+     */  
+    val unicodeRange: String,
 
-  /**
-   * The src.
-   */
-  val src : String,
+    /**  
+     * The src.  
+     */  
+    val src: String,
 
-  /**
-   * The resolved platform font family
-   */
-  val platformFontFamily : String
+    /**  
+     * The resolved platform font family  
+     */  
+    val platformFontFamily: String
 )
 
 /**
@@ -530,15 +530,15 @@ data class FontFace(
  */
 
 data class CSSKeyframesRule(
-  /**
-   * Animation name.
-   */
-  val animationName : Value,
+    /**  
+     * Animation name.  
+     */  
+    val animationName: Value,
 
-  /**
-   * List of keyframes.
-   */
-  val keyframes : List<CSSKeyframeRule>
+    /**  
+     * List of keyframes.  
+     */  
+    val keyframes: List<CSSKeyframeRule>
 )
 
 /**
@@ -546,26 +546,26 @@ data class CSSKeyframesRule(
  */
 
 data class CSSKeyframeRule(
-  /**
-   * The css style sheet identifier (absent for user agent stylesheet and user-specified
-stylesheet rules) this rule came from.
-   */
-  val styleSheetId : StyleSheetId? = null,
+    /**  
+     * The css style sheet identifier (absent for user agent stylesheet and user-specified  
+  stylesheet rules) this rule came from.  
+     */  
+    val styleSheetId: StyleSheetId? = null,
 
-  /**
-   * Parent stylesheet's origin.
-   */
-  val origin : StyleSheetOrigin,
+    /**  
+     * Parent stylesheet's origin.  
+     */  
+    val origin: StyleSheetOrigin,
 
-  /**
-   * Associated key text.
-   */
-  val keyText : Value,
+    /**  
+     * Associated key text.  
+     */  
+    val keyText: Value,
 
-  /**
-   * Associated style declaration.
-   */
-  val style : CSSStyle
+    /**  
+     * Associated style declaration.  
+     */  
+    val style: CSSStyle
 )
 
 /**
@@ -573,19 +573,18 @@ stylesheet rules) this rule came from.
  */
 
 data class StyleDeclarationEdit(
-  /**
-   * The css style sheet identifier.
-   */
-  val styleSheetId : StyleSheetId,
+    /**  
+     * The css style sheet identifier.  
+     */  
+    val styleSheetId: StyleSheetId,
 
-  /**
-   * The range of the style text in the enclosing stylesheet.
-   */
-  val range : SourceRange,
+    /**  
+     * The range of the style text in the enclosing stylesheet.  
+     */  
+    val range: SourceRange,
 
-  /**
-   * New style text.
-   */
-  val text : String
+    /**  
+     * New style text.  
+     */  
+    val text: String
 )
-

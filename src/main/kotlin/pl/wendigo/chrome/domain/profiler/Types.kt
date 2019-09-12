@@ -5,36 +5,36 @@ package pl.wendigo.chrome.domain.profiler
  */
 
 data class ProfileNode(
-  /**
-   * Unique id of the node.
-   */
-  val id : Int,
+    /**
+     * Unique id of the node.
+     */
+    val id: Int,
 
-  /**
-   * Function location.
-   */
-  val callFrame : pl.wendigo.chrome.domain.runtime.CallFrame,
+    /**
+     * Function location.
+     */
+    val callFrame: pl.wendigo.chrome.domain.runtime.CallFrame,
 
-  /**
-   * Number of samples where this node was on top of the call stack.
-   */
-  val hitCount : Int? = null,
+    /**
+     * Number of samples where this node was on top of the call stack.
+     */
+    val hitCount: Int? = null,
 
-  /**
-   * Child node ids.
-   */
-  val children : List<Int>? = null,
+    /**
+     * Child node ids.
+     */
+    val children: List<Int>? = null,
 
-  /**
-   * The reason of being not optimized. The function may be deoptimized or marked as don't
-optimize.
-   */
-  val deoptReason : String? = null,
+    /**
+     * The reason of being not optimized. The function may be deoptimized or marked as don't
+  optimize.
+     */
+    val deoptReason: String? = null,
 
-  /**
-   * An array of source position ticks.
-   */
-  val positionTicks : List<PositionTickInfo>? = null
+    /**
+     * An array of source position ticks.
+     */
+    val positionTicks: List<PositionTickInfo>? = null
 )
 
 /**
@@ -42,31 +42,31 @@ optimize.
  */
 
 data class Profile(
-  /**
-   * The list of profile nodes. First item is the root node.
-   */
-  val nodes : List<ProfileNode>,
+    /**
+     * The list of profile nodes. First item is the root node.
+     */
+    val nodes: List<ProfileNode>,
 
-  /**
-   * Profiling start timestamp in microseconds.
-   */
-  val startTime : Double,
+    /**
+     * Profiling start timestamp in microseconds.
+     */
+    val startTime: Double,
 
-  /**
-   * Profiling end timestamp in microseconds.
-   */
-  val endTime : Double,
+    /**
+     * Profiling end timestamp in microseconds.
+     */
+    val endTime: Double,
 
-  /**
-   * Ids of samples top nodes.
-   */
-  val samples : List<Int>? = null,
+    /**
+     * Ids of samples top nodes.
+     */
+    val samples: List<Int>? = null,
 
-  /**
-   * Time intervals between adjacent samples in microseconds. The first delta is relative to the
-profile startTime.
-   */
-  val timeDeltas : List<Int>? = null
+    /**
+     * Time intervals between adjacent samples in microseconds. The first delta is relative to the
+  profile startTime.
+     */
+    val timeDeltas: List<Int>? = null
 )
 
 /**
@@ -74,15 +74,15 @@ profile startTime.
  */
 
 data class PositionTickInfo(
-  /**
-   * Source line number (1-based).
-   */
-  val line : Int,
+    /**
+     * Source line number (1-based).
+     */
+    val line: Int,
 
-  /**
-   * Number of samples attributed to the source line.
-   */
-  val ticks : Int
+    /**
+     * Number of samples attributed to the source line.
+     */
+    val ticks: Int
 )
 
 /**
@@ -90,20 +90,20 @@ data class PositionTickInfo(
  */
 
 data class CoverageRange(
-  /**
-   * JavaScript script source offset for the range start.
-   */
-  val startOffset : Int,
+    /**
+     * JavaScript script source offset for the range start.
+     */
+    val startOffset: Int,
 
-  /**
-   * JavaScript script source offset for the range end.
-   */
-  val endOffset : Int,
+    /**
+     * JavaScript script source offset for the range end.
+     */
+    val endOffset: Int,
 
-  /**
-   * Collected execution count of the source range.
-   */
-  val count : Int
+    /**
+     * Collected execution count of the source range.
+     */
+    val count: Int
 )
 
 /**
@@ -111,20 +111,20 @@ data class CoverageRange(
  */
 
 data class FunctionCoverage(
-  /**
-   * JavaScript function name.
-   */
-  val functionName : String,
+    /**
+     * JavaScript function name.
+     */
+    val functionName: String,
 
-  /**
-   * Source ranges inside the function with coverage data.
-   */
-  val ranges : List<CoverageRange>,
+    /**
+     * Source ranges inside the function with coverage data.
+     */
+    val ranges: List<CoverageRange>,
 
-  /**
-   * Whether coverage data for this function has block granularity.
-   */
-  val isBlockCoverage : Boolean
+    /**
+     * Whether coverage data for this function has block granularity.
+     */
+    val isBlockCoverage: Boolean
 )
 
 /**
@@ -132,20 +132,20 @@ data class FunctionCoverage(
  */
 
 data class ScriptCoverage(
-  /**
-   * JavaScript script id.
-   */
-  val scriptId : pl.wendigo.chrome.domain.runtime.ScriptId,
+    /**
+     * JavaScript script id.
+     */
+    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
 
-  /**
-   * JavaScript script name or url.
-   */
-  val url : String,
+    /**
+     * JavaScript script name or url.
+     */
+    val url: String,
 
-  /**
-   * Functions contained in the script that has coverage data.
-   */
-  val functions : List<FunctionCoverage>
+    /**
+     * Functions contained in the script that has coverage data.
+     */
+    val functions: List<FunctionCoverage>
 )
 
 /**
@@ -153,10 +153,10 @@ data class ScriptCoverage(
  */
 
 data class TypeObject(
-  /**
-   * Name of a type collected with type profiling.
-   */
-  val name : String
+    /**
+     * Name of a type collected with type profiling.
+     */
+    val name: String
 )
 
 /**
@@ -164,15 +164,15 @@ data class TypeObject(
  */
 
 data class TypeProfileEntry(
-  /**
-   * Source offset of the parameter or end of function for return values.
-   */
-  val offset : Int,
+    /**
+     * Source offset of the parameter or end of function for return values.
+     */
+    val offset: Int,
 
-  /**
-   * The types for this parameter or return value.
-   */
-  val types : List<TypeObject>
+    /**
+     * The types for this parameter or return value.
+     */
+    val types: List<TypeObject>
 )
 
 /**
@@ -180,19 +180,18 @@ data class TypeProfileEntry(
  */
 
 data class ScriptTypeProfile(
-  /**
-   * JavaScript script id.
-   */
-  val scriptId : pl.wendigo.chrome.domain.runtime.ScriptId,
+    /**
+     * JavaScript script id.
+     */
+    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
 
-  /**
-   * JavaScript script name or url.
-   */
-  val url : String,
+    /**
+     * JavaScript script name or url.
+     */
+    val url: String,
 
-  /**
-   * Type profile entries for parameters and return values of the functions in the script.
-   */
-  val entries : List<TypeProfileEntry>
+    /**
+     * Type profile entries for parameters and return values of the functions in the script.
+     */
+    val entries: List<TypeProfileEntry>
 )
-

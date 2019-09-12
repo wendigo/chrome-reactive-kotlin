@@ -3,11 +3,11 @@ package pl.wendigo.chrome.domain.emulation
 /**
  * This domain emulates different environments for the page.
  */
-class EmulationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+class EmulationDomain internal constructor(private val connectionRemote: pl.wendigo.chrome.DebuggerProtocol) {
     /**
      * Tells whether emulation is supported.
      */
-    fun canEmulate() : io.reactivex.Single<CanEmulateResponse> {
+    fun canEmulate(): io.reactivex.Single<CanEmulateResponse> {
         return connectionRemote.runAndCaptureResponse("Emulation.canEmulate", null, CanEmulateResponse::class.java).map {
             it.value()
         }
@@ -16,7 +16,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     /**
      * Clears the overriden device metrics.
      */
-    fun clearDeviceMetricsOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun clearDeviceMetricsOverride(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.clearDeviceMetricsOverride", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -25,7 +25,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     /**
      * Clears the overriden Geolocation Position and Error.
      */
-    fun clearGeolocationOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun clearGeolocationOverride(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.clearGeolocationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -34,8 +34,17 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     /**
      * Requests that page scale factor is reset to initial values.
      */
-    fun resetPageScaleFactor() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun resetPageScaleFactor(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.resetPageScaleFactor", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Enables or disables simulating a focused and active page.
+     */
+    fun setFocusEmulationEnabled(input: SetFocusEmulationEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Emulation.setFocusEmulationEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -43,7 +52,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
     /**
      * Enables CPU throttling to emulate slow CPUs.
      */
-    fun setCPUThrottlingRate(input : SetCPUThrottlingRateRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setCPUThrottlingRate(input: SetCPUThrottlingRateRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setCPUThrottlingRate", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -53,7 +62,7 @@ class EmulationDomain internal constructor(private val connectionRemote : pl.wen
      * Sets or clears an override of the default background color of the frame. This override is used
 if the content does not specify one.
      */
-    fun setDefaultBackgroundColorOverride(input : SetDefaultBackgroundColorOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setDefaultBackgroundColorOverride(input: SetDefaultBackgroundColorOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setDefaultBackgroundColorOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -64,7 +73,7 @@ if the content does not specify one.
 window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media
 query results).
      */
-    fun setDeviceMetricsOverride(input : SetDeviceMetricsOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setDeviceMetricsOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -73,7 +82,25 @@ query results).
     /**
      *
      */
-    fun setEmitTouchEventsForMouse(input : SetEmitTouchEventsForMouseRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setScrollbarsHidden(input: SetScrollbarsHiddenRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Emulation.setScrollbarsHidden", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun setDocumentCookieDisabled(input: SetDocumentCookieDisabledRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Emulation.setDocumentCookieDisabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun setEmitTouchEventsForMouse(input: SetEmitTouchEventsForMouseRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setEmitTouchEventsForMouse", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -82,7 +109,7 @@ query results).
     /**
      * Emulates the given media for CSS media queries.
      */
-    fun setEmulatedMedia(input : SetEmulatedMediaRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setEmulatedMedia(input: SetEmulatedMediaRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setEmulatedMedia", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -92,7 +119,7 @@ query results).
      * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position
 unavailable.
      */
-    fun setGeolocationOverride(input : SetGeolocationOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setGeolocationOverride(input: SetGeolocationOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -101,7 +128,7 @@ unavailable.
     /**
      * Overrides value returned by the javascript navigator object.
      */
-    fun setNavigatorOverrides(input : SetNavigatorOverridesRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setNavigatorOverrides(input: SetNavigatorOverridesRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setNavigatorOverrides", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -110,7 +137,7 @@ unavailable.
     /**
      * Sets a specified page scale factor.
      */
-    fun setPageScaleFactor(input : SetPageScaleFactorRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setPageScaleFactor(input: SetPageScaleFactorRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setPageScaleFactor", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -119,7 +146,7 @@ unavailable.
     /**
      * Switches script execution in the page.
      */
-    fun setScriptExecutionDisabled(input : SetScriptExecutionDisabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setScriptExecutionDisabled(input: SetScriptExecutionDisabledRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setScriptExecutionDisabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -128,7 +155,7 @@ unavailable.
     /**
      * Enables touch on platforms which do not support them.
      */
-    fun setTouchEmulationEnabled(input : SetTouchEmulationEnabledRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setTouchEmulationEnabled", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -138,8 +165,17 @@ unavailable.
      * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets
 the current virtual time policy.  Note this supersedes any previous time budget.
      */
-    fun setVirtualTimePolicy(input : SetVirtualTimePolicyRequest) : io.reactivex.Single<SetVirtualTimePolicyResponse> {
+    fun setVirtualTimePolicy(input: SetVirtualTimePolicyRequest): io.reactivex.Single<SetVirtualTimePolicyResponse> {
         return connectionRemote.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, SetVirtualTimePolicyResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Overrides default host system timezone with the specified one.
+     */
+    fun setTimezoneOverride(input: SetTimezoneOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Emulation.setTimezoneOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -149,32 +185,25 @@ the current virtual time policy.  Note this supersedes any previous time budget.
 (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported
 on Android.
      */
-    fun setVisibleSize(input : SetVisibleSizeRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setVisibleSize(input: SetVisibleSizeRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Emulation.setVisibleSize", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Notification sent after the virtual time has advanced.
+     * Allows overriding user agent with the given string.
      */
-    fun virtualTimeAdvanced() : io.reactivex.Flowable<VirtualTimeAdvancedEvent> {
-        return virtualTimeAdvancedTimed().map {
+    fun setUserAgentOverride(input: SetUserAgentOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Emulation.setUserAgentOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
 
     /**
-     * Notification sent after the virtual time has advanced.
+     *  Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
      */
-    fun virtualTimeAdvancedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<VirtualTimeAdvancedEvent>> {
-        return connectionRemote.captureEvents("Emulation.virtualTimeAdvanced", VirtualTimeAdvancedEvent::class.java)
-    }
-
-    /**
-     * Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
-     */
-    fun virtualTimeBudgetExpired() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun virtualTimeBudgetExpired(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return virtualTimeBudgetExpiredTimed().map {
             it.value()
         }
@@ -183,30 +212,14 @@ on Android.
     /**
      * Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
      */
-    fun virtualTimeBudgetExpiredTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
+    fun virtualTimeBudgetExpiredTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.ProtocolEvent>> {
         return connectionRemote.captureEvents("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.ProtocolEvent::class.java)
-    }
-
-    /**
-     * Notification sent after the virtual time has paused.
-     */
-    fun virtualTimePaused() : io.reactivex.Flowable<VirtualTimePausedEvent> {
-        return virtualTimePausedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Notification sent after the virtual time has paused.
-     */
-    fun virtualTimePausedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<VirtualTimePausedEvent>> {
-        return connectionRemote.captureEvents("Emulation.virtualTimePaused", VirtualTimePausedEvent::class.java)
     }
 
     /**
      * Returns flowable capturing all Emulation domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Emulation"
         }
@@ -219,10 +232,23 @@ on Android.
  * Tells whether emulation is supported.
  */
 data class CanEmulateResponse(
-  /**
-   * True if emulation is supported.
-   */
-  val result : Boolean
+    /**  
+     * True if emulation is supported.  
+     */  
+    val result: Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with Emulation.setFocusEmulationEnabled method call.
+ *
+ * Enables or disables simulating a focused and active page.
+ */
+data class SetFocusEmulationEnabledRequest(
+    /**
+     * Whether to enable to disable focus emulation.
+     */
+    val enabled: Boolean
 
 )
 
@@ -231,11 +257,11 @@ data class CanEmulateResponse(
  *
  * Enables CPU throttling to emulate slow CPUs.
  */
-data class SetCPUThrottlingRateRequest (
+data class SetCPUThrottlingRateRequest(
     /**
      * Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc).
      */
-    val rate : Double
+    val rate: Double
 
 )
 
@@ -245,12 +271,12 @@ data class SetCPUThrottlingRateRequest (
  * Sets or clears an override of the default background color of the frame. This override is used
 if the content does not specify one.
  */
-data class SetDefaultBackgroundColorOverrideRequest (
+data class SetDefaultBackgroundColorOverrideRequest(
     /**
      * RGBA of the default background color. If not specified, any existing override will be
 cleared.
      */
-    val color : pl.wendigo.chrome.domain.dom.RGBA? = null
+    val color: pl.wendigo.chrome.domain.dom.RGBA? = null
 
 )
 
@@ -261,68 +287,94 @@ cleared.
 window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media
 query results).
  */
-data class SetDeviceMetricsOverrideRequest (
+data class SetDeviceMetricsOverrideRequest(
     /**
      * Overriding width value in pixels (minimum 0, maximum 10000000). 0 disables the override.
      */
-    val width : Int,
+    val width: Int,
 
     /**
      * Overriding height value in pixels (minimum 0, maximum 10000000). 0 disables the override.
      */
-    val height : Int,
+    val height: Int,
 
     /**
      * Overriding device scale factor value. 0 disables the override.
      */
-    val deviceScaleFactor : Double,
+    val deviceScaleFactor: Double,
 
     /**
      * Whether to emulate mobile device. This includes viewport meta tag, overlay scrollbars, text
 autosizing and more.
      */
-    val mobile : Boolean,
+    val mobile: Boolean,
 
     /**
      * Scale to apply to resulting view image.
      */
-    @pl.wendigo.chrome.Experimental val scale : Double? = null,
+    @pl.wendigo.chrome.Experimental val scale: Double? = null,
 
     /**
      * Overriding screen width value in pixels (minimum 0, maximum 10000000).
      */
-    @pl.wendigo.chrome.Experimental val screenWidth : Int? = null,
+    @pl.wendigo.chrome.Experimental val screenWidth: Int? = null,
 
     /**
      * Overriding screen height value in pixels (minimum 0, maximum 10000000).
      */
-    @pl.wendigo.chrome.Experimental val screenHeight : Int? = null,
+    @pl.wendigo.chrome.Experimental val screenHeight: Int? = null,
 
     /**
      * Overriding view X position on screen in pixels (minimum 0, maximum 10000000).
      */
-    @pl.wendigo.chrome.Experimental val positionX : Int? = null,
+    @pl.wendigo.chrome.Experimental val positionX: Int? = null,
 
     /**
      * Overriding view Y position on screen in pixels (minimum 0, maximum 10000000).
      */
-    @pl.wendigo.chrome.Experimental val positionY : Int? = null,
+    @pl.wendigo.chrome.Experimental val positionY: Int? = null,
 
     /**
      * Do not set visible view size, rely upon explicit setVisibleSize call.
      */
-    @pl.wendigo.chrome.Experimental val dontSetVisibleSize : Boolean? = null,
+    @pl.wendigo.chrome.Experimental val dontSetVisibleSize: Boolean? = null,
 
     /**
      * Screen orientation override.
      */
-    val screenOrientation : ScreenOrientation? = null,
+    val screenOrientation: ScreenOrientation? = null,
 
     /**
      * If set, the visible area of the page will be overridden to this viewport. This viewport
 change is not observed by the page, e.g. viewport-relative elements do not change positions.
      */
-    @pl.wendigo.chrome.Experimental val viewport : pl.wendigo.chrome.domain.page.Viewport? = null
+    @pl.wendigo.chrome.Experimental val viewport: pl.wendigo.chrome.domain.page.Viewport? = null
+
+)
+
+/**
+ * Represents request frame that can be used with Emulation.setScrollbarsHidden method call.
+ *
+ *
+ */
+data class SetScrollbarsHiddenRequest(
+    /**
+     * Whether scrollbars should be always hidden.
+     */
+    val hidden: Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with Emulation.setDocumentCookieDisabled method call.
+ *
+ *
+ */
+data class SetDocumentCookieDisabledRequest(
+    /**
+     * Whether document.coookie API should be disabled.
+     */
+    val disabled: Boolean
 
 )
 
@@ -331,16 +383,16 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
  *
  *
  */
-data class SetEmitTouchEventsForMouseRequest (
+data class SetEmitTouchEventsForMouseRequest(
     /**
      * Whether touch emulation based on mouse input should be enabled.
      */
-    val enabled : Boolean,
+    val enabled: Boolean,
 
     /**
      * Touch/gesture events configuration. Default: current platform.
      */
-    val configuration : String? = null
+    val configuration: String? = null
 
 )
 
@@ -349,11 +401,11 @@ data class SetEmitTouchEventsForMouseRequest (
  *
  * Emulates the given media for CSS media queries.
  */
-data class SetEmulatedMediaRequest (
+data class SetEmulatedMediaRequest(
     /**
      * Media type to emulate. Empty string disables the override.
      */
-    val media : String
+    val media: String
 
 )
 
@@ -363,21 +415,21 @@ data class SetEmulatedMediaRequest (
  * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position
 unavailable.
  */
-data class SetGeolocationOverrideRequest (
+data class SetGeolocationOverrideRequest(
     /**
      * Mock latitude
      */
-    val latitude : Double? = null,
+    val latitude: Double? = null,
 
     /**
      * Mock longitude
      */
-    val longitude : Double? = null,
+    val longitude: Double? = null,
 
     /**
      * Mock accuracy
      */
-    val accuracy : Double? = null
+    val accuracy: Double? = null
 
 )
 
@@ -386,11 +438,11 @@ data class SetGeolocationOverrideRequest (
  *
  * Overrides value returned by the javascript navigator object.
  */
-data class SetNavigatorOverridesRequest (
+data class SetNavigatorOverridesRequest(
     /**
      * The platform navigator.platform should return.
      */
-    val platform : String
+    val platform: String
 
 )
 
@@ -399,11 +451,11 @@ data class SetNavigatorOverridesRequest (
  *
  * Sets a specified page scale factor.
  */
-data class SetPageScaleFactorRequest (
+data class SetPageScaleFactorRequest(
     /**
      * Page scale factor.
      */
-    val pageScaleFactor : Double
+    val pageScaleFactor: Double
 
 )
 
@@ -412,11 +464,11 @@ data class SetPageScaleFactorRequest (
  *
  * Switches script execution in the page.
  */
-data class SetScriptExecutionDisabledRequest (
+data class SetScriptExecutionDisabledRequest(
     /**
      * Whether script execution should be disabled in the page.
      */
-    val value : Boolean
+    val value: Boolean
 
 )
 
@@ -425,16 +477,16 @@ data class SetScriptExecutionDisabledRequest (
  *
  * Enables touch on platforms which do not support them.
  */
-data class SetTouchEmulationEnabledRequest (
+data class SetTouchEmulationEnabledRequest(
     /**
      * Whether the touch event emulation should be enabled.
      */
-    val enabled : Boolean,
+    val enabled: Boolean,
 
     /**
      * Maximum touch points supported. Defaults to one.
      */
-    val maxTouchPoints : Int? = null
+    val maxTouchPoints: Int? = null
 
 )
 
@@ -444,29 +496,34 @@ data class SetTouchEmulationEnabledRequest (
  * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets
 the current virtual time policy.  Note this supersedes any previous time budget.
  */
-data class SetVirtualTimePolicyRequest (
+data class SetVirtualTimePolicyRequest(
     /**
      *
      */
-    val policy : VirtualTimePolicy,
+    val policy: VirtualTimePolicy,
 
     /**
      * If set, after this many virtual milliseconds have elapsed virtual time will be paused and a
 virtualTimeBudgetExpired event is sent.
      */
-    val budget : Double? = null,
+    val budget: Double? = null,
 
     /**
      * If set this specifies the maximum number of tasks that can be run before virtual is forced
 forwards to prevent deadlock.
      */
-    val maxVirtualTimeTaskStarvationCount : Int? = null,
+    val maxVirtualTimeTaskStarvationCount: Int? = null,
 
     /**
      * If set the virtual time policy change should be deferred until any frame starts navigating.
 Note any previous deferred policy change is superseded.
      */
-    val waitForNavigation : Boolean? = null
+    val waitForNavigation: Boolean? = null,
+
+    /**
+     * If set, base::Time::Now will be overriden to initially return this value.
+     */
+    val initialVirtualTime: pl.wendigo.chrome.domain.network.TimeSinceEpoch? = null
 
 )
 
@@ -477,10 +534,24 @@ Note any previous deferred policy change is superseded.
 the current virtual time policy.  Note this supersedes any previous time budget.
  */
 data class SetVirtualTimePolicyResponse(
-  /**
-   * Absolute timestamp at which virtual time was first enabled (milliseconds since epoch).
-   */
-  val virtualTimeBase : pl.wendigo.chrome.domain.runtime.Timestamp
+    /**  
+     * Absolute timestamp at which virtual time was first enabled (up time in milliseconds).  
+     */  
+    val virtualTimeTicksBase: Double
+
+)
+
+/**
+ * Represents request frame that can be used with Emulation.setTimezoneOverride method call.
+ *
+ * Overrides default host system timezone with the specified one.
+ */
+data class SetTimezoneOverrideRequest(
+    /**
+     * The timezone identifier. If empty, disables the override and
+restores default host system timezone.
+     */
+    val timezoneId: String
 
 )
 
@@ -491,44 +562,38 @@ data class SetVirtualTimePolicyResponse(
 (e.g. browser window). Can be used to produce screenshots of the specified size. Not supported
 on Android.
  */
-data class SetVisibleSizeRequest (
+data class SetVisibleSizeRequest(
     /**
      * Frame width (DIP).
      */
-    val width : Int,
+    val width: Int,
 
     /**
      * Frame height (DIP).
      */
-    val height : Int
+    val height: Int
 
 )
 
 /**
- * Represents event frames for Emulation.virtualTimeAdvanced
+ * Represents request frame that can be used with Emulation.setUserAgentOverride method call.
  *
- * Notification sent after the virtual time has advanced.
+ * Allows overriding user agent with the given string.
  */
-data class VirtualTimeAdvancedEvent(
-  /**
-   * The amount of virtual time that has elapsed in milliseconds since virtual time was first
-enabled.
-   */
-  val virtualTimeElapsed : Double
+data class SetUserAgentOverrideRequest(
+    /**
+     * User agent to use.
+     */
+    val userAgent: String,
 
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Emulation", name = "virtualTimeAdvanced")
+    /**
+     * Browser langugage to emulate.
+     */
+    val acceptLanguage: String? = null,
 
-/**
- * Represents event frames for Emulation.virtualTimePaused
- *
- * Notification sent after the virtual time has paused.
- */
-data class VirtualTimePausedEvent(
-  /**
-   * The amount of virtual time that has elapsed in milliseconds since virtual time was first
-enabled.
-   */
-  val virtualTimeElapsed : Double
+    /**
+     * The platform navigator.platform should return.
+     */
+    val platform: String? = null
 
-) : pl.wendigo.chrome.ProtocolEvent(domain = "Emulation", name = "virtualTimePaused")
-
+)

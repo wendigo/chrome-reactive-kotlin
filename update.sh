@@ -12,18 +12,14 @@ version="master"
 trap "rm -f '$browser' '$js'" EXIT
 
 base='https://chromium.googlesource.com'
-printf "${GREEN}Fetching:\n\t/chromium/src/+/$version/third_party/WebKit/Source/core/inspector/browser_protocol.json?format=TEXT...${NC}\n"
-curl -s "$base/chromium/src/+/$version/third_party/WebKit/Source/core/inspector/browser_protocol.json?format=TEXT" | base64 --decode >"$browser"
-printf "${GREEN}\t/v8/v8/+/master/src/inspector/js_protocol.json?format=TEXT...${NC}\n"
-curl -s "$base/v8/v8/+/master/src/inspector/js_protocol.json?format=TEXT" | base64 --decode >"$js"
+printf "${GREEN}Fetching:\n\t/chromium/src/+/$version/third_party/blink/renderer/core/inspector/browser_protocol.pdl?format=TEXT...${NC}\n"
+curl -s "$base/chromium/src/+/$version/third_party/blink/renderer/core/inspector/browser_protocol.pdl?format=TEXT" | base64 --decode >"browser_protocol.pdl"
+printf "${GREEN}\t/chromium/src/third_party/+/$version/inspector_protocol/convert_protocol_to_json.py?format=TEXT...${NC}\n"
+curl -s "$base/chromium/src/third_party/+/$version/inspector_protocol/convert_protocol_to_json.py?format=TEXT" | base64 --decode >"convert_protocol_to_json.py"
+printf "${GREEN}\t/chromium/src/third_party/+/$version/inspector_protocol/pdl.py?format=TEXT...${NC}\n"
+curl -s "$base/chromium/src/third_party/+/$version/inspector_protocol/pdl.py?format=TEXT" | base64 --decode >"pdl.py"
 
-printf "${GREEN}Merging files $js $browser into protocol.json${NC}\n"
-
-node -p '
-    const protocols = process.argv.slice(1).map((path) => JSON.parse(fs.readFileSync(path)));
-    protocols[0].domains.push(...protocols[1].domains);
-    JSON.stringify(protocols[0], null, 4);
-' "$browser" "$js" >protocol.json
+python convert_protocol_to_json.py browser_protocol.pdl protocol.json
 
 git --no-pager diff protocol.json
 
@@ -32,9 +28,10 @@ then
 	printf "${GREEN}Regenerating domains...\n${NC}"
 	go run generator.go
 	printf "${GREEN}Formatting result code...\n${NC}"
-	./gradlew ktlintFormat
+	./gradlew formatKotlin
 	printf "${GREEN}Checking if code is formatted...\n${NC}"
-	./gradlew ktlint
+	./gradlew lintKotlin
+	exit
 	printf "${GREEN}Commiting changes...\n${NC}"
 	git add .
 	git commit -m "Update to newest protocol"

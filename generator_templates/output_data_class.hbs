@@ -1,14 +1,14 @@
 /**
- * {{Description}}
+ *{{trim Description}}
  *
- * {{{Type.Description}}}
+ *{{{trim Type.Description}}}
  */
 data class {{Type.ClassName}}(
   {{#each Type.Returns}}
   /**
-   * {{{Description}}}
+   *{{{trim Description}}}
    */
-  {{#if Experimental}}@{{Package}}.Experimental {{/if}}{{#if Deprecated}}@{{Package}}.Deprecated {{/if}}{{{value Name}}} : {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
+  {{#if Experimental}}@{{Package}}.Experimental {{/if}}{{#if Deprecated}}@{{Package}}.Deprecated {{/if}}{{{value Name}}}: {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
 
   {{/each}}
-){{#each Type.ImplementingInterfaces}}{{#if @first}} : {{/if}}{{{.}}}{{#unless @last}}, {{/unless}}{{/each}}
+){{#each Type.ImplementingInterfaces}}{{#if @first}}: {{/if}}{{{.}}}{{#unless @last}}, {{/unless}}{{/each}}

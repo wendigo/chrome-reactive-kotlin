@@ -3,11 +3,11 @@ package pl.wendigo.chrome.domain.deviceorientation
 /**
  * DeviceOrientationDomain represents remote debugger protocol domain.
  */
-class DeviceOrientationDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+class DeviceOrientationDomain internal constructor(private val connectionRemote: pl.wendigo.chrome.DebuggerProtocol) {
     /**
      * Clears the overridden Device Orientation.
      */
-    fun clearDeviceOrientationOverride() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun clearDeviceOrientationOverride(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DeviceOrientation.clearDeviceOrientationOverride", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -16,7 +16,7 @@ class DeviceOrientationDomain internal constructor(private val connectionRemote 
     /**
      * Overrides the Device Orientation.
      */
-    fun setDeviceOrientationOverride(input : SetDeviceOrientationOverrideRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DeviceOrientation.setDeviceOrientationOverride", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -25,7 +25,7 @@ class DeviceOrientationDomain internal constructor(private val connectionRemote 
     /**
      * Returns flowable capturing all DeviceOrientation domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "DeviceOrientation"
         }
@@ -37,21 +37,20 @@ class DeviceOrientationDomain internal constructor(private val connectionRemote 
  *
  * Overrides the Device Orientation.
  */
-data class SetDeviceOrientationOverrideRequest (
+data class SetDeviceOrientationOverrideRequest(
     /**
      * Mock alpha
      */
-    val alpha : Double,
+    val alpha: Double,
 
     /**
      * Mock beta
      */
-    val beta : Double,
+    val beta: Double,
 
     /**
      * Mock gamma
      */
-    val gamma : Double
+    val gamma: Double
 
 )
-

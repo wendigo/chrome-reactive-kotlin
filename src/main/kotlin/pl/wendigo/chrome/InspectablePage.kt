@@ -44,7 +44,7 @@ data class InspectablePage(
     /**
      * Opens new chrome protocol debugger connection.
      */
-    fun connect() : ChromeProtocol {
+    fun connect(): ChromeProtocol {
         return ChromeProtocol.openSession(this)
     }
 }
@@ -52,7 +52,7 @@ data class InspectablePage(
 /**
  * Protocol version represents browser build information.
  */
-data class ProtocolVersion (
+data class ProtocolVersion(
     /**
      * Browser version (i.e. Chrome/58.0.3029.0)
      */
@@ -81,5 +81,8 @@ data class ProtocolVersion (
      * Webkit rendering engine version
      */
     @get:JsonProperty("WebKit-Version")
-    val webkitVersion: String
+    val webkitVersion: String,
+
+    @get:JsonProperty("webSocketDebuggerUrl")
+    val webSocketDebugUrl: String
 )

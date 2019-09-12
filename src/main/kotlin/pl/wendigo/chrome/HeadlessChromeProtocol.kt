@@ -4,14 +4,14 @@ import pl.wendigo.chrome.domain.target.AttachToTargetRequest
 import pl.wendigo.chrome.domain.target.CreateTargetRequest
 
 class HeadlessChromeProtocol(
-    api : DebuggerProtocol,
+    api: DebuggerProtocol,
     val session: HeadlessSession
 ) : ChromeProtocol(api) {
     override fun toString(): String = "HeadlessChromeProtocol(session=$session)"
 
     companion object {
         @JvmOverloads
-        fun create(api : ChromeProtocol, url : String, width : Int = 1024, height: Int = 768) : HeadlessChromeProtocol {
+        fun create(api: ChromeProtocol, url: String, width: Int = 1024, height: Int = 768): HeadlessChromeProtocol {
             val mapper = FrameMapper()
 
             return api.Target.createBrowserContext().flatMap { (browserContextId) ->

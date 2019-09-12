@@ -3,11 +3,11 @@ package pl.wendigo.chrome.domain.memory
 /**
  * MemoryDomain represents remote debugger protocol domain.
  */
-class MemoryDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+class MemoryDomain internal constructor(private val connectionRemote: pl.wendigo.chrome.DebuggerProtocol) {
     /**
      *
      */
-    fun getDOMCounters() : io.reactivex.Single<GetDOMCountersResponse> {
+    fun getDOMCounters(): io.reactivex.Single<GetDOMCountersResponse> {
         return connectionRemote.runAndCaptureResponse("Memory.getDOMCounters", null, GetDOMCountersResponse::class.java).map {
             it.value()
         }
@@ -16,8 +16,17 @@ class MemoryDomain internal constructor(private val connectionRemote : pl.wendig
     /**
      *
      */
-    fun prepareForLeakDetection() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun prepareForLeakDetection(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Memory.prepareForLeakDetection", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Simulate OomIntervention by purging V8 memory.
+     */
+    fun forciblyPurgeJavaScriptMemory(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("Memory.forciblyPurgeJavaScriptMemory", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -25,7 +34,7 @@ class MemoryDomain internal constructor(private val connectionRemote : pl.wendig
     /**
      * Enable/disable suppressing memory pressure notifications in all processes.
      */
-    fun setPressureNotificationsSuppressed(input : SetPressureNotificationsSuppressedRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setPressureNotificationsSuppressed(input: SetPressureNotificationsSuppressedRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -34,7 +43,7 @@ class MemoryDomain internal constructor(private val connectionRemote : pl.wendig
     /**
      * Simulate a memory pressure notification in all processes.
      */
-    fun simulatePressureNotification(input : SimulatePressureNotificationRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun simulatePressureNotification(input: SimulatePressureNotificationRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -43,7 +52,7 @@ class MemoryDomain internal constructor(private val connectionRemote : pl.wendig
     /**
      * Start collecting native memory profile.
      */
-    fun startSampling(input : StartSamplingRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun startSampling(input: StartSamplingRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Memory.startSampling", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -52,7 +61,7 @@ class MemoryDomain internal constructor(private val connectionRemote : pl.wendig
     /**
      * Stop collecting native memory profile.
      */
-    fun stopSampling() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun stopSampling(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Memory.stopSampling", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -62,7 +71,7 @@ class MemoryDomain internal constructor(private val connectionRemote : pl.wendig
      * Retrieve native memory allocations profile
 collected since renderer process startup.
      */
-    fun getAllTimeSamplingProfile() : io.reactivex.Single<GetAllTimeSamplingProfileResponse> {
+    fun getAllTimeSamplingProfile(): io.reactivex.Single<GetAllTimeSamplingProfileResponse> {
         return connectionRemote.runAndCaptureResponse("Memory.getAllTimeSamplingProfile", null, GetAllTimeSamplingProfileResponse::class.java).map {
             it.value()
         }
@@ -72,7 +81,7 @@ collected since renderer process startup.
      * Retrieve native memory allocations profile
 collected since browser process startup.
      */
-    fun getBrowserSamplingProfile() : io.reactivex.Single<GetBrowserSamplingProfileResponse> {
+    fun getBrowserSamplingProfile(): io.reactivex.Single<GetBrowserSamplingProfileResponse> {
         return connectionRemote.runAndCaptureResponse("Memory.getBrowserSamplingProfile", null, GetBrowserSamplingProfileResponse::class.java).map {
             it.value()
         }
@@ -82,7 +91,7 @@ collected since browser process startup.
      * Retrieve native memory allocations profile collected since last
 `startSampling` call.
      */
-    fun getSamplingProfile() : io.reactivex.Single<GetSamplingProfileResponse> {
+    fun getSamplingProfile(): io.reactivex.Single<GetSamplingProfileResponse> {
         return connectionRemote.runAndCaptureResponse("Memory.getSamplingProfile", null, GetSamplingProfileResponse::class.java).map {
             it.value()
         }
@@ -91,7 +100,7 @@ collected since browser process startup.
     /**
      * Returns flowable capturing all Memory domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Memory"
         }
@@ -104,20 +113,20 @@ collected since browser process startup.
  *
  */
 data class GetDOMCountersResponse(
-  /**
-   *
-   */
-  val documents : Int,
+    /**  
+     *  
+     */  
+    val documents: Int,
 
-  /**
-   *
-   */
-  val nodes : Int,
+    /**  
+     *  
+     */  
+    val nodes: Int,
 
-  /**
-   *
-   */
-  val jsEventListeners : Int
+    /**  
+     *  
+     */  
+    val jsEventListeners: Int
 
 )
 
@@ -126,11 +135,11 @@ data class GetDOMCountersResponse(
  *
  * Enable/disable suppressing memory pressure notifications in all processes.
  */
-data class SetPressureNotificationsSuppressedRequest (
+data class SetPressureNotificationsSuppressedRequest(
     /**
      * If true, memory pressure notifications will be suppressed.
      */
-    val suppressed : Boolean
+    val suppressed: Boolean
 
 )
 
@@ -139,11 +148,11 @@ data class SetPressureNotificationsSuppressedRequest (
  *
  * Simulate a memory pressure notification in all processes.
  */
-data class SimulatePressureNotificationRequest (
+data class SimulatePressureNotificationRequest(
     /**
      * Memory pressure level of the notification.
      */
-    val level : PressureLevel
+    val level: PressureLevel
 
 )
 
@@ -152,16 +161,16 @@ data class SimulatePressureNotificationRequest (
  *
  * Start collecting native memory profile.
  */
-data class StartSamplingRequest (
+data class StartSamplingRequest(
     /**
      * Average number of bytes between samples.
      */
-    val samplingInterval : Int? = null,
+    val samplingInterval: Int? = null,
 
     /**
      * Do not randomize intervals between samples.
      */
-    val suppressRandomness : Boolean? = null
+    val suppressRandomness: Boolean? = null
 
 )
 
@@ -172,10 +181,10 @@ data class StartSamplingRequest (
 collected since renderer process startup.
  */
 data class GetAllTimeSamplingProfileResponse(
-  /**
-   *
-   */
-  val profile : SamplingProfile
+    /**  
+     *  
+     */  
+    val profile: SamplingProfile
 
 )
 
@@ -186,10 +195,10 @@ data class GetAllTimeSamplingProfileResponse(
 collected since browser process startup.
  */
 data class GetBrowserSamplingProfileResponse(
-  /**
-   *
-   */
-  val profile : SamplingProfile
+    /**  
+     *  
+     */  
+    val profile: SamplingProfile
 
 )
 
@@ -200,10 +209,9 @@ data class GetBrowserSamplingProfileResponse(
 `startSampling` call.
  */
 data class GetSamplingProfileResponse(
-  /**
-   *
-   */
-  val profile : SamplingProfile
+    /**  
+     *  
+     */  
+    val profile: SamplingProfile
 
 )
-

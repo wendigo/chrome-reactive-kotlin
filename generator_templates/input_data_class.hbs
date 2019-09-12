@@ -1,14 +1,14 @@
 /**
  * Represents request frame that can be used with {{Domain}}.{{Name}} method call.
  *
- * {{{Description}}}
+ *{{{trim Description}}}
  */
 data class {{SimpleName}}Request (
     {{#each Parameters}}
     /**
-     * {{{Description}}}
+     *{{{trim Description}}}
      */
-    {{#if Experimental}}@{{Package}}.Experimental {{/if}}{{#if Deprecated}}@{{Package}}.Deprecated {{/if}}{{{value Name}}} : {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
+    {{#if Experimental}}@{{Package}}.Experimental {{/if}}{{#if Deprecated}}@{{Package}}.Deprecated {{/if}}{{{value Name}}}: {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
 
     {{/each}}
 )

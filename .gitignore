@@ -9,3 +9,6 @@ out
 *.iml
 *.ipr
 *.iws
+*.pyc
+*.py
+*.pdl

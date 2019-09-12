@@ -18,20 +18,20 @@ typealias BackendNodeId = Int
  */
 
 data class BackendNode(
-  /**
-   * `Node`'s nodeType.
-   */
-  val nodeType : Int,
+    /**  
+     * `Node`'s nodeType.  
+     */  
+    val nodeType: Int,
 
-  /**
-   * `Node`'s nodeName.
-   */
-  val nodeName : String,
+    /**  
+     * `Node`'s nodeName.  
+     */  
+    val nodeName: String,
 
-  /**
-   *
-   */
-  val backendNodeId : BackendNodeId
+    /**  
+     *  
+     */  
+    val backendNodeId: BackendNodeId
 )
 
 /**
@@ -70,147 +70,147 @@ DOMNode is a base node mirror type.
  */
 
 data class Node(
-  /**
-   * Node identifier that is passed into the rest of the DOM messages as the `nodeId`. Backend
-will only push node with given `id` once. It is aware of all requested nodes and will only
-fire DOM events for nodes known to the client.
-   */
-  val nodeId : NodeId,
+    /**  
+     * Node identifier that is passed into the rest of the DOM messages as the `nodeId`. Backend  
+  will only push node with given `id` once. It is aware of all requested nodes and will only  
+  fire DOM events for nodes known to the client.  
+     */  
+    val nodeId: NodeId,
 
-  /**
-   * The id of the parent node if any.
-   */
-  val parentId : NodeId? = null,
+    /**  
+     * The id of the parent node if any.  
+     */  
+    val parentId: NodeId? = null,
 
-  /**
-   * The BackendNodeId for this node.
-   */
-  val backendNodeId : BackendNodeId,
+    /**  
+     * The BackendNodeId for this node.  
+     */  
+    val backendNodeId: BackendNodeId,
 
-  /**
-   * `Node`'s nodeType.
-   */
-  val nodeType : Int,
+    /**  
+     * `Node`'s nodeType.  
+     */  
+    val nodeType: Int,
 
-  /**
-   * `Node`'s nodeName.
-   */
-  val nodeName : String,
+    /**  
+     * `Node`'s nodeName.  
+     */  
+    val nodeName: String,
 
-  /**
-   * `Node`'s localName.
-   */
-  val localName : String,
+    /**  
+     * `Node`'s localName.  
+     */  
+    val localName: String,
 
-  /**
-   * `Node`'s nodeValue.
-   */
-  val nodeValue : String,
+    /**  
+     * `Node`'s nodeValue.  
+     */  
+    val nodeValue: String,
 
-  /**
-   * Child count for `Container` nodes.
-   */
-  val childNodeCount : Int? = null,
+    /**  
+     * Child count for `Container` nodes.  
+     */  
+    val childNodeCount: Int? = null,
 
-  /**
-   * Child nodes of this node when requested with children.
-   */
-  val children : List<Node>? = null,
+    /**  
+     * Child nodes of this node when requested with children.  
+     */  
+    val children: List<Node>? = null,
 
-  /**
-   * Attributes of the `Element` node in the form of flat array `[name1, value1, name2, value2]`.
-   */
-  val attributes : List<String>? = null,
+    /**  
+     * Attributes of the `Element` node in the form of flat array `[name1, value1, name2, value2]`.  
+     */  
+    val attributes: List<String>? = null,
 
-  /**
-   * Document URL that `Document` or `FrameOwner` node points to.
-   */
-  val documentURL : String? = null,
+    /**  
+     * Document URL that `Document` or `FrameOwner` node points to.  
+     */  
+    val documentURL: String? = null,
 
-  /**
-   * Base URL that `Document` or `FrameOwner` node uses for URL completion.
-   */
-  val baseURL : String? = null,
+    /**  
+     * Base URL that `Document` or `FrameOwner` node uses for URL completion.  
+     */  
+    val baseURL: String? = null,
 
-  /**
-   * `DocumentType`'s publicId.
-   */
-  val publicId : String? = null,
+    /**  
+     * `DocumentType`'s publicId.  
+     */  
+    val publicId: String? = null,
 
-  /**
-   * `DocumentType`'s systemId.
-   */
-  val systemId : String? = null,
+    /**  
+     * `DocumentType`'s systemId.  
+     */  
+    val systemId: String? = null,
 
-  /**
-   * `DocumentType`'s internalSubset.
-   */
-  val internalSubset : String? = null,
+    /**  
+     * `DocumentType`'s internalSubset.  
+     */  
+    val internalSubset: String? = null,
 
-  /**
-   * `Document`'s XML version in case of XML documents.
-   */
-  val xmlVersion : String? = null,
+    /**  
+     * `Document`'s XML version in case of XML documents.  
+     */  
+    val xmlVersion: String? = null,
 
-  /**
-   * `Attr`'s name.
-   */
-  val name : String? = null,
+    /**  
+     * `Attr`'s name.  
+     */  
+    val name: String? = null,
 
-  /**
-   * `Attr`'s value.
-   */
-  val value : String? = null,
+    /**  
+     * `Attr`'s value.  
+     */  
+    val value: String? = null,
 
-  /**
-   * Pseudo element type for this node.
-   */
-  val pseudoType : PseudoType? = null,
+    /**  
+     * Pseudo element type for this node.  
+     */  
+    val pseudoType: PseudoType? = null,
 
-  /**
-   * Shadow root type.
-   */
-  val shadowRootType : ShadowRootType? = null,
+    /**  
+     * Shadow root type.  
+     */  
+    val shadowRootType: ShadowRootType? = null,
 
-  /**
-   * Frame ID for frame owner elements.
-   */
-  val frameId : pl.wendigo.chrome.domain.page.FrameId? = null,
+    /**  
+     * Frame ID for frame owner elements.  
+     */  
+    val frameId: pl.wendigo.chrome.domain.page.FrameId? = null,
 
-  /**
-   * Content document for frame owner elements.
-   */
-  val contentDocument : Node? = null,
+    /**  
+     * Content document for frame owner elements.  
+     */  
+    val contentDocument: Node? = null,
 
-  /**
-   * Shadow root list for given element host.
-   */
-  val shadowRoots : List<Node>? = null,
+    /**  
+     * Shadow root list for given element host.  
+     */  
+    val shadowRoots: List<Node>? = null,
 
-  /**
-   * Content document fragment for template elements.
-   */
-  val templateContent : Node? = null,
+    /**  
+     * Content document fragment for template elements.  
+     */  
+    val templateContent: Node? = null,
 
-  /**
-   * Pseudo elements associated with this node.
-   */
-  val pseudoElements : List<Node>? = null,
+    /**  
+     * Pseudo elements associated with this node.  
+     */  
+    val pseudoElements: List<Node>? = null,
 
-  /**
-   * Import document for the HTMLImport links.
-   */
-  val importedDocument : Node? = null,
+    /**  
+     * Import document for the HTMLImport links.  
+     */  
+    val importedDocument: Node? = null,
 
-  /**
-   * Distributed nodes for given insertion point.
-   */
-  val distributedNodes : List<BackendNode>? = null,
+    /**  
+     * Distributed nodes for given insertion point.  
+     */  
+    val distributedNodes: List<BackendNode>? = null,
 
-  /**
-   * Whether the node is SVG.
-   */
-  val isSVG : Boolean? = null
+    /**  
+     * Whether the node is SVG.  
+     */  
+    val isSVG: Boolean? = null
 )
 
 /**
@@ -218,25 +218,25 @@ fire DOM events for nodes known to the client.
  */
 
 data class RGBA(
-  /**
-   * The red component, in the [0-255] range.
-   */
-  val r : Int,
+    /**  
+     * The red component, in the [0-255] range.  
+     */  
+    val r: Int,
 
-  /**
-   * The green component, in the [0-255] range.
-   */
-  val g : Int,
+    /**  
+     * The green component, in the [0-255] range.  
+     */  
+    val g: Int,
 
-  /**
-   * The blue component, in the [0-255] range.
-   */
-  val b : Int,
+    /**  
+     * The blue component, in the [0-255] range.  
+     */  
+    val b: Int,
 
-  /**
-   * The alpha component, in the [0-1] range (default: 1).
-   */
-  val a : Double? = null
+    /**  
+     * The alpha component, in the [0-1] range (default: 1).  
+     */  
+    val a: Double? = null
 )
 
 /**
@@ -250,40 +250,40 @@ typealias Quad = List<Double>
  */
 
 data class BoxModel(
-  /**
-   * Content box
-   */
-  val content : Quad,
+    /**  
+     * Content box  
+     */  
+    val content: Quad,
 
-  /**
-   * Padding box
-   */
-  val padding : Quad,
+    /**  
+     * Padding box  
+     */  
+    val padding: Quad,
 
-  /**
-   * Border box
-   */
-  val border : Quad,
+    /**  
+     * Border box  
+     */  
+    val border: Quad,
 
-  /**
-   * Margin box
-   */
-  val margin : Quad,
+    /**  
+     * Margin box  
+     */  
+    val margin: Quad,
 
-  /**
-   * Node width
-   */
-  val width : Int,
+    /**  
+     * Node width  
+     */  
+    val width: Int,
 
-  /**
-   * Node height
-   */
-  val height : Int,
+    /**  
+     * Node height  
+     */  
+    val height: Int,
 
-  /**
-   * Shape outside coordinates
-   */
-  val shapeOutside : ShapeOutsideInfo? = null
+    /**  
+     * Shape outside coordinates  
+     */  
+    val shapeOutside: ShapeOutsideInfo? = null
 )
 
 /**
@@ -291,20 +291,20 @@ data class BoxModel(
  */
 
 data class ShapeOutsideInfo(
-  /**
-   * Shape bounds
-   */
-  val bounds : Quad,
+    /**  
+     * Shape bounds  
+     */  
+    val bounds: Quad,
 
-  /**
-   * Shape coordinate details
-   */
-  val shape : List<Any>,
+    /**  
+     * Shape coordinate details  
+     */  
+    val shape: List<Any>,
 
-  /**
-   * Margin shape bounds
-   */
-  val marginShape : List<Any>
+    /**  
+     * Margin shape bounds  
+     */  
+    val marginShape: List<Any>
 )
 
 /**
@@ -312,24 +312,23 @@ data class ShapeOutsideInfo(
  */
 
 data class Rect(
-  /**
-   * X coordinate
-   */
-  val x : Double,
+    /**  
+     * X coordinate  
+     */  
+    val x: Double,
 
-  /**
-   * Y coordinate
-   */
-  val y : Double,
+    /**  
+     * Y coordinate  
+     */  
+    val y: Double,
 
-  /**
-   * Rectangle width
-   */
-  val width : Double,
+    /**  
+     * Rectangle width  
+     */  
+    val width: Double,
 
-  /**
-   * Rectangle height
-   */
-  val height : Double
+    /**  
+     * Rectangle height  
+     */  
+    val height: Double
 )
-

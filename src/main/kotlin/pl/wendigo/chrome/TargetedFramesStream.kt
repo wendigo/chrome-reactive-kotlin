@@ -12,11 +12,11 @@ import pl.wendigo.chrome.domain.target.SendMessageToTargetRequest
  * Frames stream that supports browser context with target/session ids
  */
 class TargetedFramesStream(
-    private val mapper : FrameMapper,
-    private val api : ChromeProtocol,
+    private val mapper: FrameMapper,
+    private val api: ChromeProtocol,
     private val session: HeadlessSession
 ) : FramesStream {
-    override fun <T> getResponse(requestFrame : RequestFrame, clazz : Class<T>) : Single<Timed<T>> {
+    override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>): Single<Timed<T>> {
         return frames().filter {
             it.value().isResponse(requestFrame.id)
         }
@@ -29,7 +29,7 @@ class TargetedFramesStream(
         .singleOrError()
     }
 
-    override fun send(frame : RequestFrame) : Single<Boolean> {
+    override fun send(frame: RequestFrame): Single<Boolean> {
         return mapper.serialize(frame).flatMap { message ->
             api.Target.sendMessageToTarget(SendMessageToTargetRequest(
                     sessionId = session.sessionId,
@@ -40,11 +40,11 @@ class TargetedFramesStream(
         }
     }
 
-    override fun eventFrames() : Observable<Timed<ResponseFrame>> = frames().filter {
+    override fun eventFrames(): Observable<Timed<ResponseFrame>> = frames().filter {
         it.value().isEvent()
     }
 
-    override fun frames() : Observable<Timed<ResponseFrame>> {
+    override fun frames(): Observable<Timed<ResponseFrame>> {
         return api.Target.receivedMessageFromTargetTimed().filter { message ->
             message.value().run {
                 sessionId == this@TargetedFramesStream.session.sessionId ||
@@ -67,8 +67,7 @@ class TargetedFramesStream(
             logger.info("Closed session {} with status {}", session, response)
 
             api.close()
-
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             logger.info("Could not close target due to exception ${e.message}")
         }
     }

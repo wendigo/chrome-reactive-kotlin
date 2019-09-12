@@ -3,11 +3,11 @@ package pl.wendigo.chrome.domain.storage
 /**
  * StorageDomain represents remote debugger protocol domain.
  */
-class StorageDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+class StorageDomain internal constructor(private val connectionRemote: pl.wendigo.chrome.DebuggerProtocol) {
     /**
      * Clears storage for origin.
      */
-    fun clearDataForOrigin(input : ClearDataForOriginRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun clearDataForOrigin(input: ClearDataForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Storage.clearDataForOrigin", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -16,7 +16,7 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      * Returns usage and quota in bytes.
      */
-    fun getUsageAndQuota(input : GetUsageAndQuotaRequest) : io.reactivex.Single<GetUsageAndQuotaResponse> {
+    fun getUsageAndQuota(input: GetUsageAndQuotaRequest): io.reactivex.Single<GetUsageAndQuotaResponse> {
         return connectionRemote.runAndCaptureResponse("Storage.getUsageAndQuota", input, GetUsageAndQuotaResponse::class.java).map {
             it.value()
         }
@@ -25,7 +25,7 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      * Registers origin to be notified when an update occurs to its cache storage list.
      */
-    fun trackCacheStorageForOrigin(input : TrackCacheStorageForOriginRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun trackCacheStorageForOrigin(input: TrackCacheStorageForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Storage.trackCacheStorageForOrigin", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -34,7 +34,7 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      * Registers origin to be notified when an update occurs to its IndexedDB.
      */
-    fun trackIndexedDBForOrigin(input : TrackIndexedDBForOriginRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun trackIndexedDBForOrigin(input: TrackIndexedDBForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Storage.trackIndexedDBForOrigin", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -43,7 +43,7 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      * Unregisters origin from receiving notifications for cache storage.
      */
-    fun untrackCacheStorageForOrigin(input : UntrackCacheStorageForOriginRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun untrackCacheStorageForOrigin(input: UntrackCacheStorageForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Storage.untrackCacheStorageForOrigin", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -52,16 +52,16 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      * Unregisters origin from receiving notifications for IndexedDB.
      */
-    fun untrackIndexedDBForOrigin(input : UntrackIndexedDBForOriginRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Storage.untrackIndexedDBForOrigin", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
 
     /**
-     * A cache's contents have been modified.
+     *  A cache's contents have been modified.
      */
-    fun cacheStorageContentUpdated() : io.reactivex.Flowable<CacheStorageContentUpdatedEvent> {
+    fun cacheStorageContentUpdated(): io.reactivex.Flowable<CacheStorageContentUpdatedEvent> {
         return cacheStorageContentUpdatedTimed().map {
             it.value()
         }
@@ -70,14 +70,14 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      * A cache's contents have been modified.
      */
-    fun cacheStorageContentUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<CacheStorageContentUpdatedEvent>> {
+    fun cacheStorageContentUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<CacheStorageContentUpdatedEvent>> {
         return connectionRemote.captureEvents("Storage.cacheStorageContentUpdated", CacheStorageContentUpdatedEvent::class.java)
     }
 
     /**
-     * A cache has been added/deleted.
+     *  A cache has been added/deleted.
      */
-    fun cacheStorageListUpdated() : io.reactivex.Flowable<CacheStorageListUpdatedEvent> {
+    fun cacheStorageListUpdated(): io.reactivex.Flowable<CacheStorageListUpdatedEvent> {
         return cacheStorageListUpdatedTimed().map {
             it.value()
         }
@@ -86,14 +86,14 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      * A cache has been added/deleted.
      */
-    fun cacheStorageListUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<CacheStorageListUpdatedEvent>> {
+    fun cacheStorageListUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<CacheStorageListUpdatedEvent>> {
         return connectionRemote.captureEvents("Storage.cacheStorageListUpdated", CacheStorageListUpdatedEvent::class.java)
     }
 
     /**
-     * The origin's IndexedDB object store has been modified.
+     *  The origin's IndexedDB object store has been modified.
      */
-    fun indexedDBContentUpdated() : io.reactivex.Flowable<IndexedDBContentUpdatedEvent> {
+    fun indexedDBContentUpdated(): io.reactivex.Flowable<IndexedDBContentUpdatedEvent> {
         return indexedDBContentUpdatedTimed().map {
             it.value()
         }
@@ -102,14 +102,14 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      * The origin's IndexedDB object store has been modified.
      */
-    fun indexedDBContentUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<IndexedDBContentUpdatedEvent>> {
+    fun indexedDBContentUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<IndexedDBContentUpdatedEvent>> {
         return connectionRemote.captureEvents("Storage.indexedDBContentUpdated", IndexedDBContentUpdatedEvent::class.java)
     }
 
     /**
-     * The origin's IndexedDB database list has been modified.
+     *  The origin's IndexedDB database list has been modified.
      */
-    fun indexedDBListUpdated() : io.reactivex.Flowable<IndexedDBListUpdatedEvent> {
+    fun indexedDBListUpdated(): io.reactivex.Flowable<IndexedDBListUpdatedEvent> {
         return indexedDBListUpdatedTimed().map {
             it.value()
         }
@@ -118,14 +118,14 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
     /**
      * The origin's IndexedDB database list has been modified.
      */
-    fun indexedDBListUpdatedTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<IndexedDBListUpdatedEvent>> {
+    fun indexedDBListUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<IndexedDBListUpdatedEvent>> {
         return connectionRemote.captureEvents("Storage.indexedDBListUpdated", IndexedDBListUpdatedEvent::class.java)
     }
 
     /**
      * Returns flowable capturing all Storage domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Storage"
         }
@@ -136,16 +136,16 @@ class StorageDomain internal constructor(private val connectionRemote : pl.wendi
  *
  * Clears storage for origin.
  */
-data class ClearDataForOriginRequest (
+data class ClearDataForOriginRequest(
     /**
      * Security origin.
      */
-    val origin : String,
+    val origin: String,
 
     /**
-     * Comma separated origin names.
+     * Comma separated list of StorageType to clear.
      */
-    val storageTypes : String
+    val storageTypes: String
 
 )
 
@@ -154,11 +154,11 @@ data class ClearDataForOriginRequest (
  *
  * Returns usage and quota in bytes.
  */
-data class GetUsageAndQuotaRequest (
+data class GetUsageAndQuotaRequest(
     /**
      * Security origin.
      */
-    val origin : String
+    val origin: String
 
 )
 
@@ -168,20 +168,20 @@ data class GetUsageAndQuotaRequest (
  * Returns usage and quota in bytes.
  */
 data class GetUsageAndQuotaResponse(
-  /**
-   * Storage usage (bytes).
-   */
-  val usage : Double,
+    /**  
+     * Storage usage (bytes).  
+     */  
+    val usage: Double,
 
-  /**
-   * Storage quota (bytes).
-   */
-  val quota : Double,
+    /**  
+     * Storage quota (bytes).  
+     */  
+    val quota: Double,
 
-  /**
-   * Storage usage per type (bytes).
-   */
-  val usageBreakdown : List<UsageForType>
+    /**  
+     * Storage usage per type (bytes).  
+     */  
+    val usageBreakdown: List<UsageForType>
 
 )
 
@@ -190,11 +190,11 @@ data class GetUsageAndQuotaResponse(
  *
  * Registers origin to be notified when an update occurs to its cache storage list.
  */
-data class TrackCacheStorageForOriginRequest (
+data class TrackCacheStorageForOriginRequest(
     /**
      * Security origin.
      */
-    val origin : String
+    val origin: String
 
 )
 
@@ -203,11 +203,11 @@ data class TrackCacheStorageForOriginRequest (
  *
  * Registers origin to be notified when an update occurs to its IndexedDB.
  */
-data class TrackIndexedDBForOriginRequest (
+data class TrackIndexedDBForOriginRequest(
     /**
      * Security origin.
      */
-    val origin : String
+    val origin: String
 
 )
 
@@ -216,11 +216,11 @@ data class TrackIndexedDBForOriginRequest (
  *
  * Unregisters origin from receiving notifications for cache storage.
  */
-data class UntrackCacheStorageForOriginRequest (
+data class UntrackCacheStorageForOriginRequest(
     /**
      * Security origin.
      */
-    val origin : String
+    val origin: String
 
 )
 
@@ -229,11 +229,11 @@ data class UntrackCacheStorageForOriginRequest (
  *
  * Unregisters origin from receiving notifications for IndexedDB.
  */
-data class UntrackIndexedDBForOriginRequest (
+data class UntrackIndexedDBForOriginRequest(
     /**
      * Security origin.
      */
-    val origin : String
+    val origin: String
 
 )
 
@@ -243,15 +243,15 @@ data class UntrackIndexedDBForOriginRequest (
  * A cache's contents have been modified.
  */
 data class CacheStorageContentUpdatedEvent(
-  /**
-   * Origin to update.
-   */
-  val origin : String,
+    /**  
+     * Origin to update.  
+     */  
+    val origin: String,
 
-  /**
-   * Name of cache in origin.
-   */
-  val cacheName : String
+    /**  
+     * Name of cache in origin.  
+     */  
+    val cacheName: String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Storage", name = "cacheStorageContentUpdated")
 
@@ -261,10 +261,10 @@ data class CacheStorageContentUpdatedEvent(
  * A cache has been added/deleted.
  */
 data class CacheStorageListUpdatedEvent(
-  /**
-   * Origin to update.
-   */
-  val origin : String
+    /**  
+     * Origin to update.  
+     */  
+    val origin: String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Storage", name = "cacheStorageListUpdated")
 
@@ -274,20 +274,20 @@ data class CacheStorageListUpdatedEvent(
  * The origin's IndexedDB object store has been modified.
  */
 data class IndexedDBContentUpdatedEvent(
-  /**
-   * Origin to update.
-   */
-  val origin : String,
+    /**  
+     * Origin to update.  
+     */  
+    val origin: String,
 
-  /**
-   * Database to update.
-   */
-  val databaseName : String,
+    /**  
+     * Database to update.  
+     */  
+    val databaseName: String,
 
-  /**
-   * ObjectStore to update.
-   */
-  val objectStoreName : String
+    /**  
+     * ObjectStore to update.  
+     */  
+    val objectStoreName: String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Storage", name = "indexedDBContentUpdated")
 
@@ -297,10 +297,9 @@ data class IndexedDBContentUpdatedEvent(
  * The origin's IndexedDB database list has been modified.
  */
 data class IndexedDBListUpdatedEvent(
-  /**
-   * Origin to update.
-   */
-  val origin : String
+    /**  
+     * Origin to update.  
+     */  
+    val origin: String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Storage", name = "indexedDBListUpdated")
-

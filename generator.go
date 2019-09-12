@@ -227,6 +227,8 @@ func (p Parameter) GetFormattedType() string {
 			return fmt.Sprintf("List<%s>", p.GetParameterArrayType())
 		case "object":
 			return "String"
+		case "binary":
+			return "String"
 		case "any":
 			return "Any"
 		default:
@@ -438,6 +440,14 @@ func main() {
 
 	raymond.RegisterHelper("Domain", func(options *raymond.Options) string {
 		return currentDomain
+	})
+
+	raymond.RegisterHelper("trim", func(value string, options *raymond.Options) string {
+		clean := strings.TrimSpace(value)
+		if len(clean) > 0 {
+			return " " + clean
+		}
+		return ""
 	})
 
 	raymond.RegisterHelper("EnumName", func(value string, options *raymond.Options) string {

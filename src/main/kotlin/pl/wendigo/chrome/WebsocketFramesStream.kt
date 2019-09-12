@@ -5,13 +5,13 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.Timed
 import io.reactivex.subjects.Subject
+import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import org.slf4j.LoggerFactory
-import java.util.concurrent.TimeUnit
 
 class WebsocketFramesStream : WebSocketListener, FramesStream {
     private val messages: Subject<Timed<ResponseFrame>>
@@ -29,30 +29,30 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     /**
      * onMessage is called when new frame arrives on websocket.
      */
-    override fun onMessage(webSocket: WebSocket?, text: String?) {
+    override fun onMessage(webSocket: WebSocket, text: String) {
         messages.onNext(
-            Timed<ResponseFrame>(mapper.deserialize(text!!, ResponseFrame::class.java), System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+            Timed<ResponseFrame>(mapper.deserialize(text, ResponseFrame::class.java), System.currentTimeMillis(), TimeUnit.MILLISECONDS)
         )
     }
 
     /**
      * onClosed is called when websocket is being closed.
      */
-    override fun onClosed(webSocket: WebSocket?, code: Int, reason: String?) {
+    override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
         messages.onComplete()
     }
 
     /**
      * onFailure is called when websocket protocol error occurs.
      */
-    override fun onFailure(webSocket: WebSocket?, t: Throwable?, response: Response?) {
+    override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
         messages.onComplete()
     }
 
     /**
      * Returns protocol response (if any).
      */
-    override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>) : Single<Timed<T>> {
+    override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>): Single<Timed<T>> {
         return frames()
             .filter { it.value().isResponse(requestFrame.id) }
             .flatMapSingle { frame ->
@@ -68,7 +68,7 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     /**
      * Sends frame over the connection.
      */
-    override fun send(frame: RequestFrame) : Single<Boolean> {
+    override fun send(frame: RequestFrame): Single<Boolean> {
         return Single
             .just(frame)
             .flatMap { mapper.serialize(it) }
@@ -79,14 +79,14 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     /**
      * Returns all event frames.
      */
-    override fun eventFrames() : Observable<Timed<ResponseFrame>> = frames().filter {
+    override fun eventFrames(): Observable<Timed<ResponseFrame>> = frames().filter {
         it.value().isEvent()
     }
 
     /**
      * Returns all frames.
      */
-    override fun frames() : Observable<Timed<ResponseFrame>> = messages
+    override fun frames(): Observable<Timed<ResponseFrame>> = messages
 
     /**
      * Closes stream
@@ -95,19 +95,19 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
         try {
             connection.close(1000, "Goodbye!")
             connection.cancel()
-            client.connectionPool().evictAll()
-        } catch (e : Exception) {
+            client.connectionPool.evictAll()
+        } catch (e: Exception) {
             logger.warn("caught exception while closing: ${e.message}")
         }
 
         try {
             messages.onComplete()
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             logger.warn("caught exception while completing subject: ${e.message}")
         }
     }
 
     companion object {
-        val logger = LoggerFactory.getLogger(WebsocketFramesStream::class.java) !!
+        val logger = LoggerFactory.getLogger(WebsocketFramesStream::class.java)!!
     }
 }

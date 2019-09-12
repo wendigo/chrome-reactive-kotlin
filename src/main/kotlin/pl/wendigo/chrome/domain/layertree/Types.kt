@@ -17,15 +17,15 @@ typealias SnapshotId = String
  */
 
 data class ScrollRect(
-  /**
-   * Rectangle itself.
-   */
-  val rect : pl.wendigo.chrome.domain.dom.Rect,
+    /**  
+     * Rectangle itself.  
+     */  
+    val rect: pl.wendigo.chrome.domain.dom.Rect,
 
-  /**
-   * Reason for rectangle to force scrolling on the main thread
-   */
-  val type : String
+    /**  
+     * Reason for rectangle to force scrolling on the main thread  
+     */  
+    val type: String
 )
 
 /**
@@ -33,25 +33,25 @@ data class ScrollRect(
  */
 
 data class StickyPositionConstraint(
-  /**
-   * Layout rectangle of the sticky element before being shifted
-   */
-  val stickyBoxRect : pl.wendigo.chrome.domain.dom.Rect,
+    /**  
+     * Layout rectangle of the sticky element before being shifted  
+     */  
+    val stickyBoxRect: pl.wendigo.chrome.domain.dom.Rect,
 
-  /**
-   * Layout rectangle of the containing block of the sticky element
-   */
-  val containingBlockRect : pl.wendigo.chrome.domain.dom.Rect,
+    /**  
+     * Layout rectangle of the containing block of the sticky element  
+     */  
+    val containingBlockRect: pl.wendigo.chrome.domain.dom.Rect,
 
-  /**
-   * The nearest sticky layer that shifts the sticky box
-   */
-  val nearestLayerShiftingStickyBox : LayerId? = null,
+    /**  
+     * The nearest sticky layer that shifts the sticky box  
+     */  
+    val nearestLayerShiftingStickyBox: LayerId? = null,
 
-  /**
-   * The nearest sticky layer that shifts the containing block
-   */
-  val nearestLayerShiftingContainingBlock : LayerId? = null
+    /**  
+     * The nearest sticky layer that shifts the containing block  
+     */  
+    val nearestLayerShiftingContainingBlock: LayerId? = null
 )
 
 /**
@@ -59,20 +59,20 @@ data class StickyPositionConstraint(
  */
 
 data class PictureTile(
-  /**
-   * Offset from owning layer left boundary
-   */
-  val x : Double,
+    /**  
+     * Offset from owning layer left boundary  
+     */  
+    val x: Double,
 
-  /**
-   * Offset from owning layer top boundary
-   */
-  val y : Double,
+    /**  
+     * Offset from owning layer top boundary  
+     */  
+    val y: Double,
 
-  /**
-   * Base64-encoded snapshot data.
-   */
-  val picture : String
+    /**  
+     * Base64-encoded snapshot data.  
+     */  
+    val picture: String
 )
 
 /**
@@ -80,86 +80,86 @@ data class PictureTile(
  */
 
 data class Layer(
-  /**
-   * The unique id for this layer.
-   */
-  val layerId : LayerId,
+    /**  
+     * The unique id for this layer.  
+     */  
+    val layerId: LayerId,
 
-  /**
-   * The id of parent (not present for root).
-   */
-  val parentLayerId : LayerId? = null,
+    /**  
+     * The id of parent (not present for root).  
+     */  
+    val parentLayerId: LayerId? = null,
 
-  /**
-   * The backend id for the node associated with this layer.
-   */
-  val backendNodeId : pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    /**  
+     * The backend id for the node associated with this layer.  
+     */  
+    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
 
-  /**
-   * Offset from parent layer, X coordinate.
-   */
-  val offsetX : Double,
+    /**  
+     * Offset from parent layer, X coordinate.  
+     */  
+    val offsetX: Double,
 
-  /**
-   * Offset from parent layer, Y coordinate.
-   */
-  val offsetY : Double,
+    /**  
+     * Offset from parent layer, Y coordinate.  
+     */  
+    val offsetY: Double,
 
-  /**
-   * Layer width.
-   */
-  val width : Double,
+    /**  
+     * Layer width.  
+     */  
+    val width: Double,
 
-  /**
-   * Layer height.
-   */
-  val height : Double,
+    /**  
+     * Layer height.  
+     */  
+    val height: Double,
 
-  /**
-   * Transformation matrix for layer, default is identity matrix
-   */
-  val transform : List<Double>? = null,
+    /**  
+     * Transformation matrix for layer, default is identity matrix  
+     */  
+    val transform: List<Double>? = null,
 
-  /**
-   * Transform anchor point X, absent if no transform specified
-   */
-  val anchorX : Double? = null,
+    /**  
+     * Transform anchor point X, absent if no transform specified  
+     */  
+    val anchorX: Double? = null,
 
-  /**
-   * Transform anchor point Y, absent if no transform specified
-   */
-  val anchorY : Double? = null,
+    /**  
+     * Transform anchor point Y, absent if no transform specified  
+     */  
+    val anchorY: Double? = null,
 
-  /**
-   * Transform anchor point Z, absent if no transform specified
-   */
-  val anchorZ : Double? = null,
+    /**  
+     * Transform anchor point Z, absent if no transform specified  
+     */  
+    val anchorZ: Double? = null,
 
-  /**
-   * Indicates how many time this layer has painted.
-   */
-  val paintCount : Int,
+    /**  
+     * Indicates how many time this layer has painted.  
+     */  
+    val paintCount: Int,
 
-  /**
-   * Indicates whether this layer hosts any content, rather than being used for
-transform/scrolling purposes only.
-   */
-  val drawsContent : Boolean,
+    /**  
+     * Indicates whether this layer hosts any content, rather than being used for  
+  transform/scrolling purposes only.  
+     */  
+    val drawsContent: Boolean,
 
-  /**
-   * Set if layer is not visible.
-   */
-  val invisible : Boolean? = null,
+    /**  
+     * Set if layer is not visible.  
+     */  
+    val invisible: Boolean? = null,
 
-  /**
-   * Rectangles scrolling on main thread only.
-   */
-  val scrollRects : List<ScrollRect>? = null,
+    /**  
+     * Rectangles scrolling on main thread only.  
+     */  
+    val scrollRects: List<ScrollRect>? = null,
 
-  /**
-   * Sticky position constraint information
-   */
-  val stickyPositionConstraint : StickyPositionConstraint? = null
+    /**  
+     * Sticky position constraint information  
+     */  
+    val stickyPositionConstraint: StickyPositionConstraint? = null
 )
 
 /**
@@ -167,4 +167,3 @@ transform/scrolling purposes only.
  */
 
 typealias PaintProfile = List<Double>
-

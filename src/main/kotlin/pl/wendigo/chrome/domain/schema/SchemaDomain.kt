@@ -3,11 +3,11 @@ package pl.wendigo.chrome.domain.schema
 /**
  * This domain is deprecated.
  */
-class SchemaDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+class SchemaDomain internal constructor(private val connectionRemote: pl.wendigo.chrome.DebuggerProtocol) {
     /**
      * Returns supported domains.
      */
-    fun getDomains() : io.reactivex.Single<GetDomainsResponse> {
+    fun getDomains(): io.reactivex.Single<GetDomainsResponse> {
         return connectionRemote.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java).map {
             it.value()
         }
@@ -16,7 +16,7 @@ class SchemaDomain internal constructor(private val connectionRemote : pl.wendig
     /**
      * Returns flowable capturing all Schema domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Schema"
         }
@@ -29,10 +29,9 @@ class SchemaDomain internal constructor(private val connectionRemote : pl.wendig
  * Returns supported domains.
  */
 data class GetDomainsResponse(
-  /**
-   * List of supported domains.
-   */
-  val domains : List<Domain>
+    /**
+     * List of supported domains.
+     */
+    val domains: List<Domain>
 
 )
-

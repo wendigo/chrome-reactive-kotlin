@@ -21,10 +21,10 @@ class FrameMapper {
     /**
      * Serializes request frame using internal object mapper
      */
-    internal fun serialize(requestFrame: RequestFrame) : Single<String> {
+    internal fun serialize(requestFrame: RequestFrame): Single<String> {
         try {
             return Single.fromCallable { mapper.writeValueAsString(requestFrame) }
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             return Single.error(SerializationFailed("Could not serialize request frame", e))
         }
     }
@@ -32,7 +32,7 @@ class FrameMapper {
     /**
      * Deserialize response frame as clazz
      */
-    internal fun <T> deserializeResponse(requestFrame: RequestFrame, responseFrame: ResponseFrame, clazz: Class<T>) : Single<T> {
+    internal fun <T> deserializeResponse(requestFrame: RequestFrame, responseFrame: ResponseFrame, clazz: Class<T>): Single<T> {
         if (responseFrame.error != null) {
             return Single.error(RequestFailed(requestFrame, responseFrame.error.message))
         }
@@ -52,14 +52,14 @@ class FrameMapper {
     /**
      * Deserialize text to clazz.
      */
-    internal fun <T> deserialize(text: String, clazz: Class<T>) : T {
+    internal fun <T> deserialize(text: String, clazz: Class<T>): T {
         return mapper.readValue(text, clazz)
     }
 
     /**
      * Deserialize response frame event to clazz.
      */
-    internal fun <T> deserializeEvent(responseFrame: ResponseFrame, clazz: Class<T>) : Single<T> where T : ProtocolEvent {
+    internal fun <T> deserializeEvent(responseFrame: ResponseFrame, clazz: Class<T>): Single<T> where T : ProtocolEvent {
         try {
             if (clazz == ProtocolEvent::class.java) {
                 @Suppress("UNCHECKED_CAST")

@@ -32,35 +32,40 @@ enum class SecurityState {
  */
 
 data class SecurityStateExplanation(
-  /**
-   * Security state representing the severity of the factor being explained.
-   */
-  val securityState : SecurityState,
+    /**  
+     * Security state representing the severity of the factor being explained.  
+     */  
+    val securityState: SecurityState,
 
-  /**
-   * Title describing the type of factor.
-   */
-  val title : String,
+    /**  
+     * Title describing the type of factor.  
+     */  
+    val title: String,
 
-  /**
-   * Short phrase describing the type of factor.
-   */
-  val summary : String,
+    /**  
+     * Short phrase describing the type of factor.  
+     */  
+    val summary: String,
 
-  /**
-   * Full text explanation of the factor.
-   */
-  val description : String,
+    /**  
+     * Full text explanation of the factor.  
+     */  
+    val description: String,
 
-  /**
-   * The type of mixed content described by the explanation.
-   */
-  val mixedContentType : MixedContentType,
+    /**  
+     * The type of mixed content described by the explanation.  
+     */  
+    val mixedContentType: MixedContentType,
 
-  /**
-   * Page certificate.
-   */
-  val certificate : List<String>
+    /**  
+     * Page certificate.  
+     */  
+    val certificate: List<String>,
+
+    /**  
+     * Recommendations to fix any issues.  
+     */  
+    val recommendations: List<String>? = null
 )
 
 /**
@@ -68,42 +73,40 @@ data class SecurityStateExplanation(
  */
 
 data class InsecureContentStatus(
-  /**
-   * True if the page was loaded over HTTPS and ran mixed (HTTP) content such as scripts.
-   */
-  val ranMixedContent : Boolean,
+    /**  
+     * Always false.  
+     */  
+    val ranMixedContent: Boolean,
 
-  /**
-   * True if the page was loaded over HTTPS and displayed mixed (HTTP) content such as images.
-   */
-  val displayedMixedContent : Boolean,
+    /**  
+     * Always false.  
+     */  
+    val displayedMixedContent: Boolean,
 
-  /**
-   * True if the page was loaded over HTTPS and contained a form targeting an insecure url.
-   */
-  val containedMixedForm : Boolean,
+    /**  
+     * Always false.  
+     */  
+    val containedMixedForm: Boolean,
 
-  /**
-   * True if the page was loaded over HTTPS without certificate errors, and ran content such as
-scripts that were loaded with certificate errors.
-   */
-  val ranContentWithCertErrors : Boolean,
+    /**  
+     * Always false.  
+     */  
+    val ranContentWithCertErrors: Boolean,
 
-  /**
-   * True if the page was loaded over HTTPS without certificate errors, and displayed content
-such as images that were loaded with certificate errors.
-   */
-  val displayedContentWithCertErrors : Boolean,
+    /**  
+     * Always false.  
+     */  
+    val displayedContentWithCertErrors: Boolean,
 
-  /**
-   * Security state representing a page that ran insecure content.
-   */
-  val ranInsecureContentStyle : SecurityState,
+    /**  
+     * Always set to unknown.  
+     */  
+    val ranInsecureContentStyle: SecurityState,
 
-  /**
-   * Security state representing a page that displayed insecure content.
-   */
-  val displayedInsecureContentStyle : SecurityState
+    /**  
+     * Always set to unknown.  
+     */  
+    val displayedInsecureContentStyle: SecurityState
 )
 
 /**
@@ -114,4 +117,3 @@ enum class CertificateErrorAction {
     @com.fasterxml.jackson.annotation.JsonProperty("continue") CONTINUE,
     @com.fasterxml.jackson.annotation.JsonProperty("cancel") CANCEL;
 }
-

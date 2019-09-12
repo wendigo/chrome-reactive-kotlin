@@ -5,15 +5,15 @@ package pl.wendigo.chrome.domain.emulation
  */
 
 data class ScreenOrientation(
-  /**
-   * Orientation type.
-   */
-  val type : String,
+    /**  
+     * Orientation type.  
+     */  
+    val type: String,
 
-  /**
-   * Orientation angle.
-   */
-  val angle : Int
+    /**  
+     * Orientation angle.  
+     */  
+    val angle: Int
 )
 
 /**
@@ -27,4 +27,3 @@ enum class VirtualTimePolicy {
     @com.fasterxml.jackson.annotation.JsonProperty("pause") PAUSE,
     @com.fasterxml.jackson.annotation.JsonProperty("pauseIfNetworkFetchesPending") PAUSEIFNETWORKFETCHESPENDING;
 }
-

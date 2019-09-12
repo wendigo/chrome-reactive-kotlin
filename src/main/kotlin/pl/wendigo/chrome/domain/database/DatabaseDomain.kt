@@ -3,11 +3,11 @@ package pl.wendigo.chrome.domain.database
 /**
  * DatabaseDomain represents remote debugger protocol domain.
  */
-class DatabaseDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+class DatabaseDomain internal constructor(private val connectionRemote: pl.wendigo.chrome.DebuggerProtocol) {
     /**
      * Disables database tracking, prevents database events from being sent to the client.
      */
-    fun disable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun disable(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Database.disable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -16,7 +16,7 @@ class DatabaseDomain internal constructor(private val connectionRemote : pl.wend
     /**
      * Enables database tracking, database events will now be delivered to the client.
      */
-    fun enable() : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun enable(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -25,7 +25,7 @@ class DatabaseDomain internal constructor(private val connectionRemote : pl.wend
     /**
      *
      */
-    fun executeSQL(input : ExecuteSQLRequest) : io.reactivex.Single<ExecuteSQLResponse> {
+    fun executeSQL(input: ExecuteSQLRequest): io.reactivex.Single<ExecuteSQLResponse> {
         return connectionRemote.runAndCaptureResponse("Database.executeSQL", input, ExecuteSQLResponse::class.java).map {
             it.value()
         }
@@ -34,7 +34,7 @@ class DatabaseDomain internal constructor(private val connectionRemote : pl.wend
     /**
      *
      */
-    fun getDatabaseTableNames(input : GetDatabaseTableNamesRequest) : io.reactivex.Single<GetDatabaseTableNamesResponse> {
+    fun getDatabaseTableNames(input: GetDatabaseTableNamesRequest): io.reactivex.Single<GetDatabaseTableNamesResponse> {
         return connectionRemote.runAndCaptureResponse("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java).map {
             it.value()
         }
@@ -43,7 +43,7 @@ class DatabaseDomain internal constructor(private val connectionRemote : pl.wend
     /**
      * Returns observable capturing all Database.addDatabase events.
      */
-    fun addDatabase() : io.reactivex.Flowable<AddDatabaseEvent> {
+    fun addDatabase(): io.reactivex.Flowable<AddDatabaseEvent> {
         return addDatabaseTimed().map {
             it.value()
         }
@@ -52,14 +52,14 @@ class DatabaseDomain internal constructor(private val connectionRemote : pl.wend
     /**
      * Returns observable capturing all Database.addDatabase events.
      */
-    fun addDatabaseTimed() : io.reactivex.Flowable<io.reactivex.schedulers.Timed<AddDatabaseEvent>> {
+    fun addDatabaseTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<AddDatabaseEvent>> {
         return connectionRemote.captureEvents("Database.addDatabase", AddDatabaseEvent::class.java)
     }
 
     /**
      * Returns flowable capturing all Database domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "Database"
         }
@@ -71,16 +71,16 @@ class DatabaseDomain internal constructor(private val connectionRemote : pl.wend
  *
  *
  */
-data class ExecuteSQLRequest (
+data class ExecuteSQLRequest(
     /**
      *
      */
-    val databaseId : DatabaseId,
+    val databaseId: DatabaseId,
 
     /**
      *
      */
-    val query : String
+    val query: String
 
 )
 
@@ -90,20 +90,20 @@ data class ExecuteSQLRequest (
  *
  */
 data class ExecuteSQLResponse(
-  /**
-   *
-   */
-  val columnNames : List<String>? = null,
+    /**  
+     *  
+     */  
+    val columnNames: List<String>? = null,
 
-  /**
-   *
-   */
-  val values : List<Any>? = null,
+    /**  
+     *  
+     */  
+    val values: List<Any>? = null,
 
-  /**
-   *
-   */
-  val sqlError : Error? = null
+    /**  
+     *  
+     */  
+    val sqlError: Error? = null
 
 )
 
@@ -112,11 +112,11 @@ data class ExecuteSQLResponse(
  *
  *
  */
-data class GetDatabaseTableNamesRequest (
+data class GetDatabaseTableNamesRequest(
     /**
      *
      */
-    val databaseId : DatabaseId
+    val databaseId: DatabaseId
 
 )
 
@@ -126,10 +126,10 @@ data class GetDatabaseTableNamesRequest (
  *
  */
 data class GetDatabaseTableNamesResponse(
-  /**
-   *
-   */
-  val tableNames : List<String>
+    /**  
+     *  
+     */  
+    val tableNames: List<String>
 
 )
 
@@ -139,10 +139,9 @@ data class GetDatabaseTableNamesResponse(
  *
  */
 data class AddDatabaseEvent(
-  /**
-   *
-   */
-  val database : Database
+    /**  
+     *  
+     */  
+    val database: Database
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Database", name = "addDatabase")
-

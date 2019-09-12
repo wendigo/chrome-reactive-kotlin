@@ -22,14 +22,13 @@ enum class StorageType {
  */
 
 data class UsageForType(
-  /**
-   * Name of storage type.
-   */
-  val storageType : StorageType,
+    /**  
+     * Name of storage type.  
+     */  
+    val storageType: StorageType,
 
-  /**
-   * Storage usage (bytes).
-   */
-  val usage : Double
+    /**  
+     * Storage usage (bytes).  
+     */  
+    val usage: Double
 )
-

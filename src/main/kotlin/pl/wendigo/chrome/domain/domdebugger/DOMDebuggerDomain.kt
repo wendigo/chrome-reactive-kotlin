@@ -4,11 +4,11 @@ package pl.wendigo.chrome.domain.domdebugger
  * DOM debugging allows setting breakpoints on particular DOM operations and events. JavaScript
 execution will stop on these operations as if there was a regular breakpoint set.
  */
-class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.wendigo.chrome.DebuggerProtocol) {
+class DOMDebuggerDomain internal constructor(private val connectionRemote: pl.wendigo.chrome.DebuggerProtocol) {
     /**
      * Returns event listeners of the given object.
      */
-    fun getEventListeners(input : GetEventListenersRequest) : io.reactivex.Single<GetEventListenersResponse> {
+    fun getEventListeners(input: GetEventListenersRequest): io.reactivex.Single<GetEventListenersResponse> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.getEventListeners", input, GetEventListenersResponse::class.java).map {
             it.value()
         }
@@ -17,7 +17,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
     /**
      * Removes DOM breakpoint that was set using `setDOMBreakpoint`.
      */
-    fun removeDOMBreakpoint(input : RemoveDOMBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun removeDOMBreakpoint(input: RemoveDOMBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.removeDOMBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -26,7 +26,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
     /**
      * Removes breakpoint on particular DOM event.
      */
-    fun removeEventListenerBreakpoint(input : RemoveEventListenerBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun removeEventListenerBreakpoint(input: RemoveEventListenerBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.removeEventListenerBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -35,7 +35,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
     /**
      * Removes breakpoint on particular native event.
      */
-    fun removeInstrumentationBreakpoint(input : RemoveInstrumentationBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun removeInstrumentationBreakpoint(input: RemoveInstrumentationBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.removeInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -44,7 +44,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
     /**
      * Removes breakpoint from XMLHttpRequest.
      */
-    fun removeXHRBreakpoint(input : RemoveXHRBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun removeXHRBreakpoint(input: RemoveXHRBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.removeXHRBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -53,7 +53,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
     /**
      * Sets breakpoint on particular operation with DOM.
      */
-    fun setDOMBreakpoint(input : SetDOMBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setDOMBreakpoint(input: SetDOMBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.setDOMBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -62,7 +62,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
     /**
      * Sets breakpoint on particular DOM event.
      */
-    fun setEventListenerBreakpoint(input : SetEventListenerBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setEventListenerBreakpoint(input: SetEventListenerBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.setEventListenerBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -71,7 +71,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
     /**
      * Sets breakpoint on particular native event.
      */
-    fun setInstrumentationBreakpoint(input : SetInstrumentationBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.setInstrumentationBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -80,7 +80,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
     /**
      * Sets breakpoint on XMLHttpRequest.
      */
-    fun setXHRBreakpoint(input : SetXHRBreakpointRequest) : io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+    fun setXHRBreakpoint(input: SetXHRBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("DOMDebugger.setXHRBreakpoint", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
@@ -89,7 +89,7 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
     /**
      * Returns flowable capturing all DOMDebugger domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
         return connectionRemote.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "DOMDebugger"
         }
@@ -100,23 +100,23 @@ class DOMDebuggerDomain internal constructor(private val connectionRemote : pl.w
  *
  * Returns event listeners of the given object.
  */
-data class GetEventListenersRequest (
+data class GetEventListenersRequest(
     /**
      * Identifier of the object to return listeners for.
      */
-    val objectId : pl.wendigo.chrome.domain.runtime.RemoteObjectId,
+    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId,
 
     /**
      * The maximum depth at which Node children should be retrieved, defaults to 1. Use -1 for the
 entire subtree or provide an integer larger than 0.
      */
-    val depth : Int? = null,
+    val depth: Int? = null,
 
     /**
      * Whether or not iframes and shadow roots should be traversed when returning the subtree
 (default is false). Reports listeners for all contexts if pierce is enabled.
      */
-    val pierce : Boolean? = null
+    val pierce: Boolean? = null
 
 )
 
@@ -126,10 +126,10 @@ entire subtree or provide an integer larger than 0.
  * Returns event listeners of the given object.
  */
 data class GetEventListenersResponse(
-  /**
-   * Array of relevant listeners.
-   */
-  val listeners : List<EventListener>
+    /**  
+     * Array of relevant listeners.  
+     */  
+    val listeners: List<EventListener>
 
 )
 
@@ -138,16 +138,16 @@ data class GetEventListenersResponse(
  *
  * Removes DOM breakpoint that was set using `setDOMBreakpoint`.
  */
-data class RemoveDOMBreakpointRequest (
+data class RemoveDOMBreakpointRequest(
     /**
      * Identifier of the node to remove breakpoint from.
      */
-    val nodeId : pl.wendigo.chrome.domain.dom.NodeId,
+    val nodeId: pl.wendigo.chrome.domain.dom.NodeId,
 
     /**
      * Type of the breakpoint to remove.
      */
-    val type : DOMBreakpointType
+    val type: DOMBreakpointType
 
 )
 
@@ -156,16 +156,16 @@ data class RemoveDOMBreakpointRequest (
  *
  * Removes breakpoint on particular DOM event.
  */
-data class RemoveEventListenerBreakpointRequest (
+data class RemoveEventListenerBreakpointRequest(
     /**
      * Event name.
      */
-    val eventName : String,
+    val eventName: String,
 
     /**
      * EventTarget interface name.
      */
-    @pl.wendigo.chrome.Experimental val targetName : String? = null
+    @pl.wendigo.chrome.Experimental val targetName: String? = null
 
 )
 
@@ -174,11 +174,11 @@ data class RemoveEventListenerBreakpointRequest (
  *
  * Removes breakpoint on particular native event.
  */
-data class RemoveInstrumentationBreakpointRequest (
+data class RemoveInstrumentationBreakpointRequest(
     /**
      * Instrumentation name to stop on.
      */
-    val eventName : String
+    val eventName: String
 
 )
 
@@ -187,11 +187,11 @@ data class RemoveInstrumentationBreakpointRequest (
  *
  * Removes breakpoint from XMLHttpRequest.
  */
-data class RemoveXHRBreakpointRequest (
+data class RemoveXHRBreakpointRequest(
     /**
      * Resource URL substring.
      */
-    val url : String
+    val url: String
 
 )
 
@@ -200,16 +200,16 @@ data class RemoveXHRBreakpointRequest (
  *
  * Sets breakpoint on particular operation with DOM.
  */
-data class SetDOMBreakpointRequest (
+data class SetDOMBreakpointRequest(
     /**
      * Identifier of the node to set breakpoint on.
      */
-    val nodeId : pl.wendigo.chrome.domain.dom.NodeId,
+    val nodeId: pl.wendigo.chrome.domain.dom.NodeId,
 
     /**
      * Type of the operation to stop upon.
      */
-    val type : DOMBreakpointType
+    val type: DOMBreakpointType
 
 )
 
@@ -218,17 +218,17 @@ data class SetDOMBreakpointRequest (
  *
  * Sets breakpoint on particular DOM event.
  */
-data class SetEventListenerBreakpointRequest (
+data class SetEventListenerBreakpointRequest(
     /**
      * DOM Event name to stop on (any DOM event will do).
      */
-    val eventName : String,
+    val eventName: String,
 
     /**
      * EventTarget interface name to stop on. If equal to `"*"` or not provided, will stop on any
 EventTarget.
      */
-    @pl.wendigo.chrome.Experimental val targetName : String? = null
+    @pl.wendigo.chrome.Experimental val targetName: String? = null
 
 )
 
@@ -237,11 +237,11 @@ EventTarget.
  *
  * Sets breakpoint on particular native event.
  */
-data class SetInstrumentationBreakpointRequest (
+data class SetInstrumentationBreakpointRequest(
     /**
      * Instrumentation name to stop on.
      */
-    val eventName : String
+    val eventName: String
 
 )
 
@@ -250,11 +250,10 @@ data class SetInstrumentationBreakpointRequest (
  *
  * Sets breakpoint on XMLHttpRequest.
  */
-data class SetXHRBreakpointRequest (
+data class SetXHRBreakpointRequest(
     /**
      * Resource URL substring. All XHRs having this substring in the URL will get stopped upon.
      */
-    val url : String
+    val url: String
 
 )
-

@@ -23,35 +23,40 @@ typealias BrowserContextID = String
  */
 
 data class TargetInfo(
-  /**
-   *
-   */
-  val targetId : TargetID,
+    /**  
+     *  
+     */  
+    val targetId: TargetID,
 
-  /**
-   *
-   */
-  val type : String,
+    /**  
+     *  
+     */  
+    val type: String,
 
-  /**
-   *
-   */
-  val title : String,
+    /**  
+     *  
+     */  
+    val title: String,
 
-  /**
-   *
-   */
-  val url : String,
+    /**  
+     *  
+     */  
+    val url: String,
 
-  /**
-   * Whether the target has an attached client.
-   */
-  val attached : Boolean,
+    /**  
+     * Whether the target has an attached client.  
+     */  
+    val attached: Boolean,
 
-  /**
-   * Opener target Id
-   */
-  val openerId : TargetID? = null
+    /**  
+     * Opener target Id  
+     */  
+    val openerId: TargetID? = null,
+
+    /**  
+     *  
+     */  
+    @pl.wendigo.chrome.Experimental val browserContextId: BrowserContextID? = null
 )
 
 /**
@@ -59,14 +64,13 @@ data class TargetInfo(
  */
 
 data class RemoteLocation(
-  /**
-   *
-   */
-  val host : String,
+    /**  
+     *  
+     */  
+    val host: String,
 
-  /**
-   *
-   */
-  val port : Int
+    /**  
+     *  
+     */  
+    val port: Int
 )
-
