@@ -125,7 +125,7 @@ publishing {
                 version = version
                 groupId = group
                 artifactId = 'chrome-reactive-kotlin'
-                packaging = 'jar'
+                packaging = 'bundle'
 
                 scm {
                     connection = 'scm:git:https://github.com/wendigo/chrome-reactive-kotlin.git'
