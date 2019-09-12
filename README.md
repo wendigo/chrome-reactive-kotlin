@@ -10,6 +10,8 @@ For debugging purposes you can use my other project: [chrome-protocol-proxy](htt
 
 Please note that most up-to-date protocol is used at the moment.
 
+
+
 # Usage
 
 Add to your Kotlin or Java project (Gradle dependency): 
