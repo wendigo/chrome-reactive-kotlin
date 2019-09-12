@@ -1,2 +1,2 @@
-./gradlew publishToNexus -i
+./gradlew publishToSonatype -i
 ./gradlew closeAndReleaseRepository -i

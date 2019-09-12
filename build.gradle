@@ -145,17 +145,6 @@ nexusStaging {
     password = nexusPassword
 }
 
-nexusPublishing {
-    repositories {
-        myNexus {
-            nexusUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-            snapshotRepositoryUrl = uri("hhttps://oss.sonatype.org/content/repositories/snapshots/")
-            username = project.property("nexusUsername")
-            password = project.property("nexusPassword")
-        }
-    }
-}
-
 wrapper {
     version = '5.6.2'
     distributionType = Wrapper.DistributionType.ALL
