@@ -65,7 +65,7 @@ class Browser(
         if (response.isSuccessful) {
             return response.body?.string() ?: ""
         } else {
-            throw InspectorException("Could not query inspector $uri: ${response}");
+            throw InspectorException("Could not query inspector $uri: $response")
         }
     }
 
@@ -76,7 +76,7 @@ class Browser(
      * with target id/session id.
      */
     @JvmOverloads
-    fun headlessSession(url: String, eventBufferSize: Int = 128, width : Int = 1024, height : Int = 768) : HeadlessChromeProtocol {
+    fun headlessSession(url: String, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): HeadlessChromeProtocol {
         return HeadlessChromeProtocol.create(ChromeProtocol(ChromeDebuggerConnection.openSession(version().webSocketDebugUrl, eventBufferSize)), url, width, height)
     }
 
