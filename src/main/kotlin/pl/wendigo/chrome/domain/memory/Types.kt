@@ -4,8 +4,10 @@ package pl.wendigo.chrome.domain.memory
  * Memory pressure level.
  */
 enum class PressureLevel {
-    @com.fasterxml.jackson.annotation.JsonProperty("moderate") MODERATE,
-    @com.fasterxml.jackson.annotation.JsonProperty("critical") CRITICAL;
+    @com.fasterxml.jackson.annotation.JsonProperty("moderate")
+    MODERATE,
+    @com.fasterxml.jackson.annotation.JsonProperty("critical")
+    CRITICAL;
 }
 
 /**
@@ -62,7 +64,7 @@ data class Module(
 
     /**  
      * Base address where the module is loaded into memory. Encoded as a decimal  
-  or hexadecimal (0x prefixed) string.  
+     or hexadecimal (0x prefixed) string.  
      */  
     val baseAddress: String,
 

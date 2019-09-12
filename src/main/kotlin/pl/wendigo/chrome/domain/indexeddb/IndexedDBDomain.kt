@@ -260,8 +260,8 @@ data class GetMetadataResponse(
 
     /**  
      * the current value of key generator, to become the next inserted  
-  key into the object store. Valid if objectStore.autoIncrement  
-  is true.  
+     key into the object store. Valid if objectStore.autoIncrement  
+     is true.  
      */  
     val keyGeneratorValue: Double
 

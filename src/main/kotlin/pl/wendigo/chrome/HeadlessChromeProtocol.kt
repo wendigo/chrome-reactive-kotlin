@@ -15,29 +15,33 @@ class HeadlessChromeProtocol(
             val mapper = FrameMapper()
 
             return api.Target.createBrowserContext().flatMap { (browserContextId) ->
-                api.Target.createTarget(CreateTargetRequest(
+                api.Target.createTarget(
+                    CreateTargetRequest(
                         url = url,
                         browserContextId = browserContextId,
                         height = height,
                         width = width
-                )).flatMap { (targetId) ->
+                    )
+                ).flatMap { (targetId) ->
                     api.Target.attachToTarget(AttachToTargetRequest(targetId = targetId)).map { (sessionId) ->
                         val session = HeadlessSession(
-                                browserContextId = browserContextId,
-                                targetId = targetId,
-                                sessionId = sessionId,
-                                url = url,
-                                width = width,
-                                height = height
+                            browserContextId = browserContextId,
+                            targetId = targetId,
+                            sessionId = sessionId,
+                            url = url,
+                            width = width,
+                            height = height
                         )
 
                         HeadlessChromeProtocol(
-                                ChromeDebuggerConnection(TargetedFramesStream(
+                            ChromeDebuggerConnection(
+                                TargetedFramesStream(
                                     mapper,
                                     api,
                                     session
                                 ),
-                                mapper),
+                                mapper
+                            ),
                             session
                         )
                     }

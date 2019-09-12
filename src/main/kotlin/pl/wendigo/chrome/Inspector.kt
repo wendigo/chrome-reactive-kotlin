@@ -90,9 +90,9 @@ class Inspector(
         @JvmStatic
         fun connect(chromeAddress: String): Inspector {
             return Inspector(
-                    chromeAddress,
-                    OkHttpClient.Builder().readTimeout(0, TimeUnit.MILLISECONDS).build(),
-                    FrameMapper()
+                chromeAddress,
+                OkHttpClient.Builder().readTimeout(0, TimeUnit.MILLISECONDS).build(),
+                FrameMapper()
             )
         }
     }

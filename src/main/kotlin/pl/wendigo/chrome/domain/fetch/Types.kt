@@ -12,8 +12,10 @@ sent. Response will intercept after the response is received (but before respons
 body is received.
  */
 enum class RequestStage {
-    @com.fasterxml.jackson.annotation.JsonProperty("Request") REQUEST,
-    @com.fasterxml.jackson.annotation.JsonProperty("Response") RESPONSE;
+    @com.fasterxml.jackson.annotation.JsonProperty("Request")
+    REQUEST,
+    @com.fasterxml.jackson.annotation.JsonProperty("Response")
+    RESPONSE;
 }
 
 /**
@@ -23,7 +25,7 @@ enum class RequestStage {
 data class RequestPattern(
     /**  
      * Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is  
-  backslash. Omitting is equivalent to "*".  
+     backslash. Omitting is equivalent to "*".  
      */  
     val urlPattern: String? = null,
 
@@ -87,20 +89,20 @@ data class AuthChallenge(
 data class AuthChallengeResponse(
     /**  
      * The decision on what to do in response to the authorization challenge.  Default means  
-  deferring to the default behavior of the net stack, which will likely either the Cancel  
-  authentication or display a popup dialog box.  
+     deferring to the default behavior of the net stack, which will likely either the Cancel  
+     authentication or display a popup dialog box.  
      */  
     val response: String,
 
     /**  
      * The username to provide, possibly empty. Should only be set if response is  
-  ProvideCredentials.  
+     ProvideCredentials.  
      */  
     val username: String? = null,
 
     /**  
      * The password to provide, possibly empty. Should only be set if response is  
-  ProvideCredentials.  
+     ProvideCredentials.  
      */  
     val password: String? = null
 )

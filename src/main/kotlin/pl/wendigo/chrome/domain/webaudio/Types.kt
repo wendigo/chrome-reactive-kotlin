@@ -10,17 +10,22 @@ typealias GraphObjectId = String
  * Enum of BaseAudioContext types
  */
 enum class ContextType {
-    @com.fasterxml.jackson.annotation.JsonProperty("realtime") REALTIME,
-    @com.fasterxml.jackson.annotation.JsonProperty("offline") OFFLINE;
+    @com.fasterxml.jackson.annotation.JsonProperty("realtime")
+    REALTIME,
+    @com.fasterxml.jackson.annotation.JsonProperty("offline")
+    OFFLINE;
 }
 
 /**
  * Enum of AudioContextState from the spec
  */
 enum class ContextState {
-    @com.fasterxml.jackson.annotation.JsonProperty("suspended") SUSPENDED,
-    @com.fasterxml.jackson.annotation.JsonProperty("running") RUNNING,
-    @com.fasterxml.jackson.annotation.JsonProperty("closed") CLOSED;
+    @com.fasterxml.jackson.annotation.JsonProperty("suspended")
+    SUSPENDED,
+    @com.fasterxml.jackson.annotation.JsonProperty("running")
+    RUNNING,
+    @com.fasterxml.jackson.annotation.JsonProperty("closed")
+    CLOSED;
 }
 
 /**
@@ -33,17 +38,22 @@ typealias NodeType = String
  * Enum of AudioNode::ChannelCountMode from the spec
  */
 enum class ChannelCountMode {
-    @com.fasterxml.jackson.annotation.JsonProperty("clamped-max") CLAMPED_MAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("explicit") EXPLICIT,
-    @com.fasterxml.jackson.annotation.JsonProperty("max") MAX;
+    @com.fasterxml.jackson.annotation.JsonProperty("clamped-max")
+    CLAMPED_MAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("explicit")
+    EXPLICIT,
+    @com.fasterxml.jackson.annotation.JsonProperty("max")
+    MAX;
 }
 
 /**
  * Enum of AudioNode::ChannelInterpretation from the spec
  */
 enum class ChannelInterpretation {
-    @com.fasterxml.jackson.annotation.JsonProperty("discrete") DISCRETE,
-    @com.fasterxml.jackson.annotation.JsonProperty("speakers") SPEAKERS;
+    @com.fasterxml.jackson.annotation.JsonProperty("discrete")
+    DISCRETE,
+    @com.fasterxml.jackson.annotation.JsonProperty("speakers")
+    SPEAKERS;
 }
 
 /**
@@ -56,8 +66,10 @@ typealias ParamType = String
  * Enum of AudioParam::AutomationRate from the spec
  */
 enum class AutomationRate {
-    @com.fasterxml.jackson.annotation.JsonProperty("a-rate") A_RATE,
-    @com.fasterxml.jackson.annotation.JsonProperty("k-rate") K_RATE;
+    @com.fasterxml.jackson.annotation.JsonProperty("a-rate")
+    A_RATE,
+    @com.fasterxml.jackson.annotation.JsonProperty("k-rate")
+    K_RATE;
 }
 
 /**
@@ -72,8 +84,8 @@ data class ContextRealtimeData(
 
     /**  
      * The time spent on rendering graph divided by render qunatum duration,  
-  and multiplied by 100. 100 means the audio renderer reached the full  
-  capacity and glitch may occur.  
+     and multiplied by 100. 100 means the audio renderer reached the full  
+     capacity and glitch may occur.  
      */  
     val renderCapacity: Double,
 

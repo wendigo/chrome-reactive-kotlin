@@ -10,10 +10,14 @@ typealias WindowID = Int
  * The state of the browser window.
  */
 enum class WindowState {
-    @com.fasterxml.jackson.annotation.JsonProperty("normal") NORMAL,
-    @com.fasterxml.jackson.annotation.JsonProperty("minimized") MINIMIZED,
-    @com.fasterxml.jackson.annotation.JsonProperty("maximized") MAXIMIZED,
-    @com.fasterxml.jackson.annotation.JsonProperty("fullscreen") FULLSCREEN;
+    @com.fasterxml.jackson.annotation.JsonProperty("normal")
+    NORMAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("minimized")
+    MINIMIZED,
+    @com.fasterxml.jackson.annotation.JsonProperty("maximized")
+    MAXIMIZED,
+    @com.fasterxml.jackson.annotation.JsonProperty("fullscreen")
+    FULLSCREEN;
 }
 
 /**
@@ -51,35 +55,58 @@ data class Bounds(
  *
  */
 enum class PermissionType {
-    @com.fasterxml.jackson.annotation.JsonProperty("accessibilityEvents") ACCESSIBILITYEVENTS,
-    @com.fasterxml.jackson.annotation.JsonProperty("audioCapture") AUDIOCAPTURE,
-    @com.fasterxml.jackson.annotation.JsonProperty("backgroundSync") BACKGROUNDSYNC,
-    @com.fasterxml.jackson.annotation.JsonProperty("backgroundFetch") BACKGROUNDFETCH,
-    @com.fasterxml.jackson.annotation.JsonProperty("clipboardRead") CLIPBOARDREAD,
-    @com.fasterxml.jackson.annotation.JsonProperty("clipboardWrite") CLIPBOARDWRITE,
-    @com.fasterxml.jackson.annotation.JsonProperty("durableStorage") DURABLESTORAGE,
-    @com.fasterxml.jackson.annotation.JsonProperty("flash") FLASH,
-    @com.fasterxml.jackson.annotation.JsonProperty("geolocation") GEOLOCATION,
-    @com.fasterxml.jackson.annotation.JsonProperty("midi") MIDI,
-    @com.fasterxml.jackson.annotation.JsonProperty("midiSysex") MIDISYSEX,
-    @com.fasterxml.jackson.annotation.JsonProperty("notifications") NOTIFICATIONS,
-    @com.fasterxml.jackson.annotation.JsonProperty("paymentHandler") PAYMENTHANDLER,
-    @com.fasterxml.jackson.annotation.JsonProperty("periodicBackgroundSync") PERIODICBACKGROUNDSYNC,
-    @com.fasterxml.jackson.annotation.JsonProperty("protectedMediaIdentifier") PROTECTEDMEDIAIDENTIFIER,
-    @com.fasterxml.jackson.annotation.JsonProperty("sensors") SENSORS,
-    @com.fasterxml.jackson.annotation.JsonProperty("videoCapture") VIDEOCAPTURE,
-    @com.fasterxml.jackson.annotation.JsonProperty("idleDetection") IDLEDETECTION,
-    @com.fasterxml.jackson.annotation.JsonProperty("wakeLockScreen") WAKELOCKSCREEN,
-    @com.fasterxml.jackson.annotation.JsonProperty("wakeLockSystem") WAKELOCKSYSTEM;
+    @com.fasterxml.jackson.annotation.JsonProperty("accessibilityEvents")
+    ACCESSIBILITYEVENTS,
+    @com.fasterxml.jackson.annotation.JsonProperty("audioCapture")
+    AUDIOCAPTURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("backgroundSync")
+    BACKGROUNDSYNC,
+    @com.fasterxml.jackson.annotation.JsonProperty("backgroundFetch")
+    BACKGROUNDFETCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("clipboardRead")
+    CLIPBOARDREAD,
+    @com.fasterxml.jackson.annotation.JsonProperty("clipboardWrite")
+    CLIPBOARDWRITE,
+    @com.fasterxml.jackson.annotation.JsonProperty("durableStorage")
+    DURABLESTORAGE,
+    @com.fasterxml.jackson.annotation.JsonProperty("flash")
+    FLASH,
+    @com.fasterxml.jackson.annotation.JsonProperty("geolocation")
+    GEOLOCATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("midi")
+    MIDI,
+    @com.fasterxml.jackson.annotation.JsonProperty("midiSysex")
+    MIDISYSEX,
+    @com.fasterxml.jackson.annotation.JsonProperty("notifications")
+    NOTIFICATIONS,
+    @com.fasterxml.jackson.annotation.JsonProperty("paymentHandler")
+    PAYMENTHANDLER,
+    @com.fasterxml.jackson.annotation.JsonProperty("periodicBackgroundSync")
+    PERIODICBACKGROUNDSYNC,
+    @com.fasterxml.jackson.annotation.JsonProperty("protectedMediaIdentifier")
+    PROTECTEDMEDIAIDENTIFIER,
+    @com.fasterxml.jackson.annotation.JsonProperty("sensors")
+    SENSORS,
+    @com.fasterxml.jackson.annotation.JsonProperty("videoCapture")
+    VIDEOCAPTURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("idleDetection")
+    IDLEDETECTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("wakeLockScreen")
+    WAKELOCKSCREEN,
+    @com.fasterxml.jackson.annotation.JsonProperty("wakeLockSystem")
+    WAKELOCKSYSTEM;
 }
 
 /**
  *
  */
 enum class PermissionSetting {
-    @com.fasterxml.jackson.annotation.JsonProperty("granted") GRANTED,
-    @com.fasterxml.jackson.annotation.JsonProperty("denied") DENIED,
-    @com.fasterxml.jackson.annotation.JsonProperty("prompt") PROMPT;
+    @com.fasterxml.jackson.annotation.JsonProperty("granted")
+    GRANTED,
+    @com.fasterxml.jackson.annotation.JsonProperty("denied")
+    DENIED,
+    @com.fasterxml.jackson.annotation.JsonProperty("prompt")
+    PROMPT;
 }
 
 /**
@@ -90,7 +117,7 @@ https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
 data class PermissionDescriptor(
     /**  
      * Name of permission.  
-  See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for valid permission names.  
+     See https://cs.chromium.org/chromium/src/third_party/blink/renderer/modules/permissions/permission_descriptor.idl for valid permission names.  
      */  
     val name: String,
 
@@ -101,7 +128,7 @@ data class PermissionDescriptor(
 
     /**  
      * For "push" permission, may specify userVisibleOnly.  
-  Note that userVisibleOnly = true is the only currently supported type.  
+     Note that userVisibleOnly = true is the only currently supported type.  
      */  
     val userVisibleOnly: Boolean? = null,
 

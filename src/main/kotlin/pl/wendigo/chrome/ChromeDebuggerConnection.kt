@@ -92,8 +92,8 @@ internal class ChromeDebuggerConnection constructor(
             val frames = WebsocketFramesStream(url, ReplaySubject.create(eventBufferSize), mapper, client)
 
             return ChromeDebuggerConnection(
-                    frames,
-                    mapper
+                frames,
+                mapper
             )
         }
 

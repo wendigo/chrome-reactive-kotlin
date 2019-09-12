@@ -187,7 +187,7 @@ data class SecurityStateChangedEvent(
 
     /**  
      * List of explanations for the security state. If the overall security state is `insecure` or  
-  `warning`, at least one corresponding explanation should be included.  
+     `warning`, at least one corresponding explanation should be included.  
      */  
     val explanations: List<SecurityStateExplanation>,
 

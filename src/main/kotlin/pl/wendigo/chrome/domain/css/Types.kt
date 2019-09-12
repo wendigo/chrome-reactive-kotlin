@@ -12,10 +12,14 @@ stylesheets, &quot;inspector&quot; for stylesheets created by the inspector (i.e
 inspector&quot; rules), &quot;regular&quot; for regular stylesheets.
  */
 enum class StyleSheetOrigin {
-    @com.fasterxml.jackson.annotation.JsonProperty("injected") INJECTED,
-    @com.fasterxml.jackson.annotation.JsonProperty("user-agent") USER_AGENT,
-    @com.fasterxml.jackson.annotation.JsonProperty("inspector") INSPECTOR,
-    @com.fasterxml.jackson.annotation.JsonProperty("regular") REGULAR;
+    @com.fasterxml.jackson.annotation.JsonProperty("injected")
+    INJECTED,
+    @com.fasterxml.jackson.annotation.JsonProperty("user-agent")
+    USER_AGENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("inspector")
+    INSPECTOR,
+    @com.fasterxml.jackson.annotation.JsonProperty("regular")
+    REGULAR;
 }
 
 /**
@@ -150,7 +154,7 @@ data class CSSStyleSheetHeader(
 
     /**  
      * Whether this stylesheet is created for STYLE tag by parser. This flag is not set for  
-  document.written STYLE tags.  
+     document.written STYLE tags.  
      */  
     val isInline: Boolean,
 
@@ -177,7 +181,7 @@ data class CSSStyleSheetHeader(
 data class CSSRule(
     /**  
      * The css style sheet identifier (absent for user agent stylesheet and user-specified  
-  stylesheet rules) this rule came from.  
+     stylesheet rules) this rule came from.  
      */  
     val styleSheetId: StyleSheetId? = null,
 
@@ -198,7 +202,7 @@ data class CSSRule(
 
     /**  
      * Media list array (for rules involving media queries). The array enumerates media queries  
-  starting with the innermost one, going outwards.  
+     starting with the innermost one, going outwards.  
      */  
     val media: List<CSSMedia>? = null
 )
@@ -210,7 +214,7 @@ data class CSSRule(
 data class RuleUsage(
     /**  
      * The css style sheet identifier (absent for user agent stylesheet and user-specified  
-  stylesheet rules) this rule came from.  
+     stylesheet rules) this rule came from.  
      */  
     val styleSheetId: StyleSheetId,
 
@@ -300,7 +304,7 @@ data class CSSComputedStyleProperty(
 data class CSSStyle(
     /**  
      * The css style sheet identifier (absent for user agent stylesheet and user-specified  
-  stylesheet rules) this rule came from.  
+     stylesheet rules) this rule came from.  
      */  
     val styleSheetId: StyleSheetId? = null,
 
@@ -383,9 +387,9 @@ data class CSSMedia(
 
     /**  
      * Source of the media query: "mediaRule" if specified by a @media rule, "importRule" if  
-  specified by an @import rule, "linkedSheet" if specified by a "media" attribute in a linked  
-  stylesheet's LINK tag, "inlineSheet" if specified by a "media" attribute in an inline  
-  stylesheet's STYLE tag.  
+     specified by an @import rule, "linkedSheet" if specified by a "media" attribute in a linked  
+     stylesheet's LINK tag, "inlineSheet" if specified by a "media" attribute in an inline  
+     stylesheet's STYLE tag.  
      */  
     val source: String,
 
@@ -396,7 +400,7 @@ data class CSSMedia(
 
     /**  
      * The associated rule (@media or @import) header range in the enclosing stylesheet (if  
-  available).  
+     available).  
      */  
     val range: SourceRange? = null,
 
@@ -548,7 +552,7 @@ data class CSSKeyframesRule(
 data class CSSKeyframeRule(
     /**  
      * The css style sheet identifier (absent for user agent stylesheet and user-specified  
-  stylesheet rules) this rule came from.  
+     stylesheet rules) this rule came from.  
      */  
     val styleSheetId: StyleSheetId? = null,
 

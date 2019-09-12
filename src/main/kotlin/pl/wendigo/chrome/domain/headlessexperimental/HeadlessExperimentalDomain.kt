@@ -111,7 +111,7 @@ https://goo.gl/3zHXhB for more background.
 data class BeginFrameResponse(
     /**  
      * Whether the BeginFrame resulted in damage and, thus, a new frame was committed to the  
-  display. Reported for diagnostic uses, may be removed in the future.  
+     display. Reported for diagnostic uses, may be removed in the future.  
      */  
     val hasDamage: Boolean,
 

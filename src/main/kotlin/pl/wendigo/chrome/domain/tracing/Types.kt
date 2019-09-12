@@ -57,14 +57,18 @@ data class TraceConfig(
 protocol buffer format. Note that the JSON format will be deprecated soon.
  */
 enum class StreamFormat {
-    @com.fasterxml.jackson.annotation.JsonProperty("json") JSON,
-    @com.fasterxml.jackson.annotation.JsonProperty("proto") PROTO;
+    @com.fasterxml.jackson.annotation.JsonProperty("json")
+    JSON,
+    @com.fasterxml.jackson.annotation.JsonProperty("proto")
+    PROTO;
 }
 
 /**
  * Compression type to use for traces returned via streams.
  */
 enum class StreamCompression {
-    @com.fasterxml.jackson.annotation.JsonProperty("none") NONE,
-    @com.fasterxml.jackson.annotation.JsonProperty("gzip") GZIP;
+    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    NONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("gzip")
+    GZIP;
 }

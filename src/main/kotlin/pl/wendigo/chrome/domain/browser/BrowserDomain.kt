@@ -336,7 +336,7 @@ data class GetWindowBoundsRequest(
 data class GetWindowBoundsResponse(
     /**  
      * Bounds information of the window. When window state is 'minimized', the restored window  
-  position and size are returned.  
+     position and size are returned.  
      */  
     val bounds: Bounds
 
@@ -368,7 +368,7 @@ data class GetWindowForTargetResponse(
 
     /**  
      * Bounds information of the window. When window state is 'minimized', the restored window  
-  position and size are returned.  
+     position and size are returned.  
      */  
     val bounds: Bounds
 

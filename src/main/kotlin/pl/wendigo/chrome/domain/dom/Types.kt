@@ -38,30 +38,48 @@ data class BackendNode(
  * Pseudo element type.
  */
 enum class PseudoType {
-    @com.fasterxml.jackson.annotation.JsonProperty("first-line") FIRST_LINE,
-    @com.fasterxml.jackson.annotation.JsonProperty("first-letter") FIRST_LETTER,
-    @com.fasterxml.jackson.annotation.JsonProperty("before") BEFORE,
-    @com.fasterxml.jackson.annotation.JsonProperty("after") AFTER,
-    @com.fasterxml.jackson.annotation.JsonProperty("backdrop") BACKDROP,
-    @com.fasterxml.jackson.annotation.JsonProperty("selection") SELECTION,
-    @com.fasterxml.jackson.annotation.JsonProperty("first-line-inherited") FIRST_LINE_INHERITED,
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar") SCROLLBAR,
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-thumb") SCROLLBAR_THUMB,
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-button") SCROLLBAR_BUTTON,
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-track") SCROLLBAR_TRACK,
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-track-piece") SCROLLBAR_TRACK_PIECE,
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-corner") SCROLLBAR_CORNER,
-    @com.fasterxml.jackson.annotation.JsonProperty("resizer") RESIZER,
-    @com.fasterxml.jackson.annotation.JsonProperty("input-list-button") INPUT_LIST_BUTTON;
+    @com.fasterxml.jackson.annotation.JsonProperty("first-line")
+    FIRST_LINE,
+    @com.fasterxml.jackson.annotation.JsonProperty("first-letter")
+    FIRST_LETTER,
+    @com.fasterxml.jackson.annotation.JsonProperty("before")
+    BEFORE,
+    @com.fasterxml.jackson.annotation.JsonProperty("after")
+    AFTER,
+    @com.fasterxml.jackson.annotation.JsonProperty("backdrop")
+    BACKDROP,
+    @com.fasterxml.jackson.annotation.JsonProperty("selection")
+    SELECTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("first-line-inherited")
+    FIRST_LINE_INHERITED,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar")
+    SCROLLBAR,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-thumb")
+    SCROLLBAR_THUMB,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-button")
+    SCROLLBAR_BUTTON,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-track")
+    SCROLLBAR_TRACK,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-track-piece")
+    SCROLLBAR_TRACK_PIECE,
+    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-corner")
+    SCROLLBAR_CORNER,
+    @com.fasterxml.jackson.annotation.JsonProperty("resizer")
+    RESIZER,
+    @com.fasterxml.jackson.annotation.JsonProperty("input-list-button")
+    INPUT_LIST_BUTTON;
 }
 
 /**
  * Shadow root type.
  */
 enum class ShadowRootType {
-    @com.fasterxml.jackson.annotation.JsonProperty("user-agent") USER_AGENT,
-    @com.fasterxml.jackson.annotation.JsonProperty("open") OPEN,
-    @com.fasterxml.jackson.annotation.JsonProperty("closed") CLOSED;
+    @com.fasterxml.jackson.annotation.JsonProperty("user-agent")
+    USER_AGENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("open")
+    OPEN,
+    @com.fasterxml.jackson.annotation.JsonProperty("closed")
+    CLOSED;
 }
 
 /**
@@ -72,8 +90,8 @@ DOMNode is a base node mirror type.
 data class Node(
     /**  
      * Node identifier that is passed into the rest of the DOM messages as the `nodeId`. Backend  
-  will only push node with given `id` once. It is aware of all requested nodes and will only  
-  fire DOM events for nodes known to the client.  
+     will only push node with given `id` once. It is aware of all requested nodes and will only  
+     fire DOM events for nodes known to the client.  
      */  
     val nodeId: NodeId,
 

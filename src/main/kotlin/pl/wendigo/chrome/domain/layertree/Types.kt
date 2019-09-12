@@ -142,7 +142,7 @@ data class Layer(
 
     /**  
      * Indicates whether this layer hosts any content, rather than being used for  
-  transform/scrolling purposes only.  
+     transform/scrolling purposes only.  
      */  
     val drawsContent: Boolean,
 

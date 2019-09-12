@@ -4,9 +4,12 @@ package pl.wendigo.chrome.domain.domdebugger
  * DOM breakpoint type.
  */
 enum class DOMBreakpointType {
-    @com.fasterxml.jackson.annotation.JsonProperty("subtree-modified") SUBTREE_MODIFIED,
-    @com.fasterxml.jackson.annotation.JsonProperty("attribute-modified") ATTRIBUTE_MODIFIED,
-    @com.fasterxml.jackson.annotation.JsonProperty("node-removed") NODE_REMOVED;
+    @com.fasterxml.jackson.annotation.JsonProperty("subtree-modified")
+    SUBTREE_MODIFIED,
+    @com.fasterxml.jackson.annotation.JsonProperty("attribute-modified")
+    ATTRIBUTE_MODIFIED,
+    @com.fasterxml.jackson.annotation.JsonProperty("node-removed")
+    NODE_REMOVED;
 }
 
 /**

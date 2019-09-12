@@ -47,7 +47,7 @@ data class DOMNode(
 
     /**  
      * The indexes of the node's child nodes in the `domNodes` array returned by `getSnapshot`, if  
-  any.  
+     any.  
      */  
     val childNodeIndexes: List<Int>? = null,
 
@@ -58,13 +58,13 @@ data class DOMNode(
 
     /**  
      * Indexes of pseudo elements associated with this node in the `domNodes` array returned by  
-  `getSnapshot`, if any.  
+     `getSnapshot`, if any.  
      */  
     val pseudoElementIndexes: List<Int>? = null,
 
     /**  
      * The index of the node's related layout tree node in the `layoutTreeNodes` array returned by  
-  `getSnapshot`, if any.  
+     `getSnapshot`, if any.  
      */  
     val layoutNodeIndex: Int? = null,
 
@@ -105,7 +105,7 @@ data class DOMNode(
 
     /**  
      * The index of a frame owner element's content document in the `domNodes` array returned by  
-  `getSnapshot`, if any.  
+     `getSnapshot`, if any.  
      */  
     val contentDocumentIndex: Int? = null,
 
@@ -121,8 +121,8 @@ data class DOMNode(
 
     /**  
      * Whether this DOM node responds to mouse clicks. This includes nodes that have had click  
-  event listeners attached via JavaScript as well as anchor tags that naturally navigate when  
-  clicked.  
+     event listeners attached via JavaScript as well as anchor tags that naturally navigate when  
+     clicked.  
      */  
     val isClickable: Boolean? = null,
 
@@ -165,13 +165,13 @@ data class InlineTextBox(
 
     /**  
      * The starting index in characters, for this post layout textbox substring. Characters that  
-  would be represented as a surrogate pair in UTF-16 have length 2.  
+     would be represented as a surrogate pair in UTF-16 have length 2.  
      */  
     val startCharacterIndex: Int,
 
     /**  
      * The number of characters in this post layout textbox substring. Characters that would be  
-  represented as a surrogate pair in UTF-16 have length 2.  
+     represented as a surrogate pair in UTF-16 have length 2.  
      */  
     val numCharacters: Int
 )
@@ -208,8 +208,8 @@ data class LayoutTreeNode(
 
     /**  
      * Global paint order index, which is determined by the stacking order of the nodes. Nodes  
-  that are painted together will have the same index. Only provided if includePaintOrder in  
-  getSnapshot was true.  
+     that are painted together will have the same index. Only provided if includePaintOrder in  
+     getSnapshot was true.  
      */  
     val paintOrder: Int? = null,
 
@@ -440,8 +440,8 @@ data class NodeTreeSnapshot(
 
     /**  
      * Whether this DOM node responds to mouse clicks. This includes nodes that have had click  
-  event listeners attached via JavaScript as well as anchor tags that naturally navigate when  
-  clicked.  
+     event listeners attached via JavaScript as well as anchor tags that naturally navigate when  
+     clicked.  
      */  
     val isClickable: RareBooleanData? = null,
 
@@ -488,8 +488,8 @@ data class LayoutTreeSnapshot(
 
     /**  
      * Global paint order index, which is determined by the stacking order of the nodes. Nodes  
-  that are painted together will have the same index. Only provided if includePaintOrder in  
-  captureSnapshot was true.  
+     that are painted together will have the same index. Only provided if includePaintOrder in  
+     captureSnapshot was true.  
      */  
     val paintOrders: List<Int>? = null,
 
@@ -527,13 +527,13 @@ data class TextBoxSnapshot(
 
     /**  
      * The starting index in characters, for this post layout textbox substring. Characters that  
-  would be represented as a surrogate pair in UTF-16 have length 2.  
+     would be represented as a surrogate pair in UTF-16 have length 2.  
      */  
     val start: List<Int>,
 
     /**  
      * The number of characters in this post layout textbox substring. Characters that would be  
-  represented as a surrogate pair in UTF-16 have length 2.  
+     represented as a surrogate pair in UTF-16 have length 2.  
      */  
     val length: List<Int>
 )

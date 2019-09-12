@@ -2023,7 +2023,7 @@ data class FrameScheduledNavigationEvent(
 
     /**  
      * Delay (in seconds) until the navigation is scheduled to begin. The navigation is not  
-  guaranteed to start.  
+     guaranteed to start.  
      */  
     val delay: Double,
 
@@ -2126,8 +2126,8 @@ data class JavascriptDialogOpeningEvent(
 
     /**  
      * True iff browser is capable showing or acting on the given dialog. When browser has no  
-  dialog handler for given target, calling alert while Page domain is engaged will stall  
-  the page execution. Execution can be resumed via calling Page.handleJavaScriptDialog.  
+     dialog handler for given target, calling alert while Page domain is engaged will stall  
+     the page execution. Execution can be resumed via calling Page.handleJavaScriptDialog.  
      */  
     val hasBrowserHandler: Boolean,
 

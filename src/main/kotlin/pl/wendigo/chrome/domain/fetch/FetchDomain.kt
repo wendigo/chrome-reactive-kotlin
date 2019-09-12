@@ -403,7 +403,7 @@ data class RequestPausedEvent(
 
     /**  
      * If the intercepted request had a corresponding Network.requestWillBeSent event fired for it,  
-  then this networkId will be the same as the requestId present in the requestWillBeSent event.  
+     then this networkId will be the same as the requestId present in the requestWillBeSent event.  
      */  
     val networkId: RequestId? = null
 
@@ -438,8 +438,8 @@ data class AuthRequiredEvent(
 
     /**  
      * Details of the Authorization Challenge encountered.  
-  If this is set, client should respond with continueRequest that  
-  contains AuthChallengeResponse.  
+     If this is set, client should respond with continueRequest that  
+     contains AuthChallengeResponse.  
      */  
     val authChallenge: AuthChallenge
 
