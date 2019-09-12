@@ -4,22 +4,38 @@ package pl.wendigo.chrome.domain.network
  * Resource type as it was perceived by the rendering engine.
  */
 enum class ResourceType {
-    @com.fasterxml.jackson.annotation.JsonProperty("Document") DOCUMENT,
-    @com.fasterxml.jackson.annotation.JsonProperty("Stylesheet") STYLESHEET,
-    @com.fasterxml.jackson.annotation.JsonProperty("Image") IMAGE,
-    @com.fasterxml.jackson.annotation.JsonProperty("Media") MEDIA,
-    @com.fasterxml.jackson.annotation.JsonProperty("Font") FONT,
-    @com.fasterxml.jackson.annotation.JsonProperty("Script") SCRIPT,
-    @com.fasterxml.jackson.annotation.JsonProperty("TextTrack") TEXTTRACK,
-    @com.fasterxml.jackson.annotation.JsonProperty("XHR") XHR,
-    @com.fasterxml.jackson.annotation.JsonProperty("Fetch") FETCH,
-    @com.fasterxml.jackson.annotation.JsonProperty("EventSource") EVENTSOURCE,
-    @com.fasterxml.jackson.annotation.JsonProperty("WebSocket") WEBSOCKET,
-    @com.fasterxml.jackson.annotation.JsonProperty("Manifest") MANIFEST,
-    @com.fasterxml.jackson.annotation.JsonProperty("SignedExchange") SIGNEDEXCHANGE,
-    @com.fasterxml.jackson.annotation.JsonProperty("Ping") PING,
-    @com.fasterxml.jackson.annotation.JsonProperty("CSPViolationReport") CSPVIOLATIONREPORT,
-    @com.fasterxml.jackson.annotation.JsonProperty("Other") OTHER;
+    @com.fasterxml.jackson.annotation.JsonProperty("Document")
+    DOCUMENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("Stylesheet")
+    STYLESHEET,
+    @com.fasterxml.jackson.annotation.JsonProperty("Image")
+    IMAGE,
+    @com.fasterxml.jackson.annotation.JsonProperty("Media")
+    MEDIA,
+    @com.fasterxml.jackson.annotation.JsonProperty("Font")
+    FONT,
+    @com.fasterxml.jackson.annotation.JsonProperty("Script")
+    SCRIPT,
+    @com.fasterxml.jackson.annotation.JsonProperty("TextTrack")
+    TEXTTRACK,
+    @com.fasterxml.jackson.annotation.JsonProperty("XHR")
+    XHR,
+    @com.fasterxml.jackson.annotation.JsonProperty("Fetch")
+    FETCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("EventSource")
+    EVENTSOURCE,
+    @com.fasterxml.jackson.annotation.JsonProperty("WebSocket")
+    WEBSOCKET,
+    @com.fasterxml.jackson.annotation.JsonProperty("Manifest")
+    MANIFEST,
+    @com.fasterxml.jackson.annotation.JsonProperty("SignedExchange")
+    SIGNEDEXCHANGE,
+    @com.fasterxml.jackson.annotation.JsonProperty("Ping")
+    PING,
+    @com.fasterxml.jackson.annotation.JsonProperty("CSPViolationReport")
+    CSPVIOLATIONREPORT,
+    @com.fasterxml.jackson.annotation.JsonProperty("Other")
+    OTHER;
 }
 
 /**
@@ -44,20 +60,34 @@ typealias InterceptionId = String
  * Network level fetch failure reason.
  */
 enum class ErrorReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("Failed") FAILED,
-    @com.fasterxml.jackson.annotation.JsonProperty("Aborted") ABORTED,
-    @com.fasterxml.jackson.annotation.JsonProperty("TimedOut") TIMEDOUT,
-    @com.fasterxml.jackson.annotation.JsonProperty("AccessDenied") ACCESSDENIED,
-    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionClosed") CONNECTIONCLOSED,
-    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionReset") CONNECTIONRESET,
-    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionRefused") CONNECTIONREFUSED,
-    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionAborted") CONNECTIONABORTED,
-    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionFailed") CONNECTIONFAILED,
-    @com.fasterxml.jackson.annotation.JsonProperty("NameNotResolved") NAMENOTRESOLVED,
-    @com.fasterxml.jackson.annotation.JsonProperty("InternetDisconnected") INTERNETDISCONNECTED,
-    @com.fasterxml.jackson.annotation.JsonProperty("AddressUnreachable") ADDRESSUNREACHABLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("BlockedByClient") BLOCKEDBYCLIENT,
-    @com.fasterxml.jackson.annotation.JsonProperty("BlockedByResponse") BLOCKEDBYRESPONSE;
+    @com.fasterxml.jackson.annotation.JsonProperty("Failed")
+    FAILED,
+    @com.fasterxml.jackson.annotation.JsonProperty("Aborted")
+    ABORTED,
+    @com.fasterxml.jackson.annotation.JsonProperty("TimedOut")
+    TIMEDOUT,
+    @com.fasterxml.jackson.annotation.JsonProperty("AccessDenied")
+    ACCESSDENIED,
+    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionClosed")
+    CONNECTIONCLOSED,
+    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionReset")
+    CONNECTIONRESET,
+    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionRefused")
+    CONNECTIONREFUSED,
+    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionAborted")
+    CONNECTIONABORTED,
+    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionFailed")
+    CONNECTIONFAILED,
+    @com.fasterxml.jackson.annotation.JsonProperty("NameNotResolved")
+    NAMENOTRESOLVED,
+    @com.fasterxml.jackson.annotation.JsonProperty("InternetDisconnected")
+    INTERNETDISCONNECTED,
+    @com.fasterxml.jackson.annotation.JsonProperty("AddressUnreachable")
+    ADDRESSUNREACHABLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("BlockedByClient")
+    BLOCKEDBYCLIENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("BlockedByResponse")
+    BLOCKEDBYRESPONSE;
 }
 
 /**
@@ -82,15 +112,24 @@ typealias Headers = Map<String, Any>
  * The underlying connection technology that the browser is supposedly using.
  */
 enum class ConnectionType {
-    @com.fasterxml.jackson.annotation.JsonProperty("none") NONE,
-    @com.fasterxml.jackson.annotation.JsonProperty("cellular2g") CELLULAR2G,
-    @com.fasterxml.jackson.annotation.JsonProperty("cellular3g") CELLULAR3G,
-    @com.fasterxml.jackson.annotation.JsonProperty("cellular4g") CELLULAR4G,
-    @com.fasterxml.jackson.annotation.JsonProperty("bluetooth") BLUETOOTH,
-    @com.fasterxml.jackson.annotation.JsonProperty("ethernet") ETHERNET,
-    @com.fasterxml.jackson.annotation.JsonProperty("wifi") WIFI,
-    @com.fasterxml.jackson.annotation.JsonProperty("wimax") WIMAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("other") OTHER;
+    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    NONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("cellular2g")
+    CELLULAR2G,
+    @com.fasterxml.jackson.annotation.JsonProperty("cellular3g")
+    CELLULAR3G,
+    @com.fasterxml.jackson.annotation.JsonProperty("cellular4g")
+    CELLULAR4G,
+    @com.fasterxml.jackson.annotation.JsonProperty("bluetooth")
+    BLUETOOTH,
+    @com.fasterxml.jackson.annotation.JsonProperty("ethernet")
+    ETHERNET,
+    @com.fasterxml.jackson.annotation.JsonProperty("wifi")
+    WIFI,
+    @com.fasterxml.jackson.annotation.JsonProperty("wimax")
+    WIMAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("other")
+    OTHER;
 }
 
 /**
@@ -98,10 +137,14 @@ enum class ConnectionType {
 https://tools.ietf.org/html/draft-west-first-party-cookies
  */
 enum class CookieSameSite {
-    @com.fasterxml.jackson.annotation.JsonProperty("Strict") STRICT,
-    @com.fasterxml.jackson.annotation.JsonProperty("Lax") LAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("Extended") EXTENDED,
-    @com.fasterxml.jackson.annotation.JsonProperty("None") NONE;
+    @com.fasterxml.jackson.annotation.JsonProperty("Strict")
+    STRICT,
+    @com.fasterxml.jackson.annotation.JsonProperty("Lax")
+    LAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("Extended")
+    EXTENDED,
+    @com.fasterxml.jackson.annotation.JsonProperty("None")
+    NONE;
 }
 
 /**
@@ -111,7 +154,7 @@ enum class CookieSameSite {
 data class ResourceTiming(
     /**  
      * Timing's requestTime is a baseline in seconds, while the other numbers are ticks in  
-  milliseconds relatively to this requestTime.  
+     milliseconds relatively to this requestTime.  
      */  
     val requestTime: Double,
 
@@ -195,11 +238,16 @@ data class ResourceTiming(
  * Loading priority of a resource request.
  */
 enum class ResourcePriority {
-    @com.fasterxml.jackson.annotation.JsonProperty("VeryLow") VERYLOW,
-    @com.fasterxml.jackson.annotation.JsonProperty("Low") LOW,
-    @com.fasterxml.jackson.annotation.JsonProperty("Medium") MEDIUM,
-    @com.fasterxml.jackson.annotation.JsonProperty("High") HIGH,
-    @com.fasterxml.jackson.annotation.JsonProperty("VeryHigh") VERYHIGH;
+    @com.fasterxml.jackson.annotation.JsonProperty("VeryLow")
+    VERYLOW,
+    @com.fasterxml.jackson.annotation.JsonProperty("Low")
+    LOW,
+    @com.fasterxml.jackson.annotation.JsonProperty("Medium")
+    MEDIUM,
+    @com.fasterxml.jackson.annotation.JsonProperty("High")
+    HIGH,
+    @com.fasterxml.jackson.annotation.JsonProperty("VeryHigh")
+    VERYHIGH;
 }
 
 /**
@@ -379,23 +427,34 @@ data class SecurityDetails(
  * Whether the request complied with Certificate Transparency policy.
  */
 enum class CertificateTransparencyCompliance {
-    @com.fasterxml.jackson.annotation.JsonProperty("unknown") UNKNOWN,
-    @com.fasterxml.jackson.annotation.JsonProperty("not-compliant") NOT_COMPLIANT,
-    @com.fasterxml.jackson.annotation.JsonProperty("compliant") COMPLIANT;
+    @com.fasterxml.jackson.annotation.JsonProperty("unknown")
+    UNKNOWN,
+    @com.fasterxml.jackson.annotation.JsonProperty("not-compliant")
+    NOT_COMPLIANT,
+    @com.fasterxml.jackson.annotation.JsonProperty("compliant")
+    COMPLIANT;
 }
 
 /**
  * The reason why request was blocked.
  */
 enum class BlockedReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("other") OTHER,
-    @com.fasterxml.jackson.annotation.JsonProperty("csp") CSP,
-    @com.fasterxml.jackson.annotation.JsonProperty("mixed-content") MIXED_CONTENT,
-    @com.fasterxml.jackson.annotation.JsonProperty("origin") ORIGIN,
-    @com.fasterxml.jackson.annotation.JsonProperty("inspector") INSPECTOR,
-    @com.fasterxml.jackson.annotation.JsonProperty("subresource-filter") SUBRESOURCE_FILTER,
-    @com.fasterxml.jackson.annotation.JsonProperty("content-type") CONTENT_TYPE,
-    @com.fasterxml.jackson.annotation.JsonProperty("collapsed-by-client") COLLAPSED_BY_CLIENT;
+    @com.fasterxml.jackson.annotation.JsonProperty("other")
+    OTHER,
+    @com.fasterxml.jackson.annotation.JsonProperty("csp")
+    CSP,
+    @com.fasterxml.jackson.annotation.JsonProperty("mixed-content")
+    MIXED_CONTENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("origin")
+    ORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("inspector")
+    INSPECTOR,
+    @com.fasterxml.jackson.annotation.JsonProperty("subresource-filter")
+    SUBRESOURCE_FILTER,
+    @com.fasterxml.jackson.annotation.JsonProperty("content-type")
+    CONTENT_TYPE,
+    @com.fasterxml.jackson.annotation.JsonProperty("collapsed-by-client")
+    COLLAPSED_BY_CLIENT;
 }
 
 /**
@@ -568,8 +627,8 @@ data class WebSocketFrame(
 
     /**  
      * WebSocket message payload data.  
-  If the opcode is 1, this is a text message and payloadData is a UTF-8 string.  
-  If the opcode isn't 1, then payloadData is a base64 encoded string representing binary data.  
+     If the opcode is 1, this is a text message and payloadData is a UTF-8 string.  
+     If the opcode isn't 1, then payloadData is a base64 encoded string representing binary data.  
      */  
     val payloadData: String
 )
@@ -622,7 +681,7 @@ data class Initiator(
 
     /**  
      * Initiator line number, set for Parser type or for Script type (when script is importing  
-  module) (0-based).  
+     module) (0-based).  
      */  
     val lineNumber: Double? = null
 )
@@ -687,35 +746,58 @@ data class Cookie(
  * Types of reasons why a cookie may not be stored from a response.
  */
 enum class SetCookieBlockedReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("SecureOnly") SECUREONLY,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteStrict") SAMESITESTRICT,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteLax") SAMESITELAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteExtended") SAMESITEEXTENDED,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteUnspecifiedTreatedAsLax") SAMESITEUNSPECIFIEDTREATEDASLAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteNoneInsecure") SAMESITENONEINSECURE,
-    @com.fasterxml.jackson.annotation.JsonProperty("UserPreferences") USERPREFERENCES,
-    @com.fasterxml.jackson.annotation.JsonProperty("SyntaxError") SYNTAXERROR,
-    @com.fasterxml.jackson.annotation.JsonProperty("SchemeNotSupported") SCHEMENOTSUPPORTED,
-    @com.fasterxml.jackson.annotation.JsonProperty("OverwriteSecure") OVERWRITESECURE,
-    @com.fasterxml.jackson.annotation.JsonProperty("InvalidDomain") INVALIDDOMAIN,
-    @com.fasterxml.jackson.annotation.JsonProperty("InvalidPrefix") INVALIDPREFIX,
-    @com.fasterxml.jackson.annotation.JsonProperty("UnknownError") UNKNOWNERROR;
+    @com.fasterxml.jackson.annotation.JsonProperty("SecureOnly")
+    SECUREONLY,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteStrict")
+    SAMESITESTRICT,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteLax")
+    SAMESITELAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteExtended")
+    SAMESITEEXTENDED,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteUnspecifiedTreatedAsLax")
+    SAMESITEUNSPECIFIEDTREATEDASLAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteNoneInsecure")
+    SAMESITENONEINSECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("UserPreferences")
+    USERPREFERENCES,
+    @com.fasterxml.jackson.annotation.JsonProperty("SyntaxError")
+    SYNTAXERROR,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemeNotSupported")
+    SCHEMENOTSUPPORTED,
+    @com.fasterxml.jackson.annotation.JsonProperty("OverwriteSecure")
+    OVERWRITESECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidDomain")
+    INVALIDDOMAIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidPrefix")
+    INVALIDPREFIX,
+    @com.fasterxml.jackson.annotation.JsonProperty("UnknownError")
+    UNKNOWNERROR;
 }
 
 /**
  * Types of reasons why a cookie may not be sent with a request.
  */
 enum class CookieBlockedReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("SecureOnly") SECUREONLY,
-    @com.fasterxml.jackson.annotation.JsonProperty("NotOnPath") NOTONPATH,
-    @com.fasterxml.jackson.annotation.JsonProperty("DomainMismatch") DOMAINMISMATCH,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteStrict") SAMESITESTRICT,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteLax") SAMESITELAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteExtended") SAMESITEEXTENDED,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteUnspecifiedTreatedAsLax") SAMESITEUNSPECIFIEDTREATEDASLAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteNoneInsecure") SAMESITENONEINSECURE,
-    @com.fasterxml.jackson.annotation.JsonProperty("UserPreferences") USERPREFERENCES,
-    @com.fasterxml.jackson.annotation.JsonProperty("UnknownError") UNKNOWNERROR;
+    @com.fasterxml.jackson.annotation.JsonProperty("SecureOnly")
+    SECUREONLY,
+    @com.fasterxml.jackson.annotation.JsonProperty("NotOnPath")
+    NOTONPATH,
+    @com.fasterxml.jackson.annotation.JsonProperty("DomainMismatch")
+    DOMAINMISMATCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteStrict")
+    SAMESITESTRICT,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteLax")
+    SAMESITELAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteExtended")
+    SAMESITEEXTENDED,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteUnspecifiedTreatedAsLax")
+    SAMESITEUNSPECIFIEDTREATEDASLAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteNoneInsecure")
+    SAMESITENONEINSECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("UserPreferences")
+    USERPREFERENCES,
+    @com.fasterxml.jackson.annotation.JsonProperty("UnknownError")
+    UNKNOWNERROR;
 }
 
 /**
@@ -730,14 +812,14 @@ data class BlockedSetCookieWithReason(
 
     /**  
      * The string representing this individual cookie as it would appear in the header.  
-  This is not the entire "cookie" or "set-cookie" header which could have multiple cookies.  
+     This is not the entire "cookie" or "set-cookie" header which could have multiple cookies.  
      */  
     val cookieLine: String,
 
     /**  
      * The cookie object which represents the cookie which was not stored. It is optional because  
-  sometimes complete cookie information is not available, such as in the case of parsing  
-  errors.  
+     sometimes complete cookie information is not available, such as in the case of parsing  
+     errors.  
      */  
     val cookie: Cookie? = null
 )
@@ -775,7 +857,7 @@ data class CookieParam(
 
     /**  
      * The request-URI to associate with the setting of the cookie. This value can affect the  
-  default domain and path values of the created cookie.  
+     default domain and path values of the created cookie.  
      */  
     val url: String? = null,
 
@@ -843,20 +925,20 @@ data class AuthChallenge(
 data class AuthChallengeResponse(
     /**  
      * The decision on what to do in response to the authorization challenge.  Default means  
-  deferring to the default behavior of the net stack, which will likely either the Cancel  
-  authentication or display a popup dialog box.  
+     deferring to the default behavior of the net stack, which will likely either the Cancel  
+     authentication or display a popup dialog box.  
      */  
     val response: String,
 
     /**  
      * The username to provide, possibly empty. Should only be set if response is  
-  ProvideCredentials.  
+     ProvideCredentials.  
      */  
     val username: String? = null,
 
     /**  
      * The password to provide, possibly empty. Should only be set if response is  
-  ProvideCredentials.  
+     ProvideCredentials.  
      */  
     val password: String? = null
 )
@@ -866,8 +948,10 @@ data class AuthChallengeResponse(
 sent. Response will intercept after the response is received.
  */
 enum class InterceptionStage {
-    @com.fasterxml.jackson.annotation.JsonProperty("Request") REQUEST,
-    @com.fasterxml.jackson.annotation.JsonProperty("HeadersReceived") HEADERSRECEIVED;
+    @com.fasterxml.jackson.annotation.JsonProperty("Request")
+    REQUEST,
+    @com.fasterxml.jackson.annotation.JsonProperty("HeadersReceived")
+    HEADERSRECEIVED;
 }
 
 /**
@@ -877,7 +961,7 @@ enum class InterceptionStage {
 data class RequestPattern(
     /**  
      * Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is  
-  backslash. Omitting is equivalent to "*".  
+     backslash. Omitting is equivalent to "*".  
      */  
     val urlPattern: String? = null,
 
@@ -980,12 +1064,18 @@ data class SignedExchangeHeader(
  * Field type for a signed exchange related error.
  */
 enum class SignedExchangeErrorField {
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureSig") SIGNATURESIG,
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureIntegrity") SIGNATUREINTEGRITY,
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureCertUrl") SIGNATURECERTURL,
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureCertSha256") SIGNATURECERTSHA256,
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureValidityUrl") SIGNATUREVALIDITYURL,
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureTimestamps") SIGNATURETIMESTAMPS;
+    @com.fasterxml.jackson.annotation.JsonProperty("signatureSig")
+    SIGNATURESIG,
+    @com.fasterxml.jackson.annotation.JsonProperty("signatureIntegrity")
+    SIGNATUREINTEGRITY,
+    @com.fasterxml.jackson.annotation.JsonProperty("signatureCertUrl")
+    SIGNATURECERTURL,
+    @com.fasterxml.jackson.annotation.JsonProperty("signatureCertSha256")
+    SIGNATURECERTSHA256,
+    @com.fasterxml.jackson.annotation.JsonProperty("signatureValidityUrl")
+    SIGNATUREVALIDITYURL,
+    @com.fasterxml.jackson.annotation.JsonProperty("signatureTimestamps")
+    SIGNATURETIMESTAMPS;
 }
 
 /**

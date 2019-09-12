@@ -52,7 +52,7 @@ data class Animation(
 
     /**  
      * A unique ID for `Animation` representing the sources that triggered this CSS  
-  animation/transition.  
+     animation/transition.  
      */  
     val cssId: String? = null
 )

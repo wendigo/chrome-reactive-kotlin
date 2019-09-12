@@ -17,7 +17,7 @@ data class Sink(
 
     /**  
      * Text describing the current session. Present only if there is an active  
-  session on the sink.  
+     session on the sink.  
      */  
     val session: String? = null
 )

@@ -10,49 +10,80 @@ typealias AXNodeId = String
  * Enum of possible property types.
  */
 enum class AXValueType {
-    @com.fasterxml.jackson.annotation.JsonProperty("boolean") BOOLEAN,
-    @com.fasterxml.jackson.annotation.JsonProperty("tristate") TRISTATE,
-    @com.fasterxml.jackson.annotation.JsonProperty("booleanOrUndefined") BOOLEANORUNDEFINED,
-    @com.fasterxml.jackson.annotation.JsonProperty("idref") IDREF,
-    @com.fasterxml.jackson.annotation.JsonProperty("idrefList") IDREFLIST,
-    @com.fasterxml.jackson.annotation.JsonProperty("integer") INTEGER,
-    @com.fasterxml.jackson.annotation.JsonProperty("node") NODE,
-    @com.fasterxml.jackson.annotation.JsonProperty("nodeList") NODELIST,
-    @com.fasterxml.jackson.annotation.JsonProperty("number") NUMBER,
-    @com.fasterxml.jackson.annotation.JsonProperty("string") STRING,
-    @com.fasterxml.jackson.annotation.JsonProperty("computedString") COMPUTEDSTRING,
-    @com.fasterxml.jackson.annotation.JsonProperty("token") TOKEN,
-    @com.fasterxml.jackson.annotation.JsonProperty("tokenList") TOKENLIST,
-    @com.fasterxml.jackson.annotation.JsonProperty("domRelation") DOMRELATION,
-    @com.fasterxml.jackson.annotation.JsonProperty("role") ROLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("internalRole") INTERNALROLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("valueUndefined") VALUEUNDEFINED;
+    @com.fasterxml.jackson.annotation.JsonProperty("boolean")
+    BOOLEAN,
+    @com.fasterxml.jackson.annotation.JsonProperty("tristate")
+    TRISTATE,
+    @com.fasterxml.jackson.annotation.JsonProperty("booleanOrUndefined")
+    BOOLEANORUNDEFINED,
+    @com.fasterxml.jackson.annotation.JsonProperty("idref")
+    IDREF,
+    @com.fasterxml.jackson.annotation.JsonProperty("idrefList")
+    IDREFLIST,
+    @com.fasterxml.jackson.annotation.JsonProperty("integer")
+    INTEGER,
+    @com.fasterxml.jackson.annotation.JsonProperty("node")
+    NODE,
+    @com.fasterxml.jackson.annotation.JsonProperty("nodeList")
+    NODELIST,
+    @com.fasterxml.jackson.annotation.JsonProperty("number")
+    NUMBER,
+    @com.fasterxml.jackson.annotation.JsonProperty("string")
+    STRING,
+    @com.fasterxml.jackson.annotation.JsonProperty("computedString")
+    COMPUTEDSTRING,
+    @com.fasterxml.jackson.annotation.JsonProperty("token")
+    TOKEN,
+    @com.fasterxml.jackson.annotation.JsonProperty("tokenList")
+    TOKENLIST,
+    @com.fasterxml.jackson.annotation.JsonProperty("domRelation")
+    DOMRELATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("role")
+    ROLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("internalRole")
+    INTERNALROLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("valueUndefined")
+    VALUEUNDEFINED;
 }
 
 /**
  * Enum of possible property sources.
  */
 enum class AXValueSourceType {
-    @com.fasterxml.jackson.annotation.JsonProperty("attribute") ATTRIBUTE,
-    @com.fasterxml.jackson.annotation.JsonProperty("implicit") IMPLICIT,
-    @com.fasterxml.jackson.annotation.JsonProperty("style") STYLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("contents") CONTENTS,
-    @com.fasterxml.jackson.annotation.JsonProperty("placeholder") PLACEHOLDER,
-    @com.fasterxml.jackson.annotation.JsonProperty("relatedElement") RELATEDELEMENT;
+    @com.fasterxml.jackson.annotation.JsonProperty("attribute")
+    ATTRIBUTE,
+    @com.fasterxml.jackson.annotation.JsonProperty("implicit")
+    IMPLICIT,
+    @com.fasterxml.jackson.annotation.JsonProperty("style")
+    STYLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("contents")
+    CONTENTS,
+    @com.fasterxml.jackson.annotation.JsonProperty("placeholder")
+    PLACEHOLDER,
+    @com.fasterxml.jackson.annotation.JsonProperty("relatedElement")
+    RELATEDELEMENT;
 }
 
 /**
  * Enum of possible native property sources (as a subtype of a particular AXValueSourceType).
  */
 enum class AXValueNativeSourceType {
-    @com.fasterxml.jackson.annotation.JsonProperty("figcaption") FIGCAPTION,
-    @com.fasterxml.jackson.annotation.JsonProperty("label") LABEL,
-    @com.fasterxml.jackson.annotation.JsonProperty("labelfor") LABELFOR,
-    @com.fasterxml.jackson.annotation.JsonProperty("labelwrapped") LABELWRAPPED,
-    @com.fasterxml.jackson.annotation.JsonProperty("legend") LEGEND,
-    @com.fasterxml.jackson.annotation.JsonProperty("tablecaption") TABLECAPTION,
-    @com.fasterxml.jackson.annotation.JsonProperty("title") TITLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("other") OTHER;
+    @com.fasterxml.jackson.annotation.JsonProperty("figcaption")
+    FIGCAPTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("label")
+    LABEL,
+    @com.fasterxml.jackson.annotation.JsonProperty("labelfor")
+    LABELFOR,
+    @com.fasterxml.jackson.annotation.JsonProperty("labelwrapped")
+    LABELWRAPPED,
+    @com.fasterxml.jackson.annotation.JsonProperty("legend")
+    LEGEND,
+    @com.fasterxml.jackson.annotation.JsonProperty("tablecaption")
+    TABLECAPTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("title")
+    TITLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("other")
+    OTHER;
 }
 
 /**
@@ -178,45 +209,84 @@ data class AXValue(
 - from &apos;activedescendant&apos; to &apos;owns&apos; - relationships between elements other than parent/child/sibling.
  */
 enum class AXPropertyName {
-    @com.fasterxml.jackson.annotation.JsonProperty("busy") BUSY,
-    @com.fasterxml.jackson.annotation.JsonProperty("disabled") DISABLED,
-    @com.fasterxml.jackson.annotation.JsonProperty("editable") EDITABLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("focusable") FOCUSABLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("focused") FOCUSED,
-    @com.fasterxml.jackson.annotation.JsonProperty("hidden") HIDDEN,
-    @com.fasterxml.jackson.annotation.JsonProperty("hiddenRoot") HIDDENROOT,
-    @com.fasterxml.jackson.annotation.JsonProperty("invalid") INVALID,
-    @com.fasterxml.jackson.annotation.JsonProperty("keyshortcuts") KEYSHORTCUTS,
-    @com.fasterxml.jackson.annotation.JsonProperty("settable") SETTABLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("roledescription") ROLEDESCRIPTION,
-    @com.fasterxml.jackson.annotation.JsonProperty("live") LIVE,
-    @com.fasterxml.jackson.annotation.JsonProperty("atomic") ATOMIC,
-    @com.fasterxml.jackson.annotation.JsonProperty("relevant") RELEVANT,
-    @com.fasterxml.jackson.annotation.JsonProperty("root") ROOT,
-    @com.fasterxml.jackson.annotation.JsonProperty("autocomplete") AUTOCOMPLETE,
-    @com.fasterxml.jackson.annotation.JsonProperty("hasPopup") HASPOPUP,
-    @com.fasterxml.jackson.annotation.JsonProperty("level") LEVEL,
-    @com.fasterxml.jackson.annotation.JsonProperty("multiselectable") MULTISELECTABLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("orientation") ORIENTATION,
-    @com.fasterxml.jackson.annotation.JsonProperty("multiline") MULTILINE,
-    @com.fasterxml.jackson.annotation.JsonProperty("readonly") READONLY,
-    @com.fasterxml.jackson.annotation.JsonProperty("required") REQUIRED,
-    @com.fasterxml.jackson.annotation.JsonProperty("valuemin") VALUEMIN,
-    @com.fasterxml.jackson.annotation.JsonProperty("valuemax") VALUEMAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("valuetext") VALUETEXT,
-    @com.fasterxml.jackson.annotation.JsonProperty("checked") CHECKED,
-    @com.fasterxml.jackson.annotation.JsonProperty("expanded") EXPANDED,
-    @com.fasterxml.jackson.annotation.JsonProperty("modal") MODAL,
-    @com.fasterxml.jackson.annotation.JsonProperty("pressed") PRESSED,
-    @com.fasterxml.jackson.annotation.JsonProperty("selected") SELECTED,
-    @com.fasterxml.jackson.annotation.JsonProperty("activedescendant") ACTIVEDESCENDANT,
-    @com.fasterxml.jackson.annotation.JsonProperty("controls") CONTROLS,
-    @com.fasterxml.jackson.annotation.JsonProperty("describedby") DESCRIBEDBY,
-    @com.fasterxml.jackson.annotation.JsonProperty("details") DETAILS,
-    @com.fasterxml.jackson.annotation.JsonProperty("errormessage") ERRORMESSAGE,
-    @com.fasterxml.jackson.annotation.JsonProperty("flowto") FLOWTO,
-    @com.fasterxml.jackson.annotation.JsonProperty("labelledby") LABELLEDBY,
-    @com.fasterxml.jackson.annotation.JsonProperty("owns") OWNS;
+    @com.fasterxml.jackson.annotation.JsonProperty("busy")
+    BUSY,
+    @com.fasterxml.jackson.annotation.JsonProperty("disabled")
+    DISABLED,
+    @com.fasterxml.jackson.annotation.JsonProperty("editable")
+    EDITABLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("focusable")
+    FOCUSABLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("focused")
+    FOCUSED,
+    @com.fasterxml.jackson.annotation.JsonProperty("hidden")
+    HIDDEN,
+    @com.fasterxml.jackson.annotation.JsonProperty("hiddenRoot")
+    HIDDENROOT,
+    @com.fasterxml.jackson.annotation.JsonProperty("invalid")
+    INVALID,
+    @com.fasterxml.jackson.annotation.JsonProperty("keyshortcuts")
+    KEYSHORTCUTS,
+    @com.fasterxml.jackson.annotation.JsonProperty("settable")
+    SETTABLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("roledescription")
+    ROLEDESCRIPTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("live")
+    LIVE,
+    @com.fasterxml.jackson.annotation.JsonProperty("atomic")
+    ATOMIC,
+    @com.fasterxml.jackson.annotation.JsonProperty("relevant")
+    RELEVANT,
+    @com.fasterxml.jackson.annotation.JsonProperty("root")
+    ROOT,
+    @com.fasterxml.jackson.annotation.JsonProperty("autocomplete")
+    AUTOCOMPLETE,
+    @com.fasterxml.jackson.annotation.JsonProperty("hasPopup")
+    HASPOPUP,
+    @com.fasterxml.jackson.annotation.JsonProperty("level")
+    LEVEL,
+    @com.fasterxml.jackson.annotation.JsonProperty("multiselectable")
+    MULTISELECTABLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("orientation")
+    ORIENTATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("multiline")
+    MULTILINE,
+    @com.fasterxml.jackson.annotation.JsonProperty("readonly")
+    READONLY,
+    @com.fasterxml.jackson.annotation.JsonProperty("required")
+    REQUIRED,
+    @com.fasterxml.jackson.annotation.JsonProperty("valuemin")
+    VALUEMIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("valuemax")
+    VALUEMAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("valuetext")
+    VALUETEXT,
+    @com.fasterxml.jackson.annotation.JsonProperty("checked")
+    CHECKED,
+    @com.fasterxml.jackson.annotation.JsonProperty("expanded")
+    EXPANDED,
+    @com.fasterxml.jackson.annotation.JsonProperty("modal")
+    MODAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("pressed")
+    PRESSED,
+    @com.fasterxml.jackson.annotation.JsonProperty("selected")
+    SELECTED,
+    @com.fasterxml.jackson.annotation.JsonProperty("activedescendant")
+    ACTIVEDESCENDANT,
+    @com.fasterxml.jackson.annotation.JsonProperty("controls")
+    CONTROLS,
+    @com.fasterxml.jackson.annotation.JsonProperty("describedby")
+    DESCRIBEDBY,
+    @com.fasterxml.jackson.annotation.JsonProperty("details")
+    DETAILS,
+    @com.fasterxml.jackson.annotation.JsonProperty("errormessage")
+    ERRORMESSAGE,
+    @com.fasterxml.jackson.annotation.JsonProperty("flowto")
+    FLOWTO,
+    @com.fasterxml.jackson.annotation.JsonProperty("labelledby")
+    LABELLEDBY,
+    @com.fasterxml.jackson.annotation.JsonProperty("owns")
+    OWNS;
 }
 
 /**

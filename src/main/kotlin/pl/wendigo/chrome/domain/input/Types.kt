@@ -12,7 +12,7 @@ data class TouchPoint(
 
     /**  
      * Y coordinate of the event relative to the main frame's viewport in CSS pixels. 0 refers to  
-  the top of the viewport and Y increases as it proceeds towards the bottom of the viewport.  
+     the top of the viewport and Y increases as it proceeds towards the bottom of the viewport.  
      */  
     val y: Double,
 
@@ -46,9 +46,12 @@ data class TouchPoint(
  *
  */
 enum class GestureSourceType {
-    @com.fasterxml.jackson.annotation.JsonProperty("default") DEFAULT,
-    @com.fasterxml.jackson.annotation.JsonProperty("touch") TOUCH,
-    @com.fasterxml.jackson.annotation.JsonProperty("mouse") MOUSE;
+    @com.fasterxml.jackson.annotation.JsonProperty("default")
+    DEFAULT,
+    @com.fasterxml.jackson.annotation.JsonProperty("touch")
+    TOUCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("mouse")
+    MOUSE;
 }
 
 /**

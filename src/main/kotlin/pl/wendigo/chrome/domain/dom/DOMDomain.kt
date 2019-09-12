@@ -1248,7 +1248,7 @@ data class PushNodesByBackendIdsToFrontendRequest(
 data class PushNodesByBackendIdsToFrontendResponse(
     /**  
      * The array of ids of pushed nodes that correspond to the backend ids specified in  
-  backendNodeIds.  
+     backendNodeIds.  
      */  
     val nodeIds: List<NodeId>
 
@@ -1441,7 +1441,8 @@ data class ResolveNodeResponse(
     /**  
      * JavaScript object wrapper for given node.  
      */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: pl.wendigo.chrome.domain.runtime.RemoteObject
+    @get:com.fasterxml.jackson.annotation.JsonProperty("object")
+    val _object: pl.wendigo.chrome.domain.runtime.RemoteObject
 
 )
 

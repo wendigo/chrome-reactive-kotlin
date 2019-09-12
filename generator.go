@@ -226,7 +226,7 @@ func (p Parameter) GetFormattedType() string {
 		case "array":
 			return fmt.Sprintf("List<%s>", p.GetParameterArrayType())
 		case "object":
-			return "String"
+			return "com.fasterxml.jackson.databind.JsonNode"
 		case "binary":
 			return "String"
 		case "any":

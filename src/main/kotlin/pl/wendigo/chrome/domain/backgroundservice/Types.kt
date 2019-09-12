@@ -6,12 +6,18 @@ Every Background Service operates independently, but they share the same
 API.
  */
 enum class ServiceName {
-    @com.fasterxml.jackson.annotation.JsonProperty("backgroundFetch") BACKGROUNDFETCH,
-    @com.fasterxml.jackson.annotation.JsonProperty("backgroundSync") BACKGROUNDSYNC,
-    @com.fasterxml.jackson.annotation.JsonProperty("pushMessaging") PUSHMESSAGING,
-    @com.fasterxml.jackson.annotation.JsonProperty("notifications") NOTIFICATIONS,
-    @com.fasterxml.jackson.annotation.JsonProperty("paymentHandler") PAYMENTHANDLER,
-    @com.fasterxml.jackson.annotation.JsonProperty("periodicBackgroundSync") PERIODICBACKGROUNDSYNC;
+    @com.fasterxml.jackson.annotation.JsonProperty("backgroundFetch")
+    BACKGROUNDFETCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("backgroundSync")
+    BACKGROUNDSYNC,
+    @com.fasterxml.jackson.annotation.JsonProperty("pushMessaging")
+    PUSHMESSAGING,
+    @com.fasterxml.jackson.annotation.JsonProperty("notifications")
+    NOTIFICATIONS,
+    @com.fasterxml.jackson.annotation.JsonProperty("paymentHandler")
+    PAYMENTHANDLER,
+    @com.fasterxml.jackson.annotation.JsonProperty("periodicBackgroundSync")
+    PERIODICBACKGROUNDSYNC;
 }
 
 /**

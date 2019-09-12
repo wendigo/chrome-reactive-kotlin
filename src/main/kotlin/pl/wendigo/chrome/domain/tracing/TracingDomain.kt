@@ -209,7 +209,7 @@ transfer mode (defaults to `none`)
 data class BufferUsageEvent(
     /**  
      * A number in range [0..1] that indicates the used size of event buffer as a fraction of its  
-  total size.  
+     total size.  
      */  
     val percentFull: Double? = null,
 
@@ -220,7 +220,7 @@ data class BufferUsageEvent(
 
     /**  
      * A number in range [0..1] that indicates the used size of event buffer as a fraction of its  
-  total size.  
+     total size.  
      */  
     val value: Double? = null
 
@@ -249,7 +249,7 @@ delivered via dataCollected events.
 data class TracingCompleteEvent(
     /**  
      * Indicates whether some trace data is known to have been lost, e.g. because the trace ring  
-  buffer wrapped around.  
+     buffer wrapped around.  
      */  
     val dataLossOccurred: Boolean,
 

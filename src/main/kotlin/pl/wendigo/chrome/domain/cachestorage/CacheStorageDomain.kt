@@ -192,7 +192,7 @@ data class RequestEntriesResponse(
 
     /**  
      * Count of returned entries from this storage. If pathFilter is empty, it  
-  is the count of all entries from this storage.  
+     is the count of all entries from this storage.  
      */  
     val returnCount: Double
 

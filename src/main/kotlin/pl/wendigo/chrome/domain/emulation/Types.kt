@@ -23,7 +23,10 @@ pauseIfNetworkFetchesPending: The virtual time base may not advance if there are
 resource fetches.
  */
 enum class VirtualTimePolicy {
-    @com.fasterxml.jackson.annotation.JsonProperty("advance") ADVANCE,
-    @com.fasterxml.jackson.annotation.JsonProperty("pause") PAUSE,
-    @com.fasterxml.jackson.annotation.JsonProperty("pauseIfNetworkFetchesPending") PAUSEIFNETWORKFETCHESPENDING;
+    @com.fasterxml.jackson.annotation.JsonProperty("advance")
+    ADVANCE,
+    @com.fasterxml.jackson.annotation.JsonProperty("pause")
+    PAUSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("pauseIfNetworkFetchesPending")
+    PAUSEIFNETWORKFETCHESPENDING;
 }

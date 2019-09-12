@@ -17,19 +17,19 @@ typealias CallFrameId = String
  */
 
 data class Location(
-    /**
-     * Script identifier as reported in the `Debugger.scriptParsed`.
-     */
+    /**  
+     * Script identifier as reported in the <code>Debugger.scriptParsed</code>.  
+     */  
     val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
 
-    /**
-     * Line number in the script (0-based).
-     */
+    /**  
+     * Line number in the script (0-based).  
+     */  
     val lineNumber: Int,
 
-    /**
-     * Column number in the script (0-based).
-     */
+    /**  
+     * Column number in the script (0-based).  
+     */  
     val columnNumber: Int? = null
 )
 
@@ -38,14 +38,14 @@ data class Location(
  */
 
 data class ScriptPosition(
-    /**
-     *
-     */
+    /**  
+     *  
+     */  
     val lineNumber: Int,
 
-    /**
-     *
-     */
+    /**  
+     *  
+     */  
     val columnNumber: Int
 )
 
@@ -54,44 +54,41 @@ data class ScriptPosition(
  */
 
 data class CallFrame(
-    /**
-     * Call frame identifier. This identifier is only valid while the virtual machine is paused.
-     */
+    /**  
+     * Call frame identifier. This identifier is only valid while the virtual machine is paused.  
+     */  
     val callFrameId: CallFrameId,
 
-    /**
-     * Name of the JavaScript function called on this call frame.
-     */
+    /**  
+     * Name of the JavaScript function called on this call frame.  
+     */  
     val functionName: String,
 
-    /**
-     * Location in the source code.
-     */
-    val functionLocation: Location? = null,
+    /**  
+     * Location in the source code.  
+     */  
+    @pl.wendigo.chrome.Experimental val functionLocation: Location? = null,
 
-    /**
-     * Location in the source code.
-     */
+    /**  
+     * Location in the source code.  
+     */  
     val location: Location,
 
-    /**
-     * JavaScript script name or url.
-     */
-    val url: String,
-
-    /**
-     * Scope chain for this call frame.
-     */
+    /**  
+     * Scope chain for this call frame.  
+     */  
     val scopeChain: List<Scope>,
 
-    /**
-     * `this` object for this call frame.
-     */
-    @get:com.fasterxml.jackson.annotation.JsonProperty("this") val _this: pl.wendigo.chrome.domain.runtime.RemoteObject,
+    /**  
+     * <code>this</code> object for this call frame.  
+     */  
+    @get:com.fasterxml.jackson.annotation.JsonProperty("this")
 
-    /**
-     * The value being returned, if the function is at return point.
-     */
+    val _this: pl.wendigo.chrome.domain.runtime.RemoteObject,
+
+    /**  
+     * The value being returned, if the function is at return point.  
+     */  
     val returnValue: pl.wendigo.chrome.domain.runtime.RemoteObject? = null
 )
 
@@ -100,31 +97,31 @@ data class CallFrame(
  */
 
 data class Scope(
-    /**
-     * Scope type.
-     */
+    /**  
+     * Scope type.  
+     */  
     val type: String,
 
-    /**
-     * Object representing the scope. For `global` and `with` scopes it represents the actual
-  object; for the rest of the scopes, it is artificial transient object enumerating scope
-  variables as its properties.
-     */
-    @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: pl.wendigo.chrome.domain.runtime.RemoteObject,
+    /**  
+     * Object representing the scope. For <code>global</code> and <code>with</code> scopes it represents the actual object; for the rest of the scopes, it is artificial transient object enumerating scope variables as its properties.  
+     */  
+    @get:com.fasterxml.jackson.annotation.JsonProperty("object")
 
-    /**
-     *
-     */
+    val _object: pl.wendigo.chrome.domain.runtime.RemoteObject,
+
+    /**  
+     *  
+     */  
     val name: String? = null,
 
-    /**
-     * Location in the source code where scope starts
-     */
+    /**  
+     * Location in the source code where scope starts  
+     */  
     val startLocation: Location? = null,
 
-    /**
-     * Location in the source code where scope ends
-     */
+    /**  
+     * Location in the source code where scope ends  
+     */  
     val endLocation: Location? = null
 )
 
@@ -133,39 +130,13 @@ data class Scope(
  */
 
 data class SearchMatch(
-    /**
-     * Line number in resource content.
-     */
+    /**  
+     * Line number in resource content.  
+     */  
     val lineNumber: Double,
 
-    /**
-     * Line with match content.
-     */
+    /**  
+     * Line with match content.  
+     */  
     val lineContent: String
-)
-
-/**
- *
- */
-
-data class BreakLocation(
-    /**
-     * Script identifier as reported in the `Debugger.scriptParsed`.
-     */
-    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
-
-    /**
-     * Line number in the script (0-based).
-     */
-    val lineNumber: Int,
-
-    /**
-     * Column number in the script (0-based).
-     */
-    val columnNumber: Int? = null,
-
-    /**
-     *
-     */
-    val type: String? = null
 )

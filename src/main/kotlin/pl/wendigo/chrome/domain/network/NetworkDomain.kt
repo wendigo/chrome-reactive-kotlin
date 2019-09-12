@@ -1333,7 +1333,7 @@ data class LoadingFinishedEvent(
 
     /**  
      * Set when 1) response was blocked by Cross-Origin Read Blocking and also  
-  2) this needs to be reported to the DevTools console.  
+     2) this needs to be reported to the DevTools console.  
      */  
     val shouldReportCorbBlocking: Boolean? = null
 
@@ -1349,8 +1349,8 @@ Deprecated, use Fetch.requestPaused instead.
 data class RequestInterceptedEvent(
     /**  
      * Each request the page makes will have a unique id, however if any redirects are encountered  
-  while processing that fetch, they will be reported with the same id as the original fetch.  
-  Likewise if HTTP authentication is needed then the same fetch id will be used.  
+     while processing that fetch, they will be reported with the same id as the original fetch.  
+     Likewise if HTTP authentication is needed then the same fetch id will be used.  
      */  
     val interceptionId: InterceptionId,
 
@@ -1376,7 +1376,7 @@ data class RequestInterceptedEvent(
 
     /**  
      * Set if the request is a navigation that will result in a download.  
-  Only present after response is received from the server (i.e. HeadersReceived stage).  
+     Only present after response is received from the server (i.e. HeadersReceived stage).  
      */  
     val isDownload: Boolean? = null,
 
@@ -1387,31 +1387,31 @@ data class RequestInterceptedEvent(
 
     /**  
      * Details of the Authorization Challenge encountered. If this is set then  
-  continueInterceptedRequest must contain an authChallengeResponse.  
+     continueInterceptedRequest must contain an authChallengeResponse.  
      */  
     val authChallenge: AuthChallenge? = null,
 
     /**  
      * Response error if intercepted at response stage or if redirect occurred while intercepting  
-  request.  
+     request.  
      */  
     val responseErrorReason: ErrorReason? = null,
 
     /**  
      * Response code if intercepted at response stage or if redirect occurred while intercepting  
-  request or auth retry occurred.  
+     request or auth retry occurred.  
      */  
     val responseStatusCode: Int? = null,
 
     /**  
      * Response headers if intercepted at the response stage or if redirect occurred while  
-  intercepting request or auth retry occurred.  
+     intercepting request or auth retry occurred.  
      */  
     val responseHeaders: Headers? = null,
 
     /**  
      * If the intercepted request had a corresponding requestWillBeSent event fired for it, then  
-  this requestId will be the same as the requestId present in the requestWillBeSent event.  
+     this requestId will be the same as the requestId present in the requestWillBeSent event.  
      */  
     val requestId: RequestId? = null
 
@@ -1749,7 +1749,7 @@ data class RequestWillBeSentExtraInfoEvent(
 
     /**  
      * A list of cookies which will not be sent with this request along with corresponding reasons  
-  for blocking.  
+     for blocking.  
      */  
     val blockedCookies: List<BlockedCookieWithReason>,
 
@@ -1775,8 +1775,8 @@ data class ResponseReceivedExtraInfoEvent(
 
     /**  
      * A list of cookies which were not stored from the response along with the corresponding  
-  reasons for blocking. The cookies here may not be valid due to syntax errors, which  
-  are represented by the invalid cookie line string instead of a proper cookie.  
+     reasons for blocking. The cookies here may not be valid due to syntax errors, which  
+     are represented by the invalid cookie line string instead of a proper cookie.  
      */  
     val blockedCookies: List<BlockedSetCookieWithReason>,
 
@@ -1787,7 +1787,7 @@ data class ResponseReceivedExtraInfoEvent(
 
     /**  
      * Raw response header text as it was received over the wire. The raw text may not always be  
-  available, such as in the case of HTTP/2 or QUIC.  
+     available, such as in the case of HTTP/2 or QUIC.  
      */  
     val headersText: String? = null
 

@@ -5,20 +5,10 @@ package pl.wendigo.chrome.domain.heapprofiler
  */
 class HeapProfilerDomain internal constructor(private val connectionRemote: pl.wendigo.chrome.DebuggerProtocol) {
     /**
-     * Enables console to refer to the node with given id via $x (see Command Line API for more details
-$x functions).
-     */
-    fun addInspectedHeapObject(input: AddInspectedHeapObjectRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.addInspectedHeapObject", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
      *
      */
-    fun collectGarbage(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+    fun enable(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("HeapProfiler.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
             it.value()
         }
     }
@@ -35,62 +25,8 @@ $x functions).
     /**
      *
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.enable", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
-    fun getHeapObjectId(input: GetHeapObjectIdRequest): io.reactivex.Single<GetHeapObjectIdResponse> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.getHeapObjectId", input, GetHeapObjectIdResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
-    fun getObjectByHeapObjectId(input: GetObjectByHeapObjectIdRequest): io.reactivex.Single<GetObjectByHeapObjectIdResponse> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.getObjectByHeapObjectId", input, GetObjectByHeapObjectIdResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
-    fun getSamplingProfile(): io.reactivex.Single<GetSamplingProfileResponse> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.getSamplingProfile", null, GetSamplingProfileResponse::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
-    fun startSampling(input: StartSamplingRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.startSampling", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
     fun startTrackingHeapObjects(input: StartTrackingHeapObjectsRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
         return connectionRemote.runAndCaptureResponse("HeapProfiler.startTrackingHeapObjects", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
-
-    /**
-     *
-     */
-    fun stopSampling(): io.reactivex.Single<StopSamplingResponse> {
-        return connectionRemote.runAndCaptureResponse("HeapProfiler.stopSampling", null, StopSamplingResponse::class.java).map {
             it.value()
         }
     }
@@ -114,6 +50,60 @@ $x functions).
     }
 
     /**
+     *
+     */
+    fun collectGarbage(): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun getObjectByHeapObjectId(input: GetObjectByHeapObjectIdRequest): io.reactivex.Single<GetObjectByHeapObjectIdResponse> {
+        return connectionRemote.runAndCaptureResponse("HeapProfiler.getObjectByHeapObjectId", input, GetObjectByHeapObjectIdResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
+     */
+    fun addInspectedHeapObject(input: AddInspectedHeapObjectRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("HeapProfiler.addInspectedHeapObject", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun getHeapObjectId(input: GetHeapObjectIdRequest): io.reactivex.Single<GetHeapObjectIdResponse> {
+        return connectionRemote.runAndCaptureResponse("HeapProfiler.getHeapObjectId", input, GetHeapObjectIdResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun startSampling(input: StartSamplingRequest): io.reactivex.Single<pl.wendigo.chrome.ResponseFrame> {
+        return connectionRemote.runAndCaptureResponse("HeapProfiler.startSampling", input, pl.wendigo.chrome.ResponseFrame::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
+     *
+     */
+    fun stopSampling(): io.reactivex.Single<StopSamplingResponse> {
+        return connectionRemote.runAndCaptureResponse("HeapProfiler.stopSampling", null, StopSamplingResponse::class.java).map {
+            it.value()
+        }
+    }
+
+    /**
      * Returns observable capturing all HeapProfiler.addHeapSnapshotChunk events.
      */
     fun addHeapSnapshotChunk(): io.reactivex.Flowable<AddHeapSnapshotChunkEvent> {
@@ -127,58 +117,6 @@ $x functions).
      */
     fun addHeapSnapshotChunkTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<AddHeapSnapshotChunkEvent>> {
         return connectionRemote.captureEvents("HeapProfiler.addHeapSnapshotChunk", AddHeapSnapshotChunkEvent::class.java)
-    }
-
-    /**
-     * If heap objects tracking has been started then backend may send update for one or more fragments
-     */
-    fun heapStatsUpdate(): io.reactivex.Flowable<HeapStatsUpdateEvent> {
-        return heapStatsUpdateTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * If heap objects tracking has been started then backend may send update for one or more fragments
-     */
-    fun heapStatsUpdateTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<HeapStatsUpdateEvent>> {
-        return connectionRemote.captureEvents("HeapProfiler.heapStatsUpdate", HeapStatsUpdateEvent::class.java)
-    }
-
-    /**
-     * If heap objects tracking has been started then backend regularly sends a current value for last
-seen object id and corresponding timestamp. If the were changes in the heap since last event
-then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
-     */
-    fun lastSeenObjectId(): io.reactivex.Flowable<LastSeenObjectIdEvent> {
-        return lastSeenObjectIdTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * If heap objects tracking has been started then backend regularly sends a current value for last
-seen object id and corresponding timestamp. If the were changes in the heap since last event
-then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
-     */
-    fun lastSeenObjectIdTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<LastSeenObjectIdEvent>> {
-        return connectionRemote.captureEvents("HeapProfiler.lastSeenObjectId", LastSeenObjectIdEvent::class.java)
-    }
-
-    /**
-     * Returns observable capturing all HeapProfiler.reportHeapSnapshotProgress events.
-     */
-    fun reportHeapSnapshotProgress(): io.reactivex.Flowable<ReportHeapSnapshotProgressEvent> {
-        return reportHeapSnapshotProgressTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Returns observable capturing all HeapProfiler.reportHeapSnapshotProgress events.
-     */
-    fun reportHeapSnapshotProgressTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<ReportHeapSnapshotProgressEvent>> {
-        return connectionRemote.captureEvents("HeapProfiler.reportHeapSnapshotProgress", ReportHeapSnapshotProgressEvent::class.java)
     }
 
     /**
@@ -198,6 +136,54 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
     }
 
     /**
+     * Returns observable capturing all HeapProfiler.reportHeapSnapshotProgress events.
+     */
+    fun reportHeapSnapshotProgress(): io.reactivex.Flowable<ReportHeapSnapshotProgressEvent> {
+        return reportHeapSnapshotProgressTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * Returns observable capturing all HeapProfiler.reportHeapSnapshotProgress events.
+     */
+    fun reportHeapSnapshotProgressTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<ReportHeapSnapshotProgressEvent>> {
+        return connectionRemote.captureEvents("HeapProfiler.reportHeapSnapshotProgress", ReportHeapSnapshotProgressEvent::class.java)
+    }
+
+    /**
+     *  If heap objects tracking has been started then backend regulary sends a current value for last seen object id and corresponding timestamp. If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+     */
+    fun lastSeenObjectId(): io.reactivex.Flowable<LastSeenObjectIdEvent> {
+        return lastSeenObjectIdTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * If heap objects tracking has been started then backend regulary sends a current value for last seen object id and corresponding timestamp. If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+     */
+    fun lastSeenObjectIdTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<LastSeenObjectIdEvent>> {
+        return connectionRemote.captureEvents("HeapProfiler.lastSeenObjectId", LastSeenObjectIdEvent::class.java)
+    }
+
+    /**
+     *  If heap objects tracking has been started then backend may send update for one or more fragments
+     */
+    fun heapStatsUpdate(): io.reactivex.Flowable<HeapStatsUpdateEvent> {
+        return heapStatsUpdateTimed().map {
+            it.value()
+        }
+    }
+
+    /**
+     * If heap objects tracking has been started then backend may send update for one or more fragments
+     */
+    fun heapStatsUpdateTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<HeapStatsUpdateEvent>> {
+        return connectionRemote.captureEvents("HeapProfiler.heapStatsUpdate", HeapStatsUpdateEvent::class.java)
+    }
+
+    /**
      * Returns flowable capturing all HeapProfiler domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.ProtocolEvent> {
@@ -206,11 +192,81 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
         }
     }
 }
+
+/**
+ * Represents request frame that can be used with HeapProfiler.startTrackingHeapObjects method call.
+ *
+ *
+ */
+data class StartTrackingHeapObjectsRequest(
+    /**
+     *
+     */
+    val trackAllocations: Boolean? = null
+
+)
+
+/**
+ * Represents request frame that can be used with HeapProfiler.stopTrackingHeapObjects method call.
+ *
+ *
+ */
+data class StopTrackingHeapObjectsRequest(
+    /**
+     * If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken when the tracking is stopped.
+     */
+    val reportProgress: Boolean? = null
+
+)
+
+/**
+ * Represents request frame that can be used with HeapProfiler.takeHeapSnapshot method call.
+ *
+ *
+ */
+data class TakeHeapSnapshotRequest(
+    /**
+     * If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken.
+     */
+    val reportProgress: Boolean? = null
+
+)
+
+/**
+ * Represents request frame that can be used with HeapProfiler.getObjectByHeapObjectId method call.
+ *
+ *
+ */
+data class GetObjectByHeapObjectIdRequest(
+    /**
+     *
+     */
+    val objectId: HeapSnapshotObjectId,
+
+    /**
+     * Symbolic group name that can be used to release multiple objects.
+     */
+    val objectGroup: String? = null
+
+)
+
+/**
+ * Represents response frame for HeapProfiler.getObjectByHeapObjectId method call.
+ *
+ *
+ */
+data class GetObjectByHeapObjectIdResponse(
+    /**  
+     * Evaluation result.  
+     */  
+    val result: pl.wendigo.chrome.domain.runtime.RemoteObject
+
+)
+
 /**
  * Represents request frame that can be used with HeapProfiler.addInspectedHeapObject method call.
  *
- * Enables console to refer to the node with given id via $x (see Command Line API for more details
-$x functions).
+ * Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).
  */
 data class AddInspectedHeapObjectRequest(
     /**
@@ -239,54 +295,10 @@ data class GetHeapObjectIdRequest(
  *
  */
 data class GetHeapObjectIdResponse(
-    /**
-     * Id of the heap snapshot object corresponding to the passed remote object id.
-     */
+    /**  
+     * Id of the heap snapshot object corresponding to the passed remote object id.  
+     */  
     val heapSnapshotObjectId: HeapSnapshotObjectId
-
-)
-
-/**
- * Represents request frame that can be used with HeapProfiler.getObjectByHeapObjectId method call.
- *
- *
- */
-data class GetObjectByHeapObjectIdRequest(
-    /**
-     *
-     */
-    val objectId: HeapSnapshotObjectId,
-
-    /**
-     * Symbolic group name that can be used to release multiple objects.
-     */
-    val objectGroup: String? = null
-
-)
-
-/**
- * Represents response frame for HeapProfiler.getObjectByHeapObjectId method call.
- *
- *
- */
-data class GetObjectByHeapObjectIdResponse(
-    /**
-     * Evaluation result.
-     */
-    val result: pl.wendigo.chrome.domain.runtime.RemoteObject
-
-)
-
-/**
- * Represents response frame for HeapProfiler.getSamplingProfile method call.
- *
- *
- */
-data class GetSamplingProfileResponse(
-    /**
-     * Return the sampling profile being collected.
-     */
-    val profile: SamplingHeapProfile
 
 )
 
@@ -297,23 +309,9 @@ data class GetSamplingProfileResponse(
  */
 data class StartSamplingRequest(
     /**
-     * Average sample interval in bytes. Poisson distribution is used for the intervals. The
-default value is 32768 bytes.
+     * Average sample interval in bytes. Poisson distribution is used for the intervals. The default value is 32768 bytes.
      */
     val samplingInterval: Double? = null
-
-)
-
-/**
- * Represents request frame that can be used with HeapProfiler.startTrackingHeapObjects method call.
- *
- *
- */
-data class StartTrackingHeapObjectsRequest(
-    /**
-     *
-     */
-    val trackAllocations: Boolean? = null
 
 )
 
@@ -323,37 +321,10 @@ data class StartTrackingHeapObjectsRequest(
  *
  */
 data class StopSamplingResponse(
-    /**
-     * Recorded sampling heap profile.
-     */
+    /**  
+     * Recorded sampling heap profile.  
+     */  
     val profile: SamplingHeapProfile
-
-)
-
-/**
- * Represents request frame that can be used with HeapProfiler.stopTrackingHeapObjects method call.
- *
- *
- */
-data class StopTrackingHeapObjectsRequest(
-    /**
-     * If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken
-when the tracking is stopped.
-     */
-    val reportProgress: Boolean? = null
-
-)
-
-/**
- * Represents request frame that can be used with HeapProfiler.takeHeapSnapshot method call.
- *
- *
- */
-data class TakeHeapSnapshotRequest(
-    /**
-     * If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken.
-     */
-    val reportProgress: Boolean? = null
 
 )
 
@@ -363,47 +334,12 @@ data class TakeHeapSnapshotRequest(
  *
  */
 data class AddHeapSnapshotChunkEvent(
-    /**
-     *
-     */
+    /**  
+     *  
+     */  
     val chunk: String
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "HeapProfiler", name = "addHeapSnapshotChunk")
-
-/**
- * Represents event frames for HeapProfiler.heapStatsUpdate
- *
- * If heap objects tracking has been started then backend may send update for one or more fragments
- */
-data class HeapStatsUpdateEvent(
-    /**
-     * An array of triplets. Each triplet describes a fragment. The first integer is the fragment
-  index, the second integer is a total count of objects for the fragment, the third integer is
-  a total size of the objects for the fragment.
-     */
-    val statsUpdate: List<Int>
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "HeapProfiler", name = "heapStatsUpdate")
-
-/**
- * Represents event frames for HeapProfiler.lastSeenObjectId
- *
- * If heap objects tracking has been started then backend regularly sends a current value for last
-seen object id and corresponding timestamp. If the were changes in the heap since last event
-then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
- */
-data class LastSeenObjectIdEvent(
-    /**
-     *
-     */
-    val lastSeenObjectId: Int,
-
-    /**
-     *
-     */
-    val timestamp: Double
-
-) : pl.wendigo.chrome.ProtocolEvent(domain = "HeapProfiler", name = "lastSeenObjectId")
 
 /**
  * Represents event frames for HeapProfiler.reportHeapSnapshotProgress
@@ -411,19 +347,50 @@ data class LastSeenObjectIdEvent(
  *
  */
 data class ReportHeapSnapshotProgressEvent(
-    /**
-     *
-     */
+    /**  
+     *  
+     */  
     val done: Int,
 
-    /**
-     *
-     */
+    /**  
+     *  
+     */  
     val total: Int,
 
-    /**
-     *
-     */
+    /**  
+     *  
+     */  
     val finished: Boolean? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "HeapProfiler", name = "reportHeapSnapshotProgress")
+
+/**
+ * Represents event frames for HeapProfiler.lastSeenObjectId
+ *
+ * If heap objects tracking has been started then backend regulary sends a current value for last seen object id and corresponding timestamp. If the were changes in the heap since last event then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
+ */
+data class LastSeenObjectIdEvent(
+    /**  
+     *  
+     */  
+    val lastSeenObjectId: Int,
+
+    /**  
+     *  
+     */  
+    val timestamp: Double
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "HeapProfiler", name = "lastSeenObjectId")
+
+/**
+ * Represents event frames for HeapProfiler.heapStatsUpdate
+ *
+ * If heap objects tracking has been started then backend may send update for one or more fragments
+ */
+data class HeapStatsUpdateEvent(
+    /**  
+     * An array of triplets. Each triplet describes a fragment. The first integer is the fragment index, the second integer is a total count of objects for the fragment, the third integer is a total size of the objects for the fragment.  
+     */  
+    val statsUpdate: List<Int>
+
+) : pl.wendigo.chrome.ProtocolEvent(domain = "HeapProfiler", name = "heapStatsUpdate")

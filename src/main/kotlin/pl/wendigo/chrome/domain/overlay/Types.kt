@@ -70,9 +70,14 @@ data class HighlightConfig(
  *
  */
 enum class InspectMode {
-    @com.fasterxml.jackson.annotation.JsonProperty("searchForNode") SEARCHFORNODE,
-    @com.fasterxml.jackson.annotation.JsonProperty("searchForUAShadowDOM") SEARCHFORUASHADOWDOM,
-    @com.fasterxml.jackson.annotation.JsonProperty("captureAreaScreenshot") CAPTUREAREASCREENSHOT,
-    @com.fasterxml.jackson.annotation.JsonProperty("showDistances") SHOWDISTANCES,
-    @com.fasterxml.jackson.annotation.JsonProperty("none") NONE;
+    @com.fasterxml.jackson.annotation.JsonProperty("searchForNode")
+    SEARCHFORNODE,
+    @com.fasterxml.jackson.annotation.JsonProperty("searchForUAShadowDOM")
+    SEARCHFORUASHADOWDOM,
+    @com.fasterxml.jackson.annotation.JsonProperty("captureAreaScreenshot")
+    CAPTUREAREASCREENSHOT,
+    @com.fasterxml.jackson.annotation.JsonProperty("showDistances")
+    SHOWDISTANCES,
+    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    NONE;
 }

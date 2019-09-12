@@ -11,134 +11,198 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
      * Register event eventNameToClassMapping
      */
     init {
-        api.registerEventMappings(mapOf(
-            "Animation.animationCanceled" to pl.wendigo.chrome.domain.animation.AnimationCanceledEvent::class.java,
-            "Animation.animationCreated" to pl.wendigo.chrome.domain.animation.AnimationCreatedEvent::class.java,
-            "Animation.animationStarted" to pl.wendigo.chrome.domain.animation.AnimationStartedEvent::class.java,
-            "ApplicationCache.applicationCacheStatusUpdated" to pl.wendigo.chrome.domain.applicationcache.ApplicationCacheStatusUpdatedEvent::class.java,
-            "ApplicationCache.networkStateUpdated" to pl.wendigo.chrome.domain.applicationcache.NetworkStateUpdatedEvent::class.java,
-            "BackgroundService.backgroundServiceEventReceived" to pl.wendigo.chrome.domain.backgroundservice.BackgroundServiceEventReceivedEvent::class.java,
-            "BackgroundService.recordingStateChanged" to pl.wendigo.chrome.domain.backgroundservice.RecordingStateChangedEvent::class.java,
-            "CSS.fontsUpdated" to pl.wendigo.chrome.domain.css.FontsUpdatedEvent::class.java,
-            "CSS.mediaQueryResultChanged" to pl.wendigo.chrome.ProtocolEvent::class.java,
-            "CSS.styleSheetAdded" to pl.wendigo.chrome.domain.css.StyleSheetAddedEvent::class.java,
-            "CSS.styleSheetChanged" to pl.wendigo.chrome.domain.css.StyleSheetChangedEvent::class.java,
-            "CSS.styleSheetRemoved" to pl.wendigo.chrome.domain.css.StyleSheetRemovedEvent::class.java,
-            "Cast.issueUpdated" to pl.wendigo.chrome.domain.cast.IssueUpdatedEvent::class.java,
-            "Cast.sinksUpdated" to pl.wendigo.chrome.domain.cast.SinksUpdatedEvent::class.java,
-            "DOM.attributeModified" to pl.wendigo.chrome.domain.dom.AttributeModifiedEvent::class.java,
-            "DOM.attributeRemoved" to pl.wendigo.chrome.domain.dom.AttributeRemovedEvent::class.java,
-            "DOM.characterDataModified" to pl.wendigo.chrome.domain.dom.CharacterDataModifiedEvent::class.java,
-            "DOM.childNodeCountUpdated" to pl.wendigo.chrome.domain.dom.ChildNodeCountUpdatedEvent::class.java,
-            "DOM.childNodeInserted" to pl.wendigo.chrome.domain.dom.ChildNodeInsertedEvent::class.java,
-            "DOM.childNodeRemoved" to pl.wendigo.chrome.domain.dom.ChildNodeRemovedEvent::class.java,
-            "DOM.distributedNodesUpdated" to pl.wendigo.chrome.domain.dom.DistributedNodesUpdatedEvent::class.java,
-            "DOM.documentUpdated" to pl.wendigo.chrome.ProtocolEvent::class.java,
-            "DOM.inlineStyleInvalidated" to pl.wendigo.chrome.domain.dom.InlineStyleInvalidatedEvent::class.java,
-            "DOM.pseudoElementAdded" to pl.wendigo.chrome.domain.dom.PseudoElementAddedEvent::class.java,
-            "DOM.pseudoElementRemoved" to pl.wendigo.chrome.domain.dom.PseudoElementRemovedEvent::class.java,
-            "DOM.setChildNodes" to pl.wendigo.chrome.domain.dom.SetChildNodesEvent::class.java,
-            "DOM.shadowRootPopped" to pl.wendigo.chrome.domain.dom.ShadowRootPoppedEvent::class.java,
-            "DOM.shadowRootPushed" to pl.wendigo.chrome.domain.dom.ShadowRootPushedEvent::class.java,
-            "DOMStorage.domStorageItemAdded" to pl.wendigo.chrome.domain.domstorage.DomStorageItemAddedEvent::class.java,
-            "DOMStorage.domStorageItemRemoved" to pl.wendigo.chrome.domain.domstorage.DomStorageItemRemovedEvent::class.java,
-            "DOMStorage.domStorageItemUpdated" to pl.wendigo.chrome.domain.domstorage.DomStorageItemUpdatedEvent::class.java,
-            "DOMStorage.domStorageItemsCleared" to pl.wendigo.chrome.domain.domstorage.DomStorageItemsClearedEvent::class.java,
-            "Database.addDatabase" to pl.wendigo.chrome.domain.database.AddDatabaseEvent::class.java,
-            "Emulation.virtualTimeBudgetExpired" to pl.wendigo.chrome.ProtocolEvent::class.java,
-            "Fetch.authRequired" to pl.wendigo.chrome.domain.fetch.AuthRequiredEvent::class.java,
-            "Fetch.requestPaused" to pl.wendigo.chrome.domain.fetch.RequestPausedEvent::class.java,
-            "HeadlessExperimental.needsBeginFramesChanged" to pl.wendigo.chrome.domain.headlessexperimental.NeedsBeginFramesChangedEvent::class.java,
-            "Inspector.detached" to pl.wendigo.chrome.domain.inspector.DetachedEvent::class.java,
-            "Inspector.targetCrashed" to pl.wendigo.chrome.ProtocolEvent::class.java,
-            "Inspector.targetReloadedAfterCrash" to pl.wendigo.chrome.ProtocolEvent::class.java,
-            "LayerTree.layerPainted" to pl.wendigo.chrome.domain.layertree.LayerPaintedEvent::class.java,
-            "LayerTree.layerTreeDidChange" to pl.wendigo.chrome.domain.layertree.LayerTreeDidChangeEvent::class.java,
-            "Log.entryAdded" to pl.wendigo.chrome.domain.log.EntryAddedEvent::class.java,
-            "Media.playerEventsAdded" to pl.wendigo.chrome.domain.media.PlayerEventsAddedEvent::class.java,
-            "Media.playerPropertiesChanged" to pl.wendigo.chrome.domain.media.PlayerPropertiesChangedEvent::class.java,
-            "Media.playersCreated" to pl.wendigo.chrome.domain.media.PlayersCreatedEvent::class.java,
-            "Network.dataReceived" to pl.wendigo.chrome.domain.network.DataReceivedEvent::class.java,
-            "Network.eventSourceMessageReceived" to pl.wendigo.chrome.domain.network.EventSourceMessageReceivedEvent::class.java,
-            "Network.loadingFailed" to pl.wendigo.chrome.domain.network.LoadingFailedEvent::class.java,
-            "Network.loadingFinished" to pl.wendigo.chrome.domain.network.LoadingFinishedEvent::class.java,
-            "Network.requestIntercepted" to pl.wendigo.chrome.domain.network.RequestInterceptedEvent::class.java,
-            "Network.requestServedFromCache" to pl.wendigo.chrome.domain.network.RequestServedFromCacheEvent::class.java,
-            "Network.requestWillBeSent" to pl.wendigo.chrome.domain.network.RequestWillBeSentEvent::class.java,
-            "Network.requestWillBeSentExtraInfo" to pl.wendigo.chrome.domain.network.RequestWillBeSentExtraInfoEvent::class.java,
-            "Network.resourceChangedPriority" to pl.wendigo.chrome.domain.network.ResourceChangedPriorityEvent::class.java,
-            "Network.responseReceived" to pl.wendigo.chrome.domain.network.ResponseReceivedEvent::class.java,
-            "Network.responseReceivedExtraInfo" to pl.wendigo.chrome.domain.network.ResponseReceivedExtraInfoEvent::class.java,
-            "Network.signedExchangeReceived" to pl.wendigo.chrome.domain.network.SignedExchangeReceivedEvent::class.java,
-            "Network.webSocketClosed" to pl.wendigo.chrome.domain.network.WebSocketClosedEvent::class.java,
-            "Network.webSocketCreated" to pl.wendigo.chrome.domain.network.WebSocketCreatedEvent::class.java,
-            "Network.webSocketFrameError" to pl.wendigo.chrome.domain.network.WebSocketFrameErrorEvent::class.java,
-            "Network.webSocketFrameReceived" to pl.wendigo.chrome.domain.network.WebSocketFrameReceivedEvent::class.java,
-            "Network.webSocketFrameSent" to pl.wendigo.chrome.domain.network.WebSocketFrameSentEvent::class.java,
-            "Network.webSocketHandshakeResponseReceived" to pl.wendigo.chrome.domain.network.WebSocketHandshakeResponseReceivedEvent::class.java,
-            "Network.webSocketWillSendHandshakeRequest" to pl.wendigo.chrome.domain.network.WebSocketWillSendHandshakeRequestEvent::class.java,
-            "Overlay.inspectModeCanceled" to pl.wendigo.chrome.ProtocolEvent::class.java,
-            "Overlay.inspectNodeRequested" to pl.wendigo.chrome.domain.overlay.InspectNodeRequestedEvent::class.java,
-            "Overlay.nodeHighlightRequested" to pl.wendigo.chrome.domain.overlay.NodeHighlightRequestedEvent::class.java,
-            "Overlay.screenshotRequested" to pl.wendigo.chrome.domain.overlay.ScreenshotRequestedEvent::class.java,
-            "Page.compilationCacheProduced" to pl.wendigo.chrome.domain.page.CompilationCacheProducedEvent::class.java,
-            "Page.domContentEventFired" to pl.wendigo.chrome.domain.page.DomContentEventFiredEvent::class.java,
-            "Page.downloadWillBegin" to pl.wendigo.chrome.domain.page.DownloadWillBeginEvent::class.java,
-            "Page.fileChooserOpened" to pl.wendigo.chrome.domain.page.FileChooserOpenedEvent::class.java,
-            "Page.frameAttached" to pl.wendigo.chrome.domain.page.FrameAttachedEvent::class.java,
-            "Page.frameClearedScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameClearedScheduledNavigationEvent::class.java,
-            "Page.frameDetached" to pl.wendigo.chrome.domain.page.FrameDetachedEvent::class.java,
-            "Page.frameNavigated" to pl.wendigo.chrome.domain.page.FrameNavigatedEvent::class.java,
-            "Page.frameRequestedNavigation" to pl.wendigo.chrome.domain.page.FrameRequestedNavigationEvent::class.java,
-            "Page.frameResized" to pl.wendigo.chrome.ProtocolEvent::class.java,
-            "Page.frameScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameScheduledNavigationEvent::class.java,
-            "Page.frameStartedLoading" to pl.wendigo.chrome.domain.page.FrameStartedLoadingEvent::class.java,
-            "Page.frameStoppedLoading" to pl.wendigo.chrome.domain.page.FrameStoppedLoadingEvent::class.java,
-            "Page.interstitialHidden" to pl.wendigo.chrome.ProtocolEvent::class.java,
-            "Page.interstitialShown" to pl.wendigo.chrome.ProtocolEvent::class.java,
-            "Page.javascriptDialogClosed" to pl.wendigo.chrome.domain.page.JavascriptDialogClosedEvent::class.java,
-            "Page.javascriptDialogOpening" to pl.wendigo.chrome.domain.page.JavascriptDialogOpeningEvent::class.java,
-            "Page.lifecycleEvent" to pl.wendigo.chrome.domain.page.LifecycleEventEvent::class.java,
-            "Page.loadEventFired" to pl.wendigo.chrome.domain.page.LoadEventFiredEvent::class.java,
-            "Page.navigatedWithinDocument" to pl.wendigo.chrome.domain.page.NavigatedWithinDocumentEvent::class.java,
-            "Page.screencastFrame" to pl.wendigo.chrome.domain.page.ScreencastFrameEvent::class.java,
-            "Page.screencastVisibilityChanged" to pl.wendigo.chrome.domain.page.ScreencastVisibilityChangedEvent::class.java,
-            "Page.windowOpen" to pl.wendigo.chrome.domain.page.WindowOpenEvent::class.java,
-            "Performance.metrics" to pl.wendigo.chrome.domain.performance.MetricsEvent::class.java,
-            "Security.certificateError" to pl.wendigo.chrome.domain.security.CertificateErrorEvent::class.java,
-            "Security.securityStateChanged" to pl.wendigo.chrome.domain.security.SecurityStateChangedEvent::class.java,
-            "ServiceWorker.workerErrorReported" to pl.wendigo.chrome.domain.serviceworker.WorkerErrorReportedEvent::class.java,
-            "ServiceWorker.workerRegistrationUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerRegistrationUpdatedEvent::class.java,
-            "ServiceWorker.workerVersionUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerVersionUpdatedEvent::class.java,
-            "Storage.cacheStorageContentUpdated" to pl.wendigo.chrome.domain.storage.CacheStorageContentUpdatedEvent::class.java,
-            "Storage.cacheStorageListUpdated" to pl.wendigo.chrome.domain.storage.CacheStorageListUpdatedEvent::class.java,
-            "Storage.indexedDBContentUpdated" to pl.wendigo.chrome.domain.storage.IndexedDBContentUpdatedEvent::class.java,
-            "Storage.indexedDBListUpdated" to pl.wendigo.chrome.domain.storage.IndexedDBListUpdatedEvent::class.java,
-            "Target.attachedToTarget" to pl.wendigo.chrome.domain.target.AttachedToTargetEvent::class.java,
-            "Target.detachedFromTarget" to pl.wendigo.chrome.domain.target.DetachedFromTargetEvent::class.java,
-            "Target.receivedMessageFromTarget" to pl.wendigo.chrome.domain.target.ReceivedMessageFromTargetEvent::class.java,
-            "Target.targetCrashed" to pl.wendigo.chrome.domain.target.TargetCrashedEvent::class.java,
-            "Target.targetCreated" to pl.wendigo.chrome.domain.target.TargetCreatedEvent::class.java,
-            "Target.targetDestroyed" to pl.wendigo.chrome.domain.target.TargetDestroyedEvent::class.java,
-            "Target.targetInfoChanged" to pl.wendigo.chrome.domain.target.TargetInfoChangedEvent::class.java,
-            "Tethering.accepted" to pl.wendigo.chrome.domain.tethering.AcceptedEvent::class.java,
-            "Tracing.bufferUsage" to pl.wendigo.chrome.domain.tracing.BufferUsageEvent::class.java,
-            "Tracing.dataCollected" to pl.wendigo.chrome.domain.tracing.DataCollectedEvent::class.java,
-            "Tracing.tracingComplete" to pl.wendigo.chrome.domain.tracing.TracingCompleteEvent::class.java,
-            "WebAudio.audioListenerCreated" to pl.wendigo.chrome.domain.webaudio.AudioListenerCreatedEvent::class.java,
-            "WebAudio.audioListenerWillBeDestroyed" to pl.wendigo.chrome.domain.webaudio.AudioListenerWillBeDestroyedEvent::class.java,
-            "WebAudio.audioNodeCreated" to pl.wendigo.chrome.domain.webaudio.AudioNodeCreatedEvent::class.java,
-            "WebAudio.audioNodeWillBeDestroyed" to pl.wendigo.chrome.domain.webaudio.AudioNodeWillBeDestroyedEvent::class.java,
-            "WebAudio.audioParamCreated" to pl.wendigo.chrome.domain.webaudio.AudioParamCreatedEvent::class.java,
-            "WebAudio.audioParamWillBeDestroyed" to pl.wendigo.chrome.domain.webaudio.AudioParamWillBeDestroyedEvent::class.java,
-            "WebAudio.contextChanged" to pl.wendigo.chrome.domain.webaudio.ContextChangedEvent::class.java,
-            "WebAudio.contextCreated" to pl.wendigo.chrome.domain.webaudio.ContextCreatedEvent::class.java,
-            "WebAudio.contextWillBeDestroyed" to pl.wendigo.chrome.domain.webaudio.ContextWillBeDestroyedEvent::class.java,
-            "WebAudio.nodeParamConnected" to pl.wendigo.chrome.domain.webaudio.NodeParamConnectedEvent::class.java,
-            "WebAudio.nodeParamDisconnected" to pl.wendigo.chrome.domain.webaudio.NodeParamDisconnectedEvent::class.java,
-            "WebAudio.nodesConnected" to pl.wendigo.chrome.domain.webaudio.NodesConnectedEvent::class.java,
-            "WebAudio.nodesDisconnected" to pl.wendigo.chrome.domain.webaudio.NodesDisconnectedEvent::class.java
-        ))
+        api.registerEventMappings(
+            mapOf(
+                "Animation.animationCanceled" to pl.wendigo.chrome.domain.animation.AnimationCanceledEvent::class.java,
+                "Animation.animationCreated" to pl.wendigo.chrome.domain.animation.AnimationCreatedEvent::class.java,
+                "Animation.animationStarted" to pl.wendigo.chrome.domain.animation.AnimationStartedEvent::class.java,
+                "ApplicationCache.applicationCacheStatusUpdated" to pl.wendigo.chrome.domain.applicationcache.ApplicationCacheStatusUpdatedEvent::class.java,
+                "ApplicationCache.networkStateUpdated" to pl.wendigo.chrome.domain.applicationcache.NetworkStateUpdatedEvent::class.java,
+                "BackgroundService.backgroundServiceEventReceived" to pl.wendigo.chrome.domain.backgroundservice.BackgroundServiceEventReceivedEvent::class.java,
+                "BackgroundService.recordingStateChanged" to pl.wendigo.chrome.domain.backgroundservice.RecordingStateChangedEvent::class.java,
+                "CSS.fontsUpdated" to pl.wendigo.chrome.domain.css.FontsUpdatedEvent::class.java,
+                "CSS.mediaQueryResultChanged" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "CSS.styleSheetAdded" to pl.wendigo.chrome.domain.css.StyleSheetAddedEvent::class.java,
+                "CSS.styleSheetChanged" to pl.wendigo.chrome.domain.css.StyleSheetChangedEvent::class.java,
+                "CSS.styleSheetRemoved" to pl.wendigo.chrome.domain.css.StyleSheetRemovedEvent::class.java,
+                "Cast.issueUpdated" to pl.wendigo.chrome.domain.cast.IssueUpdatedEvent::class.java,
+                "Cast.sinksUpdated" to pl.wendigo.chrome.domain.cast.SinksUpdatedEvent::class.java,
+                "Console.messageAdded" to pl.wendigo.chrome.domain.console.MessageAddedEvent::class.java,
+                "DOM.attributeModified" to pl.wendigo.chrome.domain.dom.AttributeModifiedEvent::class.java,
+                "DOM.attributeRemoved" to pl.wendigo.chrome.domain.dom.AttributeRemovedEvent::class.java,
+                "DOM.characterDataModified" to pl.wendigo.chrome.domain.dom.CharacterDataModifiedEvent::class.java,
+                "DOM.childNodeCountUpdated" to pl.wendigo.chrome.domain.dom.ChildNodeCountUpdatedEvent::class.java,
+                "DOM.childNodeInserted" to pl.wendigo.chrome.domain.dom.ChildNodeInsertedEvent::class.java,
+                "DOM.childNodeRemoved" to pl.wendigo.chrome.domain.dom.ChildNodeRemovedEvent::class.java,
+                "DOM.distributedNodesUpdated" to pl.wendigo.chrome.domain.dom.DistributedNodesUpdatedEvent::class.java,
+                "DOM.documentUpdated" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "DOM.inlineStyleInvalidated" to pl.wendigo.chrome.domain.dom.InlineStyleInvalidatedEvent::class.java,
+                "DOM.pseudoElementAdded" to pl.wendigo.chrome.domain.dom.PseudoElementAddedEvent::class.java,
+                "DOM.pseudoElementRemoved" to pl.wendigo.chrome.domain.dom.PseudoElementRemovedEvent::class.java,
+                "DOM.setChildNodes" to pl.wendigo.chrome.domain.dom.SetChildNodesEvent::class.java,
+                "DOM.shadowRootPopped" to pl.wendigo.chrome.domain.dom.ShadowRootPoppedEvent::class.java,
+                "DOM.shadowRootPushed" to pl.wendigo.chrome.domain.dom.ShadowRootPushedEvent::class.java,
+                "DOMStorage.domStorageItemAdded" to pl.wendigo.chrome.domain.domstorage.DomStorageItemAddedEvent::class.java,
+                "DOMStorage.domStorageItemRemoved" to pl.wendigo.chrome.domain.domstorage.DomStorageItemRemovedEvent::class.java,
+                "DOMStorage.domStorageItemUpdated" to pl.wendigo.chrome.domain.domstorage.DomStorageItemUpdatedEvent::class.java,
+                "DOMStorage.domStorageItemsCleared" to pl.wendigo.chrome.domain.domstorage.DomStorageItemsClearedEvent::class.java,
+                "Database.addDatabase" to pl.wendigo.chrome.domain.database.AddDatabaseEvent::class.java,
+                "Debugger.breakpointResolved" to pl.wendigo.chrome.domain.debugger.BreakpointResolvedEvent::class.java,
+                "Debugger.paused" to pl.wendigo.chrome.domain.debugger.PausedEvent::class.java,
+                "Debugger.resumed" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "Debugger.scriptFailedToParse" to pl.wendigo.chrome.domain.debugger.ScriptFailedToParseEvent::class.java,
+                "Debugger.scriptParsed" to pl.wendigo.chrome.domain.debugger.ScriptParsedEvent::class.java,
+                "Emulation.virtualTimeBudgetExpired" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "Fetch.authRequired" to pl.wendigo.chrome.domain.fetch.AuthRequiredEvent::class.java,
+                "Fetch.requestPaused" to pl.wendigo.chrome.domain.fetch.RequestPausedEvent::class.java,
+                "HeadlessExperimental.needsBeginFramesChanged" to pl.wendigo.chrome.domain.headlessexperimental.NeedsBeginFramesChangedEvent::class.java,
+                "HeapProfiler.addHeapSnapshotChunk" to pl.wendigo.chrome.domain.heapprofiler.AddHeapSnapshotChunkEvent::class.java,
+                "HeapProfiler.heapStatsUpdate" to pl.wendigo.chrome.domain.heapprofiler.HeapStatsUpdateEvent::class.java,
+                "HeapProfiler.lastSeenObjectId" to pl.wendigo.chrome.domain.heapprofiler.LastSeenObjectIdEvent::class.java,
+                "HeapProfiler.reportHeapSnapshotProgress" to pl.wendigo.chrome.domain.heapprofiler.ReportHeapSnapshotProgressEvent::class.java,
+                "HeapProfiler.resetProfiles" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "Inspector.detached" to pl.wendigo.chrome.domain.inspector.DetachedEvent::class.java,
+                "Inspector.targetCrashed" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "Inspector.targetReloadedAfterCrash" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "LayerTree.layerPainted" to pl.wendigo.chrome.domain.layertree.LayerPaintedEvent::class.java,
+                "LayerTree.layerTreeDidChange" to pl.wendigo.chrome.domain.layertree.LayerTreeDidChangeEvent::class.java,
+                "Log.entryAdded" to pl.wendigo.chrome.domain.log.EntryAddedEvent::class.java,
+                "Media.playerEventsAdded" to pl.wendigo.chrome.domain.media.PlayerEventsAddedEvent::class.java,
+                "Media.playerPropertiesChanged" to pl.wendigo.chrome.domain.media.PlayerPropertiesChangedEvent::class.java,
+                "Media.playersCreated" to pl.wendigo.chrome.domain.media.PlayersCreatedEvent::class.java,
+                "Network.dataReceived" to pl.wendigo.chrome.domain.network.DataReceivedEvent::class.java,
+                "Network.eventSourceMessageReceived" to pl.wendigo.chrome.domain.network.EventSourceMessageReceivedEvent::class.java,
+                "Network.loadingFailed" to pl.wendigo.chrome.domain.network.LoadingFailedEvent::class.java,
+                "Network.loadingFinished" to pl.wendigo.chrome.domain.network.LoadingFinishedEvent::class.java,
+                "Network.requestIntercepted" to pl.wendigo.chrome.domain.network.RequestInterceptedEvent::class.java,
+                "Network.requestServedFromCache" to pl.wendigo.chrome.domain.network.RequestServedFromCacheEvent::class.java,
+                "Network.requestWillBeSent" to pl.wendigo.chrome.domain.network.RequestWillBeSentEvent::class.java,
+                "Network.requestWillBeSentExtraInfo" to pl.wendigo.chrome.domain.network.RequestWillBeSentExtraInfoEvent::class.java,
+                "Network.resourceChangedPriority" to pl.wendigo.chrome.domain.network.ResourceChangedPriorityEvent::class.java,
+                "Network.responseReceived" to pl.wendigo.chrome.domain.network.ResponseReceivedEvent::class.java,
+                "Network.responseReceivedExtraInfo" to pl.wendigo.chrome.domain.network.ResponseReceivedExtraInfoEvent::class.java,
+                "Network.signedExchangeReceived" to pl.wendigo.chrome.domain.network.SignedExchangeReceivedEvent::class.java,
+                "Network.webSocketClosed" to pl.wendigo.chrome.domain.network.WebSocketClosedEvent::class.java,
+                "Network.webSocketCreated" to pl.wendigo.chrome.domain.network.WebSocketCreatedEvent::class.java,
+                "Network.webSocketFrameError" to pl.wendigo.chrome.domain.network.WebSocketFrameErrorEvent::class.java,
+                "Network.webSocketFrameReceived" to pl.wendigo.chrome.domain.network.WebSocketFrameReceivedEvent::class.java,
+                "Network.webSocketFrameSent" to pl.wendigo.chrome.domain.network.WebSocketFrameSentEvent::class.java,
+                "Network.webSocketHandshakeResponseReceived" to pl.wendigo.chrome.domain.network.WebSocketHandshakeResponseReceivedEvent::class.java,
+                "Network.webSocketWillSendHandshakeRequest" to pl.wendigo.chrome.domain.network.WebSocketWillSendHandshakeRequestEvent::class.java,
+                "Overlay.inspectModeCanceled" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "Overlay.inspectNodeRequested" to pl.wendigo.chrome.domain.overlay.InspectNodeRequestedEvent::class.java,
+                "Overlay.nodeHighlightRequested" to pl.wendigo.chrome.domain.overlay.NodeHighlightRequestedEvent::class.java,
+                "Overlay.screenshotRequested" to pl.wendigo.chrome.domain.overlay.ScreenshotRequestedEvent::class.java,
+                "Page.compilationCacheProduced" to pl.wendigo.chrome.domain.page.CompilationCacheProducedEvent::class.java,
+                "Page.domContentEventFired" to pl.wendigo.chrome.domain.page.DomContentEventFiredEvent::class.java,
+                "Page.downloadWillBegin" to pl.wendigo.chrome.domain.page.DownloadWillBeginEvent::class.java,
+                "Page.fileChooserOpened" to pl.wendigo.chrome.domain.page.FileChooserOpenedEvent::class.java,
+                "Page.frameAttached" to pl.wendigo.chrome.domain.page.FrameAttachedEvent::class.java,
+                "Page.frameClearedScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameClearedScheduledNavigationEvent::class.java,
+                "Page.frameDetached" to pl.wendigo.chrome.domain.page.FrameDetachedEvent::class.java,
+                "Page.frameNavigated" to pl.wendigo.chrome.domain.page.FrameNavigatedEvent::class.java,
+                "Page.frameRequestedNavigation" to pl.wendigo.chrome.domain.page.FrameRequestedNavigationEvent::class.java,
+                "Page.frameResized" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "Page.frameScheduledNavigation" to pl.wendigo.chrome.domain.page.FrameScheduledNavigationEvent::class.java,
+                "Page.frameStartedLoading" to pl.wendigo.chrome.domain.page.FrameStartedLoadingEvent::class.java,
+                "Page.frameStoppedLoading" to pl.wendigo.chrome.domain.page.FrameStoppedLoadingEvent::class.java,
+                "Page.interstitialHidden" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "Page.interstitialShown" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "Page.javascriptDialogClosed" to pl.wendigo.chrome.domain.page.JavascriptDialogClosedEvent::class.java,
+                "Page.javascriptDialogOpening" to pl.wendigo.chrome.domain.page.JavascriptDialogOpeningEvent::class.java,
+                "Page.lifecycleEvent" to pl.wendigo.chrome.domain.page.LifecycleEventEvent::class.java,
+                "Page.loadEventFired" to pl.wendigo.chrome.domain.page.LoadEventFiredEvent::class.java,
+                "Page.navigatedWithinDocument" to pl.wendigo.chrome.domain.page.NavigatedWithinDocumentEvent::class.java,
+                "Page.screencastFrame" to pl.wendigo.chrome.domain.page.ScreencastFrameEvent::class.java,
+                "Page.screencastVisibilityChanged" to pl.wendigo.chrome.domain.page.ScreencastVisibilityChangedEvent::class.java,
+                "Page.windowOpen" to pl.wendigo.chrome.domain.page.WindowOpenEvent::class.java,
+                "Performance.metrics" to pl.wendigo.chrome.domain.performance.MetricsEvent::class.java,
+                "Profiler.consoleProfileFinished" to pl.wendigo.chrome.domain.profiler.ConsoleProfileFinishedEvent::class.java,
+                "Profiler.consoleProfileStarted" to pl.wendigo.chrome.domain.profiler.ConsoleProfileStartedEvent::class.java,
+                "Runtime.consoleAPICalled" to pl.wendigo.chrome.domain.runtime.ConsoleAPICalledEvent::class.java,
+                "Runtime.exceptionRevoked" to pl.wendigo.chrome.domain.runtime.ExceptionRevokedEvent::class.java,
+                "Runtime.exceptionThrown" to pl.wendigo.chrome.domain.runtime.ExceptionThrownEvent::class.java,
+                "Runtime.executionContextCreated" to pl.wendigo.chrome.domain.runtime.ExecutionContextCreatedEvent::class.java,
+                "Runtime.executionContextDestroyed" to pl.wendigo.chrome.domain.runtime.ExecutionContextDestroyedEvent::class.java,
+                "Runtime.executionContextsCleared" to pl.wendigo.chrome.ProtocolEvent::class.java,
+                "Runtime.inspectRequested" to pl.wendigo.chrome.domain.runtime.InspectRequestedEvent::class.java,
+                "Security.certificateError" to pl.wendigo.chrome.domain.security.CertificateErrorEvent::class.java,
+                "Security.securityStateChanged" to pl.wendigo.chrome.domain.security.SecurityStateChangedEvent::class.java,
+                "ServiceWorker.workerErrorReported" to pl.wendigo.chrome.domain.serviceworker.WorkerErrorReportedEvent::class.java,
+                "ServiceWorker.workerRegistrationUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerRegistrationUpdatedEvent::class.java,
+                "ServiceWorker.workerVersionUpdated" to pl.wendigo.chrome.domain.serviceworker.WorkerVersionUpdatedEvent::class.java,
+                "Storage.cacheStorageContentUpdated" to pl.wendigo.chrome.domain.storage.CacheStorageContentUpdatedEvent::class.java,
+                "Storage.cacheStorageListUpdated" to pl.wendigo.chrome.domain.storage.CacheStorageListUpdatedEvent::class.java,
+                "Storage.indexedDBContentUpdated" to pl.wendigo.chrome.domain.storage.IndexedDBContentUpdatedEvent::class.java,
+                "Storage.indexedDBListUpdated" to pl.wendigo.chrome.domain.storage.IndexedDBListUpdatedEvent::class.java,
+                "Target.attachedToTarget" to pl.wendigo.chrome.domain.target.AttachedToTargetEvent::class.java,
+                "Target.detachedFromTarget" to pl.wendigo.chrome.domain.target.DetachedFromTargetEvent::class.java,
+                "Target.receivedMessageFromTarget" to pl.wendigo.chrome.domain.target.ReceivedMessageFromTargetEvent::class.java,
+                "Target.targetCrashed" to pl.wendigo.chrome.domain.target.TargetCrashedEvent::class.java,
+                "Target.targetCreated" to pl.wendigo.chrome.domain.target.TargetCreatedEvent::class.java,
+                "Target.targetDestroyed" to pl.wendigo.chrome.domain.target.TargetDestroyedEvent::class.java,
+                "Target.targetInfoChanged" to pl.wendigo.chrome.domain.target.TargetInfoChangedEvent::class.java,
+                "Tethering.accepted" to pl.wendigo.chrome.domain.tethering.AcceptedEvent::class.java,
+                "Tracing.bufferUsage" to pl.wendigo.chrome.domain.tracing.BufferUsageEvent::class.java,
+                "Tracing.dataCollected" to pl.wendigo.chrome.domain.tracing.DataCollectedEvent::class.java,
+                "Tracing.tracingComplete" to pl.wendigo.chrome.domain.tracing.TracingCompleteEvent::class.java,
+                "WebAudio.audioListenerCreated" to pl.wendigo.chrome.domain.webaudio.AudioListenerCreatedEvent::class.java,
+                "WebAudio.audioListenerWillBeDestroyed" to pl.wendigo.chrome.domain.webaudio.AudioListenerWillBeDestroyedEvent::class.java,
+                "WebAudio.audioNodeCreated" to pl.wendigo.chrome.domain.webaudio.AudioNodeCreatedEvent::class.java,
+                "WebAudio.audioNodeWillBeDestroyed" to pl.wendigo.chrome.domain.webaudio.AudioNodeWillBeDestroyedEvent::class.java,
+                "WebAudio.audioParamCreated" to pl.wendigo.chrome.domain.webaudio.AudioParamCreatedEvent::class.java,
+                "WebAudio.audioParamWillBeDestroyed" to pl.wendigo.chrome.domain.webaudio.AudioParamWillBeDestroyedEvent::class.java,
+                "WebAudio.contextChanged" to pl.wendigo.chrome.domain.webaudio.ContextChangedEvent::class.java,
+                "WebAudio.contextCreated" to pl.wendigo.chrome.domain.webaudio.ContextCreatedEvent::class.java,
+                "WebAudio.contextWillBeDestroyed" to pl.wendigo.chrome.domain.webaudio.ContextWillBeDestroyedEvent::class.java,
+                "WebAudio.nodeParamConnected" to pl.wendigo.chrome.domain.webaudio.NodeParamConnectedEvent::class.java,
+                "WebAudio.nodeParamDisconnected" to pl.wendigo.chrome.domain.webaudio.NodeParamDisconnectedEvent::class.java,
+                "WebAudio.nodesConnected" to pl.wendigo.chrome.domain.webaudio.NodesConnectedEvent::class.java,
+                "WebAudio.nodesDisconnected" to pl.wendigo.chrome.domain.webaudio.NodesDisconnectedEvent::class.java
+            )
+        )
+    }
+
+    /**
+     * Provides information about the protocol schema.
+     */
+    val Schema: pl.wendigo.chrome.domain.schema.SchemaDomain by lazy {
+        pl.wendigo.chrome.domain.schema.SchemaDomain(api)
+    }
+
+    /**
+     * Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects. Evaluation results are returned as mirror object that expose object type, string representation and unique identifier that can be used for further object reference. Original objects are maintained in memory unless they are either explicitly released or are released along with the other objects in their object group.
+     */
+    val Runtime: pl.wendigo.chrome.domain.runtime.RuntimeDomain by lazy {
+        pl.wendigo.chrome.domain.runtime.RuntimeDomain(api)
+    }
+
+    /**
+     * Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing breakpoints, stepping through execution, exploring stack traces, etc.
+     */
+    val Debugger: pl.wendigo.chrome.domain.debugger.DebuggerDomain by lazy {
+        pl.wendigo.chrome.domain.debugger.DebuggerDomain(api)
+    }
+
+    /**
+     * This domain is deprecated - use Runtime or Log instead.
+     */
+    val Console: pl.wendigo.chrome.domain.console.ConsoleDomain by lazy {
+        pl.wendigo.chrome.domain.console.ConsoleDomain(api)
+    }
+
+    /**
+     * Returns Profiler domain object.
+     */
+    val Profiler: pl.wendigo.chrome.domain.profiler.ProfilerDomain by lazy {
+        pl.wendigo.chrome.domain.profiler.ProfilerDomain(api)
+    }
+
+    /**
+     * Returns HeapProfiler domain object.
+     */
+    val HeapProfiler: pl.wendigo.chrome.domain.heapprofiler.HeapProfilerDomain by lazy {
+        pl.wendigo.chrome.domain.heapprofiler.HeapProfilerDomain(api)
     }
 
     /**
@@ -454,14 +518,6 @@ API.
         @JvmStatic @JvmOverloads
         fun openSession(page: InspectablePage, eventBufferSize: Int = 128): ChromeProtocol {
             return ChromeProtocol(ChromeDebuggerConnection.openSession(page.webSocketDebuggerUrl!!, eventBufferSize))
-        }
-
-        /**
-         * Opens new debugging session via chrome debugging protocol for given webSocketUrl
-         */
-        @JvmStatic @JvmOverloads
-        fun openHeadlessSession(uri: String, eventBufferSize: Int = 128): HeadlessChromeProtocol {
-            return HeadlessChromeProtocol.create(ChromeProtocol(ChromeDebuggerConnection.openSession(uri, eventBufferSize)), "about:blank")
         }
 
         /**

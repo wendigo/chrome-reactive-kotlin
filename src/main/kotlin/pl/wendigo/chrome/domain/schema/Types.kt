@@ -5,13 +5,13 @@ package pl.wendigo.chrome.domain.schema
  */
 
 data class Domain(
-    /**
-     * Domain name.
-     */
+    /**  
+     * Domain name.  
+     */  
     val name: String,
 
-    /**
-     * Domain version.
-     */
+    /**  
+     * Domain version.  
+     */  
     val version: String
 )

@@ -12,7 +12,7 @@ data class DatabaseWithObjectStores(
 
     /**  
      * Database version (type is not 'integer', as the standard  
-  requires the version number to be 'unsigned long long')  
+     requires the version number to be 'unsigned long long')  
      */  
     val version: Double,
 

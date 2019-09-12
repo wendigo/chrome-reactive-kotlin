@@ -145,19 +145,32 @@ typealias ScriptIdentifier = String
  * Transition type.
  */
 enum class TransitionType {
-    @com.fasterxml.jackson.annotation.JsonProperty("link") LINK,
-    @com.fasterxml.jackson.annotation.JsonProperty("typed") TYPED,
-    @com.fasterxml.jackson.annotation.JsonProperty("address_bar") ADDRESS_BAR,
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_bookmark") AUTO_BOOKMARK,
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_subframe") AUTO_SUBFRAME,
-    @com.fasterxml.jackson.annotation.JsonProperty("manual_subframe") MANUAL_SUBFRAME,
-    @com.fasterxml.jackson.annotation.JsonProperty("generated") GENERATED,
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_toplevel") AUTO_TOPLEVEL,
-    @com.fasterxml.jackson.annotation.JsonProperty("form_submit") FORM_SUBMIT,
-    @com.fasterxml.jackson.annotation.JsonProperty("reload") RELOAD,
-    @com.fasterxml.jackson.annotation.JsonProperty("keyword") KEYWORD,
-    @com.fasterxml.jackson.annotation.JsonProperty("keyword_generated") KEYWORD_GENERATED,
-    @com.fasterxml.jackson.annotation.JsonProperty("other") OTHER;
+    @com.fasterxml.jackson.annotation.JsonProperty("link")
+    LINK,
+    @com.fasterxml.jackson.annotation.JsonProperty("typed")
+    TYPED,
+    @com.fasterxml.jackson.annotation.JsonProperty("address_bar")
+    ADDRESS_BAR,
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_bookmark")
+    AUTO_BOOKMARK,
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_subframe")
+    AUTO_SUBFRAME,
+    @com.fasterxml.jackson.annotation.JsonProperty("manual_subframe")
+    MANUAL_SUBFRAME,
+    @com.fasterxml.jackson.annotation.JsonProperty("generated")
+    GENERATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("auto_toplevel")
+    AUTO_TOPLEVEL,
+    @com.fasterxml.jackson.annotation.JsonProperty("form_submit")
+    FORM_SUBMIT,
+    @com.fasterxml.jackson.annotation.JsonProperty("reload")
+    RELOAD,
+    @com.fasterxml.jackson.annotation.JsonProperty("keyword")
+    KEYWORD,
+    @com.fasterxml.jackson.annotation.JsonProperty("keyword_generated")
+    KEYWORD_GENERATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("other")
+    OTHER;
 }
 
 /**
@@ -236,10 +249,14 @@ data class ScreencastFrameMetadata(
  * Javascript dialog type.
  */
 enum class DialogType {
-    @com.fasterxml.jackson.annotation.JsonProperty("alert") ALERT,
-    @com.fasterxml.jackson.annotation.JsonProperty("confirm") CONFIRM,
-    @com.fasterxml.jackson.annotation.JsonProperty("prompt") PROMPT,
-    @com.fasterxml.jackson.annotation.JsonProperty("beforeunload") BEFOREUNLOAD;
+    @com.fasterxml.jackson.annotation.JsonProperty("alert")
+    ALERT,
+    @com.fasterxml.jackson.annotation.JsonProperty("confirm")
+    CONFIRM,
+    @com.fasterxml.jackson.annotation.JsonProperty("prompt")
+    PROMPT,
+    @com.fasterxml.jackson.annotation.JsonProperty("beforeunload")
+    BEFOREUNLOAD;
 }
 
 /**
@@ -432,11 +449,18 @@ data class FontSizes(
  *
  */
 enum class ClientNavigationReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("formSubmissionGet") FORMSUBMISSIONGET,
-    @com.fasterxml.jackson.annotation.JsonProperty("formSubmissionPost") FORMSUBMISSIONPOST,
-    @com.fasterxml.jackson.annotation.JsonProperty("httpHeaderRefresh") HTTPHEADERREFRESH,
-    @com.fasterxml.jackson.annotation.JsonProperty("scriptInitiated") SCRIPTINITIATED,
-    @com.fasterxml.jackson.annotation.JsonProperty("metaTagRefresh") METATAGREFRESH,
-    @com.fasterxml.jackson.annotation.JsonProperty("pageBlockInterstitial") PAGEBLOCKINTERSTITIAL,
-    @com.fasterxml.jackson.annotation.JsonProperty("reload") RELOAD;
+    @com.fasterxml.jackson.annotation.JsonProperty("formSubmissionGet")
+    FORMSUBMISSIONGET,
+    @com.fasterxml.jackson.annotation.JsonProperty("formSubmissionPost")
+    FORMSUBMISSIONPOST,
+    @com.fasterxml.jackson.annotation.JsonProperty("httpHeaderRefresh")
+    HTTPHEADERREFRESH,
+    @com.fasterxml.jackson.annotation.JsonProperty("scriptInitiated")
+    SCRIPTINITIATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("metaTagRefresh")
+    METATAGREFRESH,
+    @com.fasterxml.jackson.annotation.JsonProperty("pageBlockInterstitial")
+    PAGEBLOCKINTERSTITIAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("reload")
+    RELOAD;
 }

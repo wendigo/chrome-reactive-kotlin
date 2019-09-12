@@ -13,9 +13,9 @@ class FrameMapper {
 
     companion object {
         private val mapper: ObjectMapper = ObjectMapper()
-                .registerModule(KotlinModule())
-                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .registerModule(KotlinModule())
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     }
 
     /**
@@ -67,8 +67,8 @@ class FrameMapper {
             } else {
                 return Single.fromCallable { mapper.treeToValue(responseFrame.params, clazz) }
             }
-        } catch (e: Exception) {
-            return Single.error(DeserializationFailed("Could not deserialize event", e))
+        } catch (e: Throwable) {
+            return Single.error(DeserializationFailed("Could not deserialize event $responseFrame $clazz", e))
         }
     }
 }

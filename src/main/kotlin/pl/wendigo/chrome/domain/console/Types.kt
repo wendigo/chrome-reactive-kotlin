@@ -5,33 +5,33 @@ package pl.wendigo.chrome.domain.console
  */
 
 data class ConsoleMessage(
-    /**
-     * Message source.
-     */
+    /**  
+     * Message source.  
+     */  
     val source: String,
 
-    /**
-     * Message severity.
-     */
+    /**  
+     * Message severity.  
+     */  
     val level: String,
 
-    /**
-     * Message text.
-     */
+    /**  
+     * Message text.  
+     */  
     val text: String,
 
-    /**
-     * URL of the message origin.
-     */
+    /**  
+     * URL of the message origin.  
+     */  
     val url: String? = null,
 
-    /**
-     * Line number in the resource that generated this message (1-based).
-     */
+    /**  
+     * Line number in the resource that generated this message (1-based).  
+     */  
     val line: Int? = null,
 
-    /**
-     * Column number in the resource that generated this message (1-based).
-     */
+    /**  
+     * Column number in the resource that generated this message (1-based).  
+     */  
     val column: Int? = null
 )

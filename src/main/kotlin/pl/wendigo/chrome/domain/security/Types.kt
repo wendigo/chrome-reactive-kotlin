@@ -11,20 +11,28 @@ typealias CertificateId = Int
 https://www.w3.org/TR/mixed-content/#categories
  */
 enum class MixedContentType {
-    @com.fasterxml.jackson.annotation.JsonProperty("blockable") BLOCKABLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("optionally-blockable") OPTIONALLY_BLOCKABLE,
-    @com.fasterxml.jackson.annotation.JsonProperty("none") NONE;
+    @com.fasterxml.jackson.annotation.JsonProperty("blockable")
+    BLOCKABLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("optionally-blockable")
+    OPTIONALLY_BLOCKABLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    NONE;
 }
 
 /**
  * The security level of a page or resource.
  */
 enum class SecurityState {
-    @com.fasterxml.jackson.annotation.JsonProperty("unknown") UNKNOWN,
-    @com.fasterxml.jackson.annotation.JsonProperty("neutral") NEUTRAL,
-    @com.fasterxml.jackson.annotation.JsonProperty("insecure") INSECURE,
-    @com.fasterxml.jackson.annotation.JsonProperty("secure") SECURE,
-    @com.fasterxml.jackson.annotation.JsonProperty("info") INFO;
+    @com.fasterxml.jackson.annotation.JsonProperty("unknown")
+    UNKNOWN,
+    @com.fasterxml.jackson.annotation.JsonProperty("neutral")
+    NEUTRAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("insecure")
+    INSECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("secure")
+    SECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("info")
+    INFO;
 }
 
 /**
@@ -114,6 +122,8 @@ data class InsecureContentStatus(
 request and cancel will cancel the request.
  */
 enum class CertificateErrorAction {
-    @com.fasterxml.jackson.annotation.JsonProperty("continue") CONTINUE,
-    @com.fasterxml.jackson.annotation.JsonProperty("cancel") CANCEL;
+    @com.fasterxml.jackson.annotation.JsonProperty("continue")
+    CONTINUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("cancel")
+    CANCEL;
 }

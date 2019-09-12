@@ -276,7 +276,7 @@ data class GetHighlightObjectForTestResponse(
     /**  
      * Highlight data for the node.  
      */  
-    val highlight: String
+    val highlight: com.fasterxml.jackson.databind.JsonNode
 
 )
 

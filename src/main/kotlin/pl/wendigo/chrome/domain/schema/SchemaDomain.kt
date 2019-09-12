@@ -1,7 +1,7 @@
 package pl.wendigo.chrome.domain.schema
 
 /**
- * This domain is deprecated.
+ * Provides information about the protocol schema.
  */
 class SchemaDomain internal constructor(private val connectionRemote: pl.wendigo.chrome.DebuggerProtocol) {
     /**
@@ -29,9 +29,9 @@ class SchemaDomain internal constructor(private val connectionRemote: pl.wendigo
  * Returns supported domains.
  */
 data class GetDomainsResponse(
-    /**
-     * List of supported domains.
-     */
+    /**  
+     * List of supported domains.  
+     */  
     val domains: List<Domain>
 
 )

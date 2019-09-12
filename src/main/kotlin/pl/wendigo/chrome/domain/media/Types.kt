@@ -32,9 +32,12 @@ data class PlayerProperty(
  * Break out events into different types
  */
 enum class PlayerEventType {
-    @com.fasterxml.jackson.annotation.JsonProperty("playbackEvent") PLAYBACKEVENT,
-    @com.fasterxml.jackson.annotation.JsonProperty("systemEvent") SYSTEMEVENT,
-    @com.fasterxml.jackson.annotation.JsonProperty("messageEvent") MESSAGEEVENT;
+    @com.fasterxml.jackson.annotation.JsonProperty("playbackEvent")
+    PLAYBACKEVENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("systemEvent")
+    SYSTEMEVENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("messageEvent")
+    MESSAGEEVENT;
 }
 
 /**
@@ -49,7 +52,7 @@ data class PlayerEvent(
 
     /**  
      * Events are timestamped relative to the start of the player creation  
-  not relative to the start of playback.  
+     not relative to the start of playback.  
      */  
     val timestamp: Timestamp,
 

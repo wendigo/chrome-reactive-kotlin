@@ -31,22 +31,32 @@ data class ServiceWorkerRegistration(
  *
  */
 enum class ServiceWorkerVersionRunningStatus {
-    @com.fasterxml.jackson.annotation.JsonProperty("stopped") STOPPED,
-    @com.fasterxml.jackson.annotation.JsonProperty("starting") STARTING,
-    @com.fasterxml.jackson.annotation.JsonProperty("running") RUNNING,
-    @com.fasterxml.jackson.annotation.JsonProperty("stopping") STOPPING;
+    @com.fasterxml.jackson.annotation.JsonProperty("stopped")
+    STOPPED,
+    @com.fasterxml.jackson.annotation.JsonProperty("starting")
+    STARTING,
+    @com.fasterxml.jackson.annotation.JsonProperty("running")
+    RUNNING,
+    @com.fasterxml.jackson.annotation.JsonProperty("stopping")
+    STOPPING;
 }
 
 /**
  *
  */
 enum class ServiceWorkerVersionStatus {
-    @com.fasterxml.jackson.annotation.JsonProperty("new") NEW,
-    @com.fasterxml.jackson.annotation.JsonProperty("installing") INSTALLING,
-    @com.fasterxml.jackson.annotation.JsonProperty("installed") INSTALLED,
-    @com.fasterxml.jackson.annotation.JsonProperty("activating") ACTIVATING,
-    @com.fasterxml.jackson.annotation.JsonProperty("activated") ACTIVATED,
-    @com.fasterxml.jackson.annotation.JsonProperty("redundant") REDUNDANT;
+    @com.fasterxml.jackson.annotation.JsonProperty("new")
+    NEW,
+    @com.fasterxml.jackson.annotation.JsonProperty("installing")
+    INSTALLING,
+    @com.fasterxml.jackson.annotation.JsonProperty("installed")
+    INSTALLED,
+    @com.fasterxml.jackson.annotation.JsonProperty("activating")
+    ACTIVATING,
+    @com.fasterxml.jackson.annotation.JsonProperty("activated")
+    ACTIVATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("redundant")
+    REDUNDANT;
 }
 
 /**
@@ -86,7 +96,7 @@ data class ServiceWorkerVersion(
 
     /**  
      * The time at which the response headers of the main script were received from the server.  
-  For cached script it is the last time the cache entry was validated.  
+     For cached script it is the last time the cache entry was validated.  
      */  
     val scriptResponseTime: Double? = null,
 

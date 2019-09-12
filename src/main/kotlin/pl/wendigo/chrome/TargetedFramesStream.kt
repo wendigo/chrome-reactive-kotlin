@@ -20,23 +20,25 @@ class TargetedFramesStream(
         return frames().filter {
             it.value().isResponse(requestFrame.id)
         }
-        .flatMapSingle { frame ->
-            mapper.deserializeResponse(requestFrame, frame.value(), clazz).map {
-                Timed(it, frame.time(), frame.unit())
+            .flatMapSingle { frame ->
+                mapper.deserializeResponse(requestFrame, frame.value(), clazz).map {
+                    Timed(it, frame.time(), frame.unit())
+                }
             }
-        }
-        .take(1)
-        .singleOrError()
+            .take(1)
+            .singleOrError()
     }
 
     override fun send(frame: RequestFrame): Single<Boolean> {
         return mapper.serialize(frame).flatMap { message ->
-            api.Target.sendMessageToTarget(SendMessageToTargetRequest(
+            api.Target.sendMessageToTarget(
+                SendMessageToTargetRequest(
                     sessionId = session.sessionId,
                     targetId = session.targetId,
                     message = message
-            ))
-            .map { it.isResponse() }
+                )
+            )
+                .map { it.isResponse() }
         }
     }
 
@@ -48,13 +50,13 @@ class TargetedFramesStream(
         return api.Target.receivedMessageFromTargetTimed().filter { message ->
             message.value().run {
                 sessionId == this@TargetedFramesStream.session.sessionId ||
-                targetId == this@TargetedFramesStream.session.targetId
+                    targetId == this@TargetedFramesStream.session.targetId
             }
         }
-        .map { frame ->
-            Timed(mapper.deserialize(frame.value().message, ResponseFrame::class.java), frame.time(), frame.unit())
-        }
-        .toObservable()
+            .map { frame ->
+                Timed(mapper.deserialize(frame.value().message, ResponseFrame::class.java), frame.time(), frame.unit())
+            }
+            .toObservable()
     }
 
     override fun close() {
@@ -62,7 +64,7 @@ class TargetedFramesStream(
             val response = api.Target.closeTarget(CloseTargetRequest(session.targetId)).flatMap {
                 api.Target.disposeBrowserContext(DisposeBrowserContextRequest(session.browserContextId))
             }
-            .blockingGet()
+                .blockingGet()
 
             logger.info("Closed session {} with status {}", session, response)
 

@@ -10,12 +10,18 @@ typealias CacheId = String
  * type of HTTP response cached
  */
 enum class CachedResponseType {
-    @com.fasterxml.jackson.annotation.JsonProperty("basic") BASIC,
-    @com.fasterxml.jackson.annotation.JsonProperty("cors") CORS,
-    @com.fasterxml.jackson.annotation.JsonProperty("default") DEFAULT,
-    @com.fasterxml.jackson.annotation.JsonProperty("error") ERROR,
-    @com.fasterxml.jackson.annotation.JsonProperty("opaqueResponse") OPAQUERESPONSE,
-    @com.fasterxml.jackson.annotation.JsonProperty("opaqueRedirect") OPAQUEREDIRECT;
+    @com.fasterxml.jackson.annotation.JsonProperty("basic")
+    BASIC,
+    @com.fasterxml.jackson.annotation.JsonProperty("cors")
+    CORS,
+    @com.fasterxml.jackson.annotation.JsonProperty("default")
+    DEFAULT,
+    @com.fasterxml.jackson.annotation.JsonProperty("error")
+    ERROR,
+    @com.fasterxml.jackson.annotation.JsonProperty("opaqueResponse")
+    OPAQUERESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("opaqueRedirect")
+    OPAQUEREDIRECT;
 }
 
 /**

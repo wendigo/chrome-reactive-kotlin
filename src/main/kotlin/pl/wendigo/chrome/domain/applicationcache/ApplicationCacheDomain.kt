@@ -118,7 +118,7 @@ associated with some application cache.
 data class GetFramesWithManifestsResponse(
     /**  
      * Array of frame identifiers with manifest urls for each frame containing a document  
-  associated with some application cache.  
+     associated with some application cache.  
      */  
     val frameIds: List<FrameWithManifest>
 

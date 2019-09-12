@@ -92,8 +92,8 @@ data class VideoEncodeAcceleratorCapability(
 
     /**  
      * Maximum encoding framerate in frames per second supported for this  
-  |profile|, as fraction's numerator and denominator, e.g. 24/1 fps,  
-  24000/1001 fps, etc.  
+     |profile|, as fraction's numerator and denominator, e.g. 24/1 fps,  
+     24000/1001 fps, etc.  
      */  
     val maxFramerateNumerator: Int,
 
@@ -107,18 +107,24 @@ data class VideoEncodeAcceleratorCapability(
  * YUV subsampling type of the pixels of a given image.
  */
 enum class SubsamplingFormat {
-    @com.fasterxml.jackson.annotation.JsonProperty("yuv420") YUV420,
-    @com.fasterxml.jackson.annotation.JsonProperty("yuv422") YUV422,
-    @com.fasterxml.jackson.annotation.JsonProperty("yuv444") YUV444;
+    @com.fasterxml.jackson.annotation.JsonProperty("yuv420")
+    YUV420,
+    @com.fasterxml.jackson.annotation.JsonProperty("yuv422")
+    YUV422,
+    @com.fasterxml.jackson.annotation.JsonProperty("yuv444")
+    YUV444;
 }
 
 /**
  * Image format of a given image.
  */
 enum class ImageType {
-    @com.fasterxml.jackson.annotation.JsonProperty("jpeg") JPEG,
-    @com.fasterxml.jackson.annotation.JsonProperty("webp") WEBP,
-    @com.fasterxml.jackson.annotation.JsonProperty("unknown") UNKNOWN;
+    @com.fasterxml.jackson.annotation.JsonProperty("jpeg")
+    JPEG,
+    @com.fasterxml.jackson.annotation.JsonProperty("webp")
+    WEBP,
+    @com.fasterxml.jackson.annotation.JsonProperty("unknown")
+    UNKNOWN;
 }
 
 /**
@@ -161,12 +167,12 @@ data class GPUInfo(
     /**  
      * An optional dictionary of additional GPU related attributes.  
      */  
-    val auxAttributes: String? = null,
+    val auxAttributes: com.fasterxml.jackson.databind.JsonNode? = null,
 
     /**  
      * An optional dictionary of graphics features and their status.  
      */  
-    val featureStatus: String? = null,
+    val featureStatus: com.fasterxml.jackson.databind.JsonNode? = null,
 
     /**  
      * An optional array of GPU driver bug workarounds.  
@@ -206,7 +212,7 @@ data class ProcessInfo(
 
     /**  
      * Specifies cumulative CPU usage in seconds across all threads of the  
-  process since the process start.  
+     process since the process start.  
      */  
     val cpuTime: Double
 )

@@ -4,7 +4,7 @@ build
 src/main/kotlin/pl/wendigo/chrome/Test.kt
 logs/
 browser_protocol.json
-js_protocol.json
+v8_protocol.json
 out
 *.iml
 *.ipr
