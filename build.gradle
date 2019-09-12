@@ -20,6 +20,7 @@ buildscript {
         classpath group: 'com.github.ben-manes', name: 'gradle-versions-plugin', version: '0.17.0'
         classpath group: 'org.jmailen.gradle', name: 'kotlinter-gradle', version: '2.1.1'
         classpath group: 'de.marcphilipp.gradle', name: 'nexus-publish-plugin', version: '0.3.1'
+        classpath group: 'org.jetbrains.dokka', name: 'dokka-gradle-plugin', version: '0.9.18'
     }
 }
 
@@ -32,7 +33,7 @@ apply plugin: 'io.codearte.nexus-staging'
 apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'org.jmailen.kotlinter'
 apply plugin: 'de.marcphilipp.nexus-publish'
-
+apply plugin: 'org.jetbrains.dokka'
 
 scmVersion {
     tag {
@@ -42,6 +43,28 @@ scmVersion {
 
 group = 'pl.wendigo'
 version = scmVersion.version
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+    includes = ['Module.md']
+
+    linkMapping {
+        dir = "src/main/kotlin"
+        url = "https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin"
+        suffix = "#L"
+    }
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    classifier = 'javadoc'
+    from "$buildDir/javadoc"
+}
 
 jar {
     baseName = 'chrome-reactive-kotlin'
@@ -58,6 +81,7 @@ compileKotlin {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
