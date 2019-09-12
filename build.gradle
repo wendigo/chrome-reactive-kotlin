@@ -75,10 +75,6 @@ dependencies {
     testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 }
 
-signing {
-    sign configurations.archives
-}
-
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava
     archiveClassifier = 'sources'
@@ -103,6 +99,7 @@ publishing {
             artifact javadocJar
 
             pom {
+                name = 'chrome-reactive-kotlin'
                 description = 'Chrome Reactive - low level, remote chrome debugger protocol client (DevTools)'
                 url = 'https://github.com/wendigo/chrome-reactive-kotlin'
                 inceptionYear = '2017'
@@ -135,7 +132,9 @@ publishing {
     }
 }
 
-
+signing {
+    sign publishing.publications.mavenJava
+}
 
 nexusStaging {
     packageGroup = 'pl.wendigo'
