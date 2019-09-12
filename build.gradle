@@ -44,28 +44,6 @@ scmVersion {
 group = 'pl.wendigo'
 version = scmVersion.version
 
-dokka {
-    outputFormat = 'html'
-    outputDirectory = "$buildDir/javadoc"
-    includes = ['Module.md']
-
-    linkMapping {
-        dir = "src/main/kotlin"
-        url = "https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin"
-        suffix = "#L"
-    }
-}
-
-task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    outputFormat = 'javadoc'
-    outputDirectory = "$buildDir/javadoc"
-}
-
-task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
-    classifier = 'javadoc'
-    from "$buildDir/javadoc"
-}
-
 jar {
     baseName = 'chrome-reactive-kotlin'
     version = scmVersion.version
@@ -104,9 +82,26 @@ task sourcesJar(type: Jar) {
     archiveClassifier = 'sources'
 }
 
-task javadocJar(type: Jar) {
-    from javadoc
-    archiveClassifier = 'javadoc'
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+    includes = ['Module.md']
+
+    linkMapping {
+        dir = "src/main/kotlin"
+        url = "https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin"
+        suffix = "#L"
+    }
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    classifier = 'javadoc'
+    from "$buildDir/javadoc"
 }
 
 javadoc {
