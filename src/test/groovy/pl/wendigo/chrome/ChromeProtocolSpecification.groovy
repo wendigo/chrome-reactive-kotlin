@@ -2,6 +2,7 @@ package pl.wendigo.chrome
 
 import spock.lang.Specification
 import pl.wendigo.chrome.domain.page.NavigateRequest
+import pl.wendigo.chrome.domain.page.CaptureSnapshotRequest
 
 class ChromeProtocolSpecification extends Specification {
     def "should open headless session"() {
@@ -14,8 +15,6 @@ class ChromeProtocolSpecification extends Specification {
             }.blockingGet();
 
             def layout = session.page.getLayoutMetrics().blockingGet()
-
-            println(session.page.navigate(new NavigateRequest("http://empik.com", null, null, null)).blockingGet())
 
         then:
             with (session.session) {
@@ -30,6 +29,7 @@ class ChromeProtocolSpecification extends Specification {
                 clientWidth == 1024
             }
 
-            //session.close()
+        cleanup:
+            session.close()
     }
 }

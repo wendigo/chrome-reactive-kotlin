@@ -68,7 +68,7 @@ dependencies {
 
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.28'
 
-    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.3-groovy-2.5'
     testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 }
 
@@ -139,8 +139,9 @@ nexusStaging {
     password = nexusPassword
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.5'
+wrapper {
+    version = '5.6.2'
+    distributionType = Wrapper.DistributionType.ALL
 }
 
 test {
@@ -160,7 +161,7 @@ kotlinter {
     indentSize = 4
     continuationIndentSize = 4
     reporters = ["checkstyle", "plain"]
-    experimentalRules = false
+    experimentalRules = true
     disabledRules = []
     fileBatchSize = 30
 }
