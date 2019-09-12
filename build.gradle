@@ -78,36 +78,27 @@ dependencies {
 }
 
 task sourcesJar(type: Jar) {
-    from sourceSets.main.allJava
+    from sourceSets.main.allSource
     archiveClassifier = 'sources'
 }
 
-dokka {
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
     outputFormat = 'html'
-    outputDirectory = "$buildDir/javadoc"
-    includes = ['Module.md']
-
+    jdkVersion = 8
+    includes = ['packages.md', 'extra.md']
+    samples = ['samples/basic.kt', 'samples/advanced.kt']
+    reportUndocumented = false
     linkMapping {
         dir = "src/main/kotlin"
         url = "https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin"
         suffix = "#L"
     }
-}
-
-task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
-    outputFormat = 'javadoc'
-    outputDirectory = "$buildDir/javadoc"
+    outputDirectory = javadoc.destinationDir
 }
 
 task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
     classifier = 'javadoc'
-    from "$buildDir/javadoc"
-}
-
-javadoc {
-    if (JavaVersion.current().isJava9Compatible()) {
-        options.addBooleanOption('html5', true)
-    }
+    from javadoc.destinationDir
 }
 
 publishing {
