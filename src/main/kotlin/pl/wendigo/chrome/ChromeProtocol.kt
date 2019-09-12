@@ -530,5 +530,16 @@ API.
         fun openHeadlessSession(page: InspectablePage, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): HeadlessChromeProtocol {
             return HeadlessChromeProtocol.create(openSession(page, eventBufferSize), page.url, width, height)
         }
+
+        /**
+         * Opens new headless debugging session via chrome debugging protocol.
+         *
+         * When opening headless session new browser context is created and communication goes through Target domain
+         * with target id/session id.
+         */
+        @JvmStatic @JvmOverloads
+        fun openHeadlessSession(browserWs: String, url: String, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): HeadlessChromeProtocol {
+            return HeadlessChromeProtocol.create(ChromeProtocol(ChromeDebuggerConnection.openSession(browserWs, eventBufferSize)), url, width, height)
+        }
     }
 }

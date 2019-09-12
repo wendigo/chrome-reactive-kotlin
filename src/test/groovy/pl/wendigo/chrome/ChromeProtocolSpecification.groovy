@@ -1,19 +1,14 @@
 package pl.wendigo.chrome
 
 import spock.lang.Specification
-import pl.wendigo.chrome.domain.page.NavigateRequest
-import pl.wendigo.chrome.domain.page.CaptureSnapshotRequest
 
 class ChromeProtocolSpecification extends Specification {
     def "should open headless session"() {
         given:
-            def chrome = Inspector.connect("127.0.0.1:9222")
+            def chrome = Browser.connect("127.0.0.1:9222")
 
         when:
-            def session = chrome.version().map {
-                ChromeProtocol.openHeadlessSession(it.webSocketDebugUrl, 128)
-            }.blockingGet();
-
+            def session = chrome.headlessSession("about:blank", 128)
             def layout = session.page.getLayoutMetrics().blockingGet()
 
         then:
