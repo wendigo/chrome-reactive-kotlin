@@ -1,18 +1,26 @@
 package {{Package}}
 
-import pl.wendigo.chrome.protocol.DebuggerProtocol
 import java.io.Closeable
 
+import io.reactivex.Flowable
+{{#each Protocol.Domains}}
+import {{Package}}.api.{{LowerName}}.{{Name}}Operations
+{{/each}}
+import {{Package}}.protocol.ChromeDebuggerConnection
+
 /**
- * ChromeProtocol represents session established via given protocol websocket connection (via target or inspectable page).
+ * DevToolsProtocol represents all operations on all domains that can be issued to control Chrome via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
+ *
+ * @link [https://github.com/chromedevtools/devtools-protocol](https://github.com/chromedevtools/devtools-protocol)
+ * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
-open class ChromeProtocol internal constructor(private val api: DebuggerProtocol): Closeable {
+open class DevToolsProtocol internal constructor(private val connection: ChromeDebuggerConnection): Closeable {
 
     /**
      * Register events mappings.
      */
     init {
-        api.registerEventMappings(mapOf(
+        connection.registerEventMappings(mapOf(
         {{#each Protocol.EventMappings}}
             "{{EventName}}" to {{Class}}::class.java{{#unless @last}},{{/unless}}
         {{/each}}
@@ -21,18 +29,29 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
 
     {{#each Protocol.Domains}}
     /**
-     * {{#if Description}}{{{Description}}}{{else}}Returns {{Name}} domain object.{{/if}}
+     * {{#if Description}}{{{Description}}}{{else}}Lazily returns [{{Name}}Operations] domain object allowing to perform operations on [{{Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Name}}) protocol domain.{{/if}}
+     *
+     {{#if Experimental}}
+      * This API is marked as experimental in protocol definition and can change in the future.
+     {{/if}}
+     * @link [https://chromedevtools.github.io/devtools-protocol/tot/{{Name}}](Domain {{Name}} documentation)
      */
-    val {{Name}} : {{Package}}.domain.{{LowerName}}.{{Name}}Domain by lazy {
-        {{Package}}.domain.{{LowerName}}.{{Name}}Domain(api)
+{{#if Deprecated}}
+    @Deprecated(level = DeprecationLevel.WARNING, message = "{{#if Description}}{{{Description}}}{{else}}{{Name}} is deprecated.{{/if}}")
+{{/if}}
+{{#if Experimental}}
+    @{{Package}}.protocol.Experimental
+{{/if}}
+    val {{Name}}: {{Name}}Operations by lazy {
+        {{Name}}Operations(connection)
     }
 
     {{/each}}
     /**
      * Returns [Flowable] capturing all events.
      */
-    fun Events() : io.reactivex.Flowable<ProtocolEvent> {
-        return api.captureAllEvents().map {
+    fun Events(): Flowable<{{Package}}.protocol.Event> {
+        return connection.captureAllEvents().map {
             it.value()
         }
     }
@@ -41,6 +60,6 @@ open class ChromeProtocol internal constructor(private val api: DebuggerProtocol
      * Closes session.
      */
     override fun close() {
-        return api.close()
+        return connection.close()
     }
 }

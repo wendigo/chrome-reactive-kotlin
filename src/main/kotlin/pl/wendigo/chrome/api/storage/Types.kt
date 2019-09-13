@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.storage
+package pl.wendigo.chrome.api.storage
 
 /**
  * Enum of possible storage types.
+ *
+ * @link [Storage#StorageType](https://chromedevtools.github.io/devtools-protocol/tot/Storage#type-StorageType) type documentation.
  */
 enum class StorageType {
     @com.fasterxml.jackson.annotation.JsonProperty("appcache")
@@ -30,6 +32,8 @@ enum class StorageType {
 
 /**
  * Usage for a storage type.
+ *
+ * @link [Storage#UsageForType](https://chromedevtools.github.io/devtools-protocol/tot/Storage#type-UsageForType) type documentation.
  */
 
 data class UsageForType(

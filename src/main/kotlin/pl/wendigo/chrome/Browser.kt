@@ -4,9 +4,9 @@ import java.io.Closeable
 import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import pl.wendigo.chrome.headless.HeadlessDevToolsProtocol
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 import pl.wendigo.chrome.protocol.FrameMapper
-import pl.wendigo.chrome.protocol.headless.HeadlessChromeProtocol
 import pl.wendigo.chrome.protocol.inspector.InspectablePage
 import pl.wendigo.chrome.protocol.inspector.InspectorException
 import pl.wendigo.chrome.protocol.inspector.ProtocolVersion
@@ -83,8 +83,8 @@ class Browser(
      * with target id/session id.
      */
     @JvmOverloads
-    fun headlessSession(url: String, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): HeadlessChromeProtocol {
-        return HeadlessChromeProtocol.create(ChromeProtocol(ChromeDebuggerConnection.openSession(version().webSocketDebugUrl, eventBufferSize)), url, width, height)
+    fun headlessSession(url: String, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): HeadlessDevToolsProtocol {
+        return HeadlessDevToolsProtocol.create(DevToolsProtocol(ChromeDebuggerConnection.openSession(version().webSocketDebugUrl, eventBufferSize)), url, width, height)
     }
 
     override fun close() {

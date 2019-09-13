@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.domdebugger
+package pl.wendigo.chrome.api.domdebugger
 
 /**
  * DOM breakpoint type.
+ *
+ * @link [DOMDebugger#DOMBreakpointType](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#type-DOMBreakpointType) type documentation.
  */
 enum class DOMBreakpointType {
     @com.fasterxml.jackson.annotation.JsonProperty("subtree-modified")
@@ -14,6 +16,8 @@ enum class DOMBreakpointType {
 
 /**
  * Object event listener.
+ *
+ * @link [DOMDebugger#EventListener](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#type-EventListener) type documentation.
  */
 
 data class EventListener(

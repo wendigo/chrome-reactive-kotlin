@@ -32,9 +32,9 @@ func (p Protocol) EventMappings() []EventMapping {
 	for _, domain := range p.Domains {
 		for _, event := range domain.Events {
 			if event.HasReturnValue() {
-				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.domain.%s.%s", basePackage, domain.LowerName(), event.ClassName())
+				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.api.%s.%s", basePackage, domain.LowerName(), event.ClassName())
 			} else {
-				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.%s", basePackage, "ProtocolEvent")
+				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.%s", basePackage, "protocol.Event")
 			}
 		}
 	}
@@ -144,8 +144,10 @@ func (c Command) OutputDataClass() string {
 
 	return raymond.MustRender(template, struct {
 		Type Command
+		IsOutput bool
 		Description string
-	}{Type: c, Description: fmt.Sprintf("Represents response frame for %s.%s method call.", currentDomain, c.Name)})
+		Domain string
+	}{Type: c, IsOutput: true, Domain: currentDomain})
 }
 
 func (c Command) HasReturnValue() bool {
@@ -333,8 +335,9 @@ func (e Event) OutputDataClass() string {
 
 	return raymond.MustRender(template, struct {
 		Type Event
-		Description string
-	}{Type: e, Description: fmt.Sprintf("Represents event frames for %s.%s", currentDomain, e.Name)})
+		IsEvent bool
+		Domain string
+	}{Domain: currentDomain, Type: e, IsEvent: true})
 }
 
 func (e Event) SimpleName() string {
@@ -350,7 +353,7 @@ func (e Event) ClassName() string {
 }
 
 func (e Event) ImplementingInterfaces() []string {
-	return []string{fmt.Sprintf("%s.ProtocolEvent(domain = \"%s\", name = \"%s\")", basePackage, currentDomain, e.Name)}
+	return []string{fmt.Sprintf("%s.protocol.Event(domain = \"%s\", name = \"%s\")", basePackage, currentDomain, e.Name)}
 }
 
 var protocolFile string
@@ -465,7 +468,7 @@ func main() {
 
 	log.Println("Generating protocol class")
 
-	if err := generateAndWrite(kotlinFilename("ChromeProtocol"), "protocol_class", struct {
+	if err := generateAndWrite(kotlinFilename("DevToolsProtocol"), "protocol_class", struct {
 		Protocol Protocol
 	}{
 		Protocol: *protocol,
@@ -473,12 +476,20 @@ func main() {
 		log.Panicf("Could not generate file: %s", err)
 	}
 
+	if err := generateAndWrite("domains.md", "markdown", struct {
+    		Domains []Domain
+    	}{
+    		Domains: protocol.Domains,
+    	}); err != nil {
+    		log.Panicf("Could not generate file: %s", err)
+    	}
+
 	for _, domain := range protocol.Domains {
 		log.Printf("Generating classes for domain: %s in %s", domain.Name, basePackage)
 
 		currentDomain = domain.Name
 
-		if err := generateAndWrite(kotlinFilename("api/"+domain.LowerName()+"/"+domain.Name), "domain_class", struct {
+		if err := generateAndWrite(kotlinFilename("api/"+domain.LowerName()+"/Operations"), "domain_class", struct {
 			Domain Domain
 		}{
 			Domain: domain,

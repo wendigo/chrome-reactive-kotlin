@@ -1,1 +1,1 @@
-package pl.wendigo.chrome.domain.inspector
+package pl.wendigo.chrome.api.inspector

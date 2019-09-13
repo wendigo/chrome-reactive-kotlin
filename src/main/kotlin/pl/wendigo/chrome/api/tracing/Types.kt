@@ -1,13 +1,17 @@
-package pl.wendigo.chrome.domain.tracing
+package pl.wendigo.chrome.api.tracing
 
 /**
  * Configuration for memory dump. Used only when &quot;memory-infra&quot; category is enabled.
+ *
+ * @link [Tracing#MemoryDumpConfig](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-MemoryDumpConfig) type documentation.
  */
 
 typealias MemoryDumpConfig = Map<String, Any>
 
 /**
  *
+ *
+ * @link [Tracing#TraceConfig](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-TraceConfig) type documentation.
  */
 
 data class TraceConfig(
@@ -55,6 +59,8 @@ data class TraceConfig(
 /**
  * Data format of a trace. Can be either the legacy JSON format or the
 protocol buffer format. Note that the JSON format will be deprecated soon.
+ *
+ * @link [Tracing#StreamFormat](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-StreamFormat) type documentation.
  */
 enum class StreamFormat {
     @com.fasterxml.jackson.annotation.JsonProperty("json")
@@ -65,6 +71,8 @@ enum class StreamFormat {
 
 /**
  * Compression type to use for traces returned via streams.
+ *
+ * @link [Tracing#StreamCompression](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-StreamCompression) type documentation.
  */
 enum class StreamCompression {
     @com.fasterxml.jackson.annotation.JsonProperty("none")

@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.network
+package pl.wendigo.chrome.api.network
 
 /**
  * Resource type as it was perceived by the rendering engine.
+ *
+ * @link [Network#ResourceType](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ResourceType) type documentation.
  */
 enum class ResourceType {
     @com.fasterxml.jackson.annotation.JsonProperty("Document")
@@ -40,24 +42,32 @@ enum class ResourceType {
 
 /**
  * Unique loader identifier.
+ *
+ * @link [Network#LoaderId](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-LoaderId) type documentation.
  */
 
 typealias LoaderId = String
 
 /**
  * Unique request identifier.
+ *
+ * @link [Network#RequestId](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-RequestId) type documentation.
  */
 
 typealias RequestId = String
 
 /**
  * Unique intercepted request identifier.
+ *
+ * @link [Network#InterceptionId](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-InterceptionId) type documentation.
  */
 
 typealias InterceptionId = String
 
 /**
  * Network level fetch failure reason.
+ *
+ * @link [Network#ErrorReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ErrorReason) type documentation.
  */
 enum class ErrorReason {
     @com.fasterxml.jackson.annotation.JsonProperty("Failed")
@@ -92,24 +102,32 @@ enum class ErrorReason {
 
 /**
  * UTC time in seconds, counted from January 1, 1970.
+ *
+ * @link [Network#TimeSinceEpoch](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-TimeSinceEpoch) type documentation.
  */
 
 typealias TimeSinceEpoch = Double
 
 /**
  * Monotonically increasing time in seconds since an arbitrary point in the past.
+ *
+ * @link [Network#MonotonicTime](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-MonotonicTime) type documentation.
  */
 
 typealias MonotonicTime = Double
 
 /**
  * Request / response headers as keys / values of JSON object.
+ *
+ * @link [Network#Headers](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Headers) type documentation.
  */
 
 typealias Headers = Map<String, Any>
 
 /**
  * The underlying connection technology that the browser is supposedly using.
+ *
+ * @link [Network#ConnectionType](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ConnectionType) type documentation.
  */
 enum class ConnectionType {
     @com.fasterxml.jackson.annotation.JsonProperty("none")
@@ -135,6 +153,8 @@ enum class ConnectionType {
 /**
  * Represents the cookie&apos;s &apos;SameSite&apos; status:
 https://tools.ietf.org/html/draft-west-first-party-cookies
+ *
+ * @link [Network#CookieSameSite](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CookieSameSite) type documentation.
  */
 enum class CookieSameSite {
     @com.fasterxml.jackson.annotation.JsonProperty("Strict")
@@ -149,6 +169,8 @@ enum class CookieSameSite {
 
 /**
  * Timing information for the request.
+ *
+ * @link [Network#ResourceTiming](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ResourceTiming) type documentation.
  */
 
 data class ResourceTiming(
@@ -201,12 +223,12 @@ data class ResourceTiming(
     /**  
      * Started running ServiceWorker.  
      */  
-    @pl.wendigo.chrome.Experimental val workerStart: Double,
+    @pl.wendigo.chrome.protocol.Experimental val workerStart: Double,
 
     /**  
      * Finished Starting ServiceWorker.  
      */  
-    @pl.wendigo.chrome.Experimental val workerReady: Double,
+    @pl.wendigo.chrome.protocol.Experimental val workerReady: Double,
 
     /**  
      * Started sending request.  
@@ -221,12 +243,12 @@ data class ResourceTiming(
     /**  
      * Time the server started pushing request.  
      */  
-    @pl.wendigo.chrome.Experimental val pushStart: Double,
+    @pl.wendigo.chrome.protocol.Experimental val pushStart: Double,
 
     /**  
      * Time the server finished pushing request.  
      */  
-    @pl.wendigo.chrome.Experimental val pushEnd: Double,
+    @pl.wendigo.chrome.protocol.Experimental val pushEnd: Double,
 
     /**  
      * Finished receiving response headers.  
@@ -236,6 +258,8 @@ data class ResourceTiming(
 
 /**
  * Loading priority of a resource request.
+ *
+ * @link [Network#ResourcePriority](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ResourcePriority) type documentation.
  */
 enum class ResourcePriority {
     @com.fasterxml.jackson.annotation.JsonProperty("VeryLow")
@@ -252,6 +276,8 @@ enum class ResourcePriority {
 
 /**
  * HTTP request data.
+ *
+ * @link [Network#Request](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Request) type documentation.
  */
 
 data class Request(
@@ -308,6 +334,8 @@ data class Request(
 
 /**
  * Details of a signed certificate timestamp (SCT).
+ *
+ * @link [Network#SignedCertificateTimestamp](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedCertificateTimestamp) type documentation.
  */
 
 data class SignedCertificateTimestamp(
@@ -354,6 +382,8 @@ data class SignedCertificateTimestamp(
 
 /**
  * Security details about a request.
+ *
+ * @link [Network#SecurityDetails](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SecurityDetails) type documentation.
  */
 
 data class SecurityDetails(
@@ -425,6 +455,8 @@ data class SecurityDetails(
 
 /**
  * Whether the request complied with Certificate Transparency policy.
+ *
+ * @link [Network#CertificateTransparencyCompliance](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CertificateTransparencyCompliance) type documentation.
  */
 enum class CertificateTransparencyCompliance {
     @com.fasterxml.jackson.annotation.JsonProperty("unknown")
@@ -437,6 +469,8 @@ enum class CertificateTransparencyCompliance {
 
 /**
  * The reason why request was blocked.
+ *
+ * @link [Network#BlockedReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-BlockedReason) type documentation.
  */
 enum class BlockedReason {
     @com.fasterxml.jackson.annotation.JsonProperty("other")
@@ -459,6 +493,8 @@ enum class BlockedReason {
 
 /**
  * HTTP response data.
+ *
+ * @link [Network#Response](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Response) type documentation.
  */
 
 data class Response(
@@ -565,6 +601,8 @@ data class Response(
 
 /**
  * WebSocket request data.
+ *
+ * @link [Network#WebSocketRequest](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-WebSocketRequest) type documentation.
  */
 
 data class WebSocketRequest(
@@ -576,6 +614,8 @@ data class WebSocketRequest(
 
 /**
  * WebSocket response data.
+ *
+ * @link [Network#WebSocketResponse](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-WebSocketResponse) type documentation.
  */
 
 data class WebSocketResponse(
@@ -612,6 +652,8 @@ data class WebSocketResponse(
 
 /**
  * WebSocket message data. This represents an entire WebSocket message, not just a fragmented frame as the name suggests.
+ *
+ * @link [Network#WebSocketFrame](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-WebSocketFrame) type documentation.
  */
 
 data class WebSocketFrame(
@@ -635,6 +677,8 @@ data class WebSocketFrame(
 
 /**
  * Information about the cached resource.
+ *
+ * @link [Network#CachedResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CachedResource) type documentation.
  */
 
 data class CachedResource(
@@ -661,6 +705,8 @@ data class CachedResource(
 
 /**
  * Information about the request initiator.
+ *
+ * @link [Network#Initiator](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Initiator) type documentation.
  */
 
 data class Initiator(
@@ -688,6 +734,8 @@ data class Initiator(
 
 /**
  * Cookie object
+ *
+ * @link [Network#Cookie](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Cookie) type documentation.
  */
 
 data class Cookie(
@@ -744,6 +792,8 @@ data class Cookie(
 
 /**
  * Types of reasons why a cookie may not be stored from a response.
+ *
+ * @link [Network#SetCookieBlockedReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SetCookieBlockedReason) type documentation.
  */
 enum class SetCookieBlockedReason {
     @com.fasterxml.jackson.annotation.JsonProperty("SecureOnly")
@@ -776,6 +826,8 @@ enum class SetCookieBlockedReason {
 
 /**
  * Types of reasons why a cookie may not be sent with a request.
+ *
+ * @link [Network#CookieBlockedReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CookieBlockedReason) type documentation.
  */
 enum class CookieBlockedReason {
     @com.fasterxml.jackson.annotation.JsonProperty("SecureOnly")
@@ -802,6 +854,8 @@ enum class CookieBlockedReason {
 
 /**
  * A cookie which was not stored from a response with the corresponding reason.
+ *
+ * @link [Network#BlockedSetCookieWithReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-BlockedSetCookieWithReason) type documentation.
  */
 
 data class BlockedSetCookieWithReason(
@@ -826,6 +880,8 @@ data class BlockedSetCookieWithReason(
 
 /**
  * A cookie with was not sent with a request with the corresponding reason.
+ *
+ * @link [Network#BlockedCookieWithReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-BlockedCookieWithReason) type documentation.
  */
 
 data class BlockedCookieWithReason(
@@ -842,6 +898,8 @@ data class BlockedCookieWithReason(
 
 /**
  * Cookie parameter object
+ *
+ * @link [Network#CookieParam](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CookieParam) type documentation.
  */
 
 data class CookieParam(
@@ -894,6 +952,8 @@ data class CookieParam(
 
 /**
  * Authorization challenge for HTTP status code 401 or 407.
+ *
+ * @link [Network#AuthChallenge](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-AuthChallenge) type documentation.
  */
 
 data class AuthChallenge(
@@ -920,6 +980,8 @@ data class AuthChallenge(
 
 /**
  * Response to an AuthChallenge.
+ *
+ * @link [Network#AuthChallengeResponse](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-AuthChallengeResponse) type documentation.
  */
 
 data class AuthChallengeResponse(
@@ -946,6 +1008,8 @@ data class AuthChallengeResponse(
 /**
  * Stages of the interception to begin intercepting. Request will intercept before the request is
 sent. Response will intercept after the response is received.
+ *
+ * @link [Network#InterceptionStage](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-InterceptionStage) type documentation.
  */
 enum class InterceptionStage {
     @com.fasterxml.jackson.annotation.JsonProperty("Request")
@@ -956,6 +1020,8 @@ enum class InterceptionStage {
 
 /**
  * Request pattern for interception.
+ *
+ * @link [Network#RequestPattern](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-RequestPattern) type documentation.
  */
 
 data class RequestPattern(
@@ -979,6 +1045,8 @@ data class RequestPattern(
 /**
  * Information about a signed exchange signature.
 https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#rfc.section.3.1
+ *
+ * @link [Network#SignedExchangeSignature](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedExchangeSignature) type documentation.
  */
 
 data class SignedExchangeSignature(
@@ -1031,6 +1099,8 @@ data class SignedExchangeSignature(
 /**
  * Information about a signed exchange header.
 https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.html#cbor-representation
+ *
+ * @link [Network#SignedExchangeHeader](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedExchangeHeader) type documentation.
  */
 
 data class SignedExchangeHeader(
@@ -1062,6 +1132,8 @@ data class SignedExchangeHeader(
 
 /**
  * Field type for a signed exchange related error.
+ *
+ * @link [Network#SignedExchangeErrorField](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedExchangeErrorField) type documentation.
  */
 enum class SignedExchangeErrorField {
     @com.fasterxml.jackson.annotation.JsonProperty("signatureSig")
@@ -1080,6 +1152,8 @@ enum class SignedExchangeErrorField {
 
 /**
  * Information about a signed exchange response.
+ *
+ * @link [Network#SignedExchangeError](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedExchangeError) type documentation.
  */
 
 data class SignedExchangeError(
@@ -1101,6 +1175,8 @@ data class SignedExchangeError(
 
 /**
  * Information about a signed exchange response.
+ *
+ * @link [Network#SignedExchangeInfo](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedExchangeInfo) type documentation.
  */
 
 data class SignedExchangeInfo(

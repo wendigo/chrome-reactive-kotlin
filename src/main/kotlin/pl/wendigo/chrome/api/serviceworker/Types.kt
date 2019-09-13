@@ -1,13 +1,17 @@
-package pl.wendigo.chrome.domain.serviceworker
+package pl.wendigo.chrome.api.serviceworker
 
 /**
  *
+ *
+ * @link [ServiceWorker#RegistrationID](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-RegistrationID) type documentation.
  */
 
 typealias RegistrationID = String
 
 /**
  * ServiceWorker registration.
+ *
+ * @link [ServiceWorker#ServiceWorkerRegistration](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-ServiceWorkerRegistration) type documentation.
  */
 
 data class ServiceWorkerRegistration(
@@ -29,6 +33,8 @@ data class ServiceWorkerRegistration(
 
 /**
  *
+ *
+ * @link [ServiceWorker#ServiceWorkerVersionRunningStatus](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-ServiceWorkerVersionRunningStatus) type documentation.
  */
 enum class ServiceWorkerVersionRunningStatus {
     @com.fasterxml.jackson.annotation.JsonProperty("stopped")
@@ -43,6 +49,8 @@ enum class ServiceWorkerVersionRunningStatus {
 
 /**
  *
+ *
+ * @link [ServiceWorker#ServiceWorkerVersionStatus](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-ServiceWorkerVersionStatus) type documentation.
  */
 enum class ServiceWorkerVersionStatus {
     @com.fasterxml.jackson.annotation.JsonProperty("new")
@@ -61,6 +69,8 @@ enum class ServiceWorkerVersionStatus {
 
 /**
  * ServiceWorker version.
+ *
+ * @link [ServiceWorker#ServiceWorkerVersion](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-ServiceWorkerVersion) type documentation.
  */
 
 data class ServiceWorkerVersion(
@@ -113,6 +123,8 @@ data class ServiceWorkerVersion(
 
 /**
  * ServiceWorker error message.
+ *
+ * @link [ServiceWorker#ServiceWorkerErrorMessage](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-ServiceWorkerErrorMessage) type documentation.
  */
 
 data class ServiceWorkerErrorMessage(

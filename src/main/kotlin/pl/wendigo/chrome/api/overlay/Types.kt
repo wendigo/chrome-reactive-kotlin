@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.overlay
+package pl.wendigo.chrome.api.overlay
 
 /**
  * Configuration data for the highlighting of page elements.
+ *
+ * @link [Overlay#HighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-HighlightConfig) type documentation.
  */
 
 data class HighlightConfig(
@@ -68,6 +70,8 @@ data class HighlightConfig(
 
 /**
  *
+ *
+ * @link [Overlay#InspectMode](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-InspectMode) type documentation.
  */
 enum class InspectMode {
     @com.fasterxml.jackson.annotation.JsonProperty("searchForNode")

@@ -1,19 +1,25 @@
-package pl.wendigo.chrome.domain.runtime
+package pl.wendigo.chrome.api.runtime
 
 /**
  * Unique script identifier.
+ *
+ * @link [Runtime#ScriptId](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-ScriptId) type documentation.
  */
 
 typealias ScriptId = String
 
 /**
  * Unique object identifier.
+ *
+ * @link [Runtime#RemoteObjectId](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-RemoteObjectId) type documentation.
  */
 
 typealias RemoteObjectId = String
 
 /**
  * Primitive value which cannot be JSON-stringified.
+ *
+ * @link [Runtime#UnserializableValue](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-UnserializableValue) type documentation.
  */
 enum class UnserializableValue {
     @com.fasterxml.jackson.annotation.JsonProperty("Infinity")
@@ -28,6 +34,8 @@ enum class UnserializableValue {
 
 /**
  * Mirror object referencing original JavaScript object.
+ *
+ * @link [Runtime#RemoteObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-RemoteObject) type documentation.
  */
 
 data class RemoteObject(
@@ -69,16 +77,18 @@ data class RemoteObject(
     /**  
      * Preview containing abbreviated property values. Specified for <code>object</code> type values only.  
      */  
-    @pl.wendigo.chrome.Experimental val preview: ObjectPreview? = null,
+    @pl.wendigo.chrome.protocol.Experimental val preview: ObjectPreview? = null,
 
     /**  
      *  
      */  
-    @pl.wendigo.chrome.Experimental val customPreview: CustomPreview? = null
+    @pl.wendigo.chrome.protocol.Experimental val customPreview: CustomPreview? = null
 )
 
 /**
  *
+ *
+ * @link [Runtime#CustomPreview](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-CustomPreview) type documentation.
  */
 
 data class CustomPreview(
@@ -110,6 +120,8 @@ data class CustomPreview(
 
 /**
  * Object containing abbreviated remote object value.
+ *
+ * @link [Runtime#ObjectPreview](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-ObjectPreview) type documentation.
  */
 
 data class ObjectPreview(
@@ -146,6 +158,8 @@ data class ObjectPreview(
 
 /**
  *
+ *
+ * @link [Runtime#PropertyPreview](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-PropertyPreview) type documentation.
  */
 
 data class PropertyPreview(
@@ -177,6 +191,8 @@ data class PropertyPreview(
 
 /**
  *
+ *
+ * @link [Runtime#EntryPreview](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-EntryPreview) type documentation.
  */
 
 data class EntryPreview(
@@ -193,6 +209,8 @@ data class EntryPreview(
 
 /**
  * Object property descriptor.
+ *
+ * @link [Runtime#PropertyDescriptor](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-PropertyDescriptor) type documentation.
  */
 
 data class PropertyDescriptor(
@@ -249,6 +267,8 @@ data class PropertyDescriptor(
 
 /**
  * Object internal property descriptor. This property isn&apos;t normally visible in JavaScript code.
+ *
+ * @link [Runtime#InternalPropertyDescriptor](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-InternalPropertyDescriptor) type documentation.
  */
 
 data class InternalPropertyDescriptor(
@@ -265,6 +285,8 @@ data class InternalPropertyDescriptor(
 
 /**
  * Represents function call argument. Either remote object id &lt;code&gt;objectId&lt;/code&gt;, primitive &lt;code&gt;value&lt;/code&gt;, unserializable primitive value or neither of (for undefined) them should be specified.
+ *
+ * @link [Runtime#CallArgument](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-CallArgument) type documentation.
  */
 
 data class CallArgument(
@@ -286,12 +308,16 @@ data class CallArgument(
 
 /**
  * Id of an execution context.
+ *
+ * @link [Runtime#ExecutionContextId](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-ExecutionContextId) type documentation.
  */
 
 typealias ExecutionContextId = Int
 
 /**
  * Description of an isolated world.
+ *
+ * @link [Runtime#ExecutionContextDescription](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-ExecutionContextDescription) type documentation.
  */
 
 data class ExecutionContextDescription(
@@ -318,6 +344,8 @@ data class ExecutionContextDescription(
 
 /**
  * Detailed information about exception (or error) that was thrown during script compilation or execution.
+ *
+ * @link [Runtime#ExceptionDetails](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-ExceptionDetails) type documentation.
  */
 
 data class ExceptionDetails(
@@ -369,12 +397,16 @@ data class ExceptionDetails(
 
 /**
  * Number of milliseconds since epoch.
+ *
+ * @link [Runtime#Timestamp](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-Timestamp) type documentation.
  */
 
 typealias Timestamp = Double
 
 /**
  * Stack entry for runtime errors and assertions.
+ *
+ * @link [Runtime#CallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-CallFrame) type documentation.
  */
 
 data class CallFrame(
@@ -406,6 +438,8 @@ data class CallFrame(
 
 /**
  * Call frames for assertions or error messages.
+ *
+ * @link [Runtime#StackTrace](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-StackTrace) type documentation.
  */
 
 data class StackTrace(

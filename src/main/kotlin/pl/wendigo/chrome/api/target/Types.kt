@@ -1,25 +1,33 @@
-package pl.wendigo.chrome.domain.target
+package pl.wendigo.chrome.api.target
 
 /**
  *
+ *
+ * @link [Target#TargetID](https://chromedevtools.github.io/devtools-protocol/tot/Target#type-TargetID) type documentation.
  */
 
 typealias TargetID = String
 
 /**
  * Unique identifier of attached debugging session.
+ *
+ * @link [Target#SessionID](https://chromedevtools.github.io/devtools-protocol/tot/Target#type-SessionID) type documentation.
  */
 
 typealias SessionID = String
 
 /**
  *
+ *
+ * @link [Target#BrowserContextID](https://chromedevtools.github.io/devtools-protocol/tot/Target#type-BrowserContextID) type documentation.
  */
 
 typealias BrowserContextID = String
 
 /**
  *
+ *
+ * @link [Target#TargetInfo](https://chromedevtools.github.io/devtools-protocol/tot/Target#type-TargetInfo) type documentation.
  */
 
 data class TargetInfo(
@@ -56,11 +64,13 @@ data class TargetInfo(
     /**  
      *  
      */  
-    @pl.wendigo.chrome.Experimental val browserContextId: BrowserContextID? = null
+    @pl.wendigo.chrome.protocol.Experimental val browserContextId: BrowserContextID? = null
 )
 
 /**
  *
+ *
+ * @link [Target#RemoteLocation](https://chromedevtools.github.io/devtools-protocol/tot/Target#type-RemoteLocation) type documentation.
  */
 
 data class RemoteLocation(

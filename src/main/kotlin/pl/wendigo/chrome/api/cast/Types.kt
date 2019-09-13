@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.cast
+package pl.wendigo.chrome.api.cast
 
 /**
  *
+ *
+ * @link [Cast#Sink](https://chromedevtools.github.io/devtools-protocol/tot/Cast#type-Sink) type documentation.
  */
 
 data class Sink(

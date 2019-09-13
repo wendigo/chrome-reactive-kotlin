@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.profiler
+package pl.wendigo.chrome.api.profiler
 
 /**
  * Profile node. Holds callsite information, execution statistics and child nodes.
+ *
+ * @link [Profiler#ProfileNode](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-ProfileNode) type documentation.
  */
 
 data class ProfileNode(
@@ -18,7 +20,7 @@ data class ProfileNode(
     /**  
      * Number of samples where this node was on top of the call stack.  
      */  
-    @pl.wendigo.chrome.Experimental val hitCount: Int? = null,
+    @pl.wendigo.chrome.protocol.Experimental val hitCount: Int? = null,
 
     /**  
      * Child node ids.  
@@ -33,11 +35,13 @@ data class ProfileNode(
     /**  
      * An array of source position ticks.  
      */  
-    @pl.wendigo.chrome.Experimental val positionTicks: List<PositionTickInfo>? = null
+    @pl.wendigo.chrome.protocol.Experimental val positionTicks: List<PositionTickInfo>? = null
 )
 
 /**
  * Profile.
+ *
+ * @link [Profiler#Profile](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-Profile) type documentation.
  */
 
 data class Profile(
@@ -69,6 +73,8 @@ data class Profile(
 
 /**
  * Specifies a number of samples attributed to a certain source position.
+ *
+ * @link [Profiler#PositionTickInfo](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-PositionTickInfo) type documentation.
  */
 
 data class PositionTickInfo(

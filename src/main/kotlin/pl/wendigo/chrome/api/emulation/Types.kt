@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.emulation
+package pl.wendigo.chrome.api.emulation
 
 /**
  * Screen orientation.
+ *
+ * @link [Emulation#ScreenOrientation](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-ScreenOrientation) type documentation.
  */
 
 data class ScreenOrientation(
@@ -21,6 +23,8 @@ data class ScreenOrientation(
 allow the next delayed task (if any) to run; pause: The virtual time base may not advance;
 pauseIfNetworkFetchesPending: The virtual time base may not advance if there are any pending
 resource fetches.
+ *
+ * @link [Emulation#VirtualTimePolicy](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-VirtualTimePolicy) type documentation.
  */
 enum class VirtualTimePolicy {
     @com.fasterxml.jackson.annotation.JsonProperty("advance")
