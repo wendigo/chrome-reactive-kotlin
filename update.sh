@@ -40,10 +40,8 @@ then
 	./gradlew lintKotlin
 	printf "${GREEN}Commiting changes...\n${NC}"
 	git add .
-	git commit -m "Update to newest protocol"
+	git commit -m "Updated to newest protocol"
 	git push origin
-	printf "${GREEN}Releasing new version!\n${NC}"
-	./gradlew release
 	printf "${GREEN}All done!\n${NC}"
 
 else
