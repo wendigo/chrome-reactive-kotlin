@@ -486,7 +486,7 @@ func main() {
 			log.Panicf("Could not write file: %s", err)
 		}
 
-		if err := generateAndWrite(kotlinFilename("domain/"+domain.LowerName()+"/Types"), "types", struct {
+		if err := generateAndWrite(kotlinFilename("api/"+domain.LowerName()+"/Types"), "types", struct {
 			Domain Domain
 		}{
 			Domain: domain,
