@@ -1,9 +1,11 @@
 package {{Package}}.domain.{{Domain.LowerName}}
 
 /**
- *{{#if Domain.Description}}{{{trim Domain.Description}}}{{else}} {{Domain.Name}}Domain represents remote debugger protocol domain.{{/if}}
+ *{{#if Domain.Description}}{{{trim Domain.Description}}}{{else}} {{Domain.Name}} represents remote debugger protocol domain.{{/if}}
+ *
+ * @link [https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}})
  */
-class {{Domain.Name}}Domain internal constructor(private val connectionRemote : {{Package}}.DebuggerProtocol) {
+class {{Domain.Name}} internal constructor(private val connectionRemote : {{Package}}.DebuggerProtocol) {
 {{#each Domain.Commands}}
     /**
      *{{{trim Description}}}

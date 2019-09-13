@@ -1,8 +1,15 @@
 package pl.wendigo.chrome
 
+import java.io.Closeable
 import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
+import pl.wendigo.chrome.protocol.FrameMapper
+import pl.wendigo.chrome.protocol.headless.HeadlessChromeProtocol
+import pl.wendigo.chrome.protocol.inspector.InspectablePage
+import pl.wendigo.chrome.protocol.inspector.InspectorException
+import pl.wendigo.chrome.protocol.inspector.ProtocolVersion
 
 /**
  * Creates new browser that allows querying remote chrome instance for debugging sessions
@@ -11,7 +18,7 @@ class Browser(
     private val chromeAddress: String,
     private val client: OkHttpClient,
     private val mapper: FrameMapper
-) {
+) : Closeable {
     /**
      * Opens new page.
      */
@@ -31,14 +38,14 @@ class Browser(
     /**
      * Closes given page.
      */
-    fun close(page: InspectablePage): String {
+    fun closePage(page: InspectablePage): String {
         return runInspectorCommand("close/${page.id}")
     }
 
     /**
      * Activates given page.
      */
-    fun activate(page: InspectablePage): String {
+    fun activatePage(page: InspectablePage): String {
         return runInspectorCommand("activate/${page.id}")
     }
 
@@ -52,14 +59,14 @@ class Browser(
     /**
      * Finds opened page by its' url.
      */
-    fun findTab(tabUrl: String): InspectablePage {
-        return this.openedPages().first { it.url == tabUrl }
+    fun findPageByUrl(url: String): InspectablePage {
+        return this.openedPages().first { it.url == url }
     }
 
     /**
      * Run inspector command for given URI.
      */
-    internal fun runInspectorCommand(uri: String): String {
+    private fun runInspectorCommand(uri: String): String {
         val response = client.newCall(Request.Builder().url("http://$chromeAddress/json/$uri").build()).execute()
 
         if (response.isSuccessful) {
@@ -78,6 +85,10 @@ class Browser(
     @JvmOverloads
     fun headlessSession(url: String, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): HeadlessChromeProtocol {
         return HeadlessChromeProtocol.create(ChromeProtocol(ChromeDebuggerConnection.openSession(version().webSocketDebugUrl, eventBufferSize)), url, width, height)
+    }
+
+    override fun close() {
+        return client.dispatcher.executorService.shutdown()
     }
 
     companion object {

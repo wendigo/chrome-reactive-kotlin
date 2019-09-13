@@ -1,14 +1,15 @@
 package pl.wendigo.chrome
 
 import java.io.Closeable
+import pl.wendigo.chrome.protocol.DebuggerProtocol
 
 /**
- * ChromeProtocol represents session established with given inspectablePage via chrome's remote debugging protocol.
+ * ChromeProtocol represents session established via given protocol websocket connection (via target or inspectable page).
  */
 open class ChromeProtocol internal constructor(private val api: DebuggerProtocol) : Closeable {
 
     /**
-     * Register event eventNameToClassMapping
+     * Register events mappings.
      */
     init {
         api.registerEventMappings(
@@ -495,7 +496,7 @@ API.
     }
 
     /**
-     * Returns flowable capturing all events.
+     * Returns [Flowable] capturing all events.
      */
     fun Events(): io.reactivex.Flowable<ProtocolEvent> {
         return api.captureAllEvents().map {
@@ -504,7 +505,7 @@ API.
     }
 
     /**
-     * Closes debugging session.
+     * Closes session.
      */
     override fun close() {
         return api.close()

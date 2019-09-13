@@ -478,7 +478,7 @@ func main() {
 
 		currentDomain = domain.Name
 
-		if err := generateAndWrite(kotlinFilename("domain/"+domain.LowerName()+"/"+domain.Name+"Domain"), "domain_class", struct {
+		if err := generateAndWrite(kotlinFilename("api/"+domain.LowerName()+"/"+domain.Name), "domain_class", struct {
 			Domain Domain
 		}{
 			Domain: domain,
