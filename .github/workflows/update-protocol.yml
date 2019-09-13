@@ -1,6 +1,6 @@
 name: Update protocol to ToT
-schedule:
-  # * is a special character in YAML so you have to quote this string
+on:
+  schedule:
   - cron:  '0 0 * * *'
 
 jobs:
