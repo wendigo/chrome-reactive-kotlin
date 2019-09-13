@@ -85,9 +85,9 @@ task sourcesJar(type: Jar) {
 task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
     outputFormat = 'html'
     jdkVersion = 8
-    includes = ['packages.md', 'extra.md']
-    samples = ['samples/basic.kt', 'samples/advanced.kt']
-    reportUndocumented = false
+    includes = ['package.md', 'domains.md']
+    samples = ['samples/basic.kt']
+    reportUndocumented = true
     linkMapping {
         dir = "src/main/kotlin"
         url = "https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin"

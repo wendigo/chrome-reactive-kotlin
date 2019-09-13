@@ -1,1 +1,1 @@
-package pl.wendigo.chrome.domain.audits
+package pl.wendigo.chrome.api.audits

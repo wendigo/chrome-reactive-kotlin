@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.overlay
+package pl.wendigo.chrome.api.overlay
 
 /**
  * Configuration data for the highlighting of page elements.
+ *
+ * @link [Overlay#HighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-HighlightConfig) type documentation.
  */
 
 data class HighlightConfig(
@@ -28,46 +30,48 @@ data class HighlightConfig(
     /**  
      * The content box highlight fill color (default: transparent).  
      */  
-    val contentColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val contentColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The padding highlight fill color (default: transparent).  
      */  
-    val paddingColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val paddingColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The border highlight fill color (default: transparent).  
      */  
-    val borderColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val borderColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The margin highlight fill color (default: transparent).  
      */  
-    val marginColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val marginColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The event target element highlight fill color (default: transparent).  
      */  
-    val eventTargetColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val eventTargetColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The shape outside fill color (default: transparent).  
      */  
-    val shapeColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val shapeColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The shape margin fill color (default: transparent).  
      */  
-    val shapeMarginColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val shapeMarginColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The grid layout color (default: transparent).  
      */  
-    val cssGridColor: pl.wendigo.chrome.domain.dom.RGBA? = null
+    val cssGridColor: pl.wendigo.chrome.api.dom.RGBA? = null
 )
 
 /**
  *
+ *
+ * @link [Overlay#InspectMode](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-InspectMode) type documentation.
  */
 enum class InspectMode {
     @com.fasterxml.jackson.annotation.JsonProperty("searchForNode")

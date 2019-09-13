@@ -12,7 +12,7 @@ class ChromeProtocolSpecification extends Specification {
             def layout = session.page.getLayoutMetrics().blockingGet()
 
         then:
-            with (session.session) {
+            with (session.sessionDescriptor) {
                 browserContextId != ""
                 targetId != ""
                 sessionId != ""

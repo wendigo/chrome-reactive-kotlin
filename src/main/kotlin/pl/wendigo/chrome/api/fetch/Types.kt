@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.fetch
+package pl.wendigo.chrome.api.fetch
 
 /**
  * Unique request identifier.
+ *
+ * @link [Fetch#RequestId](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-RequestId) type documentation.
  */
 
 typealias RequestId = String
@@ -10,6 +12,8 @@ typealias RequestId = String
  * Stages of the request to handle. Request will intercept before the request is
 sent. Response will intercept after the response is received (but before response
 body is received.
+ *
+ * @link [Fetch#RequestStage](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-RequestStage) type documentation.
  */
 enum class RequestStage {
     @com.fasterxml.jackson.annotation.JsonProperty("Request")
@@ -20,6 +24,8 @@ enum class RequestStage {
 
 /**
  *
+ *
+ * @link [Fetch#RequestPattern](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-RequestPattern) type documentation.
  */
 
 data class RequestPattern(
@@ -32,7 +38,7 @@ data class RequestPattern(
     /**  
      * If set, only requests for matching resource types will be intercepted.  
      */  
-    val resourceType: pl.wendigo.chrome.domain.network.ResourceType? = null,
+    val resourceType: pl.wendigo.chrome.api.network.ResourceType? = null,
 
     /**  
      * Stage at wich to begin intercepting requests. Default is Request.  
@@ -42,6 +48,8 @@ data class RequestPattern(
 
 /**
  * Response HTTP header entry
+ *
+ * @link [Fetch#HeaderEntry](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-HeaderEntry) type documentation.
  */
 
 data class HeaderEntry(
@@ -58,6 +66,8 @@ data class HeaderEntry(
 
 /**
  * Authorization challenge for HTTP status code 401 or 407.
+ *
+ * @link [Fetch#AuthChallenge](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-AuthChallenge) type documentation.
  */
 
 data class AuthChallenge(
@@ -84,6 +94,8 @@ data class AuthChallenge(
 
 /**
  * Response to an AuthChallenge.
+ *
+ * @link [Fetch#AuthChallengeResponse](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-AuthChallengeResponse) type documentation.
  */
 
 data class AuthChallengeResponse(

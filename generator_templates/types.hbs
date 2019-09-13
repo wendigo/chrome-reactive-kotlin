@@ -1,8 +1,10 @@
-package {{Package}}.domain.{{Domain.LowerName}}
+package {{Package}}.api.{{Domain.LowerName}}
 
 {{#each Domain.Types}}
 /**
  *{{trim Description}}
+ *
+ * @link [{{Domain.Name}}#{{Id}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}}#type-{{Id}}) type documentation.
  */
 {{#if IsEnum}}enum class {{Id}} {
 {{#each Enum}}
@@ -13,7 +15,7 @@ package {{Package}}.domain.{{Domain.LowerName}}
   /**
    *{{{trim Description}}}
    */
-  {{#if Experimental}}@{{Package}}.Experimental {{/if}}{{#if Deprecated}}@{{Package}}.Deprecated {{/if}}{{{value Name}}}: {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
+  {{#if Experimental}}@{{Package}}.protocol.Experimental {{/if}}{{#if Deprecated}}@Deprecated(message="") {{/if}}{{{value Name}}}: {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
 {{/each}}
 ){{else}}typealias {{Id}} = Map<String, Any>{{/if}}{{/equal}}{{/if}}
 

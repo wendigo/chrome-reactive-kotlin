@@ -1,13 +1,17 @@
-package pl.wendigo.chrome.domain.accessibility
+package pl.wendigo.chrome.api.accessibility
 
 /**
  * Unique accessibility node identifier.
+ *
+ * @link [Accessibility#AXNodeId](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXNodeId) type documentation.
  */
 
 typealias AXNodeId = String
 
 /**
  * Enum of possible property types.
+ *
+ * @link [Accessibility#AXValueType](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXValueType) type documentation.
  */
 enum class AXValueType {
     @com.fasterxml.jackson.annotation.JsonProperty("boolean")
@@ -48,6 +52,8 @@ enum class AXValueType {
 
 /**
  * Enum of possible property sources.
+ *
+ * @link [Accessibility#AXValueSourceType](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXValueSourceType) type documentation.
  */
 enum class AXValueSourceType {
     @com.fasterxml.jackson.annotation.JsonProperty("attribute")
@@ -66,6 +72,8 @@ enum class AXValueSourceType {
 
 /**
  * Enum of possible native property sources (as a subtype of a particular AXValueSourceType).
+ *
+ * @link [Accessibility#AXValueNativeSourceType](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXValueNativeSourceType) type documentation.
  */
 enum class AXValueNativeSourceType {
     @com.fasterxml.jackson.annotation.JsonProperty("figcaption")
@@ -88,6 +96,8 @@ enum class AXValueNativeSourceType {
 
 /**
  * A single source for a computed AX property.
+ *
+ * @link [Accessibility#AXValueSource](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXValueSource) type documentation.
  */
 
 data class AXValueSource(
@@ -139,13 +149,15 @@ data class AXValueSource(
 
 /**
  *
+ *
+ * @link [Accessibility#AXRelatedNode](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXRelatedNode) type documentation.
  */
 
 data class AXRelatedNode(
     /**  
      * The BackendNodeId of the related DOM node.  
      */  
-    val backendDOMNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId,
+    val backendDOMNodeId: pl.wendigo.chrome.api.dom.BackendNodeId,
 
     /**  
      * The IDRef value provided, if any.  
@@ -160,6 +172,8 @@ data class AXRelatedNode(
 
 /**
  *
+ *
+ * @link [Accessibility#AXProperty](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXProperty) type documentation.
  */
 
 data class AXProperty(
@@ -176,6 +190,8 @@ data class AXProperty(
 
 /**
  * A single computed AX property.
+ *
+ * @link [Accessibility#AXValue](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXValue) type documentation.
  */
 
 data class AXValue(
@@ -207,6 +223,8 @@ data class AXValue(
 - from &apos;autocomplete&apos; to &apos;valuetext&apos;: attributes which apply to widgets
 - from &apos;checked&apos; to &apos;selected&apos;: states which apply to widgets
 - from &apos;activedescendant&apos; to &apos;owns&apos; - relationships between elements other than parent/child/sibling.
+ *
+ * @link [Accessibility#AXPropertyName](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXPropertyName) type documentation.
  */
 enum class AXPropertyName {
     @com.fasterxml.jackson.annotation.JsonProperty("busy")
@@ -291,6 +309,8 @@ enum class AXPropertyName {
 
 /**
  * A node in the accessibility tree.
+ *
+ * @link [Accessibility#AXNode](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXNode) type documentation.
  */
 
 data class AXNode(
@@ -342,5 +362,5 @@ data class AXNode(
     /**  
      * The backend ID for the associated DOM node, if any.  
      */  
-    val backendDOMNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null
+    val backendDOMNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null
 )

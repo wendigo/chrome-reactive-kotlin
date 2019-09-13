@@ -1,1 +1,1 @@
-package pl.wendigo.chrome.domain.deviceorientation
+package pl.wendigo.chrome.api.deviceorientation

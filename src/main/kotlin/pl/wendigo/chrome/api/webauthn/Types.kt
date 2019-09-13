@@ -1,13 +1,17 @@
-package pl.wendigo.chrome.domain.webauthn
+package pl.wendigo.chrome.api.webauthn
 
 /**
  *
+ *
+ * @link [WebAuthn#AuthenticatorId](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-AuthenticatorId) type documentation.
  */
 
 typealias AuthenticatorId = String
 
 /**
  *
+ *
+ * @link [WebAuthn#AuthenticatorProtocol](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-AuthenticatorProtocol) type documentation.
  */
 enum class AuthenticatorProtocol {
     @com.fasterxml.jackson.annotation.JsonProperty("u2f")
@@ -18,6 +22,8 @@ enum class AuthenticatorProtocol {
 
 /**
  *
+ *
+ * @link [WebAuthn#AuthenticatorTransport](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-AuthenticatorTransport) type documentation.
  */
 enum class AuthenticatorTransport {
     @com.fasterxml.jackson.annotation.JsonProperty("usb")
@@ -34,6 +40,8 @@ enum class AuthenticatorTransport {
 
 /**
  *
+ *
+ * @link [WebAuthn#VirtualAuthenticatorOptions](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-VirtualAuthenticatorOptions) type documentation.
  */
 
 data class VirtualAuthenticatorOptions(
@@ -66,6 +74,8 @@ data class VirtualAuthenticatorOptions(
 
 /**
  *
+ *
+ * @link [WebAuthn#Credential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-Credential) type documentation.
  */
 
 data class Credential(

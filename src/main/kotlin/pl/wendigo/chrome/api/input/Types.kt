@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.input
+package pl.wendigo.chrome.api.input
 
 /**
  *
+ *
+ * @link [Input#TouchPoint](https://chromedevtools.github.io/devtools-protocol/tot/Input#type-TouchPoint) type documentation.
  */
 
 data class TouchPoint(
@@ -44,6 +46,8 @@ data class TouchPoint(
 
 /**
  *
+ *
+ * @link [Input#GestureSourceType](https://chromedevtools.github.io/devtools-protocol/tot/Input#type-GestureSourceType) type documentation.
  */
 enum class GestureSourceType {
     @com.fasterxml.jackson.annotation.JsonProperty("default")
@@ -56,6 +60,8 @@ enum class GestureSourceType {
 
 /**
  * UTC time in seconds, counted from January 1, 1970.
+ *
+ * @link [Input#TimeSinceEpoch](https://chromedevtools.github.io/devtools-protocol/tot/Input#type-TimeSinceEpoch) type documentation.
  */
 
 typealias TimeSinceEpoch = Double

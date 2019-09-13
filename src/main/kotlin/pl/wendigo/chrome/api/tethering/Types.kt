@@ -1,1 +1,1 @@
-package pl.wendigo.chrome.domain.tethering
+package pl.wendigo.chrome.api.tethering

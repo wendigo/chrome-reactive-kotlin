@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.indexeddb
+package pl.wendigo.chrome.api.indexeddb
 
 /**
  * Database with an array of object stores.
+ *
+ * @link [IndexedDB#DatabaseWithObjectStores](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-DatabaseWithObjectStores) type documentation.
  */
 
 data class DatabaseWithObjectStores(
@@ -24,6 +26,8 @@ data class DatabaseWithObjectStores(
 
 /**
  * Object store.
+ *
+ * @link [IndexedDB#ObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-ObjectStore) type documentation.
  */
 
 data class ObjectStore(
@@ -50,6 +54,8 @@ data class ObjectStore(
 
 /**
  * Object store index.
+ *
+ * @link [IndexedDB#ObjectStoreIndex](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-ObjectStoreIndex) type documentation.
  */
 
 data class ObjectStoreIndex(
@@ -76,6 +82,8 @@ data class ObjectStoreIndex(
 
 /**
  * Key.
+ *
+ * @link [IndexedDB#Key](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-Key) type documentation.
  */
 
 data class Key(
@@ -107,6 +115,8 @@ data class Key(
 
 /**
  * Key range.
+ *
+ * @link [IndexedDB#KeyRange](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-KeyRange) type documentation.
  */
 
 data class KeyRange(
@@ -133,27 +143,31 @@ data class KeyRange(
 
 /**
  * Data entry.
+ *
+ * @link [IndexedDB#DataEntry](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-DataEntry) type documentation.
  */
 
 data class DataEntry(
     /**  
      * Key object.  
      */  
-    val key: pl.wendigo.chrome.domain.runtime.RemoteObject,
+    val key: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      * Primary key object.  
      */  
-    val primaryKey: pl.wendigo.chrome.domain.runtime.RemoteObject,
+    val primaryKey: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      * Value object.  
      */  
-    val value: pl.wendigo.chrome.domain.runtime.RemoteObject
+    val value: pl.wendigo.chrome.api.runtime.RemoteObject
 )
 
 /**
  * Key path.
+ *
+ * @link [IndexedDB#KeyPath](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-KeyPath) type documentation.
  */
 
 data class KeyPath(

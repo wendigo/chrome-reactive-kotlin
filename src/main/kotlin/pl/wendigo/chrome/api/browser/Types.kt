@@ -1,13 +1,17 @@
-package pl.wendigo.chrome.domain.browser
+package pl.wendigo.chrome.api.browser
 
 /**
  *
+ *
+ * @link [Browser#WindowID](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-WindowID) type documentation.
  */
 
 typealias WindowID = Int
 
 /**
  * The state of the browser window.
+ *
+ * @link [Browser#WindowState](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-WindowState) type documentation.
  */
 enum class WindowState {
     @com.fasterxml.jackson.annotation.JsonProperty("normal")
@@ -22,6 +26,8 @@ enum class WindowState {
 
 /**
  * Browser window bounds information
+ *
+ * @link [Browser#Bounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-Bounds) type documentation.
  */
 
 data class Bounds(
@@ -53,6 +59,8 @@ data class Bounds(
 
 /**
  *
+ *
+ * @link [Browser#PermissionType](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-PermissionType) type documentation.
  */
 enum class PermissionType {
     @com.fasterxml.jackson.annotation.JsonProperty("accessibilityEvents")
@@ -99,6 +107,8 @@ enum class PermissionType {
 
 /**
  *
+ *
+ * @link [Browser#PermissionSetting](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-PermissionSetting) type documentation.
  */
 enum class PermissionSetting {
     @com.fasterxml.jackson.annotation.JsonProperty("granted")
@@ -112,6 +122,8 @@ enum class PermissionSetting {
 /**
  * Definition of PermissionDescriptor defined in the Permissions API:
 https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
+ *
+ * @link [Browser#PermissionDescriptor](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-PermissionDescriptor) type documentation.
  */
 
 data class PermissionDescriptor(
@@ -140,6 +152,8 @@ data class PermissionDescriptor(
 
 /**
  * Chrome histogram bucket.
+ *
+ * @link [Browser#Bucket](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-Bucket) type documentation.
  */
 
 data class Bucket(
@@ -161,6 +175,8 @@ data class Bucket(
 
 /**
  * Chrome histogram.
+ *
+ * @link [Browser#Histogram](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-Histogram) type documentation.
  */
 
 data class Histogram(
