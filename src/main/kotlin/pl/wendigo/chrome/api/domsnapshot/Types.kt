@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.domsnapshot
+package pl.wendigo.chrome.api.domsnapshot
 
 /**
  * A Node in the DOM tree.
+ *
+ * @link [DOMSnapshot#DOMNode](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-DOMNode) type documentation.
  */
 
 data class DOMNode(
@@ -155,6 +157,8 @@ data class DOMNode(
 /**
  * Details of post layout rendered text positions. The exact layout should not be regarded as
 stable and may change between versions.
+ *
+ * @link [DOMSnapshot#InlineTextBox](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-InlineTextBox) type documentation.
  */
 
 data class InlineTextBox(
@@ -178,6 +182,8 @@ data class InlineTextBox(
 
 /**
  * Details of an element in the DOM tree with a LayoutObject.
+ *
+ * @link [DOMSnapshot#LayoutTreeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-LayoutTreeNode) type documentation.
  */
 
 data class LayoutTreeNode(
@@ -221,6 +227,8 @@ data class LayoutTreeNode(
 
 /**
  * A subset of the full ComputedStyle as defined by the request whitelist.
+ *
+ * @link [DOMSnapshot#ComputedStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-ComputedStyle) type documentation.
  */
 
 data class ComputedStyle(
@@ -232,6 +240,8 @@ data class ComputedStyle(
 
 /**
  * A name/value pair.
+ *
+ * @link [DOMSnapshot#NameValue](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-NameValue) type documentation.
  */
 
 data class NameValue(
@@ -248,18 +258,24 @@ data class NameValue(
 
 /**
  * Index of the string in the strings table.
+ *
+ * @link [DOMSnapshot#StringIndex](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-StringIndex) type documentation.
  */
 
 typealias StringIndex = Int
 
 /**
  * Index of the string in the strings table.
+ *
+ * @link [DOMSnapshot#ArrayOfStrings](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-ArrayOfStrings) type documentation.
  */
 
 typealias ArrayOfStrings = List<StringIndex>
 
 /**
  * Data that is only present on rare nodes.
+ *
+ * @link [DOMSnapshot#RareStringData](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-RareStringData) type documentation.
  */
 
 data class RareStringData(
@@ -276,6 +292,8 @@ data class RareStringData(
 
 /**
  *
+ *
+ * @link [DOMSnapshot#RareBooleanData](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-RareBooleanData) type documentation.
  */
 
 data class RareBooleanData(
@@ -287,6 +305,8 @@ data class RareBooleanData(
 
 /**
  *
+ *
+ * @link [DOMSnapshot#RareIntegerData](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-RareIntegerData) type documentation.
  */
 
 data class RareIntegerData(
@@ -303,12 +323,16 @@ data class RareIntegerData(
 
 /**
  *
+ *
+ * @link [DOMSnapshot#Rectangle](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-Rectangle) type documentation.
  */
 
 typealias Rectangle = List<Double>
 
 /**
  * Document snapshot.
+ *
+ * @link [DOMSnapshot#DocumentSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-DocumentSnapshot) type documentation.
  */
 
 data class DocumentSnapshot(
@@ -375,6 +399,8 @@ data class DocumentSnapshot(
 
 /**
  * Table containing nodes.
+ *
+ * @link [DOMSnapshot#NodeTreeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-NodeTreeSnapshot) type documentation.
  */
 
 data class NodeTreeSnapshot(
@@ -458,6 +484,8 @@ data class NodeTreeSnapshot(
 
 /**
  * Table of details of an element in the DOM tree with a LayoutObject.
+ *
+ * @link [DOMSnapshot#LayoutTreeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-LayoutTreeSnapshot) type documentation.
  */
 
 data class LayoutTreeSnapshot(
@@ -512,6 +540,8 @@ data class LayoutTreeSnapshot(
 /**
  * Table of details of the post layout rendered text positions. The exact layout should not be regarded as
 stable and may change between versions.
+ *
+ * @link [DOMSnapshot#TextBoxSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-TextBoxSnapshot) type documentation.
  */
 
 data class TextBoxSnapshot(

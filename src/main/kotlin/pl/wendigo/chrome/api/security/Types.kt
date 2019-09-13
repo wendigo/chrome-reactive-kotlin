@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.security
+package pl.wendigo.chrome.api.security
 
 /**
  * An internal certificate ID value.
+ *
+ * @link [Security#CertificateId](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-CertificateId) type documentation.
  */
 
 typealias CertificateId = Int
@@ -9,6 +11,8 @@ typealias CertificateId = Int
 /**
  * A description of mixed content (HTTP resources on HTTPS pages), as defined by
 https://www.w3.org/TR/mixed-content/#categories
+ *
+ * @link [Security#MixedContentType](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-MixedContentType) type documentation.
  */
 enum class MixedContentType {
     @com.fasterxml.jackson.annotation.JsonProperty("blockable")
@@ -21,6 +25,8 @@ enum class MixedContentType {
 
 /**
  * The security level of a page or resource.
+ *
+ * @link [Security#SecurityState](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-SecurityState) type documentation.
  */
 enum class SecurityState {
     @com.fasterxml.jackson.annotation.JsonProperty("unknown")
@@ -37,6 +43,8 @@ enum class SecurityState {
 
 /**
  * An explanation of an factor contributing to the security state.
+ *
+ * @link [Security#SecurityStateExplanation](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-SecurityStateExplanation) type documentation.
  */
 
 data class SecurityStateExplanation(
@@ -78,6 +86,8 @@ data class SecurityStateExplanation(
 
 /**
  * Information about insecure content on the page.
+ *
+ * @link [Security#InsecureContentStatus](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-InsecureContentStatus) type documentation.
  */
 
 data class InsecureContentStatus(
@@ -120,6 +130,8 @@ data class InsecureContentStatus(
 /**
  * The action to take when a certificate error occurs. continue will continue processing the
 request and cancel will cancel the request.
+ *
+ * @link [Security#CertificateErrorAction](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-CertificateErrorAction) type documentation.
  */
 enum class CertificateErrorAction {
     @com.fasterxml.jackson.annotation.JsonProperty("continue")

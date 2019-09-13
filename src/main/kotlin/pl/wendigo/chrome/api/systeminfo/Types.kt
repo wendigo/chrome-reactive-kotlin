@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.systeminfo
+package pl.wendigo.chrome.api.systeminfo
 
 /**
  * Describes a single graphics processor (GPU).
+ *
+ * @link [SystemInfo#GPUDevice](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-GPUDevice) type documentation.
  */
 
 data class GPUDevice(
@@ -38,6 +40,8 @@ data class GPUDevice(
 
 /**
  * Describes the width and height dimensions of an entity.
+ *
+ * @link [SystemInfo#Size](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-Size) type documentation.
  */
 
 data class Size(
@@ -55,6 +59,8 @@ data class Size(
 /**
  * Describes a supported video decoding profile with its associated minimum and
 maximum resolutions.
+ *
+ * @link [SystemInfo#VideoDecodeAcceleratorCapability](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-VideoDecodeAcceleratorCapability) type documentation.
  */
 
 data class VideoDecodeAcceleratorCapability(
@@ -77,6 +83,8 @@ data class VideoDecodeAcceleratorCapability(
 /**
  * Describes a supported video encoding profile with its associated maximum
 resolution and maximum framerate.
+ *
+ * @link [SystemInfo#VideoEncodeAcceleratorCapability](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-VideoEncodeAcceleratorCapability) type documentation.
  */
 
 data class VideoEncodeAcceleratorCapability(
@@ -105,6 +113,8 @@ data class VideoEncodeAcceleratorCapability(
 
 /**
  * YUV subsampling type of the pixels of a given image.
+ *
+ * @link [SystemInfo#SubsamplingFormat](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-SubsamplingFormat) type documentation.
  */
 enum class SubsamplingFormat {
     @com.fasterxml.jackson.annotation.JsonProperty("yuv420")
@@ -117,6 +127,8 @@ enum class SubsamplingFormat {
 
 /**
  * Image format of a given image.
+ *
+ * @link [SystemInfo#ImageType](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-ImageType) type documentation.
  */
 enum class ImageType {
     @com.fasterxml.jackson.annotation.JsonProperty("jpeg")
@@ -130,6 +142,8 @@ enum class ImageType {
 /**
  * Describes a supported image decoding profile with its associated minimum and
 maximum resolutions and subsampling.
+ *
+ * @link [SystemInfo#ImageDecodeAcceleratorCapability](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-ImageDecodeAcceleratorCapability) type documentation.
  */
 
 data class ImageDecodeAcceleratorCapability(
@@ -156,6 +170,8 @@ data class ImageDecodeAcceleratorCapability(
 
 /**
  * Provides information about the GPU(s) on the system.
+ *
+ * @link [SystemInfo#GPUInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-GPUInfo) type documentation.
  */
 
 data class GPUInfo(
@@ -197,6 +213,8 @@ data class GPUInfo(
 
 /**
  * Represents process info.
+ *
+ * @link [SystemInfo#ProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-ProcessInfo) type documentation.
  */
 
 data class ProcessInfo(

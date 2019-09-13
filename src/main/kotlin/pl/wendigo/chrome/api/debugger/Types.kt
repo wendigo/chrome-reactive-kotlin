@@ -1,19 +1,25 @@
-package pl.wendigo.chrome.domain.debugger
+package pl.wendigo.chrome.api.debugger
 
 /**
  * Breakpoint identifier.
+ *
+ * @link [Debugger#BreakpointId](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-BreakpointId) type documentation.
  */
 
 typealias BreakpointId = String
 
 /**
  * Call frame identifier.
+ *
+ * @link [Debugger#CallFrameId](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-CallFrameId) type documentation.
  */
 
 typealias CallFrameId = String
 
 /**
  * Location in the source code.
+ *
+ * @link [Debugger#Location](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-Location) type documentation.
  */
 
 data class Location(
@@ -35,6 +41,8 @@ data class Location(
 
 /**
  * Location in the source code.
+ *
+ * @link [Debugger#ScriptPosition](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-ScriptPosition) type documentation.
  */
 
 data class ScriptPosition(
@@ -51,6 +59,8 @@ data class ScriptPosition(
 
 /**
  * JavaScript call frame. Array of call frames form the call stack.
+ *
+ * @link [Debugger#CallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-CallFrame) type documentation.
  */
 
 data class CallFrame(
@@ -67,7 +77,7 @@ data class CallFrame(
     /**  
      * Location in the source code.  
      */  
-    @pl.wendigo.chrome.Experimental val functionLocation: Location? = null,
+    @pl.wendigo.chrome.protocol.Experimental val functionLocation: Location? = null,
 
     /**  
      * Location in the source code.  
@@ -94,6 +104,8 @@ data class CallFrame(
 
 /**
  * Scope description.
+ *
+ * @link [Debugger#Scope](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-Scope) type documentation.
  */
 
 data class Scope(
@@ -127,6 +139,8 @@ data class Scope(
 
 /**
  * Search match for resource.
+ *
+ * @link [Debugger#SearchMatch](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-SearchMatch) type documentation.
  */
 
 data class SearchMatch(

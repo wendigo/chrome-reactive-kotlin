@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.schema
+package pl.wendigo.chrome.api.schema
 
 /**
  * Description of the protocol domain.
+ *
+ * @link [Schema#Domain](https://chromedevtools.github.io/devtools-protocol/tot/Schema#type-Domain) type documentation.
  */
 
 data class Domain(

@@ -1,13 +1,17 @@
-package pl.wendigo.chrome.domain.page
+package pl.wendigo.chrome.api.page
 
 /**
  * Unique frame identifier.
+ *
+ * @link [Page#FrameId](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FrameId) type documentation.
  */
 
 typealias FrameId = String
 
 /**
  * Information about the Frame on the page.
+ *
+ * @link [Page#Frame](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-Frame) type documentation.
  */
 
 data class Frame(
@@ -39,7 +43,7 @@ data class Frame(
     /**  
      * Frame document's URL fragment including the '#'.  
      */  
-    @pl.wendigo.chrome.Experimental val urlFragment: String? = null,
+    @pl.wendigo.chrome.protocol.Experimental val urlFragment: String? = null,
 
     /**  
      * Frame document's security origin.  
@@ -54,11 +58,13 @@ data class Frame(
     /**  
      * If the frame failed to load, this contains the URL that could not be loaded. Note that unlike url above, this URL may contain a fragment.  
      */  
-    @pl.wendigo.chrome.Experimental val unreachableUrl: String? = null
+    @pl.wendigo.chrome.protocol.Experimental val unreachableUrl: String? = null
 )
 
 /**
  * Information about the Resource on the page.
+ *
+ * @link [Page#FrameResource](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FrameResource) type documentation.
  */
 
 data class FrameResource(
@@ -100,6 +106,8 @@ data class FrameResource(
 
 /**
  * Information about the Frame hierarchy along with their cached resources.
+ *
+ * @link [Page#FrameResourceTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FrameResourceTree) type documentation.
  */
 
 data class FrameResourceTree(
@@ -121,6 +129,8 @@ data class FrameResourceTree(
 
 /**
  * Information about the Frame hierarchy.
+ *
+ * @link [Page#FrameTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FrameTree) type documentation.
  */
 
 data class FrameTree(
@@ -137,12 +147,16 @@ data class FrameTree(
 
 /**
  * Unique script identifier.
+ *
+ * @link [Page#ScriptIdentifier](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-ScriptIdentifier) type documentation.
  */
 
 typealias ScriptIdentifier = String
 
 /**
  * Transition type.
+ *
+ * @link [Page#TransitionType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-TransitionType) type documentation.
  */
 enum class TransitionType {
     @com.fasterxml.jackson.annotation.JsonProperty("link")
@@ -175,6 +189,8 @@ enum class TransitionType {
 
 /**
  * Navigation history entry.
+ *
+ * @link [Page#NavigationEntry](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-NavigationEntry) type documentation.
  */
 
 data class NavigationEntry(
@@ -206,6 +222,8 @@ data class NavigationEntry(
 
 /**
  * Screencast frame metadata.
+ *
+ * @link [Page#ScreencastFrameMetadata](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-ScreencastFrameMetadata) type documentation.
  */
 
 data class ScreencastFrameMetadata(
@@ -247,6 +265,8 @@ data class ScreencastFrameMetadata(
 
 /**
  * Javascript dialog type.
+ *
+ * @link [Page#DialogType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-DialogType) type documentation.
  */
 enum class DialogType {
     @com.fasterxml.jackson.annotation.JsonProperty("alert")
@@ -261,6 +281,8 @@ enum class DialogType {
 
 /**
  * Error while paring app manifest.
+ *
+ * @link [Page#AppManifestError](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-AppManifestError) type documentation.
  */
 
 data class AppManifestError(
@@ -287,6 +309,8 @@ data class AppManifestError(
 
 /**
  * Layout viewport position and dimensions.
+ *
+ * @link [Page#LayoutViewport](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-LayoutViewport) type documentation.
  */
 
 data class LayoutViewport(
@@ -313,6 +337,8 @@ data class LayoutViewport(
 
 /**
  * Visual viewport position, dimensions, and scale.
+ *
+ * @link [Page#VisualViewport](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-VisualViewport) type documentation.
  */
 
 data class VisualViewport(
@@ -359,6 +385,8 @@ data class VisualViewport(
 
 /**
  * Viewport for capturing screenshot.
+ *
+ * @link [Page#Viewport](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-Viewport) type documentation.
  */
 
 data class Viewport(
@@ -390,6 +418,8 @@ data class Viewport(
 
 /**
  * Generic font families collection.
+ *
+ * @link [Page#FontFamilies](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FontFamilies) type documentation.
  */
 
 data class FontFamilies(
@@ -431,6 +461,8 @@ data class FontFamilies(
 
 /**
  * Default font sizes.
+ *
+ * @link [Page#FontSizes](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FontSizes) type documentation.
  */
 
 data class FontSizes(
@@ -447,6 +479,8 @@ data class FontSizes(
 
 /**
  *
+ *
+ * @link [Page#ClientNavigationReason](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-ClientNavigationReason) type documentation.
  */
 enum class ClientNavigationReason {
     @com.fasterxml.jackson.annotation.JsonProperty("formSubmissionGet")

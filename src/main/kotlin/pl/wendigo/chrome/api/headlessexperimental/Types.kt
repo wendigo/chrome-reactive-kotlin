@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.headlessexperimental
+package pl.wendigo.chrome.api.headlessexperimental
 
 /**
  * Encoding options for a screenshot.
+ *
+ * @link [HeadlessExperimental#ScreenshotParams](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#type-ScreenshotParams) type documentation.
  */
 
 data class ScreenshotParams(

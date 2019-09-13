@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.log
+package pl.wendigo.chrome.api.log
 
 /**
  * Log entry.
+ *
+ * @link [Log#LogEntry](https://chromedevtools.github.io/devtools-protocol/tot/Log#type-LogEntry) type documentation.
  */
 
 data class LogEntry(
@@ -58,6 +60,8 @@ data class LogEntry(
 
 /**
  * Violation configuration setting.
+ *
+ * @link [Log#ViolationSetting](https://chromedevtools.github.io/devtools-protocol/tot/Log#type-ViolationSetting) type documentation.
  */
 
 data class ViolationSetting(

@@ -1,17 +1,34 @@
-package {{Package}}.domain.{{Domain.LowerName}}
+package {{Package}}.api.{{Domain.LowerName}}
 
 /**
- *{{#if Domain.Description}}{{{trim Domain.Description}}}{{else}} {{Domain.Name}} represents remote debugger protocol domain.{{/if}}
+ *{{#if Domain.Description}}{{{trim Domain.Description}}}{{else}} {{Domain.Name}}Operations represents {{Domain.Name}} protocol domain request/response operations and events that can be captured.{{/if}}
  *
- * @link [https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}})
+{{#if Domain.Experimental}}
+ * This API is marked as experimental in protocol definition and can change in the future.
+{{/if}}
+ * @link Protocol [{{Domain.Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}}) domain documentation.
  */
-class {{Domain.Name}} internal constructor(private val connectionRemote : {{Package}}.DebuggerProtocol) {
+{{#if Domain.Deprecated}}
+@Deprecated(level = DeprecationLevel.WARNING, message = "{{#if Domain.Description}}{{{Domain.Description}}}{{else}}{{Domain.Name}} is deprecated.{{/if}}")
+{{/if}}
+{{#if Domain.Experimental}}
+@{{Package}}.protocol.Experimental
+{{/if}}
+class {{Domain.Name}}Operations internal constructor(private val connection : {{Package}}.protocol.ChromeDebuggerConnection) {
 {{#each Domain.Commands}}
     /**
      *{{{trim Description}}}
+     *
+     * @link Protocol [{{Domain.Name}}#{{Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}}#method-{{Name}}) method documentation.
      */
-    fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}): io.reactivex.Single<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}> {
-        return connectionRemote.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ResponseFrame{{/if}}::class.java).map {
+    {{#if Deprecated}}
+    @Deprecated(level = DeprecationLevel.WARNING, message = "{{Name}} is deprecated.")
+    {{/if}}
+    {{#if Experimental}}
+    @{{Package}}.protocol.Experimental
+    {{/if}}
+    fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}): io.reactivex.Single<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.ResponseFrame{{/if}}> {
+        return connection.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.ResponseFrame{{/if}}::class.java).map {
             it.value()
         }
     }
@@ -19,9 +36,9 @@ class {{Domain.Name}} internal constructor(private val connectionRemote : {{Pack
 {{/each}}
 {{#each Domain.Events}}
     /**
-     * {{#if Description}}{{{trim Description}}}{{else}}Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
+     * {{#if Description}}{{{trim Description}}}{{else}} Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
      */
-    fun {{Name}}(): io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ProtocolEvent{{/if}}> {
+    fun {{Name}}(): io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}> {
         return {{Name}}Timed().map {
             it.value()
         }
@@ -30,8 +47,8 @@ class {{Domain.Name}} internal constructor(private val connectionRemote : {{Pack
     /**
      *{{#if Description}}{{{trim Description}}}{{else}} Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
      */
-    fun {{Name}}Timed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ProtocolEvent{{/if}}>> {
-        return connectionRemote.captureEvents("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.ProtocolEvent{{/if}}::class.java)
+    fun {{Name}}Timed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}>> {
+        return connection.captureEvents("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}::class.java)
     }
 
 {{/each}}
@@ -39,8 +56,8 @@ class {{Domain.Name}} internal constructor(private val connectionRemote : {{Pack
     /**
      * Returns flowable capturing all {{Domain.Name}} domains events.
      */
-    fun events() : io.reactivex.Flowable<{{Package}}.ProtocolEvent> {
-        return connectionRemote.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<{{Package}}.protocol.Event> {
+        return connection.captureAllEvents().map { it.value() }.filter {
             it.protocolDomain() == "{{Domain.Name}}"
         }
     }

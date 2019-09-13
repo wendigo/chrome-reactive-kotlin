@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.memory
+package pl.wendigo.chrome.api.memory
 
 /**
  * Memory pressure level.
+ *
+ * @link [Memory#PressureLevel](https://chromedevtools.github.io/devtools-protocol/tot/Memory#type-PressureLevel) type documentation.
  */
 enum class PressureLevel {
     @com.fasterxml.jackson.annotation.JsonProperty("moderate")
@@ -12,6 +14,8 @@ enum class PressureLevel {
 
 /**
  * Heap profile sample.
+ *
+ * @link [Memory#SamplingProfileNode](https://chromedevtools.github.io/devtools-protocol/tot/Memory#type-SamplingProfileNode) type documentation.
  */
 
 data class SamplingProfileNode(
@@ -33,6 +37,8 @@ data class SamplingProfileNode(
 
 /**
  * Array of heap profile samples.
+ *
+ * @link [Memory#SamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#type-SamplingProfile) type documentation.
  */
 
 data class SamplingProfile(
@@ -49,6 +55,8 @@ data class SamplingProfile(
 
 /**
  * Executable module information
+ *
+ * @link [Memory#Module](https://chromedevtools.github.io/devtools-protocol/tot/Memory#type-Module) type documentation.
  */
 
 data class Module(

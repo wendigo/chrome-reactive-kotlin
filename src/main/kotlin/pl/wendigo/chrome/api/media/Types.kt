@@ -1,19 +1,25 @@
-package pl.wendigo.chrome.domain.media
+package pl.wendigo.chrome.api.media
 
 /**
  * Players will get an ID that is unique within the agent context.
+ *
+ * @link [Media#PlayerId](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-PlayerId) type documentation.
  */
 
 typealias PlayerId = String
 
 /**
  *
+ *
+ * @link [Media#Timestamp](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-Timestamp) type documentation.
  */
 
 typealias Timestamp = Double
 
 /**
  * Player Property type
+ *
+ * @link [Media#PlayerProperty](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-PlayerProperty) type documentation.
  */
 
 data class PlayerProperty(
@@ -30,6 +36,8 @@ data class PlayerProperty(
 
 /**
  * Break out events into different types
+ *
+ * @link [Media#PlayerEventType](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-PlayerEventType) type documentation.
  */
 enum class PlayerEventType {
     @com.fasterxml.jackson.annotation.JsonProperty("playbackEvent")
@@ -42,6 +50,8 @@ enum class PlayerEventType {
 
 /**
  *
+ *
+ * @link [Media#PlayerEvent](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-PlayerEvent) type documentation.
  */
 
 data class PlayerEvent(
