@@ -21,58 +21,29 @@ Add to your Kotlin or Java project (Gradle dependency):
 # Example
 
 ```kotlin
-package pl.wendigo.chrome
+import pl.wendigo.chrome.api.page.NavigateRequest
 
-import pl.wendigo.chrome.domain.page.NavigateRequest
+fun main() {
+    val browser = Browser.connect("127.0.0.1:9223")
+    val session = browser.headlessSession("about:blank")
 
-fun main(args : Array<String>) {
+    await {
+        session.Page.enable()
+    }
 
-    val inspector = Inspector.connect("127.0.0.1:9222")
-    val protocol = ChromeProtocol.openSession(inspector.openedPages().firstOrError().blockingGet())
-    val headless = protocol.headless("about:blank", 1280, 1024).blockingGet()
+    await {
+        session2.Page.enable()
+    }
 
-    println("browserContext: ${headless.browserContextId}")
-    println("target: ${headless.targetId}")
-
-    headless.Page.enable().blockingGet()
-
-    val event = headless.Page.navigate(NavigateRequest(url="https://serafin.tech")).flatMap{ (frameId) ->
-        headless.Page.frameStoppedLoading().filter {
-            it.frameId == frameId
+    await {
+        session.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
+            session.Page.frameStoppedLoading().filter {
+                it.frameId == frameId
+            }.take(1).singleOrError()
         }
-        .take(1)
-        .singleOrError()
-    }.blockingGet()
+    }
 
-    println("page loaded: $event")
-}
-```
-
-or if you prefer fully reactive composition:
-
-```kotlin
-package pl.wendigo.chrome
-
-import pl.wendigo.chrome.domain.page.NavigateRequest
-
-fun main(args : Array<String>) {
-
-    val loaded = Inspector.connect("127.0.0.1:9222")
-        .openedPages()
-        .firstOrError()
-        .map(InspectablePage::connect)
-        .flatMap { protocol ->
-            protocol.headless(url = "about:blank", width = 1280, height = 1024)
-        }.flatMap { headlessProtocol ->
-            headlessProtocol.Page.enable().flatMap {
-                headlessProtocol.Page.navigate(NavigateRequest(url = "https://serafin.tech")).flatMap { (frameId) ->
-                    headlessProtocol.Page.frameStoppedLoading().filter {
-                        it.frameId == frameId
-                    }.take(1).singleOrError()
-                }
-            }
-        }
-
-    println("Page was loaded ${loaded.blockingGet()}")
+    session.close()
+    browser.close()
 }
 ```
