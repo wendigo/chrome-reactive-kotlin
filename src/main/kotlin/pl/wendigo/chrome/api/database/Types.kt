@@ -1,13 +1,17 @@
-package pl.wendigo.chrome.domain.database
+package pl.wendigo.chrome.api.database
 
 /**
  * Unique identifier of Database object.
+ *
+ * @link [Database#DatabaseId](https://chromedevtools.github.io/devtools-protocol/tot/Database#type-DatabaseId) type documentation.
  */
 
 typealias DatabaseId = String
 
 /**
  * Database object.
+ *
+ * @link [Database#Database](https://chromedevtools.github.io/devtools-protocol/tot/Database#type-Database) type documentation.
  */
 
 data class Database(
@@ -34,6 +38,8 @@ data class Database(
 
 /**
  * Database error.
+ *
+ * @link [Database#Error](https://chromedevtools.github.io/devtools-protocol/tot/Database#type-Error) type documentation.
  */
 
 data class Error(

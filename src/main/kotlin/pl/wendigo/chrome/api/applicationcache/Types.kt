@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.applicationcache
+package pl.wendigo.chrome.api.applicationcache
 
 /**
  * Detailed application cache resource information.
+ *
+ * @link [ApplicationCache#ApplicationCacheResource](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#type-ApplicationCacheResource) type documentation.
  */
 
 data class ApplicationCacheResource(
@@ -23,6 +25,8 @@ data class ApplicationCacheResource(
 
 /**
  * Detailed application cache information.
+ *
+ * @link [ApplicationCache#ApplicationCache](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#type-ApplicationCache) type documentation.
  */
 
 data class ApplicationCache(
@@ -54,13 +58,15 @@ data class ApplicationCache(
 
 /**
  * Frame identifier - manifest URL pair.
+ *
+ * @link [ApplicationCache#FrameWithManifest](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#type-FrameWithManifest) type documentation.
  */
 
 data class FrameWithManifest(
     /**  
      * Frame identifier.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
     /**  
      * Manifest URL.  

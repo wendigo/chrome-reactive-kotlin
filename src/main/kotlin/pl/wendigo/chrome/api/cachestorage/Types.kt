@@ -1,13 +1,17 @@
-package pl.wendigo.chrome.domain.cachestorage
+package pl.wendigo.chrome.api.cachestorage
 
 /**
  * Unique identifier of the Cache object.
+ *
+ * @link [CacheStorage#CacheId](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-CacheId) type documentation.
  */
 
 typealias CacheId = String
 
 /**
  * type of HTTP response cached
+ *
+ * @link [CacheStorage#CachedResponseType](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-CachedResponseType) type documentation.
  */
 enum class CachedResponseType {
     @com.fasterxml.jackson.annotation.JsonProperty("basic")
@@ -26,6 +30,8 @@ enum class CachedResponseType {
 
 /**
  * Data entry.
+ *
+ * @link [CacheStorage#DataEntry](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-DataEntry) type documentation.
  */
 
 data class DataEntry(
@@ -72,6 +78,8 @@ data class DataEntry(
 
 /**
  * Cache identifier.
+ *
+ * @link [CacheStorage#Cache](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-Cache) type documentation.
  */
 
 data class Cache(
@@ -93,6 +101,8 @@ data class Cache(
 
 /**
  *
+ *
+ * @link [CacheStorage#Header](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-Header) type documentation.
  */
 
 data class Header(
@@ -109,6 +119,8 @@ data class Header(
 
 /**
  * Cached response
+ *
+ * @link [CacheStorage#CachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-CachedResponse) type documentation.
  */
 
 data class CachedResponse(

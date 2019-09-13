@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.css
+package pl.wendigo.chrome.api.css
 
 /**
  *
+ *
+ * @link [CSS#StyleSheetId](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-StyleSheetId) type documentation.
  */
 
 typealias StyleSheetId = String
@@ -10,6 +12,8 @@ typealias StyleSheetId = String
  * Stylesheet type: &quot;injected&quot; for stylesheets injected via extension, &quot;user-agent&quot; for user-agent
 stylesheets, &quot;inspector&quot; for stylesheets created by the inspector (i.e. those holding the &quot;via
 inspector&quot; rules), &quot;regular&quot; for regular stylesheets.
+ *
+ * @link [CSS#StyleSheetOrigin](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-StyleSheetOrigin) type documentation.
  */
 enum class StyleSheetOrigin {
     @com.fasterxml.jackson.annotation.JsonProperty("injected")
@@ -24,13 +28,15 @@ enum class StyleSheetOrigin {
 
 /**
  * CSS rule collection for a single pseudo style.
+ *
+ * @link [CSS#PseudoElementMatches](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-PseudoElementMatches) type documentation.
  */
 
 data class PseudoElementMatches(
     /**  
      * Pseudo element type.  
      */  
-    val pseudoType: pl.wendigo.chrome.domain.dom.PseudoType,
+    val pseudoType: pl.wendigo.chrome.api.dom.PseudoType,
 
     /**  
      * Matches of CSS rules applicable to the pseudo style.  
@@ -40,6 +46,8 @@ data class PseudoElementMatches(
 
 /**
  * Inherited CSS rule collection from ancestor node.
+ *
+ * @link [CSS#InheritedStyleEntry](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-InheritedStyleEntry) type documentation.
  */
 
 data class InheritedStyleEntry(
@@ -56,6 +64,8 @@ data class InheritedStyleEntry(
 
 /**
  * Match data for a CSS rule.
+ *
+ * @link [CSS#RuleMatch](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-RuleMatch) type documentation.
  */
 
 data class RuleMatch(
@@ -72,6 +82,8 @@ data class RuleMatch(
 
 /**
  * Data for a simple selector (these are delimited by commas in a selector list).
+ *
+ * @link [CSS#Value](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-Value) type documentation.
  */
 
 data class Value(
@@ -88,6 +100,8 @@ data class Value(
 
 /**
  * Selector list data.
+ *
+ * @link [CSS#SelectorList](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-SelectorList) type documentation.
  */
 
 data class SelectorList(
@@ -104,6 +118,8 @@ data class SelectorList(
 
 /**
  * CSS stylesheet metainformation.
+ *
+ * @link [CSS#CSSStyleSheetHeader](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSStyleSheetHeader) type documentation.
  */
 
 data class CSSStyleSheetHeader(
@@ -115,7 +131,7 @@ data class CSSStyleSheetHeader(
     /**  
      * Owner frame identifier.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
     /**  
      * Stylesheet resource URL.  
@@ -140,7 +156,7 @@ data class CSSStyleSheetHeader(
     /**  
      * The backend id for the owner node of the stylesheet.  
      */  
-    val ownerNode: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    val ownerNode: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
 
     /**  
      * Denotes whether the stylesheet is disabled.  
@@ -176,6 +192,8 @@ data class CSSStyleSheetHeader(
 
 /**
  * CSS rule representation.
+ *
+ * @link [CSS#CSSRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSRule) type documentation.
  */
 
 data class CSSRule(
@@ -209,6 +227,8 @@ data class CSSRule(
 
 /**
  * CSS coverage information.
+ *
+ * @link [CSS#RuleUsage](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-RuleUsage) type documentation.
  */
 
 data class RuleUsage(
@@ -236,6 +256,8 @@ data class RuleUsage(
 
 /**
  * Text range within a resource. All numbers are zero-based.
+ *
+ * @link [CSS#SourceRange](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-SourceRange) type documentation.
  */
 
 data class SourceRange(
@@ -262,6 +284,8 @@ data class SourceRange(
 
 /**
  *
+ *
+ * @link [CSS#ShorthandEntry](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-ShorthandEntry) type documentation.
  */
 
 data class ShorthandEntry(
@@ -283,6 +307,8 @@ data class ShorthandEntry(
 
 /**
  *
+ *
+ * @link [CSS#CSSComputedStyleProperty](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSComputedStyleProperty) type documentation.
  */
 
 data class CSSComputedStyleProperty(
@@ -299,6 +325,8 @@ data class CSSComputedStyleProperty(
 
 /**
  * CSS style representation.
+ *
+ * @link [CSS#CSSStyle](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSStyle) type documentation.
  */
 
 data class CSSStyle(
@@ -331,6 +359,8 @@ data class CSSStyle(
 
 /**
  * CSS property declaration data.
+ *
+ * @link [CSS#CSSProperty](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSProperty) type documentation.
  */
 
 data class CSSProperty(
@@ -377,6 +407,8 @@ data class CSSProperty(
 
 /**
  * CSS media rule descriptor.
+ *
+ * @link [CSS#CSSMedia](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSMedia) type documentation.
  */
 
 data class CSSMedia(
@@ -417,6 +449,8 @@ data class CSSMedia(
 
 /**
  * Media query descriptor.
+ *
+ * @link [CSS#MediaQuery](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-MediaQuery) type documentation.
  */
 
 data class MediaQuery(
@@ -433,6 +467,8 @@ data class MediaQuery(
 
 /**
  * Media query expression descriptor.
+ *
+ * @link [CSS#MediaQueryExpression](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-MediaQueryExpression) type documentation.
  */
 
 data class MediaQueryExpression(
@@ -464,6 +500,8 @@ data class MediaQueryExpression(
 
 /**
  * Information about amount of glyphs that were rendered with given font.
+ *
+ * @link [CSS#PlatformFontUsage](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-PlatformFontUsage) type documentation.
  */
 
 data class PlatformFontUsage(
@@ -485,6 +523,8 @@ data class PlatformFontUsage(
 
 /**
  * Properties of a web font: https://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#font-descriptions
+ *
+ * @link [CSS#FontFace](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-FontFace) type documentation.
  */
 
 data class FontFace(
@@ -531,6 +571,8 @@ data class FontFace(
 
 /**
  * CSS keyframes rule representation.
+ *
+ * @link [CSS#CSSKeyframesRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSKeyframesRule) type documentation.
  */
 
 data class CSSKeyframesRule(
@@ -547,6 +589,8 @@ data class CSSKeyframesRule(
 
 /**
  * CSS keyframe rule representation.
+ *
+ * @link [CSS#CSSKeyframeRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSKeyframeRule) type documentation.
  */
 
 data class CSSKeyframeRule(
@@ -574,6 +618,8 @@ data class CSSKeyframeRule(
 
 /**
  * A descriptor of operation to mutate style declaration text.
+ *
+ * @link [CSS#StyleDeclarationEdit](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-StyleDeclarationEdit) type documentation.
  */
 
 data class StyleDeclarationEdit(

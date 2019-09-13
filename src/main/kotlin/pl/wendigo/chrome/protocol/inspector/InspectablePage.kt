@@ -1,11 +1,11 @@
 package pl.wendigo.chrome.protocol.inspector
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import pl.wendigo.chrome.ChromeProtocol
+import pl.wendigo.chrome.DevToolsProtocol
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 
 /**
- * InspectablePage represents debuggable page.
+ * InspectablePage represents page that can be debugged and attached to.
  */
 data class InspectablePage(
     /**
@@ -46,8 +46,8 @@ data class InspectablePage(
     /**
      * Opens new chrome protocol debugger connection.
      */
-    fun session(eventBufferSize: Int = 512): ChromeProtocol {
-        return ChromeProtocol(ChromeDebuggerConnection.openSession(webSocketDebuggerUrl!!, eventBufferSize))
+    fun session(eventBufferSize: Int = 512): DevToolsProtocol {
+        return DevToolsProtocol(ChromeDebuggerConnection.openSession(webSocketDebuggerUrl!!, eventBufferSize))
     }
 }
 
@@ -85,6 +85,9 @@ data class ProtocolVersion(
     @get:JsonProperty("WebKit-Version")
     val webkitVersion: String,
 
+    /**
+     * Debugger url
+     */
     @get:JsonProperty("webSocketDebuggerUrl")
     val webSocketDebugUrl: String
 )

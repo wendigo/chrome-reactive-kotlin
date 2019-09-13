@@ -1,13 +1,17 @@
-package pl.wendigo.chrome.domain.webaudio
+package pl.wendigo.chrome.api.webaudio
 
 /**
  * An unique ID for a graph object (AudioContext, AudioNode, AudioParam) in Web Audio API
+ *
+ * @link [WebAudio#GraphObjectId](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-GraphObjectId) type documentation.
  */
 
 typealias GraphObjectId = String
 
 /**
  * Enum of BaseAudioContext types
+ *
+ * @link [WebAudio#ContextType](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ContextType) type documentation.
  */
 enum class ContextType {
     @com.fasterxml.jackson.annotation.JsonProperty("realtime")
@@ -18,6 +22,8 @@ enum class ContextType {
 
 /**
  * Enum of AudioContextState from the spec
+ *
+ * @link [WebAudio#ContextState](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ContextState) type documentation.
  */
 enum class ContextState {
     @com.fasterxml.jackson.annotation.JsonProperty("suspended")
@@ -30,12 +36,16 @@ enum class ContextState {
 
 /**
  * Enum of AudioNode types
+ *
+ * @link [WebAudio#NodeType](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-NodeType) type documentation.
  */
 
 typealias NodeType = String
 
 /**
  * Enum of AudioNode::ChannelCountMode from the spec
+ *
+ * @link [WebAudio#ChannelCountMode](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ChannelCountMode) type documentation.
  */
 enum class ChannelCountMode {
     @com.fasterxml.jackson.annotation.JsonProperty("clamped-max")
@@ -48,6 +58,8 @@ enum class ChannelCountMode {
 
 /**
  * Enum of AudioNode::ChannelInterpretation from the spec
+ *
+ * @link [WebAudio#ChannelInterpretation](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ChannelInterpretation) type documentation.
  */
 enum class ChannelInterpretation {
     @com.fasterxml.jackson.annotation.JsonProperty("discrete")
@@ -58,12 +70,16 @@ enum class ChannelInterpretation {
 
 /**
  * Enum of AudioParam types
+ *
+ * @link [WebAudio#ParamType](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ParamType) type documentation.
  */
 
 typealias ParamType = String
 
 /**
  * Enum of AudioParam::AutomationRate from the spec
+ *
+ * @link [WebAudio#AutomationRate](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-AutomationRate) type documentation.
  */
 enum class AutomationRate {
     @com.fasterxml.jackson.annotation.JsonProperty("a-rate")
@@ -74,6 +90,8 @@ enum class AutomationRate {
 
 /**
  * Fields in AudioContext that change in real-time.
+ *
+ * @link [WebAudio#ContextRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ContextRealtimeData) type documentation.
  */
 
 data class ContextRealtimeData(
@@ -102,6 +120,8 @@ data class ContextRealtimeData(
 
 /**
  * Protocol object for BaseAudioContext
+ *
+ * @link [WebAudio#BaseAudioContext](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-BaseAudioContext) type documentation.
  */
 
 data class BaseAudioContext(
@@ -143,6 +163,8 @@ data class BaseAudioContext(
 
 /**
  * Protocol object for AudioListner
+ *
+ * @link [WebAudio#AudioListener](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-AudioListener) type documentation.
  */
 
 data class AudioListener(
@@ -159,6 +181,8 @@ data class AudioListener(
 
 /**
  * Protocol object for AudioNode
+ *
+ * @link [WebAudio#AudioNode](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-AudioNode) type documentation.
  */
 
 data class AudioNode(
@@ -205,6 +229,8 @@ data class AudioNode(
 
 /**
  * Protocol object for AudioParam
+ *
+ * @link [WebAudio#AudioParam](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-AudioParam) type documentation.
  */
 
 data class AudioParam(

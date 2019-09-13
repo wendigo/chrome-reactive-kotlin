@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.dom
+package pl.wendigo.chrome.api.dom
 
 /**
  * Unique DOM node identifier.
+ *
+ * @link [DOM#NodeId](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-NodeId) type documentation.
  */
 
 typealias NodeId = Int
@@ -9,12 +11,16 @@ typealias NodeId = Int
 /**
  * Unique DOM node identifier used to reference a node that may not have been pushed to the
 front-end.
+ *
+ * @link [DOM#BackendNodeId](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-BackendNodeId) type documentation.
  */
 
 typealias BackendNodeId = Int
 
 /**
  * Backend node with a friendly name.
+ *
+ * @link [DOM#BackendNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-BackendNode) type documentation.
  */
 
 data class BackendNode(
@@ -36,6 +42,8 @@ data class BackendNode(
 
 /**
  * Pseudo element type.
+ *
+ * @link [DOM#PseudoType](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-PseudoType) type documentation.
  */
 enum class PseudoType {
     @com.fasterxml.jackson.annotation.JsonProperty("first-line")
@@ -72,6 +80,8 @@ enum class PseudoType {
 
 /**
  * Shadow root type.
+ *
+ * @link [DOM#ShadowRootType](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-ShadowRootType) type documentation.
  */
 enum class ShadowRootType {
     @com.fasterxml.jackson.annotation.JsonProperty("user-agent")
@@ -85,6 +95,8 @@ enum class ShadowRootType {
 /**
  * DOM interaction is implemented in terms of mirror objects that represent the actual DOM nodes.
 DOMNode is a base node mirror type.
+ *
+ * @link [DOM#Node](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-Node) type documentation.
  */
 
 data class Node(
@@ -193,7 +205,7 @@ data class Node(
     /**  
      * Frame ID for frame owner elements.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId? = null,
+    val frameId: pl.wendigo.chrome.api.page.FrameId? = null,
 
     /**  
      * Content document for frame owner elements.  
@@ -233,6 +245,8 @@ data class Node(
 
 /**
  * A structure holding an RGBA color.
+ *
+ * @link [DOM#RGBA](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-RGBA) type documentation.
  */
 
 data class RGBA(
@@ -259,12 +273,16 @@ data class RGBA(
 
 /**
  * An array of quad vertices, x immediately followed by y for each point, points clock-wise.
+ *
+ * @link [DOM#Quad](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-Quad) type documentation.
  */
 
 typealias Quad = List<Double>
 
 /**
  * Box model.
+ *
+ * @link [DOM#BoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-BoxModel) type documentation.
  */
 
 data class BoxModel(
@@ -306,6 +324,8 @@ data class BoxModel(
 
 /**
  * CSS Shape Outside details.
+ *
+ * @link [DOM#ShapeOutsideInfo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-ShapeOutsideInfo) type documentation.
  */
 
 data class ShapeOutsideInfo(
@@ -327,6 +347,8 @@ data class ShapeOutsideInfo(
 
 /**
  * Rectangle.
+ *
+ * @link [DOM#Rect](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-Rect) type documentation.
  */
 
 data class Rect(

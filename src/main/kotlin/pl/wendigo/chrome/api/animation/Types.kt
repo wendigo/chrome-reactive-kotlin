@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.animation
+package pl.wendigo.chrome.api.animation
 
 /**
  * Animation instance.
+ *
+ * @link [Animation#Animation](https://chromedevtools.github.io/devtools-protocol/tot/Animation#type-Animation) type documentation.
  */
 
 data class Animation(
@@ -59,6 +61,8 @@ data class Animation(
 
 /**
  * AnimationEffect instance
+ *
+ * @link [Animation#AnimationEffect](https://chromedevtools.github.io/devtools-protocol/tot/Animation#type-AnimationEffect) type documentation.
  */
 
 data class AnimationEffect(
@@ -100,7 +104,7 @@ data class AnimationEffect(
     /**  
      * `AnimationEffect`'s target node.  
      */  
-    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
 
     /**  
      * `AnimationEffect`'s keyframes.  
@@ -115,6 +119,8 @@ data class AnimationEffect(
 
 /**
  * Keyframes Rule
+ *
+ * @link [Animation#KeyframesRule](https://chromedevtools.github.io/devtools-protocol/tot/Animation#type-KeyframesRule) type documentation.
  */
 
 data class KeyframesRule(
@@ -131,6 +137,8 @@ data class KeyframesRule(
 
 /**
  * Keyframe Style
+ *
+ * @link [Animation#KeyframeStyle](https://chromedevtools.github.io/devtools-protocol/tot/Animation#type-KeyframeStyle) type documentation.
  */
 
 data class KeyframeStyle(

@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.log
+package pl.wendigo.chrome.api.log
 
 /**
  * Log entry.
+ *
+ * @link [Log#LogEntry](https://chromedevtools.github.io/devtools-protocol/tot/Log#type-LogEntry) type documentation.
  */
 
 data class LogEntry(
@@ -23,7 +25,7 @@ data class LogEntry(
     /**  
      * Timestamp when this entry was added.  
      */  
-    val timestamp: pl.wendigo.chrome.domain.runtime.Timestamp,
+    val timestamp: pl.wendigo.chrome.api.runtime.Timestamp,
 
     /**  
      * URL of the resource if known.  
@@ -38,12 +40,12 @@ data class LogEntry(
     /**  
      * JavaScript stack trace.  
      */  
-    val stackTrace: pl.wendigo.chrome.domain.runtime.StackTrace? = null,
+    val stackTrace: pl.wendigo.chrome.api.runtime.StackTrace? = null,
 
     /**  
      * Identifier of the network request associated with this entry.  
      */  
-    val networkRequestId: pl.wendigo.chrome.domain.network.RequestId? = null,
+    val networkRequestId: pl.wendigo.chrome.api.network.RequestId? = null,
 
     /**  
      * Identifier of the worker associated with this entry.  
@@ -53,11 +55,13 @@ data class LogEntry(
     /**  
      * Call arguments.  
      */  
-    val args: List<pl.wendigo.chrome.domain.runtime.RemoteObject>? = null
+    val args: List<pl.wendigo.chrome.api.runtime.RemoteObject>? = null
 )
 
 /**
  * Violation configuration setting.
+ *
+ * @link [Log#ViolationSetting](https://chromedevtools.github.io/devtools-protocol/tot/Log#type-ViolationSetting) type documentation.
  */
 
 data class ViolationSetting(

@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.domstorage
+package pl.wendigo.chrome.api.domstorage
 
 /**
  * DOM Storage identifier.
+ *
+ * @link [DOMStorage#StorageId](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#type-StorageId) type documentation.
  */
 
 data class StorageId(
@@ -18,6 +20,8 @@ data class StorageId(
 
 /**
  * DOM Storage item.
+ *
+ * @link [DOMStorage#Item](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#type-Item) type documentation.
  */
 
 typealias Item = List<String>

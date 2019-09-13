@@ -1,9 +1,11 @@
-package pl.wendigo.chrome.domain.backgroundservice
+package pl.wendigo.chrome.api.backgroundservice
 
 /**
  * The Background Service that will be associated with the commands/events.
 Every Background Service operates independently, but they share the same
 API.
+ *
+ * @link [BackgroundService#ServiceName](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#type-ServiceName) type documentation.
  */
 enum class ServiceName {
     @com.fasterxml.jackson.annotation.JsonProperty("backgroundFetch")
@@ -22,6 +24,8 @@ enum class ServiceName {
 
 /**
  * A key-value pair for additional event information to pass along.
+ *
+ * @link [BackgroundService#EventMetadata](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#type-EventMetadata) type documentation.
  */
 
 data class EventMetadata(
@@ -38,13 +42,15 @@ data class EventMetadata(
 
 /**
  *
+ *
+ * @link [BackgroundService#BackgroundServiceEvent](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#type-BackgroundServiceEvent) type documentation.
  */
 
 data class BackgroundServiceEvent(
     /**  
      * Timestamp of the event (in seconds).  
      */  
-    val timestamp: pl.wendigo.chrome.domain.network.TimeSinceEpoch,
+    val timestamp: pl.wendigo.chrome.api.network.TimeSinceEpoch,
 
     /**  
      * The origin this event belongs to.  
@@ -54,7 +60,7 @@ data class BackgroundServiceEvent(
     /**  
      * The Service Worker ID that initiated the event.  
      */  
-    val serviceWorkerRegistrationId: pl.wendigo.chrome.domain.serviceworker.RegistrationID,
+    val serviceWorkerRegistrationId: pl.wendigo.chrome.api.serviceworker.RegistrationID,
 
     /**  
      * The Background Service this event belongs to.  

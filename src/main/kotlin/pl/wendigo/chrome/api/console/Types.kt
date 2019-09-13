@@ -1,7 +1,9 @@
-package pl.wendigo.chrome.domain.console
+package pl.wendigo.chrome.api.console
 
 /**
  * Console message.
+ *
+ * @link [Console#ConsoleMessage](https://chromedevtools.github.io/devtools-protocol/tot/Console#type-ConsoleMessage) type documentation.
  */
 
 data class ConsoleMessage(

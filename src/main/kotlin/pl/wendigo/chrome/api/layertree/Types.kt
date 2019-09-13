@@ -1,26 +1,32 @@
-package pl.wendigo.chrome.domain.layertree
+package pl.wendigo.chrome.api.layertree
 
 /**
  * Unique Layer identifier.
+ *
+ * @link [LayerTree#LayerId](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-LayerId) type documentation.
  */
 
 typealias LayerId = String
 
 /**
  * Unique snapshot identifier.
+ *
+ * @link [LayerTree#SnapshotId](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-SnapshotId) type documentation.
  */
 
 typealias SnapshotId = String
 
 /**
  * Rectangle where scrolling happens on the main thread.
+ *
+ * @link [LayerTree#ScrollRect](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-ScrollRect) type documentation.
  */
 
 data class ScrollRect(
     /**  
      * Rectangle itself.  
      */  
-    val rect: pl.wendigo.chrome.domain.dom.Rect,
+    val rect: pl.wendigo.chrome.api.dom.Rect,
 
     /**  
      * Reason for rectangle to force scrolling on the main thread  
@@ -30,18 +36,20 @@ data class ScrollRect(
 
 /**
  * Sticky position constraints.
+ *
+ * @link [LayerTree#StickyPositionConstraint](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-StickyPositionConstraint) type documentation.
  */
 
 data class StickyPositionConstraint(
     /**  
      * Layout rectangle of the sticky element before being shifted  
      */  
-    val stickyBoxRect: pl.wendigo.chrome.domain.dom.Rect,
+    val stickyBoxRect: pl.wendigo.chrome.api.dom.Rect,
 
     /**  
      * Layout rectangle of the containing block of the sticky element  
      */  
-    val containingBlockRect: pl.wendigo.chrome.domain.dom.Rect,
+    val containingBlockRect: pl.wendigo.chrome.api.dom.Rect,
 
     /**  
      * The nearest sticky layer that shifts the sticky box  
@@ -56,6 +64,8 @@ data class StickyPositionConstraint(
 
 /**
  * Serialized fragment of layer picture along with its offset within the layer.
+ *
+ * @link [LayerTree#PictureTile](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-PictureTile) type documentation.
  */
 
 data class PictureTile(
@@ -77,6 +87,8 @@ data class PictureTile(
 
 /**
  * Information about a compositing layer.
+ *
+ * @link [LayerTree#Layer](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-Layer) type documentation.
  */
 
 data class Layer(
@@ -93,7 +105,7 @@ data class Layer(
     /**  
      * The backend id for the node associated with this layer.  
      */  
-    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
 
     /**  
      * Offset from parent layer, X coordinate.  
@@ -164,6 +176,8 @@ data class Layer(
 
 /**
  * Array of timings, one per paint step.
+ *
+ * @link [LayerTree#PaintProfile](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-PaintProfile) type documentation.
  */
 
 typealias PaintProfile = List<Double>
