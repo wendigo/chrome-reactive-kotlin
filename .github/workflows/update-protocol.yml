@@ -1,6 +1,8 @@
 name: Update protocol to ToT
 
-on: [push]
+on:
+  schedule:
+    - cron:  '*/15 * * * *'
 
 jobs:
   update:
