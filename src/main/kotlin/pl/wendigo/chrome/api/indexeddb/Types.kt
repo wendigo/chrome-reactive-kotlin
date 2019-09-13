@@ -139,17 +139,17 @@ data class DataEntry(
     /**  
      * Key object.  
      */  
-    val key: pl.wendigo.chrome.domain.runtime.RemoteObject,
+    val key: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      * Primary key object.  
      */  
-    val primaryKey: pl.wendigo.chrome.domain.runtime.RemoteObject,
+    val primaryKey: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      * Value object.  
      */  
-    val value: pl.wendigo.chrome.domain.runtime.RemoteObject
+    val value: pl.wendigo.chrome.api.runtime.RemoteObject
 )
 
 /**

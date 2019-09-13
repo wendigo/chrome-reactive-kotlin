@@ -106,7 +106,7 @@ data class GetEventListenersRequest(
     /**
      * Identifier of the object to return listeners for.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId,
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId,
 
     /**
      * The maximum depth at which Node children should be retrieved, defaults to 1. Use -1 for the
@@ -144,7 +144,7 @@ data class RemoveDOMBreakpointRequest(
     /**
      * Identifier of the node to remove breakpoint from.
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId,
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId,
 
     /**
      * Type of the breakpoint to remove.
@@ -206,7 +206,7 @@ data class SetDOMBreakpointRequest(
     /**
      * Identifier of the node to set breakpoint on.
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId,
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId,
 
     /**
      * Type of the operation to stop upon.

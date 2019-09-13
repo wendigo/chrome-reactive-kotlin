@@ -1051,7 +1051,7 @@ data class CreateIsolatedWorldResponse(
     /**  
      * Execution context of the isolated world.  
      */  
-    val executionContextId: pl.wendigo.chrome.domain.runtime.ExecutionContextId
+    val executionContextId: pl.wendigo.chrome.api.runtime.ExecutionContextId
 
 )
 
@@ -1119,7 +1119,7 @@ data class GetCookiesResponse(
     /**  
      * Array of cookie objects.  
      */  
-    val cookies: List<pl.wendigo.chrome.domain.network.Cookie>
+    val cookies: List<pl.wendigo.chrome.api.network.Cookie>
 
 )
 
@@ -1155,7 +1155,7 @@ data class GetLayoutMetricsResponse(
     /**  
      * Size of scrollable area.  
      */  
-    val contentSize: pl.wendigo.chrome.domain.dom.Rect
+    val contentSize: pl.wendigo.chrome.api.dom.Rect
 
 )
 
@@ -1287,7 +1287,7 @@ data class NavigateResponse(
     /**  
      * Loader identifier.  
      */  
-    val loaderId: pl.wendigo.chrome.domain.network.LoaderId? = null,
+    val loaderId: pl.wendigo.chrome.api.network.LoaderId? = null,
 
     /**  
      * User friendly error message, present if and only if navigation has failed.  
@@ -1422,7 +1422,7 @@ data class PrintToPDFResponse(
     /**  
      * A handle of the stream that holds resulting PDF data.  
      */  
-    @pl.wendigo.chrome.Experimental val stream: pl.wendigo.chrome.domain.io.StreamHandle? = null
+    @pl.wendigo.chrome.Experimental val stream: pl.wendigo.chrome.api.io.StreamHandle? = null
 
 )
 
@@ -1526,7 +1526,7 @@ data class SearchInResourceResponse(
     /**  
      * List of search matches.  
      */  
-    val result: List<pl.wendigo.chrome.domain.debugger.SearchMatch>
+    val result: List<pl.wendigo.chrome.api.debugger.SearchMatch>
 
 )
 
@@ -1618,7 +1618,7 @@ autosizing and more.
     /**
      * Screen orientation override.
      */
-    val screenOrientation: pl.wendigo.chrome.domain.emulation.ScreenOrientation? = null,
+    val screenOrientation: pl.wendigo.chrome.api.emulation.ScreenOrientation? = null,
 
     /**
      * The viewport dimensions and scale. If not set, the override is cleared.
@@ -1909,7 +1909,7 @@ data class DomContentEventFiredEvent(
     /**  
      *  
      */  
-    val timestamp: pl.wendigo.chrome.domain.network.MonotonicTime
+    val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "domContentEventFired")
 
@@ -1945,7 +1945,7 @@ data class FrameAttachedEvent(
     /**  
      * JavaScript stack trace of when frame was attached, only set if frame initiated from script.  
      */  
-    val stack: pl.wendigo.chrome.domain.runtime.StackTrace? = null
+    val stack: pl.wendigo.chrome.api.runtime.StackTrace? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "frameAttached")
 
@@ -2154,7 +2154,7 @@ data class LifecycleEventEvent(
     /**  
      * Loader identifier. Empty string if the request is fetched from worker.  
      */  
-    val loaderId: pl.wendigo.chrome.domain.network.LoaderId,
+    val loaderId: pl.wendigo.chrome.api.network.LoaderId,
 
     /**  
      *  
@@ -2164,7 +2164,7 @@ data class LifecycleEventEvent(
     /**  
      *  
      */  
-    val timestamp: pl.wendigo.chrome.domain.network.MonotonicTime
+    val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "lifecycleEvent")
 
@@ -2177,7 +2177,7 @@ data class LoadEventFiredEvent(
     /**  
      *  
      */  
-    val timestamp: pl.wendigo.chrome.domain.network.MonotonicTime
+    val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Page", name = "loadEventFired")
 

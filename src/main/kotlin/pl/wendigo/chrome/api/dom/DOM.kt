@@ -742,7 +742,7 @@ data class DescribeNodeRequest(
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null,
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null,
 
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
@@ -805,7 +805,7 @@ data class FocusRequest(
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null
 
 )
 
@@ -854,7 +854,7 @@ data class GetBoxModelRequest(
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null
 
 )
 
@@ -891,7 +891,7 @@ data class GetContentQuadsRequest(
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null
 
 )
 
@@ -1019,7 +1019,7 @@ data class GetNodeForLocationResponse(
     /**  
      * Frame this node belongs to.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
     /**  
      * Id of the node at given coordinates, only when enabled and requested document.  
@@ -1047,7 +1047,7 @@ data class GetOuterHTMLRequest(
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null
 
 )
 
@@ -1387,7 +1387,7 @@ data class RequestNodeRequest(
     /**
      * JavaScript object id to convert into node.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId
 
 )
 
@@ -1420,7 +1420,7 @@ data class ResolveNodeRequest(
     /**
      * Backend identifier of the node to resolve.
      */
-    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
 
     /**
      * Symbolic group name that can be used to release multiple objects.
@@ -1430,7 +1430,7 @@ data class ResolveNodeRequest(
     /**
      * Execution context in which to resolve the node.
      */
-    val executionContextId: pl.wendigo.chrome.domain.runtime.ExecutionContextId? = null
+    val executionContextId: pl.wendigo.chrome.api.runtime.ExecutionContextId? = null
 
 )
 
@@ -1444,7 +1444,7 @@ data class ResolveNodeResponse(
      * JavaScript object wrapper for given node.  
      */  
     @get:com.fasterxml.jackson.annotation.JsonProperty("object")
-    val _object: pl.wendigo.chrome.domain.runtime.RemoteObject
+    val _object: pl.wendigo.chrome.api.runtime.RemoteObject
 
 )
 
@@ -1520,7 +1520,7 @@ data class SetFileInputFilesRequest(
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null
 
 )
 
@@ -1559,7 +1559,7 @@ data class GetNodeStackTracesResponse(
     /**  
      * Creation stack trace, if available.  
      */  
-    val creation: pl.wendigo.chrome.domain.runtime.StackTrace? = null
+    val creation: pl.wendigo.chrome.api.runtime.StackTrace? = null
 
 )
 
@@ -1573,7 +1573,7 @@ data class GetFileInfoRequest(
     /**
      * JavaScript object id of the node wrapper.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId
 
 )
 
@@ -1681,7 +1681,7 @@ data class GetFrameOwnerRequest(
     /**
      *
      */
-    val frameId: pl.wendigo.chrome.domain.page.FrameId
+    val frameId: pl.wendigo.chrome.api.page.FrameId
 
 )
 

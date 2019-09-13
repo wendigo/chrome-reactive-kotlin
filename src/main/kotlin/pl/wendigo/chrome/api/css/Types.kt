@@ -30,7 +30,7 @@ data class PseudoElementMatches(
     /**  
      * Pseudo element type.  
      */  
-    val pseudoType: pl.wendigo.chrome.domain.dom.PseudoType,
+    val pseudoType: pl.wendigo.chrome.api.dom.PseudoType,
 
     /**  
      * Matches of CSS rules applicable to the pseudo style.  
@@ -115,7 +115,7 @@ data class CSSStyleSheetHeader(
     /**  
      * Owner frame identifier.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
     /**  
      * Stylesheet resource URL.  
@@ -140,7 +140,7 @@ data class CSSStyleSheetHeader(
     /**  
      * The backend id for the owner node of the stylesheet.  
      */  
-    val ownerNode: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    val ownerNode: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
 
     /**  
      * Denotes whether the stylesheet is disabled.  

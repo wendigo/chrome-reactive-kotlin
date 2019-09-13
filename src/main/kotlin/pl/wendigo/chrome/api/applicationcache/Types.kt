@@ -60,7 +60,7 @@ data class FrameWithManifest(
     /**  
      * Frame identifier.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
     /**  
      * Manifest URL.  

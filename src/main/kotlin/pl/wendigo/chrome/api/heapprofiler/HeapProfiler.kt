@@ -261,7 +261,7 @@ data class GetObjectByHeapObjectIdResponse(
     /**  
      * Evaluation result.  
      */  
-    val result: pl.wendigo.chrome.domain.runtime.RemoteObject
+    val result: pl.wendigo.chrome.api.runtime.RemoteObject
 
 )
 
@@ -287,7 +287,7 @@ data class GetHeapObjectIdRequest(
     /**
      * Identifier of the object to get heap object id for.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId
 
 )
 

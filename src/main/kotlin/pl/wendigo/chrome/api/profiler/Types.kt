@@ -13,7 +13,7 @@ data class ProfileNode(
     /**  
      * Function location.  
      */  
-    val callFrame: pl.wendigo.chrome.domain.runtime.CallFrame,
+    val callFrame: pl.wendigo.chrome.api.runtime.CallFrame,
 
     /**  
      * Number of samples where this node was on top of the call stack.  

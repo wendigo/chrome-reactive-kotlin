@@ -94,7 +94,7 @@ data class GetApplicationCacheForFrameRequest(
     /**
      * Identifier of the frame containing document whose application cache is retrieved.
      */
-    val frameId: pl.wendigo.chrome.domain.page.FrameId
+    val frameId: pl.wendigo.chrome.api.page.FrameId
 
 )
 
@@ -135,7 +135,7 @@ data class GetManifestForFrameRequest(
     /**
      * Identifier of the frame containing document whose manifest is retrieved.
      */
-    val frameId: pl.wendigo.chrome.domain.page.FrameId
+    val frameId: pl.wendigo.chrome.api.page.FrameId
 
 )
 
@@ -161,7 +161,7 @@ data class ApplicationCacheStatusUpdatedEvent(
     /**  
      * Identifier of the frame containing document whose application cache updated status.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
     /**  
      * Manifest URL.  

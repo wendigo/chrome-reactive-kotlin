@@ -32,7 +32,7 @@ data class RequestPattern(
     /**  
      * If set, only requests for matching resource types will be intercepted.  
      */  
-    val resourceType: pl.wendigo.chrome.domain.network.ResourceType? = null,
+    val resourceType: pl.wendigo.chrome.api.network.ResourceType? = null,
 
     /**  
      * Stage at wich to begin intercepting requests. Default is Request.  

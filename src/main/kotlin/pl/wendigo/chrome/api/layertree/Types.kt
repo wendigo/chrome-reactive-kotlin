@@ -20,7 +20,7 @@ data class ScrollRect(
     /**  
      * Rectangle itself.  
      */  
-    val rect: pl.wendigo.chrome.domain.dom.Rect,
+    val rect: pl.wendigo.chrome.api.dom.Rect,
 
     /**  
      * Reason for rectangle to force scrolling on the main thread  
@@ -36,12 +36,12 @@ data class StickyPositionConstraint(
     /**  
      * Layout rectangle of the sticky element before being shifted  
      */  
-    val stickyBoxRect: pl.wendigo.chrome.domain.dom.Rect,
+    val stickyBoxRect: pl.wendigo.chrome.api.dom.Rect,
 
     /**  
      * Layout rectangle of the containing block of the sticky element  
      */  
-    val containingBlockRect: pl.wendigo.chrome.domain.dom.Rect,
+    val containingBlockRect: pl.wendigo.chrome.api.dom.Rect,
 
     /**  
      * The nearest sticky layer that shifts the sticky box  
@@ -93,7 +93,7 @@ data class Layer(
     /**  
      * The backend id for the node associated with this layer.  
      */  
-    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
 
     /**  
      * Offset from parent layer, X coordinate.  

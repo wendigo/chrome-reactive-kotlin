@@ -44,7 +44,7 @@ data class BackgroundServiceEvent(
     /**  
      * Timestamp of the event (in seconds).  
      */  
-    val timestamp: pl.wendigo.chrome.domain.network.TimeSinceEpoch,
+    val timestamp: pl.wendigo.chrome.api.network.TimeSinceEpoch,
 
     /**  
      * The origin this event belongs to.  
@@ -54,7 +54,7 @@ data class BackgroundServiceEvent(
     /**  
      * The Service Worker ID that initiated the event.  
      */  
-    val serviceWorkerRegistrationId: pl.wendigo.chrome.domain.serviceworker.RegistrationID,
+    val serviceWorkerRegistrationId: pl.wendigo.chrome.api.serviceworker.RegistrationID,
 
     /**  
      * The Background Service this event belongs to.  

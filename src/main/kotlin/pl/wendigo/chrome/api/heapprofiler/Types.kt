@@ -14,7 +14,7 @@ data class SamplingHeapProfileNode(
     /**  
      * Function location.  
      */  
-    val callFrame: pl.wendigo.chrome.domain.runtime.CallFrame,
+    val callFrame: pl.wendigo.chrome.api.runtime.CallFrame,
 
     /**  
      * Allocations size in bytes for the node excluding children.  

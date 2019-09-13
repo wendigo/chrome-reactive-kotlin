@@ -28,42 +28,42 @@ data class HighlightConfig(
     /**  
      * The content box highlight fill color (default: transparent).  
      */  
-    val contentColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val contentColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The padding highlight fill color (default: transparent).  
      */  
-    val paddingColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val paddingColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The border highlight fill color (default: transparent).  
      */  
-    val borderColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val borderColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The margin highlight fill color (default: transparent).  
      */  
-    val marginColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val marginColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The event target element highlight fill color (default: transparent).  
      */  
-    val eventTargetColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val eventTargetColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The shape outside fill color (default: transparent).  
      */  
-    val shapeColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val shapeColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The shape margin fill color (default: transparent).  
      */  
-    val shapeMarginColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val shapeMarginColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * The grid layout color (default: transparent).  
      */  
-    val cssGridColor: pl.wendigo.chrome.domain.dom.RGBA? = null
+    val cssGridColor: pl.wendigo.chrome.api.dom.RGBA? = null
 )
 
 /**

@@ -965,7 +965,7 @@ data class TakeResponseBodyForInterceptionAsStreamResponse(
     /**  
      *  
      */  
-    val stream: pl.wendigo.chrome.domain.io.StreamHandle
+    val stream: pl.wendigo.chrome.api.io.StreamHandle
 
 )
 
@@ -1021,7 +1021,7 @@ data class SearchInResponseBodyResponse(
     /**  
      * List of search matches.  
      */  
-    val result: List<pl.wendigo.chrome.domain.debugger.SearchMatch>
+    val result: List<pl.wendigo.chrome.api.debugger.SearchMatch>
 
 )
 
@@ -1364,7 +1364,7 @@ data class RequestInterceptedEvent(
     /**  
      * The id of the frame that initiated the request.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
     /**  
      * How the requested resource will be used.  
@@ -1486,7 +1486,7 @@ data class RequestWillBeSentEvent(
     /**  
      * Frame identifier.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId? = null,
+    val frameId: pl.wendigo.chrome.api.page.FrameId? = null,
 
     /**  
      * Whether the request is initiated by a user gesture. Defaults to false.  
@@ -1570,7 +1570,7 @@ data class ResponseReceivedEvent(
     /**  
      * Frame identifier.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId? = null
+    val frameId: pl.wendigo.chrome.api.page.FrameId? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Network", name = "responseReceived")
 

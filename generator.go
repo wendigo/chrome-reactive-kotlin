@@ -184,7 +184,7 @@ func sanitizeReference(ref string) string {
 		return ref
 	}
 
-	return fmt.Sprintf("%s.domain.%s.%s", basePackage, strings.ToLower(parts[0]), parts[1])
+	return fmt.Sprintf("%s.api.%s.%s", basePackage, strings.ToLower(parts[0]), parts[1])
 }
 
 func (p Parameter) ReferenceImport() string {

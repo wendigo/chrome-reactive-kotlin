@@ -24,7 +24,7 @@ data class Frame(
     /**  
      * Identifier of the loader associated with this frame.  
      */  
-    val loaderId: pl.wendigo.chrome.domain.network.LoaderId,
+    val loaderId: pl.wendigo.chrome.api.network.LoaderId,
 
     /**  
      * Frame's name as specified in the tag.  
@@ -70,7 +70,7 @@ data class FrameResource(
     /**  
      * Type of this resource.  
      */  
-    val type: pl.wendigo.chrome.domain.network.ResourceType,
+    val type: pl.wendigo.chrome.api.network.ResourceType,
 
     /**  
      * Resource mimeType as determined by the browser.  
@@ -80,7 +80,7 @@ data class FrameResource(
     /**  
      * last-modified timestamp as reported by server.  
      */  
-    val lastModified: pl.wendigo.chrome.domain.network.TimeSinceEpoch? = null,
+    val lastModified: pl.wendigo.chrome.api.network.TimeSinceEpoch? = null,
 
     /**  
      * Resource content size.  
@@ -242,7 +242,7 @@ data class ScreencastFrameMetadata(
     /**  
      * Frame swap timestamp.  
      */  
-    val timestamp: pl.wendigo.chrome.domain.network.TimeSinceEpoch? = null
+    val timestamp: pl.wendigo.chrome.api.network.TimeSinceEpoch? = null
 )
 
 /**
