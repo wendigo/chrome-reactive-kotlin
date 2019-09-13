@@ -20,11 +20,19 @@ Add to your Kotlin or Java project (Gradle dependency):
 
 # Example
 
+Run headless chrome:
+
+```
+docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank
+```
+
+And now execute:
+
 ```kotlin
 import pl.wendigo.chrome.api.page.NavigateRequest
 
 fun main() {
-    val browser = Browser.connect("127.0.0.1:9223")
+    val browser = Browser.connect("127.0.0.1:9222")
     val session = browser.headlessSession("about:blank")
 
     await {
