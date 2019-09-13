@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: "Test with gradle"
+    name: "Test and release"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -15,11 +15,6 @@ jobs:
         run: docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank
       - name: Tests
         run: ./gradlew clean test
-  release:
-    name: "Upload and release staging repository"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
       - name: Populate gradle.properties
         run: echo -e "nexusUsername=${{ secrets.SONATYPE_USER }}\nnexusPassword=${{ secrets.SONATYPE_PASSWORD }}\nsigning.keyId=${{ secrets.SIGNING_KEY_ID }}\nsigning.password=${{ secrets.SIGNING_PASSWORD }}\nsigning.secretKeyRingFile=deploy/private.gpg" > gradle.properties
       - name: Release to Sonatype OSS
