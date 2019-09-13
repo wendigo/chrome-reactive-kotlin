@@ -1,0 +1,12 @@
+name: Update protocol to ToT
+schedule:
+  # * is a special character in YAML so you have to quote this string
+  - cron:  '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Update protocol
+        run: ./update.sh
