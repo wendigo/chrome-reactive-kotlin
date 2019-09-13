@@ -255,7 +255,7 @@ data class GetHighlightObjectForTestRequest(
     /**
      * Id of the node to get highlight object for.
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId,
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId,
 
     /**
      * Whether to include distance info.
@@ -291,17 +291,17 @@ data class HighlightFrameRequest(
     /**
      * Identifier of the frame to highlight.
      */
-    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
     /**
      * The content box highlight fill color (default: transparent).
      */
-    val contentColor: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val contentColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**
      * The content box highlight outline color (default: transparent).
      */
-    val contentOutlineColor: pl.wendigo.chrome.domain.dom.RGBA? = null
+    val contentOutlineColor: pl.wendigo.chrome.api.dom.RGBA? = null
 
 )
 
@@ -320,17 +320,17 @@ data class HighlightNodeRequest(
     /**
      * Identifier of the node to highlight.
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId? = null,
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId? = null,
 
     /**
      * Identifier of the backend node to highlight.
      */
-    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
 
     /**
      * JavaScript object id of the node to be highlighted.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null,
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null,
 
     /**
      * Selectors to highlight relevant nodes.
@@ -348,17 +348,17 @@ data class HighlightQuadRequest(
     /**
      * Quad to highlight
      */
-    val quad: pl.wendigo.chrome.domain.dom.Quad,
+    val quad: pl.wendigo.chrome.api.dom.Quad,
 
     /**
      * The highlight fill color (default: transparent).
      */
-    val color: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val color: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**
      * The highlight outline color (default: transparent).
      */
-    val outlineColor: pl.wendigo.chrome.domain.dom.RGBA? = null
+    val outlineColor: pl.wendigo.chrome.api.dom.RGBA? = null
 
 )
 
@@ -391,12 +391,12 @@ data class HighlightRectRequest(
     /**
      * The highlight fill color (default: transparent).
      */
-    val color: pl.wendigo.chrome.domain.dom.RGBA? = null,
+    val color: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**
      * The highlight outline color (default: transparent).
      */
-    val outlineColor: pl.wendigo.chrome.domain.dom.RGBA? = null
+    val outlineColor: pl.wendigo.chrome.api.dom.RGBA? = null
 
 )
 
@@ -547,7 +547,7 @@ data class InspectNodeRequestedEvent(
     /**  
      * Id of the node to inspect.  
      */  
-    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Overlay", name = "inspectNodeRequested")
 
@@ -560,7 +560,7 @@ data class NodeHighlightRequestedEvent(
     /**  
      *  
      */  
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Overlay", name = "nodeHighlightRequested")
 
@@ -573,6 +573,6 @@ data class ScreenshotRequestedEvent(
     /**  
      * Viewport to capture, in device independent pixels (dip).  
      */  
-    val viewport: pl.wendigo.chrome.domain.page.Viewport
+    val viewport: pl.wendigo.chrome.api.page.Viewport
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Overlay", name = "screenshotRequested")

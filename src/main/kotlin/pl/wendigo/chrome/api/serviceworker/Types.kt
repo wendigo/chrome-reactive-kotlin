@@ -103,12 +103,12 @@ data class ServiceWorkerVersion(
     /**  
      *  
      */  
-    val controlledClients: List<pl.wendigo.chrome.domain.target.TargetID>? = null,
+    val controlledClients: List<pl.wendigo.chrome.api.target.TargetID>? = null,
 
     /**  
      *  
      */  
-    val targetId: pl.wendigo.chrome.domain.target.TargetID? = null
+    val targetId: pl.wendigo.chrome.api.target.TargetID? = null
 )
 
 /**

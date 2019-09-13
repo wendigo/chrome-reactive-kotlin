@@ -43,7 +43,7 @@ data class DOMNode(
     /**  
      * `Node`'s id, corresponds to DOM.Node.backendNodeId.  
      */  
-    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId,
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId,
 
     /**  
      * The indexes of the node's child nodes in the `domNodes` array returned by `getSnapshot`, if  
@@ -101,7 +101,7 @@ data class DOMNode(
     /**  
      * Frame ID for frame owner elements and also for the document node.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId? = null,
+    val frameId: pl.wendigo.chrome.api.page.FrameId? = null,
 
     /**  
      * The index of a frame owner element's content document in the `domNodes` array returned by  
@@ -112,12 +112,12 @@ data class DOMNode(
     /**  
      * Type of a pseudo element node.  
      */  
-    val pseudoType: pl.wendigo.chrome.domain.dom.PseudoType? = null,
+    val pseudoType: pl.wendigo.chrome.api.dom.PseudoType? = null,
 
     /**  
      * Shadow root type.  
      */  
-    val shadowRootType: pl.wendigo.chrome.domain.dom.ShadowRootType? = null,
+    val shadowRootType: pl.wendigo.chrome.api.dom.ShadowRootType? = null,
 
     /**  
      * Whether this DOM node responds to mouse clicks. This includes nodes that have had click  
@@ -129,7 +129,7 @@ data class DOMNode(
     /**  
      * Details of the node's event listeners, if any.  
      */  
-    val eventListeners: List<pl.wendigo.chrome.domain.domdebugger.EventListener>? = null,
+    val eventListeners: List<pl.wendigo.chrome.api.domdebugger.EventListener>? = null,
 
     /**  
      * The selected url for nodes with a srcset attribute.  
@@ -161,7 +161,7 @@ data class InlineTextBox(
     /**  
      * The bounding box in document coordinates. Note that scroll offset of the document is ignored.  
      */  
-    val boundingBox: pl.wendigo.chrome.domain.dom.Rect,
+    val boundingBox: pl.wendigo.chrome.api.dom.Rect,
 
     /**  
      * The starting index in characters, for this post layout textbox substring. Characters that  
@@ -189,7 +189,7 @@ data class LayoutTreeNode(
     /**  
      * The bounding box in document coordinates. Note that scroll offset of the document is ignored.  
      */  
-    val boundingBox: pl.wendigo.chrome.domain.dom.Rect,
+    val boundingBox: pl.wendigo.chrome.api.dom.Rect,
 
     /**  
      * Contents of the LayoutText, if any.  
@@ -401,7 +401,7 @@ data class NodeTreeSnapshot(
     /**  
      * `Node`'s id, corresponds to DOM.Node.backendNodeId.  
      */  
-    val backendNodeId: List<pl.wendigo.chrome.domain.dom.BackendNodeId>? = null,
+    val backendNodeId: List<pl.wendigo.chrome.api.dom.BackendNodeId>? = null,
 
     /**  
      * Attributes of an `Element` node. Flatten name, value pairs.  

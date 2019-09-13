@@ -35,7 +35,7 @@ data class GetEncodedResponseRequest(
     /**
      * Identifier of the network request to get content for.
      */
-    val requestId: pl.wendigo.chrome.domain.network.RequestId,
+    val requestId: pl.wendigo.chrome.api.network.RequestId,
 
     /**
      * The encoding to use.

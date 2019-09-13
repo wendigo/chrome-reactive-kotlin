@@ -278,7 +278,7 @@ data class SetDefaultBackgroundColorOverrideRequest(
      * RGBA of the default background color. If not specified, any existing override will be
 cleared.
      */
-    val color: pl.wendigo.chrome.domain.dom.RGBA? = null
+    val color: pl.wendigo.chrome.api.dom.RGBA? = null
 
 )
 
@@ -350,7 +350,7 @@ autosizing and more.
      * If set, the visible area of the page will be overridden to this viewport. This viewport
 change is not observed by the page, e.g. viewport-relative elements do not change positions.
      */
-    @pl.wendigo.chrome.Experimental val viewport: pl.wendigo.chrome.domain.page.Viewport? = null
+    @pl.wendigo.chrome.Experimental val viewport: pl.wendigo.chrome.api.page.Viewport? = null
 
 )
 
@@ -525,7 +525,7 @@ Note any previous deferred policy change is superseded.
     /**
      * If set, base::Time::Now will be overriden to initially return this value.
      */
-    val initialVirtualTime: pl.wendigo.chrome.domain.network.TimeSinceEpoch? = null
+    val initialVirtualTime: pl.wendigo.chrome.api.network.TimeSinceEpoch? = null
 
 )
 

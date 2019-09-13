@@ -228,7 +228,7 @@ data class ResolveAnimationResponse(
     /**  
      * Corresponding remote object.  
      */  
-    val remoteObject: pl.wendigo.chrome.domain.runtime.RemoteObject
+    val remoteObject: pl.wendigo.chrome.api.runtime.RemoteObject
 
 )
 

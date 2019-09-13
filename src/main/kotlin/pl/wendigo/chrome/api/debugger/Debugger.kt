@@ -451,7 +451,7 @@ data class SearchInContentRequest(
     /**
      * Id of the script to search in.
      */
-    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
 
     /**
      * String to search for.
@@ -492,7 +492,7 @@ data class SetScriptSourceRequest(
     /**
      * Id of the script to edit.
      */
-    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
 
     /**
      * New content of the script.
@@ -525,12 +525,12 @@ data class SetScriptSourceResponse(
     /**  
      * Async stack trace, if any.  
      */  
-    val asyncStackTrace: pl.wendigo.chrome.domain.runtime.StackTrace? = null,
+    val asyncStackTrace: pl.wendigo.chrome.api.runtime.StackTrace? = null,
 
     /**  
      * Exception details if any.  
      */  
-    val exceptionDetails: pl.wendigo.chrome.domain.runtime.ExceptionDetails? = null
+    val exceptionDetails: pl.wendigo.chrome.api.runtime.ExceptionDetails? = null
 
 )
 
@@ -561,7 +561,7 @@ data class RestartFrameResponse(
     /**  
      * Async stack trace, if any.  
      */  
-    val asyncStackTrace: pl.wendigo.chrome.domain.runtime.StackTrace? = null
+    val asyncStackTrace: pl.wendigo.chrome.api.runtime.StackTrace? = null
 
 )
 
@@ -574,7 +574,7 @@ data class GetScriptSourceRequest(
     /**
      * Id of the script to get source for.
      */
-    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId
 
 )
 
@@ -656,12 +656,12 @@ data class EvaluateOnCallFrameResponse(
     /**  
      * Object wrapper for the evaluation result.  
      */  
-    val result: pl.wendigo.chrome.domain.runtime.RemoteObject,
+    val result: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      * Exception details.  
      */  
-    val exceptionDetails: pl.wendigo.chrome.domain.runtime.ExceptionDetails? = null
+    val exceptionDetails: pl.wendigo.chrome.api.runtime.ExceptionDetails? = null
 
 )
 
@@ -684,7 +684,7 @@ data class SetVariableValueRequest(
     /**
      * New variable value.
      */
-    val newValue: pl.wendigo.chrome.domain.runtime.CallArgument,
+    val newValue: pl.wendigo.chrome.api.runtime.CallArgument,
 
     /**
      * Id of callframe that holds variable.
@@ -728,7 +728,7 @@ data class SetBlackboxedRangesRequest(
     /**
      * Id of the script.
      */
-    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
 
     /**
      *
@@ -746,7 +746,7 @@ data class ScriptParsedEvent(
     /**  
      * Identifier of the script parsed.  
      */  
-    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
 
     /**  
      * URL or name of the script parsed (if any).  
@@ -776,7 +776,7 @@ data class ScriptParsedEvent(
     /**  
      * Specifies script creation context.  
      */  
-    val executionContextId: pl.wendigo.chrome.domain.runtime.ExecutionContextId,
+    val executionContextId: pl.wendigo.chrome.api.runtime.ExecutionContextId,
 
     /**  
      * Content hash of the script.  
@@ -814,7 +814,7 @@ data class ScriptFailedToParseEvent(
     /**  
      * Identifier of the script parsed.  
      */  
-    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
 
     /**  
      * URL or name of the script parsed (if any).  
@@ -844,7 +844,7 @@ data class ScriptFailedToParseEvent(
     /**  
      * Specifies script creation context.  
      */  
-    val executionContextId: pl.wendigo.chrome.domain.runtime.ExecutionContextId,
+    val executionContextId: pl.wendigo.chrome.api.runtime.ExecutionContextId,
 
     /**  
      * Content hash of the script.  
@@ -915,6 +915,6 @@ data class PausedEvent(
     /**  
      * Async stack trace, if any.  
      */  
-    val asyncStackTrace: pl.wendigo.chrome.domain.runtime.StackTrace? = null
+    val asyncStackTrace: pl.wendigo.chrome.api.runtime.StackTrace? = null
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "Debugger", name = "paused")

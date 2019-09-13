@@ -100,7 +100,7 @@ data class AnimationEffect(
     /**  
      * `AnimationEffect`'s target node.  
      */  
-    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
 
     /**  
      * `AnimationEffect`'s keyframes.  

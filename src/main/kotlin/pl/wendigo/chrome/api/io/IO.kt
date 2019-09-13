@@ -111,7 +111,7 @@ data class ResolveBlobRequest(
     /**
      * Object id of a Blob object wrapper.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId
 
 )
 

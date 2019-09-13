@@ -258,7 +258,7 @@ data class TracingCompleteEvent(
     /**  
      * A handle of the stream that holds resulting trace data.  
      */  
-    val stream: pl.wendigo.chrome.domain.io.StreamHandle? = null,
+    val stream: pl.wendigo.chrome.api.io.StreamHandle? = null,
 
     /**  
      * Trace data format of returned stream.  

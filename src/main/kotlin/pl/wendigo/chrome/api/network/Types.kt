@@ -288,7 +288,7 @@ data class Request(
     /**  
      * The mixed content type of the request.  
      */  
-    val mixedContentType: pl.wendigo.chrome.domain.security.MixedContentType? = null,
+    val mixedContentType: pl.wendigo.chrome.api.security.MixedContentType? = null,
 
     /**  
      * Priority of the resource request at the time request is sent.  
@@ -385,7 +385,7 @@ data class SecurityDetails(
     /**  
      * Certificate ID value.  
      */  
-    val certificateId: pl.wendigo.chrome.domain.security.CertificateId,
+    val certificateId: pl.wendigo.chrome.api.security.CertificateId,
 
     /**  
      * Certificate subject name.  
@@ -555,7 +555,7 @@ data class Response(
     /**  
      * Security state of the request resource.  
      */  
-    val securityState: pl.wendigo.chrome.domain.security.SecurityState,
+    val securityState: pl.wendigo.chrome.api.security.SecurityState,
 
     /**  
      * Security details for the request.  
@@ -672,7 +672,7 @@ data class Initiator(
     /**  
      * Initiator JavaScript stack trace, set for Script only.  
      */  
-    val stack: pl.wendigo.chrome.domain.runtime.StackTrace? = null,
+    val stack: pl.wendigo.chrome.api.runtime.StackTrace? = null,
 
     /**  
      * Initiator URL, set for Parser type or for Script type (when script is importing module) or for SignedExchange type.  

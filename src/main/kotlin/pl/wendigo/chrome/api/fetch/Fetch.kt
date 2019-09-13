@@ -183,7 +183,7 @@ data class FailRequestRequest(
     /**
      * Causes the request to fail with the given reason.
      */
-    val errorReason: pl.wendigo.chrome.domain.network.ErrorReason
+    val errorReason: pl.wendigo.chrome.api.network.ErrorReason
 
 )
 
@@ -353,7 +353,7 @@ data class TakeResponseBodyAsStreamResponse(
     /**  
      *  
      */  
-    val stream: pl.wendigo.chrome.domain.io.StreamHandle
+    val stream: pl.wendigo.chrome.api.io.StreamHandle
 
 )
 
@@ -376,22 +376,22 @@ data class RequestPausedEvent(
     /**  
      * The details of the request.  
      */  
-    val request: pl.wendigo.chrome.domain.network.Request,
+    val request: pl.wendigo.chrome.api.network.Request,
 
     /**  
      * The id of the frame that initiated the request.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
     /**  
      * How the requested resource will be used.  
      */  
-    val resourceType: pl.wendigo.chrome.domain.network.ResourceType,
+    val resourceType: pl.wendigo.chrome.api.network.ResourceType,
 
     /**  
      * Response error if intercepted at response stage.  
      */  
-    val responseErrorReason: pl.wendigo.chrome.domain.network.ErrorReason? = null,
+    val responseErrorReason: pl.wendigo.chrome.api.network.ErrorReason? = null,
 
     /**  
      * Response code if intercepted at response stage.  
@@ -426,17 +426,17 @@ data class AuthRequiredEvent(
     /**  
      * The details of the request.  
      */  
-    val request: pl.wendigo.chrome.domain.network.Request,
+    val request: pl.wendigo.chrome.api.network.Request,
 
     /**  
      * The id of the frame that initiated the request.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId,
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
     /**  
      * How the requested resource will be used.  
      */  
-    val resourceType: pl.wendigo.chrome.domain.network.ResourceType,
+    val resourceType: pl.wendigo.chrome.api.network.ResourceType,
 
     /**  
      * Details of the Authorization Challenge encountered.  

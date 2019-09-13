@@ -40,7 +40,7 @@ data class EventListener(
     /**  
      * Script id of the handler code.  
      */  
-    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
 
     /**  
      * Line number in the script (0-based).  
@@ -55,15 +55,15 @@ data class EventListener(
     /**  
      * Event handler function value.  
      */  
-    val handler: pl.wendigo.chrome.domain.runtime.RemoteObject? = null,
+    val handler: pl.wendigo.chrome.api.runtime.RemoteObject? = null,
 
     /**  
      * Event original handler function value.  
      */  
-    val originalHandler: pl.wendigo.chrome.domain.runtime.RemoteObject? = null,
+    val originalHandler: pl.wendigo.chrome.api.runtime.RemoteObject? = null,
 
     /**  
      * Node the listener is added to (if any).  
      */  
-    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null
 )

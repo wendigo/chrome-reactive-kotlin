@@ -230,7 +230,7 @@ data class ProfileSnapshotRequest(
     /**
      * The clip rectangle to apply when replaying the snapshot.
      */
-    val clipRect: pl.wendigo.chrome.domain.dom.Rect? = null
+    val clipRect: pl.wendigo.chrome.api.dom.Rect? = null
 
 )
 
@@ -341,7 +341,7 @@ data class LayerPaintedEvent(
     /**  
      * Clip rectangle.  
      */  
-    val clip: pl.wendigo.chrome.domain.dom.Rect
+    val clip: pl.wendigo.chrome.api.dom.Rect
 
 ) : pl.wendigo.chrome.ProtocolEvent(domain = "LayerTree", name = "layerPainted")
 

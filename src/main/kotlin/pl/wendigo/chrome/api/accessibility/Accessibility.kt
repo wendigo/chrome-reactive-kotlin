@@ -62,17 +62,17 @@ data class GetPartialAXTreeRequest(
     /**
      * Identifier of the node to get the partial accessibility tree for.
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId? = null,
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId? = null,
 
     /**
      * Identifier of the backend node to get the partial accessibility tree for.
      */
-    val backendNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null,
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
 
     /**
      * JavaScript object id of the node wrapper to get the partial accessibility tree for.
      */
-    val objectId: pl.wendigo.chrome.domain.runtime.RemoteObjectId? = null,
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null,
 
     /**
      * Whether to fetch this nodes ancestors, siblings and children. Defaults to true.

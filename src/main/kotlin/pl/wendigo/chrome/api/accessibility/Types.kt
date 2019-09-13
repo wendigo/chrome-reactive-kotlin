@@ -145,7 +145,7 @@ data class AXRelatedNode(
     /**  
      * The BackendNodeId of the related DOM node.  
      */  
-    val backendDOMNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId,
+    val backendDOMNodeId: pl.wendigo.chrome.api.dom.BackendNodeId,
 
     /**  
      * The IDRef value provided, if any.  
@@ -342,5 +342,5 @@ data class AXNode(
     /**  
      * The backend ID for the associated DOM node, if any.  
      */  
-    val backendDOMNodeId: pl.wendigo.chrome.domain.dom.BackendNodeId? = null
+    val backendDOMNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null
 )

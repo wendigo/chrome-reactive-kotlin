@@ -133,7 +133,7 @@ data class ConsoleProfileStartedEvent(
     /**  
      * Location of console.profile().  
      */  
-    val location: pl.wendigo.chrome.domain.debugger.Location,
+    val location: pl.wendigo.chrome.api.debugger.Location,
 
     /**  
      * Profile title passed as an argument to console.profile().  
@@ -156,7 +156,7 @@ data class ConsoleProfileFinishedEvent(
     /**  
      * Location of console.profileEnd().  
      */  
-    val location: pl.wendigo.chrome.domain.debugger.Location,
+    val location: pl.wendigo.chrome.api.debugger.Location,
 
     /**  
      *  

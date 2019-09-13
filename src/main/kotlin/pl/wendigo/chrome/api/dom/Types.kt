@@ -193,7 +193,7 @@ data class Node(
     /**  
      * Frame ID for frame owner elements.  
      */  
-    val frameId: pl.wendigo.chrome.domain.page.FrameId? = null,
+    val frameId: pl.wendigo.chrome.api.page.FrameId? = null,
 
     /**  
      * Content document for frame owner elements.  

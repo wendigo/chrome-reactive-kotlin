@@ -20,7 +20,7 @@ data class Location(
     /**  
      * Script identifier as reported in the <code>Debugger.scriptParsed</code>.  
      */  
-    val scriptId: pl.wendigo.chrome.domain.runtime.ScriptId,
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
 
     /**  
      * Line number in the script (0-based).  
@@ -84,12 +84,12 @@ data class CallFrame(
      */  
     @get:com.fasterxml.jackson.annotation.JsonProperty("this")
 
-    val _this: pl.wendigo.chrome.domain.runtime.RemoteObject,
+    val _this: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      * The value being returned, if the function is at return point.  
      */  
-    val returnValue: pl.wendigo.chrome.domain.runtime.RemoteObject? = null
+    val returnValue: pl.wendigo.chrome.api.runtime.RemoteObject? = null
 )
 
 /**
@@ -107,7 +107,7 @@ data class Scope(
      */  
     @get:com.fasterxml.jackson.annotation.JsonProperty("object")
 
-    val _object: pl.wendigo.chrome.domain.runtime.RemoteObject,
+    val _object: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      *  

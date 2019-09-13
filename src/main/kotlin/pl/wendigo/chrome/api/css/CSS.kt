@@ -383,7 +383,7 @@ data class CreateStyleSheetRequest(
     /**
      * Identifier of the frame where "via-inspector" stylesheet should be created.
      */
-    val frameId: pl.wendigo.chrome.domain.page.FrameId
+    val frameId: pl.wendigo.chrome.api.page.FrameId
 
 )
 
@@ -410,7 +410,7 @@ data class ForcePseudoStateRequest(
     /**
      * The element id for which to force the pseudo state.
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId,
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId,
 
     /**
      * Element pseudo classes to force when computing the element's style.
@@ -428,7 +428,7 @@ data class GetBackgroundColorsRequest(
     /**
      * Id of the node to get background colors for.
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId
 
 )
 
@@ -469,7 +469,7 @@ data class GetComputedStyleForNodeRequest(
     /**
      *
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId
 
 )
 
@@ -496,7 +496,7 @@ data class GetInlineStylesForNodeRequest(
     /**
      *
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId
 
 )
 
@@ -528,7 +528,7 @@ data class GetMatchedStylesForNodeRequest(
     /**
      *
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId
 
 )
 
@@ -593,7 +593,7 @@ data class GetPlatformFontsForNodeRequest(
     /**
      *
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId
 
 )
 
@@ -647,7 +647,7 @@ data class SetEffectivePropertyValueForNodeRequest(
     /**
      * The element id for which to set property.
      */
-    val nodeId: pl.wendigo.chrome.domain.dom.NodeId,
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId,
 
     /**
      *
