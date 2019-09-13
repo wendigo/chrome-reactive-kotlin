@@ -1,0 +1,25 @@
+name: Release to OSSRH
+
+on:
+  push:
+    tags:
+      - chrome-reactive-kotlin-*
+
+jobs:
+  test:
+    name: "Test with gradle"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run headless chrome
+        run: docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank
+      - name: Tests
+        run: ./gradlew clean test
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Populate gradle.properties
+        run: echo -e "nexusUsername=${{ secrets.SONATYPE_USER }}\nnexusPassword=${{ secrets.SONATYPE_PASSWORD }}\nsigning.keyId=${{ secrets.SIGNING_KEY_ID }}\nsigning.password=${{ secrets.SIGNING_PASSWORD }}\nsigning.secretKeyRingFile=deploy/private.gpg" > gradle.properties
+      - name: Release to Sonatype OSS
+        run: bash deploy/deploy.sh
