@@ -16,6 +16,7 @@ jobs:
       - name: Tests
         run: ./gradlew clean test
   release:
+    name: "Upload and release staging repository"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
