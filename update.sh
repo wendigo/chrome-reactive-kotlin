@@ -40,8 +40,9 @@ then
 	printf "${GREEN}Checking if code is formatted...\n${NC}"
 	./gradlew lintKotlin
 	printf "${GREEN}Commiting changes...\n${NC}"
+	git config --global user.name 'Mateusz Gajewski' && git config --global user.email 'mateusz.gajewski@gmail.com'
 	git add .
-	git commit -m "Updated to newest protocol"
+	git commit -m "Automatically updated to newest protocol"
 	git push origin
 	printf "${GREEN}All done!\n${NC}"
 
