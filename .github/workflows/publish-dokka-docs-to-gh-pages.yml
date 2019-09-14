@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Build docs
+        run: ./gradlew clean dokkaJavadoc
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@master
         env:
@@ -16,4 +18,4 @@ jobs:
           BASE_BRANCH: master
           BRANCH: gh-pages
           FOLDER: build/docs/javadoc
-          BUILD_SCRIPT: ./gradlew clean dokkaJavadoc
+          BUILD_SCRIPT:
