@@ -10,7 +10,7 @@ For debugging purposes you can use my other project: [chrome-protocol-proxy](htt
 
 Please note that most up-to-date protocol is used at the moment.
 
-
+**Documentation can be found on [https://wendigo.github.io/chrome-reactive-kotlin/](https://wendigo.github.io/chrome-reactive-kotlin/).**
 
 # Usage
 
