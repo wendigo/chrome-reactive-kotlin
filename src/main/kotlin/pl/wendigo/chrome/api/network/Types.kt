@@ -860,9 +860,9 @@ enum class CookieBlockedReason {
 
 data class BlockedSetCookieWithReason(
     /**  
-     * The reason this cookie was blocked.  
+     * The reason(s) this cookie was blocked.  
      */  
-    val blockedReason: SetCookieBlockedReason,
+    val blockedReasons: List<SetCookieBlockedReason>,
 
     /**  
      * The string representing this individual cookie as it would appear in the header.  
@@ -886,9 +886,9 @@ data class BlockedSetCookieWithReason(
 
 data class BlockedCookieWithReason(
     /**  
-     * The reason the cookie was blocked.  
+     * The reason(s) the cookie was blocked.  
      */  
-    val blockedReason: CookieBlockedReason,
+    val blockedReasons: List<CookieBlockedReason>,
 
     /**  
      * The cookie object representing the cookie which was not sent.  
