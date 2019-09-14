@@ -5,6 +5,7 @@ NC='\033[0m'
 # based on https://github.com/cyrus-and/chrome-remote-interface/blob/master/scripts/update-protocol.sh
 set -e
 version="master"
+REPOSITORY_PATH="https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" && \
 
 trap "rm -f '$browser' '$js'" EXIT
 
@@ -45,7 +46,7 @@ then
 	git config --global user.name 'Mateusz Gajewski' && git config --global user.email 'mateusz.gajewski@gmail.com'
 	git add .
 	git commit -m "Automatically updated to newest protocol"
-	git push origin
+	git push $REPOSITORY_PATH master
 	printf "${GREEN}All done!\n${NC}"
 
 else
