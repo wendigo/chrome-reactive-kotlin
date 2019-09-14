@@ -22,6 +22,8 @@ python convert_protocol_to_json.py browser_protocol.pdl browser_protocol.json
 
 printf "${GREEN}Merging files v8_protocol.json, browser_protocol.json into protocol.json${NC}\n"
 
+git checkout master
+
 node -p '
     const protocols = process.argv.slice(1).map((path) => JSON.parse(fs.readFileSync(path)));
     protocols[0].domains.push(...protocols[1].domains);
