@@ -40,10 +40,6 @@ fun main() {
     }
 
     await {
-        session2.Page.enable()
-    }
-
-    await {
         session.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
             session.Page.frameStoppedLoading().filter {
                 it.frameId == frameId
