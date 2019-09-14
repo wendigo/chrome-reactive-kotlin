@@ -33,7 +33,7 @@ git --no-pager diff protocol.json
 if [[ -n $(git status -s) ]];
 then
 	printf "${GREEN}Regenerating domains...\n${NC}"
-	go get -u -v ./...
+	go get -u -v github.com/aymerick/raymond
 	go run generator.go
 	printf "${GREEN}Formatting result code...\n${NC}"
 	./gradlew formatKotlin
