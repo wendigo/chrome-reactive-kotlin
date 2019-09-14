@@ -12,3 +12,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Update protocol
         run: ./update.sh
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
