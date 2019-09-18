@@ -7,24 +7,22 @@ package pl.wendigo.chrome.api.audits
  * @link Protocol [Audits](https://chromedevtools.github.io/devtools-protocol/tot/Audits) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class AuditsOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class AuditsOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Returns the response body and size if it were re-encoded with the specified settings. Only
 applies to images.
      *
      * @link Protocol [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
      */
-    fun getEncodedResponse(input: GetEncodedResponseRequest): io.reactivex.Single<GetEncodedResponseResponse> {
-        return connection.runAndCaptureResponse("Audits.getEncodedResponse", input, GetEncodedResponseResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getEncodedResponse(input: GetEncodedResponseRequest): io.reactivex.Single<GetEncodedResponseResponse> = connection.runAndCaptureResponse("Audits.getEncodedResponse", input, GetEncodedResponseResponse::class.java)
+
+
 
     /**
      * Returns flowable capturing all Audits domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "Audits"
         }
     }
@@ -37,7 +35,7 @@ applies to images.
  * @link [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
  * @see [AuditsOperations.getEncodedResponse]
  */
-data class GetEncodedResponseRequest(
+data class GetEncodedResponseRequest (
     /**
      * Identifier of the network request to get content for.
      */
@@ -65,23 +63,24 @@ data class GetEncodedResponseRequest(
 applies to images.
  *
   
- * @link [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
- * @see [AuditsOperations.getEncodedResponse]
+  * @link [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
+  * @see [AuditsOperations.getEncodedResponse]
  */
 data class GetEncodedResponseResponse(
-    /**  
-     * The encoded body as a base64 string. Omitted if sizeOnly is true.  
-     */  
-    val body: String? = null,
+  /**
+   * The encoded body as a base64 string. Omitted if sizeOnly is true.
+   */
+  val body: String? = null,
 
-    /**  
-     * Size before re-encoding.  
-     */  
-    val originalSize: Int,
+  /**
+   * Size before re-encoding.
+   */
+  val originalSize: Int,
 
-    /**  
-     * Size after re-encoding.  
-     */  
-    val encodedSize: Int
+  /**
+   * Size after re-encoding.
+   */
+  val encodedSize: Int
 
 )
+

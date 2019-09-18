@@ -15,20 +15,20 @@ typealias HeapSnapshotObjectId = String
  */
 
 data class SamplingHeapProfileNode(
-    /**  
-     * Function location.  
-     */  
-    val callFrame: pl.wendigo.chrome.api.runtime.CallFrame,
+  /**
+   * Function location.
+   */
+  val callFrame: pl.wendigo.chrome.api.runtime.CallFrame,
 
-    /**  
-     * Allocations size in bytes for the node excluding children.  
-     */  
-    val selfSize: Double,
+  /**
+   * Allocations size in bytes for the node excluding children.
+   */
+  val selfSize: Double,
 
-    /**  
-     * Child nodes.  
-     */  
-    val children: List<SamplingHeapProfileNode>
+  /**
+   * Child nodes.
+   */
+  val children: List<SamplingHeapProfileNode>
 )
 
 /**
@@ -38,8 +38,9 @@ data class SamplingHeapProfileNode(
  */
 
 data class SamplingHeapProfile(
-    /**  
-     *  
-     */  
-    val head: SamplingHeapProfileNode
+  /**
+   *
+   */
+  val head: SamplingHeapProfileNode
 )
+

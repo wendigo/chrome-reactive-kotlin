@@ -1,11 +1,10 @@
 package pl.wendigo.chrome.protocol
 
-import io.reactivex.Observable
+import io.reactivex.BackpressureStrategy
+import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import io.reactivex.schedulers.Timed
 import io.reactivex.subjects.Subject
-import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -14,12 +13,12 @@ import okhttp3.WebSocketListener
 import org.slf4j.LoggerFactory
 
 class WebsocketFramesStream : WebSocketListener, FramesStream {
-    private val messages: Subject<Timed<ResponseFrame>>
+    private val messages: Subject<ResponseFrame>
     private val mapper: FrameMapper
     private val connection: WebSocket
     private val client: OkHttpClient
 
-    constructor(uri: String, messages: Subject<Timed<ResponseFrame>>, mapper: FrameMapper, client: OkHttpClient) : super() {
+    constructor(uri: String, messages: Subject<ResponseFrame>, mapper: FrameMapper, client: OkHttpClient) : super() {
         this.messages = messages
         this.mapper = mapper
         this.client = client
@@ -30,63 +29,48 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
      * onMessage is called when new frame arrives on websocket.
      */
     override fun onMessage(webSocket: WebSocket, text: String) {
-        messages.onNext(
-            Timed<ResponseFrame>(mapper.deserialize(text, ResponseFrame::class.java), System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-        )
+        messages.onNext(mapper.deserialize(text, ResponseFrame::class.java))
     }
 
     /**
      * onClosed is called when websocket is being closed.
      */
-    override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
-        messages.onComplete()
-    }
+    override fun onClosed(webSocket: WebSocket, code: Int, reason: String) = messages.onComplete()
 
     /**
      * onFailure is called when websocket protocol error occurs.
      */
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-        messages.onComplete()
+        logger.warn("Caught websocket error: $t")
     }
 
     /**
      * Returns protocol response (if any).
      */
-    override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>): Single<Timed<T>> {
+    override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>): Single<T> {
         return frames()
-            .filter { it.value().isResponse(requestFrame.id) }
-            .flatMapSingle { frame ->
-                mapper.deserializeResponse(requestFrame, frame.value(), clazz).map {
-                    Timed<T>(it, frame.time(), frame.unit())
-                }
-            }
+            .filter { it.matchesRequest(requestFrame) }
+            .map { frame -> mapper.deserializeResponse(requestFrame, frame, clazz) }
             .subscribeOn(Schedulers.io())
-            .take(1)
-            .singleOrError()
+            .firstOrError()
     }
 
     /**
      * Sends frame over the connection.
      */
     override fun send(frame: RequestFrame): Single<Boolean> {
-        return Single
-            .just(frame)
-            .flatMap { mapper.serialize(it) }
-            .map { connection.send(it) }
-            .subscribeOn(Schedulers.io())
+        return Single.just(connection.send(mapper.serialize(frame)))
     }
 
     /**
      * Returns all event frames.
      */
-    override fun eventFrames(): Observable<Timed<ResponseFrame>> = frames().filter {
-        it.value().isEvent()
-    }
+    override fun eventFrames(): Flowable<ResponseFrame> = frames().filter(ResponseFrame::isEvent)
 
     /**
      * Returns all frames.
      */
-    override fun frames(): Observable<Timed<ResponseFrame>> = messages
+    override fun frames(): Flowable<ResponseFrame> = messages.toFlowable(BackpressureStrategy.BUFFER)
 
     /**
      * Closes stream
@@ -94,16 +78,15 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     override fun close() {
         try {
             connection.close(1000, "Goodbye!")
-            connection.cancel()
             client.connectionPool.evictAll()
         } catch (e: Exception) {
-            logger.warn("caught exception while closing: ${e.message}")
+            logger.warn("Caught exception while closing websocket stream: ${e.message}")
         }
 
         try {
             messages.onComplete()
         } catch (e: Exception) {
-            logger.warn("caught exception while completing subject: ${e.message}")
+            logger.warn("Caught exception while completing subject: ${e.message}")
         }
     }
 

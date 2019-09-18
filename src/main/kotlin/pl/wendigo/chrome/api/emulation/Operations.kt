@@ -5,39 +5,30 @@ package pl.wendigo.chrome.api.emulation
  *
  * @link Protocol [Emulation](https://chromedevtools.github.io/devtools-protocol/tot/Emulation) domain documentation.
  */
-class EmulationOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class EmulationOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Tells whether emulation is supported.
      *
      * @link Protocol [Emulation#canEmulate](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-canEmulate) method documentation.
      */
-    fun canEmulate(): io.reactivex.Single<CanEmulateResponse> {
-        return connection.runAndCaptureResponse("Emulation.canEmulate", null, CanEmulateResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun canEmulate(): io.reactivex.Single<CanEmulateResponse> = connection.runAndCaptureResponse("Emulation.canEmulate", null, CanEmulateResponse::class.java)
+
 
     /**
      * Clears the overriden device metrics.
      *
      * @link Protocol [Emulation#clearDeviceMetricsOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-clearDeviceMetricsOverride) method documentation.
      */
-    fun clearDeviceMetricsOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun clearDeviceMetricsOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Clears the overriden Geolocation Position and Error.
      *
      * @link Protocol [Emulation#clearGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-clearGeolocationOverride) method documentation.
      */
-    fun clearGeolocationOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun clearGeolocationOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Requests that page scale factor is reset to initial values.
@@ -46,11 +37,8 @@ class EmulationOperations internal constructor(private val connection: pl.wendig
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun resetPageScaleFactor(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.resetPageScaleFactor", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun resetPageScaleFactor(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.resetPageScaleFactor", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Enables or disables simulating a focused and active page.
@@ -59,11 +47,8 @@ class EmulationOperations internal constructor(private val connection: pl.wendig
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setFocusEmulationEnabled(input: SetFocusEmulationEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setFocusEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setFocusEmulationEnabled(input: SetFocusEmulationEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setFocusEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Enables CPU throttling to emulate slow CPUs.
@@ -72,11 +57,8 @@ class EmulationOperations internal constructor(private val connection: pl.wendig
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setCPUThrottlingRate(input: SetCPUThrottlingRateRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setCPUThrottlingRate", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setCPUThrottlingRate(input: SetCPUThrottlingRateRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setCPUThrottlingRate", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Sets or clears an override of the default background color of the frame. This override is used
@@ -84,11 +66,8 @@ if the content does not specify one.
      *
      * @link Protocol [Emulation#setDefaultBackgroundColorOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDefaultBackgroundColorOverride) method documentation.
      */
-    fun setDefaultBackgroundColorOverride(input: SetDefaultBackgroundColorOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setDefaultBackgroundColorOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun setDefaultBackgroundColorOverride(input: SetDefaultBackgroundColorOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setDefaultBackgroundColorOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Overrides the values of device screen dimensions (window.screen.width, window.screen.height,
@@ -97,11 +76,8 @@ query results).
      *
      * @link Protocol [Emulation#setDeviceMetricsOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDeviceMetricsOverride) method documentation.
      */
-    fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setDeviceMetricsOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setDeviceMetricsOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      *
@@ -110,11 +86,8 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setScrollbarsHidden(input: SetScrollbarsHiddenRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setScrollbarsHidden", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setScrollbarsHidden(input: SetScrollbarsHiddenRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setScrollbarsHidden", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      *
@@ -123,11 +96,8 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDocumentCookieDisabled(input: SetDocumentCookieDisabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setDocumentCookieDisabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setDocumentCookieDisabled(input: SetDocumentCookieDisabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setDocumentCookieDisabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      *
@@ -136,22 +106,16 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setEmitTouchEventsForMouse(input: SetEmitTouchEventsForMouseRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setEmitTouchEventsForMouse", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setEmitTouchEventsForMouse(input: SetEmitTouchEventsForMouseRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setEmitTouchEventsForMouse", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Emulates the given media for CSS media queries.
      *
      * @link Protocol [Emulation#setEmulatedMedia](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedMedia) method documentation.
      */
-    fun setEmulatedMedia(input: SetEmulatedMediaRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setEmulatedMedia", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun setEmulatedMedia(input: SetEmulatedMediaRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setEmulatedMedia", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position
@@ -159,11 +123,8 @@ unavailable.
      *
      * @link Protocol [Emulation#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setGeolocationOverride) method documentation.
      */
-    fun setGeolocationOverride(input: SetGeolocationOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun setGeolocationOverride(input: SetGeolocationOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Overrides value returned by the javascript navigator object.
@@ -173,11 +134,8 @@ unavailable.
     @Deprecated(level = DeprecationLevel.WARNING, message = "setNavigatorOverrides is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setNavigatorOverrides(input: SetNavigatorOverridesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setNavigatorOverrides", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setNavigatorOverrides(input: SetNavigatorOverridesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setNavigatorOverrides", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Sets a specified page scale factor.
@@ -186,33 +144,24 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setPageScaleFactor(input: SetPageScaleFactorRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setPageScaleFactor", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setPageScaleFactor(input: SetPageScaleFactorRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setPageScaleFactor", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Switches script execution in the page.
      *
      * @link Protocol [Emulation#setScriptExecutionDisabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setScriptExecutionDisabled) method documentation.
      */
-    fun setScriptExecutionDisabled(input: SetScriptExecutionDisabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setScriptExecutionDisabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun setScriptExecutionDisabled(input: SetScriptExecutionDisabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setScriptExecutionDisabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Enables touch on platforms which do not support them.
      *
      * @link Protocol [Emulation#setTouchEmulationEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setTouchEmulationEnabled) method documentation.
      */
-    fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setTouchEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setTouchEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets
@@ -222,11 +171,8 @@ the current virtual time policy.  Note this supersedes any previous time budget.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setVirtualTimePolicy(input: SetVirtualTimePolicyRequest): io.reactivex.Single<SetVirtualTimePolicyResponse> {
-        return connection.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, SetVirtualTimePolicyResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun setVirtualTimePolicy(input: SetVirtualTimePolicyRequest): io.reactivex.Single<SetVirtualTimePolicyResponse> = connection.runAndCaptureResponse("Emulation.setVirtualTimePolicy", input, SetVirtualTimePolicyResponse::class.java)
+
 
     /**
      * Overrides default host system timezone with the specified one.
@@ -235,11 +181,8 @@ the current virtual time policy.  Note this supersedes any previous time budget.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setTimezoneOverride(input: SetTimezoneOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setTimezoneOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setTimezoneOverride(input: SetTimezoneOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setTimezoneOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Resizes the frame/viewport of the page. Note that this does not affect the frame's container
@@ -251,44 +194,28 @@ on Android.
     @Deprecated(level = DeprecationLevel.WARNING, message = "setVisibleSize is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setVisibleSize(input: SetVisibleSizeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setVisibleSize", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setVisibleSize(input: SetVisibleSizeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setVisibleSize", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Allows overriding user agent with the given string.
      *
      * @link Protocol [Emulation#setUserAgentOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setUserAgentOverride) method documentation.
      */
-    fun setUserAgentOverride(input: SetUserAgentOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Emulation.setUserAgentOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun setUserAgentOverride(input: SetUserAgentOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Emulation.setUserAgentOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      *  Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
      */
-    fun virtualTimeBudgetExpired(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return virtualTimeBudgetExpiredTimed().map {
-            it.value()
-        }
-    }
+    fun virtualTimeBudgetExpired(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.protocol.Event::class.java);
 
-    /**
-     * Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
-     */
-    fun virtualTimeBudgetExpiredTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.protocol.Event>> {
-        return connection.captureEvents("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.protocol.Event::class.java)
-    }
 
     /**
      * Returns flowable capturing all Emulation domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "Emulation"
         }
     }
@@ -299,16 +226,22 @@ on Android.
  * Tells whether emulation is supported.
  *
   
- * @link [Emulation#canEmulate](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-canEmulate) method documentation.
- * @see [EmulationOperations.canEmulate]
+  * @link [Emulation#canEmulate](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-canEmulate) method documentation.
+  * @see [EmulationOperations.canEmulate]
  */
 data class CanEmulateResponse(
-    /**  
-     * True if emulation is supported.  
-     */  
-    val result: Boolean
+  /**
+   * True if emulation is supported.
+   */
+  val result: Boolean
 
 )
+
+
+
+
+
+
 
 /**
  * Represents request frame that can be used with [Emulation#setFocusEmulationEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setFocusEmulationEnabled) operation call.
@@ -317,7 +250,7 @@ data class CanEmulateResponse(
  * @link [Emulation#setFocusEmulationEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setFocusEmulationEnabled) method documentation.
  * @see [EmulationOperations.setFocusEmulationEnabled]
  */
-data class SetFocusEmulationEnabledRequest(
+data class SetFocusEmulationEnabledRequest (
     /**
      * Whether to enable to disable focus emulation.
      */
@@ -332,7 +265,7 @@ data class SetFocusEmulationEnabledRequest(
  * @link [Emulation#setCPUThrottlingRate](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setCPUThrottlingRate) method documentation.
  * @see [EmulationOperations.setCPUThrottlingRate]
  */
-data class SetCPUThrottlingRateRequest(
+data class SetCPUThrottlingRateRequest (
     /**
      * Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc).
      */
@@ -348,7 +281,7 @@ if the content does not specify one.
  * @link [Emulation#setDefaultBackgroundColorOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDefaultBackgroundColorOverride) method documentation.
  * @see [EmulationOperations.setDefaultBackgroundColorOverride]
  */
-data class SetDefaultBackgroundColorOverrideRequest(
+data class SetDefaultBackgroundColorOverrideRequest (
     /**
      * RGBA of the default background color. If not specified, any existing override will be
 cleared.
@@ -366,7 +299,7 @@ query results).
  * @link [Emulation#setDeviceMetricsOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDeviceMetricsOverride) method documentation.
  * @see [EmulationOperations.setDeviceMetricsOverride]
  */
-data class SetDeviceMetricsOverrideRequest(
+data class SetDeviceMetricsOverrideRequest (
     /**
      * Overriding width value in pixels (minimum 0, maximum 10000000). 0 disables the override.
      */
@@ -438,7 +371,7 @@ change is not observed by the page, e.g. viewport-relative elements do not chang
  * @link [Emulation#setScrollbarsHidden](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setScrollbarsHidden) method documentation.
  * @see [EmulationOperations.setScrollbarsHidden]
  */
-data class SetScrollbarsHiddenRequest(
+data class SetScrollbarsHiddenRequest (
     /**
      * Whether scrollbars should be always hidden.
      */
@@ -453,7 +386,7 @@ data class SetScrollbarsHiddenRequest(
  * @link [Emulation#setDocumentCookieDisabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDocumentCookieDisabled) method documentation.
  * @see [EmulationOperations.setDocumentCookieDisabled]
  */
-data class SetDocumentCookieDisabledRequest(
+data class SetDocumentCookieDisabledRequest (
     /**
      * Whether document.coookie API should be disabled.
      */
@@ -468,7 +401,7 @@ data class SetDocumentCookieDisabledRequest(
  * @link [Emulation#setEmitTouchEventsForMouse](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmitTouchEventsForMouse) method documentation.
  * @see [EmulationOperations.setEmitTouchEventsForMouse]
  */
-data class SetEmitTouchEventsForMouseRequest(
+data class SetEmitTouchEventsForMouseRequest (
     /**
      * Whether touch emulation based on mouse input should be enabled.
      */
@@ -488,7 +421,7 @@ data class SetEmitTouchEventsForMouseRequest(
  * @link [Emulation#setEmulatedMedia](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedMedia) method documentation.
  * @see [EmulationOperations.setEmulatedMedia]
  */
-data class SetEmulatedMediaRequest(
+data class SetEmulatedMediaRequest (
     /**
      * Media type to emulate. Empty string disables the override.
      */
@@ -504,7 +437,7 @@ unavailable.
  * @link [Emulation#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setGeolocationOverride) method documentation.
  * @see [EmulationOperations.setGeolocationOverride]
  */
-data class SetGeolocationOverrideRequest(
+data class SetGeolocationOverrideRequest (
     /**
      * Mock latitude
      */
@@ -529,7 +462,7 @@ data class SetGeolocationOverrideRequest(
  * @link [Emulation#setNavigatorOverrides](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setNavigatorOverrides) method documentation.
  * @see [EmulationOperations.setNavigatorOverrides]
  */
-data class SetNavigatorOverridesRequest(
+data class SetNavigatorOverridesRequest (
     /**
      * The platform navigator.platform should return.
      */
@@ -544,7 +477,7 @@ data class SetNavigatorOverridesRequest(
  * @link [Emulation#setPageScaleFactor](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setPageScaleFactor) method documentation.
  * @see [EmulationOperations.setPageScaleFactor]
  */
-data class SetPageScaleFactorRequest(
+data class SetPageScaleFactorRequest (
     /**
      * Page scale factor.
      */
@@ -559,7 +492,7 @@ data class SetPageScaleFactorRequest(
  * @link [Emulation#setScriptExecutionDisabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setScriptExecutionDisabled) method documentation.
  * @see [EmulationOperations.setScriptExecutionDisabled]
  */
-data class SetScriptExecutionDisabledRequest(
+data class SetScriptExecutionDisabledRequest (
     /**
      * Whether script execution should be disabled in the page.
      */
@@ -574,7 +507,7 @@ data class SetScriptExecutionDisabledRequest(
  * @link [Emulation#setTouchEmulationEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setTouchEmulationEnabled) method documentation.
  * @see [EmulationOperations.setTouchEmulationEnabled]
  */
-data class SetTouchEmulationEnabledRequest(
+data class SetTouchEmulationEnabledRequest (
     /**
      * Whether the touch event emulation should be enabled.
      */
@@ -595,7 +528,7 @@ the current virtual time policy.  Note this supersedes any previous time budget.
  * @link [Emulation#setVirtualTimePolicy](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setVirtualTimePolicy) method documentation.
  * @see [EmulationOperations.setVirtualTimePolicy]
  */
-data class SetVirtualTimePolicyRequest(
+data class SetVirtualTimePolicyRequest (
     /**
      *
      */
@@ -631,14 +564,14 @@ Note any previous deferred policy change is superseded.
 the current virtual time policy.  Note this supersedes any previous time budget.
  *
   
- * @link [Emulation#setVirtualTimePolicy](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setVirtualTimePolicy) method documentation.
- * @see [EmulationOperations.setVirtualTimePolicy]
+  * @link [Emulation#setVirtualTimePolicy](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setVirtualTimePolicy) method documentation.
+  * @see [EmulationOperations.setVirtualTimePolicy]
  */
 data class SetVirtualTimePolicyResponse(
-    /**  
-     * Absolute timestamp at which virtual time was first enabled (up time in milliseconds).  
-     */  
-    val virtualTimeTicksBase: Double
+  /**
+   * Absolute timestamp at which virtual time was first enabled (up time in milliseconds).
+   */
+  val virtualTimeTicksBase: Double
 
 )
 
@@ -649,7 +582,7 @@ data class SetVirtualTimePolicyResponse(
  * @link [Emulation#setTimezoneOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setTimezoneOverride) method documentation.
  * @see [EmulationOperations.setTimezoneOverride]
  */
-data class SetTimezoneOverrideRequest(
+data class SetTimezoneOverrideRequest (
     /**
      * The timezone identifier. If empty, disables the override and
 restores default host system timezone.
@@ -667,7 +600,7 @@ on Android.
  * @link [Emulation#setVisibleSize](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setVisibleSize) method documentation.
  * @see [EmulationOperations.setVisibleSize]
  */
-data class SetVisibleSizeRequest(
+data class SetVisibleSizeRequest (
     /**
      * Frame width (DIP).
      */
@@ -687,7 +620,7 @@ data class SetVisibleSizeRequest(
  * @link [Emulation#setUserAgentOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setUserAgentOverride) method documentation.
  * @see [EmulationOperations.setUserAgentOverride]
  */
-data class SetUserAgentOverrideRequest(
+data class SetUserAgentOverrideRequest (
     /**
      * User agent to use.
      */
@@ -704,3 +637,5 @@ data class SetUserAgentOverrideRequest(
     val platform: String? = null
 
 )
+
+

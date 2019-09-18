@@ -7,35 +7,35 @@ package pl.wendigo.chrome.api.systeminfo
  */
 
 data class GPUDevice(
-    /**  
-     * PCI ID of the GPU vendor, if available; 0 otherwise.  
-     */  
-    val vendorId: Double,
+  /**
+   * PCI ID of the GPU vendor, if available; 0 otherwise.
+   */
+  val vendorId: Double,
 
-    /**  
-     * PCI ID of the GPU device, if available; 0 otherwise.  
-     */  
-    val deviceId: Double,
+  /**
+   * PCI ID of the GPU device, if available; 0 otherwise.
+   */
+  val deviceId: Double,
 
-    /**  
-     * String description of the GPU vendor, if the PCI ID is not available.  
-     */  
-    val vendorString: String,
+  /**
+   * String description of the GPU vendor, if the PCI ID is not available.
+   */
+  val vendorString: String,
 
-    /**  
-     * String description of the GPU device, if the PCI ID is not available.  
-     */  
-    val deviceString: String,
+  /**
+   * String description of the GPU device, if the PCI ID is not available.
+   */
+  val deviceString: String,
 
-    /**  
-     * String description of the GPU driver vendor.  
-     */  
-    val driverVendor: String,
+  /**
+   * String description of the GPU driver vendor.
+   */
+  val driverVendor: String,
 
-    /**  
-     * String description of the GPU driver version.  
-     */  
-    val driverVersion: String
+  /**
+   * String description of the GPU driver version.
+   */
+  val driverVersion: String
 )
 
 /**
@@ -45,15 +45,15 @@ data class GPUDevice(
  */
 
 data class Size(
-    /**  
-     * Width in pixels.  
-     */  
-    val width: Int,
+  /**
+   * Width in pixels.
+   */
+  val width: Int,
 
-    /**  
-     * Height in pixels.  
-     */  
-    val height: Int
+  /**
+   * Height in pixels.
+   */
+  val height: Int
 )
 
 /**
@@ -64,20 +64,20 @@ maximum resolutions.
  */
 
 data class VideoDecodeAcceleratorCapability(
-    /**  
-     * Video codec profile that is supported, e.g. VP9 Profile 2.  
-     */  
-    val profile: String,
+  /**
+   * Video codec profile that is supported, e.g. VP9 Profile 2.
+   */
+  val profile: String,
 
-    /**  
-     * Maximum video dimensions in pixels supported for this |profile|.  
-     */  
-    val maxResolution: Size,
+  /**
+   * Maximum video dimensions in pixels supported for this |profile|.
+   */
+  val maxResolution: Size,
 
-    /**  
-     * Minimum video dimensions in pixels supported for this |profile|.  
-     */  
-    val minResolution: Size
+  /**
+   * Minimum video dimensions in pixels supported for this |profile|.
+   */
+  val minResolution: Size
 )
 
 /**
@@ -88,27 +88,27 @@ resolution and maximum framerate.
  */
 
 data class VideoEncodeAcceleratorCapability(
-    /**  
-     * Video codec profile that is supported, e.g H264 Main.  
-     */  
-    val profile: String,
+  /**
+   * Video codec profile that is supported, e.g H264 Main.
+   */
+  val profile: String,
 
-    /**  
-     * Maximum video dimensions in pixels supported for this |profile|.  
-     */  
-    val maxResolution: Size,
+  /**
+   * Maximum video dimensions in pixels supported for this |profile|.
+   */
+  val maxResolution: Size,
 
-    /**  
-     * Maximum encoding framerate in frames per second supported for this  
-     |profile|, as fraction's numerator and denominator, e.g. 24/1 fps,  
-     24000/1001 fps, etc.  
-     */  
-    val maxFramerateNumerator: Int,
+  /**
+   * Maximum encoding framerate in frames per second supported for this
+|profile|, as fraction's numerator and denominator, e.g. 24/1 fps,
+24000/1001 fps, etc.
+   */
+  val maxFramerateNumerator: Int,
 
-    /**  
-     *  
-     */  
-    val maxFramerateDenominator: Int
+  /**
+   *
+   */
+  val maxFramerateDenominator: Int
 )
 
 /**
@@ -117,12 +117,9 @@ data class VideoEncodeAcceleratorCapability(
  * @link [SystemInfo#SubsamplingFormat](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-SubsamplingFormat) type documentation.
  */
 enum class SubsamplingFormat {
-    @com.fasterxml.jackson.annotation.JsonProperty("yuv420")
-    YUV420,
-    @com.fasterxml.jackson.annotation.JsonProperty("yuv422")
-    YUV422,
-    @com.fasterxml.jackson.annotation.JsonProperty("yuv444")
-    YUV444;
+    @com.fasterxml.jackson.annotation.JsonProperty("yuv420") YUV420,
+    @com.fasterxml.jackson.annotation.JsonProperty("yuv422") YUV422,
+    @com.fasterxml.jackson.annotation.JsonProperty("yuv444") YUV444;
 }
 
 /**
@@ -131,12 +128,9 @@ enum class SubsamplingFormat {
  * @link [SystemInfo#ImageType](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-ImageType) type documentation.
  */
 enum class ImageType {
-    @com.fasterxml.jackson.annotation.JsonProperty("jpeg")
-    JPEG,
-    @com.fasterxml.jackson.annotation.JsonProperty("webp")
-    WEBP,
-    @com.fasterxml.jackson.annotation.JsonProperty("unknown")
-    UNKNOWN;
+    @com.fasterxml.jackson.annotation.JsonProperty("jpeg") JPEG,
+    @com.fasterxml.jackson.annotation.JsonProperty("webp") WEBP,
+    @com.fasterxml.jackson.annotation.JsonProperty("unknown") UNKNOWN;
 }
 
 /**
@@ -147,25 +141,25 @@ maximum resolutions and subsampling.
  */
 
 data class ImageDecodeAcceleratorCapability(
-    /**  
-     * Image coded, e.g. Jpeg.  
-     */  
-    val imageType: ImageType,
+  /**
+   * Image coded, e.g. Jpeg.
+   */
+  val imageType: ImageType,
 
-    /**  
-     * Maximum supported dimensions of the image in pixels.  
-     */  
-    val maxDimensions: Size,
+  /**
+   * Maximum supported dimensions of the image in pixels.
+   */
+  val maxDimensions: Size,
 
-    /**  
-     * Minimum supported dimensions of the image in pixels.  
-     */  
-    val minDimensions: Size,
+  /**
+   * Minimum supported dimensions of the image in pixels.
+   */
+  val minDimensions: Size,
 
-    /**  
-     * Optional array of supported subsampling formats, e.g. 4:2:0, if known.  
-     */  
-    val subsamplings: List<SubsamplingFormat>
+  /**
+   * Optional array of supported subsampling formats, e.g. 4:2:0, if known.
+   */
+  val subsamplings: List<SubsamplingFormat>
 )
 
 /**
@@ -175,40 +169,40 @@ data class ImageDecodeAcceleratorCapability(
  */
 
 data class GPUInfo(
-    /**  
-     * The graphics devices on the system. Element 0 is the primary GPU.  
-     */  
-    val devices: List<GPUDevice>,
+  /**
+   * The graphics devices on the system. Element 0 is the primary GPU.
+   */
+  val devices: List<GPUDevice>,
 
-    /**  
-     * An optional dictionary of additional GPU related attributes.  
-     */  
-    val auxAttributes: com.fasterxml.jackson.databind.JsonNode? = null,
+  /**
+   * An optional dictionary of additional GPU related attributes.
+   */
+  val auxAttributes: com.fasterxml.jackson.databind.JsonNode? = null,
 
-    /**  
-     * An optional dictionary of graphics features and their status.  
-     */  
-    val featureStatus: com.fasterxml.jackson.databind.JsonNode? = null,
+  /**
+   * An optional dictionary of graphics features and their status.
+   */
+  val featureStatus: com.fasterxml.jackson.databind.JsonNode? = null,
 
-    /**  
-     * An optional array of GPU driver bug workarounds.  
-     */  
-    val driverBugWorkarounds: List<String>,
+  /**
+   * An optional array of GPU driver bug workarounds.
+   */
+  val driverBugWorkarounds: List<String>,
 
-    /**  
-     * Supported accelerated video decoding capabilities.  
-     */  
-    val videoDecoding: List<VideoDecodeAcceleratorCapability>,
+  /**
+   * Supported accelerated video decoding capabilities.
+   */
+  val videoDecoding: List<VideoDecodeAcceleratorCapability>,
 
-    /**  
-     * Supported accelerated video encoding capabilities.  
-     */  
-    val videoEncoding: List<VideoEncodeAcceleratorCapability>,
+  /**
+   * Supported accelerated video encoding capabilities.
+   */
+  val videoEncoding: List<VideoEncodeAcceleratorCapability>,
 
-    /**  
-     * Supported accelerated image decoding capabilities.  
-     */  
-    val imageDecoding: List<ImageDecodeAcceleratorCapability>
+  /**
+   * Supported accelerated image decoding capabilities.
+   */
+  val imageDecoding: List<ImageDecodeAcceleratorCapability>
 )
 
 /**
@@ -218,19 +212,20 @@ data class GPUInfo(
  */
 
 data class ProcessInfo(
-    /**  
-     * Specifies process type.  
-     */  
-    val type: String,
+  /**
+   * Specifies process type.
+   */
+  val type: String,
 
-    /**  
-     * Specifies process id.  
-     */  
-    val id: Int,
+  /**
+   * Specifies process id.
+   */
+  val id: Int,
 
-    /**  
-     * Specifies cumulative CPU usage in seconds across all threads of the  
-     process since the process start.  
-     */  
-    val cpuTime: Double
+  /**
+   * Specifies cumulative CPU usage in seconds across all threads of the
+process since the process start.
+   */
+  val cpuTime: Double
 )
+

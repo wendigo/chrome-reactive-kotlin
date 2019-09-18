@@ -46,7 +46,7 @@ data class InspectablePage(
     /**
      * Opens new chrome protocol debugger connection.
      */
-    fun session(eventBufferSize: Int = 512): DevToolsProtocol {
+    fun session(eventBufferSize: Int = 128): DevToolsProtocol {
         return DevToolsProtocol(ChromeDebuggerConnection.openSession(webSocketDebuggerUrl!!, eventBufferSize))
     }
 }

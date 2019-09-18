@@ -5,23 +5,21 @@ package pl.wendigo.chrome.api.schema
  *
  * @link Protocol [Schema](https://chromedevtools.github.io/devtools-protocol/tot/Schema) domain documentation.
  */
-class SchemaOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class SchemaOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Returns supported domains.
      *
      * @link Protocol [Schema#getDomains](https://chromedevtools.github.io/devtools-protocol/tot/Schema#method-getDomains) method documentation.
      */
-    fun getDomains(): io.reactivex.Single<GetDomainsResponse> {
-        return connection.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getDomains(): io.reactivex.Single<GetDomainsResponse> = connection.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java)
+
+
 
     /**
      * Returns flowable capturing all Schema domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "Schema"
         }
     }
@@ -32,13 +30,14 @@ class SchemaOperations internal constructor(private val connection: pl.wendigo.c
  * Returns supported domains.
  *
   
- * @link [Schema#getDomains](https://chromedevtools.github.io/devtools-protocol/tot/Schema#method-getDomains) method documentation.
- * @see [SchemaOperations.getDomains]
+  * @link [Schema#getDomains](https://chromedevtools.github.io/devtools-protocol/tot/Schema#method-getDomains) method documentation.
+  * @see [SchemaOperations.getDomains]
  */
 data class GetDomainsResponse(
-    /**  
-     * List of supported domains.  
-     */  
-    val domains: List<Domain>
+  /**
+   * List of supported domains.
+   */
+  val domains: List<Domain>
 
 )
+

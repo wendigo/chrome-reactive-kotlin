@@ -7,13 +7,14 @@ package pl.wendigo.chrome.api.schema
  */
 
 data class Domain(
-    /**  
-     * Domain name.  
-     */  
-    val name: String,
+  /**
+   * Domain name.
+   */
+  val name: String,
 
-    /**  
-     * Domain version.  
-     */  
-    val version: String
+  /**
+   * Domain version.
+   */
+  val version: String
 )
+

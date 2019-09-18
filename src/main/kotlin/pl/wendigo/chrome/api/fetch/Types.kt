@@ -16,10 +16,8 @@ body is received.
  * @link [Fetch#RequestStage](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-RequestStage) type documentation.
  */
 enum class RequestStage {
-    @com.fasterxml.jackson.annotation.JsonProperty("Request")
-    REQUEST,
-    @com.fasterxml.jackson.annotation.JsonProperty("Response")
-    RESPONSE;
+    @com.fasterxml.jackson.annotation.JsonProperty("Request") REQUEST,
+    @com.fasterxml.jackson.annotation.JsonProperty("Response") RESPONSE;
 }
 
 /**
@@ -29,21 +27,21 @@ enum class RequestStage {
  */
 
 data class RequestPattern(
-    /**  
-     * Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is  
-     backslash. Omitting is equivalent to "*".  
-     */  
-    val urlPattern: String? = null,
+  /**
+   * Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is
+backslash. Omitting is equivalent to "*".
+   */
+  val urlPattern: String? = null,
 
-    /**  
-     * If set, only requests for matching resource types will be intercepted.  
-     */  
-    val resourceType: pl.wendigo.chrome.api.network.ResourceType? = null,
+  /**
+   * If set, only requests for matching resource types will be intercepted.
+   */
+  val resourceType: pl.wendigo.chrome.api.network.ResourceType? = null,
 
-    /**  
-     * Stage at wich to begin intercepting requests. Default is Request.  
-     */  
-    val requestStage: RequestStage? = null
+  /**
+   * Stage at wich to begin intercepting requests. Default is Request.
+   */
+  val requestStage: RequestStage? = null
 )
 
 /**
@@ -53,15 +51,15 @@ data class RequestPattern(
  */
 
 data class HeaderEntry(
-    /**  
-     *  
-     */  
-    val name: String,
+  /**
+   *
+   */
+  val name: String,
 
-    /**  
-     *  
-     */  
-    val value: String
+  /**
+   *
+   */
+  val value: String
 )
 
 /**
@@ -71,25 +69,25 @@ data class HeaderEntry(
  */
 
 data class AuthChallenge(
-    /**  
-     * Source of the authentication challenge.  
-     */  
-    val source: String? = null,
+  /**
+   * Source of the authentication challenge.
+   */
+  val source: String? = null,
 
-    /**  
-     * Origin of the challenger.  
-     */  
-    val origin: String,
+  /**
+   * Origin of the challenger.
+   */
+  val origin: String,
 
-    /**  
-     * The authentication scheme used, such as basic or digest  
-     */  
-    val scheme: String,
+  /**
+   * The authentication scheme used, such as basic or digest
+   */
+  val scheme: String,
 
-    /**  
-     * The realm of the challenge. May be empty.  
-     */  
-    val realm: String
+  /**
+   * The realm of the challenge. May be empty.
+   */
+  val realm: String
 )
 
 /**
@@ -99,22 +97,23 @@ data class AuthChallenge(
  */
 
 data class AuthChallengeResponse(
-    /**  
-     * The decision on what to do in response to the authorization challenge.  Default means  
-     deferring to the default behavior of the net stack, which will likely either the Cancel  
-     authentication or display a popup dialog box.  
-     */  
-    val response: String,
+  /**
+   * The decision on what to do in response to the authorization challenge.  Default means
+deferring to the default behavior of the net stack, which will likely either the Cancel
+authentication or display a popup dialog box.
+   */
+  val response: String,
 
-    /**  
-     * The username to provide, possibly empty. Should only be set if response is  
-     ProvideCredentials.  
-     */  
-    val username: String? = null,
+  /**
+   * The username to provide, possibly empty. Should only be set if response is
+ProvideCredentials.
+   */
+  val username: String? = null,
 
-    /**  
-     * The password to provide, possibly empty. Should only be set if response is  
-     ProvideCredentials.  
-     */  
-    val password: String? = null
+  /**
+   * The password to provide, possibly empty. Should only be set if response is
+ProvideCredentials.
+   */
+  val password: String? = null
 )
+

@@ -5,7 +5,7 @@ package pl.wendigo.chrome.api.browser
  *
  * @link Protocol [Browser](https://chromedevtools.github.io/devtools-protocol/tot/Browser) domain documentation.
  */
-class BrowserOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class BrowserOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Set permission settings for given origin.
      *
@@ -13,11 +13,8 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setPermission(input: SetPermissionRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.setPermission", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setPermission(input: SetPermissionRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.setPermission", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Grant specific permissions to the given origin and reject all others.
@@ -26,11 +23,8 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun grantPermissions(input: GrantPermissionsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.grantPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun grantPermissions(input: GrantPermissionsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.grantPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Reset all permission management for all origins.
@@ -39,22 +33,16 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun resetPermissions(input: ResetPermissionsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.resetPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun resetPermissions(input: ResetPermissionsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.resetPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Close browser gracefully.
      *
      * @link Protocol [Browser#close](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-close) method documentation.
      */
-    fun close(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun close(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Crashes browser on the main thread.
@@ -63,11 +51,8 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun crash(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun crash(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Crashes GPU process.
@@ -76,22 +61,16 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun crashGpuProcess(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.crashGpuProcess", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun crashGpuProcess(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.crashGpuProcess", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Returns version information.
      *
      * @link Protocol [Browser#getVersion](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getVersion) method documentation.
      */
-    fun getVersion(): io.reactivex.Single<GetVersionResponse> {
-        return connection.runAndCaptureResponse("Browser.getVersion", null, GetVersionResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getVersion(): io.reactivex.Single<GetVersionResponse> = connection.runAndCaptureResponse("Browser.getVersion", null, GetVersionResponse::class.java)
+
 
     /**
      * Returns the command line switches for the browser process if, and only if
@@ -101,11 +80,8 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getBrowserCommandLine(): io.reactivex.Single<GetBrowserCommandLineResponse> {
-        return connection.runAndCaptureResponse("Browser.getBrowserCommandLine", null, GetBrowserCommandLineResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getBrowserCommandLine(): io.reactivex.Single<GetBrowserCommandLineResponse> = connection.runAndCaptureResponse("Browser.getBrowserCommandLine", null, GetBrowserCommandLineResponse::class.java)
+
 
     /**
      * Get Chrome histograms.
@@ -114,11 +90,8 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHistograms(input: GetHistogramsRequest): io.reactivex.Single<GetHistogramsResponse> {
-        return connection.runAndCaptureResponse("Browser.getHistograms", input, GetHistogramsResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getHistograms(input: GetHistogramsRequest): io.reactivex.Single<GetHistogramsResponse> = connection.runAndCaptureResponse("Browser.getHistograms", input, GetHistogramsResponse::class.java)
+
 
     /**
      * Get a Chrome histogram by name.
@@ -127,11 +100,8 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHistogram(input: GetHistogramRequest): io.reactivex.Single<GetHistogramResponse> {
-        return connection.runAndCaptureResponse("Browser.getHistogram", input, GetHistogramResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getHistogram(input: GetHistogramRequest): io.reactivex.Single<GetHistogramResponse> = connection.runAndCaptureResponse("Browser.getHistogram", input, GetHistogramResponse::class.java)
+
 
     /**
      * Get position and size of the browser window.
@@ -140,11 +110,8 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getWindowBounds(input: GetWindowBoundsRequest): io.reactivex.Single<GetWindowBoundsResponse> {
-        return connection.runAndCaptureResponse("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getWindowBounds(input: GetWindowBoundsRequest): io.reactivex.Single<GetWindowBoundsResponse> = connection.runAndCaptureResponse("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java)
+
 
     /**
      * Get the browser window that contains the devtools target.
@@ -153,11 +120,8 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getWindowForTarget(input: GetWindowForTargetRequest): io.reactivex.Single<GetWindowForTargetResponse> {
-        return connection.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getWindowForTarget(input: GetWindowForTargetRequest): io.reactivex.Single<GetWindowForTargetResponse> = connection.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java)
+
 
     /**
      * Set position and/or size of the browser window.
@@ -166,11 +130,8 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setWindowBounds(input: SetWindowBoundsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setWindowBounds(input: SetWindowBoundsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Set dock tile details, platform-specific.
@@ -179,17 +140,15 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDockTile(input: SetDockTileRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.setDockTile", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setDockTile(input: SetDockTileRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.setDockTile", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+
 
     /**
      * Returns flowable capturing all Browser domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "Browser"
         }
     }
@@ -201,7 +160,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
  * @link [Browser#setPermission](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setPermission) method documentation.
  * @see [BrowserOperations.setPermission]
  */
-data class SetPermissionRequest(
+data class SetPermissionRequest (
     /**
      * Origin the permission applies to.
      */
@@ -231,7 +190,7 @@ data class SetPermissionRequest(
  * @link [Browser#grantPermissions](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-grantPermissions) method documentation.
  * @see [BrowserOperations.grantPermissions]
  */
-data class GrantPermissionsRequest(
+data class GrantPermissionsRequest (
     /**
      *
      */
@@ -256,7 +215,7 @@ data class GrantPermissionsRequest(
  * @link [Browser#resetPermissions](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-resetPermissions) method documentation.
  * @see [BrowserOperations.resetPermissions]
  */
-data class ResetPermissionsRequest(
+data class ResetPermissionsRequest (
     /**
      * BrowserContext to reset permissions. When omitted, default browser context is used.
      */
@@ -264,41 +223,49 @@ data class ResetPermissionsRequest(
 
 )
 
+
+
+
+
+
+
+
 /**
  * Represents response frame that is returned from [Browser#getVersion](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getVersion) operation call.
  * Returns version information.
  *
   
- * @link [Browser#getVersion](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getVersion) method documentation.
- * @see [BrowserOperations.getVersion]
+  * @link [Browser#getVersion](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getVersion) method documentation.
+  * @see [BrowserOperations.getVersion]
  */
 data class GetVersionResponse(
-    /**  
-     * Protocol version.  
-     */  
-    val protocolVersion: String,
+  /**
+   * Protocol version.
+   */
+  val protocolVersion: String,
 
-    /**  
-     * Product name.  
-     */  
-    val product: String,
+  /**
+   * Product name.
+   */
+  val product: String,
 
-    /**  
-     * Product revision.  
-     */  
-    val revision: String,
+  /**
+   * Product revision.
+   */
+  val revision: String,
 
-    /**  
-     * User-Agent.  
-     */  
-    val userAgent: String,
+  /**
+   * User-Agent.
+   */
+  val userAgent: String,
 
-    /**  
-     * V8 version.  
-     */  
-    val jsVersion: String
+  /**
+   * V8 version.
+   */
+  val jsVersion: String
 
 )
+
 
 /**
  * Represents response frame that is returned from [Browser#getBrowserCommandLine](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getBrowserCommandLine) operation call.
@@ -306,14 +273,14 @@ data class GetVersionResponse(
 --enable-automation is on the commandline.
  *
   
- * @link [Browser#getBrowserCommandLine](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getBrowserCommandLine) method documentation.
- * @see [BrowserOperations.getBrowserCommandLine]
+  * @link [Browser#getBrowserCommandLine](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getBrowserCommandLine) method documentation.
+  * @see [BrowserOperations.getBrowserCommandLine]
  */
 data class GetBrowserCommandLineResponse(
-    /**  
-     * Commandline parameters  
-     */  
-    val arguments: List<String>
+  /**
+   * Commandline parameters
+   */
+  val arguments: List<String>
 
 )
 
@@ -324,7 +291,7 @@ data class GetBrowserCommandLineResponse(
  * @link [Browser#getHistograms](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistograms) method documentation.
  * @see [BrowserOperations.getHistograms]
  */
-data class GetHistogramsRequest(
+data class GetHistogramsRequest (
     /**
      * Requested substring in name. Only histograms which have query as a
 substring in their name are extracted. An empty or absent query returns
@@ -343,14 +310,14 @@ all histograms.
  * Get Chrome histograms.
  *
   
- * @link [Browser#getHistograms](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistograms) method documentation.
- * @see [BrowserOperations.getHistograms]
+  * @link [Browser#getHistograms](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistograms) method documentation.
+  * @see [BrowserOperations.getHistograms]
  */
 data class GetHistogramsResponse(
-    /**  
-     * Histograms.  
-     */  
-    val histograms: List<Histogram>
+  /**
+   * Histograms.
+   */
+  val histograms: List<Histogram>
 
 )
 
@@ -361,7 +328,7 @@ data class GetHistogramsResponse(
  * @link [Browser#getHistogram](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistogram) method documentation.
  * @see [BrowserOperations.getHistogram]
  */
-data class GetHistogramRequest(
+data class GetHistogramRequest (
     /**
      * Requested histogram name.
      */
@@ -378,14 +345,14 @@ data class GetHistogramRequest(
  * Get a Chrome histogram by name.
  *
   
- * @link [Browser#getHistogram](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistogram) method documentation.
- * @see [BrowserOperations.getHistogram]
+  * @link [Browser#getHistogram](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistogram) method documentation.
+  * @see [BrowserOperations.getHistogram]
  */
 data class GetHistogramResponse(
-    /**  
-     * Histogram.  
-     */  
-    val histogram: Histogram
+  /**
+   * Histogram.
+   */
+  val histogram: Histogram
 
 )
 
@@ -396,7 +363,7 @@ data class GetHistogramResponse(
  * @link [Browser#getWindowBounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowBounds) method documentation.
  * @see [BrowserOperations.getWindowBounds]
  */
-data class GetWindowBoundsRequest(
+data class GetWindowBoundsRequest (
     /**
      * Browser window id.
      */
@@ -408,15 +375,15 @@ data class GetWindowBoundsRequest(
  * Get position and size of the browser window.
  *
   
- * @link [Browser#getWindowBounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowBounds) method documentation.
- * @see [BrowserOperations.getWindowBounds]
+  * @link [Browser#getWindowBounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowBounds) method documentation.
+  * @see [BrowserOperations.getWindowBounds]
  */
 data class GetWindowBoundsResponse(
-    /**  
-     * Bounds information of the window. When window state is 'minimized', the restored window  
-     position and size are returned.  
-     */  
-    val bounds: Bounds
+  /**
+   * Bounds information of the window. When window state is 'minimized', the restored window
+position and size are returned.
+   */
+  val bounds: Bounds
 
 )
 
@@ -427,7 +394,7 @@ data class GetWindowBoundsResponse(
  * @link [Browser#getWindowForTarget](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowForTarget) method documentation.
  * @see [BrowserOperations.getWindowForTarget]
  */
-data class GetWindowForTargetRequest(
+data class GetWindowForTargetRequest (
     /**
      * Devtools agent host id. If called as a part of the session, associated targetId is used.
      */
@@ -439,20 +406,20 @@ data class GetWindowForTargetRequest(
  * Get the browser window that contains the devtools target.
  *
   
- * @link [Browser#getWindowForTarget](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowForTarget) method documentation.
- * @see [BrowserOperations.getWindowForTarget]
+  * @link [Browser#getWindowForTarget](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowForTarget) method documentation.
+  * @see [BrowserOperations.getWindowForTarget]
  */
 data class GetWindowForTargetResponse(
-    /**  
-     * Browser window id.  
-     */  
-    val windowId: WindowID,
+  /**
+   * Browser window id.
+   */
+  val windowId: WindowID,
 
-    /**  
-     * Bounds information of the window. When window state is 'minimized', the restored window  
-     position and size are returned.  
-     */  
-    val bounds: Bounds
+  /**
+   * Bounds information of the window. When window state is 'minimized', the restored window
+position and size are returned.
+   */
+  val bounds: Bounds
 
 )
 
@@ -463,7 +430,7 @@ data class GetWindowForTargetResponse(
  * @link [Browser#setWindowBounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setWindowBounds) method documentation.
  * @see [BrowserOperations.setWindowBounds]
  */
-data class SetWindowBoundsRequest(
+data class SetWindowBoundsRequest (
     /**
      * Browser window id.
      */
@@ -484,7 +451,7 @@ with 'left', 'top', 'width' or 'height'. Leaves unspecified fields unchanged.
  * @link [Browser#setDockTile](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setDockTile) method documentation.
  * @see [BrowserOperations.setDockTile]
  */
-data class SetDockTileRequest(
+data class SetDockTileRequest (
     /**
      *
      */
@@ -496,3 +463,4 @@ data class SetDockTileRequest(
     val image: String? = null
 
 )
+

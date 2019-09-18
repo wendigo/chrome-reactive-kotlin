@@ -15,25 +15,25 @@ typealias DatabaseId = String
  */
 
 data class Database(
-    /**  
-     * Database ID.  
-     */  
-    val id: DatabaseId,
+  /**
+   * Database ID.
+   */
+  val id: DatabaseId,
 
-    /**  
-     * Database domain.  
-     */  
-    val domain: String,
+  /**
+   * Database domain.
+   */
+  val domain: String,
 
-    /**  
-     * Database name.  
-     */  
-    val name: String,
+  /**
+   * Database name.
+   */
+  val name: String,
 
-    /**  
-     * Database version.  
-     */  
-    val version: String
+  /**
+   * Database version.
+   */
+  val version: String
 )
 
 /**
@@ -43,13 +43,14 @@ data class Database(
  */
 
 data class Error(
-    /**  
-     * Error message.  
-     */  
-    val message: String,
+  /**
+   * Error message.
+   */
+  val message: String,
 
-    /**  
-     * Error code.  
-     */  
-    val code: Int
+  /**
+   * Error code.
+   */
+  val code: Int
 )
+

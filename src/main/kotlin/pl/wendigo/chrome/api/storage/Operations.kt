@@ -7,142 +7,81 @@ package pl.wendigo.chrome.api.storage
  * @link Protocol [Storage](https://chromedevtools.github.io/devtools-protocol/tot/Storage) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class StorageOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class StorageOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Clears storage for origin.
      *
      * @link Protocol [Storage#clearDataForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearDataForOrigin) method documentation.
      */
-    fun clearDataForOrigin(input: ClearDataForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Storage.clearDataForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun clearDataForOrigin(input: ClearDataForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Storage.clearDataForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Returns usage and quota in bytes.
      *
      * @link Protocol [Storage#getUsageAndQuota](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getUsageAndQuota) method documentation.
      */
-    fun getUsageAndQuota(input: GetUsageAndQuotaRequest): io.reactivex.Single<GetUsageAndQuotaResponse> {
-        return connection.runAndCaptureResponse("Storage.getUsageAndQuota", input, GetUsageAndQuotaResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getUsageAndQuota(input: GetUsageAndQuotaRequest): io.reactivex.Single<GetUsageAndQuotaResponse> = connection.runAndCaptureResponse("Storage.getUsageAndQuota", input, GetUsageAndQuotaResponse::class.java)
+
 
     /**
      * Registers origin to be notified when an update occurs to its cache storage list.
      *
      * @link Protocol [Storage#trackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackCacheStorageForOrigin) method documentation.
      */
-    fun trackCacheStorageForOrigin(input: TrackCacheStorageForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Storage.trackCacheStorageForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun trackCacheStorageForOrigin(input: TrackCacheStorageForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Storage.trackCacheStorageForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Registers origin to be notified when an update occurs to its IndexedDB.
      *
      * @link Protocol [Storage#trackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackIndexedDBForOrigin) method documentation.
      */
-    fun trackIndexedDBForOrigin(input: TrackIndexedDBForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Storage.trackIndexedDBForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun trackIndexedDBForOrigin(input: TrackIndexedDBForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Storage.trackIndexedDBForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Unregisters origin from receiving notifications for cache storage.
      *
      * @link Protocol [Storage#untrackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackCacheStorageForOrigin) method documentation.
      */
-    fun untrackCacheStorageForOrigin(input: UntrackCacheStorageForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Storage.untrackCacheStorageForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun untrackCacheStorageForOrigin(input: UntrackCacheStorageForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Storage.untrackCacheStorageForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Unregisters origin from receiving notifications for IndexedDB.
      *
      * @link Protocol [Storage#untrackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackIndexedDBForOrigin) method documentation.
      */
-    fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Storage.untrackIndexedDBForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Storage.untrackIndexedDBForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      *  A cache's contents have been modified.
      */
-    fun cacheStorageContentUpdated(): io.reactivex.Flowable<CacheStorageContentUpdatedEvent> {
-        return cacheStorageContentUpdatedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * A cache's contents have been modified.
-     */
-    fun cacheStorageContentUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<CacheStorageContentUpdatedEvent>> {
-        return connection.captureEvents("Storage.cacheStorageContentUpdated", CacheStorageContentUpdatedEvent::class.java)
-    }
+    fun cacheStorageContentUpdated(): io.reactivex.Flowable<CacheStorageContentUpdatedEvent> = connection.captureEvents("Storage.cacheStorageContentUpdated", CacheStorageContentUpdatedEvent::class.java);
 
     /**
      *  A cache has been added/deleted.
      */
-    fun cacheStorageListUpdated(): io.reactivex.Flowable<CacheStorageListUpdatedEvent> {
-        return cacheStorageListUpdatedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * A cache has been added/deleted.
-     */
-    fun cacheStorageListUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<CacheStorageListUpdatedEvent>> {
-        return connection.captureEvents("Storage.cacheStorageListUpdated", CacheStorageListUpdatedEvent::class.java)
-    }
+    fun cacheStorageListUpdated(): io.reactivex.Flowable<CacheStorageListUpdatedEvent> = connection.captureEvents("Storage.cacheStorageListUpdated", CacheStorageListUpdatedEvent::class.java);
 
     /**
      *  The origin's IndexedDB object store has been modified.
      */
-    fun indexedDBContentUpdated(): io.reactivex.Flowable<IndexedDBContentUpdatedEvent> {
-        return indexedDBContentUpdatedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * The origin's IndexedDB object store has been modified.
-     */
-    fun indexedDBContentUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<IndexedDBContentUpdatedEvent>> {
-        return connection.captureEvents("Storage.indexedDBContentUpdated", IndexedDBContentUpdatedEvent::class.java)
-    }
+    fun indexedDBContentUpdated(): io.reactivex.Flowable<IndexedDBContentUpdatedEvent> = connection.captureEvents("Storage.indexedDBContentUpdated", IndexedDBContentUpdatedEvent::class.java);
 
     /**
      *  The origin's IndexedDB database list has been modified.
      */
-    fun indexedDBListUpdated(): io.reactivex.Flowable<IndexedDBListUpdatedEvent> {
-        return indexedDBListUpdatedTimed().map {
-            it.value()
-        }
-    }
+    fun indexedDBListUpdated(): io.reactivex.Flowable<IndexedDBListUpdatedEvent> = connection.captureEvents("Storage.indexedDBListUpdated", IndexedDBListUpdatedEvent::class.java);
 
-    /**
-     * The origin's IndexedDB database list has been modified.
-     */
-    fun indexedDBListUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<IndexedDBListUpdatedEvent>> {
-        return connection.captureEvents("Storage.indexedDBListUpdated", IndexedDBListUpdatedEvent::class.java)
-    }
 
     /**
      * Returns flowable capturing all Storage domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "Storage"
         }
     }
@@ -154,7 +93,7 @@ class StorageOperations internal constructor(private val connection: pl.wendigo.
  * @link [Storage#clearDataForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearDataForOrigin) method documentation.
  * @see [StorageOperations.clearDataForOrigin]
  */
-data class ClearDataForOriginRequest(
+data class ClearDataForOriginRequest (
     /**
      * Security origin.
      */
@@ -174,7 +113,7 @@ data class ClearDataForOriginRequest(
  * @link [Storage#getUsageAndQuota](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getUsageAndQuota) method documentation.
  * @see [StorageOperations.getUsageAndQuota]
  */
-data class GetUsageAndQuotaRequest(
+data class GetUsageAndQuotaRequest (
     /**
      * Security origin.
      */
@@ -186,24 +125,24 @@ data class GetUsageAndQuotaRequest(
  * Returns usage and quota in bytes.
  *
   
- * @link [Storage#getUsageAndQuota](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getUsageAndQuota) method documentation.
- * @see [StorageOperations.getUsageAndQuota]
+  * @link [Storage#getUsageAndQuota](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getUsageAndQuota) method documentation.
+  * @see [StorageOperations.getUsageAndQuota]
  */
 data class GetUsageAndQuotaResponse(
-    /**  
-     * Storage usage (bytes).  
-     */  
-    val usage: Double,
+  /**
+   * Storage usage (bytes).
+   */
+  val usage: Double,
 
-    /**  
-     * Storage quota (bytes).  
-     */  
-    val quota: Double,
+  /**
+   * Storage quota (bytes).
+   */
+  val quota: Double,
 
-    /**  
-     * Storage usage per type (bytes).  
-     */  
-    val usageBreakdown: List<UsageForType>
+  /**
+   * Storage usage per type (bytes).
+   */
+  val usageBreakdown: List<UsageForType>
 
 )
 
@@ -214,7 +153,7 @@ data class GetUsageAndQuotaResponse(
  * @link [Storage#trackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackCacheStorageForOrigin) method documentation.
  * @see [StorageOperations.trackCacheStorageForOrigin]
  */
-data class TrackCacheStorageForOriginRequest(
+data class TrackCacheStorageForOriginRequest (
     /**
      * Security origin.
      */
@@ -229,7 +168,7 @@ data class TrackCacheStorageForOriginRequest(
  * @link [Storage#trackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackIndexedDBForOrigin) method documentation.
  * @see [StorageOperations.trackIndexedDBForOrigin]
  */
-data class TrackIndexedDBForOriginRequest(
+data class TrackIndexedDBForOriginRequest (
     /**
      * Security origin.
      */
@@ -244,7 +183,7 @@ data class TrackIndexedDBForOriginRequest(
  * @link [Storage#untrackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackCacheStorageForOrigin) method documentation.
  * @see [StorageOperations.untrackCacheStorageForOrigin]
  */
-data class UntrackCacheStorageForOriginRequest(
+data class UntrackCacheStorageForOriginRequest (
     /**
      * Security origin.
      */
@@ -259,7 +198,7 @@ data class UntrackCacheStorageForOriginRequest(
  * @link [Storage#untrackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackIndexedDBForOrigin) method documentation.
  * @see [StorageOperations.untrackIndexedDBForOrigin]
  */
-data class UntrackIndexedDBForOriginRequest(
+data class UntrackIndexedDBForOriginRequest (
     /**
      * Security origin.
      */
@@ -271,65 +210,66 @@ data class UntrackIndexedDBForOriginRequest(
  * A cache's contents have been modified.
  *
  * @link [Storage#cacheStorageContentUpdated](https://chromedevtools.github.io/devtools-protocol/tot/Storage#event-cacheStorageContentUpdated) event documentation.
- */
+   */
 data class CacheStorageContentUpdatedEvent(
-    /**  
-     * Origin to update.  
-     */  
-    val origin: String,
+  /**
+   * Origin to update.
+   */
+  val origin: String,
 
-    /**  
-     * Name of cache in origin.  
-     */  
-    val cacheName: String
+  /**
+   * Name of cache in origin.
+   */
+  val cacheName: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Storage", name = "cacheStorageContentUpdated")
+): pl.wendigo.chrome.protocol.Event(domain = "Storage", name = "cacheStorageContentUpdated")
 
 /**
  * A cache has been added/deleted.
  *
  * @link [Storage#cacheStorageListUpdated](https://chromedevtools.github.io/devtools-protocol/tot/Storage#event-cacheStorageListUpdated) event documentation.
- */
+   */
 data class CacheStorageListUpdatedEvent(
-    /**  
-     * Origin to update.  
-     */  
-    val origin: String
+  /**
+   * Origin to update.
+   */
+  val origin: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Storage", name = "cacheStorageListUpdated")
+): pl.wendigo.chrome.protocol.Event(domain = "Storage", name = "cacheStorageListUpdated")
 
 /**
  * The origin's IndexedDB object store has been modified.
  *
  * @link [Storage#indexedDBContentUpdated](https://chromedevtools.github.io/devtools-protocol/tot/Storage#event-indexedDBContentUpdated) event documentation.
- */
+   */
 data class IndexedDBContentUpdatedEvent(
-    /**  
-     * Origin to update.  
-     */  
-    val origin: String,
+  /**
+   * Origin to update.
+   */
+  val origin: String,
 
-    /**  
-     * Database to update.  
-     */  
-    val databaseName: String,
+  /**
+   * Database to update.
+   */
+  val databaseName: String,
 
-    /**  
-     * ObjectStore to update.  
-     */  
-    val objectStoreName: String
+  /**
+   * ObjectStore to update.
+   */
+  val objectStoreName: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Storage", name = "indexedDBContentUpdated")
+): pl.wendigo.chrome.protocol.Event(domain = "Storage", name = "indexedDBContentUpdated")
 
 /**
  * The origin's IndexedDB database list has been modified.
  *
  * @link [Storage#indexedDBListUpdated](https://chromedevtools.github.io/devtools-protocol/tot/Storage#event-indexedDBListUpdated) event documentation.
- */
+   */
 data class IndexedDBListUpdatedEvent(
-    /**  
-     * Origin to update.  
-     */  
-    val origin: String
+  /**
+   * Origin to update.
+   */
+  val origin: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Storage", name = "indexedDBListUpdated")
+): pl.wendigo.chrome.protocol.Event(domain = "Storage", name = "indexedDBListUpdated")
+

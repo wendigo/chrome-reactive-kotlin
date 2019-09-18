@@ -7,21 +7,21 @@ package pl.wendigo.chrome.api.indexeddb
  */
 
 data class DatabaseWithObjectStores(
-    /**  
-     * Database name.  
-     */  
-    val name: String,
+  /**
+   * Database name.
+   */
+  val name: String,
 
-    /**  
-     * Database version (type is not 'integer', as the standard  
-     requires the version number to be 'unsigned long long')  
-     */  
-    val version: Double,
+  /**
+   * Database version (type is not 'integer', as the standard
+requires the version number to be 'unsigned long long')
+   */
+  val version: Double,
 
-    /**  
-     * Object stores in this database.  
-     */  
-    val objectStores: List<ObjectStore>
+  /**
+   * Object stores in this database.
+   */
+  val objectStores: List<ObjectStore>
 )
 
 /**
@@ -31,25 +31,25 @@ data class DatabaseWithObjectStores(
  */
 
 data class ObjectStore(
-    /**  
-     * Object store name.  
-     */  
-    val name: String,
+  /**
+   * Object store name.
+   */
+  val name: String,
 
-    /**  
-     * Object store key path.  
-     */  
-    val keyPath: KeyPath,
+  /**
+   * Object store key path.
+   */
+  val keyPath: KeyPath,
 
-    /**  
-     * If true, object store has auto increment flag set.  
-     */  
-    val autoIncrement: Boolean,
+  /**
+   * If true, object store has auto increment flag set.
+   */
+  val autoIncrement: Boolean,
 
-    /**  
-     * Indexes in this object store.  
-     */  
-    val indexes: List<ObjectStoreIndex>
+  /**
+   * Indexes in this object store.
+   */
+  val indexes: List<ObjectStoreIndex>
 )
 
 /**
@@ -59,25 +59,25 @@ data class ObjectStore(
  */
 
 data class ObjectStoreIndex(
-    /**  
-     * Index name.  
-     */  
-    val name: String,
+  /**
+   * Index name.
+   */
+  val name: String,
 
-    /**  
-     * Index key path.  
-     */  
-    val keyPath: KeyPath,
+  /**
+   * Index key path.
+   */
+  val keyPath: KeyPath,
 
-    /**  
-     * If true, index is unique.  
-     */  
-    val unique: Boolean,
+  /**
+   * If true, index is unique.
+   */
+  val unique: Boolean,
 
-    /**  
-     * If true, index allows multiple entries for a key.  
-     */  
-    val multiEntry: Boolean
+  /**
+   * If true, index allows multiple entries for a key.
+   */
+  val multiEntry: Boolean
 )
 
 /**
@@ -87,30 +87,30 @@ data class ObjectStoreIndex(
  */
 
 data class Key(
-    /**  
-     * Key type.  
-     */  
-    val type: String,
+  /**
+   * Key type.
+   */
+  val type: String,
 
-    /**  
-     * Number value.  
-     */  
-    val number: Double? = null,
+  /**
+   * Number value.
+   */
+  val number: Double? = null,
 
-    /**  
-     * String value.  
-     */  
-    val string: String? = null,
+  /**
+   * String value.
+   */
+  val string: String? = null,
 
-    /**  
-     * Date value.  
-     */  
-    val date: Double? = null,
+  /**
+   * Date value.
+   */
+  val date: Double? = null,
 
-    /**  
-     * Array value.  
-     */  
-    val array: List<Key>? = null
+  /**
+   * Array value.
+   */
+  val array: List<Key>? = null
 )
 
 /**
@@ -120,25 +120,25 @@ data class Key(
  */
 
 data class KeyRange(
-    /**  
-     * Lower bound.  
-     */  
-    val lower: Key? = null,
+  /**
+   * Lower bound.
+   */
+  val lower: Key? = null,
 
-    /**  
-     * Upper bound.  
-     */  
-    val upper: Key? = null,
+  /**
+   * Upper bound.
+   */
+  val upper: Key? = null,
 
-    /**  
-     * If true lower bound is open.  
-     */  
-    val lowerOpen: Boolean,
+  /**
+   * If true lower bound is open.
+   */
+  val lowerOpen: Boolean,
 
-    /**  
-     * If true upper bound is open.  
-     */  
-    val upperOpen: Boolean
+  /**
+   * If true upper bound is open.
+   */
+  val upperOpen: Boolean
 )
 
 /**
@@ -148,20 +148,20 @@ data class KeyRange(
  */
 
 data class DataEntry(
-    /**  
-     * Key object.  
-     */  
-    val key: pl.wendigo.chrome.api.runtime.RemoteObject,
+  /**
+   * Key object.
+   */
+  val key: pl.wendigo.chrome.api.runtime.RemoteObject,
 
-    /**  
-     * Primary key object.  
-     */  
-    val primaryKey: pl.wendigo.chrome.api.runtime.RemoteObject,
+  /**
+   * Primary key object.
+   */
+  val primaryKey: pl.wendigo.chrome.api.runtime.RemoteObject,
 
-    /**  
-     * Value object.  
-     */  
-    val value: pl.wendigo.chrome.api.runtime.RemoteObject
+  /**
+   * Value object.
+   */
+  val value: pl.wendigo.chrome.api.runtime.RemoteObject
 )
 
 /**
@@ -171,18 +171,19 @@ data class DataEntry(
  */
 
 data class KeyPath(
-    /**  
-     * Key path type.  
-     */  
-    val type: String,
+  /**
+   * Key path type.
+   */
+  val type: String,
 
-    /**  
-     * String value.  
-     */  
-    val string: String? = null,
+  /**
+   * String value.
+   */
+  val string: String? = null,
 
-    /**  
-     * Array value.  
-     */  
-    val array: List<String>? = null
+  /**
+   * Array value.
+   */
+  val array: List<String>? = null
 )
+

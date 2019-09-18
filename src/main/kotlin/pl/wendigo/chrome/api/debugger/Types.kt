@@ -23,20 +23,20 @@ typealias CallFrameId = String
  */
 
 data class Location(
-    /**  
-     * Script identifier as reported in the <code>Debugger.scriptParsed</code>.  
-     */  
-    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
+  /**
+   * Script identifier as reported in the <code>Debugger.scriptParsed</code>.
+   */
+  val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
 
-    /**  
-     * Line number in the script (0-based).  
-     */  
-    val lineNumber: Int,
+  /**
+   * Line number in the script (0-based).
+   */
+  val lineNumber: Int,
 
-    /**  
-     * Column number in the script (0-based).  
-     */  
-    val columnNumber: Int? = null
+  /**
+   * Column number in the script (0-based).
+   */
+  val columnNumber: Int? = null
 )
 
 /**
@@ -46,15 +46,15 @@ data class Location(
  */
 
 data class ScriptPosition(
-    /**  
-     *  
-     */  
-    val lineNumber: Int,
+  /**
+   *
+   */
+  val lineNumber: Int,
 
-    /**  
-     *  
-     */  
-    val columnNumber: Int
+  /**
+   *
+   */
+  val columnNumber: Int
 )
 
 /**
@@ -64,42 +64,40 @@ data class ScriptPosition(
  */
 
 data class CallFrame(
-    /**  
-     * Call frame identifier. This identifier is only valid while the virtual machine is paused.  
-     */  
-    val callFrameId: CallFrameId,
+  /**
+   * Call frame identifier. This identifier is only valid while the virtual machine is paused.
+   */
+  val callFrameId: CallFrameId,
 
-    /**  
-     * Name of the JavaScript function called on this call frame.  
-     */  
-    val functionName: String,
+  /**
+   * Name of the JavaScript function called on this call frame.
+   */
+  val functionName: String,
 
-    /**  
-     * Location in the source code.  
-     */  
-    @pl.wendigo.chrome.protocol.Experimental val functionLocation: Location? = null,
+  /**
+   * Location in the source code.
+   */
+  @pl.wendigo.chrome.protocol.Experimental val functionLocation: Location? = null,
 
-    /**  
-     * Location in the source code.  
-     */  
-    val location: Location,
+  /**
+   * Location in the source code.
+   */
+  val location: Location,
 
-    /**  
-     * Scope chain for this call frame.  
-     */  
-    val scopeChain: List<Scope>,
+  /**
+   * Scope chain for this call frame.
+   */
+  val scopeChain: List<Scope>,
 
-    /**  
-     * <code>this</code> object for this call frame.  
-     */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("this")
+  /**
+   * <code>this</code> object for this call frame.
+   */
+  @get:com.fasterxml.jackson.annotation.JsonProperty("this") val _this: pl.wendigo.chrome.api.runtime.RemoteObject,
 
-    val _this: pl.wendigo.chrome.api.runtime.RemoteObject,
-
-    /**  
-     * The value being returned, if the function is at return point.  
-     */  
-    val returnValue: pl.wendigo.chrome.api.runtime.RemoteObject? = null
+  /**
+   * The value being returned, if the function is at return point.
+   */
+  val returnValue: pl.wendigo.chrome.api.runtime.RemoteObject? = null
 )
 
 /**
@@ -109,32 +107,30 @@ data class CallFrame(
  */
 
 data class Scope(
-    /**  
-     * Scope type.  
-     */  
-    val type: String,
+  /**
+   * Scope type.
+   */
+  val type: String,
 
-    /**  
-     * Object representing the scope. For <code>global</code> and <code>with</code> scopes it represents the actual object; for the rest of the scopes, it is artificial transient object enumerating scope variables as its properties.  
-     */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("object")
+  /**
+   * Object representing the scope. For <code>global</code> and <code>with</code> scopes it represents the actual object; for the rest of the scopes, it is artificial transient object enumerating scope variables as its properties.
+   */
+  @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: pl.wendigo.chrome.api.runtime.RemoteObject,
 
-    val _object: pl.wendigo.chrome.api.runtime.RemoteObject,
+  /**
+   *
+   */
+  val name: String? = null,
 
-    /**  
-     *  
-     */  
-    val name: String? = null,
+  /**
+   * Location in the source code where scope starts
+   */
+  val startLocation: Location? = null,
 
-    /**  
-     * Location in the source code where scope starts  
-     */  
-    val startLocation: Location? = null,
-
-    /**  
-     * Location in the source code where scope ends  
-     */  
-    val endLocation: Location? = null
+  /**
+   * Location in the source code where scope ends
+   */
+  val endLocation: Location? = null
 )
 
 /**
@@ -144,13 +140,14 @@ data class Scope(
  */
 
 data class SearchMatch(
-    /**  
-     * Line number in resource content.  
-     */  
-    val lineNumber: Double,
+  /**
+   * Line number in resource content.
+   */
+  val lineNumber: Double,
 
-    /**  
-     * Line with match content.  
-     */  
-    val lineContent: String
+  /**
+   * Line with match content.
+   */
+  val lineContent: String
 )
+

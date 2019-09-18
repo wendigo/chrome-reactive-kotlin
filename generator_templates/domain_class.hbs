@@ -27,29 +27,15 @@ class {{Domain.Name}}Operations internal constructor(private val connection : {{
     {{#if Experimental}}
     @{{Package}}.protocol.Experimental
     {{/if}}
-    fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}): io.reactivex.Single<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.ResponseFrame{{/if}}> {
-        return connection.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.ResponseFrame{{/if}}::class.java).map {
-            it.value()
-        }
-    }
+    fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}): io.reactivex.Single<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.ResponseFrame{{/if}}> = connection.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.ResponseFrame{{/if}}::class.java)
+
 
 {{/each}}
 {{#each Domain.Events}}
     /**
      * {{#if Description}}{{{trim Description}}}{{else}} Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
      */
-    fun {{Name}}(): io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}> {
-        return {{Name}}Timed().map {
-            it.value()
-        }
-    }
-
-    /**
-     *{{#if Description}}{{{trim Description}}}{{else}} Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
-     */
-    fun {{Name}}Timed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}>> {
-        return connection.captureEvents("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}::class.java)
-    }
+    fun {{Name}}(): io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}> = connection.captureEvents("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}::class.java);
 
 {{/each}}
 
@@ -57,7 +43,7 @@ class {{Domain.Name}}Operations internal constructor(private val connection : {{
      * Returns flowable capturing all {{Domain.Name}} domains events.
      */
     fun events() : io.reactivex.Flowable<{{Package}}.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "{{Domain.Name}}"
         }
     }

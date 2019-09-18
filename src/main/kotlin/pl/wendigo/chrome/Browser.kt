@@ -87,6 +87,11 @@ class Browser(
         return HeadlessDevToolsProtocol.create(DevToolsProtocol(ChromeDebuggerConnection.openSession(version().webSocketDebugUrl, eventBufferSize)), url, width, height)
     }
 
+    @JvmOverloads
+    fun session(url: String, eventBufferSize: Int = 128): DevToolsProtocol {
+        return openNewPage(url).session(eventBufferSize)
+    }
+
     override fun close() {
         return client.dispatcher.executorService.shutdown()
     }
