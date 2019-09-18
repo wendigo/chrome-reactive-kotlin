@@ -34,12 +34,12 @@ data class ResponseFrame(
     /**
      * Checks if response is event
      */
-    internal fun isEvent(): Boolean = this.method != null
+    internal inline fun isEvent(): Boolean = !this.method.isNullOrEmpty()
 
     /**
      * Checks if response is event
      */
-    internal fun isResponse(): Boolean = !this.isEvent()
+    internal inline fun isResponse(): Boolean = !this.isEvent()
 
-    internal fun isResponse(requestId: Long): Boolean = isResponse() && id == requestId
+    internal inline fun matchesRequest(request: RequestFrame): Boolean = isResponse() && id == request.id
 }

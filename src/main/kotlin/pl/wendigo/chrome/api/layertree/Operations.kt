@@ -7,143 +7,95 @@ package pl.wendigo.chrome.api.layertree
  * @link Protocol [LayerTree](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class LayerTreeOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class LayerTreeOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Provides the reasons why the given layer was composited.
      *
      * @link Protocol [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
      */
-    fun compositingReasons(input: CompositingReasonsRequest): io.reactivex.Single<CompositingReasonsResponse> {
-        return connection.runAndCaptureResponse("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun compositingReasons(input: CompositingReasonsRequest): io.reactivex.Single<CompositingReasonsResponse> = connection.runAndCaptureResponse("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java)
+
 
     /**
      * Disables compositing tree inspection.
      *
      * @link Protocol [LayerTree#disable](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Enables compositing tree inspection.
      *
      * @link Protocol [LayerTree#enable](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Returns the snapshot identifier.
      *
      * @link Protocol [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
      */
-    fun loadSnapshot(input: LoadSnapshotRequest): io.reactivex.Single<LoadSnapshotResponse> {
-        return connection.runAndCaptureResponse("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun loadSnapshot(input: LoadSnapshotRequest): io.reactivex.Single<LoadSnapshotResponse> = connection.runAndCaptureResponse("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java)
+
 
     /**
      * Returns the layer snapshot identifier.
      *
      * @link Protocol [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
      */
-    fun makeSnapshot(input: MakeSnapshotRequest): io.reactivex.Single<MakeSnapshotResponse> {
-        return connection.runAndCaptureResponse("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun makeSnapshot(input: MakeSnapshotRequest): io.reactivex.Single<MakeSnapshotResponse> = connection.runAndCaptureResponse("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java)
+
 
     /**
      *
      *
      * @link Protocol [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
      */
-    fun profileSnapshot(input: ProfileSnapshotRequest): io.reactivex.Single<ProfileSnapshotResponse> {
-        return connection.runAndCaptureResponse("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun profileSnapshot(input: ProfileSnapshotRequest): io.reactivex.Single<ProfileSnapshotResponse> = connection.runAndCaptureResponse("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java)
+
 
     /**
      * Releases layer snapshot captured by the back-end.
      *
      * @link Protocol [LayerTree#releaseSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-releaseSnapshot) method documentation.
      */
-    fun releaseSnapshot(input: ReleaseSnapshotRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun releaseSnapshot(input: ReleaseSnapshotRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Replays the layer snapshot and returns the resulting bitmap.
      *
      * @link Protocol [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
      */
-    fun replaySnapshot(input: ReplaySnapshotRequest): io.reactivex.Single<ReplaySnapshotResponse> {
-        return connection.runAndCaptureResponse("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun replaySnapshot(input: ReplaySnapshotRequest): io.reactivex.Single<ReplaySnapshotResponse> = connection.runAndCaptureResponse("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java)
+
 
     /**
      * Replays the layer snapshot and returns canvas log.
      *
      * @link Protocol [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
      */
-    fun snapshotCommandLog(input: SnapshotCommandLogRequest): io.reactivex.Single<SnapshotCommandLogResponse> {
-        return connection.runAndCaptureResponse("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun snapshotCommandLog(input: SnapshotCommandLogRequest): io.reactivex.Single<SnapshotCommandLogResponse> = connection.runAndCaptureResponse("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java)
+
 
     /**
      *  Returns observable capturing all LayerTree.layerPainted events.
      */
-    fun layerPainted(): io.reactivex.Flowable<LayerPaintedEvent> {
-        return layerPaintedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Returns observable capturing all LayerTree.layerPainted events.
-     */
-    fun layerPaintedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<LayerPaintedEvent>> {
-        return connection.captureEvents("LayerTree.layerPainted", LayerPaintedEvent::class.java)
-    }
+    fun layerPainted(): io.reactivex.Flowable<LayerPaintedEvent> = connection.captureEvents("LayerTree.layerPainted", LayerPaintedEvent::class.java);
 
     /**
      *  Returns observable capturing all LayerTree.layerTreeDidChange events.
      */
-    fun layerTreeDidChange(): io.reactivex.Flowable<LayerTreeDidChangeEvent> {
-        return layerTreeDidChangeTimed().map {
-            it.value()
-        }
-    }
+    fun layerTreeDidChange(): io.reactivex.Flowable<LayerTreeDidChangeEvent> = connection.captureEvents("LayerTree.layerTreeDidChange", LayerTreeDidChangeEvent::class.java);
 
-    /**
-     * Returns observable capturing all LayerTree.layerTreeDidChange events.
-     */
-    fun layerTreeDidChangeTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<LayerTreeDidChangeEvent>> {
-        return connection.captureEvents("LayerTree.layerTreeDidChange", LayerTreeDidChangeEvent::class.java)
-    }
 
     /**
      * Returns flowable capturing all LayerTree domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "LayerTree"
         }
     }
@@ -155,7 +107,7 @@ class LayerTreeOperations internal constructor(private val connection: pl.wendig
  * @link [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
  * @see [LayerTreeOperations.compositingReasons]
  */
-data class CompositingReasonsRequest(
+data class CompositingReasonsRequest (
     /**
      * The id of the layer for which we want to get the reasons it was composited.
      */
@@ -167,16 +119,20 @@ data class CompositingReasonsRequest(
  * Provides the reasons why the given layer was composited.
  *
   
- * @link [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
- * @see [LayerTreeOperations.compositingReasons]
+  * @link [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
+  * @see [LayerTreeOperations.compositingReasons]
  */
 data class CompositingReasonsResponse(
-    /**  
-     * A list of strings specifying reasons for the given layer to become composited.  
-     */  
-    val compositingReasons: List<String>
+  /**
+   * A list of strings specifying reasons for the given layer to become composited.
+   */
+  val compositingReasons: List<String>
 
 )
+
+
+
+
 
 /**
  * Represents request frame that can be used with [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) operation call.
@@ -185,7 +141,7 @@ data class CompositingReasonsResponse(
  * @link [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
  * @see [LayerTreeOperations.loadSnapshot]
  */
-data class LoadSnapshotRequest(
+data class LoadSnapshotRequest (
     /**
      * An array of tiles composing the snapshot.
      */
@@ -197,14 +153,14 @@ data class LoadSnapshotRequest(
  * Returns the snapshot identifier.
  *
   
- * @link [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
- * @see [LayerTreeOperations.loadSnapshot]
+  * @link [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
+  * @see [LayerTreeOperations.loadSnapshot]
  */
 data class LoadSnapshotResponse(
-    /**  
-     * The id of the snapshot.  
-     */  
-    val snapshotId: SnapshotId
+  /**
+   * The id of the snapshot.
+   */
+  val snapshotId: SnapshotId
 
 )
 
@@ -215,7 +171,7 @@ data class LoadSnapshotResponse(
  * @link [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
  * @see [LayerTreeOperations.makeSnapshot]
  */
-data class MakeSnapshotRequest(
+data class MakeSnapshotRequest (
     /**
      * The id of the layer.
      */
@@ -227,14 +183,14 @@ data class MakeSnapshotRequest(
  * Returns the layer snapshot identifier.
  *
   
- * @link [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
- * @see [LayerTreeOperations.makeSnapshot]
+  * @link [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
+  * @see [LayerTreeOperations.makeSnapshot]
  */
 data class MakeSnapshotResponse(
-    /**  
-     * The id of the layer snapshot.  
-     */  
-    val snapshotId: SnapshotId
+  /**
+   * The id of the layer snapshot.
+   */
+  val snapshotId: SnapshotId
 
 )
 
@@ -245,7 +201,7 @@ data class MakeSnapshotResponse(
  * @link [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
  * @see [LayerTreeOperations.profileSnapshot]
  */
-data class ProfileSnapshotRequest(
+data class ProfileSnapshotRequest (
     /**
      * The id of the layer snapshot.
      */
@@ -272,14 +228,14 @@ data class ProfileSnapshotRequest(
  *
  *
   
- * @link [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
- * @see [LayerTreeOperations.profileSnapshot]
+  * @link [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
+  * @see [LayerTreeOperations.profileSnapshot]
  */
 data class ProfileSnapshotResponse(
-    /**  
-     * The array of paint profiles, one per run.  
-     */  
-    val timings: List<PaintProfile>
+  /**
+   * The array of paint profiles, one per run.
+   */
+  val timings: List<PaintProfile>
 
 )
 
@@ -290,7 +246,7 @@ data class ProfileSnapshotResponse(
  * @link [LayerTree#releaseSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-releaseSnapshot) method documentation.
  * @see [LayerTreeOperations.releaseSnapshot]
  */
-data class ReleaseSnapshotRequest(
+data class ReleaseSnapshotRequest (
     /**
      * The id of the layer snapshot.
      */
@@ -305,7 +261,7 @@ data class ReleaseSnapshotRequest(
  * @link [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
  * @see [LayerTreeOperations.replaySnapshot]
  */
-data class ReplaySnapshotRequest(
+data class ReplaySnapshotRequest (
     /**
      * The id of the layer snapshot.
      */
@@ -332,14 +288,14 @@ data class ReplaySnapshotRequest(
  * Replays the layer snapshot and returns the resulting bitmap.
  *
   
- * @link [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
- * @see [LayerTreeOperations.replaySnapshot]
+  * @link [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
+  * @see [LayerTreeOperations.replaySnapshot]
  */
 data class ReplaySnapshotResponse(
-    /**  
-     * A data: URL for resulting image.  
-     */  
-    val dataURL: String
+  /**
+   * A data: URL for resulting image.
+   */
+  val dataURL: String
 
 )
 
@@ -350,7 +306,7 @@ data class ReplaySnapshotResponse(
  * @link [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
  * @see [LayerTreeOperations.snapshotCommandLog]
  */
-data class SnapshotCommandLogRequest(
+data class SnapshotCommandLogRequest (
     /**
      * The id of the layer snapshot.
      */
@@ -362,14 +318,14 @@ data class SnapshotCommandLogRequest(
  * Replays the layer snapshot and returns canvas log.
  *
   
- * @link [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
- * @see [LayerTreeOperations.snapshotCommandLog]
+  * @link [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
+  * @see [LayerTreeOperations.snapshotCommandLog]
  */
 data class SnapshotCommandLogResponse(
-    /**  
-     * The array of canvas function calls.  
-     */  
-    val commandLog: List<Any>
+  /**
+   * The array of canvas function calls.
+   */
+  val commandLog: List<Any>
 
 )
 
@@ -377,29 +333,30 @@ data class SnapshotCommandLogResponse(
  *
  *
  * @link [LayerTree#layerPainted](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#event-layerPainted) event documentation.
- */
+   */
 data class LayerPaintedEvent(
-    /**  
-     * The id of the painted layer.  
-     */  
-    val layerId: LayerId,
+  /**
+   * The id of the painted layer.
+   */
+  val layerId: LayerId,
 
-    /**  
-     * Clip rectangle.  
-     */  
-    val clip: pl.wendigo.chrome.api.dom.Rect
+  /**
+   * Clip rectangle.
+   */
+  val clip: pl.wendigo.chrome.api.dom.Rect
 
-) : pl.wendigo.chrome.protocol.Event(domain = "LayerTree", name = "layerPainted")
+): pl.wendigo.chrome.protocol.Event(domain = "LayerTree", name = "layerPainted")
 
 /**
  *
  *
  * @link [LayerTree#layerTreeDidChange](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#event-layerTreeDidChange) event documentation.
- */
+   */
 data class LayerTreeDidChangeEvent(
-    /**  
-     * Layer tree, absent if not in the comspositing mode.  
-     */  
-    val layers: List<Layer>? = null
+  /**
+   * Layer tree, absent if not in the comspositing mode.
+   */
+  val layers: List<Layer>? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "LayerTree", name = "layerTreeDidChange")
+): pl.wendigo.chrome.protocol.Event(domain = "LayerTree", name = "layerTreeDidChange")
+

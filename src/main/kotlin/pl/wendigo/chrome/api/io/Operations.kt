@@ -5,45 +5,37 @@ package pl.wendigo.chrome.api.io
  *
  * @link Protocol [IO](https://chromedevtools.github.io/devtools-protocol/tot/IO) domain documentation.
  */
-class IOOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class IOOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Close the stream, discard any temporary backing storage.
      *
      * @link Protocol [IO#close](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-close) method documentation.
      */
-    fun close(input: CloseRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun close(input: CloseRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Read a chunk of the stream
      *
      * @link Protocol [IO#read](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-read) method documentation.
      */
-    fun read(input: ReadRequest): io.reactivex.Single<ReadResponse> {
-        return connection.runAndCaptureResponse("IO.read", input, ReadResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun read(input: ReadRequest): io.reactivex.Single<ReadResponse> = connection.runAndCaptureResponse("IO.read", input, ReadResponse::class.java)
+
 
     /**
      * Return UUID of Blob object specified by a remote object id.
      *
      * @link Protocol [IO#resolveBlob](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-resolveBlob) method documentation.
      */
-    fun resolveBlob(input: ResolveBlobRequest): io.reactivex.Single<ResolveBlobResponse> {
-        return connection.runAndCaptureResponse("IO.resolveBlob", input, ResolveBlobResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun resolveBlob(input: ResolveBlobRequest): io.reactivex.Single<ResolveBlobResponse> = connection.runAndCaptureResponse("IO.resolveBlob", input, ResolveBlobResponse::class.java)
+
+
 
     /**
      * Returns flowable capturing all IO domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "IO"
         }
     }
@@ -55,7 +47,7 @@ class IOOperations internal constructor(private val connection: pl.wendigo.chrom
  * @link [IO#close](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-close) method documentation.
  * @see [IOOperations.close]
  */
-data class CloseRequest(
+data class CloseRequest (
     /**
      * Handle of the stream to close.
      */
@@ -70,7 +62,7 @@ data class CloseRequest(
  * @link [IO#read](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-read) method documentation.
  * @see [IOOperations.read]
  */
-data class ReadRequest(
+data class ReadRequest (
     /**
      * Handle of the stream to read.
      */
@@ -93,24 +85,24 @@ following the last read). Some types of streams may only support sequential read
  * Read a chunk of the stream
  *
   
- * @link [IO#read](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-read) method documentation.
- * @see [IOOperations.read]
+  * @link [IO#read](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-read) method documentation.
+  * @see [IOOperations.read]
  */
 data class ReadResponse(
-    /**  
-     * Set if the data is base64-encoded  
-     */  
-    val base64Encoded: Boolean? = null,
+  /**
+   * Set if the data is base64-encoded
+   */
+  val base64Encoded: Boolean? = null,
 
-    /**  
-     * Data that were read.  
-     */  
-    val data: String,
+  /**
+   * Data that were read.
+   */
+  val data: String,
 
-    /**  
-     * Set if the end-of-file condition occured while reading.  
-     */  
-    val eof: Boolean
+  /**
+   * Set if the end-of-file condition occured while reading.
+   */
+  val eof: Boolean
 
 )
 
@@ -121,7 +113,7 @@ data class ReadResponse(
  * @link [IO#resolveBlob](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-resolveBlob) method documentation.
  * @see [IOOperations.resolveBlob]
  */
-data class ResolveBlobRequest(
+data class ResolveBlobRequest (
     /**
      * Object id of a Blob object wrapper.
      */
@@ -133,13 +125,14 @@ data class ResolveBlobRequest(
  * Return UUID of Blob object specified by a remote object id.
  *
   
- * @link [IO#resolveBlob](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-resolveBlob) method documentation.
- * @see [IOOperations.resolveBlob]
+  * @link [IO#resolveBlob](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-resolveBlob) method documentation.
+  * @see [IOOperations.resolveBlob]
  */
 data class ResolveBlobResponse(
-    /**  
-     * UUID of the specified Blob.  
-     */  
-    val uuid: String
+  /**
+   * UUID of the specified Blob.
+   */
+  val uuid: String
 
 )
+

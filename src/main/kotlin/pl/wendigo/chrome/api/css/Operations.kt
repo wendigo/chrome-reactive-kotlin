@@ -12,51 +12,39 @@ subsequently load the required stylesheet contents using the `getStyleSheet[Text
  * @link Protocol [CSS](https://chromedevtools.github.io/devtools-protocol/tot/CSS) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class CSSOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class CSSOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the
 position specified by `location`.
      *
      * @link Protocol [CSS#addRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-addRule) method documentation.
      */
-    fun addRule(input: AddRuleRequest): io.reactivex.Single<AddRuleResponse> {
-        return connection.runAndCaptureResponse("CSS.addRule", input, AddRuleResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun addRule(input: AddRuleRequest): io.reactivex.Single<AddRuleResponse> = connection.runAndCaptureResponse("CSS.addRule", input, AddRuleResponse::class.java)
+
 
     /**
      * Returns all class names from specified stylesheet.
      *
      * @link Protocol [CSS#collectClassNames](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-collectClassNames) method documentation.
      */
-    fun collectClassNames(input: CollectClassNamesRequest): io.reactivex.Single<CollectClassNamesResponse> {
-        return connection.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun collectClassNames(input: CollectClassNamesRequest): io.reactivex.Single<CollectClassNamesResponse> = connection.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java)
+
 
     /**
      * Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
      *
      * @link Protocol [CSS#createStyleSheet](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-createStyleSheet) method documentation.
      */
-    fun createStyleSheet(input: CreateStyleSheetRequest): io.reactivex.Single<CreateStyleSheetResponse> {
-        return connection.runAndCaptureResponse("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun createStyleSheet(input: CreateStyleSheetRequest): io.reactivex.Single<CreateStyleSheetResponse> = connection.runAndCaptureResponse("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java)
+
 
     /**
      * Disables the CSS agent for the given page.
      *
      * @link Protocol [CSS#disable](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("CSS.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("CSS.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been
@@ -64,11 +52,8 @@ enabled until the result of this command is received.
      *
      * @link Protocol [CSS#enable](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Ensures that the given node will have specified pseudo-classes whenever its style is computed by
@@ -76,33 +61,24 @@ the browser.
      *
      * @link Protocol [CSS#forcePseudoState](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-forcePseudoState) method documentation.
      */
-    fun forcePseudoState(input: ForcePseudoStateRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun forcePseudoState(input: ForcePseudoStateRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      *
      *
      * @link Protocol [CSS#getBackgroundColors](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getBackgroundColors) method documentation.
      */
-    fun getBackgroundColors(input: GetBackgroundColorsRequest): io.reactivex.Single<GetBackgroundColorsResponse> {
-        return connection.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getBackgroundColors(input: GetBackgroundColorsRequest): io.reactivex.Single<GetBackgroundColorsResponse> = connection.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java)
+
 
     /**
      * Returns the computed style for a DOM node identified by `nodeId`.
      *
      * @link Protocol [CSS#getComputedStyleForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getComputedStyleForNode) method documentation.
      */
-    fun getComputedStyleForNode(input: GetComputedStyleForNodeRequest): io.reactivex.Single<GetComputedStyleForNodeResponse> {
-        return connection.runAndCaptureResponse("CSS.getComputedStyleForNode", input, GetComputedStyleForNodeResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getComputedStyleForNode(input: GetComputedStyleForNodeRequest): io.reactivex.Single<GetComputedStyleForNodeResponse> = connection.runAndCaptureResponse("CSS.getComputedStyleForNode", input, GetComputedStyleForNodeResponse::class.java)
+
 
     /**
      * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM
@@ -110,33 +86,24 @@ attributes) for a DOM node identified by `nodeId`.
      *
      * @link Protocol [CSS#getInlineStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getInlineStylesForNode) method documentation.
      */
-    fun getInlineStylesForNode(input: GetInlineStylesForNodeRequest): io.reactivex.Single<GetInlineStylesForNodeResponse> {
-        return connection.runAndCaptureResponse("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getInlineStylesForNode(input: GetInlineStylesForNodeRequest): io.reactivex.Single<GetInlineStylesForNodeResponse> = connection.runAndCaptureResponse("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java)
+
 
     /**
      * Returns requested styles for a DOM node identified by `nodeId`.
      *
      * @link Protocol [CSS#getMatchedStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMatchedStylesForNode) method documentation.
      */
-    fun getMatchedStylesForNode(input: GetMatchedStylesForNodeRequest): io.reactivex.Single<GetMatchedStylesForNodeResponse> {
-        return connection.runAndCaptureResponse("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getMatchedStylesForNode(input: GetMatchedStylesForNodeRequest): io.reactivex.Single<GetMatchedStylesForNodeResponse> = connection.runAndCaptureResponse("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java)
+
 
     /**
      * Returns all media queries parsed by the rendering engine.
      *
      * @link Protocol [CSS#getMediaQueries](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMediaQueries) method documentation.
      */
-    fun getMediaQueries(): io.reactivex.Single<GetMediaQueriesResponse> {
-        return connection.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getMediaQueries(): io.reactivex.Single<GetMediaQueriesResponse> = connection.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java)
+
 
     /**
      * Requests information about platform fonts which we used to render child TextNodes in the given
@@ -144,22 +111,16 @@ node.
      *
      * @link Protocol [CSS#getPlatformFontsForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getPlatformFontsForNode) method documentation.
      */
-    fun getPlatformFontsForNode(input: GetPlatformFontsForNodeRequest): io.reactivex.Single<GetPlatformFontsForNodeResponse> {
-        return connection.runAndCaptureResponse("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getPlatformFontsForNode(input: GetPlatformFontsForNodeRequest): io.reactivex.Single<GetPlatformFontsForNodeResponse> = connection.runAndCaptureResponse("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java)
+
 
     /**
      * Returns the current textual content for a stylesheet.
      *
      * @link Protocol [CSS#getStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getStyleSheetText) method documentation.
      */
-    fun getStyleSheetText(input: GetStyleSheetTextRequest): io.reactivex.Single<GetStyleSheetTextResponse> {
-        return connection.runAndCaptureResponse("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getStyleSheetText(input: GetStyleSheetTextRequest): io.reactivex.Single<GetStyleSheetTextResponse> = connection.runAndCaptureResponse("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java)
+
 
     /**
      * Find a rule with the given active property for the given node and set the new value for this
@@ -167,77 +128,56 @@ property
      *
      * @link Protocol [CSS#setEffectivePropertyValueForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setEffectivePropertyValueForNode) method documentation.
      */
-    fun setEffectivePropertyValueForNode(input: SetEffectivePropertyValueForNodeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun setEffectivePropertyValueForNode(input: SetEffectivePropertyValueForNodeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Modifies the keyframe rule key text.
      *
      * @link Protocol [CSS#setKeyframeKey](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setKeyframeKey) method documentation.
      */
-    fun setKeyframeKey(input: SetKeyframeKeyRequest): io.reactivex.Single<SetKeyframeKeyResponse> {
-        return connection.runAndCaptureResponse("CSS.setKeyframeKey", input, SetKeyframeKeyResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun setKeyframeKey(input: SetKeyframeKeyRequest): io.reactivex.Single<SetKeyframeKeyResponse> = connection.runAndCaptureResponse("CSS.setKeyframeKey", input, SetKeyframeKeyResponse::class.java)
+
 
     /**
      * Modifies the rule selector.
      *
      * @link Protocol [CSS#setMediaText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setMediaText) method documentation.
      */
-    fun setMediaText(input: SetMediaTextRequest): io.reactivex.Single<SetMediaTextResponse> {
-        return connection.runAndCaptureResponse("CSS.setMediaText", input, SetMediaTextResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun setMediaText(input: SetMediaTextRequest): io.reactivex.Single<SetMediaTextResponse> = connection.runAndCaptureResponse("CSS.setMediaText", input, SetMediaTextResponse::class.java)
+
 
     /**
      * Modifies the rule selector.
      *
      * @link Protocol [CSS#setRuleSelector](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setRuleSelector) method documentation.
      */
-    fun setRuleSelector(input: SetRuleSelectorRequest): io.reactivex.Single<SetRuleSelectorResponse> {
-        return connection.runAndCaptureResponse("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun setRuleSelector(input: SetRuleSelectorRequest): io.reactivex.Single<SetRuleSelectorResponse> = connection.runAndCaptureResponse("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java)
+
 
     /**
      * Sets the new stylesheet text.
      *
      * @link Protocol [CSS#setStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleSheetText) method documentation.
      */
-    fun setStyleSheetText(input: SetStyleSheetTextRequest): io.reactivex.Single<SetStyleSheetTextResponse> {
-        return connection.runAndCaptureResponse("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun setStyleSheetText(input: SetStyleSheetTextRequest): io.reactivex.Single<SetStyleSheetTextResponse> = connection.runAndCaptureResponse("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java)
+
 
     /**
      * Applies specified style edits one after another in the given order.
      *
      * @link Protocol [CSS#setStyleTexts](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleTexts) method documentation.
      */
-    fun setStyleTexts(input: SetStyleTextsRequest): io.reactivex.Single<SetStyleTextsResponse> {
-        return connection.runAndCaptureResponse("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun setStyleTexts(input: SetStyleTextsRequest): io.reactivex.Single<SetStyleTextsResponse> = connection.runAndCaptureResponse("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java)
+
 
     /**
      * Enables the selector recording.
      *
      * @link Protocol [CSS#startRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-startRuleUsageTracking) method documentation.
      */
-    fun startRuleUsageTracking(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun startRuleUsageTracking(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Stop tracking rule usage and return the list of rules that were used since last call to
@@ -245,11 +185,8 @@ property
      *
      * @link Protocol [CSS#stopRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-stopRuleUsageTracking) method documentation.
      */
-    fun stopRuleUsageTracking(): io.reactivex.Single<StopRuleUsageTrackingResponse> {
-        return connection.runAndCaptureResponse("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun stopRuleUsageTracking(): io.reactivex.Single<StopRuleUsageTrackingResponse> = connection.runAndCaptureResponse("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java)
+
 
     /**
      * Obtain list of rules that became used since last call to this method (or since start of coverage
@@ -257,101 +194,42 @@ instrumentation)
      *
      * @link Protocol [CSS#takeCoverageDelta](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeCoverageDelta) method documentation.
      */
-    fun takeCoverageDelta(): io.reactivex.Single<TakeCoverageDeltaResponse> {
-        return connection.runAndCaptureResponse("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun takeCoverageDelta(): io.reactivex.Single<TakeCoverageDeltaResponse> = connection.runAndCaptureResponse("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java)
+
 
     /**
      *  Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
 web font
      */
-    fun fontsUpdated(): io.reactivex.Flowable<FontsUpdatedEvent> {
-        return fontsUpdatedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
-web font
-     */
-    fun fontsUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<FontsUpdatedEvent>> {
-        return connection.captureEvents("CSS.fontsUpdated", FontsUpdatedEvent::class.java)
-    }
+    fun fontsUpdated(): io.reactivex.Flowable<FontsUpdatedEvent> = connection.captureEvents("CSS.fontsUpdated", FontsUpdatedEvent::class.java);
 
     /**
      *  Fires whenever a MediaQuery result changes (for example, after a browser window has been
 resized.) The current implementation considers only viewport-dependent media features.
      */
-    fun mediaQueryResultChanged(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return mediaQueryResultChangedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Fires whenever a MediaQuery result changes (for example, after a browser window has been
-resized.) The current implementation considers only viewport-dependent media features.
-     */
-    fun mediaQueryResultChangedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<pl.wendigo.chrome.protocol.Event>> {
-        return connection.captureEvents("CSS.mediaQueryResultChanged", pl.wendigo.chrome.protocol.Event::class.java)
-    }
+    fun mediaQueryResultChanged(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("CSS.mediaQueryResultChanged", pl.wendigo.chrome.protocol.Event::class.java);
 
     /**
      *  Fired whenever an active document stylesheet is added.
      */
-    fun styleSheetAdded(): io.reactivex.Flowable<StyleSheetAddedEvent> {
-        return styleSheetAddedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Fired whenever an active document stylesheet is added.
-     */
-    fun styleSheetAddedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<StyleSheetAddedEvent>> {
-        return connection.captureEvents("CSS.styleSheetAdded", StyleSheetAddedEvent::class.java)
-    }
+    fun styleSheetAdded(): io.reactivex.Flowable<StyleSheetAddedEvent> = connection.captureEvents("CSS.styleSheetAdded", StyleSheetAddedEvent::class.java);
 
     /**
      *  Fired whenever a stylesheet is changed as a result of the client operation.
      */
-    fun styleSheetChanged(): io.reactivex.Flowable<StyleSheetChangedEvent> {
-        return styleSheetChangedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Fired whenever a stylesheet is changed as a result of the client operation.
-     */
-    fun styleSheetChangedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<StyleSheetChangedEvent>> {
-        return connection.captureEvents("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java)
-    }
+    fun styleSheetChanged(): io.reactivex.Flowable<StyleSheetChangedEvent> = connection.captureEvents("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java);
 
     /**
      *  Fired whenever an active document stylesheet is removed.
      */
-    fun styleSheetRemoved(): io.reactivex.Flowable<StyleSheetRemovedEvent> {
-        return styleSheetRemovedTimed().map {
-            it.value()
-        }
-    }
+    fun styleSheetRemoved(): io.reactivex.Flowable<StyleSheetRemovedEvent> = connection.captureEvents("CSS.styleSheetRemoved", StyleSheetRemovedEvent::class.java);
 
-    /**
-     * Fired whenever an active document stylesheet is removed.
-     */
-    fun styleSheetRemovedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<StyleSheetRemovedEvent>> {
-        return connection.captureEvents("CSS.styleSheetRemoved", StyleSheetRemovedEvent::class.java)
-    }
 
     /**
      * Returns flowable capturing all CSS domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "CSS"
         }
     }
@@ -364,7 +242,7 @@ position specified by `location`.
  * @link [CSS#addRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-addRule) method documentation.
  * @see [CSSOperations.addRule]
  */
-data class AddRuleRequest(
+data class AddRuleRequest (
     /**
      * The css style sheet identifier where a new rule should be inserted.
      */
@@ -387,14 +265,14 @@ data class AddRuleRequest(
 position specified by `location`.
  *
   
- * @link [CSS#addRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-addRule) method documentation.
- * @see [CSSOperations.addRule]
+  * @link [CSS#addRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-addRule) method documentation.
+  * @see [CSSOperations.addRule]
  */
 data class AddRuleResponse(
-    /**  
-     * The newly created rule.  
-     */  
-    val rule: CSSRule
+  /**
+   * The newly created rule.
+   */
+  val rule: CSSRule
 
 )
 
@@ -405,7 +283,7 @@ data class AddRuleResponse(
  * @link [CSS#collectClassNames](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-collectClassNames) method documentation.
  * @see [CSSOperations.collectClassNames]
  */
-data class CollectClassNamesRequest(
+data class CollectClassNamesRequest (
     /**
      *
      */
@@ -417,14 +295,14 @@ data class CollectClassNamesRequest(
  * Returns all class names from specified stylesheet.
  *
   
- * @link [CSS#collectClassNames](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-collectClassNames) method documentation.
- * @see [CSSOperations.collectClassNames]
+  * @link [CSS#collectClassNames](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-collectClassNames) method documentation.
+  * @see [CSSOperations.collectClassNames]
  */
 data class CollectClassNamesResponse(
-    /**  
-     * Class name list.  
-     */  
-    val classNames: List<String>
+  /**
+   * Class name list.
+   */
+  val classNames: List<String>
 
 )
 
@@ -435,7 +313,7 @@ data class CollectClassNamesResponse(
  * @link [CSS#createStyleSheet](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-createStyleSheet) method documentation.
  * @see [CSSOperations.createStyleSheet]
  */
-data class CreateStyleSheetRequest(
+data class CreateStyleSheetRequest (
     /**
      * Identifier of the frame where "via-inspector" stylesheet should be created.
      */
@@ -447,16 +325,20 @@ data class CreateStyleSheetRequest(
  * Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
  *
   
- * @link [CSS#createStyleSheet](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-createStyleSheet) method documentation.
- * @see [CSSOperations.createStyleSheet]
+  * @link [CSS#createStyleSheet](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-createStyleSheet) method documentation.
+  * @see [CSSOperations.createStyleSheet]
  */
 data class CreateStyleSheetResponse(
-    /**  
-     * Identifier of the created "via-inspector" stylesheet.  
-     */  
-    val styleSheetId: StyleSheetId
+  /**
+   * Identifier of the created "via-inspector" stylesheet.
+   */
+  val styleSheetId: StyleSheetId
 
 )
+
+
+
+
 
 /**
  * Represents request frame that can be used with [CSS#forcePseudoState](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-forcePseudoState) operation call.
@@ -466,7 +348,7 @@ the browser.
  * @link [CSS#forcePseudoState](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-forcePseudoState) method documentation.
  * @see [CSSOperations.forcePseudoState]
  */
-data class ForcePseudoStateRequest(
+data class ForcePseudoStateRequest (
     /**
      * The element id for which to force the pseudo state.
      */
@@ -486,7 +368,7 @@ data class ForcePseudoStateRequest(
  * @link [CSS#getBackgroundColors](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getBackgroundColors) method documentation.
  * @see [CSSOperations.getBackgroundColors]
  */
-data class GetBackgroundColorsRequest(
+data class GetBackgroundColorsRequest (
     /**
      * Id of the node to get background colors for.
      */
@@ -498,29 +380,29 @@ data class GetBackgroundColorsRequest(
  *
  *
   
- * @link [CSS#getBackgroundColors](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getBackgroundColors) method documentation.
- * @see [CSSOperations.getBackgroundColors]
+  * @link [CSS#getBackgroundColors](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getBackgroundColors) method documentation.
+  * @see [CSSOperations.getBackgroundColors]
  */
 data class GetBackgroundColorsResponse(
-    /**  
-     * The range of background colors behind this element, if it contains any visible text. If no  
-     visible text is present, this will be undefined. In the case of a flat background color,  
-     this will consist of simply that color. In the case of a gradient, this will consist of each  
-     of the color stops. For anything more complicated, this will be an empty array. Images will  
-     be ignored (as if the image had failed to load).  
-     */  
-    val backgroundColors: List<String>? = null,
+  /**
+   * The range of background colors behind this element, if it contains any visible text. If no
+visible text is present, this will be undefined. In the case of a flat background color,
+this will consist of simply that color. In the case of a gradient, this will consist of each
+of the color stops. For anything more complicated, this will be an empty array. Images will
+be ignored (as if the image had failed to load).
+   */
+  val backgroundColors: List<String>? = null,
 
-    /**  
-     * The computed font size for this node, as a CSS computed value string (e.g. '12px').  
-     */  
-    val computedFontSize: String? = null,
+  /**
+   * The computed font size for this node, as a CSS computed value string (e.g. '12px').
+   */
+  val computedFontSize: String? = null,
 
-    /**  
-     * The computed font weight for this node, as a CSS computed value string (e.g. 'normal' or  
-     '100').  
-     */  
-    val computedFontWeight: String? = null
+  /**
+   * The computed font weight for this node, as a CSS computed value string (e.g. 'normal' or
+'100').
+   */
+  val computedFontWeight: String? = null
 
 )
 
@@ -531,7 +413,7 @@ data class GetBackgroundColorsResponse(
  * @link [CSS#getComputedStyleForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getComputedStyleForNode) method documentation.
  * @see [CSSOperations.getComputedStyleForNode]
  */
-data class GetComputedStyleForNodeRequest(
+data class GetComputedStyleForNodeRequest (
     /**
      *
      */
@@ -543,14 +425,14 @@ data class GetComputedStyleForNodeRequest(
  * Returns the computed style for a DOM node identified by `nodeId`.
  *
   
- * @link [CSS#getComputedStyleForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getComputedStyleForNode) method documentation.
- * @see [CSSOperations.getComputedStyleForNode]
+  * @link [CSS#getComputedStyleForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getComputedStyleForNode) method documentation.
+  * @see [CSSOperations.getComputedStyleForNode]
  */
 data class GetComputedStyleForNodeResponse(
-    /**  
-     * Computed style for the specified DOM node.  
-     */  
-    val computedStyle: List<CSSComputedStyleProperty>
+  /**
+   * Computed style for the specified DOM node.
+   */
+  val computedStyle: List<CSSComputedStyleProperty>
 
 )
 
@@ -562,7 +444,7 @@ attributes) for a DOM node identified by `nodeId`.
  * @link [CSS#getInlineStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getInlineStylesForNode) method documentation.
  * @see [CSSOperations.getInlineStylesForNode]
  */
-data class GetInlineStylesForNodeRequest(
+data class GetInlineStylesForNodeRequest (
     /**
      *
      */
@@ -575,19 +457,19 @@ data class GetInlineStylesForNodeRequest(
 attributes) for a DOM node identified by `nodeId`.
  *
   
- * @link [CSS#getInlineStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getInlineStylesForNode) method documentation.
- * @see [CSSOperations.getInlineStylesForNode]
+  * @link [CSS#getInlineStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getInlineStylesForNode) method documentation.
+  * @see [CSSOperations.getInlineStylesForNode]
  */
 data class GetInlineStylesForNodeResponse(
-    /**  
-     * Inline style for the specified DOM node.  
-     */  
-    val inlineStyle: CSSStyle? = null,
+  /**
+   * Inline style for the specified DOM node.
+   */
+  val inlineStyle: CSSStyle? = null,
 
-    /**  
-     * Attribute-defined element style (e.g. resulting from "width=20 height=100%").  
-     */  
-    val attributesStyle: CSSStyle? = null
+  /**
+   * Attribute-defined element style (e.g. resulting from "width=20 height=100%").
+   */
+  val attributesStyle: CSSStyle? = null
 
 )
 
@@ -598,7 +480,7 @@ data class GetInlineStylesForNodeResponse(
  * @link [CSS#getMatchedStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMatchedStylesForNode) method documentation.
  * @see [CSSOperations.getMatchedStylesForNode]
  */
-data class GetMatchedStylesForNodeRequest(
+data class GetMatchedStylesForNodeRequest (
     /**
      *
      */
@@ -610,55 +492,56 @@ data class GetMatchedStylesForNodeRequest(
  * Returns requested styles for a DOM node identified by `nodeId`.
  *
   
- * @link [CSS#getMatchedStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMatchedStylesForNode) method documentation.
- * @see [CSSOperations.getMatchedStylesForNode]
+  * @link [CSS#getMatchedStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMatchedStylesForNode) method documentation.
+  * @see [CSSOperations.getMatchedStylesForNode]
  */
 data class GetMatchedStylesForNodeResponse(
-    /**  
-     * Inline style for the specified DOM node.  
-     */  
-    val inlineStyle: CSSStyle? = null,
+  /**
+   * Inline style for the specified DOM node.
+   */
+  val inlineStyle: CSSStyle? = null,
 
-    /**  
-     * Attribute-defined element style (e.g. resulting from "width=20 height=100%").  
-     */  
-    val attributesStyle: CSSStyle? = null,
+  /**
+   * Attribute-defined element style (e.g. resulting from "width=20 height=100%").
+   */
+  val attributesStyle: CSSStyle? = null,
 
-    /**  
-     * CSS rules matching this node, from all applicable stylesheets.  
-     */  
-    val matchedCSSRules: List<RuleMatch>? = null,
+  /**
+   * CSS rules matching this node, from all applicable stylesheets.
+   */
+  val matchedCSSRules: List<RuleMatch>? = null,
 
-    /**  
-     * Pseudo style matches for this node.  
-     */  
-    val pseudoElements: List<PseudoElementMatches>? = null,
+  /**
+   * Pseudo style matches for this node.
+   */
+  val pseudoElements: List<PseudoElementMatches>? = null,
 
-    /**  
-     * A chain of inherited styles (from the immediate node parent up to the DOM tree root).  
-     */  
-    val inherited: List<InheritedStyleEntry>? = null,
+  /**
+   * A chain of inherited styles (from the immediate node parent up to the DOM tree root).
+   */
+  val inherited: List<InheritedStyleEntry>? = null,
 
-    /**  
-     * A list of CSS keyframed animations matching this node.  
-     */  
-    val cssKeyframesRules: List<CSSKeyframesRule>? = null
+  /**
+   * A list of CSS keyframed animations matching this node.
+   */
+  val cssKeyframesRules: List<CSSKeyframesRule>? = null
 
 )
+
 
 /**
  * Represents response frame that is returned from [CSS#getMediaQueries](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMediaQueries) operation call.
  * Returns all media queries parsed by the rendering engine.
  *
   
- * @link [CSS#getMediaQueries](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMediaQueries) method documentation.
- * @see [CSSOperations.getMediaQueries]
+  * @link [CSS#getMediaQueries](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMediaQueries) method documentation.
+  * @see [CSSOperations.getMediaQueries]
  */
 data class GetMediaQueriesResponse(
-    /**  
-     *  
-     */  
-    val medias: List<CSSMedia>
+  /**
+   *
+   */
+  val medias: List<CSSMedia>
 
 )
 
@@ -670,7 +553,7 @@ node.
  * @link [CSS#getPlatformFontsForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getPlatformFontsForNode) method documentation.
  * @see [CSSOperations.getPlatformFontsForNode]
  */
-data class GetPlatformFontsForNodeRequest(
+data class GetPlatformFontsForNodeRequest (
     /**
      *
      */
@@ -683,14 +566,14 @@ data class GetPlatformFontsForNodeRequest(
 node.
  *
   
- * @link [CSS#getPlatformFontsForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getPlatformFontsForNode) method documentation.
- * @see [CSSOperations.getPlatformFontsForNode]
+  * @link [CSS#getPlatformFontsForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getPlatformFontsForNode) method documentation.
+  * @see [CSSOperations.getPlatformFontsForNode]
  */
 data class GetPlatformFontsForNodeResponse(
-    /**  
-     * Usage statistics for every employed platform font.  
-     */  
-    val fonts: List<PlatformFontUsage>
+  /**
+   * Usage statistics for every employed platform font.
+   */
+  val fonts: List<PlatformFontUsage>
 
 )
 
@@ -701,7 +584,7 @@ data class GetPlatformFontsForNodeResponse(
  * @link [CSS#getStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getStyleSheetText) method documentation.
  * @see [CSSOperations.getStyleSheetText]
  */
-data class GetStyleSheetTextRequest(
+data class GetStyleSheetTextRequest (
     /**
      *
      */
@@ -713,14 +596,14 @@ data class GetStyleSheetTextRequest(
  * Returns the current textual content for a stylesheet.
  *
   
- * @link [CSS#getStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getStyleSheetText) method documentation.
- * @see [CSSOperations.getStyleSheetText]
+  * @link [CSS#getStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getStyleSheetText) method documentation.
+  * @see [CSSOperations.getStyleSheetText]
  */
 data class GetStyleSheetTextResponse(
-    /**  
-     * The stylesheet text.  
-     */  
-    val text: String
+  /**
+   * The stylesheet text.
+   */
+  val text: String
 
 )
 
@@ -732,7 +615,7 @@ property
  * @link [CSS#setEffectivePropertyValueForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setEffectivePropertyValueForNode) method documentation.
  * @see [CSSOperations.setEffectivePropertyValueForNode]
  */
-data class SetEffectivePropertyValueForNodeRequest(
+data class SetEffectivePropertyValueForNodeRequest (
     /**
      * The element id for which to set property.
      */
@@ -757,7 +640,7 @@ data class SetEffectivePropertyValueForNodeRequest(
  * @link [CSS#setKeyframeKey](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setKeyframeKey) method documentation.
  * @see [CSSOperations.setKeyframeKey]
  */
-data class SetKeyframeKeyRequest(
+data class SetKeyframeKeyRequest (
     /**
      *
      */
@@ -779,14 +662,14 @@ data class SetKeyframeKeyRequest(
  * Modifies the keyframe rule key text.
  *
   
- * @link [CSS#setKeyframeKey](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setKeyframeKey) method documentation.
- * @see [CSSOperations.setKeyframeKey]
+  * @link [CSS#setKeyframeKey](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setKeyframeKey) method documentation.
+  * @see [CSSOperations.setKeyframeKey]
  */
 data class SetKeyframeKeyResponse(
-    /**  
-     * The resulting key text after modification.  
-     */  
-    val keyText: Value
+  /**
+   * The resulting key text after modification.
+   */
+  val keyText: Value
 
 )
 
@@ -797,7 +680,7 @@ data class SetKeyframeKeyResponse(
  * @link [CSS#setMediaText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setMediaText) method documentation.
  * @see [CSSOperations.setMediaText]
  */
-data class SetMediaTextRequest(
+data class SetMediaTextRequest (
     /**
      *
      */
@@ -819,14 +702,14 @@ data class SetMediaTextRequest(
  * Modifies the rule selector.
  *
   
- * @link [CSS#setMediaText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setMediaText) method documentation.
- * @see [CSSOperations.setMediaText]
+  * @link [CSS#setMediaText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setMediaText) method documentation.
+  * @see [CSSOperations.setMediaText]
  */
 data class SetMediaTextResponse(
-    /**  
-     * The resulting CSS media rule after modification.  
-     */  
-    val media: CSSMedia
+  /**
+   * The resulting CSS media rule after modification.
+   */
+  val media: CSSMedia
 
 )
 
@@ -837,7 +720,7 @@ data class SetMediaTextResponse(
  * @link [CSS#setRuleSelector](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setRuleSelector) method documentation.
  * @see [CSSOperations.setRuleSelector]
  */
-data class SetRuleSelectorRequest(
+data class SetRuleSelectorRequest (
     /**
      *
      */
@@ -859,14 +742,14 @@ data class SetRuleSelectorRequest(
  * Modifies the rule selector.
  *
   
- * @link [CSS#setRuleSelector](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setRuleSelector) method documentation.
- * @see [CSSOperations.setRuleSelector]
+  * @link [CSS#setRuleSelector](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setRuleSelector) method documentation.
+  * @see [CSSOperations.setRuleSelector]
  */
 data class SetRuleSelectorResponse(
-    /**  
-     * The resulting selector list after modification.  
-     */  
-    val selectorList: SelectorList
+  /**
+   * The resulting selector list after modification.
+   */
+  val selectorList: SelectorList
 
 )
 
@@ -877,7 +760,7 @@ data class SetRuleSelectorResponse(
  * @link [CSS#setStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleSheetText) method documentation.
  * @see [CSSOperations.setStyleSheetText]
  */
-data class SetStyleSheetTextRequest(
+data class SetStyleSheetTextRequest (
     /**
      *
      */
@@ -894,14 +777,14 @@ data class SetStyleSheetTextRequest(
  * Sets the new stylesheet text.
  *
   
- * @link [CSS#setStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleSheetText) method documentation.
- * @see [CSSOperations.setStyleSheetText]
+  * @link [CSS#setStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleSheetText) method documentation.
+  * @see [CSSOperations.setStyleSheetText]
  */
 data class SetStyleSheetTextResponse(
-    /**  
-     * URL of source map associated with script (if any).  
-     */  
-    val sourceMapURL: String? = null
+  /**
+   * URL of source map associated with script (if any).
+   */
+  val sourceMapURL: String? = null
 
 )
 
@@ -912,7 +795,7 @@ data class SetStyleSheetTextResponse(
  * @link [CSS#setStyleTexts](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleTexts) method documentation.
  * @see [CSSOperations.setStyleTexts]
  */
-data class SetStyleTextsRequest(
+data class SetStyleTextsRequest (
     /**
      *
      */
@@ -924,16 +807,19 @@ data class SetStyleTextsRequest(
  * Applies specified style edits one after another in the given order.
  *
   
- * @link [CSS#setStyleTexts](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleTexts) method documentation.
- * @see [CSSOperations.setStyleTexts]
+  * @link [CSS#setStyleTexts](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleTexts) method documentation.
+  * @see [CSSOperations.setStyleTexts]
  */
 data class SetStyleTextsResponse(
-    /**  
-     * The resulting styles after modification.  
-     */  
-    val styles: List<CSSStyle>
+  /**
+   * The resulting styles after modification.
+   */
+  val styles: List<CSSStyle>
 
 )
+
+
+
 
 /**
  * Represents response frame that is returned from [CSS#stopRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-stopRuleUsageTracking) operation call.
@@ -941,16 +827,17 @@ data class SetStyleTextsResponse(
 `takeCoverageDelta` (or since start of coverage instrumentation)
  *
   
- * @link [CSS#stopRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-stopRuleUsageTracking) method documentation.
- * @see [CSSOperations.stopRuleUsageTracking]
+  * @link [CSS#stopRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-stopRuleUsageTracking) method documentation.
+  * @see [CSSOperations.stopRuleUsageTracking]
  */
 data class StopRuleUsageTrackingResponse(
-    /**  
-     *  
-     */  
-    val ruleUsage: List<RuleUsage>
+  /**
+   *
+   */
+  val ruleUsage: List<RuleUsage>
 
 )
+
 
 /**
  * Represents response frame that is returned from [CSS#takeCoverageDelta](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeCoverageDelta) operation call.
@@ -958,14 +845,14 @@ data class StopRuleUsageTrackingResponse(
 instrumentation)
  *
   
- * @link [CSS#takeCoverageDelta](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeCoverageDelta) method documentation.
- * @see [CSSOperations.takeCoverageDelta]
+  * @link [CSS#takeCoverageDelta](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeCoverageDelta) method documentation.
+  * @see [CSSOperations.takeCoverageDelta]
  */
 data class TakeCoverageDeltaResponse(
-    /**  
-     *  
-     */  
-    val coverage: List<RuleUsage>
+  /**
+   *
+   */
+  val coverage: List<RuleUsage>
 
 )
 
@@ -974,50 +861,52 @@ data class TakeCoverageDeltaResponse(
 web font
  *
  * @link [CSS#fontsUpdated](https://chromedevtools.github.io/devtools-protocol/tot/CSS#event-fontsUpdated) event documentation.
- */
+   */
 data class FontsUpdatedEvent(
-    /**  
-     * The web font that has loaded.  
-     */  
-    val font: FontFace? = null
+  /**
+   * The web font that has loaded.
+   */
+  val font: FontFace? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "CSS", name = "fontsUpdated")
+): pl.wendigo.chrome.protocol.Event(domain = "CSS", name = "fontsUpdated")
+
 
 /**
  * Fired whenever an active document stylesheet is added.
  *
  * @link [CSS#styleSheetAdded](https://chromedevtools.github.io/devtools-protocol/tot/CSS#event-styleSheetAdded) event documentation.
- */
+   */
 data class StyleSheetAddedEvent(
-    /**  
-     * Added stylesheet metainfo.  
-     */  
-    val header: CSSStyleSheetHeader
+  /**
+   * Added stylesheet metainfo.
+   */
+  val header: CSSStyleSheetHeader
 
-) : pl.wendigo.chrome.protocol.Event(domain = "CSS", name = "styleSheetAdded")
+): pl.wendigo.chrome.protocol.Event(domain = "CSS", name = "styleSheetAdded")
 
 /**
  * Fired whenever a stylesheet is changed as a result of the client operation.
  *
  * @link [CSS#styleSheetChanged](https://chromedevtools.github.io/devtools-protocol/tot/CSS#event-styleSheetChanged) event documentation.
- */
+   */
 data class StyleSheetChangedEvent(
-    /**  
-     *  
-     */  
-    val styleSheetId: StyleSheetId
+  /**
+   *
+   */
+  val styleSheetId: StyleSheetId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "CSS", name = "styleSheetChanged")
+): pl.wendigo.chrome.protocol.Event(domain = "CSS", name = "styleSheetChanged")
 
 /**
  * Fired whenever an active document stylesheet is removed.
  *
  * @link [CSS#styleSheetRemoved](https://chromedevtools.github.io/devtools-protocol/tot/CSS#event-styleSheetRemoved) event documentation.
- */
+   */
 data class StyleSheetRemovedEvent(
-    /**  
-     * Identifier of the removed stylesheet.  
-     */  
-    val styleSheetId: StyleSheetId
+  /**
+   * Identifier of the removed stylesheet.
+   */
+  val styleSheetId: StyleSheetId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "CSS", name = "styleSheetRemoved")
+): pl.wendigo.chrome.protocol.Event(domain = "CSS", name = "styleSheetRemoved")
+

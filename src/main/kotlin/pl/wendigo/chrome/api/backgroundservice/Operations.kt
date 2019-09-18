@@ -7,90 +7,56 @@ package pl.wendigo.chrome.api.backgroundservice
  * @link Protocol [BackgroundService](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class BackgroundServiceOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class BackgroundServiceOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Enables event updates for the service.
      *
      * @link Protocol [BackgroundService#startObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-startObserving) method documentation.
      */
-    fun startObserving(input: StartObservingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("BackgroundService.startObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun startObserving(input: StartObservingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("BackgroundService.startObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Disables event updates for the service.
      *
      * @link Protocol [BackgroundService#stopObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-stopObserving) method documentation.
      */
-    fun stopObserving(input: StopObservingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("BackgroundService.stopObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun stopObserving(input: StopObservingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("BackgroundService.stopObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Set the recording state for the service.
      *
      * @link Protocol [BackgroundService#setRecording](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-setRecording) method documentation.
      */
-    fun setRecording(input: SetRecordingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("BackgroundService.setRecording", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun setRecording(input: SetRecordingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("BackgroundService.setRecording", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Clears all stored data for the service.
      *
      * @link Protocol [BackgroundService#clearEvents](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-clearEvents) method documentation.
      */
-    fun clearEvents(input: ClearEventsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("BackgroundService.clearEvents", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun clearEvents(input: ClearEventsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("BackgroundService.clearEvents", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      *  Called when the recording state for the service has been updated.
      */
-    fun recordingStateChanged(): io.reactivex.Flowable<RecordingStateChangedEvent> {
-        return recordingStateChangedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Called when the recording state for the service has been updated.
-     */
-    fun recordingStateChangedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<RecordingStateChangedEvent>> {
-        return connection.captureEvents("BackgroundService.recordingStateChanged", RecordingStateChangedEvent::class.java)
-    }
+    fun recordingStateChanged(): io.reactivex.Flowable<RecordingStateChangedEvent> = connection.captureEvents("BackgroundService.recordingStateChanged", RecordingStateChangedEvent::class.java);
 
     /**
      *  Called with all existing backgroundServiceEvents when enabled, and all new
 events afterwards if enabled and recording.
      */
-    fun backgroundServiceEventReceived(): io.reactivex.Flowable<BackgroundServiceEventReceivedEvent> {
-        return backgroundServiceEventReceivedTimed().map {
-            it.value()
-        }
-    }
+    fun backgroundServiceEventReceived(): io.reactivex.Flowable<BackgroundServiceEventReceivedEvent> = connection.captureEvents("BackgroundService.backgroundServiceEventReceived", BackgroundServiceEventReceivedEvent::class.java);
 
-    /**
-     * Called with all existing backgroundServiceEvents when enabled, and all new
-events afterwards if enabled and recording.
-     */
-    fun backgroundServiceEventReceivedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<BackgroundServiceEventReceivedEvent>> {
-        return connection.captureEvents("BackgroundService.backgroundServiceEventReceived", BackgroundServiceEventReceivedEvent::class.java)
-    }
 
     /**
      * Returns flowable capturing all BackgroundService domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "BackgroundService"
         }
     }
@@ -102,7 +68,7 @@ events afterwards if enabled and recording.
  * @link [BackgroundService#startObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-startObserving) method documentation.
  * @see [BackgroundServiceOperations.startObserving]
  */
-data class StartObservingRequest(
+data class StartObservingRequest (
     /**
      *
      */
@@ -117,7 +83,7 @@ data class StartObservingRequest(
  * @link [BackgroundService#stopObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-stopObserving) method documentation.
  * @see [BackgroundServiceOperations.stopObserving]
  */
-data class StopObservingRequest(
+data class StopObservingRequest (
     /**
      *
      */
@@ -132,7 +98,7 @@ data class StopObservingRequest(
  * @link [BackgroundService#setRecording](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-setRecording) method documentation.
  * @see [BackgroundServiceOperations.setRecording]
  */
-data class SetRecordingRequest(
+data class SetRecordingRequest (
     /**
      *
      */
@@ -152,7 +118,7 @@ data class SetRecordingRequest(
  * @link [BackgroundService#clearEvents](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-clearEvents) method documentation.
  * @see [BackgroundServiceOperations.clearEvents]
  */
-data class ClearEventsRequest(
+data class ClearEventsRequest (
     /**
      *
      */
@@ -164,30 +130,31 @@ data class ClearEventsRequest(
  * Called when the recording state for the service has been updated.
  *
  * @link [BackgroundService#recordingStateChanged](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#event-recordingStateChanged) event documentation.
- */
+   */
 data class RecordingStateChangedEvent(
-    /**  
-     *  
-     */  
-    val isRecording: Boolean,
+  /**
+   *
+   */
+  val isRecording: Boolean,
 
-    /**  
-     *  
-     */  
-    val service: ServiceName
+  /**
+   *
+   */
+  val service: ServiceName
 
-) : pl.wendigo.chrome.protocol.Event(domain = "BackgroundService", name = "recordingStateChanged")
+): pl.wendigo.chrome.protocol.Event(domain = "BackgroundService", name = "recordingStateChanged")
 
 /**
  * Called with all existing backgroundServiceEvents when enabled, and all new
 events afterwards if enabled and recording.
  *
  * @link [BackgroundService#backgroundServiceEventReceived](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#event-backgroundServiceEventReceived) event documentation.
- */
+   */
 data class BackgroundServiceEventReceivedEvent(
-    /**  
-     *  
-     */  
-    val backgroundServiceEvent: BackgroundServiceEvent
+  /**
+   *
+   */
+  val backgroundServiceEvent: BackgroundServiceEvent
 
-) : pl.wendigo.chrome.protocol.Event(domain = "BackgroundService", name = "backgroundServiceEventReceived")
+): pl.wendigo.chrome.protocol.Event(domain = "BackgroundService", name = "backgroundServiceEventReceived")
+

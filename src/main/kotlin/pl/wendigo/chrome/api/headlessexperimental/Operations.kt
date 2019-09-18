@@ -7,7 +7,7 @@ package pl.wendigo.chrome.api.headlessexperimental
  * @link Protocol [HeadlessExperimental](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class HeadlessExperimentalOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class HeadlessExperimentalOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Sends a BeginFrame to the target and returns when the frame was completed. Optionally captures a
 screenshot from the resulting frame. Requires that the target was created with enabled
@@ -16,59 +16,38 @@ https://goo.gl/3zHXhB for more background.
      *
      * @link Protocol [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
      */
-    fun beginFrame(input: BeginFrameRequest): io.reactivex.Single<BeginFrameResponse> {
-        return connection.runAndCaptureResponse("HeadlessExperimental.beginFrame", input, BeginFrameResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun beginFrame(input: BeginFrameRequest): io.reactivex.Single<BeginFrameResponse> = connection.runAndCaptureResponse("HeadlessExperimental.beginFrame", input, BeginFrameResponse::class.java)
+
 
     /**
      * Disables headless events for the target.
      *
      * @link Protocol [HeadlessExperimental#disable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Enables headless events for the target.
      *
      * @link Protocol [HeadlessExperimental#enable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      *  Issued when the target starts or stops needing BeginFrames.
 Deprecated. Issue beginFrame unconditionally instead and use result from
 beginFrame to detect whether the frames were suppressed.
      */
-    fun needsBeginFramesChanged(): io.reactivex.Flowable<NeedsBeginFramesChangedEvent> {
-        return needsBeginFramesChangedTimed().map {
-            it.value()
-        }
-    }
+    fun needsBeginFramesChanged(): io.reactivex.Flowable<NeedsBeginFramesChangedEvent> = connection.captureEvents("HeadlessExperimental.needsBeginFramesChanged", NeedsBeginFramesChangedEvent::class.java);
 
-    /**
-     * Issued when the target starts or stops needing BeginFrames.
-Deprecated. Issue beginFrame unconditionally instead and use result from
-beginFrame to detect whether the frames were suppressed.
-     */
-    fun needsBeginFramesChangedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<NeedsBeginFramesChangedEvent>> {
-        return connection.captureEvents("HeadlessExperimental.needsBeginFramesChanged", NeedsBeginFramesChangedEvent::class.java)
-    }
 
     /**
      * Returns flowable capturing all HeadlessExperimental domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "HeadlessExperimental"
         }
     }
@@ -83,7 +62,7 @@ https://goo.gl/3zHXhB for more background.
  * @link [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
  * @see [HeadlessExperimentalOperations.beginFrame]
  */
-data class BeginFrameRequest(
+data class BeginFrameRequest (
     /**
      * Timestamp of this BeginFrame in Renderer TimeTicks (milliseconds of uptime). If not set,
 the current time will be used.
@@ -119,22 +98,26 @@ BeginFrameControl. Designed for use with --run-all-compositor-stages-before-draw
 https://goo.gl/3zHXhB for more background.
  *
   
- * @link [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
- * @see [HeadlessExperimentalOperations.beginFrame]
+  * @link [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
+  * @see [HeadlessExperimentalOperations.beginFrame]
  */
 data class BeginFrameResponse(
-    /**  
-     * Whether the BeginFrame resulted in damage and, thus, a new frame was committed to the  
-     display. Reported for diagnostic uses, may be removed in the future.  
-     */  
-    val hasDamage: Boolean,
+  /**
+   * Whether the BeginFrame resulted in damage and, thus, a new frame was committed to the
+display. Reported for diagnostic uses, may be removed in the future.
+   */
+  val hasDamage: Boolean,
 
-    /**  
-     * Base64-encoded image data of the screenshot, if one was requested and successfully taken.  
-     */  
-    val screenshotData: String? = null
+  /**
+   * Base64-encoded image data of the screenshot, if one was requested and successfully taken.
+   */
+  val screenshotData: String? = null
 
 )
+
+
+
+
 
 /**
  * Issued when the target starts or stops needing BeginFrames.
@@ -142,11 +125,12 @@ Deprecated. Issue beginFrame unconditionally instead and use result from
 beginFrame to detect whether the frames were suppressed.
  *
  * @link [HeadlessExperimental#needsBeginFramesChanged](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#event-needsBeginFramesChanged) event documentation.
- */
+   */
 data class NeedsBeginFramesChangedEvent(
-    /**  
-     * True if BeginFrames are needed, false otherwise.  
-     */  
-    val needsBeginFrames: Boolean
+  /**
+   * True if BeginFrames are needed, false otherwise.
+   */
+  val needsBeginFrames: Boolean
 
-) : pl.wendigo.chrome.protocol.Event(domain = "HeadlessExperimental", name = "needsBeginFramesChanged")
+): pl.wendigo.chrome.protocol.Event(domain = "HeadlessExperimental", name = "needsBeginFramesChanged")
+

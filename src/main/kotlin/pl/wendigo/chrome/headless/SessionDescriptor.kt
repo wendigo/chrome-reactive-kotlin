@@ -7,7 +7,7 @@ import pl.wendigo.chrome.api.target.TargetID
 /**
  * Represents basic headless session data.
  */
-data class HeadlessSessionDescriptor(
+data class SessionDescriptor(
     val browserContextId: BrowserContextID,
     val targetId: TargetID,
     val sessionId: SessionID,

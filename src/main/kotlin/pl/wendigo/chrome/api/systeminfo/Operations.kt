@@ -7,34 +7,29 @@ package pl.wendigo.chrome.api.systeminfo
  * @link Protocol [SystemInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class SystemInfoOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class SystemInfoOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Returns information about the system.
      *
      * @link Protocol [SystemInfo#getInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getInfo) method documentation.
      */
-    fun getInfo(): io.reactivex.Single<GetInfoResponse> {
-        return connection.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getInfo(): io.reactivex.Single<GetInfoResponse> = connection.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java)
+
 
     /**
      * Returns information about all running processes.
      *
      * @link Protocol [SystemInfo#getProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getProcessInfo) method documentation.
      */
-    fun getProcessInfo(): io.reactivex.Single<GetProcessInfoResponse> {
-        return connection.runAndCaptureResponse("SystemInfo.getProcessInfo", null, GetProcessInfoResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getProcessInfo(): io.reactivex.Single<GetProcessInfoResponse> = connection.runAndCaptureResponse("SystemInfo.getProcessInfo", null, GetProcessInfoResponse::class.java)
+
+
 
     /**
      * Returns flowable capturing all SystemInfo domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "SystemInfo"
         }
     }
@@ -45,47 +40,49 @@ class SystemInfoOperations internal constructor(private val connection: pl.wendi
  * Returns information about the system.
  *
   
- * @link [SystemInfo#getInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getInfo) method documentation.
- * @see [SystemInfoOperations.getInfo]
+  * @link [SystemInfo#getInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getInfo) method documentation.
+  * @see [SystemInfoOperations.getInfo]
  */
 data class GetInfoResponse(
-    /**  
-     * Information about the GPUs on the system.  
-     */  
-    val gpu: GPUInfo,
+  /**
+   * Information about the GPUs on the system.
+   */
+  val gpu: GPUInfo,
 
-    /**  
-     * A platform-dependent description of the model of the machine. On Mac OS, this is, for  
-     example, 'MacBookPro'. Will be the empty string if not supported.  
-     */  
-    val modelName: String,
+  /**
+   * A platform-dependent description of the model of the machine. On Mac OS, this is, for
+example, 'MacBookPro'. Will be the empty string if not supported.
+   */
+  val modelName: String,
 
-    /**  
-     * A platform-dependent description of the version of the machine. On Mac OS, this is, for  
-     example, '10.1'. Will be the empty string if not supported.  
-     */  
-    val modelVersion: String,
+  /**
+   * A platform-dependent description of the version of the machine. On Mac OS, this is, for
+example, '10.1'. Will be the empty string if not supported.
+   */
+  val modelVersion: String,
 
-    /**  
-     * The command line string used to launch the browser. Will be the empty string if not  
-     supported.  
-     */  
-    val commandLine: String
+  /**
+   * The command line string used to launch the browser. Will be the empty string if not
+supported.
+   */
+  val commandLine: String
 
 )
+
 
 /**
  * Represents response frame that is returned from [SystemInfo#getProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getProcessInfo) operation call.
  * Returns information about all running processes.
  *
   
- * @link [SystemInfo#getProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getProcessInfo) method documentation.
- * @see [SystemInfoOperations.getProcessInfo]
+  * @link [SystemInfo#getProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getProcessInfo) method documentation.
+  * @see [SystemInfoOperations.getProcessInfo]
  */
 data class GetProcessInfoResponse(
-    /**  
-     * An array of process info blocks.  
-     */  
-    val processInfo: List<ProcessInfo>
+  /**
+   * An array of process info blocks.
+   */
+  val processInfo: List<ProcessInfo>
 
 )
+

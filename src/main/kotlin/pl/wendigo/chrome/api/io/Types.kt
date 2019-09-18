@@ -8,3 +8,4 @@ package pl.wendigo.chrome.api.io
  */
 
 typealias StreamHandle = String
+

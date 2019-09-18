@@ -1,6 +1,5 @@
 package pl.wendigo.chrome
 
-import org.testcontainers.containers.Container
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
@@ -12,7 +11,6 @@ class ChromeProtocolSpecification extends Specification {
     @Shared
     public GenericContainer container = new GenericContainer("zenika/alpine-chrome")
             .withExposedPorts(9222)
-    .withLogConsumer()
             .withCommand(
                     "chromium-browser",
                     "--headless",

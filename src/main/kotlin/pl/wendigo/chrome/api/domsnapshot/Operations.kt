@@ -7,28 +7,22 @@ package pl.wendigo.chrome.api.domsnapshot
  * @link Protocol [DOMSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class DOMSnapshotOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class DOMSnapshotOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Disables DOM snapshot agent for the given page.
      *
      * @link Protocol [DOMSnapshot#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMSnapshot.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOMSnapshot.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Enables DOM snapshot agent for the given page.
      *
      * @link Protocol [DOMSnapshot#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMSnapshot.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOMSnapshot.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
@@ -39,11 +33,8 @@ flattened.
      * @link Protocol [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "getSnapshot is deprecated.")
-    fun getSnapshot(input: GetSnapshotRequest): io.reactivex.Single<GetSnapshotResponse> {
-        return connection.runAndCaptureResponse("DOMSnapshot.getSnapshot", input, GetSnapshotResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun getSnapshot(input: GetSnapshotRequest): io.reactivex.Single<GetSnapshotResponse> = connection.runAndCaptureResponse("DOMSnapshot.getSnapshot", input, GetSnapshotResponse::class.java)
+
 
     /**
      * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
@@ -53,21 +44,22 @@ flattened.
      *
      * @link Protocol [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
      */
-    fun captureSnapshot(input: CaptureSnapshotRequest): io.reactivex.Single<CaptureSnapshotResponse> {
-        return connection.runAndCaptureResponse("DOMSnapshot.captureSnapshot", input, CaptureSnapshotResponse::class.java).map {
-            it.value()
-        }
-    }
+        fun captureSnapshot(input: CaptureSnapshotRequest): io.reactivex.Single<CaptureSnapshotResponse> = connection.runAndCaptureResponse("DOMSnapshot.captureSnapshot", input, CaptureSnapshotResponse::class.java)
+
+
 
     /**
      * Returns flowable capturing all DOMSnapshot domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "DOMSnapshot"
         }
     }
 }
+
+
+
 
 /**
  * Represents request frame that can be used with [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) operation call.
@@ -79,7 +71,7 @@ flattened.
  * @link [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
  * @see [DOMSnapshotOperations.getSnapshot]
  */
-data class GetSnapshotRequest(
+data class GetSnapshotRequest (
     /**
      * Whitelist of computed styles to return.
      */
@@ -109,24 +101,24 @@ white-listed computed style information for the nodes. Shadow DOM in the returne
 flattened.
  *
   
- * @link [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
- * @see [DOMSnapshotOperations.getSnapshot]
+  * @link [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
+  * @see [DOMSnapshotOperations.getSnapshot]
  */
 data class GetSnapshotResponse(
-    /**  
-     * The nodes in the DOM tree. The DOMNode at index 0 corresponds to the root document.  
-     */  
-    val domNodes: List<DOMNode>,
+  /**
+   * The nodes in the DOM tree. The DOMNode at index 0 corresponds to the root document.
+   */
+  val domNodes: List<DOMNode>,
 
-    /**  
-     * The nodes in the layout tree.  
-     */  
-    val layoutTreeNodes: List<LayoutTreeNode>,
+  /**
+   * The nodes in the layout tree.
+   */
+  val layoutTreeNodes: List<LayoutTreeNode>,
 
-    /**  
-     * Whitelisted ComputedStyle properties for each node in the layout tree.  
-     */  
-    val computedStyles: List<ComputedStyle>
+  /**
+   * Whitelisted ComputedStyle properties for each node in the layout tree.
+   */
+  val computedStyles: List<ComputedStyle>
 
 )
 
@@ -140,7 +132,7 @@ flattened.
  * @link [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
  * @see [DOMSnapshotOperations.captureSnapshot]
  */
-data class CaptureSnapshotRequest(
+data class CaptureSnapshotRequest (
     /**
      * Whitelist of computed styles to return.
      */
@@ -165,18 +157,19 @@ white-listed computed style information for the nodes. Shadow DOM in the returne
 flattened.
  *
   
- * @link [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
- * @see [DOMSnapshotOperations.captureSnapshot]
+  * @link [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
+  * @see [DOMSnapshotOperations.captureSnapshot]
  */
 data class CaptureSnapshotResponse(
-    /**  
-     * The nodes in the DOM tree. The DOMNode at index 0 corresponds to the root document.  
-     */  
-    val documents: List<DocumentSnapshot>,
+  /**
+   * The nodes in the DOM tree. The DOMNode at index 0 corresponds to the root document.
+   */
+  val documents: List<DocumentSnapshot>,
 
-    /**  
-     * Shared string table that all string properties refer to with indexes.  
-     */  
-    val strings: List<String>
+  /**
+   * Shared string table that all string properties refer to with indexes.
+   */
+  val strings: List<String>
 
 )
+

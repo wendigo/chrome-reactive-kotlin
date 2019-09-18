@@ -7,17 +7,14 @@ package pl.wendigo.chrome.api.accessibility
  * @link Protocol [Accessibility](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class AccessibilityOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class AccessibilityOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Disables the accessibility domain.
      *
      * @link Protocol [Accessibility#disable](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Accessibility.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Accessibility.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Enables the accessibility domain which causes `AXNodeId`s to remain consistent between method calls.
@@ -25,11 +22,8 @@ This turns on accessibility for the page, which can impact performance until acc
      *
      * @link Protocol [Accessibility#enable](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Accessibility.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Accessibility.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
 
     /**
      * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
@@ -38,11 +32,8 @@ This turns on accessibility for the page, which can impact performance until acc
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getPartialAXTree(input: GetPartialAXTreeRequest): io.reactivex.Single<GetPartialAXTreeResponse> {
-        return connection.runAndCaptureResponse("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getPartialAXTree(input: GetPartialAXTreeRequest): io.reactivex.Single<GetPartialAXTreeResponse> = connection.runAndCaptureResponse("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
+
 
     /**
      * Fetches the entire accessibility tree
@@ -51,21 +42,22 @@ This turns on accessibility for the page, which can impact performance until acc
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getFullAXTree(): io.reactivex.Single<GetFullAXTreeResponse> {
-        return connection.runAndCaptureResponse("Accessibility.getFullAXTree", null, GetFullAXTreeResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getFullAXTree(): io.reactivex.Single<GetFullAXTreeResponse> = connection.runAndCaptureResponse("Accessibility.getFullAXTree", null, GetFullAXTreeResponse::class.java)
+
+
 
     /**
      * Returns flowable capturing all Accessibility domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+        return connection.captureAllEvents().filter {
             it.protocolDomain() == "Accessibility"
         }
     }
 }
+
+
+
 
 /**
  * Represents request frame that can be used with [Accessibility#getPartialAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getPartialAXTree) operation call.
@@ -74,7 +66,7 @@ This turns on accessibility for the page, which can impact performance until acc
  * @link [Accessibility#getPartialAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getPartialAXTree) method documentation.
  * @see [AccessibilityOperations.getPartialAXTree]
  */
-data class GetPartialAXTreeRequest(
+data class GetPartialAXTreeRequest (
     /**
      * Identifier of the node to get the partial accessibility tree for.
      */
@@ -101,30 +93,32 @@ data class GetPartialAXTreeRequest(
  * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
  *
   
- * @link [Accessibility#getPartialAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getPartialAXTree) method documentation.
- * @see [AccessibilityOperations.getPartialAXTree]
+  * @link [Accessibility#getPartialAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getPartialAXTree) method documentation.
+  * @see [AccessibilityOperations.getPartialAXTree]
  */
 data class GetPartialAXTreeResponse(
-    /**  
-     * The `Accessibility.AXNode` for this DOM node, if it exists, plus its ancestors, siblings and  
-     children, if requested.  
-     */  
-    val nodes: List<AXNode>
+  /**
+   * The `Accessibility.AXNode` for this DOM node, if it exists, plus its ancestors, siblings and
+children, if requested.
+   */
+  val nodes: List<AXNode>
 
 )
+
 
 /**
  * Represents response frame that is returned from [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) operation call.
  * Fetches the entire accessibility tree
  *
   
- * @link [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) method documentation.
- * @see [AccessibilityOperations.getFullAXTree]
+  * @link [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) method documentation.
+  * @see [AccessibilityOperations.getFullAXTree]
  */
 data class GetFullAXTreeResponse(
-    /**  
-     *  
-     */  
-    val nodes: List<AXNode>
+  /**
+   *
+   */
+  val nodes: List<AXNode>
 
 )
+
