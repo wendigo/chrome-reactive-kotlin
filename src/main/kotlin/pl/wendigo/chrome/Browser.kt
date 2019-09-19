@@ -1,81 +1,32 @@
 package pl.wendigo.chrome
 
-import java.io.Closeable
-import java.util.concurrent.TimeUnit
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import pl.wendigo.chrome.headless.HeadlessDevToolsProtocol
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 import pl.wendigo.chrome.protocol.FrameMapper
-import pl.wendigo.chrome.protocol.inspector.InspectablePage
-import pl.wendigo.chrome.protocol.inspector.InspectorException
-import pl.wendigo.chrome.protocol.inspector.ProtocolVersion
+import pl.wendigo.chrome.targets.Session
+import pl.wendigo.chrome.targets.SessionManager
+import java.io.Closeable
 
 /**
  * Creates new browser that allows querying remote chrome instance for debugging sessions
  */
 class Browser(
-    private val chromeAddress: String,
-    private val client: OkHttpClient,
-    private val mapper: FrameMapper
+    private val info: Info,
+    private val mapper: FrameMapper,
+    private val sessionManager: SessionManager
 ) : Closeable {
-    /**
-     * Opens new page.
-     */
-    fun openNewPage(url: String? = null): InspectablePage {
-        return mapper.deserialize(runInspectorCommand("new?url=$url"), InspectablePage::class.java)
+
+
+
+    override fun close() {
+
     }
-
-    /**
-     * Returns currently opened pages and associated data (debugger connection uris)
-     */
-    fun openedPages(): List<InspectablePage> {
-        return mapper.deserialize(this.runInspectorCommand("list"), Array<InspectablePage>::class.java).filter {
-            it.webSocketDebuggerUrl != null
-        }
-    }
-
-    /**
-     * Closes given page.
-     */
-    fun closePage(page: InspectablePage): String {
-        return runInspectorCommand("close/${page.id}")
-    }
-
-    /**
-     * Activates given page.
-     */
-    fun activatePage(page: InspectablePage): String {
-        return runInspectorCommand("activate/${page.id}")
-    }
-
-    /**
-     * Fetches protocol version information.
-     */
-    fun version(): ProtocolVersion {
-        return mapper.deserialize(runInspectorCommand("version"), ProtocolVersion::class.java)
-    }
-
-    /**
-     * Finds opened page by its' url.
-     */
-    fun findPageByUrl(url: String): InspectablePage {
-        return this.openedPages().first { it.url == url }
-    }
-
-    /**
-     * Run inspector command for given URI.
-     */
-    private fun runInspectorCommand(uri: String): String {
-        val response = client.newCall(Request.Builder().url("http://$chromeAddress/json/$uri").build()).execute()
-
-        if (response.isSuccessful) {
-            return response.body?.string() ?: ""
-        } else {
-            throw InspectorException("Could not query inspector $uri: $response")
-        }
-    }
-
     /**
      * Opens new headless debugging session via chrome debugging protocol.
      *
@@ -83,17 +34,24 @@ class Browser(
      * with target id/session id.
      */
     @JvmOverloads
-    fun headlessSession(url: String, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): HeadlessDevToolsProtocol {
-        return HeadlessDevToolsProtocol.create(DevToolsProtocol(ChromeDebuggerConnection.openSession(version().webSocketDebugUrl, eventBufferSize)), url, width, height)
+    fun session(url: String, incognito: Boolean = true, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): Session {
+        return sessionManager.createTarget(
+            url = url,
+            incognito = incognito,
+            eventBufferSize = eventBufferSize,
+            width = width,
+            height = height
+        )
     }
 
-    @JvmOverloads
-    fun session(url: String, eventBufferSize: Int = 128): DevToolsProtocol {
-        return openNewPage(url).session(eventBufferSize)
+    fun sessions() = sessionManager.targets()
+
+    fun close(session: Session) {
+        sessionManager.closeTarget(session)
     }
 
-    override fun close() {
-        return client.dispatcher.executorService.shutdown()
+    override fun toString(): String {
+        return "Browser($info, sessionManager)"
     }
 
     companion object {
@@ -101,12 +59,49 @@ class Browser(
          * Creates new Browser instance by connecting to remote chrome debugger.
          */
         @JvmStatic
-        fun connect(chromeAddress: String): Browser {
+        fun connect(chromeAddress: String = "localhost:9222", eventBufferSize: Int = 128): Browser {
+            val info = fetchInfo(chromeAddress)
+
             return Browser(
-                chromeAddress,
-                OkHttpClient.Builder().readTimeout(0, TimeUnit.MILLISECONDS).build(),
-                FrameMapper()
+                info,
+                FrameMapper(),
+                SessionManager(DevToolsProtocol(ChromeDebuggerConnection.open(info.webSocketDebuggerUrl, eventBufferSize)))
             )
         }
+
+        private fun fetchInfo(chromeAddress: String): Info {
+            val client = OkHttpClient.Builder().build()
+            val info = client.newCall(Request.Builder().url("http://$chromeAddress/json/version").build()).execute()
+
+            return when (info.isSuccessful) {
+                true -> DEFAULT_MAPPER.readValue(info.body?.string(), Info::class.java)
+                false -> throw BrowserInfoDiscoveryFailedException("Could not query browser info - reponse code was ${info.code}")
+            }
+        }
+
+        private val DEFAULT_MAPPER: ObjectMapper = ObjectMapper()
+                .registerModule(KotlinModule())
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     }
+
+    data class Info(
+        @get:JsonProperty("Browser")
+        val browser: String,
+
+        @get:JsonProperty("Protocol-Version")
+        val protocolVersion: String,
+
+        @get:JsonProperty("User-Agent")
+        val userAgent: String,
+
+        @get:JsonProperty("V8-Version")
+        val v8Version: String? = null,
+
+        @get:JsonProperty("WebKit-Version")
+        val webKitVersion: String,
+
+        @get:JsonProperty("webSocketDebuggerUrl")
+        val webSocketDebuggerUrl: String
+    )
 }

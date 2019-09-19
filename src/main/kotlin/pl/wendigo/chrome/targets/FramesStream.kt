@@ -1,13 +1,10 @@
-package pl.wendigo.chrome.headless
+package pl.wendigo.chrome.targets
 
 import io.reactivex.Flowable
 import io.reactivex.Single
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.DevToolsProtocol
-import pl.wendigo.chrome.api.target.CloseTargetRequest
-import pl.wendigo.chrome.api.target.DisposeBrowserContextRequest
 import pl.wendigo.chrome.api.target.SendMessageToTargetRequest
-import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.*
 
 /**
@@ -18,11 +15,11 @@ import pl.wendigo.chrome.protocol.*
  * @link [https://chromedevtools.github.io/devtools-protocol/tot/Target](https://chromedevtools.github.io/devtools-protocol/tot/Target)
  * @see [pl.wendigo.chrome.api.target.TargetOperations]
  */
-class TargetedFramesStream(
+class FramesStream(
     private val mapper: FrameMapper,
     private val api: DevToolsProtocol,
-    private val sessionDescriptor: SessionDescriptor
-) : FramesStream {
+    private val target: Target
+) : pl.wendigo.chrome.protocol.FramesStream {
     /**
      * Retrieves response from frames stream matching request id (frames are filtered by session and target id).
      */
@@ -42,8 +39,8 @@ class TargetedFramesStream(
      */
     override fun send(request: RequestFrame): Single<Boolean> {
         val frame = SendMessageToTargetRequest(
-            sessionId = sessionDescriptor.sessionId,
-            targetId = sessionDescriptor.targetId,
+            sessionId = target.sessionId,
+            targetId = target.targetId,
             message = mapper.serialize(request)
         )
 
@@ -59,12 +56,7 @@ class TargetedFramesStream(
      * Receives all frames and filters out frames which are not belonging to given session and target.
      */
     override fun frames(): Flowable<ResponseFrame> {
-        return api.Target.receivedMessageFromTarget().filter { message ->
-            message.run {
-                sessionId == this@TargetedFramesStream.sessionDescriptor.sessionId ||
-                    targetId == this@TargetedFramesStream.sessionDescriptor.targetId
-            }
-        }.map { frame ->
+        return api.Target.receivedMessageFromTarget().filter(target::matches).map { frame ->
             mapper.deserialize(frame.message, ResponseFrame::class.java)
         }
     }
@@ -74,13 +66,6 @@ class TargetedFramesStream(
      */
     override fun close() {
         try {
-            val response = await {
-                api.Target.closeTarget(CloseTargetRequest(sessionDescriptor.targetId)).flatMap {
-                    api.Target.disposeBrowserContext(DisposeBrowserContextRequest(sessionDescriptor.browserContextId))
-                }
-            }
-
-            logger.info("Closed session {} with status {}", sessionDescriptor, response)
             api.close()
         } catch (e: Exception) {
             logger.info("Could not close target due to exception ${e.message}")
@@ -88,6 +73,6 @@ class TargetedFramesStream(
     }
 
     companion object {
-        val logger = LoggerFactory.getLogger(TargetedFramesStream::class.java) !!
+        val logger = LoggerFactory.getLogger(FramesStream::class.java) !!
     }
 }

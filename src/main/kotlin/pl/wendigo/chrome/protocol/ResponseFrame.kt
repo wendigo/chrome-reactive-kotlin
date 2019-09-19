@@ -42,4 +42,6 @@ data class ResponseFrame(
     internal inline fun isResponse(): Boolean = !this.isEvent()
 
     internal inline fun matchesRequest(request: RequestFrame): Boolean = isResponse() && id == request.id
+
+    internal inline fun matchesMethod(method: String): Boolean = this.method == method
 }

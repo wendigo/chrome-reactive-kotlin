@@ -56,7 +56,9 @@ import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
  * @link [https://github.com/chromedevtools/devtools-protocol](https://github.com/chromedevtools/devtools-protocol)
  * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
-open class DevToolsProtocol internal constructor(private val connection: ChromeDebuggerConnection): Closeable {
+open class DevToolsProtocol internal constructor(
+    private val connection: ChromeDebuggerConnection
+): Closeable {
 
     /**
      * Register events mappings.

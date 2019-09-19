@@ -4,6 +4,7 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.ReplaySubject
 import io.reactivex.subjects.Subject
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -12,17 +13,29 @@ import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import org.slf4j.LoggerFactory
 
+/**
+ * WebsocketFramesStream is [FramesStream] implementation that connects to remote websocket endpoint of thee DevTools Protocol
+ * (either inspectable page debugger url http://localhost:9222/json or browser debugger url http://localhost:9222/json/version)
+ */
 class WebsocketFramesStream : WebSocketListener, FramesStream {
     private val messages: Subject<ResponseFrame>
     private val mapper: FrameMapper
     private val connection: WebSocket
     private val client: OkHttpClient
 
-    constructor(uri: String, messages: Subject<ResponseFrame>, mapper: FrameMapper, client: OkHttpClient) : super() {
-        this.messages = messages
+    /**
+     * Creates new WebSocketFramesStream for given web webSocketUri, buffer size, frame mapper, and ws client
+     *
+     * @param webSocketUri WS endpoint to connect to
+     * @param framesBufferSize frames buffer size (how many frames will be replayed prior to subscribing to stream)
+     * @param mapper mapper that will serialize/deserialize frames understand by protocol
+     * @param webSocketClient client for making websocket connection.
+     */
+    constructor(webSocketUri: String, framesBufferSize: Int, mapper: FrameMapper, webSocketClient: OkHttpClient) : super() {
+        this.messages = ReplaySubject.create(framesBufferSize)
         this.mapper = mapper
-        this.client = client
-        this.connection = client.newWebSocket(Request.Builder().url(uri).build(), this)
+        this.client = webSocketClient
+        this.connection = webSocketClient.newWebSocket(Request.Builder().url(webSocketUri).build(), this)
     }
 
     /**
@@ -35,7 +48,7 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     /**
      * onClosed is called when websocket is being closed.
      */
-    override fun onClosed(webSocket: WebSocket, code: Int, reason: String) = messages.onComplete()
+    override fun onClosed(webSocket: WebSocket, code: Int, reason: String) = closeSilently()
 
     /**
      * onFailure is called when websocket protocol error occurs.
@@ -45,7 +58,7 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     }
 
     /**
-     * Returns protocol response (if any).
+     * Returns protocol response for given request frame (if any).
      */
     override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>): Single<T> {
         return frames()
@@ -63,12 +76,12 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     }
 
     /**
-     * Returns all event frames.
+     * Returns all frames that represent events from connection.
      */
     override fun eventFrames(): Flowable<ResponseFrame> = frames().filter(ResponseFrame::isEvent)
 
     /**
-     * Returns all frames.
+     * Returns all frames received from connection.
      */
     override fun frames(): Flowable<ResponseFrame> = messages.toFlowable(BackpressureStrategy.BUFFER)
 
@@ -84,9 +97,15 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
         }
 
         try {
-            messages.onComplete()
+            closeSilently()
         } catch (e: Exception) {
             logger.warn("Caught exception while completing subject: ${e.message}")
+        }
+    }
+
+    private fun closeSilently() {
+        if (!(messages.hasComplete() || messages.hasThrowable())) {
+            return messages.onComplete()
         }
     }
 
