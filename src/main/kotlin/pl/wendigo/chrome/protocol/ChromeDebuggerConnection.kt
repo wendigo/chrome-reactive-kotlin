@@ -1,12 +1,8 @@
 package pl.wendigo.chrome.protocol
 
-import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import io.reactivex.schedulers.Timed
-import io.reactivex.subjects.ReplaySubject
-import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 import okhttp3.OkHttpClient
 
@@ -64,7 +60,7 @@ class ChromeDebuggerConnection constructor(
      */
     fun <T> captureEvents(name: String, outClazz: Class<T>): Flowable<T> where T : Event {
         return frames.eventFrames()
-            .filter { frame -> frame.method == name }
+            .filter { frame -> frame.matchesMethod(name) }
             .map { frame -> eventMapper.deserialize(frame, outClazz) }
             .subscribeOn(Schedulers.io())
     }
@@ -78,21 +74,28 @@ class ChromeDebuggerConnection constructor(
             .subscribeOn(Schedulers.io())
     }
 
-    companion object {
+    companion object Factory {
         /**
-         * Opens new ChromeDebuggerConnection session for given websocket uri.
+         * Creates new ChromeDebuggerConnection session for given websocket uri.
          */
         @JvmStatic
-        fun openSession(url: String, eventBufferSize: Int = 128): ChromeDebuggerConnection {
-
+        fun open(websocketUri: String, framesBufferSize: Int = 128): ChromeDebuggerConnection {
             return ChromeDebuggerConnection(
-                WebsocketFramesStream(url, ReplaySubject.create(eventBufferSize), FrameMapper(), client),
-                EventMapper()
+                WebsocketFramesStream(websocketUri, framesBufferSize, frameMapper, client),
+                eventMapper
             )
         }
 
         private val client by lazy {
             OkHttpClient()
+        }
+
+        private val frameMapper by lazy {
+            FrameMapper()
+        }
+
+        private val eventMapper by lazy {
+            EventMapper()
         }
     }
 }
