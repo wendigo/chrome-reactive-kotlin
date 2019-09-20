@@ -230,7 +230,15 @@ data class FulfillRequestRequest(
     /**
      * Response headers.
      */
-    val responseHeaders: List<HeaderEntry>,
+    val responseHeaders: List<HeaderEntry>? = null,
+
+    /**
+     * Alternative way of specifying response headers as a \0-separated
+series of name: value pairs. Prefer the above method unless you
+need to represent some non-UTF8 values that can't be transmitted
+over the protocol as text.
+     */
+    val binaryResponseHeaders: String? = null,
 
     /**
      * A response body.
@@ -239,7 +247,7 @@ data class FulfillRequestRequest(
 
     /**
      * A textual representation of responseCode.
-If absent, a standard phrase mathcing responseCode is used.
+If absent, a standard phrase matching responseCode is used.
      */
     val responsePhrase: String? = null
 
