@@ -13,84 +13,39 @@ class MediaOperations internal constructor(private val connection: pl.wendigo.ch
      *
      * @link Protocol [Media#enable](https://chromedevtools.github.io/devtools-protocol/tot/Media#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Media.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun enable() = connection.request("Media.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables the Media domain.
      *
      * @link Protocol [Media#disable](https://chromedevtools.github.io/devtools-protocol/tot/Media#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Media.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun disable() = connection.request("Media.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  This can be called multiple times, and can be used to set / override /
 remove player properties. A null propValue indicates removal.
      */
-    fun playerPropertiesChanged(): io.reactivex.Flowable<PlayerPropertiesChangedEvent> {
-        return playerPropertiesChangedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * This can be called multiple times, and can be used to set / override /
-remove player properties. A null propValue indicates removal.
-     */
-    fun playerPropertiesChangedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<PlayerPropertiesChangedEvent>> {
-        return connection.captureEvents("Media.playerPropertiesChanged", PlayerPropertiesChangedEvent::class.java)
-    }
+    fun playerPropertiesChanged(): io.reactivex.Flowable<PlayerPropertiesChangedEvent> = connection.events("Media.playerPropertiesChanged", PlayerPropertiesChangedEvent::class.java)
 
     /**
      *  Send events as a list, allowing them to be batched on the browser for less
 congestion. If batched, events must ALWAYS be in chronological order.
      */
-    fun playerEventsAdded(): io.reactivex.Flowable<PlayerEventsAddedEvent> {
-        return playerEventsAddedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Send events as a list, allowing them to be batched on the browser for less
-congestion. If batched, events must ALWAYS be in chronological order.
-     */
-    fun playerEventsAddedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<PlayerEventsAddedEvent>> {
-        return connection.captureEvents("Media.playerEventsAdded", PlayerEventsAddedEvent::class.java)
-    }
+    fun playerEventsAdded(): io.reactivex.Flowable<PlayerEventsAddedEvent> = connection.events("Media.playerEventsAdded", PlayerEventsAddedEvent::class.java)
 
     /**
      *  Called whenever a player is created, or when a new agent joins and recieves
 a list of active players. If an agent is restored, it will recieve the full
 list of player ids and all events again.
      */
-    fun playersCreated(): io.reactivex.Flowable<PlayersCreatedEvent> {
-        return playersCreatedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Called whenever a player is created, or when a new agent joins and recieves
-a list of active players. If an agent is restored, it will recieve the full
-list of player ids and all events again.
-     */
-    fun playersCreatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<PlayersCreatedEvent>> {
-        return connection.captureEvents("Media.playersCreated", PlayersCreatedEvent::class.java)
-    }
+    fun playersCreated(): io.reactivex.Flowable<PlayersCreatedEvent> = connection.events("Media.playersCreated", PlayersCreatedEvent::class.java)
 
     /**
      * Returns flowable capturing all Media domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Media"
         }
     }
