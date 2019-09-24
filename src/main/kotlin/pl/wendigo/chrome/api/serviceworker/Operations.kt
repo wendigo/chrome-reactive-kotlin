@@ -13,91 +13,91 @@ class ServiceWorkerOperations internal constructor(private val connection: pl.we
      *
      * @link Protocol [ServiceWorker#deliverPushMessage](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-deliverPushMessage) method documentation.
      */
-    fun deliverPushMessage(input: DeliverPushMessageRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.deliverPushMessage", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun deliverPushMessage(input: DeliverPushMessageRequest) = connection.runAndCaptureResponse("ServiceWorker.deliverPushMessage", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#disable](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("ServiceWorker.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#dispatchSyncEvent](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-dispatchSyncEvent) method documentation.
      */
-    fun dispatchSyncEvent(input: DispatchSyncEventRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.dispatchSyncEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun dispatchSyncEvent(input: DispatchSyncEventRequest) = connection.runAndCaptureResponse("ServiceWorker.dispatchSyncEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#dispatchPeriodicSyncEvent](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-dispatchPeriodicSyncEvent) method documentation.
      */
-    fun dispatchPeriodicSyncEvent(input: DispatchPeriodicSyncEventRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.dispatchPeriodicSyncEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun dispatchPeriodicSyncEvent(input: DispatchPeriodicSyncEventRequest) = connection.runAndCaptureResponse("ServiceWorker.dispatchPeriodicSyncEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#enable](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("ServiceWorker.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#inspectWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-inspectWorker) method documentation.
      */
-    fun inspectWorker(input: InspectWorkerRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.inspectWorker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun inspectWorker(input: InspectWorkerRequest) = connection.runAndCaptureResponse("ServiceWorker.inspectWorker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#setForceUpdateOnPageLoad](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-setForceUpdateOnPageLoad) method documentation.
      */
-    fun setForceUpdateOnPageLoad(input: SetForceUpdateOnPageLoadRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.setForceUpdateOnPageLoad", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setForceUpdateOnPageLoad(input: SetForceUpdateOnPageLoadRequest) = connection.runAndCaptureResponse("ServiceWorker.setForceUpdateOnPageLoad", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#skipWaiting](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-skipWaiting) method documentation.
      */
-    fun skipWaiting(input: SkipWaitingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.skipWaiting", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun skipWaiting(input: SkipWaitingRequest) = connection.runAndCaptureResponse("ServiceWorker.skipWaiting", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#startWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-startWorker) method documentation.
      */
-    fun startWorker(input: StartWorkerRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.startWorker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startWorker(input: StartWorkerRequest) = connection.runAndCaptureResponse("ServiceWorker.startWorker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#stopAllWorkers](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-stopAllWorkers) method documentation.
      */
-    fun stopAllWorkers(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.stopAllWorkers", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopAllWorkers() = connection.runAndCaptureResponse("ServiceWorker.stopAllWorkers", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#stopWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-stopWorker) method documentation.
      */
-    fun stopWorker(input: StopWorkerRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.stopWorker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopWorker(input: StopWorkerRequest) = connection.runAndCaptureResponse("ServiceWorker.stopWorker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#unregister](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-unregister) method documentation.
      */
-    fun unregister(input: UnregisterRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.unregister", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun unregister(input: UnregisterRequest) = connection.runAndCaptureResponse("ServiceWorker.unregister", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [ServiceWorker#updateRegistration](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-updateRegistration) method documentation.
      */
-    fun updateRegistration(input: UpdateRegistrationRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ServiceWorker.updateRegistration", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun updateRegistration(input: UpdateRegistrationRequest) = connection.runAndCaptureResponse("ServiceWorker.updateRegistration", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Returns observable capturing all ServiceWorker.workerErrorReported events.

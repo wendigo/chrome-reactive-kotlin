@@ -13,49 +13,49 @@ class MemoryOperations internal constructor(private val connection: pl.wendigo.c
      *
      * @link Protocol [Memory#getDOMCounters](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getDOMCounters) method documentation.
      */
-    fun getDOMCounters(): io.reactivex.Single<GetDOMCountersResponse> = connection.runAndCaptureResponse("Memory.getDOMCounters", null, GetDOMCountersResponse::class.java)
+    fun getDOMCounters() = connection.runAndCaptureResponse("Memory.getDOMCounters", null, GetDOMCountersResponse::class.java)
 
     /**
      *
      *
      * @link Protocol [Memory#prepareForLeakDetection](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-prepareForLeakDetection) method documentation.
      */
-    fun prepareForLeakDetection(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Memory.prepareForLeakDetection", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun prepareForLeakDetection() = connection.runAndCaptureResponse("Memory.prepareForLeakDetection", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Simulate OomIntervention by purging V8 memory.
      *
      * @link Protocol [Memory#forciblyPurgeJavaScriptMemory](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-forciblyPurgeJavaScriptMemory) method documentation.
      */
-    fun forciblyPurgeJavaScriptMemory(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Memory.forciblyPurgeJavaScriptMemory", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun forciblyPurgeJavaScriptMemory() = connection.runAndCaptureResponse("Memory.forciblyPurgeJavaScriptMemory", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enable/disable suppressing memory pressure notifications in all processes.
      *
      * @link Protocol [Memory#setPressureNotificationsSuppressed](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-setPressureNotificationsSuppressed) method documentation.
      */
-    fun setPressureNotificationsSuppressed(input: SetPressureNotificationsSuppressedRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setPressureNotificationsSuppressed(input: SetPressureNotificationsSuppressedRequest) = connection.runAndCaptureResponse("Memory.setPressureNotificationsSuppressed", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Simulate a memory pressure notification in all processes.
      *
      * @link Protocol [Memory#simulatePressureNotification](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-simulatePressureNotification) method documentation.
      */
-    fun simulatePressureNotification(input: SimulatePressureNotificationRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun simulatePressureNotification(input: SimulatePressureNotificationRequest) = connection.runAndCaptureResponse("Memory.simulatePressureNotification", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Start collecting native memory profile.
      *
      * @link Protocol [Memory#startSampling](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-startSampling) method documentation.
      */
-    fun startSampling(input: StartSamplingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Memory.startSampling", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startSampling(input: StartSamplingRequest) = connection.runAndCaptureResponse("Memory.startSampling", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Stop collecting native memory profile.
      *
      * @link Protocol [Memory#stopSampling](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-stopSampling) method documentation.
      */
-    fun stopSampling(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Memory.stopSampling", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopSampling() = connection.runAndCaptureResponse("Memory.stopSampling", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Retrieve native memory allocations profile
@@ -63,7 +63,7 @@ collected since renderer process startup.
      *
      * @link Protocol [Memory#getAllTimeSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getAllTimeSamplingProfile) method documentation.
      */
-    fun getAllTimeSamplingProfile(): io.reactivex.Single<GetAllTimeSamplingProfileResponse> = connection.runAndCaptureResponse("Memory.getAllTimeSamplingProfile", null, GetAllTimeSamplingProfileResponse::class.java)
+    fun getAllTimeSamplingProfile() = connection.runAndCaptureResponse("Memory.getAllTimeSamplingProfile", null, GetAllTimeSamplingProfileResponse::class.java)
 
     /**
      * Retrieve native memory allocations profile
@@ -71,7 +71,7 @@ collected since browser process startup.
      *
      * @link Protocol [Memory#getBrowserSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getBrowserSamplingProfile) method documentation.
      */
-    fun getBrowserSamplingProfile(): io.reactivex.Single<GetBrowserSamplingProfileResponse> = connection.runAndCaptureResponse("Memory.getBrowserSamplingProfile", null, GetBrowserSamplingProfileResponse::class.java)
+    fun getBrowserSamplingProfile() = connection.runAndCaptureResponse("Memory.getBrowserSamplingProfile", null, GetBrowserSamplingProfileResponse::class.java)
 
     /**
      * Retrieve native memory allocations profile collected since last
@@ -79,7 +79,7 @@ collected since browser process startup.
      *
      * @link Protocol [Memory#getSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getSamplingProfile) method documentation.
      */
-    fun getSamplingProfile(): io.reactivex.Single<GetSamplingProfileResponse> = connection.runAndCaptureResponse("Memory.getSamplingProfile", null, GetSamplingProfileResponse::class.java)
+    fun getSamplingProfile() = connection.runAndCaptureResponse("Memory.getSamplingProfile", null, GetSamplingProfileResponse::class.java)
 
     /**
      * Returns flowable capturing all Memory domains events.

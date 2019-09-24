@@ -11,14 +11,14 @@ class TargetOperations internal constructor(private val connection: pl.wendigo.c
      *
      * @link Protocol [Target#activateTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-activateTarget) method documentation.
      */
-    fun activateTarget(input: ActivateTargetRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.activateTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun activateTarget(input: ActivateTargetRequest) = connection.runAndCaptureResponse("Target.activateTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Attaches to the target with given id.
      *
      * @link Protocol [Target#attachToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToTarget) method documentation.
      */
-    fun attachToTarget(input: AttachToTargetRequest): io.reactivex.Single<AttachToTargetResponse> = connection.runAndCaptureResponse("Target.attachToTarget", input, AttachToTargetResponse::class.java)
+    fun attachToTarget(input: AttachToTargetRequest) = connection.runAndCaptureResponse("Target.attachToTarget", input, AttachToTargetResponse::class.java)
 
     /**
      * Attaches to the browser target, only uses flat sessionId mode.
@@ -27,14 +27,14 @@ class TargetOperations internal constructor(private val connection: pl.wendigo.c
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun attachToBrowserTarget(): io.reactivex.Single<AttachToBrowserTargetResponse> = connection.runAndCaptureResponse("Target.attachToBrowserTarget", null, AttachToBrowserTargetResponse::class.java)
+    fun attachToBrowserTarget() = connection.runAndCaptureResponse("Target.attachToBrowserTarget", null, AttachToBrowserTargetResponse::class.java)
 
     /**
      * Closes the target. If the target is a page that gets closed too.
      *
      * @link Protocol [Target#closeTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-closeTarget) method documentation.
      */
-    fun closeTarget(input: CloseTargetRequest): io.reactivex.Single<CloseTargetResponse> = connection.runAndCaptureResponse("Target.closeTarget", input, CloseTargetResponse::class.java)
+    fun closeTarget(input: CloseTargetRequest) = connection.runAndCaptureResponse("Target.closeTarget", input, CloseTargetResponse::class.java)
 
     /**
      * Inject object to the target's main frame that provides a communication
@@ -50,7 +50,7 @@ The object has the follwing API:
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun exposeDevToolsProtocol(input: ExposeDevToolsProtocolRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.exposeDevToolsProtocol", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun exposeDevToolsProtocol(input: ExposeDevToolsProtocolRequest) = connection.runAndCaptureResponse("Target.exposeDevToolsProtocol", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than
@@ -60,7 +60,7 @@ one.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun createBrowserContext(): io.reactivex.Single<CreateBrowserContextResponse> = connection.runAndCaptureResponse("Target.createBrowserContext", null, CreateBrowserContextResponse::class.java)
+    fun createBrowserContext() = connection.runAndCaptureResponse("Target.createBrowserContext", null, CreateBrowserContextResponse::class.java)
 
     /**
      * Returns all browser contexts created with `Target.createBrowserContext` method.
@@ -69,21 +69,21 @@ one.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getBrowserContexts(): io.reactivex.Single<GetBrowserContextsResponse> = connection.runAndCaptureResponse("Target.getBrowserContexts", null, GetBrowserContextsResponse::class.java)
+    fun getBrowserContexts() = connection.runAndCaptureResponse("Target.getBrowserContexts", null, GetBrowserContextsResponse::class.java)
 
     /**
      * Creates a new page.
      *
      * @link Protocol [Target#createTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createTarget) method documentation.
      */
-    fun createTarget(input: CreateTargetRequest): io.reactivex.Single<CreateTargetResponse> = connection.runAndCaptureResponse("Target.createTarget", input, CreateTargetResponse::class.java)
+    fun createTarget(input: CreateTargetRequest) = connection.runAndCaptureResponse("Target.createTarget", input, CreateTargetResponse::class.java)
 
     /**
      * Detaches session with given id.
      *
      * @link Protocol [Target#detachFromTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-detachFromTarget) method documentation.
      */
-    fun detachFromTarget(input: DetachFromTargetRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.detachFromTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun detachFromTarget(input: DetachFromTargetRequest) = connection.runAndCaptureResponse("Target.detachFromTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Deletes a BrowserContext. All the belonging pages will be closed without calling their
@@ -93,7 +93,7 @@ beforeunload hooks.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun disposeBrowserContext(input: DisposeBrowserContextRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.disposeBrowserContext", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disposeBrowserContext(input: DisposeBrowserContextRequest) = connection.runAndCaptureResponse("Target.disposeBrowserContext", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns information about a target.
@@ -102,21 +102,21 @@ beforeunload hooks.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getTargetInfo(input: GetTargetInfoRequest): io.reactivex.Single<GetTargetInfoResponse> = connection.runAndCaptureResponse("Target.getTargetInfo", input, GetTargetInfoResponse::class.java)
+    fun getTargetInfo(input: GetTargetInfoRequest) = connection.runAndCaptureResponse("Target.getTargetInfo", input, GetTargetInfoResponse::class.java)
 
     /**
      * Retrieves a list of available targets.
      *
      * @link Protocol [Target#getTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargets) method documentation.
      */
-    fun getTargets(): io.reactivex.Single<GetTargetsResponse> = connection.runAndCaptureResponse("Target.getTargets", null, GetTargetsResponse::class.java)
+    fun getTargets() = connection.runAndCaptureResponse("Target.getTargets", null, GetTargetsResponse::class.java)
 
     /**
      * Sends protocol message over session with given id.
      *
      * @link Protocol [Target#sendMessageToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-sendMessageToTarget) method documentation.
      */
-    fun sendMessageToTarget(input: SendMessageToTargetRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.sendMessageToTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun sendMessageToTarget(input: SendMessageToTargetRequest) = connection.runAndCaptureResponse("Target.sendMessageToTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Controls whether to automatically attach to new targets which are considered to be related to
@@ -127,7 +127,7 @@ automatically detaches from all currently attached targets.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setAutoAttach(input: SetAutoAttachRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.setAutoAttach", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAutoAttach(input: SetAutoAttachRequest) = connection.runAndCaptureResponse("Target.setAutoAttach", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Controls whether to discover available targets and notify via
@@ -135,7 +135,7 @@ automatically detaches from all currently attached targets.
      *
      * @link Protocol [Target#setDiscoverTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setDiscoverTargets) method documentation.
      */
-    fun setDiscoverTargets(input: SetDiscoverTargetsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.setDiscoverTargets", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDiscoverTargets(input: SetDiscoverTargetsRequest) = connection.runAndCaptureResponse("Target.setDiscoverTargets", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables target discovery for the specified locations, when `setDiscoverTargets` was set to
@@ -145,7 +145,7 @@ automatically detaches from all currently attached targets.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setRemoteLocations(input: SetRemoteLocationsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.setRemoteLocations", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setRemoteLocations(input: SetRemoteLocationsRequest) = connection.runAndCaptureResponse("Target.setRemoteLocations", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Issued when attached to target because of auto-attach or `attachToTarget` command.

@@ -12,14 +12,14 @@ class DebuggerOperations internal constructor(private val connection: pl.wendigo
      *
      * @link Protocol [Debugger#continueToLocation](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-continueToLocation) method documentation.
      */
-    fun continueToLocation(input: ContinueToLocationRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.continueToLocation", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun continueToLocation(input: ContinueToLocationRequest) = connection.runAndCaptureResponse("Debugger.continueToLocation", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables debugger for given page.
      *
      * @link Protocol [Debugger#disable](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("Debugger.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables debugger for the given page. Clients should not assume that the debugging has been
@@ -27,14 +27,14 @@ enabled until the result for this command is received.
      *
      * @link Protocol [Debugger#enable](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-enable) method documentation.
      */
-    fun enable(input: EnableRequest): io.reactivex.Single<EnableResponse> = connection.runAndCaptureResponse("Debugger.enable", input, EnableResponse::class.java)
+    fun enable(input: EnableRequest) = connection.runAndCaptureResponse("Debugger.enable", input, EnableResponse::class.java)
 
     /**
      * Evaluates expression on a given call frame.
      *
      * @link Protocol [Debugger#evaluateOnCallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-evaluateOnCallFrame) method documentation.
      */
-    fun evaluateOnCallFrame(input: EvaluateOnCallFrameRequest): io.reactivex.Single<EvaluateOnCallFrameResponse> = connection.runAndCaptureResponse("Debugger.evaluateOnCallFrame", input, EvaluateOnCallFrameResponse::class.java)
+    fun evaluateOnCallFrame(input: EvaluateOnCallFrameRequest) = connection.runAndCaptureResponse("Debugger.evaluateOnCallFrame", input, EvaluateOnCallFrameResponse::class.java)
 
     /**
      * Returns possible locations for breakpoint. scriptId in start and end range locations should be
@@ -42,14 +42,14 @@ the same.
      *
      * @link Protocol [Debugger#getPossibleBreakpoints](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getPossibleBreakpoints) method documentation.
      */
-    fun getPossibleBreakpoints(input: GetPossibleBreakpointsRequest): io.reactivex.Single<GetPossibleBreakpointsResponse> = connection.runAndCaptureResponse("Debugger.getPossibleBreakpoints", input, GetPossibleBreakpointsResponse::class.java)
+    fun getPossibleBreakpoints(input: GetPossibleBreakpointsRequest) = connection.runAndCaptureResponse("Debugger.getPossibleBreakpoints", input, GetPossibleBreakpointsResponse::class.java)
 
     /**
      * Returns source for the script with given id.
      *
      * @link Protocol [Debugger#getScriptSource](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getScriptSource) method documentation.
      */
-    fun getScriptSource(input: GetScriptSourceRequest): io.reactivex.Single<GetScriptSourceResponse> = connection.runAndCaptureResponse("Debugger.getScriptSource", input, GetScriptSourceResponse::class.java)
+    fun getScriptSource(input: GetScriptSourceRequest) = connection.runAndCaptureResponse("Debugger.getScriptSource", input, GetScriptSourceResponse::class.java)
 
     /**
      * Returns stack trace with given `stackTraceId`.
@@ -58,14 +58,14 @@ the same.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getStackTrace(input: GetStackTraceRequest): io.reactivex.Single<GetStackTraceResponse> = connection.runAndCaptureResponse("Debugger.getStackTrace", input, GetStackTraceResponse::class.java)
+    fun getStackTrace(input: GetStackTraceRequest) = connection.runAndCaptureResponse("Debugger.getStackTrace", input, GetStackTraceResponse::class.java)
 
     /**
      * Stops on the next JavaScript statement.
      *
      * @link Protocol [Debugger#pause](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-pause) method documentation.
      */
-    fun pause(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.pause", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun pause() = connection.runAndCaptureResponse("Debugger.pause", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
@@ -75,42 +75,42 @@ the same.
     @Deprecated(level = DeprecationLevel.WARNING, message = "pauseOnAsyncCall is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun pauseOnAsyncCall(input: PauseOnAsyncCallRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.pauseOnAsyncCall", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun pauseOnAsyncCall(input: PauseOnAsyncCallRequest) = connection.runAndCaptureResponse("Debugger.pauseOnAsyncCall", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Removes JavaScript breakpoint.
      *
      * @link Protocol [Debugger#removeBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-removeBreakpoint) method documentation.
      */
-    fun removeBreakpoint(input: RemoveBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.removeBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeBreakpoint(input: RemoveBreakpointRequest) = connection.runAndCaptureResponse("Debugger.removeBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Restarts particular call frame from the beginning.
      *
      * @link Protocol [Debugger#restartFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-restartFrame) method documentation.
      */
-    fun restartFrame(input: RestartFrameRequest): io.reactivex.Single<RestartFrameResponse> = connection.runAndCaptureResponse("Debugger.restartFrame", input, RestartFrameResponse::class.java)
+    fun restartFrame(input: RestartFrameRequest) = connection.runAndCaptureResponse("Debugger.restartFrame", input, RestartFrameResponse::class.java)
 
     /**
      * Resumes JavaScript execution.
      *
      * @link Protocol [Debugger#resume](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-resume) method documentation.
      */
-    fun resume(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.resume", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun resume() = connection.runAndCaptureResponse("Debugger.resume", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Searches for given string in script content.
      *
      * @link Protocol [Debugger#searchInContent](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-searchInContent) method documentation.
      */
-    fun searchInContent(input: SearchInContentRequest): io.reactivex.Single<SearchInContentResponse> = connection.runAndCaptureResponse("Debugger.searchInContent", input, SearchInContentResponse::class.java)
+    fun searchInContent(input: SearchInContentRequest) = connection.runAndCaptureResponse("Debugger.searchInContent", input, SearchInContentResponse::class.java)
 
     /**
      * Enables or disables async call stacks tracking.
      *
      * @link Protocol [Debugger#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setAsyncCallStackDepth) method documentation.
      */
-    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.setAsyncCallStackDepth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest) = connection.runAndCaptureResponse("Debugger.setAsyncCallStackDepth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in
@@ -121,7 +121,7 @@ performing 'step in' several times, finally resorting to 'step out' if unsuccess
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBlackboxPatterns(input: SetBlackboxPatternsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.setBlackboxPatterns", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setBlackboxPatterns(input: SetBlackboxPatternsRequest) = connection.runAndCaptureResponse("Debugger.setBlackboxPatterns", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted
@@ -133,21 +133,21 @@ blackboxed. Array should be sorted.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBlackboxedRanges(input: SetBlackboxedRangesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.setBlackboxedRanges", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setBlackboxedRanges(input: SetBlackboxedRangesRequest) = connection.runAndCaptureResponse("Debugger.setBlackboxedRanges", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets JavaScript breakpoint at a given location.
      *
      * @link Protocol [Debugger#setBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpoint) method documentation.
      */
-    fun setBreakpoint(input: SetBreakpointRequest): io.reactivex.Single<SetBreakpointResponse> = connection.runAndCaptureResponse("Debugger.setBreakpoint", input, SetBreakpointResponse::class.java)
+    fun setBreakpoint(input: SetBreakpointRequest) = connection.runAndCaptureResponse("Debugger.setBreakpoint", input, SetBreakpointResponse::class.java)
 
     /**
      * Sets instrumentation breakpoint.
      *
      * @link Protocol [Debugger#setInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setInstrumentationBreakpoint) method documentation.
      */
-    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest): io.reactivex.Single<SetInstrumentationBreakpointResponse> = connection.runAndCaptureResponse("Debugger.setInstrumentationBreakpoint", input, SetInstrumentationBreakpointResponse::class.java)
+    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest) = connection.runAndCaptureResponse("Debugger.setInstrumentationBreakpoint", input, SetInstrumentationBreakpointResponse::class.java)
 
     /**
      * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this
@@ -157,7 +157,7 @@ command is issued, all existing parsed scripts will have breakpoints resolved an
      *
      * @link Protocol [Debugger#setBreakpointByUrl](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointByUrl) method documentation.
      */
-    fun setBreakpointByUrl(input: SetBreakpointByUrlRequest): io.reactivex.Single<SetBreakpointByUrlResponse> = connection.runAndCaptureResponse("Debugger.setBreakpointByUrl", input, SetBreakpointByUrlResponse::class.java)
+    fun setBreakpointByUrl(input: SetBreakpointByUrlRequest) = connection.runAndCaptureResponse("Debugger.setBreakpointByUrl", input, SetBreakpointByUrlResponse::class.java)
 
     /**
      * Sets JavaScript breakpoint before each call to the given function.
@@ -168,14 +168,14 @@ calling it will also trigger the breakpoint.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBreakpointOnFunctionCall(input: SetBreakpointOnFunctionCallRequest): io.reactivex.Single<SetBreakpointOnFunctionCallResponse> = connection.runAndCaptureResponse("Debugger.setBreakpointOnFunctionCall", input, SetBreakpointOnFunctionCallResponse::class.java)
+    fun setBreakpointOnFunctionCall(input: SetBreakpointOnFunctionCallRequest) = connection.runAndCaptureResponse("Debugger.setBreakpointOnFunctionCall", input, SetBreakpointOnFunctionCallResponse::class.java)
 
     /**
      * Activates / deactivates all breakpoints on the page.
      *
      * @link Protocol [Debugger#setBreakpointsActive](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointsActive) method documentation.
      */
-    fun setBreakpointsActive(input: SetBreakpointsActiveRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.setBreakpointsActive", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setBreakpointsActive(input: SetBreakpointsActiveRequest) = connection.runAndCaptureResponse("Debugger.setBreakpointsActive", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or
@@ -183,7 +183,7 @@ no exceptions. Initial pause on exceptions state is `none`.
      *
      * @link Protocol [Debugger#setPauseOnExceptions](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setPauseOnExceptions) method documentation.
      */
-    fun setPauseOnExceptions(input: SetPauseOnExceptionsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.setPauseOnExceptions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setPauseOnExceptions(input: SetPauseOnExceptionsRequest) = connection.runAndCaptureResponse("Debugger.setPauseOnExceptions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Changes return value in top frame. Available only at return break position.
@@ -192,21 +192,21 @@ no exceptions. Initial pause on exceptions state is `none`.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setReturnValue(input: SetReturnValueRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.setReturnValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setReturnValue(input: SetReturnValueRequest) = connection.runAndCaptureResponse("Debugger.setReturnValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Edits JavaScript source live.
      *
      * @link Protocol [Debugger#setScriptSource](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setScriptSource) method documentation.
      */
-    fun setScriptSource(input: SetScriptSourceRequest): io.reactivex.Single<SetScriptSourceResponse> = connection.runAndCaptureResponse("Debugger.setScriptSource", input, SetScriptSourceResponse::class.java)
+    fun setScriptSource(input: SetScriptSourceRequest) = connection.runAndCaptureResponse("Debugger.setScriptSource", input, SetScriptSourceResponse::class.java)
 
     /**
      * Makes page not interrupt on any pauses (breakpoint, exception, dom exception etc).
      *
      * @link Protocol [Debugger#setSkipAllPauses](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setSkipAllPauses) method documentation.
      */
-    fun setSkipAllPauses(input: SetSkipAllPausesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.setSkipAllPauses", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setSkipAllPauses(input: SetSkipAllPausesRequest) = connection.runAndCaptureResponse("Debugger.setSkipAllPauses", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Changes value of variable in a callframe. Object-based scopes are not supported and must be
@@ -214,28 +214,28 @@ mutated manually.
      *
      * @link Protocol [Debugger#setVariableValue](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setVariableValue) method documentation.
      */
-    fun setVariableValue(input: SetVariableValueRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.setVariableValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setVariableValue(input: SetVariableValueRequest) = connection.runAndCaptureResponse("Debugger.setVariableValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Steps into the function call.
      *
      * @link Protocol [Debugger#stepInto](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepInto) method documentation.
      */
-    fun stepInto(input: StepIntoRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.stepInto", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stepInto(input: StepIntoRequest) = connection.runAndCaptureResponse("Debugger.stepInto", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Steps out of the function call.
      *
      * @link Protocol [Debugger#stepOut](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepOut) method documentation.
      */
-    fun stepOut(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.stepOut", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stepOut() = connection.runAndCaptureResponse("Debugger.stepOut", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Steps over the statement.
      *
      * @link Protocol [Debugger#stepOver](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepOver) method documentation.
      */
-    fun stepOver(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Debugger.stepOver", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stepOver() = connection.runAndCaptureResponse("Debugger.stepOver", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Fired when breakpoint is resolved to an actual script and location.

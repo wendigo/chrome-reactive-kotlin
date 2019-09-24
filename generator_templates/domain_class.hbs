@@ -27,7 +27,7 @@ class {{Domain.Name}}Operations internal constructor(private val connection : {{
     {{#if Experimental}}
     @{{Package}}.protocol.Experimental
     {{/if}}
-    fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}): io.reactivex.Single<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.ResponseFrame{{/if}}> = connection.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.ResponseFrame{{/if}}::class.java)
+    fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}) = connection.runAndCaptureResponse("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.ResponseFrame{{/if}}::class.java)
 
 
 {{/each}}

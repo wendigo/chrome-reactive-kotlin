@@ -11,7 +11,7 @@ class InputOperations internal constructor(private val connection: pl.wendigo.ch
      *
      * @link Protocol [Input#dispatchKeyEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchKeyEvent) method documentation.
      */
-    fun dispatchKeyEvent(input: DispatchKeyEventRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Input.dispatchKeyEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun dispatchKeyEvent(input: DispatchKeyEventRequest) = connection.runAndCaptureResponse("Input.dispatchKeyEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * This method emulates inserting text that doesn't come from a key press,
@@ -21,21 +21,21 @@ for example an emoji keyboard or an IME.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun insertText(input: InsertTextRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Input.insertText", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun insertText(input: InsertTextRequest) = connection.runAndCaptureResponse("Input.insertText", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Dispatches a mouse event to the page.
      *
      * @link Protocol [Input#dispatchMouseEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent) method documentation.
      */
-    fun dispatchMouseEvent(input: DispatchMouseEventRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Input.dispatchMouseEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun dispatchMouseEvent(input: DispatchMouseEventRequest) = connection.runAndCaptureResponse("Input.dispatchMouseEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Dispatches a touch event to the page.
      *
      * @link Protocol [Input#dispatchTouchEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchTouchEvent) method documentation.
      */
-    fun dispatchTouchEvent(input: DispatchTouchEventRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Input.dispatchTouchEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun dispatchTouchEvent(input: DispatchTouchEventRequest) = connection.runAndCaptureResponse("Input.dispatchTouchEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Emulates touch event from the mouse event parameters.
@@ -44,14 +44,14 @@ for example an emoji keyboard or an IME.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun emulateTouchFromMouseEvent(input: EmulateTouchFromMouseEventRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Input.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun emulateTouchFromMouseEvent(input: EmulateTouchFromMouseEventRequest) = connection.runAndCaptureResponse("Input.emulateTouchFromMouseEvent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Ignores input events (useful while auditing page).
      *
      * @link Protocol [Input#setIgnoreInputEvents](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-setIgnoreInputEvents) method documentation.
      */
-    fun setIgnoreInputEvents(input: SetIgnoreInputEventsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Input.setIgnoreInputEvents", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setIgnoreInputEvents(input: SetIgnoreInputEventsRequest) = connection.runAndCaptureResponse("Input.setIgnoreInputEvents", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
@@ -60,7 +60,7 @@ for example an emoji keyboard or an IME.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun synthesizePinchGesture(input: SynthesizePinchGestureRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Input.synthesizePinchGesture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun synthesizePinchGesture(input: SynthesizePinchGestureRequest) = connection.runAndCaptureResponse("Input.synthesizePinchGesture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
@@ -69,7 +69,7 @@ for example an emoji keyboard or an IME.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun synthesizeScrollGesture(input: SynthesizeScrollGestureRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Input.synthesizeScrollGesture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun synthesizeScrollGesture(input: SynthesizeScrollGestureRequest) = connection.runAndCaptureResponse("Input.synthesizeScrollGesture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
@@ -78,7 +78,7 @@ for example an emoji keyboard or an IME.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun synthesizeTapGesture(input: SynthesizeTapGestureRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Input.synthesizeTapGesture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun synthesizeTapGesture(input: SynthesizeTapGestureRequest) = connection.runAndCaptureResponse("Input.synthesizeTapGesture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns flowable capturing all Input domains events.

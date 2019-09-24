@@ -15,7 +15,7 @@ class RuntimeOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) method documentation.
      */
-    fun awaitPromise(input: AwaitPromiseRequest): io.reactivex.Single<AwaitPromiseResponse> = connection.runAndCaptureResponse("Runtime.awaitPromise", input, AwaitPromiseResponse::class.java)
+    fun awaitPromise(input: AwaitPromiseRequest) = connection.runAndCaptureResponse("Runtime.awaitPromise", input, AwaitPromiseResponse::class.java)
 
     /**
      * Calls function with given declaration on the given object. Object group of the result is
@@ -23,28 +23,28 @@ inherited from the target object.
      *
      * @link Protocol [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) method documentation.
      */
-    fun callFunctionOn(input: CallFunctionOnRequest): io.reactivex.Single<CallFunctionOnResponse> = connection.runAndCaptureResponse("Runtime.callFunctionOn", input, CallFunctionOnResponse::class.java)
+    fun callFunctionOn(input: CallFunctionOnRequest) = connection.runAndCaptureResponse("Runtime.callFunctionOn", input, CallFunctionOnResponse::class.java)
 
     /**
      * Compiles expression.
      *
      * @link Protocol [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) method documentation.
      */
-    fun compileScript(input: CompileScriptRequest): io.reactivex.Single<CompileScriptResponse> = connection.runAndCaptureResponse("Runtime.compileScript", input, CompileScriptResponse::class.java)
+    fun compileScript(input: CompileScriptRequest) = connection.runAndCaptureResponse("Runtime.compileScript", input, CompileScriptResponse::class.java)
 
     /**
      * Disables reporting of execution contexts creation.
      *
      * @link Protocol [Runtime#disable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Discards collected exceptions and console API calls.
      *
      * @link Protocol [Runtime#discardConsoleEntries](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-discardConsoleEntries) method documentation.
      */
-    fun discardConsoleEntries(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun discardConsoleEntries() = connection.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables reporting of execution contexts creation by means of `executionContextCreated` event.
@@ -53,14 +53,14 @@ context.
      *
      * @link Protocol [Runtime#enable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Evaluates expression on global object.
      *
      * @link Protocol [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
      */
-    fun evaluate(input: EvaluateRequest): io.reactivex.Single<EvaluateResponse> = connection.runAndCaptureResponse("Runtime.evaluate", input, EvaluateResponse::class.java)
+    fun evaluate(input: EvaluateRequest) = connection.runAndCaptureResponse("Runtime.evaluate", input, EvaluateResponse::class.java)
 
     /**
      * Returns the isolate id.
@@ -69,7 +69,7 @@ context.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getIsolateId(): io.reactivex.Single<GetIsolateIdResponse> = connection.runAndCaptureResponse("Runtime.getIsolateId", null, GetIsolateIdResponse::class.java)
+    fun getIsolateId() = connection.runAndCaptureResponse("Runtime.getIsolateId", null, GetIsolateIdResponse::class.java)
 
     /**
      * Returns the JavaScript heap usage.
@@ -79,7 +79,7 @@ It is the total usage of the corresponding isolate not scoped to a particular Ru
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHeapUsage(): io.reactivex.Single<GetHeapUsageResponse> = connection.runAndCaptureResponse("Runtime.getHeapUsage", null, GetHeapUsageResponse::class.java)
+    fun getHeapUsage() = connection.runAndCaptureResponse("Runtime.getHeapUsage", null, GetHeapUsageResponse::class.java)
 
     /**
      * Returns properties of a given object. Object group of the result is inherited from the target
@@ -87,56 +87,56 @@ object.
      *
      * @link Protocol [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
      */
-    fun getProperties(input: GetPropertiesRequest): io.reactivex.Single<GetPropertiesResponse> = connection.runAndCaptureResponse("Runtime.getProperties", input, GetPropertiesResponse::class.java)
+    fun getProperties(input: GetPropertiesRequest) = connection.runAndCaptureResponse("Runtime.getProperties", input, GetPropertiesResponse::class.java)
 
     /**
      * Returns all let, const and class variables from global scope.
      *
      * @link Protocol [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) method documentation.
      */
-    fun globalLexicalScopeNames(input: GlobalLexicalScopeNamesRequest): io.reactivex.Single<GlobalLexicalScopeNamesResponse> = connection.runAndCaptureResponse("Runtime.globalLexicalScopeNames", input, GlobalLexicalScopeNamesResponse::class.java)
+    fun globalLexicalScopeNames(input: GlobalLexicalScopeNamesRequest) = connection.runAndCaptureResponse("Runtime.globalLexicalScopeNames", input, GlobalLexicalScopeNamesResponse::class.java)
 
     /**
      *
      *
      * @link Protocol [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) method documentation.
      */
-    fun queryObjects(input: QueryObjectsRequest): io.reactivex.Single<QueryObjectsResponse> = connection.runAndCaptureResponse("Runtime.queryObjects", input, QueryObjectsResponse::class.java)
+    fun queryObjects(input: QueryObjectsRequest) = connection.runAndCaptureResponse("Runtime.queryObjects", input, QueryObjectsResponse::class.java)
 
     /**
      * Releases remote object with given id.
      *
      * @link Protocol [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) method documentation.
      */
-    fun releaseObject(input: ReleaseObjectRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.releaseObject", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun releaseObject(input: ReleaseObjectRequest) = connection.runAndCaptureResponse("Runtime.releaseObject", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Releases all remote objects that belong to a given group.
      *
      * @link Protocol [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) method documentation.
      */
-    fun releaseObjectGroup(input: ReleaseObjectGroupRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun releaseObjectGroup(input: ReleaseObjectGroupRequest) = connection.runAndCaptureResponse("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Tells inspected instance to run if it was waiting for debugger to attach.
      *
      * @link Protocol [Runtime#runIfWaitingForDebugger](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runIfWaitingForDebugger) method documentation.
      */
-    fun runIfWaitingForDebugger(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun runIfWaitingForDebugger() = connection.runAndCaptureResponse("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Runs script with given id in a given context.
      *
      * @link Protocol [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) method documentation.
      */
-    fun runScript(input: RunScriptRequest): io.reactivex.Single<RunScriptResponse> = connection.runAndCaptureResponse("Runtime.runScript", input, RunScriptResponse::class.java)
+    fun runScript(input: RunScriptRequest) = connection.runAndCaptureResponse("Runtime.runScript", input, RunScriptResponse::class.java)
 
     /**
      * Enables or disables async call stacks tracking.
      *
      * @link Protocol [Runtime#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setAsyncCallStackDepth) method documentation.
      */
-    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.setAsyncCallStackDepth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest) = connection.runAndCaptureResponse("Runtime.setAsyncCallStackDepth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
@@ -145,7 +145,7 @@ object.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setCustomObjectFormatterEnabled(input: SetCustomObjectFormatterEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setCustomObjectFormatterEnabled(input: SetCustomObjectFormatterEnabledRequest) = connection.runAndCaptureResponse("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
@@ -154,7 +154,7 @@ object.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setMaxCallStackSizeToCapture(input: SetMaxCallStackSizeToCaptureRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.setMaxCallStackSizeToCapture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setMaxCallStackSizeToCapture(input: SetMaxCallStackSizeToCaptureRequest) = connection.runAndCaptureResponse("Runtime.setMaxCallStackSizeToCapture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Terminate current or next JavaScript execution.
@@ -164,7 +164,7 @@ Will cancel the termination when the outer-most script execution ends.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun terminateExecution(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.terminateExecution", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun terminateExecution() = connection.runAndCaptureResponse("Runtime.terminateExecution", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * If executionContextId is empty, adds binding with the given name on the
@@ -180,7 +180,7 @@ Each binding function call produces Runtime.bindingCalled notification.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun addBinding(input: AddBindingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.addBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun addBinding(input: AddBindingRequest) = connection.runAndCaptureResponse("Runtime.addBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * This method does not remove binding function from global object but
@@ -190,7 +190,7 @@ unsubscribes current runtime agent from Runtime.bindingCalled notifications.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun removeBinding(input: RemoveBindingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.removeBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeBinding(input: RemoveBindingRequest) = connection.runAndCaptureResponse("Runtime.removeBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Notification is issued every time when binding is called.

@@ -14,7 +14,7 @@ applies to images.
      *
      * @link Protocol [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
      */
-    fun getEncodedResponse(input: GetEncodedResponseRequest): io.reactivex.Single<GetEncodedResponseResponse> = connection.runAndCaptureResponse("Audits.getEncodedResponse", input, GetEncodedResponseResponse::class.java)
+    fun getEncodedResponse(input: GetEncodedResponseRequest) = connection.runAndCaptureResponse("Audits.getEncodedResponse", input, GetEncodedResponseResponse::class.java)
 
     /**
      * Returns flowable capturing all Audits domains events.

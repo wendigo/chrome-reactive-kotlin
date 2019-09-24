@@ -11,14 +11,14 @@ class LogOperations internal constructor(private val connection: pl.wendigo.chro
      *
      * @link Protocol [Log#clear](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-clear) method documentation.
      */
-    fun clear(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Log.clear", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clear() = connection.runAndCaptureResponse("Log.clear", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables log domain, prevents further log entries from being reported to the client.
      *
      * @link Protocol [Log#disable](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Log.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("Log.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables log domain, sends the entries collected so far to the client by means of the
@@ -26,21 +26,21 @@ class LogOperations internal constructor(private val connection: pl.wendigo.chro
      *
      * @link Protocol [Log#enable](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Log.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("Log.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * start violation reporting.
      *
      * @link Protocol [Log#startViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-startViolationsReport) method documentation.
      */
-    fun startViolationsReport(input: StartViolationsReportRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Log.startViolationsReport", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startViolationsReport(input: StartViolationsReportRequest) = connection.runAndCaptureResponse("Log.startViolationsReport", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Stop violation reporting.
      *
      * @link Protocol [Log#stopViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-stopViolationsReport) method documentation.
      */
-    fun stopViolationsReport(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Log.stopViolationsReport", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopViolationsReport() = connection.runAndCaptureResponse("Log.stopViolationsReport", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Issued when new message was logged.

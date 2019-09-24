@@ -13,70 +13,70 @@ class AnimationOperations internal constructor(private val connection: pl.wendig
      *
      * @link Protocol [Animation#disable](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Animation.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("Animation.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables animation domain notifications.
      *
      * @link Protocol [Animation#enable](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Animation.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("Animation.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns the current time of the an animation.
      *
      * @link Protocol [Animation#getCurrentTime](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-getCurrentTime) method documentation.
      */
-    fun getCurrentTime(input: GetCurrentTimeRequest): io.reactivex.Single<GetCurrentTimeResponse> = connection.runAndCaptureResponse("Animation.getCurrentTime", input, GetCurrentTimeResponse::class.java)
+    fun getCurrentTime(input: GetCurrentTimeRequest) = connection.runAndCaptureResponse("Animation.getCurrentTime", input, GetCurrentTimeResponse::class.java)
 
     /**
      * Gets the playback rate of the document timeline.
      *
      * @link Protocol [Animation#getPlaybackRate](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-getPlaybackRate) method documentation.
      */
-    fun getPlaybackRate(): io.reactivex.Single<GetPlaybackRateResponse> = connection.runAndCaptureResponse("Animation.getPlaybackRate", null, GetPlaybackRateResponse::class.java)
+    fun getPlaybackRate() = connection.runAndCaptureResponse("Animation.getPlaybackRate", null, GetPlaybackRateResponse::class.java)
 
     /**
      * Releases a set of animations to no longer be manipulated.
      *
      * @link Protocol [Animation#releaseAnimations](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-releaseAnimations) method documentation.
      */
-    fun releaseAnimations(input: ReleaseAnimationsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Animation.releaseAnimations", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun releaseAnimations(input: ReleaseAnimationsRequest) = connection.runAndCaptureResponse("Animation.releaseAnimations", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Gets the remote object of the Animation.
      *
      * @link Protocol [Animation#resolveAnimation](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-resolveAnimation) method documentation.
      */
-    fun resolveAnimation(input: ResolveAnimationRequest): io.reactivex.Single<ResolveAnimationResponse> = connection.runAndCaptureResponse("Animation.resolveAnimation", input, ResolveAnimationResponse::class.java)
+    fun resolveAnimation(input: ResolveAnimationRequest) = connection.runAndCaptureResponse("Animation.resolveAnimation", input, ResolveAnimationResponse::class.java)
 
     /**
      * Seek a set of animations to a particular time within each animation.
      *
      * @link Protocol [Animation#seekAnimations](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-seekAnimations) method documentation.
      */
-    fun seekAnimations(input: SeekAnimationsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Animation.seekAnimations", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun seekAnimations(input: SeekAnimationsRequest) = connection.runAndCaptureResponse("Animation.seekAnimations", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets the paused state of a set of animations.
      *
      * @link Protocol [Animation#setPaused](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setPaused) method documentation.
      */
-    fun setPaused(input: SetPausedRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Animation.setPaused", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setPaused(input: SetPausedRequest) = connection.runAndCaptureResponse("Animation.setPaused", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets the playback rate of the document timeline.
      *
      * @link Protocol [Animation#setPlaybackRate](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setPlaybackRate) method documentation.
      */
-    fun setPlaybackRate(input: SetPlaybackRateRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Animation.setPlaybackRate", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setPlaybackRate(input: SetPlaybackRateRequest) = connection.runAndCaptureResponse("Animation.setPlaybackRate", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets the timing of an animation node.
      *
      * @link Protocol [Animation#setTiming](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setTiming) method documentation.
      */
-    fun setTiming(input: SetTimingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Animation.setTiming", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setTiming(input: SetTimingRequest) = connection.runAndCaptureResponse("Animation.setTiming", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Event for when an animation has been cancelled.

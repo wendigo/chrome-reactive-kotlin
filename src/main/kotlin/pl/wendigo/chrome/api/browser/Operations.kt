@@ -13,7 +13,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setPermission(input: SetPermissionRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.setPermission", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setPermission(input: SetPermissionRequest) = connection.runAndCaptureResponse("Browser.setPermission", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Grant specific permissions to the given origin and reject all others.
@@ -22,7 +22,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun grantPermissions(input: GrantPermissionsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.grantPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun grantPermissions(input: GrantPermissionsRequest) = connection.runAndCaptureResponse("Browser.grantPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Reset all permission management for all origins.
@@ -31,14 +31,14 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun resetPermissions(input: ResetPermissionsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.resetPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun resetPermissions(input: ResetPermissionsRequest) = connection.runAndCaptureResponse("Browser.resetPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Close browser gracefully.
      *
      * @link Protocol [Browser#close](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-close) method documentation.
      */
-    fun close(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun close() = connection.runAndCaptureResponse("Browser.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Crashes browser on the main thread.
@@ -47,7 +47,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun crash(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun crash() = connection.runAndCaptureResponse("Browser.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Crashes GPU process.
@@ -56,14 +56,14 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun crashGpuProcess(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.crashGpuProcess", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun crashGpuProcess() = connection.runAndCaptureResponse("Browser.crashGpuProcess", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns version information.
      *
      * @link Protocol [Browser#getVersion](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getVersion) method documentation.
      */
-    fun getVersion(): io.reactivex.Single<GetVersionResponse> = connection.runAndCaptureResponse("Browser.getVersion", null, GetVersionResponse::class.java)
+    fun getVersion() = connection.runAndCaptureResponse("Browser.getVersion", null, GetVersionResponse::class.java)
 
     /**
      * Returns the command line switches for the browser process if, and only if
@@ -73,7 +73,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getBrowserCommandLine(): io.reactivex.Single<GetBrowserCommandLineResponse> = connection.runAndCaptureResponse("Browser.getBrowserCommandLine", null, GetBrowserCommandLineResponse::class.java)
+    fun getBrowserCommandLine() = connection.runAndCaptureResponse("Browser.getBrowserCommandLine", null, GetBrowserCommandLineResponse::class.java)
 
     /**
      * Get Chrome histograms.
@@ -82,7 +82,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHistograms(input: GetHistogramsRequest): io.reactivex.Single<GetHistogramsResponse> = connection.runAndCaptureResponse("Browser.getHistograms", input, GetHistogramsResponse::class.java)
+    fun getHistograms(input: GetHistogramsRequest) = connection.runAndCaptureResponse("Browser.getHistograms", input, GetHistogramsResponse::class.java)
 
     /**
      * Get a Chrome histogram by name.
@@ -91,7 +91,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHistogram(input: GetHistogramRequest): io.reactivex.Single<GetHistogramResponse> = connection.runAndCaptureResponse("Browser.getHistogram", input, GetHistogramResponse::class.java)
+    fun getHistogram(input: GetHistogramRequest) = connection.runAndCaptureResponse("Browser.getHistogram", input, GetHistogramResponse::class.java)
 
     /**
      * Get position and size of the browser window.
@@ -100,7 +100,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getWindowBounds(input: GetWindowBoundsRequest): io.reactivex.Single<GetWindowBoundsResponse> = connection.runAndCaptureResponse("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java)
+    fun getWindowBounds(input: GetWindowBoundsRequest) = connection.runAndCaptureResponse("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java)
 
     /**
      * Get the browser window that contains the devtools target.
@@ -109,7 +109,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getWindowForTarget(input: GetWindowForTargetRequest): io.reactivex.Single<GetWindowForTargetResponse> = connection.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java)
+    fun getWindowForTarget(input: GetWindowForTargetRequest) = connection.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java)
 
     /**
      * Set position and/or size of the browser window.
@@ -118,7 +118,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setWindowBounds(input: SetWindowBoundsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setWindowBounds(input: SetWindowBoundsRequest) = connection.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Set dock tile details, platform-specific.
@@ -127,7 +127,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDockTile(input: SetDockTileRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Browser.setDockTile", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDockTile(input: SetDockTileRequest) = connection.runAndCaptureResponse("Browser.setDockTile", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns flowable capturing all Browser domains events.

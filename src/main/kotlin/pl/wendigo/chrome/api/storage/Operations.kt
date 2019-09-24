@@ -13,42 +13,42 @@ class StorageOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Storage#clearDataForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearDataForOrigin) method documentation.
      */
-    fun clearDataForOrigin(input: ClearDataForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Storage.clearDataForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearDataForOrigin(input: ClearDataForOriginRequest) = connection.runAndCaptureResponse("Storage.clearDataForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns usage and quota in bytes.
      *
      * @link Protocol [Storage#getUsageAndQuota](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getUsageAndQuota) method documentation.
      */
-    fun getUsageAndQuota(input: GetUsageAndQuotaRequest): io.reactivex.Single<GetUsageAndQuotaResponse> = connection.runAndCaptureResponse("Storage.getUsageAndQuota", input, GetUsageAndQuotaResponse::class.java)
+    fun getUsageAndQuota(input: GetUsageAndQuotaRequest) = connection.runAndCaptureResponse("Storage.getUsageAndQuota", input, GetUsageAndQuotaResponse::class.java)
 
     /**
      * Registers origin to be notified when an update occurs to its cache storage list.
      *
      * @link Protocol [Storage#trackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackCacheStorageForOrigin) method documentation.
      */
-    fun trackCacheStorageForOrigin(input: TrackCacheStorageForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Storage.trackCacheStorageForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun trackCacheStorageForOrigin(input: TrackCacheStorageForOriginRequest) = connection.runAndCaptureResponse("Storage.trackCacheStorageForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Registers origin to be notified when an update occurs to its IndexedDB.
      *
      * @link Protocol [Storage#trackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackIndexedDBForOrigin) method documentation.
      */
-    fun trackIndexedDBForOrigin(input: TrackIndexedDBForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Storage.trackIndexedDBForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun trackIndexedDBForOrigin(input: TrackIndexedDBForOriginRequest) = connection.runAndCaptureResponse("Storage.trackIndexedDBForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Unregisters origin from receiving notifications for cache storage.
      *
      * @link Protocol [Storage#untrackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackCacheStorageForOrigin) method documentation.
      */
-    fun untrackCacheStorageForOrigin(input: UntrackCacheStorageForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Storage.untrackCacheStorageForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun untrackCacheStorageForOrigin(input: UntrackCacheStorageForOriginRequest) = connection.runAndCaptureResponse("Storage.untrackCacheStorageForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Unregisters origin from receiving notifications for IndexedDB.
      *
      * @link Protocol [Storage#untrackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackIndexedDBForOrigin) method documentation.
      */
-    fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Storage.untrackIndexedDBForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest) = connection.runAndCaptureResponse("Storage.untrackIndexedDBForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  A cache's contents have been modified.

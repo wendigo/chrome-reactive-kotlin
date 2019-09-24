@@ -13,14 +13,14 @@ class ApplicationCacheOperations internal constructor(private val connection: pl
      *
      * @link Protocol [ApplicationCache#enable](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("ApplicationCache.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("ApplicationCache.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns relevant application cache data for the document in given frame.
      *
      * @link Protocol [ApplicationCache#getApplicationCacheForFrame](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getApplicationCacheForFrame) method documentation.
      */
-    fun getApplicationCacheForFrame(input: GetApplicationCacheForFrameRequest): io.reactivex.Single<GetApplicationCacheForFrameResponse> = connection.runAndCaptureResponse("ApplicationCache.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java)
+    fun getApplicationCacheForFrame(input: GetApplicationCacheForFrameRequest) = connection.runAndCaptureResponse("ApplicationCache.getApplicationCacheForFrame", input, GetApplicationCacheForFrameResponse::class.java)
 
     /**
      * Returns array of frame identifiers with manifest urls for each frame containing a document
@@ -28,14 +28,14 @@ associated with some application cache.
      *
      * @link Protocol [ApplicationCache#getFramesWithManifests](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getFramesWithManifests) method documentation.
      */
-    fun getFramesWithManifests(): io.reactivex.Single<GetFramesWithManifestsResponse> = connection.runAndCaptureResponse("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java)
+    fun getFramesWithManifests() = connection.runAndCaptureResponse("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse::class.java)
 
     /**
      * Returns manifest URL for document in the given frame.
      *
      * @link Protocol [ApplicationCache#getManifestForFrame](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getManifestForFrame) method documentation.
      */
-    fun getManifestForFrame(input: GetManifestForFrameRequest): io.reactivex.Single<GetManifestForFrameResponse> = connection.runAndCaptureResponse("ApplicationCache.getManifestForFrame", input, GetManifestForFrameResponse::class.java)
+    fun getManifestForFrame(input: GetManifestForFrameRequest) = connection.runAndCaptureResponse("ApplicationCache.getManifestForFrame", input, GetManifestForFrameResponse::class.java)
 
     /**
      *  Returns observable capturing all ApplicationCache.applicationCacheStatusUpdated events.

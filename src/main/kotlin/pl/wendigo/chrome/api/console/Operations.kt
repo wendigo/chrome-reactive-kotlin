@@ -12,14 +12,14 @@ class ConsoleOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Console#clearMessages](https://chromedevtools.github.io/devtools-protocol/tot/Console#method-clearMessages) method documentation.
      */
-    fun clearMessages(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Console.clearMessages", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearMessages() = connection.runAndCaptureResponse("Console.clearMessages", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables console domain, prevents further console messages from being reported to the client.
      *
      * @link Protocol [Console#disable](https://chromedevtools.github.io/devtools-protocol/tot/Console#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Console.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("Console.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables console domain, sends the messages collected so far to the client by means of the
@@ -27,7 +27,7 @@ class ConsoleOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Console#enable](https://chromedevtools.github.io/devtools-protocol/tot/Console#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Console.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("Console.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Issued when new console message is added.

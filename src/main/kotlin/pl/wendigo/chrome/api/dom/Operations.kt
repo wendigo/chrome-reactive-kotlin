@@ -19,7 +19,7 @@ class DOMOperations internal constructor(private val connection: pl.wendigo.chro
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun collectClassNamesFromSubtree(input: CollectClassNamesFromSubtreeRequest): io.reactivex.Single<CollectClassNamesFromSubtreeResponse> = connection.runAndCaptureResponse("DOM.collectClassNamesFromSubtree", input, CollectClassNamesFromSubtreeResponse::class.java)
+    fun collectClassNamesFromSubtree(input: CollectClassNamesFromSubtreeRequest) = connection.runAndCaptureResponse("DOM.collectClassNamesFromSubtree", input, CollectClassNamesFromSubtreeResponse::class.java)
 
     /**
      * Creates a deep copy of the specified node and places it into the target container before the
@@ -29,7 +29,7 @@ given anchor.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun copyTo(input: CopyToRequest): io.reactivex.Single<CopyToResponse> = connection.runAndCaptureResponse("DOM.copyTo", input, CopyToResponse::class.java)
+    fun copyTo(input: CopyToRequest) = connection.runAndCaptureResponse("DOM.copyTo", input, CopyToResponse::class.java)
 
     /**
      * Describes node given its id, does not require domain to be enabled. Does not start tracking any
@@ -37,14 +37,14 @@ objects, can be used for automation.
      *
      * @link Protocol [DOM#describeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-describeNode) method documentation.
      */
-    fun describeNode(input: DescribeNodeRequest): io.reactivex.Single<DescribeNodeResponse> = connection.runAndCaptureResponse("DOM.describeNode", input, DescribeNodeResponse::class.java)
+    fun describeNode(input: DescribeNodeRequest) = connection.runAndCaptureResponse("DOM.describeNode", input, DescribeNodeResponse::class.java)
 
     /**
      * Disables DOM agent for the given page.
      *
      * @link Protocol [DOM#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("DOM.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Discards search results from the session with the given id. `getSearchResults` should no longer
@@ -54,35 +54,35 @@ be called for that search.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun discardSearchResults(input: DiscardSearchResultsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.discardSearchResults", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun discardSearchResults(input: DiscardSearchResultsRequest) = connection.runAndCaptureResponse("DOM.discardSearchResults", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables DOM agent for the given page.
      *
      * @link Protocol [DOM#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("DOM.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Focuses the given element.
      *
      * @link Protocol [DOM#focus](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-focus) method documentation.
      */
-    fun focus(input: FocusRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.focus", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun focus(input: FocusRequest) = connection.runAndCaptureResponse("DOM.focus", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns attributes for the specified node.
      *
      * @link Protocol [DOM#getAttributes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getAttributes) method documentation.
      */
-    fun getAttributes(input: GetAttributesRequest): io.reactivex.Single<GetAttributesResponse> = connection.runAndCaptureResponse("DOM.getAttributes", input, GetAttributesResponse::class.java)
+    fun getAttributes(input: GetAttributesRequest) = connection.runAndCaptureResponse("DOM.getAttributes", input, GetAttributesResponse::class.java)
 
     /**
      * Returns boxes for the given node.
      *
      * @link Protocol [DOM#getBoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getBoxModel) method documentation.
      */
-    fun getBoxModel(input: GetBoxModelRequest): io.reactivex.Single<GetBoxModelResponse> = connection.runAndCaptureResponse("DOM.getBoxModel", input, GetBoxModelResponse::class.java)
+    fun getBoxModel(input: GetBoxModelRequest) = connection.runAndCaptureResponse("DOM.getBoxModel", input, GetBoxModelResponse::class.java)
 
     /**
      * Returns quads that describe node position on the page. This method
@@ -92,21 +92,21 @@ might return multiple quads for inline nodes.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getContentQuads(input: GetContentQuadsRequest): io.reactivex.Single<GetContentQuadsResponse> = connection.runAndCaptureResponse("DOM.getContentQuads", input, GetContentQuadsResponse::class.java)
+    fun getContentQuads(input: GetContentQuadsRequest) = connection.runAndCaptureResponse("DOM.getContentQuads", input, GetContentQuadsResponse::class.java)
 
     /**
      * Returns the root DOM node (and optionally the subtree) to the caller.
      *
      * @link Protocol [DOM#getDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getDocument) method documentation.
      */
-    fun getDocument(input: GetDocumentRequest): io.reactivex.Single<GetDocumentResponse> = connection.runAndCaptureResponse("DOM.getDocument", input, GetDocumentResponse::class.java)
+    fun getDocument(input: GetDocumentRequest) = connection.runAndCaptureResponse("DOM.getDocument", input, GetDocumentResponse::class.java)
 
     /**
      * Returns the root DOM node (and optionally the subtree) to the caller.
      *
      * @link Protocol [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
      */
-    fun getFlattenedDocument(input: GetFlattenedDocumentRequest): io.reactivex.Single<GetFlattenedDocumentResponse> = connection.runAndCaptureResponse("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java)
+    fun getFlattenedDocument(input: GetFlattenedDocumentRequest) = connection.runAndCaptureResponse("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java)
 
     /**
      * Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is
@@ -114,14 +114,14 @@ either returned or not.
      *
      * @link Protocol [DOM#getNodeForLocation](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeForLocation) method documentation.
      */
-    fun getNodeForLocation(input: GetNodeForLocationRequest): io.reactivex.Single<GetNodeForLocationResponse> = connection.runAndCaptureResponse("DOM.getNodeForLocation", input, GetNodeForLocationResponse::class.java)
+    fun getNodeForLocation(input: GetNodeForLocationRequest) = connection.runAndCaptureResponse("DOM.getNodeForLocation", input, GetNodeForLocationResponse::class.java)
 
     /**
      * Returns node's HTML markup.
      *
      * @link Protocol [DOM#getOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getOuterHTML) method documentation.
      */
-    fun getOuterHTML(input: GetOuterHTMLRequest): io.reactivex.Single<GetOuterHTMLResponse> = connection.runAndCaptureResponse("DOM.getOuterHTML", input, GetOuterHTMLResponse::class.java)
+    fun getOuterHTML(input: GetOuterHTMLRequest) = connection.runAndCaptureResponse("DOM.getOuterHTML", input, GetOuterHTMLResponse::class.java)
 
     /**
      * Returns the id of the nearest ancestor that is a relayout boundary.
@@ -130,7 +130,7 @@ either returned or not.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getRelayoutBoundary(input: GetRelayoutBoundaryRequest): io.reactivex.Single<GetRelayoutBoundaryResponse> = connection.runAndCaptureResponse("DOM.getRelayoutBoundary", input, GetRelayoutBoundaryResponse::class.java)
+    fun getRelayoutBoundary(input: GetRelayoutBoundaryRequest) = connection.runAndCaptureResponse("DOM.getRelayoutBoundary", input, GetRelayoutBoundaryResponse::class.java)
 
     /**
      * Returns search results from given `fromIndex` to given `toIndex` from the search with the given
@@ -140,28 +140,28 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getSearchResults(input: GetSearchResultsRequest): io.reactivex.Single<GetSearchResultsResponse> = connection.runAndCaptureResponse("DOM.getSearchResults", input, GetSearchResultsResponse::class.java)
+    fun getSearchResults(input: GetSearchResultsRequest) = connection.runAndCaptureResponse("DOM.getSearchResults", input, GetSearchResultsResponse::class.java)
 
     /**
      * Hides any highlight.
      *
      * @link Protocol [DOM#hideHighlight](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-hideHighlight) method documentation.
      */
-    fun hideHighlight(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.hideHighlight", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun hideHighlight() = connection.runAndCaptureResponse("DOM.hideHighlight", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Highlights DOM node.
      *
      * @link Protocol [DOM#highlightNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-highlightNode) method documentation.
      */
-    fun highlightNode(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.highlightNode", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun highlightNode() = connection.runAndCaptureResponse("DOM.highlightNode", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Highlights given rectangle.
      *
      * @link Protocol [DOM#highlightRect](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-highlightRect) method documentation.
      */
-    fun highlightRect(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.highlightRect", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun highlightRect() = connection.runAndCaptureResponse("DOM.highlightRect", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Marks last undoable state.
@@ -170,14 +170,14 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun markUndoableState(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.markUndoableState", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun markUndoableState() = connection.runAndCaptureResponse("DOM.markUndoableState", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Moves node into the new container, places it before the given anchor.
      *
      * @link Protocol [DOM#moveTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-moveTo) method documentation.
      */
-    fun moveTo(input: MoveToRequest): io.reactivex.Single<MoveToResponse> = connection.runAndCaptureResponse("DOM.moveTo", input, MoveToResponse::class.java)
+    fun moveTo(input: MoveToRequest) = connection.runAndCaptureResponse("DOM.moveTo", input, MoveToResponse::class.java)
 
     /**
      * Searches for a given string in the DOM tree. Use `getSearchResults` to access search results or
@@ -187,7 +187,7 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun performSearch(input: PerformSearchRequest): io.reactivex.Single<PerformSearchResponse> = connection.runAndCaptureResponse("DOM.performSearch", input, PerformSearchResponse::class.java)
+    fun performSearch(input: PerformSearchRequest) = connection.runAndCaptureResponse("DOM.performSearch", input, PerformSearchResponse::class.java)
 
     /**
      * Requests that the node is sent to the caller given its path. // FIXME, use XPath
@@ -196,7 +196,7 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun pushNodeByPathToFrontend(input: PushNodeByPathToFrontendRequest): io.reactivex.Single<PushNodeByPathToFrontendResponse> = connection.runAndCaptureResponse("DOM.pushNodeByPathToFrontend", input, PushNodeByPathToFrontendResponse::class.java)
+    fun pushNodeByPathToFrontend(input: PushNodeByPathToFrontendRequest) = connection.runAndCaptureResponse("DOM.pushNodeByPathToFrontend", input, PushNodeByPathToFrontendResponse::class.java)
 
     /**
      * Requests that a batch of nodes is sent to the caller given their backend node ids.
@@ -205,21 +205,21 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun pushNodesByBackendIdsToFrontend(input: PushNodesByBackendIdsToFrontendRequest): io.reactivex.Single<PushNodesByBackendIdsToFrontendResponse> = connection.runAndCaptureResponse("DOM.pushNodesByBackendIdsToFrontend", input, PushNodesByBackendIdsToFrontendResponse::class.java)
+    fun pushNodesByBackendIdsToFrontend(input: PushNodesByBackendIdsToFrontendRequest) = connection.runAndCaptureResponse("DOM.pushNodesByBackendIdsToFrontend", input, PushNodesByBackendIdsToFrontendResponse::class.java)
 
     /**
      * Executes `querySelector` on a given node.
      *
      * @link Protocol [DOM#querySelector](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelector) method documentation.
      */
-    fun querySelector(input: QuerySelectorRequest): io.reactivex.Single<QuerySelectorResponse> = connection.runAndCaptureResponse("DOM.querySelector", input, QuerySelectorResponse::class.java)
+    fun querySelector(input: QuerySelectorRequest) = connection.runAndCaptureResponse("DOM.querySelector", input, QuerySelectorResponse::class.java)
 
     /**
      * Executes `querySelectorAll` on a given node.
      *
      * @link Protocol [DOM#querySelectorAll](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelectorAll) method documentation.
      */
-    fun querySelectorAll(input: QuerySelectorAllRequest): io.reactivex.Single<QuerySelectorAllResponse> = connection.runAndCaptureResponse("DOM.querySelectorAll", input, QuerySelectorAllResponse::class.java)
+    fun querySelectorAll(input: QuerySelectorAllRequest) = connection.runAndCaptureResponse("DOM.querySelectorAll", input, QuerySelectorAllResponse::class.java)
 
     /**
      * Re-does the last undone action.
@@ -228,21 +228,21 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun redo(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.redo", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun redo() = connection.runAndCaptureResponse("DOM.redo", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Removes attribute with given name from an element with given id.
      *
      * @link Protocol [DOM#removeAttribute](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeAttribute) method documentation.
      */
-    fun removeAttribute(input: RemoveAttributeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.removeAttribute", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeAttribute(input: RemoveAttributeRequest) = connection.runAndCaptureResponse("DOM.removeAttribute", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Removes node with given id.
      *
      * @link Protocol [DOM#removeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeNode) method documentation.
      */
-    fun removeNode(input: RemoveNodeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.removeNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeNode(input: RemoveNodeRequest) = connection.runAndCaptureResponse("DOM.removeNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that children of the node with given id are returned to the caller in form of
@@ -251,7 +251,7 @@ the specified depth.
      *
      * @link Protocol [DOM#requestChildNodes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestChildNodes) method documentation.
      */
-    fun requestChildNodes(input: RequestChildNodesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.requestChildNodes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun requestChildNodes(input: RequestChildNodesRequest) = connection.runAndCaptureResponse("DOM.requestChildNodes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that the node is sent to the caller given the JavaScript node object reference. All
@@ -260,21 +260,21 @@ nodes that form the path from the node to the root are also sent to the client a
      *
      * @link Protocol [DOM#requestNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestNode) method documentation.
      */
-    fun requestNode(input: RequestNodeRequest): io.reactivex.Single<RequestNodeResponse> = connection.runAndCaptureResponse("DOM.requestNode", input, RequestNodeResponse::class.java)
+    fun requestNode(input: RequestNodeRequest) = connection.runAndCaptureResponse("DOM.requestNode", input, RequestNodeResponse::class.java)
 
     /**
      * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
      *
      * @link Protocol [DOM#resolveNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-resolveNode) method documentation.
      */
-    fun resolveNode(input: ResolveNodeRequest): io.reactivex.Single<ResolveNodeResponse> = connection.runAndCaptureResponse("DOM.resolveNode", input, ResolveNodeResponse::class.java)
+    fun resolveNode(input: ResolveNodeRequest) = connection.runAndCaptureResponse("DOM.resolveNode", input, ResolveNodeResponse::class.java)
 
     /**
      * Sets attribute for an element with given id.
      *
      * @link Protocol [DOM#setAttributeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributeValue) method documentation.
      */
-    fun setAttributeValue(input: SetAttributeValueRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setAttributeValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAttributeValue(input: SetAttributeValueRequest) = connection.runAndCaptureResponse("DOM.setAttributeValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets attributes on element with given id. This method is useful when user edits some existing
@@ -282,14 +282,14 @@ attribute value and types in several attribute name/value pairs.
      *
      * @link Protocol [DOM#setAttributesAsText](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributesAsText) method documentation.
      */
-    fun setAttributesAsText(input: SetAttributesAsTextRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setAttributesAsText", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAttributesAsText(input: SetAttributesAsTextRequest) = connection.runAndCaptureResponse("DOM.setAttributesAsText", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets files for the given file input element.
      *
      * @link Protocol [DOM#setFileInputFiles](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setFileInputFiles) method documentation.
      */
-    fun setFileInputFiles(input: SetFileInputFilesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setFileInputFiles", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setFileInputFiles(input: SetFileInputFilesRequest) = connection.runAndCaptureResponse("DOM.setFileInputFiles", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets if stack traces should be captured for Nodes. See `Node.getNodeStackTraces`. Default is disabled.
@@ -298,7 +298,7 @@ attribute value and types in several attribute name/value pairs.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setNodeStackTracesEnabled(input: SetNodeStackTracesEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setNodeStackTracesEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setNodeStackTracesEnabled(input: SetNodeStackTracesEnabledRequest) = connection.runAndCaptureResponse("DOM.setNodeStackTracesEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation.
@@ -307,7 +307,7 @@ attribute value and types in several attribute name/value pairs.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getNodeStackTraces(input: GetNodeStackTracesRequest): io.reactivex.Single<GetNodeStackTracesResponse> = connection.runAndCaptureResponse("DOM.getNodeStackTraces", input, GetNodeStackTracesResponse::class.java)
+    fun getNodeStackTraces(input: GetNodeStackTracesRequest) = connection.runAndCaptureResponse("DOM.getNodeStackTraces", input, GetNodeStackTracesResponse::class.java)
 
     /**
      * Returns file information for the given
@@ -317,7 +317,7 @@ File wrapper.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getFileInfo(input: GetFileInfoRequest): io.reactivex.Single<GetFileInfoResponse> = connection.runAndCaptureResponse("DOM.getFileInfo", input, GetFileInfoResponse::class.java)
+    fun getFileInfo(input: GetFileInfoRequest) = connection.runAndCaptureResponse("DOM.getFileInfo", input, GetFileInfoResponse::class.java)
 
     /**
      * Enables console to refer to the node with given id via $x (see Command Line API for more details
@@ -327,28 +327,28 @@ $x functions).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setInspectedNode(input: SetInspectedNodeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setInspectedNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setInspectedNode(input: SetInspectedNodeRequest) = connection.runAndCaptureResponse("DOM.setInspectedNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets node name for a node with given id.
      *
      * @link Protocol [DOM#setNodeName](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeName) method documentation.
      */
-    fun setNodeName(input: SetNodeNameRequest): io.reactivex.Single<SetNodeNameResponse> = connection.runAndCaptureResponse("DOM.setNodeName", input, SetNodeNameResponse::class.java)
+    fun setNodeName(input: SetNodeNameRequest) = connection.runAndCaptureResponse("DOM.setNodeName", input, SetNodeNameResponse::class.java)
 
     /**
      * Sets node value for a node with given id.
      *
      * @link Protocol [DOM#setNodeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeValue) method documentation.
      */
-    fun setNodeValue(input: SetNodeValueRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setNodeValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setNodeValue(input: SetNodeValueRequest) = connection.runAndCaptureResponse("DOM.setNodeValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets node HTML markup, returns new node id.
      *
      * @link Protocol [DOM#setOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setOuterHTML) method documentation.
      */
-    fun setOuterHTML(input: SetOuterHTMLRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setOuterHTML", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setOuterHTML(input: SetOuterHTMLRequest) = connection.runAndCaptureResponse("DOM.setOuterHTML", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Undoes the last performed action.
@@ -357,7 +357,7 @@ $x functions).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun undo(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.undo", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun undo() = connection.runAndCaptureResponse("DOM.undo", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns iframe node that owns iframe with the given domain.
@@ -366,7 +366,7 @@ $x functions).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getFrameOwner(input: GetFrameOwnerRequest): io.reactivex.Single<GetFrameOwnerResponse> = connection.runAndCaptureResponse("DOM.getFrameOwner", input, GetFrameOwnerResponse::class.java)
+    fun getFrameOwner(input: GetFrameOwnerRequest) = connection.runAndCaptureResponse("DOM.getFrameOwner", input, GetFrameOwnerResponse::class.java)
 
     /**
      *  Fired when `Element`'s attribute is modified.

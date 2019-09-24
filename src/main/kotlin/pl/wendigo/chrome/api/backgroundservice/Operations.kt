@@ -13,28 +13,28 @@ class BackgroundServiceOperations internal constructor(private val connection: p
      *
      * @link Protocol [BackgroundService#startObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-startObserving) method documentation.
      */
-    fun startObserving(input: StartObservingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("BackgroundService.startObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startObserving(input: StartObservingRequest) = connection.runAndCaptureResponse("BackgroundService.startObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables event updates for the service.
      *
      * @link Protocol [BackgroundService#stopObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-stopObserving) method documentation.
      */
-    fun stopObserving(input: StopObservingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("BackgroundService.stopObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopObserving(input: StopObservingRequest) = connection.runAndCaptureResponse("BackgroundService.stopObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Set the recording state for the service.
      *
      * @link Protocol [BackgroundService#setRecording](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-setRecording) method documentation.
      */
-    fun setRecording(input: SetRecordingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("BackgroundService.setRecording", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setRecording(input: SetRecordingRequest) = connection.runAndCaptureResponse("BackgroundService.setRecording", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Clears all stored data for the service.
      *
      * @link Protocol [BackgroundService#clearEvents](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-clearEvents) method documentation.
      */
-    fun clearEvents(input: ClearEventsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("BackgroundService.clearEvents", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearEvents(input: ClearEventsRequest) = connection.runAndCaptureResponse("BackgroundService.clearEvents", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Called when the recording state for the service has been updated.
