@@ -11,39 +11,27 @@ class IOOperations internal constructor(private val connection: pl.wendigo.chrom
      *
      * @link Protocol [IO#close](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-close) method documentation.
      */
-    fun close(input: CloseRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun close(input: CloseRequest) = connection.request("IO.close", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Read a chunk of the stream
      *
      * @link Protocol [IO#read](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-read) method documentation.
      */
-    fun read(input: ReadRequest): io.reactivex.Single<ReadResponse> {
-        return connection.runAndCaptureResponse("IO.read", input, ReadResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun read(input: ReadRequest) = connection.request("IO.read", input, ReadResponse::class.java)
 
     /**
      * Return UUID of Blob object specified by a remote object id.
      *
      * @link Protocol [IO#resolveBlob](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-resolveBlob) method documentation.
      */
-    fun resolveBlob(input: ResolveBlobRequest): io.reactivex.Single<ResolveBlobResponse> {
-        return connection.runAndCaptureResponse("IO.resolveBlob", input, ResolveBlobResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun resolveBlob(input: ResolveBlobRequest) = connection.request("IO.resolveBlob", input, ResolveBlobResponse::class.java)
 
     /**
      * Returns flowable capturing all IO domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "IO"
         }
     }

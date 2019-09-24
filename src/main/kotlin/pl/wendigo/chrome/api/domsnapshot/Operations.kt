@@ -13,22 +13,14 @@ class DOMSnapshotOperations internal constructor(private val connection: pl.wend
      *
      * @link Protocol [DOMSnapshot#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMSnapshot.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun disable() = connection.request("DOMSnapshot.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables DOM snapshot agent for the given page.
      *
      * @link Protocol [DOMSnapshot#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMSnapshot.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun enable() = connection.request("DOMSnapshot.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
@@ -39,11 +31,7 @@ flattened.
      * @link Protocol [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "getSnapshot is deprecated.")
-    fun getSnapshot(input: GetSnapshotRequest): io.reactivex.Single<GetSnapshotResponse> {
-        return connection.runAndCaptureResponse("DOMSnapshot.getSnapshot", input, GetSnapshotResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getSnapshot(input: GetSnapshotRequest) = connection.request("DOMSnapshot.getSnapshot", input, GetSnapshotResponse::class.java)
 
     /**
      * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
@@ -53,17 +41,13 @@ flattened.
      *
      * @link Protocol [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
      */
-    fun captureSnapshot(input: CaptureSnapshotRequest): io.reactivex.Single<CaptureSnapshotResponse> {
-        return connection.runAndCaptureResponse("DOMSnapshot.captureSnapshot", input, CaptureSnapshotResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun captureSnapshot(input: CaptureSnapshotRequest) = connection.request("DOMSnapshot.captureSnapshot", input, CaptureSnapshotResponse::class.java)
 
     /**
      * Returns flowable capturing all DOMSnapshot domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "DOMSnapshot"
         }
     }

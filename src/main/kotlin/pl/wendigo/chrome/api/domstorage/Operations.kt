@@ -13,136 +13,68 @@ class DOMStorageOperations internal constructor(private val connection: pl.wendi
      *
      * @link Protocol [DOMStorage#clear](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-clear) method documentation.
      */
-    fun clear(input: ClearRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMStorage.clear", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun clear(input: ClearRequest) = connection.request("DOMStorage.clear", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables storage tracking, prevents storage events from being sent to the client.
      *
      * @link Protocol [DOMStorage#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMStorage.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun disable() = connection.request("DOMStorage.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables storage tracking, storage events will now be delivered to the client.
      *
      * @link Protocol [DOMStorage#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMStorage.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun enable() = connection.request("DOMStorage.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [DOMStorage#getDOMStorageItems](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-getDOMStorageItems) method documentation.
      */
-    fun getDOMStorageItems(input: GetDOMStorageItemsRequest): io.reactivex.Single<GetDOMStorageItemsResponse> {
-        return connection.runAndCaptureResponse("DOMStorage.getDOMStorageItems", input, GetDOMStorageItemsResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getDOMStorageItems(input: GetDOMStorageItemsRequest) = connection.request("DOMStorage.getDOMStorageItems", input, GetDOMStorageItemsResponse::class.java)
 
     /**
      *
      *
      * @link Protocol [DOMStorage#removeDOMStorageItem](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-removeDOMStorageItem) method documentation.
      */
-    fun removeDOMStorageItem(input: RemoveDOMStorageItemRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMStorage.removeDOMStorageItem", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun removeDOMStorageItem(input: RemoveDOMStorageItemRequest) = connection.request("DOMStorage.removeDOMStorageItem", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [DOMStorage#setDOMStorageItem](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-setDOMStorageItem) method documentation.
      */
-    fun setDOMStorageItem(input: SetDOMStorageItemRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("DOMStorage.setDOMStorageItem", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setDOMStorageItem(input: SetDOMStorageItemRequest) = connection.request("DOMStorage.setDOMStorageItem", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemAdded events.
      */
-    fun domStorageItemAdded(): io.reactivex.Flowable<DomStorageItemAddedEvent> {
-        return domStorageItemAddedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Returns observable capturing all DOMStorage.domStorageItemAdded events.
-     */
-    fun domStorageItemAddedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<DomStorageItemAddedEvent>> {
-        return connection.captureEvents("DOMStorage.domStorageItemAdded", DomStorageItemAddedEvent::class.java)
-    }
+    fun domStorageItemAdded(): io.reactivex.Flowable<DomStorageItemAddedEvent> = connection.events("DOMStorage.domStorageItemAdded", DomStorageItemAddedEvent::class.java)
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemRemoved events.
      */
-    fun domStorageItemRemoved(): io.reactivex.Flowable<DomStorageItemRemovedEvent> {
-        return domStorageItemRemovedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Returns observable capturing all DOMStorage.domStorageItemRemoved events.
-     */
-    fun domStorageItemRemovedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<DomStorageItemRemovedEvent>> {
-        return connection.captureEvents("DOMStorage.domStorageItemRemoved", DomStorageItemRemovedEvent::class.java)
-    }
+    fun domStorageItemRemoved(): io.reactivex.Flowable<DomStorageItemRemovedEvent> = connection.events("DOMStorage.domStorageItemRemoved", DomStorageItemRemovedEvent::class.java)
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemUpdated events.
      */
-    fun domStorageItemUpdated(): io.reactivex.Flowable<DomStorageItemUpdatedEvent> {
-        return domStorageItemUpdatedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Returns observable capturing all DOMStorage.domStorageItemUpdated events.
-     */
-    fun domStorageItemUpdatedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<DomStorageItemUpdatedEvent>> {
-        return connection.captureEvents("DOMStorage.domStorageItemUpdated", DomStorageItemUpdatedEvent::class.java)
-    }
+    fun domStorageItemUpdated(): io.reactivex.Flowable<DomStorageItemUpdatedEvent> = connection.events("DOMStorage.domStorageItemUpdated", DomStorageItemUpdatedEvent::class.java)
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemsCleared events.
      */
-    fun domStorageItemsCleared(): io.reactivex.Flowable<DomStorageItemsClearedEvent> {
-        return domStorageItemsClearedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Returns observable capturing all DOMStorage.domStorageItemsCleared events.
-     */
-    fun domStorageItemsClearedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<DomStorageItemsClearedEvent>> {
-        return connection.captureEvents("DOMStorage.domStorageItemsCleared", DomStorageItemsClearedEvent::class.java)
-    }
+    fun domStorageItemsCleared(): io.reactivex.Flowable<DomStorageItemsClearedEvent> = connection.events("DOMStorage.domStorageItemsCleared", DomStorageItemsClearedEvent::class.java)
 
     /**
      * Returns flowable capturing all DOMStorage domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "DOMStorage"
         }
     }

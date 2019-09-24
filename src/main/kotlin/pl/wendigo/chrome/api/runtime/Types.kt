@@ -17,20 +17,13 @@ typealias ScriptId = String
 typealias RemoteObjectId = String
 
 /**
- * Primitive value which cannot be JSON-stringified.
+ * Primitive value which cannot be JSON-stringified. Includes values `-0`, `NaN`, `Infinity`,
+`-Infinity`, and bigint literals.
  *
  * @link [Runtime#UnserializableValue](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-UnserializableValue) type documentation.
  */
-enum class UnserializableValue {
-    @com.fasterxml.jackson.annotation.JsonProperty("Infinity")
-    PLUS_INFINITY,
-    @com.fasterxml.jackson.annotation.JsonProperty("NaN")
-    NAN,
-    @com.fasterxml.jackson.annotation.JsonProperty("-Infinity")
-    MINUS_INFINITY,
-    @com.fasterxml.jackson.annotation.JsonProperty("-0")
-    ZERO;
-}
+
+typealias UnserializableValue = String
 
 /**
  * Mirror object referencing original JavaScript object.
@@ -45,12 +38,12 @@ data class RemoteObject(
     val type: String,
 
     /**  
-     * Object subtype hint. Specified for <code>object</code> type values only.  
+     * Object subtype hint. Specified for `object` type values only.  
      */  
     val subtype: String? = null,
 
     /**  
-     * Object class (constructor) name. Specified for <code>object</code> type values only.  
+     * Object class (constructor) name. Specified for `object` type values only.  
      */  
     val className: String? = null,
 
@@ -60,7 +53,8 @@ data class RemoteObject(
     val value: Any? = null,
 
     /**  
-     * Primitive value which can not be JSON-stringified does not have <code>value</code>, but gets this property.  
+     * Primitive value which can not be JSON-stringified does not have `value`, but gets this  
+     property.  
      */  
     val unserializableValue: UnserializableValue? = null,
 
@@ -75,7 +69,7 @@ data class RemoteObject(
     val objectId: RemoteObjectId? = null,
 
     /**  
-     * Preview containing abbreviated property values. Specified for <code>object</code> type values only.  
+     * Preview containing abbreviated property values. Specified for `object` type values only.  
      */  
     @pl.wendigo.chrome.protocol.Experimental val preview: ObjectPreview? = null,
 
@@ -93,29 +87,17 @@ data class RemoteObject(
 
 data class CustomPreview(
     /**  
-     *  
+     * The JSON-stringified result of formatter.header(object, config) call.  
+     It contains json ML array that represents RemoteObject.  
      */  
     val header: String,
 
     /**  
-     *  
+     * If formatter returns true as a result of formatter.hasBody call then bodyGetterId will  
+     contain RemoteObjectId for the function that returns result of formatter.body(object, config) call.  
+     The result value is json ML array.  
      */  
-    val hasBody: Boolean,
-
-    /**  
-     *  
-     */  
-    val formatterObjectId: RemoteObjectId,
-
-    /**  
-     *  
-     */  
-    val bindRemoteObjectFunctionId: RemoteObjectId,
-
-    /**  
-     *  
-     */  
-    val configObjectId: RemoteObjectId? = null
+    val bodyGetterId: RemoteObjectId? = null
 )
 
 /**
@@ -131,7 +113,7 @@ data class ObjectPreview(
     val type: String,
 
     /**  
-     * Object subtype hint. Specified for <code>object</code> type values only.  
+     * Object subtype hint. Specified for `object` type values only.  
      */  
     val subtype: String? = null,
 
@@ -151,7 +133,7 @@ data class ObjectPreview(
     val properties: List<PropertyPreview>,
 
     /**  
-     * List of the entries. Specified for <code>map</code> and <code>set</code> subtype values only.  
+     * List of the entries. Specified for `map` and `set` subtype values only.  
      */  
     val entries: List<EntryPreview>? = null
 )
@@ -184,7 +166,7 @@ data class PropertyPreview(
     val valuePreview: ObjectPreview? = null,
 
     /**  
-     * Object subtype hint. Specified for <code>object</code> type values only.  
+     * Object subtype hint. Specified for `object` type values only.  
      */  
     val subtype: String? = null
 )
@@ -230,22 +212,26 @@ data class PropertyDescriptor(
     val writable: Boolean? = null,
 
     /**  
-     * A function which serves as a getter for the property, or <code>undefined</code> if there is no getter (accessor descriptors only).  
+     * A function which serves as a getter for the property, or `undefined` if there is no getter  
+     (accessor descriptors only).  
      */  
     val get: RemoteObject? = null,
 
     /**  
-     * A function which serves as a setter for the property, or <code>undefined</code> if there is no setter (accessor descriptors only).  
+     * A function which serves as a setter for the property, or `undefined` if there is no setter  
+     (accessor descriptors only).  
      */  
     val set: RemoteObject? = null,
 
     /**  
-     * True if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object.  
+     * True if the type of this property descriptor may be changed and if the property may be  
+     deleted from the corresponding object.  
      */  
     val configurable: Boolean,
 
     /**  
-     * True if this property shows up during enumeration of the properties on the corresponding object.  
+     * True if this property shows up during enumeration of the properties on the corresponding  
+     object.  
      */  
     val enumerable: Boolean,
 
@@ -260,7 +246,7 @@ data class PropertyDescriptor(
     val isOwn: Boolean? = null,
 
     /**  
-     * Property symbol object, if the property is of the <code>symbol</code> type.  
+     * Property symbol object, if the property is of the `symbol` type.  
      */  
     val symbol: RemoteObject? = null
 )
@@ -284,14 +270,33 @@ data class InternalPropertyDescriptor(
 )
 
 /**
- * Represents function call argument. Either remote object id &lt;code&gt;objectId&lt;/code&gt;, primitive &lt;code&gt;value&lt;/code&gt;, unserializable primitive value or neither of (for undefined) them should be specified.
+ * Object private field descriptor.
+ *
+ * @link [Runtime#PrivatePropertyDescriptor](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-PrivatePropertyDescriptor) type documentation.
+ */
+
+data class PrivatePropertyDescriptor(
+    /**  
+     * Private property name.  
+     */  
+    val name: String,
+
+    /**  
+     * The value associated with the private property.  
+     */  
+    val value: RemoteObject
+)
+
+/**
+ * Represents function call argument. Either remote object id `objectId`, primitive `value`,
+unserializable primitive value or neither of (for undefined) them should be specified.
  *
  * @link [Runtime#CallArgument](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-CallArgument) type documentation.
  */
 
 data class CallArgument(
     /**  
-     * Primitive value.  
+     * Primitive value or serializable javascript object.  
      */  
     val value: Any? = null,
 
@@ -322,7 +327,8 @@ typealias ExecutionContextId = Int
 
 data class ExecutionContextDescription(
     /**  
-     * Unique id of the execution context. It can be used to specify in which execution context script evaluation should be performed.  
+     * Unique id of the execution context. It can be used to specify in which execution context  
+     script evaluation should be performed.  
      */  
     val id: ExecutionContextId,
 
@@ -343,7 +349,8 @@ data class ExecutionContextDescription(
 )
 
 /**
- * Detailed information about exception (or error) that was thrown during script compilation or execution.
+ * Detailed information about exception (or error) that was thrown during script compilation or
+execution.
  *
  * @link [Runtime#ExceptionDetails](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-ExceptionDetails) type documentation.
  */
@@ -404,6 +411,14 @@ data class ExceptionDetails(
 typealias Timestamp = Double
 
 /**
+ * Number of milliseconds.
+ *
+ * @link [Runtime#TimeDelta](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-TimeDelta) type documentation.
+ */
+
+typealias TimeDelta = Double
+
+/**
  * Stack entry for runtime errors and assertions.
  *
  * @link [Runtime#CallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-CallFrame) type documentation.
@@ -444,7 +459,8 @@ data class CallFrame(
 
 data class StackTrace(
     /**  
-     * String label of this stack trace. For async traces this may be a name of the function that initiated the async call.  
+     * String label of this stack trace. For async traces this may be a name of the function that  
+     initiated the async call.  
      */  
     val description: String? = null,
 
@@ -456,5 +472,37 @@ data class StackTrace(
     /**  
      * Asynchronous JavaScript stack trace that preceded this stack, if available.  
      */  
-    val parent: StackTrace? = null
+    val parent: StackTrace? = null,
+
+    /**  
+     * Asynchronous JavaScript stack trace that preceded this stack, if available.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val parentId: StackTraceId? = null
+)
+
+/**
+ * Unique identifier of current debugger.
+ *
+ * @link [Runtime#UniqueDebuggerId](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-UniqueDebuggerId) type documentation.
+ */
+
+typealias UniqueDebuggerId = String
+
+/**
+ * If `debuggerId` is set stack trace comes from another debugger and can be resolved there. This
+allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.paused` for usages.
+ *
+ * @link [Runtime#StackTraceId](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-StackTraceId) type documentation.
+ */
+
+data class StackTraceId(
+    /**  
+     *  
+     */  
+    val id: String,
+
+    /**  
+     *  
+     */  
+    val debuggerId: UniqueDebuggerId? = null
 )
