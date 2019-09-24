@@ -8,47 +8,42 @@ API.
  * @link Protocol [WebAuthn](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class WebAuthnOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class WebAuthnOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Enable the WebAuthn domain and start intercepting credential storage and
 retrieval with a virtual authenticator.
      *
      * @link Protocol [WebAuthn#enable](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-enable) method documentation.
      */
-        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disable the WebAuthn domain.
      *
      * @link Protocol [WebAuthn#disable](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-disable) method documentation.
      */
-        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Creates and adds a virtual authenticator.
      *
      * @link Protocol [WebAuthn#addVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addVirtualAuthenticator) method documentation.
      */
-        fun addVirtualAuthenticator(input: AddVirtualAuthenticatorRequest): io.reactivex.Single<AddVirtualAuthenticatorResponse> = connection.runAndCaptureResponse("WebAuthn.addVirtualAuthenticator", input, AddVirtualAuthenticatorResponse::class.java)
-
+    fun addVirtualAuthenticator(input: AddVirtualAuthenticatorRequest): io.reactivex.Single<AddVirtualAuthenticatorResponse> = connection.runAndCaptureResponse("WebAuthn.addVirtualAuthenticator", input, AddVirtualAuthenticatorResponse::class.java)
 
     /**
      * Removes the given authenticator.
      *
      * @link Protocol [WebAuthn#removeVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeVirtualAuthenticator) method documentation.
      */
-        fun removeVirtualAuthenticator(input: RemoveVirtualAuthenticatorRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.removeVirtualAuthenticator", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun removeVirtualAuthenticator(input: RemoveVirtualAuthenticatorRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.removeVirtualAuthenticator", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Adds the credential to the specified authenticator.
      *
      * @link Protocol [WebAuthn#addCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addCredential) method documentation.
      */
-        fun addCredential(input: AddCredentialRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.addCredential", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun addCredential(input: AddCredentialRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.addCredential", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns a single credential stored in the given virtual authenticator that
@@ -56,32 +51,28 @@ matches the credential ID.
      *
      * @link Protocol [WebAuthn#getCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredential) method documentation.
      */
-        fun getCredential(input: GetCredentialRequest): io.reactivex.Single<GetCredentialResponse> = connection.runAndCaptureResponse("WebAuthn.getCredential", input, GetCredentialResponse::class.java)
-
+    fun getCredential(input: GetCredentialRequest): io.reactivex.Single<GetCredentialResponse> = connection.runAndCaptureResponse("WebAuthn.getCredential", input, GetCredentialResponse::class.java)
 
     /**
      * Returns all the credentials stored in the given virtual authenticator.
      *
      * @link Protocol [WebAuthn#getCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredentials) method documentation.
      */
-        fun getCredentials(input: GetCredentialsRequest): io.reactivex.Single<GetCredentialsResponse> = connection.runAndCaptureResponse("WebAuthn.getCredentials", input, GetCredentialsResponse::class.java)
-
+    fun getCredentials(input: GetCredentialsRequest): io.reactivex.Single<GetCredentialsResponse> = connection.runAndCaptureResponse("WebAuthn.getCredentials", input, GetCredentialsResponse::class.java)
 
     /**
      * Removes a credential from the authenticator.
      *
      * @link Protocol [WebAuthn#removeCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeCredential) method documentation.
      */
-        fun removeCredential(input: RemoveCredentialRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.removeCredential", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun removeCredential(input: RemoveCredentialRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.removeCredential", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Clears all the credentials from the specified device.
      *
      * @link Protocol [WebAuthn#clearCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-clearCredentials) method documentation.
      */
-        fun clearCredentials(input: ClearCredentialsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.clearCredentials", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun clearCredentials(input: ClearCredentialsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.clearCredentials", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets whether User Verification succeeds or fails for an authenticator.
@@ -89,22 +80,17 @@ The default is true.
      *
      * @link Protocol [WebAuthn#setUserVerified](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setUserVerified) method documentation.
      */
-        fun setUserVerified(input: SetUserVerifiedRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.setUserVerified", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
-
+    fun setUserVerified(input: SetUserVerifiedRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAuthn.setUserVerified", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns flowable capturing all WebAuthn domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.captureAllEvents().filter {
             it.protocolDomain() == "WebAuthn"
         }
     }
 }
-
-
-
 
 /**
  * Represents request frame that can be used with [WebAuthn#addVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addVirtualAuthenticator) operation call.
@@ -113,7 +99,7 @@ The default is true.
  * @link [WebAuthn#addVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addVirtualAuthenticator) method documentation.
  * @see [WebAuthnOperations.addVirtualAuthenticator]
  */
-data class AddVirtualAuthenticatorRequest (
+data class AddVirtualAuthenticatorRequest(
     /**
      *
      */
@@ -125,14 +111,14 @@ data class AddVirtualAuthenticatorRequest (
  * Creates and adds a virtual authenticator.
  *
   
-  * @link [WebAuthn#addVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addVirtualAuthenticator) method documentation.
-  * @see [WebAuthnOperations.addVirtualAuthenticator]
+ * @link [WebAuthn#addVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addVirtualAuthenticator) method documentation.
+ * @see [WebAuthnOperations.addVirtualAuthenticator]
  */
 data class AddVirtualAuthenticatorResponse(
-  /**
-   *
-   */
-  val authenticatorId: AuthenticatorId
+    /**  
+     *  
+     */  
+    val authenticatorId: AuthenticatorId
 
 )
 
@@ -143,7 +129,7 @@ data class AddVirtualAuthenticatorResponse(
  * @link [WebAuthn#removeVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeVirtualAuthenticator) method documentation.
  * @see [WebAuthnOperations.removeVirtualAuthenticator]
  */
-data class RemoveVirtualAuthenticatorRequest (
+data class RemoveVirtualAuthenticatorRequest(
     /**
      *
      */
@@ -158,7 +144,7 @@ data class RemoveVirtualAuthenticatorRequest (
  * @link [WebAuthn#addCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addCredential) method documentation.
  * @see [WebAuthnOperations.addCredential]
  */
-data class AddCredentialRequest (
+data class AddCredentialRequest(
     /**
      *
      */
@@ -179,7 +165,7 @@ matches the credential ID.
  * @link [WebAuthn#getCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredential) method documentation.
  * @see [WebAuthnOperations.getCredential]
  */
-data class GetCredentialRequest (
+data class GetCredentialRequest(
     /**
      *
      */
@@ -197,14 +183,14 @@ data class GetCredentialRequest (
 matches the credential ID.
  *
   
-  * @link [WebAuthn#getCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredential) method documentation.
-  * @see [WebAuthnOperations.getCredential]
+ * @link [WebAuthn#getCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredential) method documentation.
+ * @see [WebAuthnOperations.getCredential]
  */
 data class GetCredentialResponse(
-  /**
-   *
-   */
-  val credential: Credential
+    /**  
+     *  
+     */  
+    val credential: Credential
 
 )
 
@@ -215,7 +201,7 @@ data class GetCredentialResponse(
  * @link [WebAuthn#getCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredentials) method documentation.
  * @see [WebAuthnOperations.getCredentials]
  */
-data class GetCredentialsRequest (
+data class GetCredentialsRequest(
     /**
      *
      */
@@ -227,14 +213,14 @@ data class GetCredentialsRequest (
  * Returns all the credentials stored in the given virtual authenticator.
  *
   
-  * @link [WebAuthn#getCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredentials) method documentation.
-  * @see [WebAuthnOperations.getCredentials]
+ * @link [WebAuthn#getCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredentials) method documentation.
+ * @see [WebAuthnOperations.getCredentials]
  */
 data class GetCredentialsResponse(
-  /**
-   *
-   */
-  val credentials: List<Credential>
+    /**  
+     *  
+     */  
+    val credentials: List<Credential>
 
 )
 
@@ -245,7 +231,7 @@ data class GetCredentialsResponse(
  * @link [WebAuthn#removeCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeCredential) method documentation.
  * @see [WebAuthnOperations.removeCredential]
  */
-data class RemoveCredentialRequest (
+data class RemoveCredentialRequest(
     /**
      *
      */
@@ -265,7 +251,7 @@ data class RemoveCredentialRequest (
  * @link [WebAuthn#clearCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-clearCredentials) method documentation.
  * @see [WebAuthnOperations.clearCredentials]
  */
-data class ClearCredentialsRequest (
+data class ClearCredentialsRequest(
     /**
      *
      */
@@ -281,7 +267,7 @@ The default is true.
  * @link [WebAuthn#setUserVerified](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setUserVerified) method documentation.
  * @see [WebAuthnOperations.setUserVerified]
  */
-data class SetUserVerifiedRequest (
+data class SetUserVerifiedRequest(
     /**
      *
      */
@@ -293,4 +279,3 @@ data class SetUserVerifiedRequest (
     val isUserVerified: Boolean
 
 )
-

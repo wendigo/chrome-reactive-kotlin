@@ -5,7 +5,9 @@ import io.reactivex.Single
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.DevToolsProtocol
 import pl.wendigo.chrome.api.target.SendMessageToTargetRequest
-import pl.wendigo.chrome.protocol.*
+import pl.wendigo.chrome.protocol.FrameMapper
+import pl.wendigo.chrome.protocol.RequestFrame
+import pl.wendigo.chrome.protocol.ResponseFrame
 
 /**
  * TargetedFramesStream is a [FramesStream] that talks with Chrome DevTools Protocol via [Target](https://chromedevtools.github.io/devtools-protocol/tot/Target) domain.
@@ -27,11 +29,11 @@ class FramesStream(
         return frames().filter {
             it.matchesRequest(requestFrame)
         }
-        .map { frame ->
-            mapper.deserializeResponse(requestFrame, frame, clazz)
-        }
-        .take(1)
-        .singleOrError()
+            .map { frame ->
+                mapper.deserializeResponse(requestFrame, frame, clazz)
+            }
+            .take(1)
+            .singleOrError()
     }
 
     /**

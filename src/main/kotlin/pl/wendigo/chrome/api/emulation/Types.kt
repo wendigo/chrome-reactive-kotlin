@@ -7,15 +7,15 @@ package pl.wendigo.chrome.api.emulation
  */
 
 data class ScreenOrientation(
-  /**
-   * Orientation type.
-   */
-  val type: String,
+    /**  
+     * Orientation type.  
+     */  
+    val type: String,
 
-  /**
-   * Orientation angle.
-   */
-  val angle: Int
+    /**  
+     * Orientation angle.  
+     */  
+    val angle: Int
 )
 
 /**
@@ -27,8 +27,10 @@ resource fetches.
  * @link [Emulation#VirtualTimePolicy](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-VirtualTimePolicy) type documentation.
  */
 enum class VirtualTimePolicy {
-    @com.fasterxml.jackson.annotation.JsonProperty("advance") ADVANCE,
-    @com.fasterxml.jackson.annotation.JsonProperty("pause") PAUSE,
-    @com.fasterxml.jackson.annotation.JsonProperty("pauseIfNetworkFetchesPending") PAUSEIFNETWORKFETCHESPENDING;
+    @com.fasterxml.jackson.annotation.JsonProperty("advance")
+    ADVANCE,
+    @com.fasterxml.jackson.annotation.JsonProperty("pause")
+    PAUSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("pauseIfNetworkFetchesPending")
+    PAUSEIFNETWORKFETCHESPENDING;
 }
-

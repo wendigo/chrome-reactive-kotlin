@@ -5,22 +5,20 @@ package pl.wendigo.chrome.api.performance
  *
  * @link Protocol [Performance](https://chromedevtools.github.io/devtools-protocol/tot/Performance) domain documentation.
  */
-class PerformanceOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class PerformanceOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Disable collecting and reporting metrics.
      *
      * @link Protocol [Performance#disable](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-disable) method documentation.
      */
-        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Performance.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Performance.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enable collecting and reporting metrics.
      *
      * @link Protocol [Performance#enable](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-enable) method documentation.
      */
-        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Performance.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Performance.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets time domain to use for collecting and reporting duration metrics.
@@ -33,33 +31,27 @@ this method while metrics collection is enabled returns an error.
     @pl.wendigo.chrome.protocol.Experimental
     fun setTimeDomain(input: SetTimeDomainRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Performance.setTimeDomain", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Retrieve current values of run-time metrics.
      *
      * @link Protocol [Performance#getMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-getMetrics) method documentation.
      */
-        fun getMetrics(): io.reactivex.Single<GetMetricsResponse> = connection.runAndCaptureResponse("Performance.getMetrics", null, GetMetricsResponse::class.java)
-
+    fun getMetrics(): io.reactivex.Single<GetMetricsResponse> = connection.runAndCaptureResponse("Performance.getMetrics", null, GetMetricsResponse::class.java)
 
     /**
      *  Current values of the metrics.
      */
-    fun metrics(): io.reactivex.Flowable<MetricsEvent> = connection.captureEvents("Performance.metrics", MetricsEvent::class.java);
-
+    fun metrics(): io.reactivex.Flowable<MetricsEvent> = connection.captureEvents("Performance.metrics", MetricsEvent::class.java)
 
     /**
      * Returns flowable capturing all Performance domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.captureAllEvents().filter {
             it.protocolDomain() == "Performance"
         }
     }
 }
-
-
-
 
 /**
  * Represents request frame that can be used with [Performance#setTimeDomain](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-setTimeDomain) operation call.
@@ -70,7 +62,7 @@ this method while metrics collection is enabled returns an error.
  * @link [Performance#setTimeDomain](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-setTimeDomain) method documentation.
  * @see [PerformanceOperations.setTimeDomain]
  */
-data class SetTimeDomainRequest (
+data class SetTimeDomainRequest(
     /**
      * Time domain
      */
@@ -78,20 +70,19 @@ data class SetTimeDomainRequest (
 
 )
 
-
 /**
  * Represents response frame that is returned from [Performance#getMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-getMetrics) operation call.
  * Retrieve current values of run-time metrics.
  *
   
-  * @link [Performance#getMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-getMetrics) method documentation.
-  * @see [PerformanceOperations.getMetrics]
+ * @link [Performance#getMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-getMetrics) method documentation.
+ * @see [PerformanceOperations.getMetrics]
  */
 data class GetMetricsResponse(
-  /**
-   * Current values for run-time metrics.
-   */
-  val metrics: List<Metric>
+    /**  
+     * Current values for run-time metrics.  
+     */  
+    val metrics: List<Metric>
 
 )
 
@@ -99,17 +90,16 @@ data class GetMetricsResponse(
  * Current values of the metrics.
  *
  * @link [Performance#metrics](https://chromedevtools.github.io/devtools-protocol/tot/Performance#event-metrics) event documentation.
-   */
+ */
 data class MetricsEvent(
-  /**
-   * Current values of the metrics.
-   */
-  val metrics: List<Metric>,
+    /**  
+     * Current values of the metrics.  
+     */  
+    val metrics: List<Metric>,
 
-  /**
-   * Timestamp title.
-   */
-  val title: String
+    /**  
+     * Timestamp title.  
+     */  
+    val title: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "Performance", name = "metrics")
-
+) : pl.wendigo.chrome.protocol.Event(domain = "Performance", name = "metrics")

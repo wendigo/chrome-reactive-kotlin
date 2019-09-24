@@ -14,8 +14,10 @@ typealias GraphObjectId = String
  * @link [WebAudio#ContextType](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ContextType) type documentation.
  */
 enum class ContextType {
-    @com.fasterxml.jackson.annotation.JsonProperty("realtime") REALTIME,
-    @com.fasterxml.jackson.annotation.JsonProperty("offline") OFFLINE;
+    @com.fasterxml.jackson.annotation.JsonProperty("realtime")
+    REALTIME,
+    @com.fasterxml.jackson.annotation.JsonProperty("offline")
+    OFFLINE;
 }
 
 /**
@@ -24,9 +26,12 @@ enum class ContextType {
  * @link [WebAudio#ContextState](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ContextState) type documentation.
  */
 enum class ContextState {
-    @com.fasterxml.jackson.annotation.JsonProperty("suspended") SUSPENDED,
-    @com.fasterxml.jackson.annotation.JsonProperty("running") RUNNING,
-    @com.fasterxml.jackson.annotation.JsonProperty("closed") CLOSED;
+    @com.fasterxml.jackson.annotation.JsonProperty("suspended")
+    SUSPENDED,
+    @com.fasterxml.jackson.annotation.JsonProperty("running")
+    RUNNING,
+    @com.fasterxml.jackson.annotation.JsonProperty("closed")
+    CLOSED;
 }
 
 /**
@@ -43,9 +48,12 @@ typealias NodeType = String
  * @link [WebAudio#ChannelCountMode](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ChannelCountMode) type documentation.
  */
 enum class ChannelCountMode {
-    @com.fasterxml.jackson.annotation.JsonProperty("clamped-max") CLAMPED_MAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("explicit") EXPLICIT,
-    @com.fasterxml.jackson.annotation.JsonProperty("max") MAX;
+    @com.fasterxml.jackson.annotation.JsonProperty("clamped-max")
+    CLAMPED_MAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("explicit")
+    EXPLICIT,
+    @com.fasterxml.jackson.annotation.JsonProperty("max")
+    MAX;
 }
 
 /**
@@ -54,8 +62,10 @@ enum class ChannelCountMode {
  * @link [WebAudio#ChannelInterpretation](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ChannelInterpretation) type documentation.
  */
 enum class ChannelInterpretation {
-    @com.fasterxml.jackson.annotation.JsonProperty("discrete") DISCRETE,
-    @com.fasterxml.jackson.annotation.JsonProperty("speakers") SPEAKERS;
+    @com.fasterxml.jackson.annotation.JsonProperty("discrete")
+    DISCRETE,
+    @com.fasterxml.jackson.annotation.JsonProperty("speakers")
+    SPEAKERS;
 }
 
 /**
@@ -72,8 +82,10 @@ typealias ParamType = String
  * @link [WebAudio#AutomationRate](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-AutomationRate) type documentation.
  */
 enum class AutomationRate {
-    @com.fasterxml.jackson.annotation.JsonProperty("a-rate") A_RATE,
-    @com.fasterxml.jackson.annotation.JsonProperty("k-rate") K_RATE;
+    @com.fasterxml.jackson.annotation.JsonProperty("a-rate")
+    A_RATE,
+    @com.fasterxml.jackson.annotation.JsonProperty("k-rate")
+    K_RATE;
 }
 
 /**
@@ -83,27 +95,27 @@ enum class AutomationRate {
  */
 
 data class ContextRealtimeData(
-  /**
-   * The current context time in second in BaseAudioContext.
-   */
-  val currentTime: Double,
+    /**  
+     * The current context time in second in BaseAudioContext.  
+     */  
+    val currentTime: Double,
 
-  /**
-   * The time spent on rendering graph divided by render qunatum duration,
-and multiplied by 100. 100 means the audio renderer reached the full
-capacity and glitch may occur.
-   */
-  val renderCapacity: Double,
+    /**  
+     * The time spent on rendering graph divided by render qunatum duration,  
+     and multiplied by 100. 100 means the audio renderer reached the full  
+     capacity and glitch may occur.  
+     */  
+    val renderCapacity: Double,
 
-  /**
-   * A running mean of callback interval.
-   */
-  val callbackIntervalMean: Double,
+    /**  
+     * A running mean of callback interval.  
+     */  
+    val callbackIntervalMean: Double,
 
-  /**
-   * A running variance of callback interval.
-   */
-  val callbackIntervalVariance: Double
+    /**  
+     * A running variance of callback interval.  
+     */  
+    val callbackIntervalVariance: Double
 )
 
 /**
@@ -113,40 +125,40 @@ capacity and glitch may occur.
  */
 
 data class BaseAudioContext(
-  /**
-   *
-   */
-  val contextId: GraphObjectId,
+    /**  
+     *  
+     */  
+    val contextId: GraphObjectId,
 
-  /**
-   *
-   */
-  val contextType: ContextType,
+    /**  
+     *  
+     */  
+    val contextType: ContextType,
 
-  /**
-   *
-   */
-  val contextState: ContextState,
+    /**  
+     *  
+     */  
+    val contextState: ContextState,
 
-  /**
-   *
-   */
-  val realtimeData: ContextRealtimeData? = null,
+    /**  
+     *  
+     */  
+    val realtimeData: ContextRealtimeData? = null,
 
-  /**
-   * Platform-dependent callback buffer size.
-   */
-  val callbackBufferSize: Double,
+    /**  
+     * Platform-dependent callback buffer size.  
+     */  
+    val callbackBufferSize: Double,
 
-  /**
-   * Number of output channels supported by audio hardware in use.
-   */
-  val maxOutputChannelCount: Double,
+    /**  
+     * Number of output channels supported by audio hardware in use.  
+     */  
+    val maxOutputChannelCount: Double,
 
-  /**
-   * Context sample rate.
-   */
-  val sampleRate: Double
+    /**  
+     * Context sample rate.  
+     */  
+    val sampleRate: Double
 )
 
 /**
@@ -156,15 +168,15 @@ data class BaseAudioContext(
  */
 
 data class AudioListener(
-  /**
-   *
-   */
-  val listenerId: GraphObjectId,
+    /**  
+     *  
+     */  
+    val listenerId: GraphObjectId,
 
-  /**
-   *
-   */
-  val contextId: GraphObjectId
+    /**  
+     *  
+     */  
+    val contextId: GraphObjectId
 )
 
 /**
@@ -174,45 +186,45 @@ data class AudioListener(
  */
 
 data class AudioNode(
-  /**
-   *
-   */
-  val nodeId: GraphObjectId,
+    /**  
+     *  
+     */  
+    val nodeId: GraphObjectId,
 
-  /**
-   *
-   */
-  val contextId: GraphObjectId,
+    /**  
+     *  
+     */  
+    val contextId: GraphObjectId,
 
-  /**
-   *
-   */
-  val nodeType: NodeType,
+    /**  
+     *  
+     */  
+    val nodeType: NodeType,
 
-  /**
-   *
-   */
-  val numberOfInputs: Double,
+    /**  
+     *  
+     */  
+    val numberOfInputs: Double,
 
-  /**
-   *
-   */
-  val numberOfOutputs: Double,
+    /**  
+     *  
+     */  
+    val numberOfOutputs: Double,
 
-  /**
-   *
-   */
-  val channelCount: Double,
+    /**  
+     *  
+     */  
+    val channelCount: Double,
 
-  /**
-   *
-   */
-  val channelCountMode: ChannelCountMode,
+    /**  
+     *  
+     */  
+    val channelCountMode: ChannelCountMode,
 
-  /**
-   *
-   */
-  val channelInterpretation: ChannelInterpretation
+    /**  
+     *  
+     */  
+    val channelInterpretation: ChannelInterpretation
 )
 
 /**
@@ -222,44 +234,43 @@ data class AudioNode(
  */
 
 data class AudioParam(
-  /**
-   *
-   */
-  val paramId: GraphObjectId,
+    /**  
+     *  
+     */  
+    val paramId: GraphObjectId,
 
-  /**
-   *
-   */
-  val nodeId: GraphObjectId,
+    /**  
+     *  
+     */  
+    val nodeId: GraphObjectId,
 
-  /**
-   *
-   */
-  val contextId: GraphObjectId,
+    /**  
+     *  
+     */  
+    val contextId: GraphObjectId,
 
-  /**
-   *
-   */
-  val paramType: ParamType,
+    /**  
+     *  
+     */  
+    val paramType: ParamType,
 
-  /**
-   *
-   */
-  val rate: AutomationRate,
+    /**  
+     *  
+     */  
+    val rate: AutomationRate,
 
-  /**
-   *
-   */
-  val defaultValue: Double,
+    /**  
+     *  
+     */  
+    val defaultValue: Double,
 
-  /**
-   *
-   */
-  val minValue: Double,
+    /**  
+     *  
+     */  
+    val minValue: Double,
 
-  /**
-   *
-   */
-  val maxValue: Double
+    /**  
+     *  
+     */  
+    val maxValue: Double
 )
-

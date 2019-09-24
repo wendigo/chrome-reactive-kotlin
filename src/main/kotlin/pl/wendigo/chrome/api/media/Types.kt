@@ -23,15 +23,15 @@ typealias Timestamp = Double
  */
 
 data class PlayerProperty(
-  /**
-   *
-   */
-  val name: String,
+    /**  
+     *  
+     */  
+    val name: String,
 
-  /**
-   *
-   */
-  val value: String? = null
+    /**  
+     *  
+     */  
+    val value: String? = null
 )
 
 /**
@@ -40,9 +40,12 @@ data class PlayerProperty(
  * @link [Media#PlayerEventType](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-PlayerEventType) type documentation.
  */
 enum class PlayerEventType {
-    @com.fasterxml.jackson.annotation.JsonProperty("playbackEvent") PLAYBACKEVENT,
-    @com.fasterxml.jackson.annotation.JsonProperty("systemEvent") SYSTEMEVENT,
-    @com.fasterxml.jackson.annotation.JsonProperty("messageEvent") MESSAGEEVENT;
+    @com.fasterxml.jackson.annotation.JsonProperty("playbackEvent")
+    PLAYBACKEVENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("systemEvent")
+    SYSTEMEVENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("messageEvent")
+    MESSAGEEVENT;
 }
 
 /**
@@ -52,25 +55,24 @@ enum class PlayerEventType {
  */
 
 data class PlayerEvent(
-  /**
-   *
-   */
-  val type: PlayerEventType,
+    /**  
+     *  
+     */  
+    val type: PlayerEventType,
 
-  /**
-   * Events are timestamped relative to the start of the player creation
-not relative to the start of playback.
-   */
-  val timestamp: Timestamp,
+    /**  
+     * Events are timestamped relative to the start of the player creation  
+     not relative to the start of playback.  
+     */  
+    val timestamp: Timestamp,
 
-  /**
-   *
-   */
-  val name: String,
+    /**  
+     *  
+     */  
+    val name: String,
 
-  /**
-   *
-   */
-  val value: String
+    /**  
+     *  
+     */  
+    val value: String
 )
-

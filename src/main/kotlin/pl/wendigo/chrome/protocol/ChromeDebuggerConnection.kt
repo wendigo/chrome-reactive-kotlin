@@ -41,9 +41,9 @@ class ChromeDebuggerConnection constructor(
      */
     fun <T> runAndCaptureResponse(name: String, params: Any?, clazz: Class<T>): Single<T> {
         val request = RequestFrame(
-                id = nextRequestId.incrementAndGet(),
-                method = name,
-                params = params
+            id = nextRequestId.incrementAndGet(),
+            method = name,
+            params = params
         )
 
         return frames.send(request).flatMap { sent ->

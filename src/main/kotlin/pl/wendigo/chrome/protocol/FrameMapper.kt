@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import io.reactivex.Single
 
 /**
  * FrameMapper is responsible for (de)serializing frames exchanged via Chrome's [DevTool Protocol](https://chromedevtools.github.io/devtools-protocol/).

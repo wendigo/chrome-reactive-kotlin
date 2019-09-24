@@ -5,7 +5,7 @@ package pl.wendigo.chrome.api.page
  *
  * @link Protocol [Page](https://chromedevtools.github.io/devtools-protocol/tot/Page) domain documentation.
  */
-class PageOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class PageOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Deprecated, please use addScriptToEvaluateOnNewDocument instead.
      *
@@ -16,30 +16,26 @@ class PageOperations internal constructor(private val connection : pl.wendigo.ch
     @pl.wendigo.chrome.protocol.Experimental
     fun addScriptToEvaluateOnLoad(input: AddScriptToEvaluateOnLoadRequest): io.reactivex.Single<AddScriptToEvaluateOnLoadResponse> = connection.runAndCaptureResponse("Page.addScriptToEvaluateOnLoad", input, AddScriptToEvaluateOnLoadResponse::class.java)
 
-
     /**
      * Evaluates given script in every frame upon creation (before loading frame's scripts).
      *
      * @link Protocol [Page#addScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnNewDocument) method documentation.
      */
-        fun addScriptToEvaluateOnNewDocument(input: AddScriptToEvaluateOnNewDocumentRequest): io.reactivex.Single<AddScriptToEvaluateOnNewDocumentResponse> = connection.runAndCaptureResponse("Page.addScriptToEvaluateOnNewDocument", input, AddScriptToEvaluateOnNewDocumentResponse::class.java)
-
+    fun addScriptToEvaluateOnNewDocument(input: AddScriptToEvaluateOnNewDocumentRequest): io.reactivex.Single<AddScriptToEvaluateOnNewDocumentResponse> = connection.runAndCaptureResponse("Page.addScriptToEvaluateOnNewDocument", input, AddScriptToEvaluateOnNewDocumentResponse::class.java)
 
     /**
      * Brings page to front (activates tab).
      *
      * @link Protocol [Page#bringToFront](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-bringToFront) method documentation.
      */
-        fun bringToFront(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.bringToFront", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun bringToFront(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.bringToFront", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Capture page screenshot.
      *
      * @link Protocol [Page#captureScreenshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot) method documentation.
      */
-        fun captureScreenshot(input: CaptureScreenshotRequest): io.reactivex.Single<CaptureScreenshotResponse> = connection.runAndCaptureResponse("Page.captureScreenshot", input, CaptureScreenshotResponse::class.java)
-
+    fun captureScreenshot(input: CaptureScreenshotRequest): io.reactivex.Single<CaptureScreenshotResponse> = connection.runAndCaptureResponse("Page.captureScreenshot", input, CaptureScreenshotResponse::class.java)
 
     /**
      * Returns a snapshot of the page as a string. For MHTML format, the serialization includes
@@ -51,7 +47,6 @@ iframes, shadow DOM, external resources, and element-inline styles.
     @pl.wendigo.chrome.protocol.Experimental
     fun captureSnapshot(input: CaptureSnapshotRequest): io.reactivex.Single<CaptureSnapshotResponse> = connection.runAndCaptureResponse("Page.captureSnapshot", input, CaptureSnapshotResponse::class.java)
 
-
     /**
      * Clears the overriden device metrics.
      *
@@ -61,7 +56,6 @@ iframes, shadow DOM, external resources, and element-inline styles.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun clearDeviceMetricsOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
 
     /**
      * Clears the overridden Device Orientation.
@@ -73,23 +67,20 @@ iframes, shadow DOM, external resources, and element-inline styles.
     @pl.wendigo.chrome.protocol.Experimental
     fun clearDeviceOrientationOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Clears the overriden Geolocation Position and Error.
      *
      * @link Protocol [Page#clearGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-clearGeolocationOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearGeolocationOverride is deprecated.")
-        fun clearGeolocationOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun clearGeolocationOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Creates an isolated world for the given frame.
      *
      * @link Protocol [Page#createIsolatedWorld](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-createIsolatedWorld) method documentation.
      */
-        fun createIsolatedWorld(input: CreateIsolatedWorldRequest): io.reactivex.Single<CreateIsolatedWorldResponse> = connection.runAndCaptureResponse("Page.createIsolatedWorld", input, CreateIsolatedWorldResponse::class.java)
-
+    fun createIsolatedWorld(input: CreateIsolatedWorldRequest): io.reactivex.Single<CreateIsolatedWorldResponse> = connection.runAndCaptureResponse("Page.createIsolatedWorld", input, CreateIsolatedWorldResponse::class.java)
 
     /**
      * Deletes browser cookie with given name, domain and path.
@@ -101,30 +92,26 @@ iframes, shadow DOM, external resources, and element-inline styles.
     @pl.wendigo.chrome.protocol.Experimental
     fun deleteCookie(input: DeleteCookieRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.deleteCookie", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Disables page domain notifications.
      *
      * @link Protocol [Page#disable](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-disable) method documentation.
      */
-        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables page domain notifications.
      *
      * @link Protocol [Page#enable](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-enable) method documentation.
      */
-        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [Page#getAppManifest](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getAppManifest) method documentation.
      */
-        fun getAppManifest(): io.reactivex.Single<GetAppManifestResponse> = connection.runAndCaptureResponse("Page.getAppManifest", null, GetAppManifestResponse::class.java)
-
+    fun getAppManifest(): io.reactivex.Single<GetAppManifestResponse> = connection.runAndCaptureResponse("Page.getAppManifest", null, GetAppManifestResponse::class.java)
 
     /**
      *
@@ -134,7 +121,6 @@ iframes, shadow DOM, external resources, and element-inline styles.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun getInstallabilityErrors(): io.reactivex.Single<GetInstallabilityErrorsResponse> = connection.runAndCaptureResponse("Page.getInstallabilityErrors", null, GetInstallabilityErrorsResponse::class.java)
-
 
     /**
      * Returns all browser cookies. Depending on the backend support, will return detailed cookie
@@ -147,38 +133,33 @@ information in the `cookies` field.
     @pl.wendigo.chrome.protocol.Experimental
     fun getCookies(): io.reactivex.Single<GetCookiesResponse> = connection.runAndCaptureResponse("Page.getCookies", null, GetCookiesResponse::class.java)
 
-
     /**
      * Returns present frame tree structure.
      *
      * @link Protocol [Page#getFrameTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getFrameTree) method documentation.
      */
-        fun getFrameTree(): io.reactivex.Single<GetFrameTreeResponse> = connection.runAndCaptureResponse("Page.getFrameTree", null, GetFrameTreeResponse::class.java)
-
+    fun getFrameTree(): io.reactivex.Single<GetFrameTreeResponse> = connection.runAndCaptureResponse("Page.getFrameTree", null, GetFrameTreeResponse::class.java)
 
     /**
      * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
      *
      * @link Protocol [Page#getLayoutMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getLayoutMetrics) method documentation.
      */
-        fun getLayoutMetrics(): io.reactivex.Single<GetLayoutMetricsResponse> = connection.runAndCaptureResponse("Page.getLayoutMetrics", null, GetLayoutMetricsResponse::class.java)
-
+    fun getLayoutMetrics(): io.reactivex.Single<GetLayoutMetricsResponse> = connection.runAndCaptureResponse("Page.getLayoutMetrics", null, GetLayoutMetricsResponse::class.java)
 
     /**
      * Returns navigation history for the current page.
      *
      * @link Protocol [Page#getNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getNavigationHistory) method documentation.
      */
-        fun getNavigationHistory(): io.reactivex.Single<GetNavigationHistoryResponse> = connection.runAndCaptureResponse("Page.getNavigationHistory", null, GetNavigationHistoryResponse::class.java)
-
+    fun getNavigationHistory(): io.reactivex.Single<GetNavigationHistoryResponse> = connection.runAndCaptureResponse("Page.getNavigationHistory", null, GetNavigationHistoryResponse::class.java)
 
     /**
      * Resets navigation history for the current page.
      *
      * @link Protocol [Page#resetNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-resetNavigationHistory) method documentation.
      */
-        fun resetNavigationHistory(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.resetNavigationHistory", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun resetNavigationHistory(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.resetNavigationHistory", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns content of the given resource.
@@ -189,7 +170,6 @@ information in the `cookies` field.
     @pl.wendigo.chrome.protocol.Experimental
     fun getResourceContent(input: GetResourceContentRequest): io.reactivex.Single<GetResourceContentResponse> = connection.runAndCaptureResponse("Page.getResourceContent", input, GetResourceContentResponse::class.java)
 
-
     /**
      * Returns present frame / resource tree structure.
      *
@@ -199,46 +179,40 @@ information in the `cookies` field.
     @pl.wendigo.chrome.protocol.Experimental
     fun getResourceTree(): io.reactivex.Single<GetResourceTreeResponse> = connection.runAndCaptureResponse("Page.getResourceTree", null, GetResourceTreeResponse::class.java)
 
-
     /**
      * Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
      *
      * @link Protocol [Page#handleJavaScriptDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-handleJavaScriptDialog) method documentation.
      */
-        fun handleJavaScriptDialog(input: HandleJavaScriptDialogRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.handleJavaScriptDialog", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun handleJavaScriptDialog(input: HandleJavaScriptDialogRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.handleJavaScriptDialog", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Navigates current page to the given URL.
      *
      * @link Protocol [Page#navigate](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigate) method documentation.
      */
-        fun navigate(input: NavigateRequest): io.reactivex.Single<NavigateResponse> = connection.runAndCaptureResponse("Page.navigate", input, NavigateResponse::class.java)
-
+    fun navigate(input: NavigateRequest): io.reactivex.Single<NavigateResponse> = connection.runAndCaptureResponse("Page.navigate", input, NavigateResponse::class.java)
 
     /**
      * Navigates current page to the given history entry.
      *
      * @link Protocol [Page#navigateToHistoryEntry](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigateToHistoryEntry) method documentation.
      */
-        fun navigateToHistoryEntry(input: NavigateToHistoryEntryRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.navigateToHistoryEntry", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun navigateToHistoryEntry(input: NavigateToHistoryEntryRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.navigateToHistoryEntry", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Print page as PDF.
      *
      * @link Protocol [Page#printToPDF](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-printToPDF) method documentation.
      */
-        fun printToPDF(input: PrintToPDFRequest): io.reactivex.Single<PrintToPDFResponse> = connection.runAndCaptureResponse("Page.printToPDF", input, PrintToPDFResponse::class.java)
-
+    fun printToPDF(input: PrintToPDFRequest): io.reactivex.Single<PrintToPDFResponse> = connection.runAndCaptureResponse("Page.printToPDF", input, PrintToPDFResponse::class.java)
 
     /**
      * Reloads given page optionally ignoring the cache.
      *
      * @link Protocol [Page#reload](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-reload) method documentation.
      */
-        fun reload(input: ReloadRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.reload", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun reload(input: ReloadRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.reload", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Deprecated, please use removeScriptToEvaluateOnNewDocument instead.
@@ -250,14 +224,12 @@ information in the `cookies` field.
     @pl.wendigo.chrome.protocol.Experimental
     fun removeScriptToEvaluateOnLoad(input: RemoveScriptToEvaluateOnLoadRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.removeScriptToEvaluateOnLoad", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Removes given script from the list.
      *
      * @link Protocol [Page#removeScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-removeScriptToEvaluateOnNewDocument) method documentation.
      */
-        fun removeScriptToEvaluateOnNewDocument(input: RemoveScriptToEvaluateOnNewDocumentRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.removeScriptToEvaluateOnNewDocument", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun removeScriptToEvaluateOnNewDocument(input: RemoveScriptToEvaluateOnNewDocumentRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.removeScriptToEvaluateOnNewDocument", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Acknowledges that a screencast frame has been received by the frontend.
@@ -268,7 +240,6 @@ information in the `cookies` field.
     @pl.wendigo.chrome.protocol.Experimental
     fun screencastFrameAck(input: ScreencastFrameAckRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.screencastFrameAck", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Searches for given string in resource content.
      *
@@ -277,7 +248,6 @@ information in the `cookies` field.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun searchInResource(input: SearchInResourceRequest): io.reactivex.Single<SearchInResourceResponse> = connection.runAndCaptureResponse("Page.searchInResource", input, SearchInResourceResponse::class.java)
-
 
     /**
      * Enable Chrome's experimental ad filter on all sites.
@@ -288,7 +258,6 @@ information in the `cookies` field.
     @pl.wendigo.chrome.protocol.Experimental
     fun setAdBlockingEnabled(input: SetAdBlockingEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setAdBlockingEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Enable page Content Security Policy by-passing.
      *
@@ -297,7 +266,6 @@ information in the `cookies` field.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun setBypassCSP(input: SetBypassCSPRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setBypassCSP", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
 
     /**
      * Overrides the values of device screen dimensions (window.screen.width, window.screen.height,
@@ -311,7 +279,6 @@ query results).
     @pl.wendigo.chrome.protocol.Experimental
     fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setDeviceMetricsOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Overrides the Device Orientation.
      *
@@ -322,7 +289,6 @@ query results).
     @pl.wendigo.chrome.protocol.Experimental
     fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setDeviceOrientationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Set generic font families.
      *
@@ -331,7 +297,6 @@ query results).
     
     @pl.wendigo.chrome.protocol.Experimental
     fun setFontFamilies(input: SetFontFamiliesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setFontFamilies", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
 
     /**
      * Set default font sizes.
@@ -342,14 +307,12 @@ query results).
     @pl.wendigo.chrome.protocol.Experimental
     fun setFontSizes(input: SetFontSizesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setFontSizes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Sets given markup as the document's HTML.
      *
      * @link Protocol [Page#setDocumentContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDocumentContent) method documentation.
      */
-        fun setDocumentContent(input: SetDocumentContentRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setDocumentContent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun setDocumentContent(input: SetDocumentContentRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setDocumentContent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Set the behavior when downloading a file.
@@ -360,7 +323,6 @@ query results).
     @pl.wendigo.chrome.protocol.Experimental
     fun setDownloadBehavior(input: SetDownloadBehaviorRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setDownloadBehavior", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position
 unavailable.
@@ -368,8 +330,7 @@ unavailable.
      * @link Protocol [Page#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setGeolocationOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setGeolocationOverride is deprecated.")
-        fun setGeolocationOverride(input: SetGeolocationOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setGeolocationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun setGeolocationOverride(input: SetGeolocationOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setGeolocationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Controls whether page will emit lifecycle events.
@@ -379,7 +340,6 @@ unavailable.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun setLifecycleEventsEnabled(input: SetLifecycleEventsEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setLifecycleEventsEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
 
     /**
      * Toggles mouse event-based touch event emulation.
@@ -391,7 +351,6 @@ unavailable.
     @pl.wendigo.chrome.protocol.Experimental
     fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setTouchEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Starts sending each frame using the `screencastFrame` event.
      *
@@ -401,14 +360,12 @@ unavailable.
     @pl.wendigo.chrome.protocol.Experimental
     fun startScreencast(input: StartScreencastRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.startScreencast", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Force the page stop all navigations and pending resource fetches.
      *
      * @link Protocol [Page#stopLoading](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-stopLoading) method documentation.
      */
-        fun stopLoading(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.stopLoading", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun stopLoading(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.stopLoading", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Crashes renderer on the IO thread, generates minidumps.
@@ -419,7 +376,6 @@ unavailable.
     @pl.wendigo.chrome.protocol.Experimental
     fun crash(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Tries to close page, running its beforeunload hooks, if any.
      *
@@ -428,7 +384,6 @@ unavailable.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun close(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
 
     /**
      * Tries to update the web lifecycle state of the page.
@@ -441,7 +396,6 @@ https://github.com/WICG/web-lifecycle/
     @pl.wendigo.chrome.protocol.Experimental
     fun setWebLifecycleState(input: SetWebLifecycleStateRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setWebLifecycleState", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Stops sending each frame in the `screencastFrame`.
      *
@@ -451,7 +405,6 @@ https://github.com/WICG/web-lifecycle/
     @pl.wendigo.chrome.protocol.Experimental
     fun stopScreencast(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.stopScreencast", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Forces compilation cache to be generated for every subresource script.
      *
@@ -460,7 +413,6 @@ https://github.com/WICG/web-lifecycle/
     
     @pl.wendigo.chrome.protocol.Experimental
     fun setProduceCompilationCache(input: SetProduceCompilationCacheRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setProduceCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
 
     /**
      * Seeds compilation cache for given url. Compilation cache does not survive
@@ -472,7 +424,6 @@ cross-process navigation.
     @pl.wendigo.chrome.protocol.Experimental
     fun addCompilationCache(input: AddCompilationCacheRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.addCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Clears seeded compilation cache.
      *
@@ -481,7 +432,6 @@ cross-process navigation.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun clearCompilationCache(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.clearCompilationCache", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
 
     /**
      * Generates a report for testing.
@@ -492,7 +442,6 @@ cross-process navigation.
     @pl.wendigo.chrome.protocol.Experimental
     fun generateTestReport(input: GenerateTestReportRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.generateTestReport", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Pauses page execution. Can be resumed using generic Runtime.runIfWaitingForDebugger.
      *
@@ -501,7 +450,6 @@ cross-process navigation.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun waitForDebugger(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.waitForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
 
     /**
      * Intercept file chooser requests and transfer control to protocol clients.
@@ -515,7 +463,6 @@ File chooser can be handled with `page.handleFileChooser` command.
     @pl.wendigo.chrome.protocol.Experimental
     fun setInterceptFileChooserDialog(input: SetInterceptFileChooserDialogRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setInterceptFileChooserDialog", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Accepts or cancels an intercepted file chooser dialog.
      *
@@ -525,132 +472,130 @@ File chooser can be handled with `page.handleFileChooser` command.
     @pl.wendigo.chrome.protocol.Experimental
     fun handleFileChooser(input: HandleFileChooserRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.handleFileChooser", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      *  Returns observable capturing all Page.domContentEventFired events.
      */
-    fun domContentEventFired(): io.reactivex.Flowable<DomContentEventFiredEvent> = connection.captureEvents("Page.domContentEventFired", DomContentEventFiredEvent::class.java);
+    fun domContentEventFired(): io.reactivex.Flowable<DomContentEventFiredEvent> = connection.captureEvents("Page.domContentEventFired", DomContentEventFiredEvent::class.java)
 
     /**
      *  Emitted only when `page.interceptFileChooser` is enabled.
      */
-    fun fileChooserOpened(): io.reactivex.Flowable<FileChooserOpenedEvent> = connection.captureEvents("Page.fileChooserOpened", FileChooserOpenedEvent::class.java);
+    fun fileChooserOpened(): io.reactivex.Flowable<FileChooserOpenedEvent> = connection.captureEvents("Page.fileChooserOpened", FileChooserOpenedEvent::class.java)
 
     /**
      *  Fired when frame has been attached to its parent.
      */
-    fun frameAttached(): io.reactivex.Flowable<FrameAttachedEvent> = connection.captureEvents("Page.frameAttached", FrameAttachedEvent::class.java);
+    fun frameAttached(): io.reactivex.Flowable<FrameAttachedEvent> = connection.captureEvents("Page.frameAttached", FrameAttachedEvent::class.java)
 
     /**
      *  Fired when frame no longer has a scheduled navigation.
      */
-    fun frameClearedScheduledNavigation(): io.reactivex.Flowable<FrameClearedScheduledNavigationEvent> = connection.captureEvents("Page.frameClearedScheduledNavigation", FrameClearedScheduledNavigationEvent::class.java);
+    fun frameClearedScheduledNavigation(): io.reactivex.Flowable<FrameClearedScheduledNavigationEvent> = connection.captureEvents("Page.frameClearedScheduledNavigation", FrameClearedScheduledNavigationEvent::class.java)
 
     /**
      *  Fired when frame has been detached from its parent.
      */
-    fun frameDetached(): io.reactivex.Flowable<FrameDetachedEvent> = connection.captureEvents("Page.frameDetached", FrameDetachedEvent::class.java);
+    fun frameDetached(): io.reactivex.Flowable<FrameDetachedEvent> = connection.captureEvents("Page.frameDetached", FrameDetachedEvent::class.java)
 
     /**
      *  Fired once navigation of the frame has completed. Frame is now associated with the new loader.
      */
-    fun frameNavigated(): io.reactivex.Flowable<FrameNavigatedEvent> = connection.captureEvents("Page.frameNavigated", FrameNavigatedEvent::class.java);
+    fun frameNavigated(): io.reactivex.Flowable<FrameNavigatedEvent> = connection.captureEvents("Page.frameNavigated", FrameNavigatedEvent::class.java)
 
     /**
      *  Returns observable capturing all Page.frameResized events.
      */
-    fun frameResized(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Page.frameResized", pl.wendigo.chrome.protocol.Event::class.java);
+    fun frameResized(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Page.frameResized", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired when a renderer-initiated navigation is requested.
 Navigation may still be cancelled after the event is issued.
      */
-    fun frameRequestedNavigation(): io.reactivex.Flowable<FrameRequestedNavigationEvent> = connection.captureEvents("Page.frameRequestedNavigation", FrameRequestedNavigationEvent::class.java);
+    fun frameRequestedNavigation(): io.reactivex.Flowable<FrameRequestedNavigationEvent> = connection.captureEvents("Page.frameRequestedNavigation", FrameRequestedNavigationEvent::class.java)
 
     /**
      *  Fired when frame schedules a potential navigation.
      */
-    fun frameScheduledNavigation(): io.reactivex.Flowable<FrameScheduledNavigationEvent> = connection.captureEvents("Page.frameScheduledNavigation", FrameScheduledNavigationEvent::class.java);
+    fun frameScheduledNavigation(): io.reactivex.Flowable<FrameScheduledNavigationEvent> = connection.captureEvents("Page.frameScheduledNavigation", FrameScheduledNavigationEvent::class.java)
 
     /**
      *  Fired when frame has started loading.
      */
-    fun frameStartedLoading(): io.reactivex.Flowable<FrameStartedLoadingEvent> = connection.captureEvents("Page.frameStartedLoading", FrameStartedLoadingEvent::class.java);
+    fun frameStartedLoading(): io.reactivex.Flowable<FrameStartedLoadingEvent> = connection.captureEvents("Page.frameStartedLoading", FrameStartedLoadingEvent::class.java)
 
     /**
      *  Fired when frame has stopped loading.
      */
-    fun frameStoppedLoading(): io.reactivex.Flowable<FrameStoppedLoadingEvent> = connection.captureEvents("Page.frameStoppedLoading", FrameStoppedLoadingEvent::class.java);
+    fun frameStoppedLoading(): io.reactivex.Flowable<FrameStoppedLoadingEvent> = connection.captureEvents("Page.frameStoppedLoading", FrameStoppedLoadingEvent::class.java)
 
     /**
      *  Fired when page is about to start a download.
      */
-    fun downloadWillBegin(): io.reactivex.Flowable<DownloadWillBeginEvent> = connection.captureEvents("Page.downloadWillBegin", DownloadWillBeginEvent::class.java);
+    fun downloadWillBegin(): io.reactivex.Flowable<DownloadWillBeginEvent> = connection.captureEvents("Page.downloadWillBegin", DownloadWillBeginEvent::class.java)
 
     /**
      *  Fired when interstitial page was hidden
      */
-    fun interstitialHidden(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Page.interstitialHidden", pl.wendigo.chrome.protocol.Event::class.java);
+    fun interstitialHidden(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Page.interstitialHidden", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired when interstitial page was shown
      */
-    fun interstitialShown(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Page.interstitialShown", pl.wendigo.chrome.protocol.Event::class.java);
+    fun interstitialShown(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Page.interstitialShown", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been
 closed.
      */
-    fun javascriptDialogClosed(): io.reactivex.Flowable<JavascriptDialogClosedEvent> = connection.captureEvents("Page.javascriptDialogClosed", JavascriptDialogClosedEvent::class.java);
+    fun javascriptDialogClosed(): io.reactivex.Flowable<JavascriptDialogClosedEvent> = connection.captureEvents("Page.javascriptDialogClosed", JavascriptDialogClosedEvent::class.java)
 
     /**
      *  Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to
 open.
      */
-    fun javascriptDialogOpening(): io.reactivex.Flowable<JavascriptDialogOpeningEvent> = connection.captureEvents("Page.javascriptDialogOpening", JavascriptDialogOpeningEvent::class.java);
+    fun javascriptDialogOpening(): io.reactivex.Flowable<JavascriptDialogOpeningEvent> = connection.captureEvents("Page.javascriptDialogOpening", JavascriptDialogOpeningEvent::class.java)
 
     /**
      *  Fired for top level page lifecycle events such as navigation, load, paint, etc.
      */
-    fun lifecycleEvent(): io.reactivex.Flowable<LifecycleEventEvent> = connection.captureEvents("Page.lifecycleEvent", LifecycleEventEvent::class.java);
+    fun lifecycleEvent(): io.reactivex.Flowable<LifecycleEventEvent> = connection.captureEvents("Page.lifecycleEvent", LifecycleEventEvent::class.java)
 
     /**
      *  Returns observable capturing all Page.loadEventFired events.
      */
-    fun loadEventFired(): io.reactivex.Flowable<LoadEventFiredEvent> = connection.captureEvents("Page.loadEventFired", LoadEventFiredEvent::class.java);
+    fun loadEventFired(): io.reactivex.Flowable<LoadEventFiredEvent> = connection.captureEvents("Page.loadEventFired", LoadEventFiredEvent::class.java)
 
     /**
      *  Fired when same-document navigation happens, e.g. due to history API usage or anchor navigation.
      */
-    fun navigatedWithinDocument(): io.reactivex.Flowable<NavigatedWithinDocumentEvent> = connection.captureEvents("Page.navigatedWithinDocument", NavigatedWithinDocumentEvent::class.java);
+    fun navigatedWithinDocument(): io.reactivex.Flowable<NavigatedWithinDocumentEvent> = connection.captureEvents("Page.navigatedWithinDocument", NavigatedWithinDocumentEvent::class.java)
 
     /**
      *  Compressed image data requested by the `startScreencast`.
      */
-    fun screencastFrame(): io.reactivex.Flowable<ScreencastFrameEvent> = connection.captureEvents("Page.screencastFrame", ScreencastFrameEvent::class.java);
+    fun screencastFrame(): io.reactivex.Flowable<ScreencastFrameEvent> = connection.captureEvents("Page.screencastFrame", ScreencastFrameEvent::class.java)
 
     /**
      *  Fired when the page with currently enabled screencast was shown or hidden `.
      */
-    fun screencastVisibilityChanged(): io.reactivex.Flowable<ScreencastVisibilityChangedEvent> = connection.captureEvents("Page.screencastVisibilityChanged", ScreencastVisibilityChangedEvent::class.java);
+    fun screencastVisibilityChanged(): io.reactivex.Flowable<ScreencastVisibilityChangedEvent> = connection.captureEvents("Page.screencastVisibilityChanged", ScreencastVisibilityChangedEvent::class.java)
 
     /**
      *  Fired when a new window is going to be opened, via window.open(), link click, form submission,
 etc.
      */
-    fun windowOpen(): io.reactivex.Flowable<WindowOpenEvent> = connection.captureEvents("Page.windowOpen", WindowOpenEvent::class.java);
+    fun windowOpen(): io.reactivex.Flowable<WindowOpenEvent> = connection.captureEvents("Page.windowOpen", WindowOpenEvent::class.java)
 
     /**
      *  Issued for every compilation cache generated. Is only available
 if Page.setGenerateCompilationCache is enabled.
      */
-    fun compilationCacheProduced(): io.reactivex.Flowable<CompilationCacheProducedEvent> = connection.captureEvents("Page.compilationCacheProduced", CompilationCacheProducedEvent::class.java);
-
+    fun compilationCacheProduced(): io.reactivex.Flowable<CompilationCacheProducedEvent> = connection.captureEvents("Page.compilationCacheProduced", CompilationCacheProducedEvent::class.java)
 
     /**
      * Returns flowable capturing all Page domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.captureAllEvents().filter {
             it.protocolDomain() == "Page"
         }
@@ -663,7 +608,7 @@ if Page.setGenerateCompilationCache is enabled.
  * @link [Page#addScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnLoad) method documentation.
  * @see [PageOperations.addScriptToEvaluateOnLoad]
  */
-data class AddScriptToEvaluateOnLoadRequest (
+data class AddScriptToEvaluateOnLoadRequest(
     /**
      *
      */
@@ -675,14 +620,14 @@ data class AddScriptToEvaluateOnLoadRequest (
  * Deprecated, please use addScriptToEvaluateOnNewDocument instead.
  *
   
-  * @link [Page#addScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnLoad) method documentation.
-  * @see [PageOperations.addScriptToEvaluateOnLoad]
+ * @link [Page#addScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnLoad) method documentation.
+ * @see [PageOperations.addScriptToEvaluateOnLoad]
  */
 data class AddScriptToEvaluateOnLoadResponse(
-  /**
-   * Identifier of the added script.
-   */
-  val identifier: ScriptIdentifier
+    /**  
+     * Identifier of the added script.  
+     */  
+    val identifier: ScriptIdentifier
 
 )
 
@@ -693,7 +638,7 @@ data class AddScriptToEvaluateOnLoadResponse(
  * @link [Page#addScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnNewDocument) method documentation.
  * @see [PageOperations.addScriptToEvaluateOnNewDocument]
  */
-data class AddScriptToEvaluateOnNewDocumentRequest (
+data class AddScriptToEvaluateOnNewDocumentRequest(
     /**
      *
      */
@@ -712,18 +657,16 @@ event is emitted.
  * Evaluates given script in every frame upon creation (before loading frame's scripts).
  *
   
-  * @link [Page#addScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnNewDocument) method documentation.
-  * @see [PageOperations.addScriptToEvaluateOnNewDocument]
+ * @link [Page#addScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnNewDocument) method documentation.
+ * @see [PageOperations.addScriptToEvaluateOnNewDocument]
  */
 data class AddScriptToEvaluateOnNewDocumentResponse(
-  /**
-   * Identifier of the added script.
-   */
-  val identifier: ScriptIdentifier
+    /**  
+     * Identifier of the added script.  
+     */  
+    val identifier: ScriptIdentifier
 
 )
-
-
 
 /**
  * Represents request frame that can be used with [Page#captureScreenshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot) operation call.
@@ -732,7 +675,7 @@ data class AddScriptToEvaluateOnNewDocumentResponse(
  * @link [Page#captureScreenshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot) method documentation.
  * @see [PageOperations.captureScreenshot]
  */
-data class CaptureScreenshotRequest (
+data class CaptureScreenshotRequest(
     /**
      * Image compression format (defaults to png).
      */
@@ -759,14 +702,14 @@ data class CaptureScreenshotRequest (
  * Capture page screenshot.
  *
   
-  * @link [Page#captureScreenshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot) method documentation.
-  * @see [PageOperations.captureScreenshot]
+ * @link [Page#captureScreenshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot) method documentation.
+ * @see [PageOperations.captureScreenshot]
  */
 data class CaptureScreenshotResponse(
-  /**
-   * Base64-encoded image data.
-   */
-  val data: String
+    /**  
+     * Base64-encoded image data.  
+     */  
+    val data: String
 
 )
 
@@ -778,7 +721,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
  * @link [Page#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureSnapshot) method documentation.
  * @see [PageOperations.captureSnapshot]
  */
-data class CaptureSnapshotRequest (
+data class CaptureSnapshotRequest(
     /**
      * Format (defaults to mhtml).
      */
@@ -791,22 +734,16 @@ data class CaptureSnapshotRequest (
 iframes, shadow DOM, external resources, and element-inline styles.
  *
   
-  * @link [Page#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureSnapshot) method documentation.
-  * @see [PageOperations.captureSnapshot]
+ * @link [Page#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureSnapshot) method documentation.
+ * @see [PageOperations.captureSnapshot]
  */
 data class CaptureSnapshotResponse(
-  /**
-   * Serialized page data.
-   */
-  val data: String
+    /**  
+     * Serialized page data.  
+     */  
+    val data: String
 
 )
-
-
-
-
-
-
 
 /**
  * Represents request frame that can be used with [Page#createIsolatedWorld](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-createIsolatedWorld) operation call.
@@ -815,7 +752,7 @@ data class CaptureSnapshotResponse(
  * @link [Page#createIsolatedWorld](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-createIsolatedWorld) method documentation.
  * @see [PageOperations.createIsolatedWorld]
  */
-data class CreateIsolatedWorldRequest (
+data class CreateIsolatedWorldRequest(
     /**
      * Id of the frame in which the isolated world should be created.
      */
@@ -838,14 +775,14 @@ option, use with caution.
  * Creates an isolated world for the given frame.
  *
   
-  * @link [Page#createIsolatedWorld](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-createIsolatedWorld) method documentation.
-  * @see [PageOperations.createIsolatedWorld]
+ * @link [Page#createIsolatedWorld](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-createIsolatedWorld) method documentation.
+ * @see [PageOperations.createIsolatedWorld]
  */
 data class CreateIsolatedWorldResponse(
-  /**
-   * Execution context of the isolated world.
-   */
-  val executionContextId: pl.wendigo.chrome.api.runtime.ExecutionContextId
+    /**  
+     * Execution context of the isolated world.  
+     */  
+    val executionContextId: pl.wendigo.chrome.api.runtime.ExecutionContextId
 
 )
 
@@ -856,7 +793,7 @@ data class CreateIsolatedWorldResponse(
  * @link [Page#deleteCookie](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-deleteCookie) method documentation.
  * @see [PageOperations.deleteCookie]
  */
-data class DeleteCookieRequest (
+data class DeleteCookieRequest(
     /**
      * Name of the cookie to remove.
      */
@@ -869,54 +806,47 @@ data class DeleteCookieRequest (
 
 )
 
-
-
-
-
-
 /**
  * Represents response frame that is returned from [Page#getAppManifest](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getAppManifest) operation call.
  *
  *
   
-  * @link [Page#getAppManifest](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getAppManifest) method documentation.
-  * @see [PageOperations.getAppManifest]
+ * @link [Page#getAppManifest](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getAppManifest) method documentation.
+ * @see [PageOperations.getAppManifest]
  */
 data class GetAppManifestResponse(
-  /**
-   * Manifest location.
-   */
-  val url: String,
+    /**  
+     * Manifest location.  
+     */  
+    val url: String,
 
-  /**
-   *
-   */
-  val errors: List<AppManifestError>,
+    /**  
+     *  
+     */  
+    val errors: List<AppManifestError>,
 
-  /**
-   * Manifest content.
-   */
-  val data: String? = null
+    /**  
+     * Manifest content.  
+     */  
+    val data: String? = null
 
 )
-
 
 /**
  * Represents response frame that is returned from [Page#getInstallabilityErrors](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getInstallabilityErrors) operation call.
  *
  *
   
-  * @link [Page#getInstallabilityErrors](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getInstallabilityErrors) method documentation.
-  * @see [PageOperations.getInstallabilityErrors]
+ * @link [Page#getInstallabilityErrors](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getInstallabilityErrors) method documentation.
+ * @see [PageOperations.getInstallabilityErrors]
  */
 data class GetInstallabilityErrorsResponse(
-  /**
-   *
-   */
-  val errors: List<String>
+    /**  
+     *  
+     */  
+    val errors: List<String>
 
 )
-
 
 /**
  * Represents response frame that is returned from [Page#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getCookies) operation call.
@@ -924,84 +854,79 @@ data class GetInstallabilityErrorsResponse(
 information in the `cookies` field.
  *
   
-  * @link [Page#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getCookies) method documentation.
-  * @see [PageOperations.getCookies]
+ * @link [Page#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getCookies) method documentation.
+ * @see [PageOperations.getCookies]
  */
 data class GetCookiesResponse(
-  /**
-   * Array of cookie objects.
-   */
-  val cookies: List<pl.wendigo.chrome.api.network.Cookie>
+    /**  
+     * Array of cookie objects.  
+     */  
+    val cookies: List<pl.wendigo.chrome.api.network.Cookie>
 
 )
-
 
 /**
  * Represents response frame that is returned from [Page#getFrameTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getFrameTree) operation call.
  * Returns present frame tree structure.
  *
   
-  * @link [Page#getFrameTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getFrameTree) method documentation.
-  * @see [PageOperations.getFrameTree]
+ * @link [Page#getFrameTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getFrameTree) method documentation.
+ * @see [PageOperations.getFrameTree]
  */
 data class GetFrameTreeResponse(
-  /**
-   * Present frame tree structure.
-   */
-  val frameTree: FrameTree
+    /**  
+     * Present frame tree structure.  
+     */  
+    val frameTree: FrameTree
 
 )
-
 
 /**
  * Represents response frame that is returned from [Page#getLayoutMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getLayoutMetrics) operation call.
  * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
  *
   
-  * @link [Page#getLayoutMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getLayoutMetrics) method documentation.
-  * @see [PageOperations.getLayoutMetrics]
+ * @link [Page#getLayoutMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getLayoutMetrics) method documentation.
+ * @see [PageOperations.getLayoutMetrics]
  */
 data class GetLayoutMetricsResponse(
-  /**
-   * Metrics relating to the layout viewport.
-   */
-  val layoutViewport: LayoutViewport,
+    /**  
+     * Metrics relating to the layout viewport.  
+     */  
+    val layoutViewport: LayoutViewport,
 
-  /**
-   * Metrics relating to the visual viewport.
-   */
-  val visualViewport: VisualViewport,
+    /**  
+     * Metrics relating to the visual viewport.  
+     */  
+    val visualViewport: VisualViewport,
 
-  /**
-   * Size of scrollable area.
-   */
-  val contentSize: pl.wendigo.chrome.api.dom.Rect
+    /**  
+     * Size of scrollable area.  
+     */  
+    val contentSize: pl.wendigo.chrome.api.dom.Rect
 
 )
-
 
 /**
  * Represents response frame that is returned from [Page#getNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getNavigationHistory) operation call.
  * Returns navigation history for the current page.
  *
   
-  * @link [Page#getNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getNavigationHistory) method documentation.
-  * @see [PageOperations.getNavigationHistory]
+ * @link [Page#getNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getNavigationHistory) method documentation.
+ * @see [PageOperations.getNavigationHistory]
  */
 data class GetNavigationHistoryResponse(
-  /**
-   * Index of the current navigation history entry.
-   */
-  val currentIndex: Int,
+    /**  
+     * Index of the current navigation history entry.  
+     */  
+    val currentIndex: Int,
 
-  /**
-   * Array of navigation history entries.
-   */
-  val entries: List<NavigationEntry>
+    /**  
+     * Array of navigation history entries.  
+     */  
+    val entries: List<NavigationEntry>
 
 )
-
-
 
 /**
  * Represents request frame that can be used with [Page#getResourceContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceContent) operation call.
@@ -1010,7 +935,7 @@ data class GetNavigationHistoryResponse(
  * @link [Page#getResourceContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceContent) method documentation.
  * @see [PageOperations.getResourceContent]
  */
-data class GetResourceContentRequest (
+data class GetResourceContentRequest(
     /**
      * Frame id to get resource for.
      */
@@ -1027,36 +952,35 @@ data class GetResourceContentRequest (
  * Returns content of the given resource.
  *
   
-  * @link [Page#getResourceContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceContent) method documentation.
-  * @see [PageOperations.getResourceContent]
+ * @link [Page#getResourceContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceContent) method documentation.
+ * @see [PageOperations.getResourceContent]
  */
 data class GetResourceContentResponse(
-  /**
-   * Resource content.
-   */
-  val content: String,
+    /**  
+     * Resource content.  
+     */  
+    val content: String,
 
-  /**
-   * True, if content was served as base64.
-   */
-  val base64Encoded: Boolean
+    /**  
+     * True, if content was served as base64.  
+     */  
+    val base64Encoded: Boolean
 
 )
-
 
 /**
  * Represents response frame that is returned from [Page#getResourceTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceTree) operation call.
  * Returns present frame / resource tree structure.
  *
   
-  * @link [Page#getResourceTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceTree) method documentation.
-  * @see [PageOperations.getResourceTree]
+ * @link [Page#getResourceTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceTree) method documentation.
+ * @see [PageOperations.getResourceTree]
  */
 data class GetResourceTreeResponse(
-  /**
-   * Present frame / resource tree structure.
-   */
-  val frameTree: FrameResourceTree
+    /**  
+     * Present frame / resource tree structure.  
+     */  
+    val frameTree: FrameResourceTree
 
 )
 
@@ -1067,7 +991,7 @@ data class GetResourceTreeResponse(
  * @link [Page#handleJavaScriptDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-handleJavaScriptDialog) method documentation.
  * @see [PageOperations.handleJavaScriptDialog]
  */
-data class HandleJavaScriptDialogRequest (
+data class HandleJavaScriptDialogRequest(
     /**
      * Whether to accept or dismiss the dialog.
      */
@@ -1088,7 +1012,7 @@ dialog.
  * @link [Page#navigate](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigate) method documentation.
  * @see [PageOperations.navigate]
  */
-data class NavigateRequest (
+data class NavigateRequest(
     /**
      * URL to navigate the page to.
      */
@@ -1115,24 +1039,24 @@ data class NavigateRequest (
  * Navigates current page to the given URL.
  *
   
-  * @link [Page#navigate](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigate) method documentation.
-  * @see [PageOperations.navigate]
+ * @link [Page#navigate](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigate) method documentation.
+ * @see [PageOperations.navigate]
  */
 data class NavigateResponse(
-  /**
-   * Frame id that has navigated (or failed to navigate)
-   */
-  val frameId: FrameId,
+    /**  
+     * Frame id that has navigated (or failed to navigate)  
+     */  
+    val frameId: FrameId,
 
-  /**
-   * Loader identifier.
-   */
-  val loaderId: pl.wendigo.chrome.api.network.LoaderId? = null,
+    /**  
+     * Loader identifier.  
+     */  
+    val loaderId: pl.wendigo.chrome.api.network.LoaderId? = null,
 
-  /**
-   * User friendly error message, present if and only if navigation has failed.
-   */
-  val errorText: String? = null
+    /**  
+     * User friendly error message, present if and only if navigation has failed.  
+     */  
+    val errorText: String? = null
 
 )
 
@@ -1143,7 +1067,7 @@ data class NavigateResponse(
  * @link [Page#navigateToHistoryEntry](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigateToHistoryEntry) method documentation.
  * @see [PageOperations.navigateToHistoryEntry]
  */
-data class NavigateToHistoryEntryRequest (
+data class NavigateToHistoryEntryRequest(
     /**
      * Unique id of the entry to navigate to.
      */
@@ -1158,7 +1082,7 @@ data class NavigateToHistoryEntryRequest (
  * @link [Page#printToPDF](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-printToPDF) method documentation.
  * @see [PageOperations.printToPDF]
  */
-data class PrintToPDFRequest (
+data class PrintToPDFRequest(
     /**
      * Paper orientation. Defaults to false.
      */
@@ -1256,19 +1180,19 @@ in which case the content will be scaled to fit the paper size.
  * Print page as PDF.
  *
   
-  * @link [Page#printToPDF](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-printToPDF) method documentation.
-  * @see [PageOperations.printToPDF]
+ * @link [Page#printToPDF](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-printToPDF) method documentation.
+ * @see [PageOperations.printToPDF]
  */
 data class PrintToPDFResponse(
-  /**
-   * Base64-encoded pdf data. Empty if |returnAsStream| is specified.
-   */
-  val data: String,
+    /**  
+     * Base64-encoded pdf data. Empty if |returnAsStream| is specified.  
+     */  
+    val data: String,
 
-  /**
-   * A handle of the stream that holds resulting PDF data.
-   */
-  val stream: pl.wendigo.chrome.api.io.StreamHandle? = null
+    /**  
+     * A handle of the stream that holds resulting PDF data.  
+     */  
+    val stream: pl.wendigo.chrome.api.io.StreamHandle? = null
 
 )
 
@@ -1279,7 +1203,7 @@ data class PrintToPDFResponse(
  * @link [Page#reload](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-reload) method documentation.
  * @see [PageOperations.reload]
  */
-data class ReloadRequest (
+data class ReloadRequest(
     /**
      * If true, browser cache is ignored (as if the user pressed Shift+refresh).
      */
@@ -1300,7 +1224,7 @@ Argument will be ignored if reloading dataURL origin.
  * @link [Page#removeScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-removeScriptToEvaluateOnLoad) method documentation.
  * @see [PageOperations.removeScriptToEvaluateOnLoad]
  */
-data class RemoveScriptToEvaluateOnLoadRequest (
+data class RemoveScriptToEvaluateOnLoadRequest(
     /**
      *
      */
@@ -1315,7 +1239,7 @@ data class RemoveScriptToEvaluateOnLoadRequest (
  * @link [Page#removeScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-removeScriptToEvaluateOnNewDocument) method documentation.
  * @see [PageOperations.removeScriptToEvaluateOnNewDocument]
  */
-data class RemoveScriptToEvaluateOnNewDocumentRequest (
+data class RemoveScriptToEvaluateOnNewDocumentRequest(
     /**
      *
      */
@@ -1330,7 +1254,7 @@ data class RemoveScriptToEvaluateOnNewDocumentRequest (
  * @link [Page#screencastFrameAck](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-screencastFrameAck) method documentation.
  * @see [PageOperations.screencastFrameAck]
  */
-data class ScreencastFrameAckRequest (
+data class ScreencastFrameAckRequest(
     /**
      * Frame number.
      */
@@ -1345,7 +1269,7 @@ data class ScreencastFrameAckRequest (
  * @link [Page#searchInResource](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-searchInResource) method documentation.
  * @see [PageOperations.searchInResource]
  */
-data class SearchInResourceRequest (
+data class SearchInResourceRequest(
     /**
      * Frame id for resource to search in.
      */
@@ -1377,14 +1301,14 @@ data class SearchInResourceRequest (
  * Searches for given string in resource content.
  *
   
-  * @link [Page#searchInResource](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-searchInResource) method documentation.
-  * @see [PageOperations.searchInResource]
+ * @link [Page#searchInResource](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-searchInResource) method documentation.
+ * @see [PageOperations.searchInResource]
  */
 data class SearchInResourceResponse(
-  /**
-   * List of search matches.
-   */
-  val result: List<pl.wendigo.chrome.api.debugger.SearchMatch>
+    /**  
+     * List of search matches.  
+     */  
+    val result: List<pl.wendigo.chrome.api.debugger.SearchMatch>
 
 )
 
@@ -1395,7 +1319,7 @@ data class SearchInResourceResponse(
  * @link [Page#setAdBlockingEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setAdBlockingEnabled) method documentation.
  * @see [PageOperations.setAdBlockingEnabled]
  */
-data class SetAdBlockingEnabledRequest (
+data class SetAdBlockingEnabledRequest(
     /**
      * Whether to block ads.
      */
@@ -1410,7 +1334,7 @@ data class SetAdBlockingEnabledRequest (
  * @link [Page#setBypassCSP](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setBypassCSP) method documentation.
  * @see [PageOperations.setBypassCSP]
  */
-data class SetBypassCSPRequest (
+data class SetBypassCSPRequest(
     /**
      * Whether to bypass page CSP.
      */
@@ -1427,7 +1351,7 @@ query results).
  * @link [Page#setDeviceMetricsOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDeviceMetricsOverride) method documentation.
  * @see [PageOperations.setDeviceMetricsOverride]
  */
-data class SetDeviceMetricsOverrideRequest (
+data class SetDeviceMetricsOverrideRequest(
     /**
      * Overriding width value in pixels (minimum 0, maximum 10000000). 0 disables the override.
      */
@@ -1498,7 +1422,7 @@ autosizing and more.
  * @link [Page#setDeviceOrientationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDeviceOrientationOverride) method documentation.
  * @see [PageOperations.setDeviceOrientationOverride]
  */
-data class SetDeviceOrientationOverrideRequest (
+data class SetDeviceOrientationOverrideRequest(
     /**
      * Mock alpha
      */
@@ -1523,7 +1447,7 @@ data class SetDeviceOrientationOverrideRequest (
  * @link [Page#setFontFamilies](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setFontFamilies) method documentation.
  * @see [PageOperations.setFontFamilies]
  */
-data class SetFontFamiliesRequest (
+data class SetFontFamiliesRequest(
     /**
      * Specifies font families to set. If a font family is not specified, it won't be changed.
      */
@@ -1538,7 +1462,7 @@ data class SetFontFamiliesRequest (
  * @link [Page#setFontSizes](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setFontSizes) method documentation.
  * @see [PageOperations.setFontSizes]
  */
-data class SetFontSizesRequest (
+data class SetFontSizesRequest(
     /**
      * Specifies font sizes to set. If a font size is not specified, it won't be changed.
      */
@@ -1553,7 +1477,7 @@ data class SetFontSizesRequest (
  * @link [Page#setDocumentContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDocumentContent) method documentation.
  * @see [PageOperations.setDocumentContent]
  */
-data class SetDocumentContentRequest (
+data class SetDocumentContentRequest(
     /**
      * Frame id to set HTML for.
      */
@@ -1573,7 +1497,7 @@ data class SetDocumentContentRequest (
  * @link [Page#setDownloadBehavior](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDownloadBehavior) method documentation.
  * @see [PageOperations.setDownloadBehavior]
  */
-data class SetDownloadBehaviorRequest (
+data class SetDownloadBehaviorRequest(
     /**
      * Whether to allow all or deny all download requests, or use default Chrome behavior if
 available (otherwise deny).
@@ -1595,7 +1519,7 @@ unavailable.
  * @link [Page#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setGeolocationOverride) method documentation.
  * @see [PageOperations.setGeolocationOverride]
  */
-data class SetGeolocationOverrideRequest (
+data class SetGeolocationOverrideRequest(
     /**
      * Mock latitude
      */
@@ -1620,7 +1544,7 @@ data class SetGeolocationOverrideRequest (
  * @link [Page#setLifecycleEventsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setLifecycleEventsEnabled) method documentation.
  * @see [PageOperations.setLifecycleEventsEnabled]
  */
-data class SetLifecycleEventsEnabledRequest (
+data class SetLifecycleEventsEnabledRequest(
     /**
      * If true, starts emitting lifecycle events.
      */
@@ -1635,7 +1559,7 @@ data class SetLifecycleEventsEnabledRequest (
  * @link [Page#setTouchEmulationEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setTouchEmulationEnabled) method documentation.
  * @see [PageOperations.setTouchEmulationEnabled]
  */
-data class SetTouchEmulationEnabledRequest (
+data class SetTouchEmulationEnabledRequest(
     /**
      * Whether the touch event emulation should be enabled.
      */
@@ -1655,7 +1579,7 @@ data class SetTouchEmulationEnabledRequest (
  * @link [Page#startScreencast](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-startScreencast) method documentation.
  * @see [PageOperations.startScreencast]
  */
-data class StartScreencastRequest (
+data class StartScreencastRequest(
     /**
      * Image compression format.
      */
@@ -1683,12 +1607,6 @@ data class StartScreencastRequest (
 
 )
 
-
-
-
-
-
-
 /**
  * Represents request frame that can be used with [Page#setWebLifecycleState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setWebLifecycleState) operation call.
  *
@@ -1698,15 +1616,13 @@ https://github.com/WICG/web-lifecycle/
  * @link [Page#setWebLifecycleState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setWebLifecycleState) method documentation.
  * @see [PageOperations.setWebLifecycleState]
  */
-data class SetWebLifecycleStateRequest (
+data class SetWebLifecycleStateRequest(
     /**
      * Target lifecycle state
      */
     val state: String
 
 )
-
-
 
 /**
  * Represents request frame that can be used with [Page#setProduceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setProduceCompilationCache) operation call.
@@ -1715,7 +1631,7 @@ data class SetWebLifecycleStateRequest (
  * @link [Page#setProduceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setProduceCompilationCache) method documentation.
  * @see [PageOperations.setProduceCompilationCache]
  */
-data class SetProduceCompilationCacheRequest (
+data class SetProduceCompilationCacheRequest(
     /**
      *
      */
@@ -1731,7 +1647,7 @@ cross-process navigation.
  * @link [Page#addCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addCompilationCache) method documentation.
  * @see [PageOperations.addCompilationCache]
  */
-data class AddCompilationCacheRequest (
+data class AddCompilationCacheRequest(
     /**
      *
      */
@@ -1744,8 +1660,6 @@ data class AddCompilationCacheRequest (
 
 )
 
-
-
 /**
  * Represents request frame that can be used with [Page#generateTestReport](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-generateTestReport) operation call.
  *
@@ -1753,7 +1667,7 @@ data class AddCompilationCacheRequest (
  * @link [Page#generateTestReport](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-generateTestReport) method documentation.
  * @see [PageOperations.generateTestReport]
  */
-data class GenerateTestReportRequest (
+data class GenerateTestReportRequest(
     /**
      * Message to be displayed in the report.
      */
@@ -1766,8 +1680,6 @@ data class GenerateTestReportRequest (
 
 )
 
-
-
 /**
  * Represents request frame that can be used with [Page#setInterceptFileChooserDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setInterceptFileChooserDialog) operation call.
  *
@@ -1778,7 +1690,7 @@ File chooser can be handled with `page.handleFileChooser` command.
  * @link [Page#setInterceptFileChooserDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setInterceptFileChooserDialog) method documentation.
  * @see [PageOperations.setInterceptFileChooserDialog]
  */
-data class SetInterceptFileChooserDialogRequest (
+data class SetInterceptFileChooserDialogRequest(
     /**
      *
      */
@@ -1793,7 +1705,7 @@ data class SetInterceptFileChooserDialogRequest (
  * @link [Page#handleFileChooser](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-handleFileChooser) method documentation.
  * @see [PageOperations.handleFileChooser]
  */
-data class HandleFileChooserRequest (
+data class HandleFileChooserRequest(
     /**
      *
      */
@@ -1810,385 +1722,381 @@ data class HandleFileChooserRequest (
  *
  *
  * @link [Page#domContentEventFired](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-domContentEventFired) event documentation.
-   */
+ */
 data class DomContentEventFiredEvent(
-  /**
-   *
-   */
-  val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
+    /**  
+     *  
+     */  
+    val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "domContentEventFired")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "domContentEventFired")
 
 /**
  * Emitted only when `page.interceptFileChooser` is enabled.
  *
  * @link [Page#fileChooserOpened](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-fileChooserOpened) event documentation.
-   */
+ */
 data class FileChooserOpenedEvent(
-  /**
-   *
-   */
-  val mode: String
+    /**  
+     *  
+     */  
+    val mode: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "fileChooserOpened")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "fileChooserOpened")
 
 /**
  * Fired when frame has been attached to its parent.
  *
  * @link [Page#frameAttached](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameAttached) event documentation.
-   */
+ */
 data class FrameAttachedEvent(
-  /**
-   * Id of the frame that has been attached.
-   */
-  val frameId: FrameId,
+    /**  
+     * Id of the frame that has been attached.  
+     */  
+    val frameId: FrameId,
 
-  /**
-   * Parent frame identifier.
-   */
-  val parentFrameId: FrameId,
+    /**  
+     * Parent frame identifier.  
+     */  
+    val parentFrameId: FrameId,
 
-  /**
-   * JavaScript stack trace of when frame was attached, only set if frame initiated from script.
-   */
-  val stack: pl.wendigo.chrome.api.runtime.StackTrace? = null
+    /**  
+     * JavaScript stack trace of when frame was attached, only set if frame initiated from script.  
+     */  
+    val stack: pl.wendigo.chrome.api.runtime.StackTrace? = null
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameAttached")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameAttached")
 
 /**
  * Fired when frame no longer has a scheduled navigation.
  *
  * @link [Page#frameClearedScheduledNavigation](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameClearedScheduledNavigation) event documentation.
-   */
+ */
 data class FrameClearedScheduledNavigationEvent(
-  /**
-   * Id of the frame that has cleared its scheduled navigation.
-   */
-  val frameId: FrameId
+    /**  
+     * Id of the frame that has cleared its scheduled navigation.  
+     */  
+    val frameId: FrameId
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameClearedScheduledNavigation")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameClearedScheduledNavigation")
 
 /**
  * Fired when frame has been detached from its parent.
  *
  * @link [Page#frameDetached](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameDetached) event documentation.
-   */
+ */
 data class FrameDetachedEvent(
-  /**
-   * Id of the frame that has been detached.
-   */
-  val frameId: FrameId
+    /**  
+     * Id of the frame that has been detached.  
+     */  
+    val frameId: FrameId
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameDetached")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameDetached")
 
 /**
  * Fired once navigation of the frame has completed. Frame is now associated with the new loader.
  *
  * @link [Page#frameNavigated](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameNavigated) event documentation.
-   */
+ */
 data class FrameNavigatedEvent(
-  /**
-   * Frame object.
-   */
-  val frame: Frame
+    /**  
+     * Frame object.  
+     */  
+    val frame: Frame
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameNavigated")
-
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameNavigated")
 
 /**
  * Fired when a renderer-initiated navigation is requested.
 Navigation may still be cancelled after the event is issued.
  *
  * @link [Page#frameRequestedNavigation](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameRequestedNavigation) event documentation.
-   */
+ */
 data class FrameRequestedNavigationEvent(
-  /**
-   * Id of the frame that is being navigated.
-   */
-  val frameId: FrameId,
+    /**  
+     * Id of the frame that is being navigated.  
+     */  
+    val frameId: FrameId,
 
-  /**
-   * The reason for the navigation.
-   */
-  val reason: ClientNavigationReason,
+    /**  
+     * The reason for the navigation.  
+     */  
+    val reason: ClientNavigationReason,
 
-  /**
-   * The destination URL for the requested navigation.
-   */
-  val url: String
+    /**  
+     * The destination URL for the requested navigation.  
+     */  
+    val url: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameRequestedNavigation")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameRequestedNavigation")
 
 /**
  * Fired when frame schedules a potential navigation.
  *
  * @link [Page#frameScheduledNavigation](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameScheduledNavigation) event documentation.
-   */
+ */
 data class FrameScheduledNavigationEvent(
-  /**
-   * Id of the frame that has scheduled a navigation.
-   */
-  val frameId: FrameId,
+    /**  
+     * Id of the frame that has scheduled a navigation.  
+     */  
+    val frameId: FrameId,
 
-  /**
-   * Delay (in seconds) until the navigation is scheduled to begin. The navigation is not
-guaranteed to start.
-   */
-  val delay: Double,
+    /**  
+     * Delay (in seconds) until the navigation is scheduled to begin. The navigation is not  
+     guaranteed to start.  
+     */  
+    val delay: Double,
 
-  /**
-   * The reason for the navigation.
-   */
-  val reason: String,
+    /**  
+     * The reason for the navigation.  
+     */  
+    val reason: String,
 
-  /**
-   * The destination URL for the scheduled navigation.
-   */
-  val url: String
+    /**  
+     * The destination URL for the scheduled navigation.  
+     */  
+    val url: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameScheduledNavigation")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameScheduledNavigation")
 
 /**
  * Fired when frame has started loading.
  *
  * @link [Page#frameStartedLoading](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameStartedLoading) event documentation.
-   */
+ */
 data class FrameStartedLoadingEvent(
-  /**
-   * Id of the frame that has started loading.
-   */
-  val frameId: FrameId
+    /**  
+     * Id of the frame that has started loading.  
+     */  
+    val frameId: FrameId
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameStartedLoading")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameStartedLoading")
 
 /**
  * Fired when frame has stopped loading.
  *
  * @link [Page#frameStoppedLoading](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameStoppedLoading) event documentation.
-   */
+ */
 data class FrameStoppedLoadingEvent(
-  /**
-   * Id of the frame that has stopped loading.
-   */
-  val frameId: FrameId
+    /**  
+     * Id of the frame that has stopped loading.  
+     */  
+    val frameId: FrameId
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameStoppedLoading")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameStoppedLoading")
 
 /**
  * Fired when page is about to start a download.
  *
  * @link [Page#downloadWillBegin](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-downloadWillBegin) event documentation.
-   */
+ */
 data class DownloadWillBeginEvent(
-  /**
-   * Id of the frame that caused download to begin.
-   */
-  val frameId: FrameId,
+    /**  
+     * Id of the frame that caused download to begin.  
+     */  
+    val frameId: FrameId,
 
-  /**
-   * URL of the resource being downloaded.
-   */
-  val url: String
+    /**  
+     * URL of the resource being downloaded.  
+     */  
+    val url: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "downloadWillBegin")
-
-
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "downloadWillBegin")
 
 /**
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been
 closed.
  *
  * @link [Page#javascriptDialogClosed](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-javascriptDialogClosed) event documentation.
-   */
+ */
 data class JavascriptDialogClosedEvent(
-  /**
-   * Whether dialog was confirmed.
-   */
-  val result: Boolean,
+    /**  
+     * Whether dialog was confirmed.  
+     */  
+    val result: Boolean,
 
-  /**
-   * User input in case of prompt.
-   */
-  val userInput: String
+    /**  
+     * User input in case of prompt.  
+     */  
+    val userInput: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "javascriptDialogClosed")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "javascriptDialogClosed")
 
 /**
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to
 open.
  *
  * @link [Page#javascriptDialogOpening](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-javascriptDialogOpening) event documentation.
-   */
+ */
 data class JavascriptDialogOpeningEvent(
-  /**
-   * Frame url.
-   */
-  val url: String,
+    /**  
+     * Frame url.  
+     */  
+    val url: String,
 
-  /**
-   * Message that will be displayed by the dialog.
-   */
-  val message: String,
+    /**  
+     * Message that will be displayed by the dialog.  
+     */  
+    val message: String,
 
-  /**
-   * Dialog type.
-   */
-  val type: DialogType,
+    /**  
+     * Dialog type.  
+     */  
+    val type: DialogType,
 
-  /**
-   * True iff browser is capable showing or acting on the given dialog. When browser has no
-dialog handler for given target, calling alert while Page domain is engaged will stall
-the page execution. Execution can be resumed via calling Page.handleJavaScriptDialog.
-   */
-  val hasBrowserHandler: Boolean,
+    /**  
+     * True iff browser is capable showing or acting on the given dialog. When browser has no  
+     dialog handler for given target, calling alert while Page domain is engaged will stall  
+     the page execution. Execution can be resumed via calling Page.handleJavaScriptDialog.  
+     */  
+    val hasBrowserHandler: Boolean,
 
-  /**
-   * Default dialog prompt.
-   */
-  val defaultPrompt: String? = null
+    /**  
+     * Default dialog prompt.  
+     */  
+    val defaultPrompt: String? = null
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "javascriptDialogOpening")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "javascriptDialogOpening")
 
 /**
  * Fired for top level page lifecycle events such as navigation, load, paint, etc.
  *
  * @link [Page#lifecycleEvent](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-lifecycleEvent) event documentation.
-   */
+ */
 data class LifecycleEventEvent(
-  /**
-   * Id of the frame.
-   */
-  val frameId: FrameId,
+    /**  
+     * Id of the frame.  
+     */  
+    val frameId: FrameId,
 
-  /**
-   * Loader identifier. Empty string if the request is fetched from worker.
-   */
-  val loaderId: pl.wendigo.chrome.api.network.LoaderId,
+    /**  
+     * Loader identifier. Empty string if the request is fetched from worker.  
+     */  
+    val loaderId: pl.wendigo.chrome.api.network.LoaderId,
 
-  /**
-   *
-   */
-  val name: String,
+    /**  
+     *  
+     */  
+    val name: String,
 
-  /**
-   *
-   */
-  val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
+    /**  
+     *  
+     */  
+    val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "lifecycleEvent")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "lifecycleEvent")
 
 /**
  *
  *
  * @link [Page#loadEventFired](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-loadEventFired) event documentation.
-   */
+ */
 data class LoadEventFiredEvent(
-  /**
-   *
-   */
-  val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
+    /**  
+     *  
+     */  
+    val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "loadEventFired")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "loadEventFired")
 
 /**
  * Fired when same-document navigation happens, e.g. due to history API usage or anchor navigation.
  *
  * @link [Page#navigatedWithinDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-navigatedWithinDocument) event documentation.
-   */
+ */
 data class NavigatedWithinDocumentEvent(
-  /**
-   * Id of the frame.
-   */
-  val frameId: FrameId,
+    /**  
+     * Id of the frame.  
+     */  
+    val frameId: FrameId,
 
-  /**
-   * Frame's new url.
-   */
-  val url: String
+    /**  
+     * Frame's new url.  
+     */  
+    val url: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "navigatedWithinDocument")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "navigatedWithinDocument")
 
 /**
  * Compressed image data requested by the `startScreencast`.
  *
  * @link [Page#screencastFrame](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-screencastFrame) event documentation.
-   */
+ */
 data class ScreencastFrameEvent(
-  /**
-   * Base64-encoded compressed image.
-   */
-  val data: String,
+    /**  
+     * Base64-encoded compressed image.  
+     */  
+    val data: String,
 
-  /**
-   * Screencast frame metadata.
-   */
-  val metadata: ScreencastFrameMetadata,
+    /**  
+     * Screencast frame metadata.  
+     */  
+    val metadata: ScreencastFrameMetadata,
 
-  /**
-   * Frame number.
-   */
-  val sessionId: Int
+    /**  
+     * Frame number.  
+     */  
+    val sessionId: Int
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "screencastFrame")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "screencastFrame")
 
 /**
  * Fired when the page with currently enabled screencast was shown or hidden `.
  *
  * @link [Page#screencastVisibilityChanged](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-screencastVisibilityChanged) event documentation.
-   */
+ */
 data class ScreencastVisibilityChangedEvent(
-  /**
-   * True if the page is visible.
-   */
-  val visible: Boolean
+    /**  
+     * True if the page is visible.  
+     */  
+    val visible: Boolean
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "screencastVisibilityChanged")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "screencastVisibilityChanged")
 
 /**
  * Fired when a new window is going to be opened, via window.open(), link click, form submission,
 etc.
  *
  * @link [Page#windowOpen](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-windowOpen) event documentation.
-   */
+ */
 data class WindowOpenEvent(
-  /**
-   * The URL for the new window.
-   */
-  val url: String,
+    /**  
+     * The URL for the new window.  
+     */  
+    val url: String,
 
-  /**
-   * Window name.
-   */
-  val windowName: String,
+    /**  
+     * Window name.  
+     */  
+    val windowName: String,
 
-  /**
-   * An array of enabled window features.
-   */
-  val windowFeatures: List<String>,
+    /**  
+     * An array of enabled window features.  
+     */  
+    val windowFeatures: List<String>,
 
-  /**
-   * Whether or not it was triggered by user gesture.
-   */
-  val userGesture: Boolean
+    /**  
+     * Whether or not it was triggered by user gesture.  
+     */  
+    val userGesture: Boolean
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "windowOpen")
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "windowOpen")
 
 /**
  * Issued for every compilation cache generated. Is only available
 if Page.setGenerateCompilationCache is enabled.
  *
  * @link [Page#compilationCacheProduced](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-compilationCacheProduced) event documentation.
-   */
+ */
 data class CompilationCacheProducedEvent(
-  /**
-   *
-   */
-  val url: String,
+    /**  
+     *  
+     */  
+    val url: String,
 
-  /**
-   * Base64-encoded data
-   */
-  val data: String
+    /**  
+     * Base64-encoded data  
+     */  
+    val data: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "Page", name = "compilationCacheProduced")
-
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "compilationCacheProduced")
