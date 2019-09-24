@@ -30,7 +30,7 @@ class ChromeProtocolSpecification extends Specification {
             def chrome = Browser.connect(address, 128)
 
         when:
-            def session = chrome.session("about:blank", true, 128, 1000, 800)
+            def session = chrome.session("about:blank", true, 1000, 800)
             def layout = session.page.getLayoutMetrics().blockingGet()
 
         then:
