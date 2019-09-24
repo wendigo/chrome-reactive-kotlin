@@ -5,6 +5,9 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.atomic.AtomicLong
 import okhttp3.OkHttpClient
+import pl.wendigo.chrome.DevToolsProtocol
+import pl.wendigo.chrome.targets.Target
+import pl.wendigo.chrome.targets.FramesStream as TargetFramesStream
 
 /**
  * ChromeDebuggerConnection represents connection to chrome's debugger via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
@@ -96,6 +99,11 @@ class ChromeDebuggerConnection constructor(
 
         private val eventMapper by lazy {
             EventMapper()
+        }
+
+        internal fun close() {
+            client.connectionPool.evictAll()
+            client.dispatcher.executorService.shutdown()
         }
     }
 }

@@ -29,11 +29,11 @@ class FramesStream(
         return frames().filter {
             it.matchesRequest(requestFrame)
         }
-            .map { frame ->
-                mapper.deserializeResponse(requestFrame, frame, clazz)
-            }
-            .take(1)
-            .singleOrError()
+        .map { frame ->
+            mapper.deserializeResponse(requestFrame, frame, clazz)
+        }
+        .take(1)
+        .singleOrError()
     }
 
     /**
