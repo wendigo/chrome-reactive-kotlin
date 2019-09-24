@@ -31,11 +31,10 @@ class Browser(
      * with target id/session id.
      */
     @JvmOverloads
-    fun session(url: String, incognito: Boolean = true, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): Session {
+    fun session(url: String, incognito: Boolean = true, width: Int = 1024, height: Int = 768): Session {
         return sessionManager.createTarget(
             url = url,
             incognito = incognito,
-            eventBufferSize = eventBufferSize,
             width = width,
             height = height
         )

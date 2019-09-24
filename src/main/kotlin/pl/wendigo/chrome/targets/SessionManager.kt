@@ -65,7 +65,7 @@ class SessionManager(val api: DevToolsProtocol) {
         }
     }
 
-    fun createTarget(url: String, incognito: Boolean = true, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): Session {
+    fun createTarget(url: String, incognito: Boolean = true, width: Int = 1024, height: Int = 768): Session {
         val browserContextId = when (incognito) {
             true -> await {
                 api.Target.createBrowserContext()
