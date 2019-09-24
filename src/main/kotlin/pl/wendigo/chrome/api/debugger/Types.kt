@@ -24,7 +24,7 @@ typealias CallFrameId = String
 
 data class Location(
     /**  
-     * Script identifier as reported in the <code>Debugger.scriptParsed</code>.  
+     * Script identifier as reported in the `Debugger.scriptParsed`.  
      */  
     val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
 
@@ -77,7 +77,7 @@ data class CallFrame(
     /**  
      * Location in the source code.  
      */  
-    @pl.wendigo.chrome.protocol.Experimental val functionLocation: Location? = null,
+    val functionLocation: Location? = null,
 
     /**  
      * Location in the source code.  
@@ -85,12 +85,17 @@ data class CallFrame(
     val location: Location,
 
     /**  
+     * JavaScript script name or url.  
+     */  
+    val url: String,
+
+    /**  
      * Scope chain for this call frame.  
      */  
     val scopeChain: List<Scope>,
 
     /**  
-     * <code>this</code> object for this call frame.  
+     * `this` object for this call frame.  
      */  
     @get:com.fasterxml.jackson.annotation.JsonProperty("this")
 
@@ -115,7 +120,9 @@ data class Scope(
     val type: String,
 
     /**  
-     * Object representing the scope. For <code>global</code> and <code>with</code> scopes it represents the actual object; for the rest of the scopes, it is artificial transient object enumerating scope variables as its properties.  
+     * Object representing the scope. For `global` and `with` scopes it represents the actual  
+     object; for the rest of the scopes, it is artificial transient object enumerating scope  
+     variables as its properties.  
      */  
     @get:com.fasterxml.jackson.annotation.JsonProperty("object")
 
@@ -153,4 +160,32 @@ data class SearchMatch(
      * Line with match content.  
      */  
     val lineContent: String
+)
+
+/**
+ *
+ *
+ * @link [Debugger#BreakLocation](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-BreakLocation) type documentation.
+ */
+
+data class BreakLocation(
+    /**  
+     * Script identifier as reported in the `Debugger.scriptParsed`.  
+     */  
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
+
+    /**  
+     * Line number in the script (0-based).  
+     */  
+    val lineNumber: Int,
+
+    /**  
+     * Column number in the script (0-based).  
+     */  
+    val columnNumber: Int? = null,
+
+    /**  
+     *  
+     */  
+    val type: String? = null
 )

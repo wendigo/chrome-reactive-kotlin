@@ -13,11 +13,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setPermission(input: SetPermissionRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.setPermission", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setPermission(input: SetPermissionRequest) = connection.request("Browser.setPermission", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Grant specific permissions to the given origin and reject all others.
@@ -26,11 +22,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun grantPermissions(input: GrantPermissionsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.grantPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun grantPermissions(input: GrantPermissionsRequest) = connection.request("Browser.grantPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Reset all permission management for all origins.
@@ -39,22 +31,14 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun resetPermissions(input: ResetPermissionsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.resetPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun resetPermissions(input: ResetPermissionsRequest) = connection.request("Browser.resetPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Close browser gracefully.
      *
      * @link Protocol [Browser#close](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-close) method documentation.
      */
-    fun close(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun close() = connection.request("Browser.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Crashes browser on the main thread.
@@ -63,11 +47,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun crash(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun crash() = connection.request("Browser.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Crashes GPU process.
@@ -76,22 +56,14 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun crashGpuProcess(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.crashGpuProcess", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun crashGpuProcess() = connection.request("Browser.crashGpuProcess", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns version information.
      *
      * @link Protocol [Browser#getVersion](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getVersion) method documentation.
      */
-    fun getVersion(): io.reactivex.Single<GetVersionResponse> {
-        return connection.runAndCaptureResponse("Browser.getVersion", null, GetVersionResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getVersion() = connection.request("Browser.getVersion", null, GetVersionResponse::class.java)
 
     /**
      * Returns the command line switches for the browser process if, and only if
@@ -101,11 +73,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getBrowserCommandLine(): io.reactivex.Single<GetBrowserCommandLineResponse> {
-        return connection.runAndCaptureResponse("Browser.getBrowserCommandLine", null, GetBrowserCommandLineResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getBrowserCommandLine() = connection.request("Browser.getBrowserCommandLine", null, GetBrowserCommandLineResponse::class.java)
 
     /**
      * Get Chrome histograms.
@@ -114,11 +82,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHistograms(input: GetHistogramsRequest): io.reactivex.Single<GetHistogramsResponse> {
-        return connection.runAndCaptureResponse("Browser.getHistograms", input, GetHistogramsResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getHistograms(input: GetHistogramsRequest) = connection.request("Browser.getHistograms", input, GetHistogramsResponse::class.java)
 
     /**
      * Get a Chrome histogram by name.
@@ -127,11 +91,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHistogram(input: GetHistogramRequest): io.reactivex.Single<GetHistogramResponse> {
-        return connection.runAndCaptureResponse("Browser.getHistogram", input, GetHistogramResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getHistogram(input: GetHistogramRequest) = connection.request("Browser.getHistogram", input, GetHistogramResponse::class.java)
 
     /**
      * Get position and size of the browser window.
@@ -140,11 +100,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getWindowBounds(input: GetWindowBoundsRequest): io.reactivex.Single<GetWindowBoundsResponse> {
-        return connection.runAndCaptureResponse("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getWindowBounds(input: GetWindowBoundsRequest) = connection.request("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java)
 
     /**
      * Get the browser window that contains the devtools target.
@@ -153,11 +109,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getWindowForTarget(input: GetWindowForTargetRequest): io.reactivex.Single<GetWindowForTargetResponse> {
-        return connection.runAndCaptureResponse("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getWindowForTarget(input: GetWindowForTargetRequest) = connection.request("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java)
 
     /**
      * Set position and/or size of the browser window.
@@ -166,11 +118,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setWindowBounds(input: SetWindowBoundsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.setWindowBounds", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setWindowBounds(input: SetWindowBoundsRequest) = connection.request("Browser.setWindowBounds", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Set dock tile details, platform-specific.
@@ -179,17 +127,13 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDockTile(input: SetDockTileRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Browser.setDockTile", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setDockTile(input: SetDockTileRequest) = connection.request("Browser.setDockTile", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns flowable capturing all Browser domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Browser"
         }
     }

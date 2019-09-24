@@ -13,11 +13,7 @@ class AccessibilityOperations internal constructor(private val connection: pl.we
      *
      * @link Protocol [Accessibility#disable](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Accessibility.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun disable() = connection.request("Accessibility.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables the accessibility domain which causes `AXNodeId`s to remain consistent between method calls.
@@ -25,11 +21,7 @@ This turns on accessibility for the page, which can impact performance until acc
      *
      * @link Protocol [Accessibility#enable](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Accessibility.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun enable() = connection.request("Accessibility.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
@@ -38,11 +30,7 @@ This turns on accessibility for the page, which can impact performance until acc
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getPartialAXTree(input: GetPartialAXTreeRequest): io.reactivex.Single<GetPartialAXTreeResponse> {
-        return connection.runAndCaptureResponse("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getPartialAXTree(input: GetPartialAXTreeRequest) = connection.request("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
 
     /**
      * Fetches the entire accessibility tree
@@ -51,17 +39,13 @@ This turns on accessibility for the page, which can impact performance until acc
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getFullAXTree(): io.reactivex.Single<GetFullAXTreeResponse> {
-        return connection.runAndCaptureResponse("Accessibility.getFullAXTree", null, GetFullAXTreeResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getFullAXTree() = connection.request("Accessibility.getFullAXTree", null, GetFullAXTreeResponse::class.java)
 
     /**
      * Returns flowable capturing all Accessibility domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Accessibility"
         }
     }

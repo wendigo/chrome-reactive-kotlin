@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import io.reactivex.Single
 
 /**
  * FrameMapper is responsible for (de)serializing frames exchanged via Chrome's [DevTool Protocol](https://chromedevtools.github.io/devtools-protocol/).
@@ -20,31 +19,31 @@ class FrameMapper(private val mapper: ObjectMapper = DEFAULT_MAPPER) {
     /**
      * Serializes request frame using internal object mapper
      */
-    fun serialize(requestFrame: RequestFrame): Single<String> {
+    fun serialize(requestFrame: RequestFrame): String {
         return try {
-            Single.fromCallable { mapper.writeValueAsString(requestFrame) }
+            mapper.writeValueAsString(requestFrame)
         } catch (e: Exception) {
-            Single.error(SerializationFailed("Could not serialize request frame", e))
+            throw SerializationFailed("Could not serialize request frame", e)
         }
     }
 
     /**
      * Deserialize response frame as clazz
      */
-    fun <T> deserializeResponse(requestFrame: RequestFrame, responseFrame: ResponseFrame, clazz: Class<T>): Single<T> {
+    fun <T> deserializeResponse(requestFrame: RequestFrame, responseFrame: ResponseFrame, clazz: Class<T>): T {
         if (responseFrame.error != null) {
-            return Single.error(RequestFailed(requestFrame, responseFrame.error.message))
+            throw RequestFailed(requestFrame, responseFrame.error.message)
         }
 
         try {
             if (clazz == ResponseFrame::class.java) {
                 @Suppress("UNCHECKED_CAST")
-                return Single.just(responseFrame as T)
+                return responseFrame as T
             } else {
-                return Single.fromCallable { mapper.treeToValue(responseFrame.result, clazz) }
+                return mapper.treeToValue(responseFrame.result, clazz)
             }
         } catch (ex: Exception) {
-            return Single.error(DeserializationFailed("Could not deserialize response frame", ex))
+            throw DeserializationFailed("Could not deserialize response frame", ex)
         }
     }
 
@@ -53,21 +52,5 @@ class FrameMapper(private val mapper: ObjectMapper = DEFAULT_MAPPER) {
      */
     fun <T> deserialize(text: String, clazz: Class<T>): T {
         return mapper.readValue(text, clazz)
-    }
-
-    /**
-     * Deserialize response frame event to clazz.
-     */
-    fun <T> deserializeEvent(responseFrame: ResponseFrame, clazz: Class<T>): Single<T> where T : Event {
-        try {
-            if (clazz == Event::class.java) {
-                @Suppress("UNCHECKED_CAST")
-                return Single.just(Event.fromMethodName(responseFrame.method!!)) as Single<T>
-            } else {
-                return Single.fromCallable { mapper.treeToValue(responseFrame.params, clazz) }
-            }
-        } catch (e: Throwable) {
-            return Single.error(DeserializationFailed("Could not deserialize event $responseFrame $clazz", e))
-        }
     }
 }

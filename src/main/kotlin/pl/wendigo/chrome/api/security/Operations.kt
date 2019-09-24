@@ -11,22 +11,14 @@ class SecurityOperations internal constructor(private val connection: pl.wendigo
      *
      * @link Protocol [Security#disable](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun disable() = connection.request("Security.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables tracking security state changes.
      *
      * @link Protocol [Security#enable](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun enable() = connection.request("Security.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enable/disable whether all certificate errors should be ignored.
@@ -35,11 +27,7 @@ class SecurityOperations internal constructor(private val connection: pl.wendigo
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setIgnoreCertificateErrors(input: SetIgnoreCertificateErrorsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Security.setIgnoreCertificateErrors", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setIgnoreCertificateErrors(input: SetIgnoreCertificateErrorsRequest) = connection.request("Security.setIgnoreCertificateErrors", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Handles a certificate error that fired a certificateError event.
@@ -47,11 +35,7 @@ class SecurityOperations internal constructor(private val connection: pl.wendigo
      * @link Protocol [Security#handleCertificateError](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-handleCertificateError) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "handleCertificateError is deprecated.")
-    fun handleCertificateError(input: HandleCertificateErrorRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Security.handleCertificateError", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun handleCertificateError(input: HandleCertificateErrorRequest) = connection.request("Security.handleCertificateError", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enable/disable overriding certificate errors. If enabled, all certificate error events need to
@@ -60,11 +44,7 @@ be handled by the DevTools client and should be answered with `handleCertificate
      * @link Protocol [Security#setOverrideCertificateErrors](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-setOverrideCertificateErrors) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setOverrideCertificateErrors is deprecated.")
-    fun setOverrideCertificateErrors(input: SetOverrideCertificateErrorsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Security.setOverrideCertificateErrors", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun setOverrideCertificateErrors(input: SetOverrideCertificateErrorsRequest) = connection.request("Security.setOverrideCertificateErrors", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  There is a certificate error. If overriding certificate errors is enabled, then it should be
@@ -72,43 +52,18 @@ handled with the `handleCertificateError` command. Note: this event does not fir
 certificate error has been allowed internally. Only one client per target should override
 certificate errors at the same time.
      */
-    fun certificateError(): io.reactivex.Flowable<CertificateErrorEvent> {
-        return certificateErrorTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * There is a certificate error. If overriding certificate errors is enabled, then it should be
-handled with the `handleCertificateError` command. Note: this event does not fire if the
-certificate error has been allowed internally. Only one client per target should override
-certificate errors at the same time.
-     */
-    fun certificateErrorTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<CertificateErrorEvent>> {
-        return connection.captureEvents("Security.certificateError", CertificateErrorEvent::class.java)
-    }
+    fun certificateError(): io.reactivex.Flowable<CertificateErrorEvent> = connection.events("Security.certificateError", CertificateErrorEvent::class.java)
 
     /**
      *  The security state of the page changed.
      */
-    fun securityStateChanged(): io.reactivex.Flowable<SecurityStateChangedEvent> {
-        return securityStateChangedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * The security state of the page changed.
-     */
-    fun securityStateChangedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<SecurityStateChangedEvent>> {
-        return connection.captureEvents("Security.securityStateChanged", SecurityStateChangedEvent::class.java)
-    }
+    fun securityStateChanged(): io.reactivex.Flowable<SecurityStateChangedEvent> = connection.events("Security.securityStateChanged", SecurityStateChangedEvent::class.java)
 
     /**
      * Returns flowable capturing all Security domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Security"
         }
     }

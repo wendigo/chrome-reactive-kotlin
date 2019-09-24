@@ -1,28 +1,28 @@
 # Module chrome-reactive-kotlin
 
-# Package pl.wendigo.chrome.api.schema
+# Package pl.wendigo.chrome.api.console
 
-Contains DevTools Protocol [Schema](https://chromedevtools.github.io/devtools-protocol/tot/Schema) domain implementation accessible via [SchemaOperations] class.
-
-# Package pl.wendigo.chrome.api.runtime
-
-Contains DevTools Protocol [Runtime](https://chromedevtools.github.io/devtools-protocol/tot/Runtime) domain implementation accessible via [RuntimeOperations] class.
+Contains DevTools Protocol [Console](https://chromedevtools.github.io/devtools-protocol/tot/Console) domain implementation accessible via [ConsoleOperations] class.
 
 # Package pl.wendigo.chrome.api.debugger
 
 Contains DevTools Protocol [Debugger](https://chromedevtools.github.io/devtools-protocol/tot/Debugger) domain implementation accessible via [DebuggerOperations] class.
 
-# Package pl.wendigo.chrome.api.console
+# Package pl.wendigo.chrome.api.heapprofiler
 
-Contains DevTools Protocol [Console](https://chromedevtools.github.io/devtools-protocol/tot/Console) domain implementation accessible via [ConsoleOperations] class.
+Contains DevTools Protocol [HeapProfiler](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler) domain implementation accessible via [HeapProfilerOperations] class.
 
 # Package pl.wendigo.chrome.api.profiler
 
 Contains DevTools Protocol [Profiler](https://chromedevtools.github.io/devtools-protocol/tot/Profiler) domain implementation accessible via [ProfilerOperations] class.
 
-# Package pl.wendigo.chrome.api.heapprofiler
+# Package pl.wendigo.chrome.api.runtime
 
-Contains DevTools Protocol [HeapProfiler](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler) domain implementation accessible via [HeapProfilerOperations] class.
+Contains DevTools Protocol [Runtime](https://chromedevtools.github.io/devtools-protocol/tot/Runtime) domain implementation accessible via [RuntimeOperations] class.
+
+# Package pl.wendigo.chrome.api.schema
+
+Contains DevTools Protocol [Schema](https://chromedevtools.github.io/devtools-protocol/tot/Schema) domain implementation accessible via [SchemaOperations] class.
 
 # Package pl.wendigo.chrome.api.accessibility
 

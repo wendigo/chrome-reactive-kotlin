@@ -13,61 +13,41 @@ class CacheStorageOperations internal constructor(private val connection: pl.wen
      *
      * @link Protocol [CacheStorage#deleteCache](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteCache) method documentation.
      */
-    fun deleteCache(input: DeleteCacheRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("CacheStorage.deleteCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun deleteCache(input: DeleteCacheRequest) = connection.request("CacheStorage.deleteCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Deletes a cache entry.
      *
      * @link Protocol [CacheStorage#deleteEntry](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteEntry) method documentation.
      */
-    fun deleteEntry(input: DeleteEntryRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("CacheStorage.deleteEntry", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun deleteEntry(input: DeleteEntryRequest) = connection.request("CacheStorage.deleteEntry", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests cache names.
      *
      * @link Protocol [CacheStorage#requestCacheNames](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCacheNames) method documentation.
      */
-    fun requestCacheNames(input: RequestCacheNamesRequest): io.reactivex.Single<RequestCacheNamesResponse> {
-        return connection.runAndCaptureResponse("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun requestCacheNames(input: RequestCacheNamesRequest) = connection.request("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java)
 
     /**
      * Fetches cache entry.
      *
      * @link Protocol [CacheStorage#requestCachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCachedResponse) method documentation.
      */
-    fun requestCachedResponse(input: RequestCachedResponseRequest): io.reactivex.Single<RequestCachedResponseResponse> {
-        return connection.runAndCaptureResponse("CacheStorage.requestCachedResponse", input, RequestCachedResponseResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun requestCachedResponse(input: RequestCachedResponseRequest) = connection.request("CacheStorage.requestCachedResponse", input, RequestCachedResponseResponse::class.java)
 
     /**
      * Requests data from cache.
      *
      * @link Protocol [CacheStorage#requestEntries](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestEntries) method documentation.
      */
-    fun requestEntries(input: RequestEntriesRequest): io.reactivex.Single<RequestEntriesResponse> {
-        return connection.runAndCaptureResponse("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun requestEntries(input: RequestEntriesRequest) = connection.request("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java)
 
     /**
      * Returns flowable capturing all CacheStorage domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "CacheStorage"
         }
     }
