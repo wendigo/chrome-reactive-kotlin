@@ -1,6 +1,6 @@
 # Module chrome-reactive-kotlin
 
-chrome-reactive-kotlin is a low level Chrome DevTools Protocol client written in Kotlin and leveraging RxJava2 for easy composeability.
+chrome-reactive-kotlin is a low level Chrome DevTools Protocol client written in Kotlin and leveraging RxJava2 for easy composability.
 
 Library exposes all protocol domains in a single, cohesive and highly composable API. It supports both headless and non-headless Chrome automation capabilities.
 
@@ -8,7 +8,7 @@ Basic usage example:
 
 ```
 val browser = Browser.connect("127.0.0.1:9223")
-val session = browser.headlessSession("about:blank")
+val session = browser.session("about:blank")
 
 await {
     session.Page.enable()
@@ -22,7 +22,8 @@ await {
     }
 }
 
-session.close()
+browser.close(session)
+browser.close()
 ```
 
 # Package pl.wendigo.chrome

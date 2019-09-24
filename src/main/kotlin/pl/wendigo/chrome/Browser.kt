@@ -5,25 +5,20 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import java.io.Closeable
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
-import pl.wendigo.chrome.protocol.FrameMapper
 import pl.wendigo.chrome.targets.Session
 import pl.wendigo.chrome.targets.SessionManager
+import java.io.Closeable
 
 /**
  * Creates new browser that allows querying remote chrome instance for debugging sessions
  */
 class Browser(
     private val info: Info,
-    private val mapper: FrameMapper,
     private val sessionManager: SessionManager
 ) : Closeable {
-
-    override fun close() {
-    }
     /**
      * Opens new headless debugging session via chrome debugging protocol.
      *
@@ -46,6 +41,11 @@ class Browser(
         sessionManager.closeTarget(session)
     }
 
+    override fun close() {
+        sessionManager.close()
+        ChromeDebuggerConnection.Factory.close()
+    }
+
     override fun toString(): String {
         return "Browser($info, sessionManager)"
     }
@@ -60,8 +60,11 @@ class Browser(
 
             return Browser(
                 info,
-                FrameMapper(),
-                SessionManager(DevToolsProtocol(ChromeDebuggerConnection.open(info.webSocketDebuggerUrl, eventBufferSize)))
+                SessionManager(
+                    info.webSocketDebuggerUrl,
+                    true,
+                    DevToolsProtocol(ChromeDebuggerConnection.open(info.webSocketDebuggerUrl, eventBufferSize))
+                )
             )
         }
 

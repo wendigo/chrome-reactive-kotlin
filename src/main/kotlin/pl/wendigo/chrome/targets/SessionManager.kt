@@ -14,10 +14,18 @@ import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 import pl.wendigo.chrome.protocol.FrameMapper
+import java.io.Closeable
 
-class SessionManager(val api: DevToolsProtocol) {
+class SessionManager(
+    private val browserDebuggerAddress: String,
+    private val shareConnections: Boolean,
+    val api: DevToolsProtocol
+): Closeable {
+    private val targets: MutableMap<TargetID, TargetInfo> = mutableMapOf()
 
-    val targets: MutableMap<TargetID, TargetInfo> = mutableMapOf()
+    override fun close() {
+        api.close()
+    }
 
     init {
         api.Target.targetCreated().filter { it.targetInfo.isPage() }.subscribe {
@@ -48,7 +56,7 @@ class SessionManager(val api: DevToolsProtocol) {
     }
 
     fun closeTarget(session: Session) {
-        logger.info("Closing {}", session)
+        logger.info("Closing {}...", session)
 
         await {
             api.Target.closeTarget(CloseTargetRequest(session.targetInfo.targetId))
@@ -62,6 +70,10 @@ class SessionManager(val api: DevToolsProtocol) {
             }.run {
                 logger.info("Destroyed browser context {}", session.targetInfo.browserContextId)
             }
+        }
+
+        if (!shareConnections) {
+            session.close()
         }
     }
 
@@ -98,24 +110,36 @@ class SessionManager(val api: DevToolsProtocol) {
         }.toList()
     }
 
-    fun attach(target: TargetInfo): Session {
+    private fun attach(target: TargetInfo): Session {
         val (sessionId) = await {
             api.Target.attachToTarget(AttachToTargetRequest(targetId = target.targetId))
         }
 
-        val connection = ChromeDebuggerConnection(
-            FramesStream(
-                FrameMapper(),
-                api,
-                Target(sessionId, target.targetId)
-            )
-        )
-
         return Session(
             targetInfo = target,
             sessionId = sessionId,
-            connection = connection
+            connection = openConnection(target, sessionId)
         )
+    }
+
+    private fun targetWsAddress(targetID: TargetID): String {
+        return browserDebuggerAddress.replace(
+                browserDebuggerAddress.substringAfterLast("devtools"),
+                "/page/$targetID"
+        )
+    }
+
+    private fun openConnection(target: TargetInfo, sessionId: String): ChromeDebuggerConnection {
+        return when(shareConnections) {
+            true -> ChromeDebuggerConnection(
+                    FramesStream(
+                            FrameMapper(),
+                            api,
+                            target.toTarget(sessionId)
+                    )
+            )
+            false -> ChromeDebuggerConnection.open(targetWsAddress(target.targetId), 128)
+        }
     }
 
     companion object {
