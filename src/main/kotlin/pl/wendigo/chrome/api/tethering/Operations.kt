@@ -13,14 +13,14 @@ class TetheringOperations internal constructor(private val connection: pl.wendig
      *
      * @link Protocol [Tethering#bind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-bind) method documentation.
      */
-    fun bind(input: BindRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun bind(input: BindRequest) = connection.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Request browser port unbinding.
      *
      * @link Protocol [Tethering#unbind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-unbind) method documentation.
      */
-    fun unbind(input: UnbindRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun unbind(input: UnbindRequest) = connection.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Informs that port was successfully bound and got a specified connection id.

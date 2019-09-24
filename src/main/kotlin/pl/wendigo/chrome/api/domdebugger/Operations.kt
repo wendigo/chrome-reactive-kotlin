@@ -12,21 +12,21 @@ class DOMDebuggerOperations internal constructor(private val connection: pl.wend
      *
      * @link Protocol [DOMDebugger#getEventListeners](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-getEventListeners) method documentation.
      */
-    fun getEventListeners(input: GetEventListenersRequest): io.reactivex.Single<GetEventListenersResponse> = connection.runAndCaptureResponse("DOMDebugger.getEventListeners", input, GetEventListenersResponse::class.java)
+    fun getEventListeners(input: GetEventListenersRequest) = connection.runAndCaptureResponse("DOMDebugger.getEventListeners", input, GetEventListenersResponse::class.java)
 
     /**
      * Removes DOM breakpoint that was set using `setDOMBreakpoint`.
      *
      * @link Protocol [DOMDebugger#removeDOMBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeDOMBreakpoint) method documentation.
      */
-    fun removeDOMBreakpoint(input: RemoveDOMBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOMDebugger.removeDOMBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeDOMBreakpoint(input: RemoveDOMBreakpointRequest) = connection.runAndCaptureResponse("DOMDebugger.removeDOMBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Removes breakpoint on particular DOM event.
      *
      * @link Protocol [DOMDebugger#removeEventListenerBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeEventListenerBreakpoint) method documentation.
      */
-    fun removeEventListenerBreakpoint(input: RemoveEventListenerBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOMDebugger.removeEventListenerBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeEventListenerBreakpoint(input: RemoveEventListenerBreakpointRequest) = connection.runAndCaptureResponse("DOMDebugger.removeEventListenerBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Removes breakpoint on particular native event.
@@ -35,28 +35,28 @@ class DOMDebuggerOperations internal constructor(private val connection: pl.wend
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun removeInstrumentationBreakpoint(input: RemoveInstrumentationBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOMDebugger.removeInstrumentationBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeInstrumentationBreakpoint(input: RemoveInstrumentationBreakpointRequest) = connection.runAndCaptureResponse("DOMDebugger.removeInstrumentationBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Removes breakpoint from XMLHttpRequest.
      *
      * @link Protocol [DOMDebugger#removeXHRBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeXHRBreakpoint) method documentation.
      */
-    fun removeXHRBreakpoint(input: RemoveXHRBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOMDebugger.removeXHRBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeXHRBreakpoint(input: RemoveXHRBreakpointRequest) = connection.runAndCaptureResponse("DOMDebugger.removeXHRBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets breakpoint on particular operation with DOM.
      *
      * @link Protocol [DOMDebugger#setDOMBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setDOMBreakpoint) method documentation.
      */
-    fun setDOMBreakpoint(input: SetDOMBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOMDebugger.setDOMBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDOMBreakpoint(input: SetDOMBreakpointRequest) = connection.runAndCaptureResponse("DOMDebugger.setDOMBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets breakpoint on particular DOM event.
      *
      * @link Protocol [DOMDebugger#setEventListenerBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setEventListenerBreakpoint) method documentation.
      */
-    fun setEventListenerBreakpoint(input: SetEventListenerBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOMDebugger.setEventListenerBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setEventListenerBreakpoint(input: SetEventListenerBreakpointRequest) = connection.runAndCaptureResponse("DOMDebugger.setEventListenerBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets breakpoint on particular native event.
@@ -65,14 +65,14 @@ class DOMDebuggerOperations internal constructor(private val connection: pl.wend
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOMDebugger.setInstrumentationBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest) = connection.runAndCaptureResponse("DOMDebugger.setInstrumentationBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets breakpoint on XMLHttpRequest.
      *
      * @link Protocol [DOMDebugger#setXHRBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setXHRBreakpoint) method documentation.
      */
-    fun setXHRBreakpoint(input: SetXHRBreakpointRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOMDebugger.setXHRBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setXHRBreakpoint(input: SetXHRBreakpointRequest) = connection.runAndCaptureResponse("DOMDebugger.setXHRBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns flowable capturing all DOMDebugger domains events.

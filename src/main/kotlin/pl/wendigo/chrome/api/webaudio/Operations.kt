@@ -14,21 +14,21 @@ class WebAudioOperations internal constructor(private val connection: pl.wendigo
      *
      * @link Protocol [WebAudio#enable](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAudio.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("WebAudio.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables the WebAudio domain.
      *
      * @link Protocol [WebAudio#disable](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("WebAudio.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("WebAudio.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Fetch the realtime data from the registered contexts.
      *
      * @link Protocol [WebAudio#getRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-getRealtimeData) method documentation.
      */
-    fun getRealtimeData(input: GetRealtimeDataRequest): io.reactivex.Single<GetRealtimeDataResponse> = connection.runAndCaptureResponse("WebAudio.getRealtimeData", input, GetRealtimeDataResponse::class.java)
+    fun getRealtimeData(input: GetRealtimeDataRequest) = connection.runAndCaptureResponse("WebAudio.getRealtimeData", input, GetRealtimeDataResponse::class.java)
 
     /**
      *  Notifies that a new BaseAudioContext has been created.

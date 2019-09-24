@@ -13,7 +13,7 @@ class NetworkOperations internal constructor(private val connection: pl.wendigo.
      * @link Protocol [Network#canClearBrowserCache](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-canClearBrowserCache) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "canClearBrowserCache is deprecated.")
-    fun canClearBrowserCache(): io.reactivex.Single<CanClearBrowserCacheResponse> = connection.runAndCaptureResponse("Network.canClearBrowserCache", null, CanClearBrowserCacheResponse::class.java)
+    fun canClearBrowserCache() = connection.runAndCaptureResponse("Network.canClearBrowserCache", null, CanClearBrowserCacheResponse::class.java)
 
     /**
      * Tells whether clearing browser cookies is supported.
@@ -21,7 +21,7 @@ class NetworkOperations internal constructor(private val connection: pl.wendigo.
      * @link Protocol [Network#canClearBrowserCookies](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-canClearBrowserCookies) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "canClearBrowserCookies is deprecated.")
-    fun canClearBrowserCookies(): io.reactivex.Single<CanClearBrowserCookiesResponse> = connection.runAndCaptureResponse("Network.canClearBrowserCookies", null, CanClearBrowserCookiesResponse::class.java)
+    fun canClearBrowserCookies() = connection.runAndCaptureResponse("Network.canClearBrowserCookies", null, CanClearBrowserCookiesResponse::class.java)
 
     /**
      * Tells whether emulation of network conditions is supported.
@@ -29,21 +29,21 @@ class NetworkOperations internal constructor(private val connection: pl.wendigo.
      * @link Protocol [Network#canEmulateNetworkConditions](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-canEmulateNetworkConditions) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "canEmulateNetworkConditions is deprecated.")
-    fun canEmulateNetworkConditions(): io.reactivex.Single<CanEmulateNetworkConditionsResponse> = connection.runAndCaptureResponse("Network.canEmulateNetworkConditions", null, CanEmulateNetworkConditionsResponse::class.java)
+    fun canEmulateNetworkConditions() = connection.runAndCaptureResponse("Network.canEmulateNetworkConditions", null, CanEmulateNetworkConditionsResponse::class.java)
 
     /**
      * Clears browser cache.
      *
      * @link Protocol [Network#clearBrowserCache](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-clearBrowserCache) method documentation.
      */
-    fun clearBrowserCache(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.clearBrowserCache", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearBrowserCache() = connection.runAndCaptureResponse("Network.clearBrowserCache", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Clears browser cookies.
      *
      * @link Protocol [Network#clearBrowserCookies](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-clearBrowserCookies) method documentation.
      */
-    fun clearBrowserCookies(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.clearBrowserCookies", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearBrowserCookies() = connection.runAndCaptureResponse("Network.clearBrowserCookies", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Response to Network.requestIntercepted which either modifies the request to continue with any
@@ -57,35 +57,35 @@ Deprecated, use Fetch.continueRequest, Fetch.fulfillRequest and Fetch.failReques
     @Deprecated(level = DeprecationLevel.WARNING, message = "continueInterceptedRequest is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun continueInterceptedRequest(input: ContinueInterceptedRequestRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.continueInterceptedRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun continueInterceptedRequest(input: ContinueInterceptedRequestRequest) = connection.runAndCaptureResponse("Network.continueInterceptedRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Deletes browser cookies with matching name and url or domain/path pair.
      *
      * @link Protocol [Network#deleteCookies](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-deleteCookies) method documentation.
      */
-    fun deleteCookies(input: DeleteCookiesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.deleteCookies", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun deleteCookies(input: DeleteCookiesRequest) = connection.runAndCaptureResponse("Network.deleteCookies", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables network tracking, prevents network events from being sent to the client.
      *
      * @link Protocol [Network#disable](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("Network.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Activates emulation of network conditions.
      *
      * @link Protocol [Network#emulateNetworkConditions](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-emulateNetworkConditions) method documentation.
      */
-    fun emulateNetworkConditions(input: EmulateNetworkConditionsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.emulateNetworkConditions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun emulateNetworkConditions(input: EmulateNetworkConditionsRequest) = connection.runAndCaptureResponse("Network.emulateNetworkConditions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables network tracking, network events will now be delivered to the client.
      *
      * @link Protocol [Network#enable](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-enable) method documentation.
      */
-    fun enable(input: EnableRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.enable", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable(input: EnableRequest) = connection.runAndCaptureResponse("Network.enable", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns all browser cookies. Depending on the backend support, will return detailed cookie
@@ -93,7 +93,7 @@ information in the `cookies` field.
      *
      * @link Protocol [Network#getAllCookies](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getAllCookies) method documentation.
      */
-    fun getAllCookies(): io.reactivex.Single<GetAllCookiesResponse> = connection.runAndCaptureResponse("Network.getAllCookies", null, GetAllCookiesResponse::class.java)
+    fun getAllCookies() = connection.runAndCaptureResponse("Network.getAllCookies", null, GetAllCookiesResponse::class.java)
 
     /**
      * Returns the DER-encoded certificate.
@@ -102,7 +102,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getCertificate(input: GetCertificateRequest): io.reactivex.Single<GetCertificateResponse> = connection.runAndCaptureResponse("Network.getCertificate", input, GetCertificateResponse::class.java)
+    fun getCertificate(input: GetCertificateRequest) = connection.runAndCaptureResponse("Network.getCertificate", input, GetCertificateResponse::class.java)
 
     /**
      * Returns all browser cookies for the current URL. Depending on the backend support, will return
@@ -110,21 +110,21 @@ detailed cookie information in the `cookies` field.
      *
      * @link Protocol [Network#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getCookies) method documentation.
      */
-    fun getCookies(input: GetCookiesRequest): io.reactivex.Single<GetCookiesResponse> = connection.runAndCaptureResponse("Network.getCookies", input, GetCookiesResponse::class.java)
+    fun getCookies(input: GetCookiesRequest) = connection.runAndCaptureResponse("Network.getCookies", input, GetCookiesResponse::class.java)
 
     /**
      * Returns content served for the given request.
      *
      * @link Protocol [Network#getResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getResponseBody) method documentation.
      */
-    fun getResponseBody(input: GetResponseBodyRequest): io.reactivex.Single<GetResponseBodyResponse> = connection.runAndCaptureResponse("Network.getResponseBody", input, GetResponseBodyResponse::class.java)
+    fun getResponseBody(input: GetResponseBodyRequest) = connection.runAndCaptureResponse("Network.getResponseBody", input, GetResponseBodyResponse::class.java)
 
     /**
      * Returns post data sent with the request. Returns an error when no data was sent with the request.
      *
      * @link Protocol [Network#getRequestPostData](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getRequestPostData) method documentation.
      */
-    fun getRequestPostData(input: GetRequestPostDataRequest): io.reactivex.Single<GetRequestPostDataResponse> = connection.runAndCaptureResponse("Network.getRequestPostData", input, GetRequestPostDataResponse::class.java)
+    fun getRequestPostData(input: GetRequestPostDataRequest) = connection.runAndCaptureResponse("Network.getRequestPostData", input, GetRequestPostDataResponse::class.java)
 
     /**
      * Returns content served for the given currently intercepted request.
@@ -133,7 +133,7 @@ detailed cookie information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getResponseBodyForInterception(input: GetResponseBodyForInterceptionRequest): io.reactivex.Single<GetResponseBodyForInterceptionResponse> = connection.runAndCaptureResponse("Network.getResponseBodyForInterception", input, GetResponseBodyForInterceptionResponse::class.java)
+    fun getResponseBodyForInterception(input: GetResponseBodyForInterceptionRequest) = connection.runAndCaptureResponse("Network.getResponseBodyForInterception", input, GetResponseBodyForInterceptionResponse::class.java)
 
     /**
      * Returns a handle to the stream representing the response body. Note that after this command,
@@ -145,7 +145,7 @@ is specified.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun takeResponseBodyForInterceptionAsStream(input: TakeResponseBodyForInterceptionAsStreamRequest): io.reactivex.Single<TakeResponseBodyForInterceptionAsStreamResponse> = connection.runAndCaptureResponse("Network.takeResponseBodyForInterceptionAsStream", input, TakeResponseBodyForInterceptionAsStreamResponse::class.java)
+    fun takeResponseBodyForInterceptionAsStream(input: TakeResponseBodyForInterceptionAsStreamRequest) = connection.runAndCaptureResponse("Network.takeResponseBodyForInterceptionAsStream", input, TakeResponseBodyForInterceptionAsStreamResponse::class.java)
 
     /**
      * This method sends a new XMLHttpRequest which is identical to the original one. The following
@@ -156,7 +156,7 @@ attribute, user, password.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun replayXHR(input: ReplayXHRRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.replayXHR", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun replayXHR(input: ReplayXHRRequest) = connection.runAndCaptureResponse("Network.replayXHR", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Searches for given string in response content.
@@ -165,7 +165,7 @@ attribute, user, password.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun searchInResponseBody(input: SearchInResponseBodyRequest): io.reactivex.Single<SearchInResponseBodyResponse> = connection.runAndCaptureResponse("Network.searchInResponseBody", input, SearchInResponseBodyResponse::class.java)
+    fun searchInResponseBody(input: SearchInResponseBodyRequest) = connection.runAndCaptureResponse("Network.searchInResponseBody", input, SearchInResponseBodyResponse::class.java)
 
     /**
      * Blocks URLs from loading.
@@ -174,7 +174,7 @@ attribute, user, password.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBlockedURLs(input: SetBlockedURLsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.setBlockedURLs", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setBlockedURLs(input: SetBlockedURLsRequest) = connection.runAndCaptureResponse("Network.setBlockedURLs", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Toggles ignoring of service worker for each request.
@@ -183,28 +183,28 @@ attribute, user, password.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBypassServiceWorker(input: SetBypassServiceWorkerRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.setBypassServiceWorker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setBypassServiceWorker(input: SetBypassServiceWorkerRequest) = connection.runAndCaptureResponse("Network.setBypassServiceWorker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Toggles ignoring cache for each request. If `true`, cache will not be used.
      *
      * @link Protocol [Network#setCacheDisabled](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setCacheDisabled) method documentation.
      */
-    fun setCacheDisabled(input: SetCacheDisabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.setCacheDisabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setCacheDisabled(input: SetCacheDisabledRequest) = connection.runAndCaptureResponse("Network.setCacheDisabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
      *
      * @link Protocol [Network#setCookie](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setCookie) method documentation.
      */
-    fun setCookie(input: SetCookieRequest): io.reactivex.Single<SetCookieResponse> = connection.runAndCaptureResponse("Network.setCookie", input, SetCookieResponse::class.java)
+    fun setCookie(input: SetCookieRequest) = connection.runAndCaptureResponse("Network.setCookie", input, SetCookieResponse::class.java)
 
     /**
      * Sets given cookies.
      *
      * @link Protocol [Network#setCookies](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setCookies) method documentation.
      */
-    fun setCookies(input: SetCookiesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.setCookies", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setCookies(input: SetCookiesRequest) = connection.runAndCaptureResponse("Network.setCookies", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * For testing.
@@ -213,14 +213,14 @@ attribute, user, password.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDataSizeLimitsForTest(input: SetDataSizeLimitsForTestRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.setDataSizeLimitsForTest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDataSizeLimitsForTest(input: SetDataSizeLimitsForTestRequest) = connection.runAndCaptureResponse("Network.setDataSizeLimitsForTest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Specifies whether to always send extra HTTP headers with the requests from this page.
      *
      * @link Protocol [Network#setExtraHTTPHeaders](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setExtraHTTPHeaders) method documentation.
      */
-    fun setExtraHTTPHeaders(input: SetExtraHTTPHeadersRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.setExtraHTTPHeaders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setExtraHTTPHeaders(input: SetExtraHTTPHeadersRequest) = connection.runAndCaptureResponse("Network.setExtraHTTPHeaders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets the requests to intercept that match the provided patterns and optionally resource types.
@@ -231,14 +231,14 @@ Deprecated, please use Fetch.enable instead.
     @Deprecated(level = DeprecationLevel.WARNING, message = "setRequestInterception is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setRequestInterception(input: SetRequestInterceptionRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.setRequestInterception", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setRequestInterception(input: SetRequestInterceptionRequest) = connection.runAndCaptureResponse("Network.setRequestInterception", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Allows overriding user agent with the given string.
      *
      * @link Protocol [Network#setUserAgentOverride](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setUserAgentOverride) method documentation.
      */
-    fun setUserAgentOverride(input: SetUserAgentOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Network.setUserAgentOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setUserAgentOverride(input: SetUserAgentOverrideRequest) = connection.runAndCaptureResponse("Network.setUserAgentOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Fired when data chunk was received over the network.

@@ -13,63 +13,63 @@ class LayerTreeOperations internal constructor(private val connection: pl.wendig
      *
      * @link Protocol [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
      */
-    fun compositingReasons(input: CompositingReasonsRequest): io.reactivex.Single<CompositingReasonsResponse> = connection.runAndCaptureResponse("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java)
+    fun compositingReasons(input: CompositingReasonsRequest) = connection.runAndCaptureResponse("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java)
 
     /**
      * Disables compositing tree inspection.
      *
      * @link Protocol [LayerTree#disable](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("LayerTree.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables compositing tree inspection.
      *
      * @link Protocol [LayerTree#enable](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("LayerTree.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns the snapshot identifier.
      *
      * @link Protocol [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
      */
-    fun loadSnapshot(input: LoadSnapshotRequest): io.reactivex.Single<LoadSnapshotResponse> = connection.runAndCaptureResponse("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java)
+    fun loadSnapshot(input: LoadSnapshotRequest) = connection.runAndCaptureResponse("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java)
 
     /**
      * Returns the layer snapshot identifier.
      *
      * @link Protocol [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
      */
-    fun makeSnapshot(input: MakeSnapshotRequest): io.reactivex.Single<MakeSnapshotResponse> = connection.runAndCaptureResponse("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java)
+    fun makeSnapshot(input: MakeSnapshotRequest) = connection.runAndCaptureResponse("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java)
 
     /**
      *
      *
      * @link Protocol [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
      */
-    fun profileSnapshot(input: ProfileSnapshotRequest): io.reactivex.Single<ProfileSnapshotResponse> = connection.runAndCaptureResponse("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java)
+    fun profileSnapshot(input: ProfileSnapshotRequest) = connection.runAndCaptureResponse("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java)
 
     /**
      * Releases layer snapshot captured by the back-end.
      *
      * @link Protocol [LayerTree#releaseSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-releaseSnapshot) method documentation.
      */
-    fun releaseSnapshot(input: ReleaseSnapshotRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun releaseSnapshot(input: ReleaseSnapshotRequest) = connection.runAndCaptureResponse("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Replays the layer snapshot and returns the resulting bitmap.
      *
      * @link Protocol [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
      */
-    fun replaySnapshot(input: ReplaySnapshotRequest): io.reactivex.Single<ReplaySnapshotResponse> = connection.runAndCaptureResponse("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java)
+    fun replaySnapshot(input: ReplaySnapshotRequest) = connection.runAndCaptureResponse("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java)
 
     /**
      * Replays the layer snapshot and returns canvas log.
      *
      * @link Protocol [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
      */
-    fun snapshotCommandLog(input: SnapshotCommandLogRequest): io.reactivex.Single<SnapshotCommandLogResponse> = connection.runAndCaptureResponse("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java)
+    fun snapshotCommandLog(input: SnapshotCommandLogRequest) = connection.runAndCaptureResponse("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java)
 
     /**
      *  Returns observable capturing all LayerTree.layerPainted events.

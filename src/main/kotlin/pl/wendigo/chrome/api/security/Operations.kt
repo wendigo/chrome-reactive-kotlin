@@ -11,14 +11,14 @@ class SecurityOperations internal constructor(private val connection: pl.wendigo
      *
      * @link Protocol [Security#disable](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("Security.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables tracking security state changes.
      *
      * @link Protocol [Security#enable](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("Security.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enable/disable whether all certificate errors should be ignored.
@@ -27,7 +27,7 @@ class SecurityOperations internal constructor(private val connection: pl.wendigo
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setIgnoreCertificateErrors(input: SetIgnoreCertificateErrorsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Security.setIgnoreCertificateErrors", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setIgnoreCertificateErrors(input: SetIgnoreCertificateErrorsRequest) = connection.runAndCaptureResponse("Security.setIgnoreCertificateErrors", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Handles a certificate error that fired a certificateError event.
@@ -35,7 +35,7 @@ class SecurityOperations internal constructor(private val connection: pl.wendigo
      * @link Protocol [Security#handleCertificateError](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-handleCertificateError) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "handleCertificateError is deprecated.")
-    fun handleCertificateError(input: HandleCertificateErrorRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Security.handleCertificateError", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun handleCertificateError(input: HandleCertificateErrorRequest) = connection.runAndCaptureResponse("Security.handleCertificateError", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enable/disable overriding certificate errors. If enabled, all certificate error events need to
@@ -44,7 +44,7 @@ be handled by the DevTools client and should be answered with `handleCertificate
      * @link Protocol [Security#setOverrideCertificateErrors](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-setOverrideCertificateErrors) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setOverrideCertificateErrors is deprecated.")
-    fun setOverrideCertificateErrors(input: SetOverrideCertificateErrorsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Security.setOverrideCertificateErrors", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setOverrideCertificateErrors(input: SetOverrideCertificateErrorsRequest) = connection.runAndCaptureResponse("Security.setOverrideCertificateErrors", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  There is a certificate error. If overriding certificate errors is enabled, then it should be

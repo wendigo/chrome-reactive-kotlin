@@ -13,35 +13,35 @@ class TracingOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Tracing#end](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-end) method documentation.
      */
-    fun end(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Tracing.end", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun end() = connection.runAndCaptureResponse("Tracing.end", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Gets supported tracing categories.
      *
      * @link Protocol [Tracing#getCategories](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-getCategories) method documentation.
      */
-    fun getCategories(): io.reactivex.Single<GetCategoriesResponse> = connection.runAndCaptureResponse("Tracing.getCategories", null, GetCategoriesResponse::class.java)
+    fun getCategories() = connection.runAndCaptureResponse("Tracing.getCategories", null, GetCategoriesResponse::class.java)
 
     /**
      * Record a clock sync marker in the trace.
      *
      * @link Protocol [Tracing#recordClockSyncMarker](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-recordClockSyncMarker) method documentation.
      */
-    fun recordClockSyncMarker(input: RecordClockSyncMarkerRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun recordClockSyncMarker(input: RecordClockSyncMarkerRequest) = connection.runAndCaptureResponse("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Request a global memory dump.
      *
      * @link Protocol [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) method documentation.
      */
-    fun requestMemoryDump(): io.reactivex.Single<RequestMemoryDumpResponse> = connection.runAndCaptureResponse("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java)
+    fun requestMemoryDump() = connection.runAndCaptureResponse("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java)
 
     /**
      * Start trace events collection.
      *
      * @link Protocol [Tracing#start](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-start) method documentation.
      */
-    fun start(input: StartRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun start(input: StartRequest) = connection.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Returns observable capturing all Tracing.bufferUsage events.

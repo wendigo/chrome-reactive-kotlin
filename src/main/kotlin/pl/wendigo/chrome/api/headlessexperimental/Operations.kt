@@ -16,21 +16,21 @@ https://goo.gl/3zHXhB for more background.
      *
      * @link Protocol [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
      */
-    fun beginFrame(input: BeginFrameRequest): io.reactivex.Single<BeginFrameResponse> = connection.runAndCaptureResponse("HeadlessExperimental.beginFrame", input, BeginFrameResponse::class.java)
+    fun beginFrame(input: BeginFrameRequest) = connection.runAndCaptureResponse("HeadlessExperimental.beginFrame", input, BeginFrameResponse::class.java)
 
     /**
      * Disables headless events for the target.
      *
      * @link Protocol [HeadlessExperimental#disable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables headless events for the target.
      *
      * @link Protocol [HeadlessExperimental#enable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Issued when the target starts or stops needing BeginFrames.

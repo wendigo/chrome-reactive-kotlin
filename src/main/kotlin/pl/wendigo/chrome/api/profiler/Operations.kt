@@ -11,14 +11,14 @@ class ProfilerOperations internal constructor(private val connection: pl.wendigo
      *
      * @link Protocol [Profiler#disable](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Profiler.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("Profiler.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [Profiler#enable](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Profiler.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("Profiler.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Collect coverage data for the current isolate. The coverage data may be incomplete due to
@@ -26,21 +26,21 @@ garbage collection.
      *
      * @link Protocol [Profiler#getBestEffortCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getBestEffortCoverage) method documentation.
      */
-    fun getBestEffortCoverage(): io.reactivex.Single<GetBestEffortCoverageResponse> = connection.runAndCaptureResponse("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse::class.java)
+    fun getBestEffortCoverage() = connection.runAndCaptureResponse("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse::class.java)
 
     /**
      * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
      *
      * @link Protocol [Profiler#setSamplingInterval](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-setSamplingInterval) method documentation.
      */
-    fun setSamplingInterval(input: SetSamplingIntervalRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Profiler.setSamplingInterval", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setSamplingInterval(input: SetSamplingIntervalRequest) = connection.runAndCaptureResponse("Profiler.setSamplingInterval", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [Profiler#start](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-start) method documentation.
      */
-    fun start(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Profiler.start", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun start() = connection.runAndCaptureResponse("Profiler.start", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code
@@ -49,7 +49,7 @@ counters.
      *
      * @link Protocol [Profiler#startPreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startPreciseCoverage) method documentation.
      */
-    fun startPreciseCoverage(input: StartPreciseCoverageRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Profiler.startPreciseCoverage", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startPreciseCoverage(input: StartPreciseCoverageRequest) = connection.runAndCaptureResponse("Profiler.startPreciseCoverage", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enable type profile.
@@ -58,14 +58,14 @@ counters.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun startTypeProfile(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Profiler.startTypeProfile", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startTypeProfile() = connection.runAndCaptureResponse("Profiler.startTypeProfile", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [Profiler#stop](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-stop) method documentation.
      */
-    fun stop(): io.reactivex.Single<StopResponse> = connection.runAndCaptureResponse("Profiler.stop", null, StopResponse::class.java)
+    fun stop() = connection.runAndCaptureResponse("Profiler.stop", null, StopResponse::class.java)
 
     /**
      * Disable precise code coverage. Disabling releases unnecessary execution count records and allows
@@ -73,7 +73,7 @@ executing optimized code.
      *
      * @link Protocol [Profiler#stopPreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-stopPreciseCoverage) method documentation.
      */
-    fun stopPreciseCoverage(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopPreciseCoverage() = connection.runAndCaptureResponse("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disable type profile. Disabling releases type profile data collected so far.
@@ -82,7 +82,7 @@ executing optimized code.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun stopTypeProfile(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Profiler.stopTypeProfile", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopTypeProfile() = connection.runAndCaptureResponse("Profiler.stopTypeProfile", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Collect coverage data for the current isolate, and resets execution counters. Precise code
@@ -90,7 +90,7 @@ coverage needs to have started.
      *
      * @link Protocol [Profiler#takePreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-takePreciseCoverage) method documentation.
      */
-    fun takePreciseCoverage(): io.reactivex.Single<TakePreciseCoverageResponse> = connection.runAndCaptureResponse("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse::class.java)
+    fun takePreciseCoverage() = connection.runAndCaptureResponse("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse::class.java)
 
     /**
      * Collect type profile.
@@ -99,7 +99,7 @@ coverage needs to have started.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun takeTypeProfile(): io.reactivex.Single<TakeTypeProfileResponse> = connection.runAndCaptureResponse("Profiler.takeTypeProfile", null, TakeTypeProfileResponse::class.java)
+    fun takeTypeProfile() = connection.runAndCaptureResponse("Profiler.takeTypeProfile", null, TakeTypeProfileResponse::class.java)
 
     /**
      *  Returns observable capturing all Profiler.consoleProfileFinished events.

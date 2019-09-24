@@ -18,14 +18,14 @@ an |issueUpdated| event is fired.
      *
      * @link Protocol [Cast#enable](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-enable) method documentation.
      */
-    fun enable(input: EnableRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Cast.enable", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable(input: EnableRequest) = connection.runAndCaptureResponse("Cast.enable", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Stops observing for sinks and issues.
      *
      * @link Protocol [Cast#disable](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Cast.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("Cast.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets a sink to be used when the web page requests the browser to choose a
@@ -33,21 +33,21 @@ sink via Presentation API, Remote Playback API, or Cast SDK.
      *
      * @link Protocol [Cast#setSinkToUse](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-setSinkToUse) method documentation.
      */
-    fun setSinkToUse(input: SetSinkToUseRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Cast.setSinkToUse", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setSinkToUse(input: SetSinkToUseRequest) = connection.runAndCaptureResponse("Cast.setSinkToUse", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Starts mirroring the tab to the sink.
      *
      * @link Protocol [Cast#startTabMirroring](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-startTabMirroring) method documentation.
      */
-    fun startTabMirroring(input: StartTabMirroringRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Cast.startTabMirroring", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startTabMirroring(input: StartTabMirroringRequest) = connection.runAndCaptureResponse("Cast.startTabMirroring", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Stops the active Cast session on the sink.
      *
      * @link Protocol [Cast#stopCasting](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-stopCasting) method documentation.
      */
-    fun stopCasting(input: StopCastingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Cast.stopCasting", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopCasting(input: StopCastingRequest) = connection.runAndCaptureResponse("Cast.stopCasting", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  This is fired whenever the list of available sinks changes. A sink is a

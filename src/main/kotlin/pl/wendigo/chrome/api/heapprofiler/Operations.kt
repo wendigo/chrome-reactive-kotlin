@@ -14,84 +14,84 @@ $x functions).
      *
      * @link Protocol [HeapProfiler#addInspectedHeapObject](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-addInspectedHeapObject) method documentation.
      */
-    fun addInspectedHeapObject(input: AddInspectedHeapObjectRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeapProfiler.addInspectedHeapObject", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun addInspectedHeapObject(input: AddInspectedHeapObjectRequest) = connection.runAndCaptureResponse("HeapProfiler.addInspectedHeapObject", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#collectGarbage](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-collectGarbage) method documentation.
      */
-    fun collectGarbage(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun collectGarbage() = connection.runAndCaptureResponse("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#disable](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeapProfiler.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("HeapProfiler.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#enable](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeapProfiler.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("HeapProfiler.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#getHeapObjectId](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getHeapObjectId) method documentation.
      */
-    fun getHeapObjectId(input: GetHeapObjectIdRequest): io.reactivex.Single<GetHeapObjectIdResponse> = connection.runAndCaptureResponse("HeapProfiler.getHeapObjectId", input, GetHeapObjectIdResponse::class.java)
+    fun getHeapObjectId(input: GetHeapObjectIdRequest) = connection.runAndCaptureResponse("HeapProfiler.getHeapObjectId", input, GetHeapObjectIdResponse::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#getObjectByHeapObjectId](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getObjectByHeapObjectId) method documentation.
      */
-    fun getObjectByHeapObjectId(input: GetObjectByHeapObjectIdRequest): io.reactivex.Single<GetObjectByHeapObjectIdResponse> = connection.runAndCaptureResponse("HeapProfiler.getObjectByHeapObjectId", input, GetObjectByHeapObjectIdResponse::class.java)
+    fun getObjectByHeapObjectId(input: GetObjectByHeapObjectIdRequest) = connection.runAndCaptureResponse("HeapProfiler.getObjectByHeapObjectId", input, GetObjectByHeapObjectIdResponse::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#getSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getSamplingProfile) method documentation.
      */
-    fun getSamplingProfile(): io.reactivex.Single<GetSamplingProfileResponse> = connection.runAndCaptureResponse("HeapProfiler.getSamplingProfile", null, GetSamplingProfileResponse::class.java)
+    fun getSamplingProfile() = connection.runAndCaptureResponse("HeapProfiler.getSamplingProfile", null, GetSamplingProfileResponse::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#startSampling](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-startSampling) method documentation.
      */
-    fun startSampling(input: StartSamplingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeapProfiler.startSampling", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startSampling(input: StartSamplingRequest) = connection.runAndCaptureResponse("HeapProfiler.startSampling", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#startTrackingHeapObjects](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-startTrackingHeapObjects) method documentation.
      */
-    fun startTrackingHeapObjects(input: StartTrackingHeapObjectsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeapProfiler.startTrackingHeapObjects", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startTrackingHeapObjects(input: StartTrackingHeapObjectsRequest) = connection.runAndCaptureResponse("HeapProfiler.startTrackingHeapObjects", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#stopSampling](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-stopSampling) method documentation.
      */
-    fun stopSampling(): io.reactivex.Single<StopSamplingResponse> = connection.runAndCaptureResponse("HeapProfiler.stopSampling", null, StopSamplingResponse::class.java)
+    fun stopSampling() = connection.runAndCaptureResponse("HeapProfiler.stopSampling", null, StopSamplingResponse::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#stopTrackingHeapObjects](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-stopTrackingHeapObjects) method documentation.
      */
-    fun stopTrackingHeapObjects(input: StopTrackingHeapObjectsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeapProfiler.stopTrackingHeapObjects", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopTrackingHeapObjects(input: StopTrackingHeapObjectsRequest) = connection.runAndCaptureResponse("HeapProfiler.stopTrackingHeapObjects", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [HeapProfiler#takeHeapSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-takeHeapSnapshot) method documentation.
      */
-    fun takeHeapSnapshot(input: TakeHeapSnapshotRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("HeapProfiler.takeHeapSnapshot", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun takeHeapSnapshot(input: TakeHeapSnapshotRequest) = connection.runAndCaptureResponse("HeapProfiler.takeHeapSnapshot", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Returns observable capturing all HeapProfiler.addHeapSnapshotChunk events.

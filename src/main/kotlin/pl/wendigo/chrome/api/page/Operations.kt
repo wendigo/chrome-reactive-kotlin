@@ -14,28 +14,28 @@ class PageOperations internal constructor(private val connection: pl.wendigo.chr
     @Deprecated(level = DeprecationLevel.WARNING, message = "addScriptToEvaluateOnLoad is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun addScriptToEvaluateOnLoad(input: AddScriptToEvaluateOnLoadRequest): io.reactivex.Single<AddScriptToEvaluateOnLoadResponse> = connection.runAndCaptureResponse("Page.addScriptToEvaluateOnLoad", input, AddScriptToEvaluateOnLoadResponse::class.java)
+    fun addScriptToEvaluateOnLoad(input: AddScriptToEvaluateOnLoadRequest) = connection.runAndCaptureResponse("Page.addScriptToEvaluateOnLoad", input, AddScriptToEvaluateOnLoadResponse::class.java)
 
     /**
      * Evaluates given script in every frame upon creation (before loading frame's scripts).
      *
      * @link Protocol [Page#addScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnNewDocument) method documentation.
      */
-    fun addScriptToEvaluateOnNewDocument(input: AddScriptToEvaluateOnNewDocumentRequest): io.reactivex.Single<AddScriptToEvaluateOnNewDocumentResponse> = connection.runAndCaptureResponse("Page.addScriptToEvaluateOnNewDocument", input, AddScriptToEvaluateOnNewDocumentResponse::class.java)
+    fun addScriptToEvaluateOnNewDocument(input: AddScriptToEvaluateOnNewDocumentRequest) = connection.runAndCaptureResponse("Page.addScriptToEvaluateOnNewDocument", input, AddScriptToEvaluateOnNewDocumentResponse::class.java)
 
     /**
      * Brings page to front (activates tab).
      *
      * @link Protocol [Page#bringToFront](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-bringToFront) method documentation.
      */
-    fun bringToFront(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.bringToFront", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun bringToFront() = connection.runAndCaptureResponse("Page.bringToFront", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Capture page screenshot.
      *
      * @link Protocol [Page#captureScreenshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot) method documentation.
      */
-    fun captureScreenshot(input: CaptureScreenshotRequest): io.reactivex.Single<CaptureScreenshotResponse> = connection.runAndCaptureResponse("Page.captureScreenshot", input, CaptureScreenshotResponse::class.java)
+    fun captureScreenshot(input: CaptureScreenshotRequest) = connection.runAndCaptureResponse("Page.captureScreenshot", input, CaptureScreenshotResponse::class.java)
 
     /**
      * Returns a snapshot of the page as a string. For MHTML format, the serialization includes
@@ -45,7 +45,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun captureSnapshot(input: CaptureSnapshotRequest): io.reactivex.Single<CaptureSnapshotResponse> = connection.runAndCaptureResponse("Page.captureSnapshot", input, CaptureSnapshotResponse::class.java)
+    fun captureSnapshot(input: CaptureSnapshotRequest) = connection.runAndCaptureResponse("Page.captureSnapshot", input, CaptureSnapshotResponse::class.java)
 
     /**
      * Clears the overriden device metrics.
@@ -55,7 +55,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearDeviceMetricsOverride is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun clearDeviceMetricsOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearDeviceMetricsOverride() = connection.runAndCaptureResponse("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Clears the overridden Device Orientation.
@@ -65,7 +65,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearDeviceOrientationOverride is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun clearDeviceOrientationOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearDeviceOrientationOverride() = connection.runAndCaptureResponse("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Clears the overriden Geolocation Position and Error.
@@ -73,14 +73,14 @@ iframes, shadow DOM, external resources, and element-inline styles.
      * @link Protocol [Page#clearGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-clearGeolocationOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearGeolocationOverride is deprecated.")
-    fun clearGeolocationOverride(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearGeolocationOverride() = connection.runAndCaptureResponse("Page.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Creates an isolated world for the given frame.
      *
      * @link Protocol [Page#createIsolatedWorld](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-createIsolatedWorld) method documentation.
      */
-    fun createIsolatedWorld(input: CreateIsolatedWorldRequest): io.reactivex.Single<CreateIsolatedWorldResponse> = connection.runAndCaptureResponse("Page.createIsolatedWorld", input, CreateIsolatedWorldResponse::class.java)
+    fun createIsolatedWorld(input: CreateIsolatedWorldRequest) = connection.runAndCaptureResponse("Page.createIsolatedWorld", input, CreateIsolatedWorldResponse::class.java)
 
     /**
      * Deletes browser cookie with given name, domain and path.
@@ -90,28 +90,28 @@ iframes, shadow DOM, external resources, and element-inline styles.
     @Deprecated(level = DeprecationLevel.WARNING, message = "deleteCookie is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun deleteCookie(input: DeleteCookieRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.deleteCookie", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun deleteCookie(input: DeleteCookieRequest) = connection.runAndCaptureResponse("Page.deleteCookie", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables page domain notifications.
      *
      * @link Protocol [Page#disable](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.runAndCaptureResponse("Page.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables page domain notifications.
      *
      * @link Protocol [Page#enable](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.runAndCaptureResponse("Page.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [Page#getAppManifest](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getAppManifest) method documentation.
      */
-    fun getAppManifest(): io.reactivex.Single<GetAppManifestResponse> = connection.runAndCaptureResponse("Page.getAppManifest", null, GetAppManifestResponse::class.java)
+    fun getAppManifest() = connection.runAndCaptureResponse("Page.getAppManifest", null, GetAppManifestResponse::class.java)
 
     /**
      *
@@ -120,7 +120,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getInstallabilityErrors(): io.reactivex.Single<GetInstallabilityErrorsResponse> = connection.runAndCaptureResponse("Page.getInstallabilityErrors", null, GetInstallabilityErrorsResponse::class.java)
+    fun getInstallabilityErrors() = connection.runAndCaptureResponse("Page.getInstallabilityErrors", null, GetInstallabilityErrorsResponse::class.java)
 
     /**
      * Returns all browser cookies. Depending on the backend support, will return detailed cookie
@@ -131,35 +131,35 @@ information in the `cookies` field.
     @Deprecated(level = DeprecationLevel.WARNING, message = "getCookies is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getCookies(): io.reactivex.Single<GetCookiesResponse> = connection.runAndCaptureResponse("Page.getCookies", null, GetCookiesResponse::class.java)
+    fun getCookies() = connection.runAndCaptureResponse("Page.getCookies", null, GetCookiesResponse::class.java)
 
     /**
      * Returns present frame tree structure.
      *
      * @link Protocol [Page#getFrameTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getFrameTree) method documentation.
      */
-    fun getFrameTree(): io.reactivex.Single<GetFrameTreeResponse> = connection.runAndCaptureResponse("Page.getFrameTree", null, GetFrameTreeResponse::class.java)
+    fun getFrameTree() = connection.runAndCaptureResponse("Page.getFrameTree", null, GetFrameTreeResponse::class.java)
 
     /**
      * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
      *
      * @link Protocol [Page#getLayoutMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getLayoutMetrics) method documentation.
      */
-    fun getLayoutMetrics(): io.reactivex.Single<GetLayoutMetricsResponse> = connection.runAndCaptureResponse("Page.getLayoutMetrics", null, GetLayoutMetricsResponse::class.java)
+    fun getLayoutMetrics() = connection.runAndCaptureResponse("Page.getLayoutMetrics", null, GetLayoutMetricsResponse::class.java)
 
     /**
      * Returns navigation history for the current page.
      *
      * @link Protocol [Page#getNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getNavigationHistory) method documentation.
      */
-    fun getNavigationHistory(): io.reactivex.Single<GetNavigationHistoryResponse> = connection.runAndCaptureResponse("Page.getNavigationHistory", null, GetNavigationHistoryResponse::class.java)
+    fun getNavigationHistory() = connection.runAndCaptureResponse("Page.getNavigationHistory", null, GetNavigationHistoryResponse::class.java)
 
     /**
      * Resets navigation history for the current page.
      *
      * @link Protocol [Page#resetNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-resetNavigationHistory) method documentation.
      */
-    fun resetNavigationHistory(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.resetNavigationHistory", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun resetNavigationHistory() = connection.runAndCaptureResponse("Page.resetNavigationHistory", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns content of the given resource.
@@ -168,7 +168,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getResourceContent(input: GetResourceContentRequest): io.reactivex.Single<GetResourceContentResponse> = connection.runAndCaptureResponse("Page.getResourceContent", input, GetResourceContentResponse::class.java)
+    fun getResourceContent(input: GetResourceContentRequest) = connection.runAndCaptureResponse("Page.getResourceContent", input, GetResourceContentResponse::class.java)
 
     /**
      * Returns present frame / resource tree structure.
@@ -177,42 +177,42 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getResourceTree(): io.reactivex.Single<GetResourceTreeResponse> = connection.runAndCaptureResponse("Page.getResourceTree", null, GetResourceTreeResponse::class.java)
+    fun getResourceTree() = connection.runAndCaptureResponse("Page.getResourceTree", null, GetResourceTreeResponse::class.java)
 
     /**
      * Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
      *
      * @link Protocol [Page#handleJavaScriptDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-handleJavaScriptDialog) method documentation.
      */
-    fun handleJavaScriptDialog(input: HandleJavaScriptDialogRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.handleJavaScriptDialog", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun handleJavaScriptDialog(input: HandleJavaScriptDialogRequest) = connection.runAndCaptureResponse("Page.handleJavaScriptDialog", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Navigates current page to the given URL.
      *
      * @link Protocol [Page#navigate](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigate) method documentation.
      */
-    fun navigate(input: NavigateRequest): io.reactivex.Single<NavigateResponse> = connection.runAndCaptureResponse("Page.navigate", input, NavigateResponse::class.java)
+    fun navigate(input: NavigateRequest) = connection.runAndCaptureResponse("Page.navigate", input, NavigateResponse::class.java)
 
     /**
      * Navigates current page to the given history entry.
      *
      * @link Protocol [Page#navigateToHistoryEntry](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigateToHistoryEntry) method documentation.
      */
-    fun navigateToHistoryEntry(input: NavigateToHistoryEntryRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.navigateToHistoryEntry", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun navigateToHistoryEntry(input: NavigateToHistoryEntryRequest) = connection.runAndCaptureResponse("Page.navigateToHistoryEntry", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Print page as PDF.
      *
      * @link Protocol [Page#printToPDF](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-printToPDF) method documentation.
      */
-    fun printToPDF(input: PrintToPDFRequest): io.reactivex.Single<PrintToPDFResponse> = connection.runAndCaptureResponse("Page.printToPDF", input, PrintToPDFResponse::class.java)
+    fun printToPDF(input: PrintToPDFRequest) = connection.runAndCaptureResponse("Page.printToPDF", input, PrintToPDFResponse::class.java)
 
     /**
      * Reloads given page optionally ignoring the cache.
      *
      * @link Protocol [Page#reload](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-reload) method documentation.
      */
-    fun reload(input: ReloadRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.reload", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun reload(input: ReloadRequest) = connection.runAndCaptureResponse("Page.reload", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Deprecated, please use removeScriptToEvaluateOnNewDocument instead.
@@ -222,14 +222,14 @@ information in the `cookies` field.
     @Deprecated(level = DeprecationLevel.WARNING, message = "removeScriptToEvaluateOnLoad is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun removeScriptToEvaluateOnLoad(input: RemoveScriptToEvaluateOnLoadRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.removeScriptToEvaluateOnLoad", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeScriptToEvaluateOnLoad(input: RemoveScriptToEvaluateOnLoadRequest) = connection.runAndCaptureResponse("Page.removeScriptToEvaluateOnLoad", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Removes given script from the list.
      *
      * @link Protocol [Page#removeScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-removeScriptToEvaluateOnNewDocument) method documentation.
      */
-    fun removeScriptToEvaluateOnNewDocument(input: RemoveScriptToEvaluateOnNewDocumentRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.removeScriptToEvaluateOnNewDocument", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeScriptToEvaluateOnNewDocument(input: RemoveScriptToEvaluateOnNewDocumentRequest) = connection.runAndCaptureResponse("Page.removeScriptToEvaluateOnNewDocument", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Acknowledges that a screencast frame has been received by the frontend.
@@ -238,7 +238,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun screencastFrameAck(input: ScreencastFrameAckRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.screencastFrameAck", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun screencastFrameAck(input: ScreencastFrameAckRequest) = connection.runAndCaptureResponse("Page.screencastFrameAck", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Searches for given string in resource content.
@@ -247,7 +247,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun searchInResource(input: SearchInResourceRequest): io.reactivex.Single<SearchInResourceResponse> = connection.runAndCaptureResponse("Page.searchInResource", input, SearchInResourceResponse::class.java)
+    fun searchInResource(input: SearchInResourceRequest) = connection.runAndCaptureResponse("Page.searchInResource", input, SearchInResourceResponse::class.java)
 
     /**
      * Enable Chrome's experimental ad filter on all sites.
@@ -256,7 +256,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setAdBlockingEnabled(input: SetAdBlockingEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setAdBlockingEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAdBlockingEnabled(input: SetAdBlockingEnabledRequest) = connection.runAndCaptureResponse("Page.setAdBlockingEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enable page Content Security Policy by-passing.
@@ -265,7 +265,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBypassCSP(input: SetBypassCSPRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setBypassCSP", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setBypassCSP(input: SetBypassCSPRequest) = connection.runAndCaptureResponse("Page.setBypassCSP", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Overrides the values of device screen dimensions (window.screen.width, window.screen.height,
@@ -277,7 +277,7 @@ query results).
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDeviceMetricsOverride is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setDeviceMetricsOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest) = connection.runAndCaptureResponse("Page.setDeviceMetricsOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Overrides the Device Orientation.
@@ -287,7 +287,7 @@ query results).
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDeviceOrientationOverride is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setDeviceOrientationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest) = connection.runAndCaptureResponse("Page.setDeviceOrientationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Set generic font families.
@@ -296,7 +296,7 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setFontFamilies(input: SetFontFamiliesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setFontFamilies", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setFontFamilies(input: SetFontFamiliesRequest) = connection.runAndCaptureResponse("Page.setFontFamilies", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Set default font sizes.
@@ -305,14 +305,14 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setFontSizes(input: SetFontSizesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setFontSizes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setFontSizes(input: SetFontSizesRequest) = connection.runAndCaptureResponse("Page.setFontSizes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets given markup as the document's HTML.
      *
      * @link Protocol [Page#setDocumentContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDocumentContent) method documentation.
      */
-    fun setDocumentContent(input: SetDocumentContentRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setDocumentContent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDocumentContent(input: SetDocumentContentRequest) = connection.runAndCaptureResponse("Page.setDocumentContent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Set the behavior when downloading a file.
@@ -321,7 +321,7 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDownloadBehavior(input: SetDownloadBehaviorRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setDownloadBehavior", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDownloadBehavior(input: SetDownloadBehaviorRequest) = connection.runAndCaptureResponse("Page.setDownloadBehavior", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position
@@ -330,7 +330,7 @@ unavailable.
      * @link Protocol [Page#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setGeolocationOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setGeolocationOverride is deprecated.")
-    fun setGeolocationOverride(input: SetGeolocationOverrideRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setGeolocationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setGeolocationOverride(input: SetGeolocationOverrideRequest) = connection.runAndCaptureResponse("Page.setGeolocationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Controls whether page will emit lifecycle events.
@@ -339,7 +339,7 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setLifecycleEventsEnabled(input: SetLifecycleEventsEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setLifecycleEventsEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setLifecycleEventsEnabled(input: SetLifecycleEventsEnabledRequest) = connection.runAndCaptureResponse("Page.setLifecycleEventsEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Toggles mouse event-based touch event emulation.
@@ -349,7 +349,7 @@ unavailable.
     @Deprecated(level = DeprecationLevel.WARNING, message = "setTouchEmulationEnabled is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setTouchEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest) = connection.runAndCaptureResponse("Page.setTouchEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Starts sending each frame using the `screencastFrame` event.
@@ -358,14 +358,14 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun startScreencast(input: StartScreencastRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.startScreencast", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startScreencast(input: StartScreencastRequest) = connection.runAndCaptureResponse("Page.startScreencast", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Force the page stop all navigations and pending resource fetches.
      *
      * @link Protocol [Page#stopLoading](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-stopLoading) method documentation.
      */
-    fun stopLoading(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.stopLoading", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopLoading() = connection.runAndCaptureResponse("Page.stopLoading", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Crashes renderer on the IO thread, generates minidumps.
@@ -374,7 +374,7 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun crash(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun crash() = connection.runAndCaptureResponse("Page.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Tries to close page, running its beforeunload hooks, if any.
@@ -383,7 +383,7 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun close(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun close() = connection.runAndCaptureResponse("Page.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Tries to update the web lifecycle state of the page.
@@ -394,7 +394,7 @@ https://github.com/WICG/web-lifecycle/
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setWebLifecycleState(input: SetWebLifecycleStateRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setWebLifecycleState", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setWebLifecycleState(input: SetWebLifecycleStateRequest) = connection.runAndCaptureResponse("Page.setWebLifecycleState", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Stops sending each frame in the `screencastFrame`.
@@ -403,7 +403,7 @@ https://github.com/WICG/web-lifecycle/
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun stopScreencast(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.stopScreencast", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopScreencast() = connection.runAndCaptureResponse("Page.stopScreencast", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Forces compilation cache to be generated for every subresource script.
@@ -412,7 +412,7 @@ https://github.com/WICG/web-lifecycle/
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setProduceCompilationCache(input: SetProduceCompilationCacheRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setProduceCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setProduceCompilationCache(input: SetProduceCompilationCacheRequest) = connection.runAndCaptureResponse("Page.setProduceCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Seeds compilation cache for given url. Compilation cache does not survive
@@ -422,7 +422,7 @@ cross-process navigation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun addCompilationCache(input: AddCompilationCacheRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.addCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun addCompilationCache(input: AddCompilationCacheRequest) = connection.runAndCaptureResponse("Page.addCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Clears seeded compilation cache.
@@ -431,7 +431,7 @@ cross-process navigation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun clearCompilationCache(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.clearCompilationCache", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearCompilationCache() = connection.runAndCaptureResponse("Page.clearCompilationCache", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Generates a report for testing.
@@ -440,7 +440,7 @@ cross-process navigation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun generateTestReport(input: GenerateTestReportRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.generateTestReport", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun generateTestReport(input: GenerateTestReportRequest) = connection.runAndCaptureResponse("Page.generateTestReport", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Pauses page execution. Can be resumed using generic Runtime.runIfWaitingForDebugger.
@@ -449,7 +449,7 @@ cross-process navigation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun waitForDebugger(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.waitForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun waitForDebugger() = connection.runAndCaptureResponse("Page.waitForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Intercept file chooser requests and transfer control to protocol clients.
@@ -461,7 +461,7 @@ File chooser can be handled with `page.handleFileChooser` command.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setInterceptFileChooserDialog(input: SetInterceptFileChooserDialogRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.setInterceptFileChooserDialog", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setInterceptFileChooserDialog(input: SetInterceptFileChooserDialogRequest) = connection.runAndCaptureResponse("Page.setInterceptFileChooserDialog", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Accepts or cancels an intercepted file chooser dialog.
@@ -470,7 +470,7 @@ File chooser can be handled with `page.handleFileChooser` command.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun handleFileChooser(input: HandleFileChooserRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Page.handleFileChooser", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun handleFileChooser(input: HandleFileChooserRequest) = connection.runAndCaptureResponse("Page.handleFileChooser", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Returns observable capturing all Page.domContentEventFired events.
