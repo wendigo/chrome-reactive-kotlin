@@ -58,17 +58,19 @@ class SessionManager(
     fun closeTarget(session: Session) {
         logger.info("Closing {}...", session)
 
+        val browserContextID = session.info().browserContextId
+
         await {
-            api.Target.closeTarget(CloseTargetRequest(session.targetInfo.targetId))
+            api.Target.closeTarget(CloseTargetRequest(session.target.targetId))
         }.run {
-            logger.info("Closed {}", session.targetInfo)
+            logger.info("Closed {}", session.target)
         }
 
-        if (!session.targetInfo.browserContextId.isNullOrEmpty()) {
+        if (!browserContextID.isNullOrEmpty()) {
             await {
-                api.Target.disposeBrowserContext(DisposeBrowserContextRequest(session.targetInfo.browserContextId))
+                api.Target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
             }.run {
-                logger.info("Destroyed browser context {}", session.targetInfo.browserContextId)
+                logger.info("Destroyed browser context {}", browserContextID)
             }
         }
 
@@ -116,8 +118,7 @@ class SessionManager(
         }
 
         return Session(
-            targetInfo = target,
-            sessionId = sessionId,
+            target = target.toTarget(sessionId),
             connection = openConnection(target, sessionId)
         )
     }
