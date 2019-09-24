@@ -10,7 +10,7 @@ import pl.wendigo.chrome.protocol.RequestFrame
 import pl.wendigo.chrome.protocol.ResponseFrame
 
 /**
- * TargetedFramesStream is a [FramesStream] that talks with Chrome DevTools Protocol via [Target](https://chromedevtools.github.io/devtools-protocol/tot/Target) domain.
+ * This class is [FramesStream] implementation that talks with Chrome DevTools Protocol via [Target](https://chromedevtools.github.io/devtools-protocol/tot/Target) domain.
  *
  * It encapsulates all frames in target's frames.
  *
