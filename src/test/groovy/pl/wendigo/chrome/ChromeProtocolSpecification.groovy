@@ -30,20 +30,19 @@ class ChromeProtocolSpecification extends Specification {
             def chrome = Browser.connect(address)
 
         when:
-            def session = chrome.headlessSession("about:blank", 128)
+            def session = chrome.session("about:blank", true, 128, 1000, 800)
             def layout = session.page.getLayoutMetrics().blockingGet()
 
         then:
-            with (session.sessionDescriptor) {
-                browserContextId != ""
-                targetId != ""
+            with (session) {
+                targetInfo != null
                 sessionId != ""
-                sessionId != ""
+                targetInfo.type == "page"
             }
 
             with (layout.layoutViewport) {
-                clientHeight == 768
-                clientWidth == 1024
+                clientHeight == 800
+                clientWidth == 1000
             }
 
         cleanup:
