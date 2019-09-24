@@ -27,7 +27,7 @@ class ChromeProtocolSpecification extends Specification {
     def "should open headless session"() {
         given:
             def address = container.getContainerIpAddress() + ":" + container.firstMappedPort
-            def chrome = Browser.connect(address)
+            def chrome = Browser.connect(address, 128)
 
         when:
             def session = chrome.session("about:blank", true, 128, 1000, 800)
