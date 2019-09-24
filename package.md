@@ -41,3 +41,8 @@ Contains DevTools protocol primitives ([WebsocketFramesStream], [RequestFrame]/[
 # Package pl.wendigo.chrome.protocol.inspector
 
 Inspector related classes ([InspectablePage])
+
+# Package pl.wendigo.chrome.targets
+
+Session/target management related classes ([SessionManager], [FramesStream])
+
