@@ -35,9 +35,9 @@ class ChromeProtocolSpecification extends Specification {
 
         then:
             with (session) {
-                targetInfo != null
-                sessionId != ""
-                targetInfo.type == "page"
+                target != null
+                target.sessionId != ""
+                info().type == "page"
             }
 
             with (layout.layoutViewport) {
