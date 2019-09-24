@@ -13,39 +13,39 @@ class MediaOperations internal constructor(private val connection: pl.wendigo.ch
      *
      * @link Protocol [Media#enable](https://chromedevtools.github.io/devtools-protocol/tot/Media#method-enable) method documentation.
      */
-    fun enable() = connection.runAndCaptureResponse("Media.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Media.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables the Media domain.
      *
      * @link Protocol [Media#disable](https://chromedevtools.github.io/devtools-protocol/tot/Media#method-disable) method documentation.
      */
-    fun disable() = connection.runAndCaptureResponse("Media.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Media.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  This can be called multiple times, and can be used to set / override /
 remove player properties. A null propValue indicates removal.
      */
-    fun playerPropertiesChanged(): io.reactivex.Flowable<PlayerPropertiesChangedEvent> = connection.captureEvents("Media.playerPropertiesChanged", PlayerPropertiesChangedEvent::class.java)
+    fun playerPropertiesChanged(): io.reactivex.Flowable<PlayerPropertiesChangedEvent> = connection.events("Media.playerPropertiesChanged", PlayerPropertiesChangedEvent::class.java)
 
     /**
      *  Send events as a list, allowing them to be batched on the browser for less
 congestion. If batched, events must ALWAYS be in chronological order.
      */
-    fun playerEventsAdded(): io.reactivex.Flowable<PlayerEventsAddedEvent> = connection.captureEvents("Media.playerEventsAdded", PlayerEventsAddedEvent::class.java)
+    fun playerEventsAdded(): io.reactivex.Flowable<PlayerEventsAddedEvent> = connection.events("Media.playerEventsAdded", PlayerEventsAddedEvent::class.java)
 
     /**
      *  Called whenever a player is created, or when a new agent joins and recieves
 a list of active players. If an agent is restored, it will recieve the full
 list of player ids and all events again.
      */
-    fun playersCreated(): io.reactivex.Flowable<PlayersCreatedEvent> = connection.captureEvents("Media.playersCreated", PlayersCreatedEvent::class.java)
+    fun playersCreated(): io.reactivex.Flowable<PlayersCreatedEvent> = connection.events("Media.playersCreated", PlayersCreatedEvent::class.java)
 
     /**
      * Returns flowable capturing all Media domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Media"
         }
     }

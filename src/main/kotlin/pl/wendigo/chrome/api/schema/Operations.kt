@@ -12,13 +12,13 @@ class SchemaOperations internal constructor(private val connection: pl.wendigo.c
      *
      * @link Protocol [Schema#getDomains](https://chromedevtools.github.io/devtools-protocol/tot/Schema#method-getDomains) method documentation.
      */
-    fun getDomains() = connection.runAndCaptureResponse("Schema.getDomains", null, GetDomainsResponse::class.java)
+    fun getDomains() = connection.request("Schema.getDomains", null, GetDomainsResponse::class.java)
 
     /**
      * Returns flowable capturing all Schema domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Schema"
         }
     }

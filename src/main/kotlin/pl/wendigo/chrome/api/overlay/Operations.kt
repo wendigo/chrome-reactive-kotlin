@@ -13,35 +13,35 @@ class OverlayOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Overlay#disable](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-disable) method documentation.
      */
-    fun disable() = connection.runAndCaptureResponse("Overlay.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Overlay.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables domain notifications.
      *
      * @link Protocol [Overlay#enable](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-enable) method documentation.
      */
-    fun enable() = connection.runAndCaptureResponse("Overlay.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Overlay.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * For testing.
      *
      * @link Protocol [Overlay#getHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getHighlightObjectForTest) method documentation.
      */
-    fun getHighlightObjectForTest(input: GetHighlightObjectForTestRequest) = connection.runAndCaptureResponse("Overlay.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java)
+    fun getHighlightObjectForTest(input: GetHighlightObjectForTestRequest) = connection.request("Overlay.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java)
 
     /**
      * Hides any highlight.
      *
      * @link Protocol [Overlay#hideHighlight](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-hideHighlight) method documentation.
      */
-    fun hideHighlight() = connection.runAndCaptureResponse("Overlay.hideHighlight", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun hideHighlight() = connection.request("Overlay.hideHighlight", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Highlights owner element of the frame with given id.
      *
      * @link Protocol [Overlay#highlightFrame](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightFrame) method documentation.
      */
-    fun highlightFrame(input: HighlightFrameRequest) = connection.runAndCaptureResponse("Overlay.highlightFrame", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun highlightFrame(input: HighlightFrameRequest) = connection.request("Overlay.highlightFrame", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or
@@ -49,21 +49,21 @@ objectId must be specified.
      *
      * @link Protocol [Overlay#highlightNode](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightNode) method documentation.
      */
-    fun highlightNode(input: HighlightNodeRequest) = connection.runAndCaptureResponse("Overlay.highlightNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun highlightNode(input: HighlightNodeRequest) = connection.request("Overlay.highlightNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
      *
      * @link Protocol [Overlay#highlightQuad](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightQuad) method documentation.
      */
-    fun highlightQuad(input: HighlightQuadRequest) = connection.runAndCaptureResponse("Overlay.highlightQuad", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun highlightQuad(input: HighlightQuadRequest) = connection.request("Overlay.highlightQuad", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
      *
      * @link Protocol [Overlay#highlightRect](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightRect) method documentation.
      */
-    fun highlightRect(input: HighlightRectRequest) = connection.runAndCaptureResponse("Overlay.highlightRect", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun highlightRect(input: HighlightRectRequest) = connection.request("Overlay.highlightRect", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted.
@@ -71,97 +71,97 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      *
      * @link Protocol [Overlay#setInspectMode](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setInspectMode) method documentation.
      */
-    fun setInspectMode(input: SetInspectModeRequest) = connection.runAndCaptureResponse("Overlay.setInspectMode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setInspectMode(input: SetInspectModeRequest) = connection.request("Overlay.setInspectMode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Highlights owner element of all frames detected to be ads.
      *
      * @link Protocol [Overlay#setShowAdHighlights](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowAdHighlights) method documentation.
      */
-    fun setShowAdHighlights(input: SetShowAdHighlightsRequest) = connection.runAndCaptureResponse("Overlay.setShowAdHighlights", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setShowAdHighlights(input: SetShowAdHighlightsRequest) = connection.request("Overlay.setShowAdHighlights", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [Overlay#setPausedInDebuggerMessage](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setPausedInDebuggerMessage) method documentation.
      */
-    fun setPausedInDebuggerMessage(input: SetPausedInDebuggerMessageRequest) = connection.runAndCaptureResponse("Overlay.setPausedInDebuggerMessage", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setPausedInDebuggerMessage(input: SetPausedInDebuggerMessageRequest) = connection.request("Overlay.setPausedInDebuggerMessage", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that backend shows debug borders on layers
      *
      * @link Protocol [Overlay#setShowDebugBorders](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowDebugBorders) method documentation.
      */
-    fun setShowDebugBorders(input: SetShowDebugBordersRequest) = connection.runAndCaptureResponse("Overlay.setShowDebugBorders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setShowDebugBorders(input: SetShowDebugBordersRequest) = connection.request("Overlay.setShowDebugBorders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that backend shows the FPS counter
      *
      * @link Protocol [Overlay#setShowFPSCounter](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFPSCounter) method documentation.
      */
-    fun setShowFPSCounter(input: SetShowFPSCounterRequest) = connection.runAndCaptureResponse("Overlay.setShowFPSCounter", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setShowFPSCounter(input: SetShowFPSCounterRequest) = connection.request("Overlay.setShowFPSCounter", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that backend shows paint rectangles
      *
      * @link Protocol [Overlay#setShowPaintRects](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowPaintRects) method documentation.
      */
-    fun setShowPaintRects(input: SetShowPaintRectsRequest) = connection.runAndCaptureResponse("Overlay.setShowPaintRects", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setShowPaintRects(input: SetShowPaintRectsRequest) = connection.request("Overlay.setShowPaintRects", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that backend shows layout shift regions
      *
      * @link Protocol [Overlay#setShowLayoutShiftRegions](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowLayoutShiftRegions) method documentation.
      */
-    fun setShowLayoutShiftRegions(input: SetShowLayoutShiftRegionsRequest) = connection.runAndCaptureResponse("Overlay.setShowLayoutShiftRegions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setShowLayoutShiftRegions(input: SetShowLayoutShiftRegionsRequest) = connection.request("Overlay.setShowLayoutShiftRegions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that backend shows scroll bottleneck rects
      *
      * @link Protocol [Overlay#setShowScrollBottleneckRects](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowScrollBottleneckRects) method documentation.
      */
-    fun setShowScrollBottleneckRects(input: SetShowScrollBottleneckRectsRequest) = connection.runAndCaptureResponse("Overlay.setShowScrollBottleneckRects", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setShowScrollBottleneckRects(input: SetShowScrollBottleneckRectsRequest) = connection.request("Overlay.setShowScrollBottleneckRects", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that backend shows hit-test borders on layers
      *
      * @link Protocol [Overlay#setShowHitTestBorders](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowHitTestBorders) method documentation.
      */
-    fun setShowHitTestBorders(input: SetShowHitTestBordersRequest) = connection.runAndCaptureResponse("Overlay.setShowHitTestBorders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setShowHitTestBorders(input: SetShowHitTestBordersRequest) = connection.request("Overlay.setShowHitTestBorders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Paints viewport size upon main frame resize.
      *
      * @link Protocol [Overlay#setShowViewportSizeOnResize](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowViewportSizeOnResize) method documentation.
      */
-    fun setShowViewportSizeOnResize(input: SetShowViewportSizeOnResizeRequest) = connection.runAndCaptureResponse("Overlay.setShowViewportSizeOnResize", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setShowViewportSizeOnResize(input: SetShowViewportSizeOnResizeRequest) = connection.request("Overlay.setShowViewportSizeOnResize", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Fired when the node should be inspected. This happens after call to `setInspectMode` or when
 user manually inspects an element.
      */
-    fun inspectNodeRequested(): io.reactivex.Flowable<InspectNodeRequestedEvent> = connection.captureEvents("Overlay.inspectNodeRequested", InspectNodeRequestedEvent::class.java)
+    fun inspectNodeRequested(): io.reactivex.Flowable<InspectNodeRequestedEvent> = connection.events("Overlay.inspectNodeRequested", InspectNodeRequestedEvent::class.java)
 
     /**
      *  Fired when the node should be highlighted. This happens after call to `setInspectMode`.
      */
-    fun nodeHighlightRequested(): io.reactivex.Flowable<NodeHighlightRequestedEvent> = connection.captureEvents("Overlay.nodeHighlightRequested", NodeHighlightRequestedEvent::class.java)
+    fun nodeHighlightRequested(): io.reactivex.Flowable<NodeHighlightRequestedEvent> = connection.events("Overlay.nodeHighlightRequested", NodeHighlightRequestedEvent::class.java)
 
     /**
      *  Fired when user asks to capture screenshot of some area on the page.
      */
-    fun screenshotRequested(): io.reactivex.Flowable<ScreenshotRequestedEvent> = connection.captureEvents("Overlay.screenshotRequested", ScreenshotRequestedEvent::class.java)
+    fun screenshotRequested(): io.reactivex.Flowable<ScreenshotRequestedEvent> = connection.events("Overlay.screenshotRequested", ScreenshotRequestedEvent::class.java)
 
     /**
      *  Fired when user cancels the inspect mode.
      */
-    fun inspectModeCanceled(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Overlay.inspectModeCanceled", pl.wendigo.chrome.protocol.Event::class.java)
+    fun inspectModeCanceled(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Overlay.inspectModeCanceled", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      * Returns flowable capturing all Overlay domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Overlay"
         }
     }

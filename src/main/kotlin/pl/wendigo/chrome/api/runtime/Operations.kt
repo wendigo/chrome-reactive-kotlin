@@ -15,7 +15,7 @@ class RuntimeOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) method documentation.
      */
-    fun awaitPromise(input: AwaitPromiseRequest) = connection.runAndCaptureResponse("Runtime.awaitPromise", input, AwaitPromiseResponse::class.java)
+    fun awaitPromise(input: AwaitPromiseRequest) = connection.request("Runtime.awaitPromise", input, AwaitPromiseResponse::class.java)
 
     /**
      * Calls function with given declaration on the given object. Object group of the result is
@@ -23,28 +23,28 @@ inherited from the target object.
      *
      * @link Protocol [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) method documentation.
      */
-    fun callFunctionOn(input: CallFunctionOnRequest) = connection.runAndCaptureResponse("Runtime.callFunctionOn", input, CallFunctionOnResponse::class.java)
+    fun callFunctionOn(input: CallFunctionOnRequest) = connection.request("Runtime.callFunctionOn", input, CallFunctionOnResponse::class.java)
 
     /**
      * Compiles expression.
      *
      * @link Protocol [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) method documentation.
      */
-    fun compileScript(input: CompileScriptRequest) = connection.runAndCaptureResponse("Runtime.compileScript", input, CompileScriptResponse::class.java)
+    fun compileScript(input: CompileScriptRequest) = connection.request("Runtime.compileScript", input, CompileScriptResponse::class.java)
 
     /**
      * Disables reporting of execution contexts creation.
      *
      * @link Protocol [Runtime#disable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-disable) method documentation.
      */
-    fun disable() = connection.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Runtime.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Discards collected exceptions and console API calls.
      *
      * @link Protocol [Runtime#discardConsoleEntries](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-discardConsoleEntries) method documentation.
      */
-    fun discardConsoleEntries() = connection.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun discardConsoleEntries() = connection.request("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables reporting of execution contexts creation by means of `executionContextCreated` event.
@@ -53,14 +53,14 @@ context.
      *
      * @link Protocol [Runtime#enable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-enable) method documentation.
      */
-    fun enable() = connection.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Runtime.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Evaluates expression on global object.
      *
      * @link Protocol [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
      */
-    fun evaluate(input: EvaluateRequest) = connection.runAndCaptureResponse("Runtime.evaluate", input, EvaluateResponse::class.java)
+    fun evaluate(input: EvaluateRequest) = connection.request("Runtime.evaluate", input, EvaluateResponse::class.java)
 
     /**
      * Returns the isolate id.
@@ -69,7 +69,7 @@ context.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getIsolateId() = connection.runAndCaptureResponse("Runtime.getIsolateId", null, GetIsolateIdResponse::class.java)
+    fun getIsolateId() = connection.request("Runtime.getIsolateId", null, GetIsolateIdResponse::class.java)
 
     /**
      * Returns the JavaScript heap usage.
@@ -79,7 +79,7 @@ It is the total usage of the corresponding isolate not scoped to a particular Ru
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHeapUsage() = connection.runAndCaptureResponse("Runtime.getHeapUsage", null, GetHeapUsageResponse::class.java)
+    fun getHeapUsage() = connection.request("Runtime.getHeapUsage", null, GetHeapUsageResponse::class.java)
 
     /**
      * Returns properties of a given object. Object group of the result is inherited from the target
@@ -87,56 +87,56 @@ object.
      *
      * @link Protocol [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
      */
-    fun getProperties(input: GetPropertiesRequest) = connection.runAndCaptureResponse("Runtime.getProperties", input, GetPropertiesResponse::class.java)
+    fun getProperties(input: GetPropertiesRequest) = connection.request("Runtime.getProperties", input, GetPropertiesResponse::class.java)
 
     /**
      * Returns all let, const and class variables from global scope.
      *
      * @link Protocol [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) method documentation.
      */
-    fun globalLexicalScopeNames(input: GlobalLexicalScopeNamesRequest) = connection.runAndCaptureResponse("Runtime.globalLexicalScopeNames", input, GlobalLexicalScopeNamesResponse::class.java)
+    fun globalLexicalScopeNames(input: GlobalLexicalScopeNamesRequest) = connection.request("Runtime.globalLexicalScopeNames", input, GlobalLexicalScopeNamesResponse::class.java)
 
     /**
      *
      *
      * @link Protocol [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) method documentation.
      */
-    fun queryObjects(input: QueryObjectsRequest) = connection.runAndCaptureResponse("Runtime.queryObjects", input, QueryObjectsResponse::class.java)
+    fun queryObjects(input: QueryObjectsRequest) = connection.request("Runtime.queryObjects", input, QueryObjectsResponse::class.java)
 
     /**
      * Releases remote object with given id.
      *
      * @link Protocol [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) method documentation.
      */
-    fun releaseObject(input: ReleaseObjectRequest) = connection.runAndCaptureResponse("Runtime.releaseObject", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun releaseObject(input: ReleaseObjectRequest) = connection.request("Runtime.releaseObject", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Releases all remote objects that belong to a given group.
      *
      * @link Protocol [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) method documentation.
      */
-    fun releaseObjectGroup(input: ReleaseObjectGroupRequest) = connection.runAndCaptureResponse("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun releaseObjectGroup(input: ReleaseObjectGroupRequest) = connection.request("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Tells inspected instance to run if it was waiting for debugger to attach.
      *
      * @link Protocol [Runtime#runIfWaitingForDebugger](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runIfWaitingForDebugger) method documentation.
      */
-    fun runIfWaitingForDebugger() = connection.runAndCaptureResponse("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun runIfWaitingForDebugger() = connection.request("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Runs script with given id in a given context.
      *
      * @link Protocol [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) method documentation.
      */
-    fun runScript(input: RunScriptRequest) = connection.runAndCaptureResponse("Runtime.runScript", input, RunScriptResponse::class.java)
+    fun runScript(input: RunScriptRequest) = connection.request("Runtime.runScript", input, RunScriptResponse::class.java)
 
     /**
      * Enables or disables async call stacks tracking.
      *
      * @link Protocol [Runtime#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setAsyncCallStackDepth) method documentation.
      */
-    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest) = connection.runAndCaptureResponse("Runtime.setAsyncCallStackDepth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest) = connection.request("Runtime.setAsyncCallStackDepth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
@@ -145,7 +145,7 @@ object.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setCustomObjectFormatterEnabled(input: SetCustomObjectFormatterEnabledRequest) = connection.runAndCaptureResponse("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setCustomObjectFormatterEnabled(input: SetCustomObjectFormatterEnabledRequest) = connection.request("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
@@ -154,7 +154,7 @@ object.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setMaxCallStackSizeToCapture(input: SetMaxCallStackSizeToCaptureRequest) = connection.runAndCaptureResponse("Runtime.setMaxCallStackSizeToCapture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setMaxCallStackSizeToCapture(input: SetMaxCallStackSizeToCaptureRequest) = connection.request("Runtime.setMaxCallStackSizeToCapture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Terminate current or next JavaScript execution.
@@ -164,7 +164,7 @@ Will cancel the termination when the outer-most script execution ends.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun terminateExecution() = connection.runAndCaptureResponse("Runtime.terminateExecution", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun terminateExecution() = connection.request("Runtime.terminateExecution", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * If executionContextId is empty, adds binding with the given name on the
@@ -180,7 +180,7 @@ Each binding function call produces Runtime.bindingCalled notification.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun addBinding(input: AddBindingRequest) = connection.runAndCaptureResponse("Runtime.addBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun addBinding(input: AddBindingRequest) = connection.request("Runtime.addBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * This method does not remove binding function from global object but
@@ -190,54 +190,54 @@ unsubscribes current runtime agent from Runtime.bindingCalled notifications.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun removeBinding(input: RemoveBindingRequest) = connection.runAndCaptureResponse("Runtime.removeBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeBinding(input: RemoveBindingRequest) = connection.request("Runtime.removeBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Notification is issued every time when binding is called.
      */
-    fun bindingCalled(): io.reactivex.Flowable<BindingCalledEvent> = connection.captureEvents("Runtime.bindingCalled", BindingCalledEvent::class.java)
+    fun bindingCalled(): io.reactivex.Flowable<BindingCalledEvent> = connection.events("Runtime.bindingCalled", BindingCalledEvent::class.java)
 
     /**
      *  Issued when console API was called.
      */
-    fun consoleAPICalled(): io.reactivex.Flowable<ConsoleAPICalledEvent> = connection.captureEvents("Runtime.consoleAPICalled", ConsoleAPICalledEvent::class.java)
+    fun consoleAPICalled(): io.reactivex.Flowable<ConsoleAPICalledEvent> = connection.events("Runtime.consoleAPICalled", ConsoleAPICalledEvent::class.java)
 
     /**
      *  Issued when unhandled exception was revoked.
      */
-    fun exceptionRevoked(): io.reactivex.Flowable<ExceptionRevokedEvent> = connection.captureEvents("Runtime.exceptionRevoked", ExceptionRevokedEvent::class.java)
+    fun exceptionRevoked(): io.reactivex.Flowable<ExceptionRevokedEvent> = connection.events("Runtime.exceptionRevoked", ExceptionRevokedEvent::class.java)
 
     /**
      *  Issued when exception was thrown and unhandled.
      */
-    fun exceptionThrown(): io.reactivex.Flowable<ExceptionThrownEvent> = connection.captureEvents("Runtime.exceptionThrown", ExceptionThrownEvent::class.java)
+    fun exceptionThrown(): io.reactivex.Flowable<ExceptionThrownEvent> = connection.events("Runtime.exceptionThrown", ExceptionThrownEvent::class.java)
 
     /**
      *  Issued when new execution context is created.
      */
-    fun executionContextCreated(): io.reactivex.Flowable<ExecutionContextCreatedEvent> = connection.captureEvents("Runtime.executionContextCreated", ExecutionContextCreatedEvent::class.java)
+    fun executionContextCreated(): io.reactivex.Flowable<ExecutionContextCreatedEvent> = connection.events("Runtime.executionContextCreated", ExecutionContextCreatedEvent::class.java)
 
     /**
      *  Issued when execution context is destroyed.
      */
-    fun executionContextDestroyed(): io.reactivex.Flowable<ExecutionContextDestroyedEvent> = connection.captureEvents("Runtime.executionContextDestroyed", ExecutionContextDestroyedEvent::class.java)
+    fun executionContextDestroyed(): io.reactivex.Flowable<ExecutionContextDestroyedEvent> = connection.events("Runtime.executionContextDestroyed", ExecutionContextDestroyedEvent::class.java)
 
     /**
      *  Issued when all executionContexts were cleared in browser
      */
-    fun executionContextsCleared(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Runtime.executionContextsCleared", pl.wendigo.chrome.protocol.Event::class.java)
+    fun executionContextsCleared(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Runtime.executionContextsCleared", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Issued when object should be inspected (for example, as a result of inspect() command line API
 call).
      */
-    fun inspectRequested(): io.reactivex.Flowable<InspectRequestedEvent> = connection.captureEvents("Runtime.inspectRequested", InspectRequestedEvent::class.java)
+    fun inspectRequested(): io.reactivex.Flowable<InspectRequestedEvent> = connection.events("Runtime.inspectRequested", InspectRequestedEvent::class.java)
 
     /**
      * Returns flowable capturing all Runtime domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Runtime"
         }
     }

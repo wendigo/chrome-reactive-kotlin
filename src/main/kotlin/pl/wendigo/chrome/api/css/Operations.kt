@@ -19,28 +19,28 @@ position specified by `location`.
      *
      * @link Protocol [CSS#addRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-addRule) method documentation.
      */
-    fun addRule(input: AddRuleRequest) = connection.runAndCaptureResponse("CSS.addRule", input, AddRuleResponse::class.java)
+    fun addRule(input: AddRuleRequest) = connection.request("CSS.addRule", input, AddRuleResponse::class.java)
 
     /**
      * Returns all class names from specified stylesheet.
      *
      * @link Protocol [CSS#collectClassNames](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-collectClassNames) method documentation.
      */
-    fun collectClassNames(input: CollectClassNamesRequest) = connection.runAndCaptureResponse("CSS.collectClassNames", input, CollectClassNamesResponse::class.java)
+    fun collectClassNames(input: CollectClassNamesRequest) = connection.request("CSS.collectClassNames", input, CollectClassNamesResponse::class.java)
 
     /**
      * Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
      *
      * @link Protocol [CSS#createStyleSheet](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-createStyleSheet) method documentation.
      */
-    fun createStyleSheet(input: CreateStyleSheetRequest) = connection.runAndCaptureResponse("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java)
+    fun createStyleSheet(input: CreateStyleSheetRequest) = connection.request("CSS.createStyleSheet", input, CreateStyleSheetResponse::class.java)
 
     /**
      * Disables the CSS agent for the given page.
      *
      * @link Protocol [CSS#disable](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-disable) method documentation.
      */
-    fun disable() = connection.runAndCaptureResponse("CSS.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("CSS.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been
@@ -48,7 +48,7 @@ enabled until the result of this command is received.
      *
      * @link Protocol [CSS#enable](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-enable) method documentation.
      */
-    fun enable() = connection.runAndCaptureResponse("CSS.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("CSS.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Ensures that the given node will have specified pseudo-classes whenever its style is computed by
@@ -56,21 +56,21 @@ the browser.
      *
      * @link Protocol [CSS#forcePseudoState](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-forcePseudoState) method documentation.
      */
-    fun forcePseudoState(input: ForcePseudoStateRequest) = connection.runAndCaptureResponse("CSS.forcePseudoState", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun forcePseudoState(input: ForcePseudoStateRequest) = connection.request("CSS.forcePseudoState", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [CSS#getBackgroundColors](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getBackgroundColors) method documentation.
      */
-    fun getBackgroundColors(input: GetBackgroundColorsRequest) = connection.runAndCaptureResponse("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java)
+    fun getBackgroundColors(input: GetBackgroundColorsRequest) = connection.request("CSS.getBackgroundColors", input, GetBackgroundColorsResponse::class.java)
 
     /**
      * Returns the computed style for a DOM node identified by `nodeId`.
      *
      * @link Protocol [CSS#getComputedStyleForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getComputedStyleForNode) method documentation.
      */
-    fun getComputedStyleForNode(input: GetComputedStyleForNodeRequest) = connection.runAndCaptureResponse("CSS.getComputedStyleForNode", input, GetComputedStyleForNodeResponse::class.java)
+    fun getComputedStyleForNode(input: GetComputedStyleForNodeRequest) = connection.request("CSS.getComputedStyleForNode", input, GetComputedStyleForNodeResponse::class.java)
 
     /**
      * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM
@@ -78,21 +78,21 @@ attributes) for a DOM node identified by `nodeId`.
      *
      * @link Protocol [CSS#getInlineStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getInlineStylesForNode) method documentation.
      */
-    fun getInlineStylesForNode(input: GetInlineStylesForNodeRequest) = connection.runAndCaptureResponse("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java)
+    fun getInlineStylesForNode(input: GetInlineStylesForNodeRequest) = connection.request("CSS.getInlineStylesForNode", input, GetInlineStylesForNodeResponse::class.java)
 
     /**
      * Returns requested styles for a DOM node identified by `nodeId`.
      *
      * @link Protocol [CSS#getMatchedStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMatchedStylesForNode) method documentation.
      */
-    fun getMatchedStylesForNode(input: GetMatchedStylesForNodeRequest) = connection.runAndCaptureResponse("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java)
+    fun getMatchedStylesForNode(input: GetMatchedStylesForNodeRequest) = connection.request("CSS.getMatchedStylesForNode", input, GetMatchedStylesForNodeResponse::class.java)
 
     /**
      * Returns all media queries parsed by the rendering engine.
      *
      * @link Protocol [CSS#getMediaQueries](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMediaQueries) method documentation.
      */
-    fun getMediaQueries() = connection.runAndCaptureResponse("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java)
+    fun getMediaQueries() = connection.request("CSS.getMediaQueries", null, GetMediaQueriesResponse::class.java)
 
     /**
      * Requests information about platform fonts which we used to render child TextNodes in the given
@@ -100,14 +100,14 @@ node.
      *
      * @link Protocol [CSS#getPlatformFontsForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getPlatformFontsForNode) method documentation.
      */
-    fun getPlatformFontsForNode(input: GetPlatformFontsForNodeRequest) = connection.runAndCaptureResponse("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java)
+    fun getPlatformFontsForNode(input: GetPlatformFontsForNodeRequest) = connection.request("CSS.getPlatformFontsForNode", input, GetPlatformFontsForNodeResponse::class.java)
 
     /**
      * Returns the current textual content for a stylesheet.
      *
      * @link Protocol [CSS#getStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getStyleSheetText) method documentation.
      */
-    fun getStyleSheetText(input: GetStyleSheetTextRequest) = connection.runAndCaptureResponse("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java)
+    fun getStyleSheetText(input: GetStyleSheetTextRequest) = connection.request("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java)
 
     /**
      * Find a rule with the given active property for the given node and set the new value for this
@@ -115,49 +115,49 @@ property
      *
      * @link Protocol [CSS#setEffectivePropertyValueForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setEffectivePropertyValueForNode) method documentation.
      */
-    fun setEffectivePropertyValueForNode(input: SetEffectivePropertyValueForNodeRequest) = connection.runAndCaptureResponse("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setEffectivePropertyValueForNode(input: SetEffectivePropertyValueForNodeRequest) = connection.request("CSS.setEffectivePropertyValueForNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Modifies the keyframe rule key text.
      *
      * @link Protocol [CSS#setKeyframeKey](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setKeyframeKey) method documentation.
      */
-    fun setKeyframeKey(input: SetKeyframeKeyRequest) = connection.runAndCaptureResponse("CSS.setKeyframeKey", input, SetKeyframeKeyResponse::class.java)
+    fun setKeyframeKey(input: SetKeyframeKeyRequest) = connection.request("CSS.setKeyframeKey", input, SetKeyframeKeyResponse::class.java)
 
     /**
      * Modifies the rule selector.
      *
      * @link Protocol [CSS#setMediaText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setMediaText) method documentation.
      */
-    fun setMediaText(input: SetMediaTextRequest) = connection.runAndCaptureResponse("CSS.setMediaText", input, SetMediaTextResponse::class.java)
+    fun setMediaText(input: SetMediaTextRequest) = connection.request("CSS.setMediaText", input, SetMediaTextResponse::class.java)
 
     /**
      * Modifies the rule selector.
      *
      * @link Protocol [CSS#setRuleSelector](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setRuleSelector) method documentation.
      */
-    fun setRuleSelector(input: SetRuleSelectorRequest) = connection.runAndCaptureResponse("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java)
+    fun setRuleSelector(input: SetRuleSelectorRequest) = connection.request("CSS.setRuleSelector", input, SetRuleSelectorResponse::class.java)
 
     /**
      * Sets the new stylesheet text.
      *
      * @link Protocol [CSS#setStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleSheetText) method documentation.
      */
-    fun setStyleSheetText(input: SetStyleSheetTextRequest) = connection.runAndCaptureResponse("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java)
+    fun setStyleSheetText(input: SetStyleSheetTextRequest) = connection.request("CSS.setStyleSheetText", input, SetStyleSheetTextResponse::class.java)
 
     /**
      * Applies specified style edits one after another in the given order.
      *
      * @link Protocol [CSS#setStyleTexts](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleTexts) method documentation.
      */
-    fun setStyleTexts(input: SetStyleTextsRequest) = connection.runAndCaptureResponse("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java)
+    fun setStyleTexts(input: SetStyleTextsRequest) = connection.request("CSS.setStyleTexts", input, SetStyleTextsResponse::class.java)
 
     /**
      * Enables the selector recording.
      *
      * @link Protocol [CSS#startRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-startRuleUsageTracking) method documentation.
      */
-    fun startRuleUsageTracking() = connection.runAndCaptureResponse("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startRuleUsageTracking() = connection.request("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Stop tracking rule usage and return the list of rules that were used since last call to
@@ -165,7 +165,7 @@ property
      *
      * @link Protocol [CSS#stopRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-stopRuleUsageTracking) method documentation.
      */
-    fun stopRuleUsageTracking() = connection.runAndCaptureResponse("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java)
+    fun stopRuleUsageTracking() = connection.request("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse::class.java)
 
     /**
      * Obtain list of rules that became used since last call to this method (or since start of coverage
@@ -173,40 +173,40 @@ instrumentation)
      *
      * @link Protocol [CSS#takeCoverageDelta](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeCoverageDelta) method documentation.
      */
-    fun takeCoverageDelta() = connection.runAndCaptureResponse("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java)
+    fun takeCoverageDelta() = connection.request("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java)
 
     /**
      *  Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
 web font
      */
-    fun fontsUpdated(): io.reactivex.Flowable<FontsUpdatedEvent> = connection.captureEvents("CSS.fontsUpdated", FontsUpdatedEvent::class.java)
+    fun fontsUpdated(): io.reactivex.Flowable<FontsUpdatedEvent> = connection.events("CSS.fontsUpdated", FontsUpdatedEvent::class.java)
 
     /**
      *  Fires whenever a MediaQuery result changes (for example, after a browser window has been
 resized.) The current implementation considers only viewport-dependent media features.
      */
-    fun mediaQueryResultChanged(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("CSS.mediaQueryResultChanged", pl.wendigo.chrome.protocol.Event::class.java)
+    fun mediaQueryResultChanged(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("CSS.mediaQueryResultChanged", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired whenever an active document stylesheet is added.
      */
-    fun styleSheetAdded(): io.reactivex.Flowable<StyleSheetAddedEvent> = connection.captureEvents("CSS.styleSheetAdded", StyleSheetAddedEvent::class.java)
+    fun styleSheetAdded(): io.reactivex.Flowable<StyleSheetAddedEvent> = connection.events("CSS.styleSheetAdded", StyleSheetAddedEvent::class.java)
 
     /**
      *  Fired whenever a stylesheet is changed as a result of the client operation.
      */
-    fun styleSheetChanged(): io.reactivex.Flowable<StyleSheetChangedEvent> = connection.captureEvents("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java)
+    fun styleSheetChanged(): io.reactivex.Flowable<StyleSheetChangedEvent> = connection.events("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java)
 
     /**
      *  Fired whenever an active document stylesheet is removed.
      */
-    fun styleSheetRemoved(): io.reactivex.Flowable<StyleSheetRemovedEvent> = connection.captureEvents("CSS.styleSheetRemoved", StyleSheetRemovedEvent::class.java)
+    fun styleSheetRemoved(): io.reactivex.Flowable<StyleSheetRemovedEvent> = connection.events("CSS.styleSheetRemoved", StyleSheetRemovedEvent::class.java)
 
     /**
      * Returns flowable capturing all CSS domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "CSS"
         }
     }

@@ -14,92 +14,92 @@ class WebAudioOperations internal constructor(private val connection: pl.wendigo
      *
      * @link Protocol [WebAudio#enable](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-enable) method documentation.
      */
-    fun enable() = connection.runAndCaptureResponse("WebAudio.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("WebAudio.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables the WebAudio domain.
      *
      * @link Protocol [WebAudio#disable](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-disable) method documentation.
      */
-    fun disable() = connection.runAndCaptureResponse("WebAudio.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("WebAudio.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Fetch the realtime data from the registered contexts.
      *
      * @link Protocol [WebAudio#getRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-getRealtimeData) method documentation.
      */
-    fun getRealtimeData(input: GetRealtimeDataRequest) = connection.runAndCaptureResponse("WebAudio.getRealtimeData", input, GetRealtimeDataResponse::class.java)
+    fun getRealtimeData(input: GetRealtimeDataRequest) = connection.request("WebAudio.getRealtimeData", input, GetRealtimeDataResponse::class.java)
 
     /**
      *  Notifies that a new BaseAudioContext has been created.
      */
-    fun contextCreated(): io.reactivex.Flowable<ContextCreatedEvent> = connection.captureEvents("WebAudio.contextCreated", ContextCreatedEvent::class.java)
+    fun contextCreated(): io.reactivex.Flowable<ContextCreatedEvent> = connection.events("WebAudio.contextCreated", ContextCreatedEvent::class.java)
 
     /**
      *  Notifies that an existing BaseAudioContext will be destroyed.
      */
-    fun contextWillBeDestroyed(): io.reactivex.Flowable<ContextWillBeDestroyedEvent> = connection.captureEvents("WebAudio.contextWillBeDestroyed", ContextWillBeDestroyedEvent::class.java)
+    fun contextWillBeDestroyed(): io.reactivex.Flowable<ContextWillBeDestroyedEvent> = connection.events("WebAudio.contextWillBeDestroyed", ContextWillBeDestroyedEvent::class.java)
 
     /**
      *  Notifies that existing BaseAudioContext has changed some properties (id stays the same)..
      */
-    fun contextChanged(): io.reactivex.Flowable<ContextChangedEvent> = connection.captureEvents("WebAudio.contextChanged", ContextChangedEvent::class.java)
+    fun contextChanged(): io.reactivex.Flowable<ContextChangedEvent> = connection.events("WebAudio.contextChanged", ContextChangedEvent::class.java)
 
     /**
      *  Notifies that the construction of an AudioListener has finished.
      */
-    fun audioListenerCreated(): io.reactivex.Flowable<AudioListenerCreatedEvent> = connection.captureEvents("WebAudio.audioListenerCreated", AudioListenerCreatedEvent::class.java)
+    fun audioListenerCreated(): io.reactivex.Flowable<AudioListenerCreatedEvent> = connection.events("WebAudio.audioListenerCreated", AudioListenerCreatedEvent::class.java)
 
     /**
      *  Notifies that a new AudioListener has been created.
      */
-    fun audioListenerWillBeDestroyed(): io.reactivex.Flowable<AudioListenerWillBeDestroyedEvent> = connection.captureEvents("WebAudio.audioListenerWillBeDestroyed", AudioListenerWillBeDestroyedEvent::class.java)
+    fun audioListenerWillBeDestroyed(): io.reactivex.Flowable<AudioListenerWillBeDestroyedEvent> = connection.events("WebAudio.audioListenerWillBeDestroyed", AudioListenerWillBeDestroyedEvent::class.java)
 
     /**
      *  Notifies that a new AudioNode has been created.
      */
-    fun audioNodeCreated(): io.reactivex.Flowable<AudioNodeCreatedEvent> = connection.captureEvents("WebAudio.audioNodeCreated", AudioNodeCreatedEvent::class.java)
+    fun audioNodeCreated(): io.reactivex.Flowable<AudioNodeCreatedEvent> = connection.events("WebAudio.audioNodeCreated", AudioNodeCreatedEvent::class.java)
 
     /**
      *  Notifies that an existing AudioNode has been destroyed.
      */
-    fun audioNodeWillBeDestroyed(): io.reactivex.Flowable<AudioNodeWillBeDestroyedEvent> = connection.captureEvents("WebAudio.audioNodeWillBeDestroyed", AudioNodeWillBeDestroyedEvent::class.java)
+    fun audioNodeWillBeDestroyed(): io.reactivex.Flowable<AudioNodeWillBeDestroyedEvent> = connection.events("WebAudio.audioNodeWillBeDestroyed", AudioNodeWillBeDestroyedEvent::class.java)
 
     /**
      *  Notifies that a new AudioParam has been created.
      */
-    fun audioParamCreated(): io.reactivex.Flowable<AudioParamCreatedEvent> = connection.captureEvents("WebAudio.audioParamCreated", AudioParamCreatedEvent::class.java)
+    fun audioParamCreated(): io.reactivex.Flowable<AudioParamCreatedEvent> = connection.events("WebAudio.audioParamCreated", AudioParamCreatedEvent::class.java)
 
     /**
      *  Notifies that an existing AudioParam has been destroyed.
      */
-    fun audioParamWillBeDestroyed(): io.reactivex.Flowable<AudioParamWillBeDestroyedEvent> = connection.captureEvents("WebAudio.audioParamWillBeDestroyed", AudioParamWillBeDestroyedEvent::class.java)
+    fun audioParamWillBeDestroyed(): io.reactivex.Flowable<AudioParamWillBeDestroyedEvent> = connection.events("WebAudio.audioParamWillBeDestroyed", AudioParamWillBeDestroyedEvent::class.java)
 
     /**
      *  Notifies that two AudioNodes are connected.
      */
-    fun nodesConnected(): io.reactivex.Flowable<NodesConnectedEvent> = connection.captureEvents("WebAudio.nodesConnected", NodesConnectedEvent::class.java)
+    fun nodesConnected(): io.reactivex.Flowable<NodesConnectedEvent> = connection.events("WebAudio.nodesConnected", NodesConnectedEvent::class.java)
 
     /**
      *  Notifies that AudioNodes are disconnected. The destination can be null, and it means all the outgoing connections from the source are disconnected.
      */
-    fun nodesDisconnected(): io.reactivex.Flowable<NodesDisconnectedEvent> = connection.captureEvents("WebAudio.nodesDisconnected", NodesDisconnectedEvent::class.java)
+    fun nodesDisconnected(): io.reactivex.Flowable<NodesDisconnectedEvent> = connection.events("WebAudio.nodesDisconnected", NodesDisconnectedEvent::class.java)
 
     /**
      *  Notifies that an AudioNode is connected to an AudioParam.
      */
-    fun nodeParamConnected(): io.reactivex.Flowable<NodeParamConnectedEvent> = connection.captureEvents("WebAudio.nodeParamConnected", NodeParamConnectedEvent::class.java)
+    fun nodeParamConnected(): io.reactivex.Flowable<NodeParamConnectedEvent> = connection.events("WebAudio.nodeParamConnected", NodeParamConnectedEvent::class.java)
 
     /**
      *  Notifies that an AudioNode is disconnected to an AudioParam.
      */
-    fun nodeParamDisconnected(): io.reactivex.Flowable<NodeParamDisconnectedEvent> = connection.captureEvents("WebAudio.nodeParamDisconnected", NodeParamDisconnectedEvent::class.java)
+    fun nodeParamDisconnected(): io.reactivex.Flowable<NodeParamDisconnectedEvent> = connection.events("WebAudio.nodeParamDisconnected", NodeParamDisconnectedEvent::class.java)
 
     /**
      * Returns flowable capturing all WebAudio domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "WebAudio"
         }
     }

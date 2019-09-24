@@ -11,27 +11,27 @@ class IOOperations internal constructor(private val connection: pl.wendigo.chrom
      *
      * @link Protocol [IO#close](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-close) method documentation.
      */
-    fun close(input: CloseRequest) = connection.runAndCaptureResponse("IO.close", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun close(input: CloseRequest) = connection.request("IO.close", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Read a chunk of the stream
      *
      * @link Protocol [IO#read](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-read) method documentation.
      */
-    fun read(input: ReadRequest) = connection.runAndCaptureResponse("IO.read", input, ReadResponse::class.java)
+    fun read(input: ReadRequest) = connection.request("IO.read", input, ReadResponse::class.java)
 
     /**
      * Return UUID of Blob object specified by a remote object id.
      *
      * @link Protocol [IO#resolveBlob](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-resolveBlob) method documentation.
      */
-    fun resolveBlob(input: ResolveBlobRequest) = connection.runAndCaptureResponse("IO.resolveBlob", input, ResolveBlobResponse::class.java)
+    fun resolveBlob(input: ResolveBlobRequest) = connection.request("IO.resolveBlob", input, ResolveBlobResponse::class.java)
 
     /**
      * Returns flowable capturing all IO domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "IO"
         }
     }
