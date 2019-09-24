@@ -49,7 +49,7 @@ open class DevToolsProtocol internal constructor(private val connection: ChromeD
      * Returns [Flowable] capturing all events.
      */
     fun Events(): Flowable<{{Package}}.protocol.Event> {
-        return connection.captureAllEvents()
+        return connection.allEvents()
     }
 
     /**

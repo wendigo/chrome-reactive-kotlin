@@ -13,7 +13,7 @@ class FetchOperations internal constructor(private val connection: pl.wendigo.ch
      *
      * @link Protocol [Fetch#disable](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-disable) method documentation.
      */
-    fun disable() = connection.runAndCaptureResponse("Fetch.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Fetch.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables issuing of requestPaused events. A request will be paused until client
@@ -21,35 +21,35 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      *
      * @link Protocol [Fetch#enable](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-enable) method documentation.
      */
-    fun enable(input: EnableRequest) = connection.runAndCaptureResponse("Fetch.enable", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable(input: EnableRequest) = connection.request("Fetch.enable", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Causes the request to fail with specified reason.
      *
      * @link Protocol [Fetch#failRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-failRequest) method documentation.
      */
-    fun failRequest(input: FailRequestRequest) = connection.runAndCaptureResponse("Fetch.failRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun failRequest(input: FailRequestRequest) = connection.request("Fetch.failRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Provides response to the request.
      *
      * @link Protocol [Fetch#fulfillRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-fulfillRequest) method documentation.
      */
-    fun fulfillRequest(input: FulfillRequestRequest) = connection.runAndCaptureResponse("Fetch.fulfillRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun fulfillRequest(input: FulfillRequestRequest) = connection.request("Fetch.fulfillRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Continues the request, optionally modifying some of its parameters.
      *
      * @link Protocol [Fetch#continueRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueRequest) method documentation.
      */
-    fun continueRequest(input: ContinueRequestRequest) = connection.runAndCaptureResponse("Fetch.continueRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun continueRequest(input: ContinueRequestRequest) = connection.request("Fetch.continueRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Continues a request supplying authChallengeResponse following authRequired event.
      *
      * @link Protocol [Fetch#continueWithAuth](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueWithAuth) method documentation.
      */
-    fun continueWithAuth(input: ContinueWithAuthRequest) = connection.runAndCaptureResponse("Fetch.continueWithAuth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun continueWithAuth(input: ContinueWithAuthRequest) = connection.request("Fetch.continueWithAuth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Causes the body of the response to be received from the server and
@@ -61,7 +61,7 @@ results in an undefined behavior.
      *
      * @link Protocol [Fetch#getResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-getResponseBody) method documentation.
      */
-    fun getResponseBody(input: GetResponseBodyRequest) = connection.runAndCaptureResponse("Fetch.getResponseBody", input, GetResponseBodyResponse::class.java)
+    fun getResponseBody(input: GetResponseBodyRequest) = connection.request("Fetch.getResponseBody", input, GetResponseBodyResponse::class.java)
 
     /**
      * Returns a handle to the stream representing the response body.
@@ -77,7 +77,7 @@ domain before body is received results in an undefined behavior.
      *
      * @link Protocol [Fetch#takeResponseBodyAsStream](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-takeResponseBodyAsStream) method documentation.
      */
-    fun takeResponseBodyAsStream(input: TakeResponseBodyAsStreamRequest) = connection.runAndCaptureResponse("Fetch.takeResponseBodyAsStream", input, TakeResponseBodyAsStreamResponse::class.java)
+    fun takeResponseBodyAsStream(input: TakeResponseBodyAsStreamRequest) = connection.request("Fetch.takeResponseBodyAsStream", input, TakeResponseBodyAsStreamResponse::class.java)
 
     /**
      *  Issued when the domain is enabled and the request URL matches the
@@ -87,19 +87,19 @@ The stage of the request can be determined by presence of responseErrorReason
 and responseStatusCode -- the request is at the response stage if either
 of these fields is present and in the request stage otherwise.
      */
-    fun requestPaused(): io.reactivex.Flowable<RequestPausedEvent> = connection.captureEvents("Fetch.requestPaused", RequestPausedEvent::class.java)
+    fun requestPaused(): io.reactivex.Flowable<RequestPausedEvent> = connection.events("Fetch.requestPaused", RequestPausedEvent::class.java)
 
     /**
      *  Issued when the domain is enabled with handleAuthRequests set to true.
 The request is paused until client responds with continueWithAuth.
      */
-    fun authRequired(): io.reactivex.Flowable<AuthRequiredEvent> = connection.captureEvents("Fetch.authRequired", AuthRequiredEvent::class.java)
+    fun authRequired(): io.reactivex.Flowable<AuthRequiredEvent> = connection.events("Fetch.authRequired", AuthRequiredEvent::class.java)
 
     /**
      * Returns flowable capturing all Fetch domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Fetch"
         }
     }

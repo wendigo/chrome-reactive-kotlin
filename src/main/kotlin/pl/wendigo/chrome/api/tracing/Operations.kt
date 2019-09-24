@@ -13,58 +13,58 @@ class TracingOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Tracing#end](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-end) method documentation.
      */
-    fun end() = connection.runAndCaptureResponse("Tracing.end", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun end() = connection.request("Tracing.end", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Gets supported tracing categories.
      *
      * @link Protocol [Tracing#getCategories](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-getCategories) method documentation.
      */
-    fun getCategories() = connection.runAndCaptureResponse("Tracing.getCategories", null, GetCategoriesResponse::class.java)
+    fun getCategories() = connection.request("Tracing.getCategories", null, GetCategoriesResponse::class.java)
 
     /**
      * Record a clock sync marker in the trace.
      *
      * @link Protocol [Tracing#recordClockSyncMarker](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-recordClockSyncMarker) method documentation.
      */
-    fun recordClockSyncMarker(input: RecordClockSyncMarkerRequest) = connection.runAndCaptureResponse("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun recordClockSyncMarker(input: RecordClockSyncMarkerRequest) = connection.request("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Request a global memory dump.
      *
      * @link Protocol [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) method documentation.
      */
-    fun requestMemoryDump() = connection.runAndCaptureResponse("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java)
+    fun requestMemoryDump() = connection.request("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java)
 
     /**
      * Start trace events collection.
      *
      * @link Protocol [Tracing#start](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-start) method documentation.
      */
-    fun start(input: StartRequest) = connection.runAndCaptureResponse("Tracing.start", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun start(input: StartRequest) = connection.request("Tracing.start", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Returns observable capturing all Tracing.bufferUsage events.
      */
-    fun bufferUsage(): io.reactivex.Flowable<BufferUsageEvent> = connection.captureEvents("Tracing.bufferUsage", BufferUsageEvent::class.java)
+    fun bufferUsage(): io.reactivex.Flowable<BufferUsageEvent> = connection.events("Tracing.bufferUsage", BufferUsageEvent::class.java)
 
     /**
      *  Contains an bucket of collected trace events. When tracing is stopped collected events will be
 send as a sequence of dataCollected events followed by tracingComplete event.
      */
-    fun dataCollected(): io.reactivex.Flowable<DataCollectedEvent> = connection.captureEvents("Tracing.dataCollected", DataCollectedEvent::class.java)
+    fun dataCollected(): io.reactivex.Flowable<DataCollectedEvent> = connection.events("Tracing.dataCollected", DataCollectedEvent::class.java)
 
     /**
      *  Signals that tracing is stopped and there is no trace buffers pending flush, all data were
 delivered via dataCollected events.
      */
-    fun tracingComplete(): io.reactivex.Flowable<TracingCompleteEvent> = connection.captureEvents("Tracing.tracingComplete", TracingCompleteEvent::class.java)
+    fun tracingComplete(): io.reactivex.Flowable<TracingCompleteEvent> = connection.events("Tracing.tracingComplete", TracingCompleteEvent::class.java)
 
     /**
      * Returns flowable capturing all Tracing domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Tracing"
         }
     }

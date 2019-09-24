@@ -16,34 +16,34 @@ https://goo.gl/3zHXhB for more background.
      *
      * @link Protocol [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
      */
-    fun beginFrame(input: BeginFrameRequest) = connection.runAndCaptureResponse("HeadlessExperimental.beginFrame", input, BeginFrameResponse::class.java)
+    fun beginFrame(input: BeginFrameRequest) = connection.request("HeadlessExperimental.beginFrame", input, BeginFrameResponse::class.java)
 
     /**
      * Disables headless events for the target.
      *
      * @link Protocol [HeadlessExperimental#disable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-disable) method documentation.
      */
-    fun disable() = connection.runAndCaptureResponse("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables headless events for the target.
      *
      * @link Protocol [HeadlessExperimental#enable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-enable) method documentation.
      */
-    fun enable() = connection.runAndCaptureResponse("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Issued when the target starts or stops needing BeginFrames.
 Deprecated. Issue beginFrame unconditionally instead and use result from
 beginFrame to detect whether the frames were suppressed.
      */
-    fun needsBeginFramesChanged(): io.reactivex.Flowable<NeedsBeginFramesChangedEvent> = connection.captureEvents("HeadlessExperimental.needsBeginFramesChanged", NeedsBeginFramesChangedEvent::class.java)
+    fun needsBeginFramesChanged(): io.reactivex.Flowable<NeedsBeginFramesChangedEvent> = connection.events("HeadlessExperimental.needsBeginFramesChanged", NeedsBeginFramesChangedEvent::class.java)
 
     /**
      * Returns flowable capturing all HeadlessExperimental domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "HeadlessExperimental"
         }
     }

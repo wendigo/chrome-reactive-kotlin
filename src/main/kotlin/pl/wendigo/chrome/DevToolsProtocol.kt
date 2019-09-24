@@ -698,7 +698,7 @@ API.
      * Returns [Flowable] capturing all events.
      */
     fun Events(): Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents()
+        return connection.allEvents()
     }
 
     /**

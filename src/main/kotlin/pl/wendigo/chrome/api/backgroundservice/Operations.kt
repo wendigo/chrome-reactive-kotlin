@@ -13,45 +13,45 @@ class BackgroundServiceOperations internal constructor(private val connection: p
      *
      * @link Protocol [BackgroundService#startObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-startObserving) method documentation.
      */
-    fun startObserving(input: StartObservingRequest) = connection.runAndCaptureResponse("BackgroundService.startObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startObserving(input: StartObservingRequest) = connection.request("BackgroundService.startObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables event updates for the service.
      *
      * @link Protocol [BackgroundService#stopObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-stopObserving) method documentation.
      */
-    fun stopObserving(input: StopObservingRequest) = connection.runAndCaptureResponse("BackgroundService.stopObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopObserving(input: StopObservingRequest) = connection.request("BackgroundService.stopObserving", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Set the recording state for the service.
      *
      * @link Protocol [BackgroundService#setRecording](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-setRecording) method documentation.
      */
-    fun setRecording(input: SetRecordingRequest) = connection.runAndCaptureResponse("BackgroundService.setRecording", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setRecording(input: SetRecordingRequest) = connection.request("BackgroundService.setRecording", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Clears all stored data for the service.
      *
      * @link Protocol [BackgroundService#clearEvents](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-clearEvents) method documentation.
      */
-    fun clearEvents(input: ClearEventsRequest) = connection.runAndCaptureResponse("BackgroundService.clearEvents", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearEvents(input: ClearEventsRequest) = connection.request("BackgroundService.clearEvents", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Called when the recording state for the service has been updated.
      */
-    fun recordingStateChanged(): io.reactivex.Flowable<RecordingStateChangedEvent> = connection.captureEvents("BackgroundService.recordingStateChanged", RecordingStateChangedEvent::class.java)
+    fun recordingStateChanged(): io.reactivex.Flowable<RecordingStateChangedEvent> = connection.events("BackgroundService.recordingStateChanged", RecordingStateChangedEvent::class.java)
 
     /**
      *  Called with all existing backgroundServiceEvents when enabled, and all new
 events afterwards if enabled and recording.
      */
-    fun backgroundServiceEventReceived(): io.reactivex.Flowable<BackgroundServiceEventReceivedEvent> = connection.captureEvents("BackgroundService.backgroundServiceEventReceived", BackgroundServiceEventReceivedEvent::class.java)
+    fun backgroundServiceEventReceived(): io.reactivex.Flowable<BackgroundServiceEventReceivedEvent> = connection.events("BackgroundService.backgroundServiceEventReceived", BackgroundServiceEventReceivedEvent::class.java)
 
     /**
      * Returns flowable capturing all BackgroundService domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "BackgroundService"
         }
     }

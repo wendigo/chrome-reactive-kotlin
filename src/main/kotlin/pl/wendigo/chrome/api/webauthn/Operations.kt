@@ -15,35 +15,35 @@ retrieval with a virtual authenticator.
      *
      * @link Protocol [WebAuthn#enable](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-enable) method documentation.
      */
-    fun enable() = connection.runAndCaptureResponse("WebAuthn.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("WebAuthn.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disable the WebAuthn domain.
      *
      * @link Protocol [WebAuthn#disable](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-disable) method documentation.
      */
-    fun disable() = connection.runAndCaptureResponse("WebAuthn.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("WebAuthn.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Creates and adds a virtual authenticator.
      *
      * @link Protocol [WebAuthn#addVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addVirtualAuthenticator) method documentation.
      */
-    fun addVirtualAuthenticator(input: AddVirtualAuthenticatorRequest) = connection.runAndCaptureResponse("WebAuthn.addVirtualAuthenticator", input, AddVirtualAuthenticatorResponse::class.java)
+    fun addVirtualAuthenticator(input: AddVirtualAuthenticatorRequest) = connection.request("WebAuthn.addVirtualAuthenticator", input, AddVirtualAuthenticatorResponse::class.java)
 
     /**
      * Removes the given authenticator.
      *
      * @link Protocol [WebAuthn#removeVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeVirtualAuthenticator) method documentation.
      */
-    fun removeVirtualAuthenticator(input: RemoveVirtualAuthenticatorRequest) = connection.runAndCaptureResponse("WebAuthn.removeVirtualAuthenticator", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeVirtualAuthenticator(input: RemoveVirtualAuthenticatorRequest) = connection.request("WebAuthn.removeVirtualAuthenticator", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Adds the credential to the specified authenticator.
      *
      * @link Protocol [WebAuthn#addCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addCredential) method documentation.
      */
-    fun addCredential(input: AddCredentialRequest) = connection.runAndCaptureResponse("WebAuthn.addCredential", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun addCredential(input: AddCredentialRequest) = connection.request("WebAuthn.addCredential", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns a single credential stored in the given virtual authenticator that
@@ -51,28 +51,28 @@ matches the credential ID.
      *
      * @link Protocol [WebAuthn#getCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredential) method documentation.
      */
-    fun getCredential(input: GetCredentialRequest) = connection.runAndCaptureResponse("WebAuthn.getCredential", input, GetCredentialResponse::class.java)
+    fun getCredential(input: GetCredentialRequest) = connection.request("WebAuthn.getCredential", input, GetCredentialResponse::class.java)
 
     /**
      * Returns all the credentials stored in the given virtual authenticator.
      *
      * @link Protocol [WebAuthn#getCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredentials) method documentation.
      */
-    fun getCredentials(input: GetCredentialsRequest) = connection.runAndCaptureResponse("WebAuthn.getCredentials", input, GetCredentialsResponse::class.java)
+    fun getCredentials(input: GetCredentialsRequest) = connection.request("WebAuthn.getCredentials", input, GetCredentialsResponse::class.java)
 
     /**
      * Removes a credential from the authenticator.
      *
      * @link Protocol [WebAuthn#removeCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeCredential) method documentation.
      */
-    fun removeCredential(input: RemoveCredentialRequest) = connection.runAndCaptureResponse("WebAuthn.removeCredential", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeCredential(input: RemoveCredentialRequest) = connection.request("WebAuthn.removeCredential", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Clears all the credentials from the specified device.
      *
      * @link Protocol [WebAuthn#clearCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-clearCredentials) method documentation.
      */
-    fun clearCredentials(input: ClearCredentialsRequest) = connection.runAndCaptureResponse("WebAuthn.clearCredentials", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearCredentials(input: ClearCredentialsRequest) = connection.request("WebAuthn.clearCredentials", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets whether User Verification succeeds or fails for an authenticator.
@@ -80,13 +80,13 @@ The default is true.
      *
      * @link Protocol [WebAuthn#setUserVerified](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setUserVerified) method documentation.
      */
-    fun setUserVerified(input: SetUserVerifiedRequest) = connection.runAndCaptureResponse("WebAuthn.setUserVerified", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setUserVerified(input: SetUserVerifiedRequest) = connection.request("WebAuthn.setUserVerified", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns flowable capturing all WebAuthn domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "WebAuthn"
         }
     }

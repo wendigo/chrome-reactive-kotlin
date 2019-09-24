@@ -13,20 +13,20 @@ class SystemInfoOperations internal constructor(private val connection: pl.wendi
      *
      * @link Protocol [SystemInfo#getInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getInfo) method documentation.
      */
-    fun getInfo() = connection.runAndCaptureResponse("SystemInfo.getInfo", null, GetInfoResponse::class.java)
+    fun getInfo() = connection.request("SystemInfo.getInfo", null, GetInfoResponse::class.java)
 
     /**
      * Returns information about all running processes.
      *
      * @link Protocol [SystemInfo#getProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getProcessInfo) method documentation.
      */
-    fun getProcessInfo() = connection.runAndCaptureResponse("SystemInfo.getProcessInfo", null, GetProcessInfoResponse::class.java)
+    fun getProcessInfo() = connection.request("SystemInfo.getProcessInfo", null, GetProcessInfoResponse::class.java)
 
     /**
      * Returns flowable capturing all SystemInfo domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "SystemInfo"
         }
     }
