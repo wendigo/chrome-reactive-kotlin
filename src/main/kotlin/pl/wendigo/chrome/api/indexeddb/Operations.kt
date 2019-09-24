@@ -7,84 +7,74 @@ package pl.wendigo.chrome.api.indexeddb
  * @link Protocol [IndexedDB](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class IndexedDBOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class IndexedDBOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Clears all entries from an object store.
      *
      * @link Protocol [IndexedDB#clearObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-clearObjectStore) method documentation.
      */
-        fun clearObjectStore(input: ClearObjectStoreRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun clearObjectStore(input: ClearObjectStoreRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Deletes a database.
      *
      * @link Protocol [IndexedDB#deleteDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteDatabase) method documentation.
      */
-        fun deleteDatabase(input: DeleteDatabaseRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun deleteDatabase(input: DeleteDatabaseRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Delete a range of entries from an object store
      *
      * @link Protocol [IndexedDB#deleteObjectStoreEntries](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteObjectStoreEntries) method documentation.
      */
-        fun deleteObjectStoreEntries(input: DeleteObjectStoreEntriesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IndexedDB.deleteObjectStoreEntries", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun deleteObjectStoreEntries(input: DeleteObjectStoreEntriesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IndexedDB.deleteObjectStoreEntries", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables events from backend.
      *
      * @link Protocol [IndexedDB#disable](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-disable) method documentation.
      */
-        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables events from backend.
      *
      * @link Protocol [IndexedDB#enable](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-enable) method documentation.
      */
-        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests data from object store or index.
      *
      * @link Protocol [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
      */
-        fun requestData(input: RequestDataRequest): io.reactivex.Single<RequestDataResponse> = connection.runAndCaptureResponse("IndexedDB.requestData", input, RequestDataResponse::class.java)
-
+    fun requestData(input: RequestDataRequest): io.reactivex.Single<RequestDataResponse> = connection.runAndCaptureResponse("IndexedDB.requestData", input, RequestDataResponse::class.java)
 
     /**
      * Gets metadata of an object store
      *
      * @link Protocol [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
      */
-        fun getMetadata(input: GetMetadataRequest): io.reactivex.Single<GetMetadataResponse> = connection.runAndCaptureResponse("IndexedDB.getMetadata", input, GetMetadataResponse::class.java)
-
+    fun getMetadata(input: GetMetadataRequest): io.reactivex.Single<GetMetadataResponse> = connection.runAndCaptureResponse("IndexedDB.getMetadata", input, GetMetadataResponse::class.java)
 
     /**
      * Requests database with given name in given frame.
      *
      * @link Protocol [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
      */
-        fun requestDatabase(input: RequestDatabaseRequest): io.reactivex.Single<RequestDatabaseResponse> = connection.runAndCaptureResponse("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java)
-
+    fun requestDatabase(input: RequestDatabaseRequest): io.reactivex.Single<RequestDatabaseResponse> = connection.runAndCaptureResponse("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java)
 
     /**
      * Requests database names for given security origin.
      *
      * @link Protocol [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
      */
-        fun requestDatabaseNames(input: RequestDatabaseNamesRequest): io.reactivex.Single<RequestDatabaseNamesResponse> = connection.runAndCaptureResponse("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java)
-
-
+    fun requestDatabaseNames(input: RequestDatabaseNamesRequest): io.reactivex.Single<RequestDatabaseNamesResponse> = connection.runAndCaptureResponse("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java)
 
     /**
      * Returns flowable capturing all IndexedDB domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.captureAllEvents().filter {
             it.protocolDomain() == "IndexedDB"
         }
@@ -97,7 +87,7 @@ class IndexedDBOperations internal constructor(private val connection : pl.wendi
  * @link [IndexedDB#clearObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-clearObjectStore) method documentation.
  * @see [IndexedDBOperations.clearObjectStore]
  */
-data class ClearObjectStoreRequest (
+data class ClearObjectStoreRequest(
     /**
      * Security origin.
      */
@@ -122,7 +112,7 @@ data class ClearObjectStoreRequest (
  * @link [IndexedDB#deleteDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteDatabase) method documentation.
  * @see [IndexedDBOperations.deleteDatabase]
  */
-data class DeleteDatabaseRequest (
+data class DeleteDatabaseRequest(
     /**
      * Security origin.
      */
@@ -142,7 +132,7 @@ data class DeleteDatabaseRequest (
  * @link [IndexedDB#deleteObjectStoreEntries](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteObjectStoreEntries) method documentation.
  * @see [IndexedDBOperations.deleteObjectStoreEntries]
  */
-data class DeleteObjectStoreEntriesRequest (
+data class DeleteObjectStoreEntriesRequest(
     /**
      *
      */
@@ -165,10 +155,6 @@ data class DeleteObjectStoreEntriesRequest (
 
 )
 
-
-
-
-
 /**
  * Represents request frame that can be used with [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) operation call.
  *
@@ -176,7 +162,7 @@ data class DeleteObjectStoreEntriesRequest (
  * @link [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
  * @see [IndexedDBOperations.requestData]
  */
-data class RequestDataRequest (
+data class RequestDataRequest(
     /**
      * Security origin.
      */
@@ -218,19 +204,19 @@ data class RequestDataRequest (
  * Requests data from object store or index.
  *
   
-  * @link [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
-  * @see [IndexedDBOperations.requestData]
+ * @link [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
+ * @see [IndexedDBOperations.requestData]
  */
 data class RequestDataResponse(
-  /**
-   * Array of object store data entries.
-   */
-  val objectStoreDataEntries: List<DataEntry>,
+    /**  
+     * Array of object store data entries.  
+     */  
+    val objectStoreDataEntries: List<DataEntry>,
 
-  /**
-   * If true, there are more entries to fetch in the given range.
-   */
-  val hasMore: Boolean
+    /**  
+     * If true, there are more entries to fetch in the given range.  
+     */  
+    val hasMore: Boolean
 
 )
 
@@ -241,7 +227,7 @@ data class RequestDataResponse(
  * @link [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
  * @see [IndexedDBOperations.getMetadata]
  */
-data class GetMetadataRequest (
+data class GetMetadataRequest(
     /**
      * Security origin.
      */
@@ -263,21 +249,21 @@ data class GetMetadataRequest (
  * Gets metadata of an object store
  *
   
-  * @link [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
-  * @see [IndexedDBOperations.getMetadata]
+ * @link [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
+ * @see [IndexedDBOperations.getMetadata]
  */
 data class GetMetadataResponse(
-  /**
-   * the entries count
-   */
-  val entriesCount: Double,
+    /**  
+     * the entries count  
+     */  
+    val entriesCount: Double,
 
-  /**
-   * the current value of key generator, to become the next inserted
-key into the object store. Valid if objectStore.autoIncrement
-is true.
-   */
-  val keyGeneratorValue: Double
+    /**  
+     * the current value of key generator, to become the next inserted  
+     key into the object store. Valid if objectStore.autoIncrement  
+     is true.  
+     */  
+    val keyGeneratorValue: Double
 
 )
 
@@ -288,7 +274,7 @@ is true.
  * @link [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
  * @see [IndexedDBOperations.requestDatabase]
  */
-data class RequestDatabaseRequest (
+data class RequestDatabaseRequest(
     /**
      * Security origin.
      */
@@ -305,14 +291,14 @@ data class RequestDatabaseRequest (
  * Requests database with given name in given frame.
  *
   
-  * @link [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
-  * @see [IndexedDBOperations.requestDatabase]
+ * @link [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
+ * @see [IndexedDBOperations.requestDatabase]
  */
 data class RequestDatabaseResponse(
-  /**
-   * Database with an array of object stores.
-   */
-  val databaseWithObjectStores: DatabaseWithObjectStores
+    /**  
+     * Database with an array of object stores.  
+     */  
+    val databaseWithObjectStores: DatabaseWithObjectStores
 
 )
 
@@ -323,7 +309,7 @@ data class RequestDatabaseResponse(
  * @link [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
  * @see [IndexedDBOperations.requestDatabaseNames]
  */
-data class RequestDatabaseNamesRequest (
+data class RequestDatabaseNamesRequest(
     /**
      * Security origin.
      */
@@ -335,14 +321,13 @@ data class RequestDatabaseNamesRequest (
  * Requests database names for given security origin.
  *
   
-  * @link [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
-  * @see [IndexedDBOperations.requestDatabaseNames]
+ * @link [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
+ * @see [IndexedDBOperations.requestDatabaseNames]
  */
 data class RequestDatabaseNamesResponse(
-  /**
-   * Database names for origin.
-   */
-  val databaseNames: List<String>
+    /**  
+     * Database names for origin.  
+     */  
+    val databaseNames: List<String>
 
 )
-

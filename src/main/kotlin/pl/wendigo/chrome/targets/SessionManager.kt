@@ -3,7 +3,14 @@ package pl.wendigo.chrome.targets
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.DevToolsProtocol
-import pl.wendigo.chrome.api.target.*
+import pl.wendigo.chrome.api.target.AttachToTargetRequest
+import pl.wendigo.chrome.api.target.CloseTargetRequest
+import pl.wendigo.chrome.api.target.CreateTargetRequest
+import pl.wendigo.chrome.api.target.DisposeBrowserContextRequest
+import pl.wendigo.chrome.api.target.GetTargetInfoRequest
+import pl.wendigo.chrome.api.target.SetDiscoverTargetsRequest
+import pl.wendigo.chrome.api.target.TargetID
+import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 import pl.wendigo.chrome.protocol.FrameMapper
@@ -13,7 +20,7 @@ class SessionManager(val api: DevToolsProtocol) {
     val targets: MutableMap<TargetID, TargetInfo> = mutableMapOf()
 
     init {
-        api.Target.targetCreated().filter{ it.targetInfo.isPage() }.subscribe {
+        api.Target.targetCreated().filter { it.targetInfo.isPage() }.subscribe {
             targets[it.targetInfo.targetId] = it.targetInfo
             logger.info("Created {}", it.targetInfo)
         }
@@ -24,7 +31,7 @@ class SessionManager(val api: DevToolsProtocol) {
             }
         }
 
-        api.Target.targetInfoChanged().filter{ it.targetInfo.isPage() }.subscribe {
+        api.Target.targetInfoChanged().filter { it.targetInfo.isPage() }.subscribe {
             targets[it.targetInfo.targetId] = it.targetInfo
             logger.info("Changed {}", it.targetInfo)
         }
@@ -59,7 +66,7 @@ class SessionManager(val api: DevToolsProtocol) {
     }
 
     fun createTarget(url: String, incognito: Boolean = true, eventBufferSize: Int = 128, width: Int = 1024, height: Int = 768): Session {
-        val browserContextId = when(incognito) {
+        val browserContextId = when (incognito) {
             true -> await {
                 api.Target.createBrowserContext()
             }.browserContextId
@@ -69,12 +76,13 @@ class SessionManager(val api: DevToolsProtocol) {
         val (targetId) = await {
             api.Target.createTarget(
                 CreateTargetRequest(
-                        url = url,
-                        browserContextId = browserContextId,
-                        height = height,
-                        width = width,
-                        background = true
-                ))
+                    url = url,
+                    browserContextId = browserContextId,
+                    height = height,
+                    width = width,
+                    background = true
+                )
+            )
         }
 
         val targetInfo = await {
@@ -96,11 +104,11 @@ class SessionManager(val api: DevToolsProtocol) {
         }
 
         val connection = ChromeDebuggerConnection(
-                FramesStream(
-                    FrameMapper(),
-                    api,
-                    Target(sessionId, target.targetId)
-                )
+            FramesStream(
+                FrameMapper(),
+                api,
+                Target(sessionId, target.targetId)
+            )
         )
 
         return Session(

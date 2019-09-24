@@ -12,6 +12,6 @@ data class Target(
     val targetId: TargetID
 ) {
     fun matches(message: ReceivedMessageFromTargetEvent): Boolean {
-        return message.sessionId == sessionId && message.targetId == targetId;
+        return message.sessionId == sessionId && message.targetId == targetId
     }
 }

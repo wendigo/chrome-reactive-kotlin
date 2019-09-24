@@ -7,52 +7,46 @@ package pl.wendigo.chrome.api.cachestorage
  * @link Protocol [CacheStorage](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class CacheStorageOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class CacheStorageOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Deletes a cache.
      *
      * @link Protocol [CacheStorage#deleteCache](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteCache) method documentation.
      */
-        fun deleteCache(input: DeleteCacheRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("CacheStorage.deleteCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun deleteCache(input: DeleteCacheRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("CacheStorage.deleteCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Deletes a cache entry.
      *
      * @link Protocol [CacheStorage#deleteEntry](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteEntry) method documentation.
      */
-        fun deleteEntry(input: DeleteEntryRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("CacheStorage.deleteEntry", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun deleteEntry(input: DeleteEntryRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("CacheStorage.deleteEntry", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests cache names.
      *
      * @link Protocol [CacheStorage#requestCacheNames](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCacheNames) method documentation.
      */
-        fun requestCacheNames(input: RequestCacheNamesRequest): io.reactivex.Single<RequestCacheNamesResponse> = connection.runAndCaptureResponse("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java)
-
+    fun requestCacheNames(input: RequestCacheNamesRequest): io.reactivex.Single<RequestCacheNamesResponse> = connection.runAndCaptureResponse("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java)
 
     /**
      * Fetches cache entry.
      *
      * @link Protocol [CacheStorage#requestCachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCachedResponse) method documentation.
      */
-        fun requestCachedResponse(input: RequestCachedResponseRequest): io.reactivex.Single<RequestCachedResponseResponse> = connection.runAndCaptureResponse("CacheStorage.requestCachedResponse", input, RequestCachedResponseResponse::class.java)
-
+    fun requestCachedResponse(input: RequestCachedResponseRequest): io.reactivex.Single<RequestCachedResponseResponse> = connection.runAndCaptureResponse("CacheStorage.requestCachedResponse", input, RequestCachedResponseResponse::class.java)
 
     /**
      * Requests data from cache.
      *
      * @link Protocol [CacheStorage#requestEntries](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestEntries) method documentation.
      */
-        fun requestEntries(input: RequestEntriesRequest): io.reactivex.Single<RequestEntriesResponse> = connection.runAndCaptureResponse("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java)
-
-
+    fun requestEntries(input: RequestEntriesRequest): io.reactivex.Single<RequestEntriesResponse> = connection.runAndCaptureResponse("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java)
 
     /**
      * Returns flowable capturing all CacheStorage domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.captureAllEvents().filter {
             it.protocolDomain() == "CacheStorage"
         }
@@ -65,7 +59,7 @@ class CacheStorageOperations internal constructor(private val connection : pl.we
  * @link [CacheStorage#deleteCache](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteCache) method documentation.
  * @see [CacheStorageOperations.deleteCache]
  */
-data class DeleteCacheRequest (
+data class DeleteCacheRequest(
     /**
      * Id of cache for deletion.
      */
@@ -80,7 +74,7 @@ data class DeleteCacheRequest (
  * @link [CacheStorage#deleteEntry](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteEntry) method documentation.
  * @see [CacheStorageOperations.deleteEntry]
  */
-data class DeleteEntryRequest (
+data class DeleteEntryRequest(
     /**
      * Id of cache where the entry will be deleted.
      */
@@ -100,7 +94,7 @@ data class DeleteEntryRequest (
  * @link [CacheStorage#requestCacheNames](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCacheNames) method documentation.
  * @see [CacheStorageOperations.requestCacheNames]
  */
-data class RequestCacheNamesRequest (
+data class RequestCacheNamesRequest(
     /**
      * Security origin.
      */
@@ -112,14 +106,14 @@ data class RequestCacheNamesRequest (
  * Requests cache names.
  *
   
-  * @link [CacheStorage#requestCacheNames](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCacheNames) method documentation.
-  * @see [CacheStorageOperations.requestCacheNames]
+ * @link [CacheStorage#requestCacheNames](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCacheNames) method documentation.
+ * @see [CacheStorageOperations.requestCacheNames]
  */
 data class RequestCacheNamesResponse(
-  /**
-   * Caches for the security origin.
-   */
-  val caches: List<Cache>
+    /**  
+     * Caches for the security origin.  
+     */  
+    val caches: List<Cache>
 
 )
 
@@ -130,7 +124,7 @@ data class RequestCacheNamesResponse(
  * @link [CacheStorage#requestCachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCachedResponse) method documentation.
  * @see [CacheStorageOperations.requestCachedResponse]
  */
-data class RequestCachedResponseRequest (
+data class RequestCachedResponseRequest(
     /**
      * Id of cache that contains the entry.
      */
@@ -152,14 +146,14 @@ data class RequestCachedResponseRequest (
  * Fetches cache entry.
  *
   
-  * @link [CacheStorage#requestCachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCachedResponse) method documentation.
-  * @see [CacheStorageOperations.requestCachedResponse]
+ * @link [CacheStorage#requestCachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCachedResponse) method documentation.
+ * @see [CacheStorageOperations.requestCachedResponse]
  */
 data class RequestCachedResponseResponse(
-  /**
-   * Response read from the cache.
-   */
-  val response: CachedResponse
+    /**  
+     * Response read from the cache.  
+     */  
+    val response: CachedResponse
 
 )
 
@@ -170,7 +164,7 @@ data class RequestCachedResponseResponse(
  * @link [CacheStorage#requestEntries](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestEntries) method documentation.
  * @see [CacheStorageOperations.requestEntries]
  */
-data class RequestEntriesRequest (
+data class RequestEntriesRequest(
     /**
      * ID of cache to get entries from.
      */
@@ -197,20 +191,19 @@ data class RequestEntriesRequest (
  * Requests data from cache.
  *
   
-  * @link [CacheStorage#requestEntries](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestEntries) method documentation.
-  * @see [CacheStorageOperations.requestEntries]
+ * @link [CacheStorage#requestEntries](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestEntries) method documentation.
+ * @see [CacheStorageOperations.requestEntries]
  */
 data class RequestEntriesResponse(
-  /**
-   * Array of object store data entries.
-   */
-  val cacheDataEntries: List<DataEntry>,
+    /**  
+     * Array of object store data entries.  
+     */  
+    val cacheDataEntries: List<DataEntry>,
 
-  /**
-   * Count of returned entries from this storage. If pathFilter is empty, it
-is the count of all entries from this storage.
-   */
-  val returnCount: Double
+    /**  
+     * Count of returned entries from this storage. If pathFilter is empty, it  
+     is the count of all entries from this storage.  
+     */  
+    val returnCount: Double
 
 )
-

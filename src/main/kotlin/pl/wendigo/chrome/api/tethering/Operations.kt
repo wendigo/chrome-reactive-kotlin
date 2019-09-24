@@ -7,33 +7,30 @@ package pl.wendigo.chrome.api.tethering
  * @link Protocol [Tethering](https://chromedevtools.github.io/devtools-protocol/tot/Tethering) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class TetheringOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class TetheringOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Request browser port binding.
      *
      * @link Protocol [Tethering#bind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-bind) method documentation.
      */
-        fun bind(input: BindRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun bind(input: BindRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Tethering.bind", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Request browser port unbinding.
      *
      * @link Protocol [Tethering#unbind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-unbind) method documentation.
      */
-        fun unbind(input: UnbindRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun unbind(input: UnbindRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Tethering.unbind", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Informs that port was successfully bound and got a specified connection id.
      */
-    fun accepted(): io.reactivex.Flowable<AcceptedEvent> = connection.captureEvents("Tethering.accepted", AcceptedEvent::class.java);
-
+    fun accepted(): io.reactivex.Flowable<AcceptedEvent> = connection.captureEvents("Tethering.accepted", AcceptedEvent::class.java)
 
     /**
      * Returns flowable capturing all Tethering domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.captureAllEvents().filter {
             it.protocolDomain() == "Tethering"
         }
@@ -46,7 +43,7 @@ class TetheringOperations internal constructor(private val connection : pl.wendi
  * @link [Tethering#bind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-bind) method documentation.
  * @see [TetheringOperations.bind]
  */
-data class BindRequest (
+data class BindRequest(
     /**
      * Port number to bind.
      */
@@ -61,7 +58,7 @@ data class BindRequest (
  * @link [Tethering#unbind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-unbind) method documentation.
  * @see [TetheringOperations.unbind]
  */
-data class UnbindRequest (
+data class UnbindRequest(
     /**
      * Port number to unbind.
      */
@@ -73,17 +70,16 @@ data class UnbindRequest (
  * Informs that port was successfully bound and got a specified connection id.
  *
  * @link [Tethering#accepted](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#event-accepted) event documentation.
-   */
+ */
 data class AcceptedEvent(
-  /**
-   * Port number that was successfully bound.
-   */
-  val port: Int,
+    /**  
+     * Port number that was successfully bound.  
+     */  
+    val port: Int,
 
-  /**
-   * Connection id to be used.
-   */
-  val connectionId: String
+    /**  
+     * Connection id to be used.  
+     */  
+    val connectionId: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "Tethering", name = "accepted")
-
+) : pl.wendigo.chrome.protocol.Event(domain = "Tethering", name = "accepted")

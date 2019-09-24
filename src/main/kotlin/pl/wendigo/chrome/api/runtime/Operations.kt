@@ -1,90 +1,142 @@
 package pl.wendigo.chrome.api.runtime
 
 /**
- * Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects. Evaluation results are returned as mirror object that expose object type, string representation and unique identifier that can be used for further object reference. Original objects are maintained in memory unless they are either explicitly released or are released along with the other objects in their object group.
+ * Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects.
+Evaluation results are returned as mirror object that expose object type, string representation
+and unique identifier that can be used for further object reference. Original objects are
+maintained in memory unless they are either explicitly released or are released along with the
+other objects in their object group.
  *
  * @link Protocol [Runtime](https://chromedevtools.github.io/devtools-protocol/tot/Runtime) domain documentation.
  */
-class RuntimeOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
-    /**
-     * Evaluates expression on global object.
-     *
-     * @link Protocol [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
-     */
-        fun evaluate(input: EvaluateRequest): io.reactivex.Single<EvaluateResponse> = connection.runAndCaptureResponse("Runtime.evaluate", input, EvaluateResponse::class.java)
-
-
+class RuntimeOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Add handler to promise with given promise object id.
      *
      * @link Protocol [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) method documentation.
      */
-        fun awaitPromise(input: AwaitPromiseRequest): io.reactivex.Single<AwaitPromiseResponse> = connection.runAndCaptureResponse("Runtime.awaitPromise", input, AwaitPromiseResponse::class.java)
-
+    fun awaitPromise(input: AwaitPromiseRequest): io.reactivex.Single<AwaitPromiseResponse> = connection.runAndCaptureResponse("Runtime.awaitPromise", input, AwaitPromiseResponse::class.java)
 
     /**
-     * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
+     * Calls function with given declaration on the given object. Object group of the result is
+inherited from the target object.
      *
      * @link Protocol [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) method documentation.
      */
-        fun callFunctionOn(input: CallFunctionOnRequest): io.reactivex.Single<CallFunctionOnResponse> = connection.runAndCaptureResponse("Runtime.callFunctionOn", input, CallFunctionOnResponse::class.java)
-
-
-    /**
-     * Returns properties of a given object. Object group of the result is inherited from the target object.
-     *
-     * @link Protocol [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
-     */
-        fun getProperties(input: GetPropertiesRequest): io.reactivex.Single<GetPropertiesResponse> = connection.runAndCaptureResponse("Runtime.getProperties", input, GetPropertiesResponse::class.java)
-
+    fun callFunctionOn(input: CallFunctionOnRequest): io.reactivex.Single<CallFunctionOnResponse> = connection.runAndCaptureResponse("Runtime.callFunctionOn", input, CallFunctionOnResponse::class.java)
 
     /**
-     * Releases remote object with given id.
+     * Compiles expression.
      *
-     * @link Protocol [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) method documentation.
+     * @link Protocol [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) method documentation.
      */
-        fun releaseObject(input: ReleaseObjectRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.releaseObject", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
-
-    /**
-     * Releases all remote objects that belong to a given group.
-     *
-     * @link Protocol [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) method documentation.
-     */
-        fun releaseObjectGroup(input: ReleaseObjectGroupRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
-
-    /**
-     * Tells inspected instance to run if it was waiting for debugger to attach.
-     *
-     * @link Protocol [Runtime#runIfWaitingForDebugger](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runIfWaitingForDebugger) method documentation.
-     */
-        fun runIfWaitingForDebugger(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
-
-    /**
-     * Enables reporting of execution contexts creation by means of <code>executionContextCreated</code> event. When the reporting gets enabled the event will be sent immediately for each existing execution context.
-     *
-     * @link Protocol [Runtime#enable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-enable) method documentation.
-     */
-        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun compileScript(input: CompileScriptRequest): io.reactivex.Single<CompileScriptResponse> = connection.runAndCaptureResponse("Runtime.compileScript", input, CompileScriptResponse::class.java)
 
     /**
      * Disables reporting of execution contexts creation.
      *
      * @link Protocol [Runtime#disable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-disable) method documentation.
      */
-        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Discards collected exceptions and console API calls.
      *
      * @link Protocol [Runtime#discardConsoleEntries](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-discardConsoleEntries) method documentation.
      */
-        fun discardConsoleEntries(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun discardConsoleEntries(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
+    /**
+     * Enables reporting of execution contexts creation by means of `executionContextCreated` event.
+When the reporting gets enabled the event will be sent immediately for each existing execution
+context.
+     *
+     * @link Protocol [Runtime#enable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-enable) method documentation.
+     */
+    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Evaluates expression on global object.
+     *
+     * @link Protocol [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
+     */
+    fun evaluate(input: EvaluateRequest): io.reactivex.Single<EvaluateResponse> = connection.runAndCaptureResponse("Runtime.evaluate", input, EvaluateResponse::class.java)
+
+    /**
+     * Returns the isolate id.
+     *
+     * @link Protocol [Runtime#getIsolateId](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getIsolateId) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getIsolateId(): io.reactivex.Single<GetIsolateIdResponse> = connection.runAndCaptureResponse("Runtime.getIsolateId", null, GetIsolateIdResponse::class.java)
+
+    /**
+     * Returns the JavaScript heap usage.
+It is the total usage of the corresponding isolate not scoped to a particular Runtime.
+     *
+     * @link Protocol [Runtime#getHeapUsage](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getHeapUsage) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getHeapUsage(): io.reactivex.Single<GetHeapUsageResponse> = connection.runAndCaptureResponse("Runtime.getHeapUsage", null, GetHeapUsageResponse::class.java)
+
+    /**
+     * Returns properties of a given object. Object group of the result is inherited from the target
+object.
+     *
+     * @link Protocol [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
+     */
+    fun getProperties(input: GetPropertiesRequest): io.reactivex.Single<GetPropertiesResponse> = connection.runAndCaptureResponse("Runtime.getProperties", input, GetPropertiesResponse::class.java)
+
+    /**
+     * Returns all let, const and class variables from global scope.
+     *
+     * @link Protocol [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) method documentation.
+     */
+    fun globalLexicalScopeNames(input: GlobalLexicalScopeNamesRequest): io.reactivex.Single<GlobalLexicalScopeNamesResponse> = connection.runAndCaptureResponse("Runtime.globalLexicalScopeNames", input, GlobalLexicalScopeNamesResponse::class.java)
+
+    /**
+     *
+     *
+     * @link Protocol [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) method documentation.
+     */
+    fun queryObjects(input: QueryObjectsRequest): io.reactivex.Single<QueryObjectsResponse> = connection.runAndCaptureResponse("Runtime.queryObjects", input, QueryObjectsResponse::class.java)
+
+    /**
+     * Releases remote object with given id.
+     *
+     * @link Protocol [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) method documentation.
+     */
+    fun releaseObject(input: ReleaseObjectRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.releaseObject", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Releases all remote objects that belong to a given group.
+     *
+     * @link Protocol [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) method documentation.
+     */
+    fun releaseObjectGroup(input: ReleaseObjectGroupRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Tells inspected instance to run if it was waiting for debugger to attach.
+     *
+     * @link Protocol [Runtime#runIfWaitingForDebugger](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runIfWaitingForDebugger) method documentation.
+     */
+    fun runIfWaitingForDebugger(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Runs script with given id in a given context.
+     *
+     * @link Protocol [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) method documentation.
+     */
+    fun runScript(input: RunScriptRequest): io.reactivex.Single<RunScriptResponse> = connection.runAndCaptureResponse("Runtime.runScript", input, RunScriptResponse::class.java)
+
+    /**
+     * Enables or disables async call stacks tracking.
+     *
+     * @link Protocol [Runtime#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setAsyncCallStackDepth) method documentation.
+     */
+    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.setAsyncCallStackDepth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
@@ -95,143 +147,101 @@ class RuntimeOperations internal constructor(private val connection : pl.wendigo
     @pl.wendigo.chrome.protocol.Experimental
     fun setCustomObjectFormatterEnabled(input: SetCustomObjectFormatterEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
-     * Compiles expression.
      *
-     * @link Protocol [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) method documentation.
-     */
-        fun compileScript(input: CompileScriptRequest): io.reactivex.Single<CompileScriptResponse> = connection.runAndCaptureResponse("Runtime.compileScript", input, CompileScriptResponse::class.java)
-
-
-    /**
-     * Runs script with given id in a given context.
      *
-     * @link Protocol [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) method documentation.
+     * @link Protocol [Runtime#setMaxCallStackSizeToCapture](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setMaxCallStackSizeToCapture) method documentation.
      */
-        fun runScript(input: RunScriptRequest): io.reactivex.Single<RunScriptResponse> = connection.runAndCaptureResponse("Runtime.runScript", input, RunScriptResponse::class.java)
-
-
-    /**
-     *  Issued when new execution context is created.
-     */
-    fun executionContextCreated(): io.reactivex.Flowable<ExecutionContextCreatedEvent> = connection.captureEvents("Runtime.executionContextCreated", ExecutionContextCreatedEvent::class.java);
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setMaxCallStackSizeToCapture(input: SetMaxCallStackSizeToCaptureRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.setMaxCallStackSizeToCapture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
-     *  Issued when execution context is destroyed.
+     * Terminate current or next JavaScript execution.
+Will cancel the termination when the outer-most script execution ends.
+     *
+     * @link Protocol [Runtime#terminateExecution](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-terminateExecution) method documentation.
      */
-    fun executionContextDestroyed(): io.reactivex.Flowable<ExecutionContextDestroyedEvent> = connection.captureEvents("Runtime.executionContextDestroyed", ExecutionContextDestroyedEvent::class.java);
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun terminateExecution(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.terminateExecution", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
-     *  Issued when all executionContexts were cleared in browser
+     * If executionContextId is empty, adds binding with the given name on the
+global objects of all inspected contexts, including those created later,
+bindings survive reloads.
+If executionContextId is specified, adds binding only on global object of
+given execution context.
+Binding function takes exactly one argument, this argument should be string,
+in case of any other input, function throws an exception.
+Each binding function call produces Runtime.bindingCalled notification.
+     *
+     * @link Protocol [Runtime#addBinding](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-addBinding) method documentation.
      */
-    fun executionContextsCleared(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Runtime.executionContextsCleared", pl.wendigo.chrome.protocol.Event::class.java);
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun addBinding(input: AddBindingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.addBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
-     *  Issued when exception was thrown and unhandled.
+     * This method does not remove binding function from global object but
+unsubscribes current runtime agent from Runtime.bindingCalled notifications.
+     *
+     * @link Protocol [Runtime#removeBinding](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-removeBinding) method documentation.
      */
-    fun exceptionThrown(): io.reactivex.Flowable<ExceptionThrownEvent> = connection.captureEvents("Runtime.exceptionThrown", ExceptionThrownEvent::class.java);
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun removeBinding(input: RemoveBindingRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Runtime.removeBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
-     *  Issued when unhandled exception was revoked.
+     *  Notification is issued every time when binding is called.
      */
-    fun exceptionRevoked(): io.reactivex.Flowable<ExceptionRevokedEvent> = connection.captureEvents("Runtime.exceptionRevoked", ExceptionRevokedEvent::class.java);
+    fun bindingCalled(): io.reactivex.Flowable<BindingCalledEvent> = connection.captureEvents("Runtime.bindingCalled", BindingCalledEvent::class.java)
 
     /**
      *  Issued when console API was called.
      */
-    fun consoleAPICalled(): io.reactivex.Flowable<ConsoleAPICalledEvent> = connection.captureEvents("Runtime.consoleAPICalled", ConsoleAPICalledEvent::class.java);
+    fun consoleAPICalled(): io.reactivex.Flowable<ConsoleAPICalledEvent> = connection.captureEvents("Runtime.consoleAPICalled", ConsoleAPICalledEvent::class.java)
 
     /**
-     *  Issued when object should be inspected (for example, as a result of inspect() command line API call).
+     *  Issued when unhandled exception was revoked.
      */
-    fun inspectRequested(): io.reactivex.Flowable<InspectRequestedEvent> = connection.captureEvents("Runtime.inspectRequested", InspectRequestedEvent::class.java);
+    fun exceptionRevoked(): io.reactivex.Flowable<ExceptionRevokedEvent> = connection.captureEvents("Runtime.exceptionRevoked", ExceptionRevokedEvent::class.java)
 
+    /**
+     *  Issued when exception was thrown and unhandled.
+     */
+    fun exceptionThrown(): io.reactivex.Flowable<ExceptionThrownEvent> = connection.captureEvents("Runtime.exceptionThrown", ExceptionThrownEvent::class.java)
+
+    /**
+     *  Issued when new execution context is created.
+     */
+    fun executionContextCreated(): io.reactivex.Flowable<ExecutionContextCreatedEvent> = connection.captureEvents("Runtime.executionContextCreated", ExecutionContextCreatedEvent::class.java)
+
+    /**
+     *  Issued when execution context is destroyed.
+     */
+    fun executionContextDestroyed(): io.reactivex.Flowable<ExecutionContextDestroyedEvent> = connection.captureEvents("Runtime.executionContextDestroyed", ExecutionContextDestroyedEvent::class.java)
+
+    /**
+     *  Issued when all executionContexts were cleared in browser
+     */
+    fun executionContextsCleared(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("Runtime.executionContextsCleared", pl.wendigo.chrome.protocol.Event::class.java)
+
+    /**
+     *  Issued when object should be inspected (for example, as a result of inspect() command line API
+call).
+     */
+    fun inspectRequested(): io.reactivex.Flowable<InspectRequestedEvent> = connection.captureEvents("Runtime.inspectRequested", InspectRequestedEvent::class.java)
 
     /**
      * Returns flowable capturing all Runtime domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.captureAllEvents().filter {
             it.protocolDomain() == "Runtime"
         }
     }
 }
-/**
- * Represents request frame that can be used with [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) operation call.
- *
- * Evaluates expression on global object.
- * @link [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
- * @see [RuntimeOperations.evaluate]
- */
-data class EvaluateRequest (
-    /**
-     * Expression to evaluate.
-     */
-    val expression: String,
-
-    /**
-     * Symbolic group name that can be used to release multiple objects.
-     */
-    val objectGroup: String? = null,
-
-    /**
-     * Determines whether Command Line API should be available during the evaluation.
-     */
-    val includeCommandLineAPI: Boolean? = null,
-
-    /**
-     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides <code>setPauseOnException</code> state.
-     */
-    val silent: Boolean? = null,
-
-    /**
-     * Specifies in which execution context to perform evaluation. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
-     */
-    val contextId: ExecutionContextId? = null,
-
-    /**
-     * Whether the result is expected to be a JSON object that should be sent by value.
-     */
-    val returnByValue: Boolean? = null,
-
-    /**
-     * Whether preview should be generated for the result.
-     */
-    @pl.wendigo.chrome.protocol.Experimental val generatePreview: Boolean? = null,
-
-    /**
-     * Whether execution should be treated as initiated by user in the UI.
-     */
-    @pl.wendigo.chrome.protocol.Experimental val userGesture: Boolean? = null,
-
-    /**
-     * Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error.
-     */
-    val awaitPromise: Boolean? = null
-
-)
-/**
- * Represents response frame that is returned from [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) operation call.
- * Evaluates expression on global object.
- *
-  
-  * @link [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
-  * @see [RuntimeOperations.evaluate]
- */
-data class EvaluateResponse(
-  /**
-   * Evaluation result.
-   */
-  val result: RemoteObject,
-
-  /**
-   * Exception details.
-   */
-  val exceptionDetails: ExceptionDetails? = null
-
-)
-
 /**
  * Represents request frame that can be used with [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) operation call.
  *
@@ -239,7 +249,7 @@ data class EvaluateResponse(
  * @link [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) method documentation.
  * @see [RuntimeOperations.awaitPromise]
  */
-data class AwaitPromiseRequest (
+data class AwaitPromiseRequest(
     /**
      * Identifier of the promise.
      */
@@ -261,47 +271,51 @@ data class AwaitPromiseRequest (
  * Add handler to promise with given promise object id.
  *
   
-  * @link [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) method documentation.
-  * @see [RuntimeOperations.awaitPromise]
+ * @link [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) method documentation.
+ * @see [RuntimeOperations.awaitPromise]
  */
 data class AwaitPromiseResponse(
-  /**
-   * Promise result. Will contain rejected value if promise was rejected.
-   */
-  val result: RemoteObject,
+    /**  
+     * Promise result. Will contain rejected value if promise was rejected.  
+     */  
+    val result: RemoteObject,
 
-  /**
-   * Exception details if stack strace is available.
-   */
-  val exceptionDetails: ExceptionDetails? = null
+    /**  
+     * Exception details if stack strace is available.  
+     */  
+    val exceptionDetails: ExceptionDetails? = null
 
 )
 
 /**
  * Represents request frame that can be used with [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) operation call.
  *
- * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
+ * Calls function with given declaration on the given object. Object group of the result is
+inherited from the target object.
  * @link [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) method documentation.
  * @see [RuntimeOperations.callFunctionOn]
  */
-data class CallFunctionOnRequest (
-    /**
-     * Identifier of the object to call function on.
-     */
-    val objectId: RemoteObjectId,
-
+data class CallFunctionOnRequest(
     /**
      * Declaration of the function to call.
      */
     val functionDeclaration: String,
 
     /**
-     * Call arguments. All call arguments must belong to the same JavaScript world as the target object.
+     * Identifier of the object to call function on. Either objectId or executionContextId should
+be specified.
+     */
+    val objectId: RemoteObjectId? = null,
+
+    /**
+     * Call arguments. All call arguments must belong to the same JavaScript world as the target
+object.
      */
     val arguments: List<CallArgument>? = null,
 
     /**
-     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides <code>setPauseOnException</code> state.
+     * In silent mode exceptions thrown during evaluation are not reported and do not pause
+execution. Overrides `setPauseOnException` state.
      */
     val silent: Boolean? = null,
 
@@ -318,140 +332,46 @@ data class CallFunctionOnRequest (
     /**
      * Whether execution should be treated as initiated by user in the UI.
      */
-    @pl.wendigo.chrome.protocol.Experimental val userGesture: Boolean? = null,
+    val userGesture: Boolean? = null,
 
     /**
-     * Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error.
+     * Whether execution should `await` for resulting value and return once awaited promise is
+resolved.
      */
-    val awaitPromise: Boolean? = null
+    val awaitPromise: Boolean? = null,
+
+    /**
+     * Specifies execution context which global object will be used to call function on. Either
+executionContextId or objectId should be specified.
+     */
+    val executionContextId: ExecutionContextId? = null,
+
+    /**
+     * Symbolic group name that can be used to release multiple objects. If objectGroup is not
+specified and objectId is, objectGroup will be inherited from object.
+     */
+    val objectGroup: String? = null
 
 )
 /**
  * Represents response frame that is returned from [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) operation call.
- * Calls function with given declaration on the given object. Object group of the result is inherited from the target object.
+ * Calls function with given declaration on the given object. Object group of the result is
+inherited from the target object.
  *
   
-  * @link [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) method documentation.
-  * @see [RuntimeOperations.callFunctionOn]
+ * @link [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) method documentation.
+ * @see [RuntimeOperations.callFunctionOn]
  */
 data class CallFunctionOnResponse(
-  /**
-   * Call result.
-   */
-  val result: RemoteObject,
+    /**  
+     * Call result.  
+     */  
+    val result: RemoteObject,
 
-  /**
-   * Exception details.
-   */
-  val exceptionDetails: ExceptionDetails? = null
-
-)
-
-/**
- * Represents request frame that can be used with [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) operation call.
- *
- * Returns properties of a given object. Object group of the result is inherited from the target object.
- * @link [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
- * @see [RuntimeOperations.getProperties]
- */
-data class GetPropertiesRequest (
-    /**
-     * Identifier of the object to return properties for.
-     */
-    val objectId: RemoteObjectId,
-
-    /**
-     * If true, returns properties belonging only to the element itself, not to its prototype chain.
-     */
-    val ownProperties: Boolean? = null,
-
-    /**
-     * If true, returns accessor properties (with getter/setter) only; internal properties are not returned either.
-     */
-    @pl.wendigo.chrome.protocol.Experimental val accessorPropertiesOnly: Boolean? = null,
-
-    /**
-     * Whether preview should be generated for the results.
-     */
-    @pl.wendigo.chrome.protocol.Experimental val generatePreview: Boolean? = null
-
-)
-/**
- * Represents response frame that is returned from [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) operation call.
- * Returns properties of a given object. Object group of the result is inherited from the target object.
- *
-  
-  * @link [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
-  * @see [RuntimeOperations.getProperties]
- */
-data class GetPropertiesResponse(
-  /**
-   * Object properties.
-   */
-  val result: List<PropertyDescriptor>,
-
-  /**
-   * Internal object properties (only of the element itself).
-   */
-  val internalProperties: List<InternalPropertyDescriptor>? = null,
-
-  /**
-   * Exception details.
-   */
-  val exceptionDetails: ExceptionDetails? = null
-
-)
-
-/**
- * Represents request frame that can be used with [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) operation call.
- *
- * Releases remote object with given id.
- * @link [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) method documentation.
- * @see [RuntimeOperations.releaseObject]
- */
-data class ReleaseObjectRequest (
-    /**
-     * Identifier of the object to release.
-     */
-    val objectId: RemoteObjectId
-
-)
-
-/**
- * Represents request frame that can be used with [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) operation call.
- *
- * Releases all remote objects that belong to a given group.
- * @link [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) method documentation.
- * @see [RuntimeOperations.releaseObjectGroup]
- */
-data class ReleaseObjectGroupRequest (
-    /**
-     * Symbolic object group name.
-     */
-    val objectGroup: String
-
-)
-
-
-
-
-
-
-
-
-
-/**
- * Represents request frame that can be used with [Runtime#setCustomObjectFormatterEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setCustomObjectFormatterEnabled) operation call.
- *
- *
- * @link [Runtime#setCustomObjectFormatterEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setCustomObjectFormatterEnabled) method documentation.
- * @see [RuntimeOperations.setCustomObjectFormatterEnabled]
- */
-data class SetCustomObjectFormatterEnabledRequest (
-    /**
-     *
-     */
-    val enabled: Boolean
+    /**  
+     * Exception details.  
+     */  
+    val exceptionDetails: ExceptionDetails? = null
 
 )
 
@@ -462,7 +382,7 @@ data class SetCustomObjectFormatterEnabledRequest (
  * @link [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) method documentation.
  * @see [RuntimeOperations.compileScript]
  */
-data class CompileScriptRequest (
+data class CompileScriptRequest(
     /**
      * Expression to compile.
      */
@@ -479,7 +399,8 @@ data class CompileScriptRequest (
     val persistScript: Boolean,
 
     /**
-     * Specifies in which execution context to perform script run. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
+     * Specifies in which execution context to perform script run. If the parameter is omitted the
+evaluation will be performed in the context of the inspected page.
      */
     val executionContextId: ExecutionContextId? = null
 
@@ -489,19 +410,304 @@ data class CompileScriptRequest (
  * Compiles expression.
  *
   
-  * @link [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) method documentation.
-  * @see [RuntimeOperations.compileScript]
+ * @link [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) method documentation.
+ * @see [RuntimeOperations.compileScript]
  */
 data class CompileScriptResponse(
-  /**
-   * Id of the script.
-   */
-  val scriptId: ScriptId? = null,
+    /**  
+     * Id of the script.  
+     */  
+    val scriptId: ScriptId? = null,
 
-  /**
-   * Exception details.
-   */
-  val exceptionDetails: ExceptionDetails? = null
+    /**  
+     * Exception details.  
+     */  
+    val exceptionDetails: ExceptionDetails? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) operation call.
+ *
+ * Evaluates expression on global object.
+ * @link [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
+ * @see [RuntimeOperations.evaluate]
+ */
+data class EvaluateRequest(
+    /**
+     * Expression to evaluate.
+     */
+    val expression: String,
+
+    /**
+     * Symbolic group name that can be used to release multiple objects.
+     */
+    val objectGroup: String? = null,
+
+    /**
+     * Determines whether Command Line API should be available during the evaluation.
+     */
+    val includeCommandLineAPI: Boolean? = null,
+
+    /**
+     * In silent mode exceptions thrown during evaluation are not reported and do not pause
+execution. Overrides `setPauseOnException` state.
+     */
+    val silent: Boolean? = null,
+
+    /**
+     * Specifies in which execution context to perform evaluation. If the parameter is omitted the
+evaluation will be performed in the context of the inspected page.
+     */
+    val contextId: ExecutionContextId? = null,
+
+    /**
+     * Whether the result is expected to be a JSON object that should be sent by value.
+     */
+    val returnByValue: Boolean? = null,
+
+    /**
+     * Whether preview should be generated for the result.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val generatePreview: Boolean? = null,
+
+    /**
+     * Whether execution should be treated as initiated by user in the UI.
+     */
+    val userGesture: Boolean? = null,
+
+    /**
+     * Whether execution should `await` for resulting value and return once awaited promise is
+resolved.
+     */
+    val awaitPromise: Boolean? = null,
+
+    /**
+     * Whether to throw an exception if side effect cannot be ruled out during evaluation.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val throwOnSideEffect: Boolean? = null,
+
+    /**
+     * Terminate execution after timing out (number of milliseconds).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val timeout: TimeDelta? = null
+
+)
+/**
+ * Represents response frame that is returned from [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) operation call.
+ * Evaluates expression on global object.
+ *
+  
+ * @link [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
+ * @see [RuntimeOperations.evaluate]
+ */
+data class EvaluateResponse(
+    /**  
+     * Evaluation result.  
+     */  
+    val result: RemoteObject,
+
+    /**  
+     * Exception details.  
+     */  
+    val exceptionDetails: ExceptionDetails? = null
+
+)
+
+/**
+ * Represents response frame that is returned from [Runtime#getIsolateId](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getIsolateId) operation call.
+ * Returns the isolate id.
+ *
+  
+ * @link [Runtime#getIsolateId](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getIsolateId) method documentation.
+ * @see [RuntimeOperations.getIsolateId]
+ */
+data class GetIsolateIdResponse(
+    /**  
+     * The isolate id.  
+     */  
+    val id: String
+
+)
+
+/**
+ * Represents response frame that is returned from [Runtime#getHeapUsage](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getHeapUsage) operation call.
+ * Returns the JavaScript heap usage.
+It is the total usage of the corresponding isolate not scoped to a particular Runtime.
+ *
+  
+ * @link [Runtime#getHeapUsage](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getHeapUsage) method documentation.
+ * @see [RuntimeOperations.getHeapUsage]
+ */
+data class GetHeapUsageResponse(
+    /**  
+     * Used heap size in bytes.  
+     */  
+    val usedSize: Double,
+
+    /**  
+     * Allocated heap size in bytes.  
+     */  
+    val totalSize: Double
+
+)
+
+/**
+ * Represents request frame that can be used with [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) operation call.
+ *
+ * Returns properties of a given object. Object group of the result is inherited from the target
+object.
+ * @link [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
+ * @see [RuntimeOperations.getProperties]
+ */
+data class GetPropertiesRequest(
+    /**
+     * Identifier of the object to return properties for.
+     */
+    val objectId: RemoteObjectId,
+
+    /**
+     * If true, returns properties belonging only to the element itself, not to its prototype
+chain.
+     */
+    val ownProperties: Boolean? = null,
+
+    /**
+     * If true, returns accessor properties (with getter/setter) only; internal properties are not
+returned either.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val accessorPropertiesOnly: Boolean? = null,
+
+    /**
+     * Whether preview should be generated for the results.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val generatePreview: Boolean? = null
+
+)
+/**
+ * Represents response frame that is returned from [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) operation call.
+ * Returns properties of a given object. Object group of the result is inherited from the target
+object.
+ *
+  
+ * @link [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
+ * @see [RuntimeOperations.getProperties]
+ */
+data class GetPropertiesResponse(
+    /**  
+     * Object properties.  
+     */  
+    val result: List<PropertyDescriptor>,
+
+    /**  
+     * Internal object properties (only of the element itself).  
+     */  
+    val internalProperties: List<InternalPropertyDescriptor>? = null,
+
+    /**  
+     * Object private properties.  
+     */  
+    val privateProperties: List<PrivatePropertyDescriptor>? = null,
+
+    /**  
+     * Exception details.  
+     */  
+    val exceptionDetails: ExceptionDetails? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) operation call.
+ *
+ * Returns all let, const and class variables from global scope.
+ * @link [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) method documentation.
+ * @see [RuntimeOperations.globalLexicalScopeNames]
+ */
+data class GlobalLexicalScopeNamesRequest(
+    /**
+     * Specifies in which execution context to lookup global scope variables.
+     */
+    val executionContextId: ExecutionContextId? = null
+
+)
+/**
+ * Represents response frame that is returned from [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) operation call.
+ * Returns all let, const and class variables from global scope.
+ *
+  
+ * @link [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) method documentation.
+ * @see [RuntimeOperations.globalLexicalScopeNames]
+ */
+data class GlobalLexicalScopeNamesResponse(
+    /**  
+     *  
+     */  
+    val names: List<String>
+
+)
+
+/**
+ * Represents request frame that can be used with [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) operation call.
+ *
+ *
+ * @link [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) method documentation.
+ * @see [RuntimeOperations.queryObjects]
+ */
+data class QueryObjectsRequest(
+    /**
+     * Identifier of the prototype to return objects for.
+     */
+    val prototypeObjectId: RemoteObjectId,
+
+    /**
+     * Symbolic group name that can be used to release the results.
+     */
+    val objectGroup: String? = null
+
+)
+/**
+ * Represents response frame that is returned from [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) operation call.
+ *
+ *
+  
+ * @link [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) method documentation.
+ * @see [RuntimeOperations.queryObjects]
+ */
+data class QueryObjectsResponse(
+    /**  
+     * Array with objects.  
+     */  
+    val objects: RemoteObject
+
+)
+
+/**
+ * Represents request frame that can be used with [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) operation call.
+ *
+ * Releases remote object with given id.
+ * @link [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) method documentation.
+ * @see [RuntimeOperations.releaseObject]
+ */
+data class ReleaseObjectRequest(
+    /**
+     * Identifier of the object to release.
+     */
+    val objectId: RemoteObjectId
+
+)
+
+/**
+ * Represents request frame that can be used with [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) operation call.
+ *
+ * Releases all remote objects that belong to a given group.
+ * @link [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) method documentation.
+ * @see [RuntimeOperations.releaseObjectGroup]
+ */
+data class ReleaseObjectGroupRequest(
+    /**
+     * Symbolic object group name.
+     */
+    val objectGroup: String
 
 )
 
@@ -512,14 +718,15 @@ data class CompileScriptResponse(
  * @link [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) method documentation.
  * @see [RuntimeOperations.runScript]
  */
-data class RunScriptRequest (
+data class RunScriptRequest(
     /**
      * Id of the script to run.
      */
     val scriptId: ScriptId,
 
     /**
-     * Specifies in which execution context to perform script run. If the parameter is omitted the evaluation will be performed in the context of the inspected page.
+     * Specifies in which execution context to perform script run. If the parameter is omitted the
+evaluation will be performed in the context of the inspected page.
      */
     val executionContextId: ExecutionContextId? = null,
 
@@ -529,7 +736,8 @@ data class RunScriptRequest (
     val objectGroup: String? = null,
 
     /**
-     * In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides <code>setPauseOnException</code> state.
+     * In silent mode exceptions thrown during evaluation are not reported and do not pause
+execution. Overrides `setPauseOnException` state.
      */
     val silent: Boolean? = null,
 
@@ -549,7 +757,8 @@ data class RunScriptRequest (
     val generatePreview: Boolean? = null,
 
     /**
-     * Whether execution should wait for promise to be resolved. If the result of evaluation is not a Promise, it's considered to be an error.
+     * Whether execution should `await` for resulting value and return once awaited promise is
+resolved.
      */
     val awaitPromise: Boolean? = null
 
@@ -559,133 +768,254 @@ data class RunScriptRequest (
  * Runs script with given id in a given context.
  *
   
-  * @link [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) method documentation.
-  * @see [RuntimeOperations.runScript]
+ * @link [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) method documentation.
+ * @see [RuntimeOperations.runScript]
  */
 data class RunScriptResponse(
-  /**
-   * Run result.
-   */
-  val result: RemoteObject,
+    /**  
+     * Run result.  
+     */  
+    val result: RemoteObject,
 
-  /**
-   * Exception details.
-   */
-  val exceptionDetails: ExceptionDetails? = null
+    /**  
+     * Exception details.  
+     */  
+    val exceptionDetails: ExceptionDetails? = null
 
 )
 
 /**
- * Issued when new execution context is created.
+ * Represents request frame that can be used with [Runtime#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setAsyncCallStackDepth) operation call.
  *
- * @link [Runtime#executionContextCreated](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-executionContextCreated) event documentation.
-   */
-data class ExecutionContextCreatedEvent(
-  /**
-   * A newly created execution contex.
-   */
-  val context: ExecutionContextDescription
+ * Enables or disables async call stacks tracking.
+ * @link [Runtime#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setAsyncCallStackDepth) method documentation.
+ * @see [RuntimeOperations.setAsyncCallStackDepth]
+ */
+data class SetAsyncCallStackDepthRequest(
+    /**
+     * Maximum depth of async call stacks. Setting to `0` will effectively disable collecting async
+call stacks (default).
+     */
+    val maxDepth: Int
 
-): pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "executionContextCreated")
+)
 
 /**
- * Issued when execution context is destroyed.
+ * Represents request frame that can be used with [Runtime#setCustomObjectFormatterEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setCustomObjectFormatterEnabled) operation call.
  *
- * @link [Runtime#executionContextDestroyed](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-executionContextDestroyed) event documentation.
-   */
-data class ExecutionContextDestroyedEvent(
-  /**
-   * Id of the destroyed context
-   */
-  val executionContextId: ExecutionContextId
+ *
+ * @link [Runtime#setCustomObjectFormatterEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setCustomObjectFormatterEnabled) method documentation.
+ * @see [RuntimeOperations.setCustomObjectFormatterEnabled]
+ */
+data class SetCustomObjectFormatterEnabledRequest(
+    /**
+     *
+     */
+    val enabled: Boolean
 
-): pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "executionContextDestroyed")
-
+)
 
 /**
- * Issued when exception was thrown and unhandled.
+ * Represents request frame that can be used with [Runtime#setMaxCallStackSizeToCapture](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setMaxCallStackSizeToCapture) operation call.
  *
- * @link [Runtime#exceptionThrown](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-exceptionThrown) event documentation.
-   */
-data class ExceptionThrownEvent(
-  /**
-   * Timestamp of the exception.
-   */
-  val timestamp: Timestamp,
+ *
+ * @link [Runtime#setMaxCallStackSizeToCapture](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setMaxCallStackSizeToCapture) method documentation.
+ * @see [RuntimeOperations.setMaxCallStackSizeToCapture]
+ */
+data class SetMaxCallStackSizeToCaptureRequest(
+    /**
+     *
+     */
+    val size: Int
 
-  /**
-   *
-   */
-  val exceptionDetails: ExceptionDetails
-
-): pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "exceptionThrown")
+)
 
 /**
- * Issued when unhandled exception was revoked.
+ * Represents request frame that can be used with [Runtime#addBinding](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-addBinding) operation call.
  *
- * @link [Runtime#exceptionRevoked](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-exceptionRevoked) event documentation.
-   */
-data class ExceptionRevokedEvent(
-  /**
-   * Reason describing why exception was revoked.
-   */
-  val reason: String,
+ * If executionContextId is empty, adds binding with the given name on the
+global objects of all inspected contexts, including those created later,
+bindings survive reloads.
+If executionContextId is specified, adds binding only on global object of
+given execution context.
+Binding function takes exactly one argument, this argument should be string,
+in case of any other input, function throws an exception.
+Each binding function call produces Runtime.bindingCalled notification.
+ * @link [Runtime#addBinding](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-addBinding) method documentation.
+ * @see [RuntimeOperations.addBinding]
+ */
+data class AddBindingRequest(
+    /**
+     *
+     */
+    val name: String,
 
-  /**
-   * The id of revoked exception, as reported in <code>exceptionUnhandled</code>.
-   */
-  val exceptionId: Int
+    /**
+     *
+     */
+    val executionContextId: ExecutionContextId? = null
 
-): pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "exceptionRevoked")
+)
+
+/**
+ * Represents request frame that can be used with [Runtime#removeBinding](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-removeBinding) operation call.
+ *
+ * This method does not remove binding function from global object but
+unsubscribes current runtime agent from Runtime.bindingCalled notifications.
+ * @link [Runtime#removeBinding](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-removeBinding) method documentation.
+ * @see [RuntimeOperations.removeBinding]
+ */
+data class RemoveBindingRequest(
+    /**
+     *
+     */
+    val name: String
+
+)
+
+/**
+ * Notification is issued every time when binding is called.
+ *
+ * @link [Runtime#bindingCalled](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-bindingCalled) event documentation.
+ */
+data class BindingCalledEvent(
+    /**  
+     *  
+     */  
+    val name: String,
+
+    /**  
+     *  
+     */  
+    val payload: String,
+
+    /**  
+     * Identifier of the context where the call was made.  
+     */  
+    val executionContextId: ExecutionContextId
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "bindingCalled")
 
 /**
  * Issued when console API was called.
  *
  * @link [Runtime#consoleAPICalled](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-consoleAPICalled) event documentation.
-   */
+ */
 data class ConsoleAPICalledEvent(
-  /**
-   * Type of the call.
-   */
-  val type: String,
+    /**  
+     * Type of the call.  
+     */  
+    val type: String,
 
-  /**
-   * Call arguments.
-   */
-  val args: List<RemoteObject>,
+    /**  
+     * Call arguments.  
+     */  
+    val args: List<RemoteObject>,
 
-  /**
-   * Identifier of the context where the call was made.
-   */
-  val executionContextId: ExecutionContextId,
+    /**  
+     * Identifier of the context where the call was made.  
+     */  
+    val executionContextId: ExecutionContextId,
 
-  /**
-   * Call timestamp.
-   */
-  val timestamp: Timestamp,
+    /**  
+     * Call timestamp.  
+     */  
+    val timestamp: Timestamp,
 
-  /**
-   * Stack trace captured when the call was made.
-   */
-  val stackTrace: StackTrace? = null
+    /**  
+     * Stack trace captured when the call was made. The async stack chain is automatically reported for  
+     the following call types: `assert`, `error`, `trace`, `warning`. For other types the async call  
+     chain can be retrieved using `Debugger.getStackTrace` and `stackTrace.parentId` field.  
+     */  
+    val stackTrace: StackTrace? = null,
 
-): pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "consoleAPICalled")
+    /**  
+     * Console context descriptor for calls on non-default console context (not console.*):  
+     'anonymous#unique-logger-id' for call on unnamed context, 'name#unique-logger-id' for call  
+     on named context.  
+     */  
+    val context: String? = null
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "consoleAPICalled")
 
 /**
- * Issued when object should be inspected (for example, as a result of inspect() command line API call).
+ * Issued when unhandled exception was revoked.
+ *
+ * @link [Runtime#exceptionRevoked](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-exceptionRevoked) event documentation.
+ */
+data class ExceptionRevokedEvent(
+    /**  
+     * Reason describing why exception was revoked.  
+     */  
+    val reason: String,
+
+    /**  
+     * The id of revoked exception, as reported in `exceptionThrown`.  
+     */  
+    val exceptionId: Int
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "exceptionRevoked")
+
+/**
+ * Issued when exception was thrown and unhandled.
+ *
+ * @link [Runtime#exceptionThrown](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-exceptionThrown) event documentation.
+ */
+data class ExceptionThrownEvent(
+    /**  
+     * Timestamp of the exception.  
+     */  
+    val timestamp: Timestamp,
+
+    /**  
+     *  
+     */  
+    val exceptionDetails: ExceptionDetails
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "exceptionThrown")
+
+/**
+ * Issued when new execution context is created.
+ *
+ * @link [Runtime#executionContextCreated](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-executionContextCreated) event documentation.
+ */
+data class ExecutionContextCreatedEvent(
+    /**  
+     * A newly created execution context.  
+     */  
+    val context: ExecutionContextDescription
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "executionContextCreated")
+
+/**
+ * Issued when execution context is destroyed.
+ *
+ * @link [Runtime#executionContextDestroyed](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-executionContextDestroyed) event documentation.
+ */
+data class ExecutionContextDestroyedEvent(
+    /**  
+     * Id of the destroyed context  
+     */  
+    val executionContextId: ExecutionContextId
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "executionContextDestroyed")
+
+/**
+ * Issued when object should be inspected (for example, as a result of inspect() command line API
+call).
  *
  * @link [Runtime#inspectRequested](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-inspectRequested) event documentation.
-   */
+ */
 data class InspectRequestedEvent(
-  /**
-   *
-   */
-  @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: RemoteObject,
+    /**  
+     *  
+     */  
+    @get:com.fasterxml.jackson.annotation.JsonProperty("object")
+    val _object: RemoteObject,
 
-  /**
-   *
-   */
-  val hints: com.fasterxml.jackson.databind.JsonNode
+    /**  
+     *  
+     */  
+    val hints: com.fasterxml.jackson.databind.JsonNode
 
-): pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "inspectRequested")
-
+) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "inspectRequested")

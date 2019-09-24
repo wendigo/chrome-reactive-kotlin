@@ -7,20 +7,20 @@ package pl.wendigo.chrome.api.applicationcache
  */
 
 data class ApplicationCacheResource(
-  /**
-   * Resource url.
-   */
-  val url: String,
+    /**  
+     * Resource url.  
+     */  
+    val url: String,
 
-  /**
-   * Resource size.
-   */
-  val size: Int,
+    /**  
+     * Resource size.  
+     */  
+    val size: Int,
 
-  /**
-   * Resource type.
-   */
-  val type: String
+    /**  
+     * Resource type.  
+     */  
+    val type: String
 )
 
 /**
@@ -30,30 +30,30 @@ data class ApplicationCacheResource(
  */
 
 data class ApplicationCache(
-  /**
-   * Manifest URL.
-   */
-  val manifestURL: String,
+    /**  
+     * Manifest URL.  
+     */  
+    val manifestURL: String,
 
-  /**
-   * Application cache size.
-   */
-  val size: Double,
+    /**  
+     * Application cache size.  
+     */  
+    val size: Double,
 
-  /**
-   * Application cache creation time.
-   */
-  val creationTime: Double,
+    /**  
+     * Application cache creation time.  
+     */  
+    val creationTime: Double,
 
-  /**
-   * Application cache update time.
-   */
-  val updateTime: Double,
+    /**  
+     * Application cache update time.  
+     */  
+    val updateTime: Double,
 
-  /**
-   * Application cache resources.
-   */
-  val resources: List<ApplicationCacheResource>
+    /**  
+     * Application cache resources.  
+     */  
+    val resources: List<ApplicationCacheResource>
 )
 
 /**
@@ -63,19 +63,18 @@ data class ApplicationCache(
  */
 
 data class FrameWithManifest(
-  /**
-   * Frame identifier.
-   */
-  val frameId: pl.wendigo.chrome.api.page.FrameId,
+    /**  
+     * Frame identifier.  
+     */  
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
-  /**
-   * Manifest URL.
-   */
-  val manifestURL: String,
+    /**  
+     * Manifest URL.  
+     */  
+    val manifestURL: String,
 
-  /**
-   * Application cache status.
-   */
-  val status: Int
+    /**  
+     * Application cache status.  
+     */  
+    val status: Int
 )
-

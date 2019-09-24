@@ -11,7 +11,7 @@ corresponding document elements as their child nodes.</p>
  *
  * @link Protocol [DOM](https://chromedevtools.github.io/devtools-protocol/tot/DOM) domain documentation.
  */
-class DOMOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class DOMOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Collects class names for the node with given id and all of it's child nodes.
      *
@@ -20,7 +20,6 @@ class DOMOperations internal constructor(private val connection : pl.wendigo.chr
     
     @pl.wendigo.chrome.protocol.Experimental
     fun collectClassNamesFromSubtree(input: CollectClassNamesFromSubtreeRequest): io.reactivex.Single<CollectClassNamesFromSubtreeResponse> = connection.runAndCaptureResponse("DOM.collectClassNamesFromSubtree", input, CollectClassNamesFromSubtreeResponse::class.java)
-
 
     /**
      * Creates a deep copy of the specified node and places it into the target container before the
@@ -32,23 +31,20 @@ given anchor.
     @pl.wendigo.chrome.protocol.Experimental
     fun copyTo(input: CopyToRequest): io.reactivex.Single<CopyToResponse> = connection.runAndCaptureResponse("DOM.copyTo", input, CopyToResponse::class.java)
 
-
     /**
      * Describes node given its id, does not require domain to be enabled. Does not start tracking any
 objects, can be used for automation.
      *
      * @link Protocol [DOM#describeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-describeNode) method documentation.
      */
-        fun describeNode(input: DescribeNodeRequest): io.reactivex.Single<DescribeNodeResponse> = connection.runAndCaptureResponse("DOM.describeNode", input, DescribeNodeResponse::class.java)
-
+    fun describeNode(input: DescribeNodeRequest): io.reactivex.Single<DescribeNodeResponse> = connection.runAndCaptureResponse("DOM.describeNode", input, DescribeNodeResponse::class.java)
 
     /**
      * Disables DOM agent for the given page.
      *
      * @link Protocol [DOM#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-disable) method documentation.
      */
-        fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Discards search results from the session with the given id. `getSearchResults` should no longer
@@ -60,38 +56,33 @@ be called for that search.
     @pl.wendigo.chrome.protocol.Experimental
     fun discardSearchResults(input: DiscardSearchResultsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.discardSearchResults", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Enables DOM agent for the given page.
      *
      * @link Protocol [DOM#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-enable) method documentation.
      */
-        fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Focuses the given element.
      *
      * @link Protocol [DOM#focus](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-focus) method documentation.
      */
-        fun focus(input: FocusRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.focus", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun focus(input: FocusRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.focus", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Returns attributes for the specified node.
      *
      * @link Protocol [DOM#getAttributes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getAttributes) method documentation.
      */
-        fun getAttributes(input: GetAttributesRequest): io.reactivex.Single<GetAttributesResponse> = connection.runAndCaptureResponse("DOM.getAttributes", input, GetAttributesResponse::class.java)
-
+    fun getAttributes(input: GetAttributesRequest): io.reactivex.Single<GetAttributesResponse> = connection.runAndCaptureResponse("DOM.getAttributes", input, GetAttributesResponse::class.java)
 
     /**
      * Returns boxes for the given node.
      *
      * @link Protocol [DOM#getBoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getBoxModel) method documentation.
      */
-        fun getBoxModel(input: GetBoxModelRequest): io.reactivex.Single<GetBoxModelResponse> = connection.runAndCaptureResponse("DOM.getBoxModel", input, GetBoxModelResponse::class.java)
-
+    fun getBoxModel(input: GetBoxModelRequest): io.reactivex.Single<GetBoxModelResponse> = connection.runAndCaptureResponse("DOM.getBoxModel", input, GetBoxModelResponse::class.java)
 
     /**
      * Returns quads that describe node position on the page. This method
@@ -103,22 +94,19 @@ might return multiple quads for inline nodes.
     @pl.wendigo.chrome.protocol.Experimental
     fun getContentQuads(input: GetContentQuadsRequest): io.reactivex.Single<GetContentQuadsResponse> = connection.runAndCaptureResponse("DOM.getContentQuads", input, GetContentQuadsResponse::class.java)
 
-
     /**
      * Returns the root DOM node (and optionally the subtree) to the caller.
      *
      * @link Protocol [DOM#getDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getDocument) method documentation.
      */
-        fun getDocument(input: GetDocumentRequest): io.reactivex.Single<GetDocumentResponse> = connection.runAndCaptureResponse("DOM.getDocument", input, GetDocumentResponse::class.java)
-
+    fun getDocument(input: GetDocumentRequest): io.reactivex.Single<GetDocumentResponse> = connection.runAndCaptureResponse("DOM.getDocument", input, GetDocumentResponse::class.java)
 
     /**
      * Returns the root DOM node (and optionally the subtree) to the caller.
      *
      * @link Protocol [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
      */
-        fun getFlattenedDocument(input: GetFlattenedDocumentRequest): io.reactivex.Single<GetFlattenedDocumentResponse> = connection.runAndCaptureResponse("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java)
-
+    fun getFlattenedDocument(input: GetFlattenedDocumentRequest): io.reactivex.Single<GetFlattenedDocumentResponse> = connection.runAndCaptureResponse("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java)
 
     /**
      * Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is
@@ -126,16 +114,14 @@ either returned or not.
      *
      * @link Protocol [DOM#getNodeForLocation](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeForLocation) method documentation.
      */
-        fun getNodeForLocation(input: GetNodeForLocationRequest): io.reactivex.Single<GetNodeForLocationResponse> = connection.runAndCaptureResponse("DOM.getNodeForLocation", input, GetNodeForLocationResponse::class.java)
-
+    fun getNodeForLocation(input: GetNodeForLocationRequest): io.reactivex.Single<GetNodeForLocationResponse> = connection.runAndCaptureResponse("DOM.getNodeForLocation", input, GetNodeForLocationResponse::class.java)
 
     /**
      * Returns node's HTML markup.
      *
      * @link Protocol [DOM#getOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getOuterHTML) method documentation.
      */
-        fun getOuterHTML(input: GetOuterHTMLRequest): io.reactivex.Single<GetOuterHTMLResponse> = connection.runAndCaptureResponse("DOM.getOuterHTML", input, GetOuterHTMLResponse::class.java)
-
+    fun getOuterHTML(input: GetOuterHTMLRequest): io.reactivex.Single<GetOuterHTMLResponse> = connection.runAndCaptureResponse("DOM.getOuterHTML", input, GetOuterHTMLResponse::class.java)
 
     /**
      * Returns the id of the nearest ancestor that is a relayout boundary.
@@ -145,7 +131,6 @@ either returned or not.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun getRelayoutBoundary(input: GetRelayoutBoundaryRequest): io.reactivex.Single<GetRelayoutBoundaryResponse> = connection.runAndCaptureResponse("DOM.getRelayoutBoundary", input, GetRelayoutBoundaryResponse::class.java)
-
 
     /**
      * Returns search results from given `fromIndex` to given `toIndex` from the search with the given
@@ -157,30 +142,26 @@ identifier.
     @pl.wendigo.chrome.protocol.Experimental
     fun getSearchResults(input: GetSearchResultsRequest): io.reactivex.Single<GetSearchResultsResponse> = connection.runAndCaptureResponse("DOM.getSearchResults", input, GetSearchResultsResponse::class.java)
 
-
     /**
      * Hides any highlight.
      *
      * @link Protocol [DOM#hideHighlight](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-hideHighlight) method documentation.
      */
-        fun hideHighlight(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.hideHighlight", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun hideHighlight(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.hideHighlight", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Highlights DOM node.
      *
      * @link Protocol [DOM#highlightNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-highlightNode) method documentation.
      */
-        fun highlightNode(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.highlightNode", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun highlightNode(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.highlightNode", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Highlights given rectangle.
      *
      * @link Protocol [DOM#highlightRect](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-highlightRect) method documentation.
      */
-        fun highlightRect(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.highlightRect", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun highlightRect(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.highlightRect", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Marks last undoable state.
@@ -191,14 +172,12 @@ identifier.
     @pl.wendigo.chrome.protocol.Experimental
     fun markUndoableState(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.markUndoableState", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Moves node into the new container, places it before the given anchor.
      *
      * @link Protocol [DOM#moveTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-moveTo) method documentation.
      */
-        fun moveTo(input: MoveToRequest): io.reactivex.Single<MoveToResponse> = connection.runAndCaptureResponse("DOM.moveTo", input, MoveToResponse::class.java)
-
+    fun moveTo(input: MoveToRequest): io.reactivex.Single<MoveToResponse> = connection.runAndCaptureResponse("DOM.moveTo", input, MoveToResponse::class.java)
 
     /**
      * Searches for a given string in the DOM tree. Use `getSearchResults` to access search results or
@@ -210,7 +189,6 @@ identifier.
     @pl.wendigo.chrome.protocol.Experimental
     fun performSearch(input: PerformSearchRequest): io.reactivex.Single<PerformSearchResponse> = connection.runAndCaptureResponse("DOM.performSearch", input, PerformSearchResponse::class.java)
 
-
     /**
      * Requests that the node is sent to the caller given its path. // FIXME, use XPath
      *
@@ -219,7 +197,6 @@ identifier.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun pushNodeByPathToFrontend(input: PushNodeByPathToFrontendRequest): io.reactivex.Single<PushNodeByPathToFrontendResponse> = connection.runAndCaptureResponse("DOM.pushNodeByPathToFrontend", input, PushNodeByPathToFrontendResponse::class.java)
-
 
     /**
      * Requests that a batch of nodes is sent to the caller given their backend node ids.
@@ -230,22 +207,19 @@ identifier.
     @pl.wendigo.chrome.protocol.Experimental
     fun pushNodesByBackendIdsToFrontend(input: PushNodesByBackendIdsToFrontendRequest): io.reactivex.Single<PushNodesByBackendIdsToFrontendResponse> = connection.runAndCaptureResponse("DOM.pushNodesByBackendIdsToFrontend", input, PushNodesByBackendIdsToFrontendResponse::class.java)
 
-
     /**
      * Executes `querySelector` on a given node.
      *
      * @link Protocol [DOM#querySelector](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelector) method documentation.
      */
-        fun querySelector(input: QuerySelectorRequest): io.reactivex.Single<QuerySelectorResponse> = connection.runAndCaptureResponse("DOM.querySelector", input, QuerySelectorResponse::class.java)
-
+    fun querySelector(input: QuerySelectorRequest): io.reactivex.Single<QuerySelectorResponse> = connection.runAndCaptureResponse("DOM.querySelector", input, QuerySelectorResponse::class.java)
 
     /**
      * Executes `querySelectorAll` on a given node.
      *
      * @link Protocol [DOM#querySelectorAll](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelectorAll) method documentation.
      */
-        fun querySelectorAll(input: QuerySelectorAllRequest): io.reactivex.Single<QuerySelectorAllResponse> = connection.runAndCaptureResponse("DOM.querySelectorAll", input, QuerySelectorAllResponse::class.java)
-
+    fun querySelectorAll(input: QuerySelectorAllRequest): io.reactivex.Single<QuerySelectorAllResponse> = connection.runAndCaptureResponse("DOM.querySelectorAll", input, QuerySelectorAllResponse::class.java)
 
     /**
      * Re-does the last undone action.
@@ -256,22 +230,19 @@ identifier.
     @pl.wendigo.chrome.protocol.Experimental
     fun redo(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.redo", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Removes attribute with given name from an element with given id.
      *
      * @link Protocol [DOM#removeAttribute](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeAttribute) method documentation.
      */
-        fun removeAttribute(input: RemoveAttributeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.removeAttribute", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun removeAttribute(input: RemoveAttributeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.removeAttribute", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Removes node with given id.
      *
      * @link Protocol [DOM#removeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeNode) method documentation.
      */
-        fun removeNode(input: RemoveNodeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.removeNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun removeNode(input: RemoveNodeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.removeNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that children of the node with given id are returned to the caller in form of
@@ -280,8 +251,7 @@ the specified depth.
      *
      * @link Protocol [DOM#requestChildNodes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestChildNodes) method documentation.
      */
-        fun requestChildNodes(input: RequestChildNodesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.requestChildNodes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun requestChildNodes(input: RequestChildNodesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.requestChildNodes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that the node is sent to the caller given the JavaScript node object reference. All
@@ -290,24 +260,21 @@ nodes that form the path from the node to the root are also sent to the client a
      *
      * @link Protocol [DOM#requestNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestNode) method documentation.
      */
-        fun requestNode(input: RequestNodeRequest): io.reactivex.Single<RequestNodeResponse> = connection.runAndCaptureResponse("DOM.requestNode", input, RequestNodeResponse::class.java)
-
+    fun requestNode(input: RequestNodeRequest): io.reactivex.Single<RequestNodeResponse> = connection.runAndCaptureResponse("DOM.requestNode", input, RequestNodeResponse::class.java)
 
     /**
      * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
      *
      * @link Protocol [DOM#resolveNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-resolveNode) method documentation.
      */
-        fun resolveNode(input: ResolveNodeRequest): io.reactivex.Single<ResolveNodeResponse> = connection.runAndCaptureResponse("DOM.resolveNode", input, ResolveNodeResponse::class.java)
-
+    fun resolveNode(input: ResolveNodeRequest): io.reactivex.Single<ResolveNodeResponse> = connection.runAndCaptureResponse("DOM.resolveNode", input, ResolveNodeResponse::class.java)
 
     /**
      * Sets attribute for an element with given id.
      *
      * @link Protocol [DOM#setAttributeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributeValue) method documentation.
      */
-        fun setAttributeValue(input: SetAttributeValueRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setAttributeValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun setAttributeValue(input: SetAttributeValueRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setAttributeValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets attributes on element with given id. This method is useful when user edits some existing
@@ -315,16 +282,14 @@ attribute value and types in several attribute name/value pairs.
      *
      * @link Protocol [DOM#setAttributesAsText](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributesAsText) method documentation.
      */
-        fun setAttributesAsText(input: SetAttributesAsTextRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setAttributesAsText", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun setAttributesAsText(input: SetAttributesAsTextRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setAttributesAsText", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets files for the given file input element.
      *
      * @link Protocol [DOM#setFileInputFiles](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setFileInputFiles) method documentation.
      */
-        fun setFileInputFiles(input: SetFileInputFilesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setFileInputFiles", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun setFileInputFiles(input: SetFileInputFilesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setFileInputFiles", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets if stack traces should be captured for Nodes. See `Node.getNodeStackTraces`. Default is disabled.
@@ -335,7 +300,6 @@ attribute value and types in several attribute name/value pairs.
     @pl.wendigo.chrome.protocol.Experimental
     fun setNodeStackTracesEnabled(input: SetNodeStackTracesEnabledRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setNodeStackTracesEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation.
      *
@@ -344,7 +308,6 @@ attribute value and types in several attribute name/value pairs.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun getNodeStackTraces(input: GetNodeStackTracesRequest): io.reactivex.Single<GetNodeStackTracesResponse> = connection.runAndCaptureResponse("DOM.getNodeStackTraces", input, GetNodeStackTracesResponse::class.java)
-
 
     /**
      * Returns file information for the given
@@ -356,7 +319,6 @@ File wrapper.
     @pl.wendigo.chrome.protocol.Experimental
     fun getFileInfo(input: GetFileInfoRequest): io.reactivex.Single<GetFileInfoResponse> = connection.runAndCaptureResponse("DOM.getFileInfo", input, GetFileInfoResponse::class.java)
 
-
     /**
      * Enables console to refer to the node with given id via $x (see Command Line API for more details
 $x functions).
@@ -367,30 +329,26 @@ $x functions).
     @pl.wendigo.chrome.protocol.Experimental
     fun setInspectedNode(input: SetInspectedNodeRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setInspectedNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Sets node name for a node with given id.
      *
      * @link Protocol [DOM#setNodeName](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeName) method documentation.
      */
-        fun setNodeName(input: SetNodeNameRequest): io.reactivex.Single<SetNodeNameResponse> = connection.runAndCaptureResponse("DOM.setNodeName", input, SetNodeNameResponse::class.java)
-
+    fun setNodeName(input: SetNodeNameRequest): io.reactivex.Single<SetNodeNameResponse> = connection.runAndCaptureResponse("DOM.setNodeName", input, SetNodeNameResponse::class.java)
 
     /**
      * Sets node value for a node with given id.
      *
      * @link Protocol [DOM#setNodeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeValue) method documentation.
      */
-        fun setNodeValue(input: SetNodeValueRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setNodeValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun setNodeValue(input: SetNodeValueRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setNodeValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets node HTML markup, returns new node id.
      *
      * @link Protocol [DOM#setOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setOuterHTML) method documentation.
      */
-        fun setOuterHTML(input: SetOuterHTMLRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setOuterHTML", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun setOuterHTML(input: SetOuterHTMLRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.setOuterHTML", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Undoes the last performed action.
@@ -401,7 +359,6 @@ $x functions).
     @pl.wendigo.chrome.protocol.Experimental
     fun undo(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("DOM.undo", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Returns iframe node that owns iframe with the given domain.
      *
@@ -411,83 +368,81 @@ $x functions).
     @pl.wendigo.chrome.protocol.Experimental
     fun getFrameOwner(input: GetFrameOwnerRequest): io.reactivex.Single<GetFrameOwnerResponse> = connection.runAndCaptureResponse("DOM.getFrameOwner", input, GetFrameOwnerResponse::class.java)
 
-
     /**
      *  Fired when `Element`'s attribute is modified.
      */
-    fun attributeModified(): io.reactivex.Flowable<AttributeModifiedEvent> = connection.captureEvents("DOM.attributeModified", AttributeModifiedEvent::class.java);
+    fun attributeModified(): io.reactivex.Flowable<AttributeModifiedEvent> = connection.captureEvents("DOM.attributeModified", AttributeModifiedEvent::class.java)
 
     /**
      *  Fired when `Element`'s attribute is removed.
      */
-    fun attributeRemoved(): io.reactivex.Flowable<AttributeRemovedEvent> = connection.captureEvents("DOM.attributeRemoved", AttributeRemovedEvent::class.java);
+    fun attributeRemoved(): io.reactivex.Flowable<AttributeRemovedEvent> = connection.captureEvents("DOM.attributeRemoved", AttributeRemovedEvent::class.java)
 
     /**
      *  Mirrors `DOMCharacterDataModified` event.
      */
-    fun characterDataModified(): io.reactivex.Flowable<CharacterDataModifiedEvent> = connection.captureEvents("DOM.characterDataModified", CharacterDataModifiedEvent::class.java);
+    fun characterDataModified(): io.reactivex.Flowable<CharacterDataModifiedEvent> = connection.captureEvents("DOM.characterDataModified", CharacterDataModifiedEvent::class.java)
 
     /**
      *  Fired when `Container`'s child node count has changed.
      */
-    fun childNodeCountUpdated(): io.reactivex.Flowable<ChildNodeCountUpdatedEvent> = connection.captureEvents("DOM.childNodeCountUpdated", ChildNodeCountUpdatedEvent::class.java);
+    fun childNodeCountUpdated(): io.reactivex.Flowable<ChildNodeCountUpdatedEvent> = connection.captureEvents("DOM.childNodeCountUpdated", ChildNodeCountUpdatedEvent::class.java)
 
     /**
      *  Mirrors `DOMNodeInserted` event.
      */
-    fun childNodeInserted(): io.reactivex.Flowable<ChildNodeInsertedEvent> = connection.captureEvents("DOM.childNodeInserted", ChildNodeInsertedEvent::class.java);
+    fun childNodeInserted(): io.reactivex.Flowable<ChildNodeInsertedEvent> = connection.captureEvents("DOM.childNodeInserted", ChildNodeInsertedEvent::class.java)
 
     /**
      *  Mirrors `DOMNodeRemoved` event.
      */
-    fun childNodeRemoved(): io.reactivex.Flowable<ChildNodeRemovedEvent> = connection.captureEvents("DOM.childNodeRemoved", ChildNodeRemovedEvent::class.java);
+    fun childNodeRemoved(): io.reactivex.Flowable<ChildNodeRemovedEvent> = connection.captureEvents("DOM.childNodeRemoved", ChildNodeRemovedEvent::class.java)
 
     /**
      *  Called when distrubution is changed.
      */
-    fun distributedNodesUpdated(): io.reactivex.Flowable<DistributedNodesUpdatedEvent> = connection.captureEvents("DOM.distributedNodesUpdated", DistributedNodesUpdatedEvent::class.java);
+    fun distributedNodesUpdated(): io.reactivex.Flowable<DistributedNodesUpdatedEvent> = connection.captureEvents("DOM.distributedNodesUpdated", DistributedNodesUpdatedEvent::class.java)
 
     /**
      *  Fired when `Document` has been totally updated. Node ids are no longer valid.
      */
-    fun documentUpdated(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("DOM.documentUpdated", pl.wendigo.chrome.protocol.Event::class.java);
+    fun documentUpdated(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.captureEvents("DOM.documentUpdated", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired when `Element`'s inline style is modified via a CSS property modification.
      */
-    fun inlineStyleInvalidated(): io.reactivex.Flowable<InlineStyleInvalidatedEvent> = connection.captureEvents("DOM.inlineStyleInvalidated", InlineStyleInvalidatedEvent::class.java);
+    fun inlineStyleInvalidated(): io.reactivex.Flowable<InlineStyleInvalidatedEvent> = connection.captureEvents("DOM.inlineStyleInvalidated", InlineStyleInvalidatedEvent::class.java)
 
     /**
      *  Called when a pseudo element is added to an element.
      */
-    fun pseudoElementAdded(): io.reactivex.Flowable<PseudoElementAddedEvent> = connection.captureEvents("DOM.pseudoElementAdded", PseudoElementAddedEvent::class.java);
+    fun pseudoElementAdded(): io.reactivex.Flowable<PseudoElementAddedEvent> = connection.captureEvents("DOM.pseudoElementAdded", PseudoElementAddedEvent::class.java)
 
     /**
      *  Called when a pseudo element is removed from an element.
      */
-    fun pseudoElementRemoved(): io.reactivex.Flowable<PseudoElementRemovedEvent> = connection.captureEvents("DOM.pseudoElementRemoved", PseudoElementRemovedEvent::class.java);
+    fun pseudoElementRemoved(): io.reactivex.Flowable<PseudoElementRemovedEvent> = connection.captureEvents("DOM.pseudoElementRemoved", PseudoElementRemovedEvent::class.java)
 
     /**
      *  Fired when backend wants to provide client with the missing DOM structure. This happens upon
 most of the calls requesting node ids.
      */
-    fun setChildNodes(): io.reactivex.Flowable<SetChildNodesEvent> = connection.captureEvents("DOM.setChildNodes", SetChildNodesEvent::class.java);
+    fun setChildNodes(): io.reactivex.Flowable<SetChildNodesEvent> = connection.captureEvents("DOM.setChildNodes", SetChildNodesEvent::class.java)
 
     /**
      *  Called when shadow root is popped from the element.
      */
-    fun shadowRootPopped(): io.reactivex.Flowable<ShadowRootPoppedEvent> = connection.captureEvents("DOM.shadowRootPopped", ShadowRootPoppedEvent::class.java);
+    fun shadowRootPopped(): io.reactivex.Flowable<ShadowRootPoppedEvent> = connection.captureEvents("DOM.shadowRootPopped", ShadowRootPoppedEvent::class.java)
 
     /**
      *  Called when shadow root is pushed into the element.
      */
-    fun shadowRootPushed(): io.reactivex.Flowable<ShadowRootPushedEvent> = connection.captureEvents("DOM.shadowRootPushed", ShadowRootPushedEvent::class.java);
-
+    fun shadowRootPushed(): io.reactivex.Flowable<ShadowRootPushedEvent> = connection.captureEvents("DOM.shadowRootPushed", ShadowRootPushedEvent::class.java)
 
     /**
      * Returns flowable capturing all DOM domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.captureAllEvents().filter {
             it.protocolDomain() == "DOM"
         }
@@ -500,7 +455,7 @@ most of the calls requesting node ids.
  * @link [DOM#collectClassNamesFromSubtree](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-collectClassNamesFromSubtree) method documentation.
  * @see [DOMOperations.collectClassNamesFromSubtree]
  */
-data class CollectClassNamesFromSubtreeRequest (
+data class CollectClassNamesFromSubtreeRequest(
     /**
      * Id of the node to collect class names.
      */
@@ -512,14 +467,14 @@ data class CollectClassNamesFromSubtreeRequest (
  * Collects class names for the node with given id and all of it's child nodes.
  *
   
-  * @link [DOM#collectClassNamesFromSubtree](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-collectClassNamesFromSubtree) method documentation.
-  * @see [DOMOperations.collectClassNamesFromSubtree]
+ * @link [DOM#collectClassNamesFromSubtree](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-collectClassNamesFromSubtree) method documentation.
+ * @see [DOMOperations.collectClassNamesFromSubtree]
  */
 data class CollectClassNamesFromSubtreeResponse(
-  /**
-   * Class name list.
-   */
-  val classNames: List<String>
+    /**  
+     * Class name list.  
+     */  
+    val classNames: List<String>
 
 )
 
@@ -531,7 +486,7 @@ given anchor.
  * @link [DOM#copyTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-copyTo) method documentation.
  * @see [DOMOperations.copyTo]
  */
-data class CopyToRequest (
+data class CopyToRequest(
     /**
      * Id of the node to copy.
      */
@@ -555,14 +510,14 @@ data class CopyToRequest (
 given anchor.
  *
   
-  * @link [DOM#copyTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-copyTo) method documentation.
-  * @see [DOMOperations.copyTo]
+ * @link [DOM#copyTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-copyTo) method documentation.
+ * @see [DOMOperations.copyTo]
  */
 data class CopyToResponse(
-  /**
-   * Id of the node clone.
-   */
-  val nodeId: NodeId
+    /**  
+     * Id of the node clone.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -574,7 +529,7 @@ objects, can be used for automation.
  * @link [DOM#describeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-describeNode) method documentation.
  * @see [DOMOperations.describeNode]
  */
-data class DescribeNodeRequest (
+data class DescribeNodeRequest(
     /**
      * Identifier of the node.
      */
@@ -609,18 +564,16 @@ entire subtree or provide an integer larger than 0.
 objects, can be used for automation.
  *
   
-  * @link [DOM#describeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-describeNode) method documentation.
-  * @see [DOMOperations.describeNode]
+ * @link [DOM#describeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-describeNode) method documentation.
+ * @see [DOMOperations.describeNode]
  */
 data class DescribeNodeResponse(
-  /**
-   * Node description.
-   */
-  val node: Node
+    /**  
+     * Node description.  
+     */  
+    val node: Node
 
 )
-
-
 
 /**
  * Represents request frame that can be used with [DOM#discardSearchResults](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-discardSearchResults) operation call.
@@ -630,15 +583,13 @@ be called for that search.
  * @link [DOM#discardSearchResults](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-discardSearchResults) method documentation.
  * @see [DOMOperations.discardSearchResults]
  */
-data class DiscardSearchResultsRequest (
+data class DiscardSearchResultsRequest(
     /**
      * Unique search session identifier.
      */
     val searchId: String
 
 )
-
-
 
 /**
  * Represents request frame that can be used with [DOM#focus](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-focus) operation call.
@@ -647,7 +598,7 @@ data class DiscardSearchResultsRequest (
  * @link [DOM#focus](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-focus) method documentation.
  * @see [DOMOperations.focus]
  */
-data class FocusRequest (
+data class FocusRequest(
     /**
      * Identifier of the node.
      */
@@ -672,7 +623,7 @@ data class FocusRequest (
  * @link [DOM#getAttributes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getAttributes) method documentation.
  * @see [DOMOperations.getAttributes]
  */
-data class GetAttributesRequest (
+data class GetAttributesRequest(
     /**
      * Id of the node to retrieve attibutes for.
      */
@@ -684,14 +635,14 @@ data class GetAttributesRequest (
  * Returns attributes for the specified node.
  *
   
-  * @link [DOM#getAttributes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getAttributes) method documentation.
-  * @see [DOMOperations.getAttributes]
+ * @link [DOM#getAttributes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getAttributes) method documentation.
+ * @see [DOMOperations.getAttributes]
  */
 data class GetAttributesResponse(
-  /**
-   * An interleaved array of node attribute names and values.
-   */
-  val attributes: List<String>
+    /**  
+     * An interleaved array of node attribute names and values.  
+     */  
+    val attributes: List<String>
 
 )
 
@@ -702,7 +653,7 @@ data class GetAttributesResponse(
  * @link [DOM#getBoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getBoxModel) method documentation.
  * @see [DOMOperations.getBoxModel]
  */
-data class GetBoxModelRequest (
+data class GetBoxModelRequest(
     /**
      * Identifier of the node.
      */
@@ -724,14 +675,14 @@ data class GetBoxModelRequest (
  * Returns boxes for the given node.
  *
   
-  * @link [DOM#getBoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getBoxModel) method documentation.
-  * @see [DOMOperations.getBoxModel]
+ * @link [DOM#getBoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getBoxModel) method documentation.
+ * @see [DOMOperations.getBoxModel]
  */
 data class GetBoxModelResponse(
-  /**
-   * Box model for the node.
-   */
-  val model: BoxModel
+    /**  
+     * Box model for the node.  
+     */  
+    val model: BoxModel
 
 )
 
@@ -743,7 +694,7 @@ might return multiple quads for inline nodes.
  * @link [DOM#getContentQuads](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getContentQuads) method documentation.
  * @see [DOMOperations.getContentQuads]
  */
-data class GetContentQuadsRequest (
+data class GetContentQuadsRequest(
     /**
      * Identifier of the node.
      */
@@ -766,14 +717,14 @@ data class GetContentQuadsRequest (
 might return multiple quads for inline nodes.
  *
   
-  * @link [DOM#getContentQuads](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getContentQuads) method documentation.
-  * @see [DOMOperations.getContentQuads]
+ * @link [DOM#getContentQuads](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getContentQuads) method documentation.
+ * @see [DOMOperations.getContentQuads]
  */
 data class GetContentQuadsResponse(
-  /**
-   * Quads that describe node layout relative to viewport.
-   */
-  val quads: List<Quad>
+    /**  
+     * Quads that describe node layout relative to viewport.  
+     */  
+    val quads: List<Quad>
 
 )
 
@@ -784,7 +735,7 @@ data class GetContentQuadsResponse(
  * @link [DOM#getDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getDocument) method documentation.
  * @see [DOMOperations.getDocument]
  */
-data class GetDocumentRequest (
+data class GetDocumentRequest(
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
 entire subtree or provide an integer larger than 0.
@@ -803,14 +754,14 @@ entire subtree or provide an integer larger than 0.
  * Returns the root DOM node (and optionally the subtree) to the caller.
  *
   
-  * @link [DOM#getDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getDocument) method documentation.
-  * @see [DOMOperations.getDocument]
+ * @link [DOM#getDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getDocument) method documentation.
+ * @see [DOMOperations.getDocument]
  */
 data class GetDocumentResponse(
-  /**
-   * Resulting node.
-   */
-  val root: Node
+    /**  
+     * Resulting node.  
+     */  
+    val root: Node
 
 )
 
@@ -821,7 +772,7 @@ data class GetDocumentResponse(
  * @link [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
  * @see [DOMOperations.getFlattenedDocument]
  */
-data class GetFlattenedDocumentRequest (
+data class GetFlattenedDocumentRequest(
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
 entire subtree or provide an integer larger than 0.
@@ -840,14 +791,14 @@ entire subtree or provide an integer larger than 0.
  * Returns the root DOM node (and optionally the subtree) to the caller.
  *
   
-  * @link [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
-  * @see [DOMOperations.getFlattenedDocument]
+ * @link [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
+ * @see [DOMOperations.getFlattenedDocument]
  */
 data class GetFlattenedDocumentResponse(
-  /**
-   * Resulting node.
-   */
-  val nodes: List<Node>
+    /**  
+     * Resulting node.  
+     */  
+    val nodes: List<Node>
 
 )
 
@@ -859,7 +810,7 @@ either returned or not.
  * @link [DOM#getNodeForLocation](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeForLocation) method documentation.
  * @see [DOMOperations.getNodeForLocation]
  */
-data class GetNodeForLocationRequest (
+data class GetNodeForLocationRequest(
     /**
      * X coordinate.
      */
@@ -887,24 +838,24 @@ data class GetNodeForLocationRequest (
 either returned or not.
  *
   
-  * @link [DOM#getNodeForLocation](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeForLocation) method documentation.
-  * @see [DOMOperations.getNodeForLocation]
+ * @link [DOM#getNodeForLocation](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeForLocation) method documentation.
+ * @see [DOMOperations.getNodeForLocation]
  */
 data class GetNodeForLocationResponse(
-  /**
-   * Resulting node.
-   */
-  val backendNodeId: BackendNodeId,
+    /**  
+     * Resulting node.  
+     */  
+    val backendNodeId: BackendNodeId,
 
-  /**
-   * Frame this node belongs to.
-   */
-  val frameId: pl.wendigo.chrome.api.page.FrameId,
+    /**  
+     * Frame this node belongs to.  
+     */  
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
 
-  /**
-   * Id of the node at given coordinates, only when enabled and requested document.
-   */
-  val nodeId: NodeId? = null
+    /**  
+     * Id of the node at given coordinates, only when enabled and requested document.  
+     */  
+    val nodeId: NodeId? = null
 
 )
 
@@ -915,7 +866,7 @@ data class GetNodeForLocationResponse(
  * @link [DOM#getOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getOuterHTML) method documentation.
  * @see [DOMOperations.getOuterHTML]
  */
-data class GetOuterHTMLRequest (
+data class GetOuterHTMLRequest(
     /**
      * Identifier of the node.
      */
@@ -937,14 +888,14 @@ data class GetOuterHTMLRequest (
  * Returns node's HTML markup.
  *
   
-  * @link [DOM#getOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getOuterHTML) method documentation.
-  * @see [DOMOperations.getOuterHTML]
+ * @link [DOM#getOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getOuterHTML) method documentation.
+ * @see [DOMOperations.getOuterHTML]
  */
 data class GetOuterHTMLResponse(
-  /**
-   * Outer HTML markup.
-   */
-  val outerHTML: String
+    /**  
+     * Outer HTML markup.  
+     */  
+    val outerHTML: String
 
 )
 
@@ -955,7 +906,7 @@ data class GetOuterHTMLResponse(
  * @link [DOM#getRelayoutBoundary](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getRelayoutBoundary) method documentation.
  * @see [DOMOperations.getRelayoutBoundary]
  */
-data class GetRelayoutBoundaryRequest (
+data class GetRelayoutBoundaryRequest(
     /**
      * Id of the node.
      */
@@ -967,14 +918,14 @@ data class GetRelayoutBoundaryRequest (
  * Returns the id of the nearest ancestor that is a relayout boundary.
  *
   
-  * @link [DOM#getRelayoutBoundary](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getRelayoutBoundary) method documentation.
-  * @see [DOMOperations.getRelayoutBoundary]
+ * @link [DOM#getRelayoutBoundary](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getRelayoutBoundary) method documentation.
+ * @see [DOMOperations.getRelayoutBoundary]
  */
 data class GetRelayoutBoundaryResponse(
-  /**
-   * Relayout boundary node id for the given node.
-   */
-  val nodeId: NodeId
+    /**  
+     * Relayout boundary node id for the given node.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -986,7 +937,7 @@ identifier.
  * @link [DOM#getSearchResults](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getSearchResults) method documentation.
  * @see [DOMOperations.getSearchResults]
  */
-data class GetSearchResultsRequest (
+data class GetSearchResultsRequest(
     /**
      * Unique search session identifier.
      */
@@ -1009,24 +960,16 @@ data class GetSearchResultsRequest (
 identifier.
  *
   
-  * @link [DOM#getSearchResults](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getSearchResults) method documentation.
-  * @see [DOMOperations.getSearchResults]
+ * @link [DOM#getSearchResults](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getSearchResults) method documentation.
+ * @see [DOMOperations.getSearchResults]
  */
 data class GetSearchResultsResponse(
-  /**
-   * Ids of the search result nodes.
-   */
-  val nodeIds: List<NodeId>
+    /**  
+     * Ids of the search result nodes.  
+     */  
+    val nodeIds: List<NodeId>
 
 )
-
-
-
-
-
-
-
-
 
 /**
  * Represents request frame that can be used with [DOM#moveTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-moveTo) operation call.
@@ -1035,7 +978,7 @@ data class GetSearchResultsResponse(
  * @link [DOM#moveTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-moveTo) method documentation.
  * @see [DOMOperations.moveTo]
  */
-data class MoveToRequest (
+data class MoveToRequest(
     /**
      * Id of the node to move.
      */
@@ -1058,14 +1001,14 @@ data class MoveToRequest (
  * Moves node into the new container, places it before the given anchor.
  *
   
-  * @link [DOM#moveTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-moveTo) method documentation.
-  * @see [DOMOperations.moveTo]
+ * @link [DOM#moveTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-moveTo) method documentation.
+ * @see [DOMOperations.moveTo]
  */
 data class MoveToResponse(
-  /**
-   * New id of the moved node.
-   */
-  val nodeId: NodeId
+    /**  
+     * New id of the moved node.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1077,7 +1020,7 @@ data class MoveToResponse(
  * @link [DOM#performSearch](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-performSearch) method documentation.
  * @see [DOMOperations.performSearch]
  */
-data class PerformSearchRequest (
+data class PerformSearchRequest(
     /**
      * Plain text or query selector or XPath search query.
      */
@@ -1095,19 +1038,19 @@ data class PerformSearchRequest (
 `cancelSearch` to end this search session.
  *
   
-  * @link [DOM#performSearch](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-performSearch) method documentation.
-  * @see [DOMOperations.performSearch]
+ * @link [DOM#performSearch](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-performSearch) method documentation.
+ * @see [DOMOperations.performSearch]
  */
 data class PerformSearchResponse(
-  /**
-   * Unique search session identifier.
-   */
-  val searchId: String,
+    /**  
+     * Unique search session identifier.  
+     */  
+    val searchId: String,
 
-  /**
-   * Number of search results.
-   */
-  val resultCount: Int
+    /**  
+     * Number of search results.  
+     */  
+    val resultCount: Int
 
 )
 
@@ -1118,7 +1061,7 @@ data class PerformSearchResponse(
  * @link [DOM#pushNodeByPathToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodeByPathToFrontend) method documentation.
  * @see [DOMOperations.pushNodeByPathToFrontend]
  */
-data class PushNodeByPathToFrontendRequest (
+data class PushNodeByPathToFrontendRequest(
     /**
      * Path to node in the proprietary format.
      */
@@ -1130,14 +1073,14 @@ data class PushNodeByPathToFrontendRequest (
  * Requests that the node is sent to the caller given its path. // FIXME, use XPath
  *
   
-  * @link [DOM#pushNodeByPathToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodeByPathToFrontend) method documentation.
-  * @see [DOMOperations.pushNodeByPathToFrontend]
+ * @link [DOM#pushNodeByPathToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodeByPathToFrontend) method documentation.
+ * @see [DOMOperations.pushNodeByPathToFrontend]
  */
 data class PushNodeByPathToFrontendResponse(
-  /**
-   * Id of the node for given path.
-   */
-  val nodeId: NodeId
+    /**  
+     * Id of the node for given path.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1148,7 +1091,7 @@ data class PushNodeByPathToFrontendResponse(
  * @link [DOM#pushNodesByBackendIdsToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodesByBackendIdsToFrontend) method documentation.
  * @see [DOMOperations.pushNodesByBackendIdsToFrontend]
  */
-data class PushNodesByBackendIdsToFrontendRequest (
+data class PushNodesByBackendIdsToFrontendRequest(
     /**
      * The array of backend node ids.
      */
@@ -1160,15 +1103,15 @@ data class PushNodesByBackendIdsToFrontendRequest (
  * Requests that a batch of nodes is sent to the caller given their backend node ids.
  *
   
-  * @link [DOM#pushNodesByBackendIdsToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodesByBackendIdsToFrontend) method documentation.
-  * @see [DOMOperations.pushNodesByBackendIdsToFrontend]
+ * @link [DOM#pushNodesByBackendIdsToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodesByBackendIdsToFrontend) method documentation.
+ * @see [DOMOperations.pushNodesByBackendIdsToFrontend]
  */
 data class PushNodesByBackendIdsToFrontendResponse(
-  /**
-   * The array of ids of pushed nodes that correspond to the backend ids specified in
-backendNodeIds.
-   */
-  val nodeIds: List<NodeId>
+    /**  
+     * The array of ids of pushed nodes that correspond to the backend ids specified in  
+     backendNodeIds.  
+     */  
+    val nodeIds: List<NodeId>
 
 )
 
@@ -1179,7 +1122,7 @@ backendNodeIds.
  * @link [DOM#querySelector](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelector) method documentation.
  * @see [DOMOperations.querySelector]
  */
-data class QuerySelectorRequest (
+data class QuerySelectorRequest(
     /**
      * Id of the node to query upon.
      */
@@ -1196,14 +1139,14 @@ data class QuerySelectorRequest (
  * Executes `querySelector` on a given node.
  *
   
-  * @link [DOM#querySelector](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelector) method documentation.
-  * @see [DOMOperations.querySelector]
+ * @link [DOM#querySelector](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelector) method documentation.
+ * @see [DOMOperations.querySelector]
  */
 data class QuerySelectorResponse(
-  /**
-   * Query selector result.
-   */
-  val nodeId: NodeId
+    /**  
+     * Query selector result.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1214,7 +1157,7 @@ data class QuerySelectorResponse(
  * @link [DOM#querySelectorAll](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelectorAll) method documentation.
  * @see [DOMOperations.querySelectorAll]
  */
-data class QuerySelectorAllRequest (
+data class QuerySelectorAllRequest(
     /**
      * Id of the node to query upon.
      */
@@ -1231,18 +1174,16 @@ data class QuerySelectorAllRequest (
  * Executes `querySelectorAll` on a given node.
  *
   
-  * @link [DOM#querySelectorAll](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelectorAll) method documentation.
-  * @see [DOMOperations.querySelectorAll]
+ * @link [DOM#querySelectorAll](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelectorAll) method documentation.
+ * @see [DOMOperations.querySelectorAll]
  */
 data class QuerySelectorAllResponse(
-  /**
-   * Query selector result.
-   */
-  val nodeIds: List<NodeId>
+    /**  
+     * Query selector result.  
+     */  
+    val nodeIds: List<NodeId>
 
 )
-
-
 
 /**
  * Represents request frame that can be used with [DOM#removeAttribute](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeAttribute) operation call.
@@ -1251,7 +1192,7 @@ data class QuerySelectorAllResponse(
  * @link [DOM#removeAttribute](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeAttribute) method documentation.
  * @see [DOMOperations.removeAttribute]
  */
-data class RemoveAttributeRequest (
+data class RemoveAttributeRequest(
     /**
      * Id of the element to remove attribute from.
      */
@@ -1271,7 +1212,7 @@ data class RemoveAttributeRequest (
  * @link [DOM#removeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeNode) method documentation.
  * @see [DOMOperations.removeNode]
  */
-data class RemoveNodeRequest (
+data class RemoveNodeRequest(
     /**
      * Id of the node to remove.
      */
@@ -1288,7 +1229,7 @@ the specified depth.
  * @link [DOM#requestChildNodes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestChildNodes) method documentation.
  * @see [DOMOperations.requestChildNodes]
  */
-data class RequestChildNodesRequest (
+data class RequestChildNodesRequest(
     /**
      * Id of the node to get children for.
      */
@@ -1317,7 +1258,7 @@ nodes that form the path from the node to the root are also sent to the client a
  * @link [DOM#requestNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestNode) method documentation.
  * @see [DOMOperations.requestNode]
  */
-data class RequestNodeRequest (
+data class RequestNodeRequest(
     /**
      * JavaScript object id to convert into node.
      */
@@ -1331,14 +1272,14 @@ nodes that form the path from the node to the root are also sent to the client a
 `setChildNodes` notifications.
  *
   
-  * @link [DOM#requestNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestNode) method documentation.
-  * @see [DOMOperations.requestNode]
+ * @link [DOM#requestNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestNode) method documentation.
+ * @see [DOMOperations.requestNode]
  */
 data class RequestNodeResponse(
-  /**
-   * Node id for given object.
-   */
-  val nodeId: NodeId
+    /**  
+     * Node id for given object.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1349,7 +1290,7 @@ data class RequestNodeResponse(
  * @link [DOM#resolveNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-resolveNode) method documentation.
  * @see [DOMOperations.resolveNode]
  */
-data class ResolveNodeRequest (
+data class ResolveNodeRequest(
     /**
      * Id of the node to resolve.
      */
@@ -1376,14 +1317,15 @@ data class ResolveNodeRequest (
  * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
  *
   
-  * @link [DOM#resolveNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-resolveNode) method documentation.
-  * @see [DOMOperations.resolveNode]
+ * @link [DOM#resolveNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-resolveNode) method documentation.
+ * @see [DOMOperations.resolveNode]
  */
 data class ResolveNodeResponse(
-  /**
-   * JavaScript object wrapper for given node.
-   */
-  @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: pl.wendigo.chrome.api.runtime.RemoteObject
+    /**  
+     * JavaScript object wrapper for given node.  
+     */  
+    @get:com.fasterxml.jackson.annotation.JsonProperty("object")
+    val _object: pl.wendigo.chrome.api.runtime.RemoteObject
 
 )
 
@@ -1394,7 +1336,7 @@ data class ResolveNodeResponse(
  * @link [DOM#setAttributeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributeValue) method documentation.
  * @see [DOMOperations.setAttributeValue]
  */
-data class SetAttributeValueRequest (
+data class SetAttributeValueRequest(
     /**
      * Id of the element to set attribute for.
      */
@@ -1420,7 +1362,7 @@ attribute value and types in several attribute name/value pairs.
  * @link [DOM#setAttributesAsText](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributesAsText) method documentation.
  * @see [DOMOperations.setAttributesAsText]
  */
-data class SetAttributesAsTextRequest (
+data class SetAttributesAsTextRequest(
     /**
      * Id of the element to set attributes for.
      */
@@ -1446,7 +1388,7 @@ successfully.
  * @link [DOM#setFileInputFiles](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setFileInputFiles) method documentation.
  * @see [DOMOperations.setFileInputFiles]
  */
-data class SetFileInputFilesRequest (
+data class SetFileInputFilesRequest(
     /**
      * Array of file paths to set.
      */
@@ -1476,7 +1418,7 @@ data class SetFileInputFilesRequest (
  * @link [DOM#setNodeStackTracesEnabled](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeStackTracesEnabled) method documentation.
  * @see [DOMOperations.setNodeStackTracesEnabled]
  */
-data class SetNodeStackTracesEnabledRequest (
+data class SetNodeStackTracesEnabledRequest(
     /**
      * Enable or disable.
      */
@@ -1491,7 +1433,7 @@ data class SetNodeStackTracesEnabledRequest (
  * @link [DOM#getNodeStackTraces](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeStackTraces) method documentation.
  * @see [DOMOperations.getNodeStackTraces]
  */
-data class GetNodeStackTracesRequest (
+data class GetNodeStackTracesRequest(
     /**
      * Id of the node to get stack traces for.
      */
@@ -1503,14 +1445,14 @@ data class GetNodeStackTracesRequest (
  * Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation.
  *
   
-  * @link [DOM#getNodeStackTraces](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeStackTraces) method documentation.
-  * @see [DOMOperations.getNodeStackTraces]
+ * @link [DOM#getNodeStackTraces](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeStackTraces) method documentation.
+ * @see [DOMOperations.getNodeStackTraces]
  */
 data class GetNodeStackTracesResponse(
-  /**
-   * Creation stack trace, if available.
-   */
-  val creation: pl.wendigo.chrome.api.runtime.StackTrace? = null
+    /**  
+     * Creation stack trace, if available.  
+     */  
+    val creation: pl.wendigo.chrome.api.runtime.StackTrace? = null
 
 )
 
@@ -1522,7 +1464,7 @@ File wrapper.
  * @link [DOM#getFileInfo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFileInfo) method documentation.
  * @see [DOMOperations.getFileInfo]
  */
-data class GetFileInfoRequest (
+data class GetFileInfoRequest(
     /**
      * JavaScript object id of the node wrapper.
      */
@@ -1535,14 +1477,14 @@ data class GetFileInfoRequest (
 File wrapper.
  *
   
-  * @link [DOM#getFileInfo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFileInfo) method documentation.
-  * @see [DOMOperations.getFileInfo]
+ * @link [DOM#getFileInfo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFileInfo) method documentation.
+ * @see [DOMOperations.getFileInfo]
  */
 data class GetFileInfoResponse(
-  /**
-   *
-   */
-  val path: String
+    /**  
+     *  
+     */  
+    val path: String
 
 )
 
@@ -1554,7 +1496,7 @@ $x functions).
  * @link [DOM#setInspectedNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setInspectedNode) method documentation.
  * @see [DOMOperations.setInspectedNode]
  */
-data class SetInspectedNodeRequest (
+data class SetInspectedNodeRequest(
     /**
      * DOM node id to be accessible by means of $x command line API.
      */
@@ -1569,7 +1511,7 @@ data class SetInspectedNodeRequest (
  * @link [DOM#setNodeName](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeName) method documentation.
  * @see [DOMOperations.setNodeName]
  */
-data class SetNodeNameRequest (
+data class SetNodeNameRequest(
     /**
      * Id of the node to set name for.
      */
@@ -1586,14 +1528,14 @@ data class SetNodeNameRequest (
  * Sets node name for a node with given id.
  *
   
-  * @link [DOM#setNodeName](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeName) method documentation.
-  * @see [DOMOperations.setNodeName]
+ * @link [DOM#setNodeName](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeName) method documentation.
+ * @see [DOMOperations.setNodeName]
  */
 data class SetNodeNameResponse(
-  /**
-   * New node's id.
-   */
-  val nodeId: NodeId
+    /**  
+     * New node's id.  
+     */  
+    val nodeId: NodeId
 
 )
 
@@ -1604,7 +1546,7 @@ data class SetNodeNameResponse(
  * @link [DOM#setNodeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeValue) method documentation.
  * @see [DOMOperations.setNodeValue]
  */
-data class SetNodeValueRequest (
+data class SetNodeValueRequest(
     /**
      * Id of the node to set value for.
      */
@@ -1624,7 +1566,7 @@ data class SetNodeValueRequest (
  * @link [DOM#setOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setOuterHTML) method documentation.
  * @see [DOMOperations.setOuterHTML]
  */
-data class SetOuterHTMLRequest (
+data class SetOuterHTMLRequest(
     /**
      * Id of the node to set markup for.
      */
@@ -1637,8 +1579,6 @@ data class SetOuterHTMLRequest (
 
 )
 
-
-
 /**
  * Represents request frame that can be used with [DOM#getFrameOwner](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFrameOwner) operation call.
  *
@@ -1646,7 +1586,7 @@ data class SetOuterHTMLRequest (
  * @link [DOM#getFrameOwner](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFrameOwner) method documentation.
  * @see [DOMOperations.getFrameOwner]
  */
-data class GetFrameOwnerRequest (
+data class GetFrameOwnerRequest(
     /**
      *
      */
@@ -1658,19 +1598,19 @@ data class GetFrameOwnerRequest (
  * Returns iframe node that owns iframe with the given domain.
  *
   
-  * @link [DOM#getFrameOwner](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFrameOwner) method documentation.
-  * @see [DOMOperations.getFrameOwner]
+ * @link [DOM#getFrameOwner](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFrameOwner) method documentation.
+ * @see [DOMOperations.getFrameOwner]
  */
 data class GetFrameOwnerResponse(
-  /**
-   * Resulting node.
-   */
-  val backendNodeId: BackendNodeId,
+    /**  
+     * Resulting node.  
+     */  
+    val backendNodeId: BackendNodeId,
 
-  /**
-   * Id of the node at given coordinates, only when enabled and requested document.
-   */
-  val nodeId: NodeId? = null
+    /**  
+     * Id of the node at given coordinates, only when enabled and requested document.  
+     */  
+    val nodeId: NodeId? = null
 
 )
 
@@ -1678,240 +1618,238 @@ data class GetFrameOwnerResponse(
  * Fired when `Element`'s attribute is modified.
  *
  * @link [DOM#attributeModified](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-attributeModified) event documentation.
-   */
+ */
 data class AttributeModifiedEvent(
-  /**
-   * Id of the node that has changed.
-   */
-  val nodeId: NodeId,
+    /**  
+     * Id of the node that has changed.  
+     */  
+    val nodeId: NodeId,
 
-  /**
-   * Attribute name.
-   */
-  val name: String,
+    /**  
+     * Attribute name.  
+     */  
+    val name: String,
 
-  /**
-   * Attribute value.
-   */
-  val value: String
+    /**  
+     * Attribute value.  
+     */  
+    val value: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "attributeModified")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "attributeModified")
 
 /**
  * Fired when `Element`'s attribute is removed.
  *
  * @link [DOM#attributeRemoved](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-attributeRemoved) event documentation.
-   */
+ */
 data class AttributeRemovedEvent(
-  /**
-   * Id of the node that has changed.
-   */
-  val nodeId: NodeId,
+    /**  
+     * Id of the node that has changed.  
+     */  
+    val nodeId: NodeId,
 
-  /**
-   * A ttribute name.
-   */
-  val name: String
+    /**  
+     * A ttribute name.  
+     */  
+    val name: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "attributeRemoved")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "attributeRemoved")
 
 /**
  * Mirrors `DOMCharacterDataModified` event.
  *
  * @link [DOM#characterDataModified](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-characterDataModified) event documentation.
-   */
+ */
 data class CharacterDataModifiedEvent(
-  /**
-   * Id of the node that has changed.
-   */
-  val nodeId: NodeId,
+    /**  
+     * Id of the node that has changed.  
+     */  
+    val nodeId: NodeId,
 
-  /**
-   * New text value.
-   */
-  val characterData: String
+    /**  
+     * New text value.  
+     */  
+    val characterData: String
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "characterDataModified")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "characterDataModified")
 
 /**
  * Fired when `Container`'s child node count has changed.
  *
  * @link [DOM#childNodeCountUpdated](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-childNodeCountUpdated) event documentation.
-   */
+ */
 data class ChildNodeCountUpdatedEvent(
-  /**
-   * Id of the node that has changed.
-   */
-  val nodeId: NodeId,
+    /**  
+     * Id of the node that has changed.  
+     */  
+    val nodeId: NodeId,
 
-  /**
-   * New node count.
-   */
-  val childNodeCount: Int
+    /**  
+     * New node count.  
+     */  
+    val childNodeCount: Int
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "childNodeCountUpdated")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "childNodeCountUpdated")
 
 /**
  * Mirrors `DOMNodeInserted` event.
  *
  * @link [DOM#childNodeInserted](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-childNodeInserted) event documentation.
-   */
+ */
 data class ChildNodeInsertedEvent(
-  /**
-   * Id of the node that has changed.
-   */
-  val parentNodeId: NodeId,
+    /**  
+     * Id of the node that has changed.  
+     */  
+    val parentNodeId: NodeId,
 
-  /**
-   * If of the previous siblint.
-   */
-  val previousNodeId: NodeId,
+    /**  
+     * If of the previous siblint.  
+     */  
+    val previousNodeId: NodeId,
 
-  /**
-   * Inserted node data.
-   */
-  val node: Node
+    /**  
+     * Inserted node data.  
+     */  
+    val node: Node
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "childNodeInserted")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "childNodeInserted")
 
 /**
  * Mirrors `DOMNodeRemoved` event.
  *
  * @link [DOM#childNodeRemoved](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-childNodeRemoved) event documentation.
-   */
+ */
 data class ChildNodeRemovedEvent(
-  /**
-   * Parent id.
-   */
-  val parentNodeId: NodeId,
+    /**  
+     * Parent id.  
+     */  
+    val parentNodeId: NodeId,
 
-  /**
-   * Id of the node that has been removed.
-   */
-  val nodeId: NodeId
+    /**  
+     * Id of the node that has been removed.  
+     */  
+    val nodeId: NodeId
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "childNodeRemoved")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "childNodeRemoved")
 
 /**
  * Called when distrubution is changed.
  *
  * @link [DOM#distributedNodesUpdated](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-distributedNodesUpdated) event documentation.
-   */
+ */
 data class DistributedNodesUpdatedEvent(
-  /**
-   * Insertion point where distrubuted nodes were updated.
-   */
-  val insertionPointId: NodeId,
+    /**  
+     * Insertion point where distrubuted nodes were updated.  
+     */  
+    val insertionPointId: NodeId,
 
-  /**
-   * Distributed nodes for given insertion point.
-   */
-  val distributedNodes: List<BackendNode>
+    /**  
+     * Distributed nodes for given insertion point.  
+     */  
+    val distributedNodes: List<BackendNode>
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "distributedNodesUpdated")
-
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "distributedNodesUpdated")
 
 /**
  * Fired when `Element`'s inline style is modified via a CSS property modification.
  *
  * @link [DOM#inlineStyleInvalidated](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-inlineStyleInvalidated) event documentation.
-   */
+ */
 data class InlineStyleInvalidatedEvent(
-  /**
-   * Ids of the nodes for which the inline styles have been invalidated.
-   */
-  val nodeIds: List<NodeId>
+    /**  
+     * Ids of the nodes for which the inline styles have been invalidated.  
+     */  
+    val nodeIds: List<NodeId>
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "inlineStyleInvalidated")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "inlineStyleInvalidated")
 
 /**
  * Called when a pseudo element is added to an element.
  *
  * @link [DOM#pseudoElementAdded](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-pseudoElementAdded) event documentation.
-   */
+ */
 data class PseudoElementAddedEvent(
-  /**
-   * Pseudo element's parent element id.
-   */
-  val parentId: NodeId,
+    /**  
+     * Pseudo element's parent element id.  
+     */  
+    val parentId: NodeId,
 
-  /**
-   * The added pseudo element.
-   */
-  val pseudoElement: Node
+    /**  
+     * The added pseudo element.  
+     */  
+    val pseudoElement: Node
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "pseudoElementAdded")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "pseudoElementAdded")
 
 /**
  * Called when a pseudo element is removed from an element.
  *
  * @link [DOM#pseudoElementRemoved](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-pseudoElementRemoved) event documentation.
-   */
+ */
 data class PseudoElementRemovedEvent(
-  /**
-   * Pseudo element's parent element id.
-   */
-  val parentId: NodeId,
+    /**  
+     * Pseudo element's parent element id.  
+     */  
+    val parentId: NodeId,
 
-  /**
-   * The removed pseudo element id.
-   */
-  val pseudoElementId: NodeId
+    /**  
+     * The removed pseudo element id.  
+     */  
+    val pseudoElementId: NodeId
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "pseudoElementRemoved")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "pseudoElementRemoved")
 
 /**
  * Fired when backend wants to provide client with the missing DOM structure. This happens upon
 most of the calls requesting node ids.
  *
  * @link [DOM#setChildNodes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-setChildNodes) event documentation.
-   */
+ */
 data class SetChildNodesEvent(
-  /**
-   * Parent node id to populate with children.
-   */
-  val parentId: NodeId,
+    /**  
+     * Parent node id to populate with children.  
+     */  
+    val parentId: NodeId,
 
-  /**
-   * Child nodes array.
-   */
-  val nodes: List<Node>
+    /**  
+     * Child nodes array.  
+     */  
+    val nodes: List<Node>
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "setChildNodes")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "setChildNodes")
 
 /**
  * Called when shadow root is popped from the element.
  *
  * @link [DOM#shadowRootPopped](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-shadowRootPopped) event documentation.
-   */
+ */
 data class ShadowRootPoppedEvent(
-  /**
-   * Host element id.
-   */
-  val hostId: NodeId,
+    /**  
+     * Host element id.  
+     */  
+    val hostId: NodeId,
 
-  /**
-   * Shadow root id.
-   */
-  val rootId: NodeId
+    /**  
+     * Shadow root id.  
+     */  
+    val rootId: NodeId
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "shadowRootPopped")
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "shadowRootPopped")
 
 /**
  * Called when shadow root is pushed into the element.
  *
  * @link [DOM#shadowRootPushed](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-shadowRootPushed) event documentation.
-   */
+ */
 data class ShadowRootPushedEvent(
-  /**
-   * Host element id.
-   */
-  val hostId: NodeId,
+    /**  
+     * Host element id.  
+     */  
+    val hostId: NodeId,
 
-  /**
-   * Shadow root.
-   */
-  val root: Node
+    /**  
+     * Shadow root.  
+     */  
+    val root: Node
 
-): pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "shadowRootPushed")
-
+) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "shadowRootPushed")

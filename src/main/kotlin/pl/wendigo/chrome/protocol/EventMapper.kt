@@ -9,9 +9,9 @@ import java.util.concurrent.ConcurrentHashMap
 class EventMapper(private val mapper: ObjectMapper = EventMapper.DEFAULT_MAPPER) {
     companion object {
         private val DEFAULT_MAPPER: ObjectMapper = ObjectMapper()
-                .registerModule(KotlinModule())
-                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .registerModule(KotlinModule())
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     }
 
     private val nameToClassMapping: ConcurrentHashMap<String, Class<out Event>> = ConcurrentHashMap()
@@ -34,6 +34,6 @@ class EventMapper(private val mapper: ObjectMapper = EventMapper.DEFAULT_MAPPER)
     }
 
     fun deserializeEvent(frame: ResponseFrame): Event {
-        return deserialize(frame,  nameToClassMapping[frame.method] ?: Event::class.java)
+        return deserialize(frame, nameToClassMapping[frame.method] ?: Event::class.java)
     }
 }

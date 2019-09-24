@@ -7,14 +7,13 @@ package pl.wendigo.chrome.api.performance
  */
 
 data class Metric(
-  /**
-   * Metric name.
-   */
-  val name: String,
+    /**  
+     * Metric name.  
+     */  
+    val name: String,
 
-  /**
-   * Metric value.
-   */
-  val value: Double
+    /**  
+     * Metric value.  
+     */  
+    val value: Double
 )
-

@@ -5,22 +5,20 @@ package pl.wendigo.chrome.api.target
  *
  * @link Protocol [Target](https://chromedevtools.github.io/devtools-protocol/tot/Target) domain documentation.
  */
-class TargetOperations internal constructor(private val connection : pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
+class TargetOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Activates (focuses) the target.
      *
      * @link Protocol [Target#activateTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-activateTarget) method documentation.
      */
-        fun activateTarget(input: ActivateTargetRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.activateTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun activateTarget(input: ActivateTargetRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.activateTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Attaches to the target with given id.
      *
      * @link Protocol [Target#attachToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToTarget) method documentation.
      */
-        fun attachToTarget(input: AttachToTargetRequest): io.reactivex.Single<AttachToTargetResponse> = connection.runAndCaptureResponse("Target.attachToTarget", input, AttachToTargetResponse::class.java)
-
+    fun attachToTarget(input: AttachToTargetRequest): io.reactivex.Single<AttachToTargetResponse> = connection.runAndCaptureResponse("Target.attachToTarget", input, AttachToTargetResponse::class.java)
 
     /**
      * Attaches to the browser target, only uses flat sessionId mode.
@@ -31,14 +29,12 @@ class TargetOperations internal constructor(private val connection : pl.wendigo.
     @pl.wendigo.chrome.protocol.Experimental
     fun attachToBrowserTarget(): io.reactivex.Single<AttachToBrowserTargetResponse> = connection.runAndCaptureResponse("Target.attachToBrowserTarget", null, AttachToBrowserTargetResponse::class.java)
 
-
     /**
      * Closes the target. If the target is a page that gets closed too.
      *
      * @link Protocol [Target#closeTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-closeTarget) method documentation.
      */
-        fun closeTarget(input: CloseTargetRequest): io.reactivex.Single<CloseTargetResponse> = connection.runAndCaptureResponse("Target.closeTarget", input, CloseTargetResponse::class.java)
-
+    fun closeTarget(input: CloseTargetRequest): io.reactivex.Single<CloseTargetResponse> = connection.runAndCaptureResponse("Target.closeTarget", input, CloseTargetResponse::class.java)
 
     /**
      * Inject object to the target's main frame that provides a communication
@@ -56,7 +52,6 @@ The object has the follwing API:
     @pl.wendigo.chrome.protocol.Experimental
     fun exposeDevToolsProtocol(input: ExposeDevToolsProtocolRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.exposeDevToolsProtocol", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than
 one.
@@ -67,7 +62,6 @@ one.
     @pl.wendigo.chrome.protocol.Experimental
     fun createBrowserContext(): io.reactivex.Single<CreateBrowserContextResponse> = connection.runAndCaptureResponse("Target.createBrowserContext", null, CreateBrowserContextResponse::class.java)
 
-
     /**
      * Returns all browser contexts created with `Target.createBrowserContext` method.
      *
@@ -77,22 +71,19 @@ one.
     @pl.wendigo.chrome.protocol.Experimental
     fun getBrowserContexts(): io.reactivex.Single<GetBrowserContextsResponse> = connection.runAndCaptureResponse("Target.getBrowserContexts", null, GetBrowserContextsResponse::class.java)
 
-
     /**
      * Creates a new page.
      *
      * @link Protocol [Target#createTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createTarget) method documentation.
      */
-        fun createTarget(input: CreateTargetRequest): io.reactivex.Single<CreateTargetResponse> = connection.runAndCaptureResponse("Target.createTarget", input, CreateTargetResponse::class.java)
-
+    fun createTarget(input: CreateTargetRequest): io.reactivex.Single<CreateTargetResponse> = connection.runAndCaptureResponse("Target.createTarget", input, CreateTargetResponse::class.java)
 
     /**
      * Detaches session with given id.
      *
      * @link Protocol [Target#detachFromTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-detachFromTarget) method documentation.
      */
-        fun detachFromTarget(input: DetachFromTargetRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.detachFromTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun detachFromTarget(input: DetachFromTargetRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.detachFromTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Deletes a BrowserContext. All the belonging pages will be closed without calling their
@@ -104,7 +95,6 @@ beforeunload hooks.
     @pl.wendigo.chrome.protocol.Experimental
     fun disposeBrowserContext(input: DisposeBrowserContextRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.disposeBrowserContext", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Returns information about a target.
      *
@@ -114,22 +104,19 @@ beforeunload hooks.
     @pl.wendigo.chrome.protocol.Experimental
     fun getTargetInfo(input: GetTargetInfoRequest): io.reactivex.Single<GetTargetInfoResponse> = connection.runAndCaptureResponse("Target.getTargetInfo", input, GetTargetInfoResponse::class.java)
 
-
     /**
      * Retrieves a list of available targets.
      *
      * @link Protocol [Target#getTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargets) method documentation.
      */
-        fun getTargets(): io.reactivex.Single<GetTargetsResponse> = connection.runAndCaptureResponse("Target.getTargets", null, GetTargetsResponse::class.java)
-
+    fun getTargets(): io.reactivex.Single<GetTargetsResponse> = connection.runAndCaptureResponse("Target.getTargets", null, GetTargetsResponse::class.java)
 
     /**
      * Sends protocol message over session with given id.
      *
      * @link Protocol [Target#sendMessageToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-sendMessageToTarget) method documentation.
      */
-        fun sendMessageToTarget(input: SendMessageToTargetRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.sendMessageToTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun sendMessageToTarget(input: SendMessageToTargetRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.sendMessageToTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Controls whether to automatically attach to new targets which are considered to be related to
@@ -142,15 +129,13 @@ automatically detaches from all currently attached targets.
     @pl.wendigo.chrome.protocol.Experimental
     fun setAutoAttach(input: SetAutoAttachRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.setAutoAttach", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      * Controls whether to discover available targets and notify via
 `targetCreated/targetInfoChanged/targetDestroyed` events.
      *
      * @link Protocol [Target#setDiscoverTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setDiscoverTargets) method documentation.
      */
-        fun setDiscoverTargets(input: SetDiscoverTargetsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.setDiscoverTargets", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
+    fun setDiscoverTargets(input: SetDiscoverTargetsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.setDiscoverTargets", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables target discovery for the specified locations, when `setDiscoverTargets` was set to
@@ -162,50 +147,48 @@ automatically detaches from all currently attached targets.
     @pl.wendigo.chrome.protocol.Experimental
     fun setRemoteLocations(input: SetRemoteLocationsRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> = connection.runAndCaptureResponse("Target.setRemoteLocations", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
-
     /**
      *  Issued when attached to target because of auto-attach or `attachToTarget` command.
      */
-    fun attachedToTarget(): io.reactivex.Flowable<AttachedToTargetEvent> = connection.captureEvents("Target.attachedToTarget", AttachedToTargetEvent::class.java);
+    fun attachedToTarget(): io.reactivex.Flowable<AttachedToTargetEvent> = connection.captureEvents("Target.attachedToTarget", AttachedToTargetEvent::class.java)
 
     /**
      *  Issued when detached from target for any reason (including `detachFromTarget` command). Can be
 issued multiple times per target if multiple sessions have been attached to it.
      */
-    fun detachedFromTarget(): io.reactivex.Flowable<DetachedFromTargetEvent> = connection.captureEvents("Target.detachedFromTarget", DetachedFromTargetEvent::class.java);
+    fun detachedFromTarget(): io.reactivex.Flowable<DetachedFromTargetEvent> = connection.captureEvents("Target.detachedFromTarget", DetachedFromTargetEvent::class.java)
 
     /**
      *  Notifies about a new protocol message received from the session (as reported in
 `attachedToTarget` event).
      */
-    fun receivedMessageFromTarget(): io.reactivex.Flowable<ReceivedMessageFromTargetEvent> = connection.captureEvents("Target.receivedMessageFromTarget", ReceivedMessageFromTargetEvent::class.java);
+    fun receivedMessageFromTarget(): io.reactivex.Flowable<ReceivedMessageFromTargetEvent> = connection.captureEvents("Target.receivedMessageFromTarget", ReceivedMessageFromTargetEvent::class.java)
 
     /**
      *  Issued when a possible inspection target is created.
      */
-    fun targetCreated(): io.reactivex.Flowable<TargetCreatedEvent> = connection.captureEvents("Target.targetCreated", TargetCreatedEvent::class.java);
+    fun targetCreated(): io.reactivex.Flowable<TargetCreatedEvent> = connection.captureEvents("Target.targetCreated", TargetCreatedEvent::class.java)
 
     /**
      *  Issued when a target is destroyed.
      */
-    fun targetDestroyed(): io.reactivex.Flowable<TargetDestroyedEvent> = connection.captureEvents("Target.targetDestroyed", TargetDestroyedEvent::class.java);
+    fun targetDestroyed(): io.reactivex.Flowable<TargetDestroyedEvent> = connection.captureEvents("Target.targetDestroyed", TargetDestroyedEvent::class.java)
 
     /**
      *  Issued when a target has crashed.
      */
-    fun targetCrashed(): io.reactivex.Flowable<TargetCrashedEvent> = connection.captureEvents("Target.targetCrashed", TargetCrashedEvent::class.java);
+    fun targetCrashed(): io.reactivex.Flowable<TargetCrashedEvent> = connection.captureEvents("Target.targetCrashed", TargetCrashedEvent::class.java)
 
     /**
      *  Issued when some information about a target has changed. This only happens between
 `targetCreated` and `targetDestroyed`.
      */
-    fun targetInfoChanged(): io.reactivex.Flowable<TargetInfoChangedEvent> = connection.captureEvents("Target.targetInfoChanged", TargetInfoChangedEvent::class.java);
-
+    fun targetInfoChanged(): io.reactivex.Flowable<TargetInfoChangedEvent> = connection.captureEvents("Target.targetInfoChanged", TargetInfoChangedEvent::class.java)
 
     /**
      * Returns flowable capturing all Target domains events.
      */
-    fun events() : io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.captureAllEvents().filter {
             it.protocolDomain() == "Target"
         }
@@ -218,7 +201,7 @@ issued multiple times per target if multiple sessions have been attached to it.
  * @link [Target#activateTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-activateTarget) method documentation.
  * @see [TargetOperations.activateTarget]
  */
-data class ActivateTargetRequest (
+data class ActivateTargetRequest(
     /**
      *
      */
@@ -233,7 +216,7 @@ data class ActivateTargetRequest (
  * @link [Target#attachToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToTarget) method documentation.
  * @see [TargetOperations.attachToTarget]
  */
-data class AttachToTargetRequest (
+data class AttachToTargetRequest(
     /**
      *
      */
@@ -250,31 +233,30 @@ data class AttachToTargetRequest (
  * Attaches to the target with given id.
  *
   
-  * @link [Target#attachToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToTarget) method documentation.
-  * @see [TargetOperations.attachToTarget]
+ * @link [Target#attachToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToTarget) method documentation.
+ * @see [TargetOperations.attachToTarget]
  */
 data class AttachToTargetResponse(
-  /**
-   * Id assigned to the session.
-   */
-  val sessionId: SessionID
+    /**  
+     * Id assigned to the session.  
+     */  
+    val sessionId: SessionID
 
 )
-
 
 /**
  * Represents response frame that is returned from [Target#attachToBrowserTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToBrowserTarget) operation call.
  * Attaches to the browser target, only uses flat sessionId mode.
  *
   
-  * @link [Target#attachToBrowserTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToBrowserTarget) method documentation.
-  * @see [TargetOperations.attachToBrowserTarget]
+ * @link [Target#attachToBrowserTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToBrowserTarget) method documentation.
+ * @see [TargetOperations.attachToBrowserTarget]
  */
 data class AttachToBrowserTargetResponse(
-  /**
-   * Id assigned to the session.
-   */
-  val sessionId: SessionID
+    /**  
+     * Id assigned to the session.  
+     */  
+    val sessionId: SessionID
 
 )
 
@@ -285,7 +267,7 @@ data class AttachToBrowserTargetResponse(
  * @link [Target#closeTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-closeTarget) method documentation.
  * @see [TargetOperations.closeTarget]
  */
-data class CloseTargetRequest (
+data class CloseTargetRequest(
     /**
      *
      */
@@ -297,14 +279,14 @@ data class CloseTargetRequest (
  * Closes the target. If the target is a page that gets closed too.
  *
   
-  * @link [Target#closeTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-closeTarget) method documentation.
-  * @see [TargetOperations.closeTarget]
+ * @link [Target#closeTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-closeTarget) method documentation.
+ * @see [TargetOperations.closeTarget]
  */
 data class CloseTargetResponse(
-  /**
-   *
-   */
-  val success: Boolean
+    /**  
+     *  
+     */  
+    val success: Boolean
 
 )
 
@@ -322,7 +304,7 @@ The object has the follwing API:
  * @link [Target#exposeDevToolsProtocol](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-exposeDevToolsProtocol) method documentation.
  * @see [TargetOperations.exposeDevToolsProtocol]
  */
-data class ExposeDevToolsProtocolRequest (
+data class ExposeDevToolsProtocolRequest(
     /**
      *
      */
@@ -335,38 +317,36 @@ data class ExposeDevToolsProtocolRequest (
 
 )
 
-
 /**
  * Represents response frame that is returned from [Target#createBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createBrowserContext) operation call.
  * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than
 one.
  *
   
-  * @link [Target#createBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createBrowserContext) method documentation.
-  * @see [TargetOperations.createBrowserContext]
+ * @link [Target#createBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createBrowserContext) method documentation.
+ * @see [TargetOperations.createBrowserContext]
  */
 data class CreateBrowserContextResponse(
-  /**
-   * The id of the context created.
-   */
-  val browserContextId: BrowserContextID
+    /**  
+     * The id of the context created.  
+     */  
+    val browserContextId: BrowserContextID
 
 )
-
 
 /**
  * Represents response frame that is returned from [Target#getBrowserContexts](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getBrowserContexts) operation call.
  * Returns all browser contexts created with `Target.createBrowserContext` method.
  *
   
-  * @link [Target#getBrowserContexts](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getBrowserContexts) method documentation.
-  * @see [TargetOperations.getBrowserContexts]
+ * @link [Target#getBrowserContexts](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getBrowserContexts) method documentation.
+ * @see [TargetOperations.getBrowserContexts]
  */
 data class GetBrowserContextsResponse(
-  /**
-   * An array of browser context ids.
-   */
-  val browserContextIds: List<BrowserContextID>
+    /**  
+     * An array of browser context ids.  
+     */  
+    val browserContextIds: List<BrowserContextID>
 
 )
 
@@ -377,7 +357,7 @@ data class GetBrowserContextsResponse(
  * @link [Target#createTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createTarget) method documentation.
  * @see [TargetOperations.createTarget]
  */
-data class CreateTargetRequest (
+data class CreateTargetRequest(
     /**
      * The initial URL the page will be navigated to.
      */
@@ -421,14 +401,14 @@ false by default).
  * Creates a new page.
  *
   
-  * @link [Target#createTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createTarget) method documentation.
-  * @see [TargetOperations.createTarget]
+ * @link [Target#createTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createTarget) method documentation.
+ * @see [TargetOperations.createTarget]
  */
 data class CreateTargetResponse(
-  /**
-   * The id of the page opened.
-   */
-  val targetId: TargetID
+    /**  
+     * The id of the page opened.  
+     */  
+    val targetId: TargetID
 
 )
 
@@ -439,7 +419,7 @@ data class CreateTargetResponse(
  * @link [Target#detachFromTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-detachFromTarget) method documentation.
  * @see [TargetOperations.detachFromTarget]
  */
-data class DetachFromTargetRequest (
+data class DetachFromTargetRequest(
     /**
      * Session to detach.
      */
@@ -448,7 +428,9 @@ data class DetachFromTargetRequest (
     /**
      * Deprecated.
      */
-    @Deprecated(message="") val targetId: TargetID? = null
+    @Deprecated(message = "")
+
+    val targetId: TargetID? = null
 
 )
 
@@ -460,7 +442,7 @@ beforeunload hooks.
  * @link [Target#disposeBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-disposeBrowserContext) method documentation.
  * @see [TargetOperations.disposeBrowserContext]
  */
-data class DisposeBrowserContextRequest (
+data class DisposeBrowserContextRequest(
     /**
      *
      */
@@ -475,7 +457,7 @@ data class DisposeBrowserContextRequest (
  * @link [Target#getTargetInfo](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargetInfo) method documentation.
  * @see [TargetOperations.getTargetInfo]
  */
-data class GetTargetInfoRequest (
+data class GetTargetInfoRequest(
     /**
      *
      */
@@ -487,31 +469,30 @@ data class GetTargetInfoRequest (
  * Returns information about a target.
  *
   
-  * @link [Target#getTargetInfo](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargetInfo) method documentation.
-  * @see [TargetOperations.getTargetInfo]
+ * @link [Target#getTargetInfo](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargetInfo) method documentation.
+ * @see [TargetOperations.getTargetInfo]
  */
 data class GetTargetInfoResponse(
-  /**
-   *
-   */
-  val targetInfo: TargetInfo
+    /**  
+     *  
+     */  
+    val targetInfo: TargetInfo
 
 )
-
 
 /**
  * Represents response frame that is returned from [Target#getTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargets) operation call.
  * Retrieves a list of available targets.
  *
   
-  * @link [Target#getTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargets) method documentation.
-  * @see [TargetOperations.getTargets]
+ * @link [Target#getTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargets) method documentation.
+ * @see [TargetOperations.getTargets]
  */
 data class GetTargetsResponse(
-  /**
-   * The list of targets.
-   */
-  val targetInfos: List<TargetInfo>
+    /**  
+     * The list of targets.  
+     */  
+    val targetInfos: List<TargetInfo>
 
 )
 
@@ -522,7 +503,7 @@ data class GetTargetsResponse(
  * @link [Target#sendMessageToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-sendMessageToTarget) method documentation.
  * @see [TargetOperations.sendMessageToTarget]
  */
-data class SendMessageToTargetRequest (
+data class SendMessageToTargetRequest(
     /**
      *
      */
@@ -536,7 +517,9 @@ data class SendMessageToTargetRequest (
     /**
      * Deprecated.
      */
-    @Deprecated(message="") val targetId: TargetID? = null
+    @Deprecated(message = "")
+
+    val targetId: TargetID? = null
 
 )
 
@@ -549,7 +532,7 @@ automatically detaches from all currently attached targets.
  * @link [Target#setAutoAttach](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setAutoAttach) method documentation.
  * @see [TargetOperations.setAutoAttach]
  */
-data class SetAutoAttachRequest (
+data class SetAutoAttachRequest(
     /**
      * Whether to auto-attach to related targets.
      */
@@ -576,7 +559,7 @@ to run paused targets.
  * @link [Target#setDiscoverTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setDiscoverTargets) method documentation.
  * @see [TargetOperations.setDiscoverTargets]
  */
-data class SetDiscoverTargetsRequest (
+data class SetDiscoverTargetsRequest(
     /**
      * Whether to discover available targets.
      */
@@ -592,7 +575,7 @@ data class SetDiscoverTargetsRequest (
  * @link [Target#setRemoteLocations](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setRemoteLocations) method documentation.
  * @see [TargetOperations.setRemoteLocations]
  */
-data class SetRemoteLocationsRequest (
+data class SetRemoteLocationsRequest(
     /**
      * List of remote locations.
      */
@@ -604,128 +587,127 @@ data class SetRemoteLocationsRequest (
  * Issued when attached to target because of auto-attach or `attachToTarget` command.
  *
  * @link [Target#attachedToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-attachedToTarget) event documentation.
-   */
+ */
 data class AttachedToTargetEvent(
-  /**
-   * Identifier assigned to the session used to send/receive messages.
-   */
-  val sessionId: SessionID,
+    /**  
+     * Identifier assigned to the session used to send/receive messages.  
+     */  
+    val sessionId: SessionID,
 
-  /**
-   *
-   */
-  val targetInfo: TargetInfo,
+    /**  
+     *  
+     */  
+    val targetInfo: TargetInfo,
 
-  /**
-   *
-   */
-  val waitingForDebugger: Boolean
+    /**  
+     *  
+     */  
+    val waitingForDebugger: Boolean
 
-): pl.wendigo.chrome.protocol.Event(domain = "Target", name = "attachedToTarget")
+) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "attachedToTarget")
 
 /**
  * Issued when detached from target for any reason (including `detachFromTarget` command). Can be
 issued multiple times per target if multiple sessions have been attached to it.
  *
  * @link [Target#detachedFromTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-detachedFromTarget) event documentation.
-   */
+ */
 data class DetachedFromTargetEvent(
-  /**
-   * Detached session identifier.
-   */
-  val sessionId: SessionID,
+    /**  
+     * Detached session identifier.  
+     */  
+    val sessionId: SessionID,
 
-  /**
-   * Deprecated.
-   */
-  val targetId: TargetID? = null
+    /**  
+     * Deprecated.  
+     */  
+    val targetId: TargetID? = null
 
-): pl.wendigo.chrome.protocol.Event(domain = "Target", name = "detachedFromTarget")
+) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "detachedFromTarget")
 
 /**
  * Notifies about a new protocol message received from the session (as reported in
 `attachedToTarget` event).
  *
  * @link [Target#receivedMessageFromTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-receivedMessageFromTarget) event documentation.
-   */
+ */
 data class ReceivedMessageFromTargetEvent(
-  /**
-   * Identifier of a session which sends a message.
-   */
-  val sessionId: SessionID,
+    /**  
+     * Identifier of a session which sends a message.  
+     */  
+    val sessionId: SessionID,
 
-  /**
-   *
-   */
-  val message: String,
+    /**  
+     *  
+     */  
+    val message: String,
 
-  /**
-   * Deprecated.
-   */
-  val targetId: TargetID? = null
+    /**  
+     * Deprecated.  
+     */  
+    val targetId: TargetID? = null
 
-): pl.wendigo.chrome.protocol.Event(domain = "Target", name = "receivedMessageFromTarget")
+) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "receivedMessageFromTarget")
 
 /**
  * Issued when a possible inspection target is created.
  *
  * @link [Target#targetCreated](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-targetCreated) event documentation.
-   */
+ */
 data class TargetCreatedEvent(
-  /**
-   *
-   */
-  val targetInfo: TargetInfo
+    /**  
+     *  
+     */  
+    val targetInfo: TargetInfo
 
-): pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetCreated")
+) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetCreated")
 
 /**
  * Issued when a target is destroyed.
  *
  * @link [Target#targetDestroyed](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-targetDestroyed) event documentation.
-   */
+ */
 data class TargetDestroyedEvent(
-  /**
-   *
-   */
-  val targetId: TargetID
+    /**  
+     *  
+     */  
+    val targetId: TargetID
 
-): pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetDestroyed")
+) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetDestroyed")
 
 /**
  * Issued when a target has crashed.
  *
  * @link [Target#targetCrashed](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-targetCrashed) event documentation.
-   */
+ */
 data class TargetCrashedEvent(
-  /**
-   *
-   */
-  val targetId: TargetID,
+    /**  
+     *  
+     */  
+    val targetId: TargetID,
 
-  /**
-   * Termination status type.
-   */
-  val status: String,
+    /**  
+     * Termination status type.  
+     */  
+    val status: String,
 
-  /**
-   * Termination error code.
-   */
-  val errorCode: Int
+    /**  
+     * Termination error code.  
+     */  
+    val errorCode: Int
 
-): pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetCrashed")
+) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetCrashed")
 
 /**
  * Issued when some information about a target has changed. This only happens between
 `targetCreated` and `targetDestroyed`.
  *
  * @link [Target#targetInfoChanged](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-targetInfoChanged) event documentation.
-   */
+ */
 data class TargetInfoChangedEvent(
-  /**
-   *
-   */
-  val targetInfo: TargetInfo
+    /**  
+     *  
+     */  
+    val targetInfo: TargetInfo
 
-): pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetInfoChanged")
-
+) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetInfoChanged")

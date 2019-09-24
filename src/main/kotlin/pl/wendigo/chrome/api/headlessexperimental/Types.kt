@@ -7,14 +7,13 @@ package pl.wendigo.chrome.api.headlessexperimental
  */
 
 data class ScreenshotParams(
-  /**
-   * Image compression format (defaults to png).
-   */
-  val format: String? = null,
+    /**  
+     * Image compression format (defaults to png).  
+     */  
+    val format: String? = null,
 
-  /**
-   * Compression quality from range [0..100] (jpeg only).
-   */
-  val quality: Int? = null
+    /**  
+     * Compression quality from range [0..100] (jpeg only).  
+     */  
+    val quality: Int? = null
 )
-
