@@ -1,6 +1,5 @@
 package pl.wendigo.chrome
 
-import org.testcontainers.containers.Container
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.spock.Testcontainers
 import spock.lang.Shared
@@ -12,7 +11,6 @@ class ChromeProtocolSpecification extends Specification {
     @Shared
     public GenericContainer container = new GenericContainer("zenika/alpine-chrome")
             .withExposedPorts(9222)
-    .withLogConsumer()
             .withCommand(
                     "chromium-browser",
                     "--headless",
@@ -29,23 +27,22 @@ class ChromeProtocolSpecification extends Specification {
     def "should open headless session"() {
         given:
             def address = container.getContainerIpAddress() + ":" + container.firstMappedPort
-            def chrome = Browser.connect(address)
+            def chrome = Browser.connect(address, 128)
 
         when:
-            def session = chrome.headlessSession("about:blank", 128)
+            def session = chrome.session("about:blank", true, 1000, 800)
             def layout = session.page.getLayoutMetrics().blockingGet()
 
         then:
-            with (session.sessionDescriptor) {
-                browserContextId != ""
-                targetId != ""
+            with (session) {
+                targetInfo != null
                 sessionId != ""
-                sessionId != ""
+                targetInfo.type == "page"
             }
 
             with (layout.layoutViewport) {
-                clientHeight == 768
-                clientWidth == 1024
+                clientHeight == 800
+                clientWidth == 1000
             }
 
         cleanup:

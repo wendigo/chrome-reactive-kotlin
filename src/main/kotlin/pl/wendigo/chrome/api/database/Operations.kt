@@ -13,66 +13,39 @@ class DatabaseOperations internal constructor(private val connection: pl.wendigo
      *
      * @link Protocol [Database#disable](https://chromedevtools.github.io/devtools-protocol/tot/Database#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Database.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun disable() = connection.request("Database.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables database tracking, database events will now be delivered to the client.
      *
      * @link Protocol [Database#enable](https://chromedevtools.github.io/devtools-protocol/tot/Database#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Database.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun enable() = connection.request("Database.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *
      *
      * @link Protocol [Database#executeSQL](https://chromedevtools.github.io/devtools-protocol/tot/Database#method-executeSQL) method documentation.
      */
-    fun executeSQL(input: ExecuteSQLRequest): io.reactivex.Single<ExecuteSQLResponse> {
-        return connection.runAndCaptureResponse("Database.executeSQL", input, ExecuteSQLResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun executeSQL(input: ExecuteSQLRequest) = connection.request("Database.executeSQL", input, ExecuteSQLResponse::class.java)
 
     /**
      *
      *
      * @link Protocol [Database#getDatabaseTableNames](https://chromedevtools.github.io/devtools-protocol/tot/Database#method-getDatabaseTableNames) method documentation.
      */
-    fun getDatabaseTableNames(input: GetDatabaseTableNamesRequest): io.reactivex.Single<GetDatabaseTableNamesResponse> {
-        return connection.runAndCaptureResponse("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getDatabaseTableNames(input: GetDatabaseTableNamesRequest) = connection.request("Database.getDatabaseTableNames", input, GetDatabaseTableNamesResponse::class.java)
 
     /**
      *  Returns observable capturing all Database.addDatabase events.
      */
-    fun addDatabase(): io.reactivex.Flowable<AddDatabaseEvent> {
-        return addDatabaseTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Returns observable capturing all Database.addDatabase events.
-     */
-    fun addDatabaseTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<AddDatabaseEvent>> {
-        return connection.captureEvents("Database.addDatabase", AddDatabaseEvent::class.java)
-    }
+    fun addDatabase(): io.reactivex.Flowable<AddDatabaseEvent> = connection.events("Database.addDatabase", AddDatabaseEvent::class.java)
 
     /**
      * Returns flowable capturing all Database domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Database"
         }
     }

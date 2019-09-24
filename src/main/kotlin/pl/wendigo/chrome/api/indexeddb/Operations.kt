@@ -13,105 +13,69 @@ class IndexedDBOperations internal constructor(private val connection: pl.wendig
      *
      * @link Protocol [IndexedDB#clearObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-clearObjectStore) method documentation.
      */
-    fun clearObjectStore(input: ClearObjectStoreRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun clearObjectStore(input: ClearObjectStoreRequest) = connection.request("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Deletes a database.
      *
      * @link Protocol [IndexedDB#deleteDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteDatabase) method documentation.
      */
-    fun deleteDatabase(input: DeleteDatabaseRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun deleteDatabase(input: DeleteDatabaseRequest) = connection.request("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Delete a range of entries from an object store
      *
      * @link Protocol [IndexedDB#deleteObjectStoreEntries](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteObjectStoreEntries) method documentation.
      */
-    fun deleteObjectStoreEntries(input: DeleteObjectStoreEntriesRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("IndexedDB.deleteObjectStoreEntries", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun deleteObjectStoreEntries(input: DeleteObjectStoreEntriesRequest) = connection.request("IndexedDB.deleteObjectStoreEntries", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables events from backend.
      *
      * @link Protocol [IndexedDB#disable](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("IndexedDB.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun disable() = connection.request("IndexedDB.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables events from backend.
      *
      * @link Protocol [IndexedDB#enable](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("IndexedDB.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun enable() = connection.request("IndexedDB.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests data from object store or index.
      *
      * @link Protocol [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
      */
-    fun requestData(input: RequestDataRequest): io.reactivex.Single<RequestDataResponse> {
-        return connection.runAndCaptureResponse("IndexedDB.requestData", input, RequestDataResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun requestData(input: RequestDataRequest) = connection.request("IndexedDB.requestData", input, RequestDataResponse::class.java)
 
     /**
      * Gets metadata of an object store
      *
      * @link Protocol [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
      */
-    fun getMetadata(input: GetMetadataRequest): io.reactivex.Single<GetMetadataResponse> {
-        return connection.runAndCaptureResponse("IndexedDB.getMetadata", input, GetMetadataResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getMetadata(input: GetMetadataRequest) = connection.request("IndexedDB.getMetadata", input, GetMetadataResponse::class.java)
 
     /**
      * Requests database with given name in given frame.
      *
      * @link Protocol [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
      */
-    fun requestDatabase(input: RequestDatabaseRequest): io.reactivex.Single<RequestDatabaseResponse> {
-        return connection.runAndCaptureResponse("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun requestDatabase(input: RequestDatabaseRequest) = connection.request("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java)
 
     /**
      * Requests database names for given security origin.
      *
      * @link Protocol [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
      */
-    fun requestDatabaseNames(input: RequestDatabaseNamesRequest): io.reactivex.Single<RequestDatabaseNamesResponse> {
-        return connection.runAndCaptureResponse("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun requestDatabaseNames(input: RequestDatabaseNamesRequest) = connection.request("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java)
 
     /**
      * Returns flowable capturing all IndexedDB domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "IndexedDB"
         }
     }

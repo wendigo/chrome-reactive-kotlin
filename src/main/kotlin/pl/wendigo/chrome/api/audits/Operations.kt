@@ -14,17 +14,13 @@ applies to images.
      *
      * @link Protocol [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
      */
-    fun getEncodedResponse(input: GetEncodedResponseRequest): io.reactivex.Single<GetEncodedResponseResponse> {
-        return connection.runAndCaptureResponse("Audits.getEncodedResponse", input, GetEncodedResponseResponse::class.java).map {
-            it.value()
-        }
-    }
+    fun getEncodedResponse(input: GetEncodedResponseRequest) = connection.request("Audits.getEncodedResponse", input, GetEncodedResponseResponse::class.java)
 
     /**
      * Returns flowable capturing all Audits domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Audits"
         }
     }

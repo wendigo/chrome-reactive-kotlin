@@ -11,22 +11,14 @@ class LogOperations internal constructor(private val connection: pl.wendigo.chro
      *
      * @link Protocol [Log#clear](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-clear) method documentation.
      */
-    fun clear(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Log.clear", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun clear() = connection.request("Log.clear", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Disables log domain, prevents further log entries from being reported to the client.
      *
      * @link Protocol [Log#disable](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-disable) method documentation.
      */
-    fun disable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Log.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun disable() = connection.request("Log.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enables log domain, sends the entries collected so far to the client by means of the
@@ -34,55 +26,32 @@ class LogOperations internal constructor(private val connection: pl.wendigo.chro
      *
      * @link Protocol [Log#enable](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-enable) method documentation.
      */
-    fun enable(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Log.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun enable() = connection.request("Log.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * start violation reporting.
      *
      * @link Protocol [Log#startViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-startViolationsReport) method documentation.
      */
-    fun startViolationsReport(input: StartViolationsReportRequest): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Log.startViolationsReport", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun startViolationsReport(input: StartViolationsReportRequest) = connection.request("Log.startViolationsReport", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Stop violation reporting.
      *
      * @link Protocol [Log#stopViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-stopViolationsReport) method documentation.
      */
-    fun stopViolationsReport(): io.reactivex.Single<pl.wendigo.chrome.protocol.ResponseFrame> {
-        return connection.runAndCaptureResponse("Log.stopViolationsReport", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java).map {
-            it.value()
-        }
-    }
+    fun stopViolationsReport() = connection.request("Log.stopViolationsReport", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Issued when new message was logged.
      */
-    fun entryAdded(): io.reactivex.Flowable<EntryAddedEvent> {
-        return entryAddedTimed().map {
-            it.value()
-        }
-    }
-
-    /**
-     * Issued when new message was logged.
-     */
-    fun entryAddedTimed(): io.reactivex.Flowable<io.reactivex.schedulers.Timed<EntryAddedEvent>> {
-        return connection.captureEvents("Log.entryAdded", EntryAddedEvent::class.java)
-    }
+    fun entryAdded(): io.reactivex.Flowable<EntryAddedEvent> = connection.events("Log.entryAdded", EntryAddedEvent::class.java)
 
     /**
      * Returns flowable capturing all Log domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.captureAllEvents().map { it.value() }.filter {
+        return connection.allEvents().filter {
             it.protocolDomain() == "Log"
         }
     }
