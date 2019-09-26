@@ -9,7 +9,7 @@ import spock.lang.Specification
 class ChromeProtocolSpecification extends Specification {
 
     @Shared
-    public GenericContainer container = new GenericContainer("zenika/alpine-chrome")
+    public GenericContainer container = new GenericContainer("zenika/alpine-chrome:76")
             .withExposedPorts(9222)
             .withCommand(
                     "chromium-browser",
