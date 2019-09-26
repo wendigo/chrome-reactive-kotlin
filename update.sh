@@ -17,7 +17,7 @@ curl -s "$base/$version/json/js_protocol.json" >"js_protocol.json"
 
 printf "${GREEN}Merging files js_protocol.json, browser_protocol.json into protocol.json${NC}\n"
 
-#git checkout master
+git checkout master
 
 node -p '
     const protocols = process.argv.slice(1).map((path) => JSON.parse(fs.readFileSync(path)));
@@ -40,7 +40,7 @@ then
 	git config --global user.name 'Mateusz Gajewski' && git config --global user.email 'mateusz.gajewski@gmail.com'
 	git add .
 	git commit -m "Automatically updated to newest protocol"
-	#git push $  REPOSITORY_PATH master
+	git push $  REPOSITORY_PATH master
 	printf "${GREEN}All done!\n${NC}"
 
 else
