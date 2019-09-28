@@ -18,6 +18,16 @@ data class GPUDevice(
     val deviceId: Double,
 
     /**  
+     * Sub sys ID of the GPU, only available on Windows.  
+     */  
+    val subSysId: Double? = null,
+
+    /**  
+     * Revision of the GPU, only available on Windows.  
+     */  
+    val revision: Double? = null,
+
+    /**  
      * String description of the GPU vendor, if the PCI ID is not available.  
      */  
     val vendorString: String,

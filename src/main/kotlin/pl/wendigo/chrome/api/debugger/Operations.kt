@@ -52,6 +52,13 @@ the same.
     fun getScriptSource(input: GetScriptSourceRequest) = connection.request("Debugger.getScriptSource", input, GetScriptSourceResponse::class.java)
 
     /**
+     * Returns bytecode for the WebAssembly script with given id.
+     *
+     * @link Protocol [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) method documentation.
+     */
+    fun getWasmBytecode(input: GetWasmBytecodeRequest) = connection.request("Debugger.getWasmBytecode", input, GetWasmBytecodeResponse::class.java)
+
+    /**
      * Returns stack trace with given `stackTraceId`.
      *
      * @link Protocol [Debugger#getStackTrace](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getStackTrace) method documentation.
@@ -305,7 +312,12 @@ data class EnableRequest(
      * The maximum size in bytes of collected scripts (not referenced by other heap objects)
 the debugger can hold. Puts no limit if paramter is omitted.
      */
-    @pl.wendigo.chrome.protocol.Experimental val maxScriptsCacheSize: Double? = null
+    @pl.wendigo.chrome.protocol.Experimental val maxScriptsCacheSize: Double? = null,
+
+    /**
+     * Whether to report Wasm modules as raw binaries instead of disassembled functions.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val supportsWasmDwarf: Boolean? = null
 
 )
 /**
@@ -473,6 +485,36 @@ data class GetScriptSourceResponse(
      * Script source.  
      */  
     val scriptSource: String
+
+)
+
+/**
+ * Represents request frame that can be used with [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) operation call.
+ *
+ * Returns bytecode for the WebAssembly script with given id.
+ * @link [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) method documentation.
+ * @see [DebuggerOperations.getWasmBytecode]
+ */
+data class GetWasmBytecodeRequest(
+    /**
+     * Id of the Wasm script to get source for.
+     */
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId
+
+)
+/**
+ * Represents response frame that is returned from [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) operation call.
+ * Returns bytecode for the WebAssembly script with given id.
+ *
+  
+ * @link [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) method documentation.
+ * @see [DebuggerOperations.getWasmBytecode]
+ */
+data class GetWasmBytecodeResponse(
+    /**  
+     * Script source.  
+     */  
+    val bytecode: String
 
 )
 
