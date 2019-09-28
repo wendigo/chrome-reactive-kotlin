@@ -113,9 +113,12 @@ beforeunload hooks.
 
     /**
      * Sends protocol message over session with given id.
+Consider using flat mode instead; see commands attachToTarget, setAutoAttach,
+and crbug.com/991325.
      *
      * @link Protocol [Target#sendMessageToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-sendMessageToTarget) method documentation.
      */
+    @Deprecated(level = DeprecationLevel.WARNING, message = "sendMessageToTarget is deprecated.")
     fun sendMessageToTarget(input: SendMessageToTargetRequest) = connection.request("Target.sendMessageToTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
@@ -224,8 +227,10 @@ data class AttachToTargetRequest(
 
     /**
      * Enables "flat" access to the session via specifying sessionId attribute in the commands.
+We plan to make this the default, deprecate non-flattened mode,
+and eventually retire it. See crbug.com/991325.
      */
-    @pl.wendigo.chrome.protocol.Experimental val flatten: Boolean? = null
+    val flatten: Boolean? = null
 
 )
 /**
@@ -500,6 +505,8 @@ data class GetTargetsResponse(
  * Represents request frame that can be used with [Target#sendMessageToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-sendMessageToTarget) operation call.
  *
  * Sends protocol message over session with given id.
+Consider using flat mode instead; see commands attachToTarget, setAutoAttach,
+and crbug.com/991325.
  * @link [Target#sendMessageToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-sendMessageToTarget) method documentation.
  * @see [TargetOperations.sendMessageToTarget]
  */
@@ -546,8 +553,15 @@ to run paused targets.
 
     /**
      * Enables "flat" access to the session via specifying sessionId attribute in the commands.
+We plan to make this the default, deprecate non-flattened mode,
+and eventually retire it. See crbug.com/991325.
      */
-    @pl.wendigo.chrome.protocol.Experimental val flatten: Boolean? = null
+    val flatten: Boolean? = null,
+
+    /**
+     * Auto-attach to the targets created via window.open from current target.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val windowOpen: Boolean? = null
 
 )
 

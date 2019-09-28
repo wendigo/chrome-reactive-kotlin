@@ -34,7 +34,7 @@ class TracingOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) method documentation.
      */
-    fun requestMemoryDump() = connection.request("Tracing.requestMemoryDump", null, RequestMemoryDumpResponse::class.java)
+    fun requestMemoryDump(input: RequestMemoryDumpRequest) = connection.request("Tracing.requestMemoryDump", input, RequestMemoryDumpResponse::class.java)
 
     /**
      * Start trace events collection.
@@ -101,6 +101,20 @@ data class RecordClockSyncMarkerRequest(
 
 )
 
+/**
+ * Represents request frame that can be used with [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) operation call.
+ *
+ * Request a global memory dump.
+ * @link [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) method documentation.
+ * @see [TracingOperations.requestMemoryDump]
+ */
+data class RequestMemoryDumpRequest(
+    /**
+     * Enables more deterministic results by forcing garbage collection
+     */
+    val deterministic: Boolean? = null
+
+)
 /**
  * Represents response frame that is returned from [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) operation call.
  * Request a global memory dump.

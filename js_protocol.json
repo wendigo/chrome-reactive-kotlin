@@ -339,6 +339,13 @@
                             "experimental": true,
                             "optional": true,
                             "type": "number"
+                        },
+                        {
+                            "name": "supportsWasmDwarf",
+                            "description": "Whether to report Wasm modules as raw binaries instead of disassembled functions.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ],
                     "returns": [
@@ -469,6 +476,24 @@
                     "returns": [
                         {
                             "name": "scriptSource",
+                            "description": "Script source.",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "name": "getWasmBytecode",
+                    "description": "Returns bytecode for the WebAssembly script with given id.",
+                    "parameters": [
+                        {
+                            "name": "scriptId",
+                            "description": "Id of the Wasm script to get source for.",
+                            "$ref": "Runtime.ScriptId"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "bytecode",
                             "description": "Script source.",
                             "type": "string"
                         }
@@ -2683,7 +2708,7 @@
                         },
                         {
                             "name": "throwOnSideEffect",
-                            "description": "Whether to throw an exception if side effect cannot be ruled out during evaluation.",
+                            "description": "Whether to throw an exception if side effect cannot be ruled out during evaluation.\nThis implies `disableBreaks` below.",
                             "experimental": true,
                             "optional": true,
                             "type": "boolean"
@@ -2694,6 +2719,13 @@
                             "experimental": true,
                             "optional": true,
                             "$ref": "TimeDelta"
+                        },
+                        {
+                            "name": "disableBreaks",
+                            "description": "Disable breakpoints during execution.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ],
                     "returns": [

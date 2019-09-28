@@ -1,5 +1,6 @@
 package pl.wendigo.chrome.targets
 
+import java.io.Closeable
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.DevToolsProtocol
@@ -14,13 +15,12 @@ import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 import pl.wendigo.chrome.protocol.FrameMapper
-import java.io.Closeable
 
 class SessionManager(
     private val browserDebuggerAddress: String,
     private val shareConnections: Boolean,
     val api: DevToolsProtocol
-): Closeable {
+) : Closeable {
     private val targets: MutableMap<TargetID, TargetInfo> = mutableMapOf()
 
     override fun close() {
@@ -125,19 +125,19 @@ class SessionManager(
 
     private fun targetWsAddress(targetID: TargetID): String {
         return browserDebuggerAddress.replace(
-                browserDebuggerAddress.substringAfterLast("devtools"),
-                "/page/$targetID"
+            browserDebuggerAddress.substringAfterLast("devtools"),
+            "/page/$targetID"
         )
     }
 
     private fun openConnection(target: TargetInfo, sessionId: String): ChromeDebuggerConnection {
-        return when(shareConnections) {
+        return when (shareConnections) {
             true -> ChromeDebuggerConnection(
-                    FramesStream(
-                            FrameMapper(),
-                            api,
-                            target.toTarget(sessionId)
-                    )
+                FramesStream(
+                    FrameMapper(),
+                    api,
+                    target.toTarget(sessionId)
+                )
             )
             false -> ChromeDebuggerConnection.open(targetWsAddress(target.targetId), 128)
         }

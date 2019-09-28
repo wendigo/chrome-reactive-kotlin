@@ -484,13 +484,19 @@ resolved.
 
     /**
      * Whether to throw an exception if side effect cannot be ruled out during evaluation.
+This implies `disableBreaks` below.
      */
     @pl.wendigo.chrome.protocol.Experimental val throwOnSideEffect: Boolean? = null,
 
     /**
      * Terminate execution after timing out (number of milliseconds).
      */
-    @pl.wendigo.chrome.protocol.Experimental val timeout: TimeDelta? = null
+    @pl.wendigo.chrome.protocol.Experimental val timeout: TimeDelta? = null,
+
+    /**
+     * Disable breakpoints during execution.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val disableBreaks: Boolean? = null
 
 )
 /**
