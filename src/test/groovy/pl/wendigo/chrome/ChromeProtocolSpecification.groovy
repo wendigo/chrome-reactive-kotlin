@@ -18,6 +18,7 @@ class ChromeProtocolSpecification extends Specification {
                     "--disable-software-rasterizer",
                     "--disable-dev-shm-usage",
                     "--no-sandbox",
+                    "--disable-setuid-sandbox",
                     "--remote-debugging-port=9222",
                     "--remote-debugging-address=0.0.0.0",
                     "about:blank"
