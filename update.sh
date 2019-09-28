@@ -40,7 +40,7 @@ then
 	git config --global user.name 'Mateusz Gajewski' && git config --global user.email 'mateusz.gajewski@gmail.com'
 	git add .
 	git commit -m "Automatically updated to newest protocol"
-	git push $  REPOSITORY_PATH master
+	git push $REPOSITORY_PATH master
 	printf "${GREEN}All done!\n${NC}"
 
 else
