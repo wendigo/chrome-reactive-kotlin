@@ -8,9 +8,9 @@ import spock.lang.Specification
 @Testcontainers
 class ChromeProtocolSpecification extends Specification {
 
-    @Shared
+    /*@Shared
     public GenericContainer container = new GenericContainer("zenika/alpine-chrome:76")
-            .withExposedPorts(9222)
+            .withExposedPorts(9223)
             .withCommand(
                     "chromium-browser",
                     "--headless",
@@ -23,11 +23,11 @@ class ChromeProtocolSpecification extends Specification {
                     "--remote-debugging-address=0.0.0.0",
                     "about:blank"
             )
-            .withPrivilegedMode(true)
+            .withPrivilegedMode(true)*/
 
     def "should open headless session"() {
         given:
-            def address = container.getContainerIpAddress() + ":" + container.firstMappedPort
+            def address = "localhost:9223" //container.getContainerIpAddress() + ":" + container.firstMappedPort
             def chrome = Browser.connect(address, 128)
 
         when:

@@ -12,8 +12,4 @@ data class Target(
     val sessionId: SessionID,
     val targetId: TargetID,
     val browserContextID: BrowserContextID? = null
-) {
-    fun matches(message: ReceivedMessageFromTargetEvent): Boolean {
-        return message.sessionId == sessionId && message.targetId == targetId
-    }
-}
+)

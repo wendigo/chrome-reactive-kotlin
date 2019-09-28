@@ -5,6 +5,7 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.atomic.AtomicLong
 import okhttp3.OkHttpClient
+import pl.wendigo.chrome.api.target.SessionID
 
 /**
  * ChromeDebuggerConnection represents connection to chrome's debugger via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
@@ -18,7 +19,8 @@ import okhttp3.OkHttpClient
  */
 class ChromeDebuggerConnection constructor(
     private val frames: FramesStream,
-    private val eventMapper: EventMapper = EventMapper()
+    private val eventMapper: EventMapper = EventMapper(),
+    private val sessionId: SessionID? = null
 ) {
     private val nextRequestId = AtomicLong(0)
 
@@ -43,7 +45,8 @@ class ChromeDebuggerConnection constructor(
         val request = RequestFrame(
             id = nextRequestId.incrementAndGet(),
             method = methodName,
-            params = request
+            params = request,
+            sessionId = sessionId
         )
 
         return frames.send(request).flatMap { sent ->
@@ -60,6 +63,7 @@ class ChromeDebuggerConnection constructor(
      */
     fun <T> events(eventName: String, outClazz: Class<T>): Flowable<T> where T : Event {
         return frames.eventFrames()
+            .filter { frame -> frame.matchesSessionId(sessionId) }
             .filter { frame -> frame.matchesMethod(eventName) }
             .map { frame -> eventMapper.deserialize(frame, outClazz) }
             .subscribeOn(Schedulers.io())
@@ -70,9 +74,16 @@ class ChromeDebuggerConnection constructor(
      */
     fun allEvents(): Flowable<Event> {
         return frames.eventFrames()
+            .filter { frame -> frame.matchesSessionId(sessionId) }
             .map { frame -> eventMapper.deserializeEvent(frame) }
             .subscribeOn(Schedulers.io())
     }
+
+    fun cloneForSessionId(sessionID: SessionID) = ChromeDebuggerConnection(
+        frames,
+        eventMapper,
+        sessionID
+    )
 
     companion object Factory {
         /**
@@ -81,7 +92,7 @@ class ChromeDebuggerConnection constructor(
         @JvmStatic
         fun open(websocketUri: String, framesBufferSize: Int = 128): ChromeDebuggerConnection {
             return ChromeDebuggerConnection(
-                WebsocketFramesStream(websocketUri, framesBufferSize, frameMapper, client),
+                FramesStream(websocketUri, framesBufferSize, frameMapper, client),
                 eventMapper
             )
         }

@@ -14,7 +14,6 @@ import pl.wendigo.chrome.api.target.TargetID
 import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
-import pl.wendigo.chrome.protocol.FrameMapper
 
 class SessionManager(
     private val browserDebuggerAddress: String,
@@ -113,8 +112,16 @@ class SessionManager(
     }
 
     private fun attach(target: TargetInfo): Session {
-        val (sessionId) = await {
-            api.Target.attachToTarget(AttachToTargetRequest(targetId = target.targetId))
+
+        val sessionId = when (shareConnections) {
+            true -> await {
+                api.Target.attachToTarget(AttachToTargetRequest(
+                        targetId = target.targetId,
+                        flatten = true
+                ))
+            }.sessionId
+
+            false -> ""
         }
 
         return Session(
@@ -132,13 +139,7 @@ class SessionManager(
 
     private fun openConnection(target: TargetInfo, sessionId: String): ChromeDebuggerConnection {
         return when (shareConnections) {
-            true -> ChromeDebuggerConnection(
-                FramesStream(
-                    FrameMapper(),
-                    api,
-                    target.toTarget(sessionId)
-                )
-            )
+            true -> api.connection.cloneForSessionId(sessionId)
             false -> ChromeDebuggerConnection.open(targetWsAddress(target.targetId), 128)
         }
     }
