@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import java.util.concurrent.ConcurrentHashMap
 
+/**
+ * EventMapper is responsible for mapping events carried by [ResponseFrame] to typed events representations.
+ */
 class EventMapper(private val mapper: ObjectMapper = EventMapper.DEFAULT_MAPPER) {
     companion object {
         private val DEFAULT_MAPPER: ObjectMapper = ObjectMapper()
@@ -16,6 +19,9 @@ class EventMapper(private val mapper: ObjectMapper = EventMapper.DEFAULT_MAPPER)
 
     private val nameToClassMapping: ConcurrentHashMap<String, Class<out Event>> = ConcurrentHashMap()
 
+    /**
+     * Add mapping from event name to class.
+     */
     fun addMapping(name: String, clazz: Class<out Event>) {
         nameToClassMapping[name] = clazz
     }

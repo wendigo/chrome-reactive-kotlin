@@ -1,6 +1,7 @@
 package pl.wendigo.chrome.protocol
 
 import com.fasterxml.jackson.databind.JsonNode
+import pl.wendigo.chrome.api.target.SessionID
 
 /**
  * Represents generic protocol response.
@@ -29,7 +30,9 @@ data class ResponseFrame(
     /**
      * Response params.
      */
-    val params: JsonNode?
+    val params: JsonNode?,
+
+    val sessionId: SessionID? = null
 ) {
     /**
      * Checks if response is event
@@ -39,9 +42,13 @@ data class ResponseFrame(
     /**
      * Checks if response is event
      */
-    internal fun isResponse(): Boolean = !this.isEvent()
+    private fun isResponse(): Boolean = !this.isEvent()
 
-    internal fun matchesRequest(request: RequestFrame): Boolean = isResponse() && id == request.id
+    internal fun matchesRequest(request: RequestFrame): Boolean = isResponse() &&
+            id == request.id &&
+            sessionId == request.sessionId
 
     internal fun matchesMethod(method: String): Boolean = this.method == method
+
+    fun matchesSessionId(sessionId: SessionID?) = this.sessionId == sessionId
 }
