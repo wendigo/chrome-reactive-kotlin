@@ -68,6 +68,9 @@ class Browser(
             )
         }
 
+        /**
+         * Fetches browser info.
+         */
         private fun fetchInfo(chromeAddress: String): Info {
             val client = OkHttpClient.Builder().build()
             val info = client.newCall(Request.Builder().url("http://$chromeAddress/json/version").build()).execute()

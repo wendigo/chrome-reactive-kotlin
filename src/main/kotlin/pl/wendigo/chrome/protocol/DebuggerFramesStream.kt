@@ -6,6 +6,7 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.ReplaySubject
 import io.reactivex.subjects.Subject
+import java.io.EOFException
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -14,10 +15,10 @@ import okhttp3.WebSocketListener
 import org.slf4j.LoggerFactory
 
 /**
- * WebsocketFramesStream is [FramesStream] implementation that connects to remote websocket endpoint of thee DevTools Protocol
+ * DebuggerFramesStream represents connection to remote websocket endpoint of the DevTools Protocol
  * (either inspectable page debugger url http://localhost:9222/json or browser debugger url http://localhost:9222/json/version)
  */
-class WebsocketFramesStream : WebSocketListener, FramesStream {
+class DebuggerFramesStream : WebSocketListener {
     private val messages: Subject<ResponseFrame>
     private val mapper: FrameMapper
     private val connection: WebSocket
@@ -54,41 +55,43 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
      * onFailure is called when websocket protocol error occurs.
      */
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-        logger.warn("Caught websocket error: $t")
+        if (t !is EOFException) {
+            logger.warn("Caught websocket exception: $t")
+        }
     }
 
     /**
      * Returns protocol response for given request frame (if any).
      */
-    override fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>): Single<T> {
+    fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>): Single<T> {
         return frames()
-            .filter { it.matchesRequest(requestFrame) }
-            .map { frame -> mapper.deserializeResponse(requestFrame, frame, clazz) }
-            .subscribeOn(Schedulers.io())
-            .firstOrError()
+                .filter { it.matchesRequest(requestFrame) }
+                .map { frame -> mapper.deserializeResponse(requestFrame, frame, clazz) }
+                .subscribeOn(Schedulers.io())
+                .firstOrError()
     }
 
     /**
      * Sends frame over the connection.
      */
-    override fun send(frame: RequestFrame): Single<Boolean> {
+    fun send(frame: RequestFrame): Single<Boolean> {
         return Single.just(connection.send(mapper.serialize(frame)))
     }
 
     /**
      * Returns all frames that represent events from connection.
      */
-    override fun eventFrames(): Flowable<ResponseFrame> = frames().filter(ResponseFrame::isEvent)
+    fun eventFrames(): Flowable<ResponseFrame> = frames().filter(ResponseFrame::isEvent)
 
     /**
      * Returns all frames received from connection.
      */
-    override fun frames(): Flowable<ResponseFrame> = messages.toFlowable(BackpressureStrategy.BUFFER)
+    fun frames(): Flowable<ResponseFrame> = messages.toFlowable(BackpressureStrategy.BUFFER)
 
     /**
      * Closes stream
      */
-    override fun close() {
+    fun close() {
         try {
             connection.close(1000, "Goodbye!")
             client.connectionPool.evictAll()
@@ -103,6 +106,9 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
         }
     }
 
+    /**
+     * Completes frames stream.
+     */
     private fun closeSilently() {
         if (!(messages.hasComplete() || messages.hasThrowable())) {
             return messages.onComplete()
@@ -110,6 +116,6 @@ class WebsocketFramesStream : WebSocketListener, FramesStream {
     }
 
     companion object {
-        val logger = LoggerFactory.getLogger(WebsocketFramesStream::class.java)!!
+        private val logger = LoggerFactory.getLogger(DebuggerFramesStream::class.java)!!
     }
 }
