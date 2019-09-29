@@ -4,7 +4,7 @@
 
 **chrome-reactive-kotlin** is a low level [Chrome DevTools Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/) client written in [Kotlin](https://kotlinlang.org) and leveraging [RxJava2](https://github.com/ReactiveX/RxJava) for easy composability. 
 
-Library exposes all protocol domains in a single, cohesive and highly composable API. It supports both headless and standalone Chrome versions and understands [BrowserContext](https://chromedevtools.github.io/debugger-protocol-viewer/tot/Target/) from [Target]((https://chromedevtools.github.io/debugger-protocol-viewer/tot/Target/)) domain.
+Library exposes all protocol domains in a single, cohesive and highly composable API. It supports both headless and standalone Chrome versions and supports creating isolated environments via [BrowserContext](https://chromedevtools.github.io/debugger-protocol-viewer/tot/Target/) from [Target]((https://chromedevtools.github.io/debugger-protocol-viewer/tot/Target/)) domain and flatted sessions mode (see: [http://crbug.com/991325](http://crbug.com/991325)).
 
 For debugging purposes you can use my other project: [chrome-protocol-proxy](https://github.com/wendigo/chrome-protocol-proxy).
 
