@@ -4,24 +4,20 @@ import java.io.Closeable
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.DevToolsProtocol
-import pl.wendigo.chrome.api.target.AttachToTargetRequest
-import pl.wendigo.chrome.api.target.CloseTargetRequest
-import pl.wendigo.chrome.api.target.CreateTargetRequest
-import pl.wendigo.chrome.api.target.DisposeBrowserContextRequest
-import pl.wendigo.chrome.api.target.GetTargetInfoRequest
-import pl.wendigo.chrome.api.target.SetDiscoverTargetsRequest
-import pl.wendigo.chrome.api.target.TargetID
-import pl.wendigo.chrome.api.target.TargetInfo
+import pl.wendigo.chrome.api.target.*
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 
 class SessionManager(
     private val browserDebuggerAddress: String,
-    private val shareConnections: Boolean,
-    val api: DevToolsProtocol
+    private val multiplexConnections: Boolean,
+    private val api: DevToolsProtocol
 ) : Closeable {
     private val targets: MutableMap<TargetID, TargetInfo> = mutableMapOf()
 
+    /**
+     * Closes underlying connection to debugger.
+     */
     override fun close() {
         api.close()
     }
@@ -54,6 +50,11 @@ class SessionManager(
         }
     }
 
+    /**
+     * Closes target for given [Session] and destroys browser context if present.
+     *
+     * If [multiplexConnections] is false, then underlying for [Session] is also closed.
+     */
     fun closeTarget(session: Session) {
         logger.info("Closing {}...", session)
 
@@ -73,11 +74,16 @@ class SessionManager(
             }
         }
 
-        if (!shareConnections) {
+        if (!multiplexConnections) {
             session.close()
         }
     }
 
+    /**
+     * Creates new target with given [url] and viewport [width] and [height].
+     *
+     * If [incognito] is true, than new target is created in separate browser context (think of it as incognito window).
+     */
     fun createTarget(url: String, incognito: Boolean = true, width: Int = 1024, height: Int = 768): Session {
         val browserContextId = when (incognito) {
             true -> await {
@@ -111,9 +117,15 @@ class SessionManager(
         }.toList()
     }
 
-    private fun attach(target: TargetInfo): Session {
+    /**
+     * Attaches to given [TargetInfo] and returns new [Session] for it.
+     *
+     * If [multiplexConnections] is true then existing debugger browser connection is used.
+     * If not - new underlying connection to target's debugger is established.
+     */
+    fun attach(target: TargetInfo): Session {
 
-        val sessionId = when (shareConnections) {
+        val sessionId = when (multiplexConnections) {
             true -> await {
                 api.Target.attachToTarget(AttachToTargetRequest(
                         targetId = target.targetId,
@@ -138,13 +150,13 @@ class SessionManager(
     }
 
     private fun openConnection(target: TargetInfo, sessionId: String): ChromeDebuggerConnection {
-        return when (shareConnections) {
+        return when (multiplexConnections) {
             true -> api.connection.cloneForSessionId(sessionId)
             false -> ChromeDebuggerConnection.open(targetWsAddress(target.targetId), 128)
         }
     }
 
     companion object {
-        val logger: Logger = LoggerFactory.getLogger(SessionManager::class.java)
+        private val logger: Logger = LoggerFactory.getLogger(SessionManager::class.java)
     }
 }

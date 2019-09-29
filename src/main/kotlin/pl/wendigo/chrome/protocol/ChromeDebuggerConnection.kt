@@ -10,15 +10,15 @@ import pl.wendigo.chrome.api.target.SessionID
 /**
  * ChromeDebuggerConnection represents connection to chrome's debugger via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
  *
- * It depends on [FramesStream] which is responsible for providing stream of protocol frames (both events and responses) and allows for sending requests.
+ * It depends on [DebuggerFramesStream] which is responsible for providing stream of protocol frames (both events and responses) and allows for sending requests.
  *
  * [FrameMapper] is responsible for decoding/encoding objects to/from JSON frames which DevTools Protocol can understand.
  *
- * @see FramesStream
+ * @see DebuggerFramesStream
  * @see FrameMapper
  */
 class ChromeDebuggerConnection constructor(
-    private val frames: FramesStream,
+    private val frames: DebuggerFramesStream,
     private val eventMapper: EventMapper = EventMapper(),
     private val sessionId: SessionID? = null
 ) {
@@ -41,11 +41,11 @@ class ChromeDebuggerConnection constructor(
     /**
      * Sends request and captures response from the stream.
      */
-    fun <T> request(methodName: String, request: Any?, responseClazz: Class<T>): Single<T> {
+    fun <T> request(methodName: String, requestParams: Any?, responseClazz: Class<T>): Single<T> {
         val request = RequestFrame(
             id = nextRequestId.incrementAndGet(),
             method = methodName,
-            params = request,
+            params = requestParams,
             sessionId = sessionId
         )
 
@@ -79,6 +79,9 @@ class ChromeDebuggerConnection constructor(
             .subscribeOn(Schedulers.io())
     }
 
+    /**
+     * Reuse existing debugger connection but for new sessionID sharing underlying websocket connection.
+     */
     fun cloneForSessionId(sessionID: SessionID) = ChromeDebuggerConnection(
         frames,
         eventMapper,
@@ -87,12 +90,12 @@ class ChromeDebuggerConnection constructor(
 
     companion object Factory {
         /**
-         * Creates new ChromeDebuggerConnection session for given websocket uri.
+         * Creates new ChromeDebuggerConnection session for given websocket uri and frames buffer size.
          */
         @JvmStatic
         fun open(websocketUri: String, framesBufferSize: Int = 128): ChromeDebuggerConnection {
             return ChromeDebuggerConnection(
-                FramesStream(websocketUri, framesBufferSize, frameMapper, client),
+                DebuggerFramesStream(websocketUri, framesBufferSize, frameMapper, client),
                 eventMapper
             )
         }

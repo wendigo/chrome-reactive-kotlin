@@ -6,19 +6,19 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.ReplaySubject
 import io.reactivex.subjects.Subject
+import java.io.EOFException
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import org.slf4j.LoggerFactory
-import java.io.EOFException
 
 /**
- * FramesStream that connects to remote websocket endpoint of the DevTools Protocol
+ * DebuggerFramesStream represents connection to remote websocket endpoint of the DevTools Protocol
  * (either inspectable page debugger url http://localhost:9222/json or browser debugger url http://localhost:9222/json/version)
  */
-class FramesStream : WebSocketListener {
+class DebuggerFramesStream : WebSocketListener {
     private val messages: Subject<ResponseFrame>
     private val mapper: FrameMapper
     private val connection: WebSocket
@@ -65,10 +65,10 @@ class FramesStream : WebSocketListener {
      */
     fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>): Single<T> {
         return frames()
-            .filter { it.matchesRequest(requestFrame) }
-            .map { frame -> mapper.deserializeResponse(requestFrame, frame, clazz) }
-            .subscribeOn(Schedulers.io())
-            .firstOrError()
+                .filter { it.matchesRequest(requestFrame) }
+                .map { frame -> mapper.deserializeResponse(requestFrame, frame, clazz) }
+                .subscribeOn(Schedulers.io())
+                .firstOrError()
     }
 
     /**
@@ -106,6 +106,9 @@ class FramesStream : WebSocketListener {
         }
     }
 
+    /**
+     * Completes frames stream.
+     */
     private fun closeSilently() {
         if (!(messages.hasComplete() || messages.hasThrowable())) {
             return messages.onComplete()
@@ -113,6 +116,6 @@ class FramesStream : WebSocketListener {
     }
 
     companion object {
-        val logger = LoggerFactory.getLogger(FramesStream::class.java)!!
+        private val logger = LoggerFactory.getLogger(DebuggerFramesStream::class.java)!!
     }
 }

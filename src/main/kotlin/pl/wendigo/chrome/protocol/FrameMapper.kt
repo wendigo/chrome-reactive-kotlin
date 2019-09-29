@@ -48,7 +48,7 @@ class FrameMapper(private val mapper: ObjectMapper = DEFAULT_MAPPER) {
     }
 
     /**
-     * Deserialize text to clazz.
+     * Deserialize provided text to clazz.
      */
     fun <T> deserialize(text: String, clazz: Class<T>): T {
         return mapper.readValue(text, clazz)

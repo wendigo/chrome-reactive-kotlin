@@ -42,11 +42,11 @@ data class ResponseFrame(
     /**
      * Checks if response is event
      */
-    internal fun isResponse(): Boolean = !this.isEvent()
+    private fun isResponse(): Boolean = !this.isEvent()
 
-    internal fun matchesRequest(request: RequestFrame): Boolean = isResponse()
-            && id == request.id
-            && sessionId == request.sessionId
+    internal fun matchesRequest(request: RequestFrame): Boolean = isResponse() &&
+            id == request.id &&
+            sessionId == request.sessionId
 
     internal fun matchesMethod(method: String): Boolean = this.method == method
 
