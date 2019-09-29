@@ -32,7 +32,7 @@ And now execute:
 import pl.wendigo.chrome.api.page.NavigateRequest
 
 fun main() {
-    val browser = Browser.connect("127.0.0.1:9223")
+    val browser = Browser.connect("127.0.0.1:9222")
     val session = browser.session("about:blank")
     
     await {
