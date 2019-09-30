@@ -134,7 +134,7 @@ class Browser private constructor(
         }
 
         /**
-         *  Sets frames buffer size for underlying reactive replaying subject (default: 128)
+         *  Sets frames buffer size for underlying [DebuggerFramesStream]'s reactive replaying subject (default: 128)
          *
          *  High buffer size allows to observe N frames prior to subscribing.
          */
@@ -157,7 +157,7 @@ class Browser private constructor(
         }
 
         /**
-         * Enables SessionManager to share single, underlying connection to debugger with multiple sessions (default: false)
+         * Enables [Manager] to share single, underlying connection to debugger with multiple sessions (default: false)
          */
         fun multiplexConnections(enabled: Boolean) = this.apply {
             this.multiplexConnections = enabled
