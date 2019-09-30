@@ -99,7 +99,7 @@ query results).
     fun setEmitTouchEventsForMouse(input: SetEmitTouchEventsForMouseRequest) = connection.request("Emulation.setEmitTouchEventsForMouse", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
-     * Emulates the given media for CSS media queries.
+     * Emulates the given media type or media feature for CSS media queries.
      *
      * @link Protocol [Emulation#setEmulatedMedia](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedMedia) method documentation.
      */
@@ -389,7 +389,7 @@ data class SetEmitTouchEventsForMouseRequest(
 /**
  * Represents request frame that can be used with [Emulation#setEmulatedMedia](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedMedia) operation call.
  *
- * Emulates the given media for CSS media queries.
+ * Emulates the given media type or media feature for CSS media queries.
  * @link [Emulation#setEmulatedMedia](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedMedia) method documentation.
  * @see [EmulationOperations.setEmulatedMedia]
  */
@@ -397,7 +397,12 @@ data class SetEmulatedMediaRequest(
     /**
      * Media type to emulate. Empty string disables the override.
      */
-    val media: String
+    val media: String? = null,
+
+    /**
+     * Media features to emulate.
+     */
+    val features: List<MediaFeature>? = null
 
 )
 

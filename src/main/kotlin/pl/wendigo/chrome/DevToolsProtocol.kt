@@ -702,7 +702,7 @@ API.
     }
 
     /**
-     * Closes session.
+     * Closes target.
      */
     override fun close() {
         return connection.close()
