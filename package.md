@@ -7,23 +7,23 @@ Library exposes all protocol domains in a single, cohesive and highly composable
 Basic usage example:
 
 ```
-val browser = Browser.builder().withAddress("127.0.0.1:9223").build()
-val target = browser.target("about:blank")
+val chrome = Browser.builder().withAddress("127.0.0.1:9223").build()
 
-await {
-    target.Page.enable()
+chrome.use { browser ->
+    browser.target("about:blank").use { target ->
+        await {
+            target.Page.enable()
+        }
+
+        await {
+            target.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
+                target.Page.frameStoppedLoading().filter {
+                    it.frameId == frameId
+                }.take(1).singleOrError()
+            }
+        }
+    }    
 }
-
-await {
-    target.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
-        target.Page.frameStoppedLoading().filter {
-            it.frameId == frameId
-        }.take(1).singleOrError()
-    }
-}
-
-browser.close(target)
-browser.close()
 ```
 
 # Package pl.wendigo.chrome

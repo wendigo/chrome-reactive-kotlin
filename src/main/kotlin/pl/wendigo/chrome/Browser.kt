@@ -1,17 +1,18 @@
 package pl.wendigo.chrome
 
+
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import java.io.Closeable
+import kotlin.math.max
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
-import pl.wendigo.chrome.targets.Target
 import pl.wendigo.chrome.targets.Manager
-import kotlin.math.max
+import pl.wendigo.chrome.targets.Target
 
 /**
  * Creates new browser that allows querying remote chrome instance for debugging sessions
@@ -20,7 +21,7 @@ class Browser private constructor(
     private val options: Options,
     private val info: Info,
     private val manager: Manager
-) : Closeable {
+) : AutoCloseable, Closeable {
     /**
      * Opens new headless debugging session via chrome debugging protocol.
      *
