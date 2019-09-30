@@ -95,7 +95,6 @@ class Manager(
      * If [incognito] is true, than new target is created in separate browser context (think of it as incognito window).
      */
     internal fun create(url: String, incognito: Boolean = true, width: Int = 1024, height: Int = 768): Target {
-
         logger.info("Creating new target [url=$url, incognito=$incognito, viewport=[$width, $height]]")
 
         val browserContextId = when (incognito) {
@@ -107,13 +106,13 @@ class Manager(
 
         val (targetId) = await {
             api.Target.createTarget(
-                    CreateTargetRequest(
-                            url = url,
-                            browserContextId = browserContextId,
-                            height = height,
-                            width = width,
-                            background = true
-                    )
+                CreateTargetRequest(
+                    url = url,
+                    browserContextId = browserContextId,
+                    height = height,
+                    width = width,
+                    background = true
+                )
             )
         }
 
@@ -140,19 +139,21 @@ class Manager(
     fun attach(target: TargetInfo): Target {
         val sessionId = when (multiplexConnections) {
             true -> await {
-                api.Target.attachToTarget(AttachToTargetRequest(
+                api.Target.attachToTarget(
+                    AttachToTargetRequest(
                         targetId = target.targetId,
                         flatten = true
-                ))
+                    )
+                )
             }.sessionId
 
             false -> ""
         }
 
         return Target(
-                session = target.toTarget(sessionId),
-                connection = openConnection(target, sessionId),
-                manager = this
+            session = target.toTarget(sessionId),
+            connection = openConnection(target, sessionId),
+            manager = this
         )
     }
 
@@ -161,8 +162,8 @@ class Manager(
      */
     private fun targetWsAddress(targetID: TargetID): String {
         return browserDebuggerAddress.replace(
-                browserDebuggerAddress.substringAfterLast("devtools"),
-                "/page/$targetID"
+            browserDebuggerAddress.substringAfterLast("devtools"),
+            "/page/$targetID"
         )
     }
 

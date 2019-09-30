@@ -1,6 +1,5 @@
 package pl.wendigo.chrome
 
-
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.DeserializationFeature
@@ -175,14 +174,17 @@ class Browser private constructor(
         /**
          * Creates new instance of [Browser] with configuration passed to builder
          */
-        fun build() = connect(address, Options(
+        fun build() = connect(
+            address,
+            Options(
                 eventsBufferSize = eventsBufferSize,
                 viewportHeight = viewportHeight,
                 viewportWidth = viewportWidth,
                 incognito = incognito,
                 blankPage = blankPage,
                 multiplexConnections = multiplexConnections
-        ))
+            )
+        )
     }
 
     private data class Info(

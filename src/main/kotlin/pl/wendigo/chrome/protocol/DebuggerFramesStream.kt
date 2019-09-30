@@ -65,10 +65,10 @@ class DebuggerFramesStream : WebSocketListener {
      */
     fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>): Single<T> {
         return frames()
-                .filter { it.matchesRequest(requestFrame) }
-                .map { frame -> mapper.deserializeResponse(requestFrame, frame, clazz) }
-                .subscribeOn(Schedulers.io())
-                .firstOrError()
+            .filter { it.matchesRequest(requestFrame) }
+            .map { frame -> mapper.deserializeResponse(requestFrame, frame, clazz) }
+            .subscribeOn(Schedulers.io())
+            .firstOrError()
     }
 
     /**
