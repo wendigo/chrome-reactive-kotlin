@@ -16,7 +16,7 @@ Please note that most up-to-date protocol is used at the moment.
 
 Add to your Kotlin or Java project (Gradle dependency): 
 
-```compile group: 'pl.wendigo', name: 'chrome-reactive-kotlin', version: '0.5.+'```
+```compile group: 'pl.wendigo', name: 'chrome-reactive-kotlin', version: '0.6.+'```
 
 # Example
 
