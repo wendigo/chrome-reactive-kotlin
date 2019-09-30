@@ -33,7 +33,7 @@ import pl.wendigo.chrome.api.page.NavigateRequest
 
 fun main() {
     val chrome = Browser.builder()
-        .withAddress("127.0.0.1:9223")
+        .withAddress("127.0.0.1:9222")
         .build()
 
     chrome.use { browser ->
