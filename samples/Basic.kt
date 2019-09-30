@@ -1,28 +1,28 @@
 package examples
 
 import pl.wendigo.chrome.api.page.NavigateRequest
+import pl.wendigo.chrome.Browser
 
 fun main() {
-    val browser = Browser.connect("127.0.0.1:9223")
-    val session = browser.headlessSession("about:blank")
+    val chrome = Browser.builder().withAddress("127.0.0.1:9222").build()
 
-    await {
-        session.Page.enable()
-    }
+    chrome.use { browser ->
+        browser.target("about:blank").use { target ->
+            await {
+                target.Page.enable()
+            }
 
-    await {
-        session2.Page.enable()
-    }
+            await {
+                target.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
+                    target.Page.frameStoppedLoading().filter {
+                        it.frameId == frameId
+                    }.take(1).singleOrError()
+                }
+            }
+        }
 
-    await {
-        session.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
-            session.Page.frameStoppedLoading().filter {
-                it.frameId == frameId
-            }.take(1).singleOrError()
+        browser.targets().forEach {
+            println("Target ${it.targetId} has url: ${it.url}")
         }
     }
-
-    println("Page 1 was loaded")
-
-    session.close()
 }
