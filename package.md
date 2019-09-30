@@ -7,7 +7,7 @@ Library exposes all protocol domains in a single, cohesive and highly composable
 Basic usage example:
 
 ```
-val chrome = Browser.builder().withAddress("127.0.0.1:9223").build()
+val chrome = Browser.builder().withAddress("127.0.0.1:9222").build()
 
 chrome.use { browser ->
     browser.target("about:blank").use { target ->
