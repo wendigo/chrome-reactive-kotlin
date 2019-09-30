@@ -32,22 +32,25 @@ And now execute:
 import pl.wendigo.chrome.api.page.NavigateRequest
 
 fun main() {
-    val browser = Browser.connect("127.0.0.1:9222")
-    val session = browser.session("about:blank")
+    val browser = Browser.builder()
+        .withAddress("127.0.0.1:9223")
+        .build()
+
+    val target = browser.target("about:blank")
     
     await {
-        session.Page.enable()
+        target.Page.enable()
     }
     
     await {
-        session.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
-            session.Page.frameStoppedLoading().filter {
+        target.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
+            target.Page.frameStoppedLoading().filter {
                 it.frameId == frameId
             }.take(1).singleOrError()
         }
     }
     
-    browser.close(session)
+    browser.close(target)
     browser.close()
 }
 ```

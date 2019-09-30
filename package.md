@@ -7,22 +7,22 @@ Library exposes all protocol domains in a single, cohesive and highly composable
 Basic usage example:
 
 ```
-val browser = Browser.connect("127.0.0.1:9223")
-val session = browser.session("about:blank")
+val browser = Browser.builder().withAddress("127.0.0.1:9223").build()
+val target = browser.target("about:blank")
 
 await {
-    session.Page.enable()
+    target.Page.enable()
 }
 
 await {
-    session.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
-        session.Page.frameStoppedLoading().filter {
+    target.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
+        target.Page.frameStoppedLoading().filter {
             it.frameId == frameId
         }.take(1).singleOrError()
     }
 }
 
-browser.close(session)
+browser.close(target)
 browser.close()
 ```
 
@@ -30,19 +30,11 @@ browser.close()
 
 Contains library main API ([Browser] and [DevToolsProtocol])
 
-# Package pl.wendigo.chrome.headless
-
-Contains headless operations related classes ([HeadlessDevToolsProtocol])
-
 # Package pl.wendigo.chrome.protocol
 
-Contains DevTools protocol primitives ([WebsocketFramesStream], [RequestFrame]/[ResponseFrame] and [Event] base classes).
-
-# Package pl.wendigo.chrome.protocol.inspector
-
-Inspector related classes ([InspectablePage])
+Contains DevTools protocol primitives ([DebuggerFramesStream], [RequestFrame]/[ResponseFrame] and [Event] base classes).
 
 # Package pl.wendigo.chrome.targets
 
-Session/target management related classes ([SessionManager], [FramesStream])
+Targets management related classes ([Manager], [TargetSession])
 

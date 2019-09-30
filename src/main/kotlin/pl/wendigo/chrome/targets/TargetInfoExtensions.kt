@@ -9,9 +9,10 @@ import pl.wendigo.chrome.api.target.TargetInfo
 fun TargetInfo.isPage() = this.type == "page"
 
 /**
- * Converts [TargetInfo] to [Target] for given sessionID
+ * Converts [TargetInfo] to [SessionTarget] for given sessionID
  */
-fun TargetInfo.toTarget(sessionId: SessionID) = Target(
+fun TargetInfo.toTarget(sessionId: SessionID) = SessionTarget(
     sessionId = sessionId,
-    targetId = this.targetId
+    targetId = this.targetId,
+    browserContextID = this.browserContextId
 )
