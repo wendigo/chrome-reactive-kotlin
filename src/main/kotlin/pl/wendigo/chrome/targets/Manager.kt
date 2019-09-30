@@ -128,9 +128,7 @@ class Manager(
      * Returns list of all debuggable targets on the browser side.
      */
     fun list(): List<TargetInfo> {
-        return targets.values.filter {
-            it.type == "page"
-        }.toList()
+        return targets.values.toList()
     }
 
     /**

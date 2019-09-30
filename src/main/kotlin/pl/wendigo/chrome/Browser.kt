@@ -10,6 +10,7 @@ import java.io.Closeable
 import kotlin.math.max
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 import pl.wendigo.chrome.targets.Manager
 import pl.wendigo.chrome.targets.Target
@@ -23,10 +24,9 @@ class Browser private constructor(
     private val manager: Manager
 ) : AutoCloseable, Closeable {
     /**
-     * Opens new headless debugging session via chrome debugging protocol.
+     * Creates new target and opens new debugging session via debugging protocol.
      *
-     * When opening headless session new browser context is created and communication goes through Target domain
-     * with target id/session id.
+     * If incognito is true then new browser context is created (similar to incognito mode but you can have many of those).
      */
     @JvmOverloads
     fun target(url: String = options.blankPage, incognito: Boolean = options.incognito, width: Int = options.viewportWidth, height: Int = options.viewportHeight): Target {
@@ -39,12 +39,17 @@ class Browser private constructor(
     }
 
     /**
-     *
+     * Lists all targets that can be attached to.
      */
     fun targets() = manager.list()
 
     /**
-     * Closes session releasing all resources on the browser side and connections.
+     * Attaches to existing target creating new session if multiplexed connections is used.
+     */
+    fun attach(target: TargetInfo) = manager.attach(target)
+
+    /**
+     * Closes target releasing all resources on the browser side and connections.
      */
     fun close(target: Target) {
         manager.close(target)
@@ -102,6 +107,9 @@ class Browser private constructor(
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     }
 
+    /**
+     * [Builder] is responsible for setting options and defaults while creating new instance of [Browser].
+     */
     class Builder {
         private var address: String = "localhost:8222"
         private var blankPage: String = "about:blank"
