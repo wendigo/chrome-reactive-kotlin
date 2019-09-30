@@ -25,28 +25,38 @@ class ChromeProtocolSpecification extends Specification {
             )
             .withPrivilegedMode(true)
 
-    def "should open headless session"() {
+    def "should open new target given provided options"() {
         given:
             def address = container.getContainerIpAddress() + ":" + container.firstMappedPort
-            def chrome = Browser.connect(address, 128)
+
+            def chrome = Browser.builder()
+                    .withAddress(address)
+                    .withEventsBufferSize(128)
+                    .withViewportHeight(600)
+                    .withViewportWidth(900)
+                    .incognito(true)
+                    .multiplexConnections(true)
+                    .build()
 
         when:
-            def session = chrome.session("about:blank", true, 1000, 800)
-            def layout = session.page.getLayoutMetrics().blockingGet()
+            def target = chrome.target()
+            def layout = target.page.getLayoutMetrics().blockingGet()
 
         then:
-            with (session) {
-                target != null
-                target.sessionId != ""
+            with (target) {
+                session.sessionId != ""
+                session.browserContextID != ""
+                session.targetId != ""
                 info().type == "page"
             }
 
             with (layout.layoutViewport) {
-                clientHeight == 800
-                clientWidth == 1000
+                clientHeight == 600
+                clientWidth == 900
             }
 
         cleanup:
-            session.close()
+            chrome.close(target)
+            chrome.close()
     }
 }

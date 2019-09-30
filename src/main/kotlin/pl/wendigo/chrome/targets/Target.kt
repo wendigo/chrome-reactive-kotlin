@@ -1,14 +1,28 @@
 package pl.wendigo.chrome.targets
 
-import pl.wendigo.chrome.api.target.BrowserContextID
-import pl.wendigo.chrome.api.target.SessionID
-import pl.wendigo.chrome.api.target.TargetID
+import pl.wendigo.chrome.DevToolsProtocol
+import pl.wendigo.chrome.api.target.GetTargetInfoRequest
+import pl.wendigo.chrome.api.target.TargetInfo
+import pl.wendigo.chrome.await
+import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 
 /**
- * SessionTarget represents session we are currently connected to.
+ * Represents browser [Target] that can be controlled via DevTools Protocol API
  */
-data class Target(
-    val sessionId: SessionID,
-    val targetId: TargetID,
-    val browserContextID: BrowserContextID? = null
-)
+class Target(
+    val session: SessionTarget,
+    connection: ChromeDebuggerConnection
+) : DevToolsProtocol(connection) {
+    override fun toString(): String {
+        return "Target(id='${session.targetId}', sessionId='${session.sessionId}, browserContextId='${session.browserContextID}')"
+    }
+
+    /**
+     * Returns [TargetInfo] for given target directly from inspector protocol.
+     */
+    fun info(): TargetInfo {
+        return await {
+            this.Target.getTargetInfo(GetTargetInfoRequest(session.targetId))
+        }.targetInfo
+    }
+}

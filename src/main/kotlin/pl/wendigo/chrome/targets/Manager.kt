@@ -8,7 +8,10 @@ import pl.wendigo.chrome.api.target.*
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 
-class SessionManager(
+/**
+ * [Manager] is responsible for querying, creating, closing, attaching to debuggable targets on the browser side.
+ */
+class Manager(
     private val browserDebuggerAddress: String,
     private val multiplexConnections: Boolean,
     private val api: DevToolsProtocol
@@ -25,23 +28,23 @@ class SessionManager(
     init {
         api.Target.targetCreated().filter { it.targetInfo.isPage() }.subscribe {
             targets[it.targetInfo.targetId] = it.targetInfo
-            logger.info("Created {}", it.targetInfo)
+            logger.debug("Target {} was created", it.targetInfo)
         }
 
         api.Target.targetDestroyed().subscribe {
             if (targets.remove(it.targetId) != null) {
-                logger.info("Target {} was destroyed", it.targetId)
+                logger.debug("Target {} was destroyed", it.targetId)
             }
         }
 
         api.Target.targetInfoChanged().filter { it.targetInfo.isPage() }.subscribe {
             targets[it.targetInfo.targetId] = it.targetInfo
-            logger.info("Changed {}", it.targetInfo)
+            logger.debug("Target {} was changed", it.targetInfo)
         }
 
         api.Target.targetCrashed().subscribe {
             if (targets.remove(it.targetId) != null) {
-                logger.info("Target {} crashed", it.targetId)
+                logger.debug("Target {} has crashed", it.targetId)
             }
         }
 
@@ -51,19 +54,19 @@ class SessionManager(
     }
 
     /**
-     * Closes target for given [Session] and destroys browser context if present.
+     * Closes target and destroys browser context if present on the browser side effectively releasing all resources .
      *
-     * If [multiplexConnections] is false, then underlying for [Session] is also closed.
+     * If [multiplexConnections] is false, then underlying connection to the [Target]'s debugger is also closed.
      */
-    fun closeTarget(session: Session) {
-        logger.info("Closing {}...", session)
+    fun close(target: Target) {
+        logger.info("Closing {}...", target)
 
-        val browserContextID = session.info().browserContextId
+        val browserContextID = target.info().browserContextId
 
         await {
-            api.Target.closeTarget(CloseTargetRequest(session.target.targetId))
+            api.Target.closeTarget(CloseTargetRequest(target.session.targetId))
         }.run {
-            logger.info("Closed {}", session.target)
+            logger.info("Closed {}", target.session)
         }
 
         if (!browserContextID.isNullOrEmpty()) {
@@ -75,7 +78,7 @@ class SessionManager(
         }
 
         if (!multiplexConnections) {
-            session.close()
+            target.close()
         }
     }
 
@@ -84,7 +87,10 @@ class SessionManager(
      *
      * If [incognito] is true, than new target is created in separate browser context (think of it as incognito window).
      */
-    fun createTarget(url: String, incognito: Boolean = true, width: Int = 1024, height: Int = 768): Session {
+    internal fun create(url: String, incognito: Boolean = true, width: Int = 1024, height: Int = 768): Target {
+
+        logger.info("Creating new target [url=$url, incognito=$incognito, viewport=[$width, $height]]")
+
         val browserContextId = when (incognito) {
             true -> await {
                 api.Target.createBrowserContext()
@@ -111,20 +117,22 @@ class SessionManager(
         return attach(targetInfo)
     }
 
-    fun targets(): List<TargetInfo> {
+    /**
+     * Returns list of all debuggable targets on the browser side.
+     */
+    fun list(): List<TargetInfo> {
         return targets.values.filter {
             it.type == "page"
         }.toList()
     }
 
     /**
-     * Attaches to given [TargetInfo] and returns new [Session] for it.
+     * Attaches to given [TargetInfo] and returns new [Target] for it.
      *
      * If [multiplexConnections] is true then existing debugger browser connection is used.
      * If not - new underlying connection to target's debugger is established.
      */
-    fun attach(target: TargetInfo): Session {
-
+    fun attach(target: TargetInfo): Target {
         val sessionId = when (multiplexConnections) {
             true -> await {
                 api.Target.attachToTarget(AttachToTargetRequest(
@@ -136,12 +144,15 @@ class SessionManager(
             false -> ""
         }
 
-        return Session(
-            target = target.toTarget(sessionId),
+        return Target(
+            session = target.toTarget(sessionId),
             connection = openConnection(target, sessionId)
         )
     }
 
+    /**
+     * Constructs target debugger address (if not using multiplexed connections).
+     */
     private fun targetWsAddress(targetID: TargetID): String {
         return browserDebuggerAddress.replace(
             browserDebuggerAddress.substringAfterLast("devtools"),
@@ -157,6 +168,6 @@ class SessionManager(
     }
 
     companion object {
-        private val logger: Logger = LoggerFactory.getLogger(SessionManager::class.java)
+        private val logger: Logger = LoggerFactory.getLogger(Manager::class.java)
     }
 }
