@@ -56,7 +56,7 @@ class ChromeProtocolSpecification extends Specification {
             }
 
         cleanup:
-            chrome.close(target)
+            target.close()
             chrome.close()
     }
 }
