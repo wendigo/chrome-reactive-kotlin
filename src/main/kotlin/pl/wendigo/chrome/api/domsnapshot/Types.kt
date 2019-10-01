@@ -342,6 +342,11 @@ data class DocumentSnapshot(
     val documentURL: StringIndex,
 
     /**  
+     * Document title.  
+     */  
+    val title: StringIndex,
+
+    /**  
      * Base URL that `Document` or `FrameOwner` node uses for URL completion.  
      */  
     val baseURL: StringIndex,
@@ -394,7 +399,17 @@ data class DocumentSnapshot(
     /**  
      * Vertical scroll offset.  
      */  
-    val scrollOffsetY: Double? = null
+    val scrollOffsetY: Double? = null,
+
+    /**  
+     * Document content width.  
+     */  
+    val contentWidth: Double? = null,
+
+    /**  
+     * Document content height.  
+     */  
+    val contentHeight: Double? = null
 )
 
 /**
