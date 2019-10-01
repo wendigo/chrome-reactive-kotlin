@@ -8455,6 +8455,11 @@
                             "$ref": "StringIndex"
                         },
                         {
+                            "name": "title",
+                            "description": "Document title.",
+                            "$ref": "StringIndex"
+                        },
+                        {
                             "name": "baseURL",
                             "description": "Base URL that `Document` or `FrameOwner` node uses for URL completion.",
                             "$ref": "StringIndex"
@@ -8508,6 +8513,18 @@
                         {
                             "name": "scrollOffsetY",
                             "description": "Vertical scroll offset.",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "contentWidth",
+                            "description": "Document content width.",
+                            "optional": true,
+                            "type": "number"
+                        },
+                        {
+                            "name": "contentHeight",
+                            "description": "Document content height.",
                             "optional": true,
                             "type": "number"
                         }
