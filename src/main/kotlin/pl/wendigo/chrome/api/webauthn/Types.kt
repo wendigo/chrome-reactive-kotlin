@@ -56,20 +56,26 @@ data class VirtualAuthenticatorOptions(
     val transport: AuthenticatorTransport,
 
     /**  
-     *  
+     * Defaults to false.  
      */  
-    val hasResidentKey: Boolean,
+    val hasResidentKey: Boolean? = null,
 
     /**  
-     *  
+     * Defaults to false.  
      */  
-    val hasUserVerification: Boolean,
+    val hasUserVerification: Boolean? = null,
 
     /**  
      * If set to true, tests of user presence will succeed immediately.  
      Otherwise, they will not be resolved. Defaults to true.  
      */  
-    val automaticPresenceSimulation: Boolean? = null
+    val automaticPresenceSimulation: Boolean? = null,
+
+    /**  
+     * Sets whether User Verification succeeds or fails for an authenticator.  
+     Defaults to false.  
+     */  
+    val isUserVerified: Boolean? = null
 )
 
 /**
