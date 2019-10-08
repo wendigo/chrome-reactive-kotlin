@@ -3,7 +3,7 @@ sudo: required
 language: groovy
 
 jdk:
-  - oraclejdk8
+  - oraclejdk9
 
 script:
   - cat gradle.properties
