@@ -42,6 +42,117 @@ enum class SecurityState {
 }
 
 /**
+ * Details about the security state of the page certificate.
+ *
+ * @link [Security#CertificateSecurityState](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-CertificateSecurityState) type documentation.
+ */
+
+data class CertificateSecurityState(
+    /**  
+     * Protocol name (e.g. "TLS 1.2" or "QUIC").  
+     */  
+    val protocol: String,
+
+    /**  
+     * Key Exchange used by the connection, or the empty string if not applicable.  
+     */  
+    val keyExchange: String,
+
+    /**  
+     * (EC)DH group used by the connection, if applicable.  
+     */  
+    val keyExchangeGroup: String? = null,
+
+    /**  
+     * Cipher name.  
+     */  
+    val cipher: String,
+
+    /**  
+     * TLS MAC. Note that AEAD ciphers do not have separate MACs.  
+     */  
+    val mac: String? = null,
+
+    /**  
+     * Page certificate.  
+     */  
+    val certificate: List<String>,
+
+    /**  
+     * Certificate subject name.  
+     */  
+    val subjectName: String,
+
+    /**  
+     * Name of the issuing CA.  
+     */  
+    val issuer: String,
+
+    /**  
+     * Certificate valid from date.  
+     */  
+    val validFrom: pl.wendigo.chrome.api.network.TimeSinceEpoch,
+
+    /**  
+     * Certificate valid to (expiration) date  
+     */  
+    val validTo: pl.wendigo.chrome.api.network.TimeSinceEpoch,
+
+    /**  
+     * True if the certificate uses a weak signature aglorithm.  
+     */  
+    val certifcateHasWeakSignature: Boolean,
+
+    /**  
+     * True if modern SSL  
+     */  
+    val modernSSL: Boolean,
+
+    /**  
+     * True if the connection is using an obsolete SSL protocol.  
+     */  
+    val obsoleteSslProtocol: Boolean,
+
+    /**  
+     * True if the connection is using an obsolete SSL key exchange.  
+     */  
+    val obsoleteSslKeyExchange: Boolean,
+
+    /**  
+     * True if the connection is using an obsolete SSL cipher.  
+     */  
+    val obsoleteSslCipher: Boolean,
+
+    /**  
+     * True if the connection is using an obsolete SSL signature.  
+     */  
+    val obsoleteSslSignature: Boolean
+)
+
+/**
+ * Security state information about the page.
+ *
+ * @link [Security#VisibleSecurityState](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-VisibleSecurityState) type documentation.
+ */
+
+data class VisibleSecurityState(
+    /**  
+     * The security level of the page.  
+     */  
+    val securityState: SecurityState,
+
+    /**  
+     * Security state details about the page certificate.  
+     */  
+    val certificateSecurityState: CertificateSecurityState? = null,
+
+    /**  
+     * Array of security state issues ids.  
+     */  
+    val securityStateIssueIds: List<String>
+)
+
+/**
  * An explanation of an factor contributing to the security state.
  *
  * @link [Security#SecurityStateExplanation](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-SecurityStateExplanation) type documentation.

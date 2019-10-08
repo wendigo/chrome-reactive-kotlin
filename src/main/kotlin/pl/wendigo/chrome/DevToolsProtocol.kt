@@ -177,6 +177,7 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
         connection.addEventMapping("Runtime.inspectRequested", pl.wendigo.chrome.api.runtime.InspectRequestedEvent::class.java)
         connection.addEventMapping("Security.certificateError", pl.wendigo.chrome.api.security.CertificateErrorEvent::class.java)
         connection.addEventMapping("Security.securityStateChanged", pl.wendigo.chrome.api.security.SecurityStateChangedEvent::class.java)
+        connection.addEventMapping("Security.visibleSecurityStateChanged", pl.wendigo.chrome.api.security.VisibleSecurityStateChangedEvent::class.java)
         connection.addEventMapping("ServiceWorker.workerErrorReported", pl.wendigo.chrome.api.serviceworker.WorkerErrorReportedEvent::class.java)
         connection.addEventMapping("ServiceWorker.workerRegistrationUpdated", pl.wendigo.chrome.api.serviceworker.WorkerRegistrationUpdatedEvent::class.java)
         connection.addEventMapping("ServiceWorker.workerVersionUpdated", pl.wendigo.chrome.api.serviceworker.WorkerVersionUpdatedEvent::class.java)

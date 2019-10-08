@@ -57,6 +57,11 @@ certificate errors at the same time.
     /**
      *  The security state of the page changed.
      */
+    fun visibleSecurityStateChanged(): io.reactivex.Flowable<VisibleSecurityStateChangedEvent> = connection.events("Security.visibleSecurityStateChanged", VisibleSecurityStateChangedEvent::class.java)
+
+    /**
+     *  The security state of the page changed.
+     */
     fun securityStateChanged(): io.reactivex.Flowable<SecurityStateChangedEvent> = connection.events("Security.securityStateChanged", SecurityStateChangedEvent::class.java)
 
     /**
@@ -145,6 +150,19 @@ data class CertificateErrorEvent(
     val requestURL: String
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Security", name = "certificateError")
+
+/**
+ * The security state of the page changed.
+ *
+ * @link [Security#visibleSecurityStateChanged](https://chromedevtools.github.io/devtools-protocol/tot/Security#event-visibleSecurityStateChanged) event documentation.
+ */
+data class VisibleSecurityStateChangedEvent(
+    /**  
+     * Security state information about the page.  
+     */  
+    val visibleSecurityState: VisibleSecurityState
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Security", name = "visibleSecurityStateChanged")
 
 /**
  * The security state of the page changed.
