@@ -312,12 +312,7 @@ data class EnableRequest(
      * The maximum size in bytes of collected scripts (not referenced by other heap objects)
 the debugger can hold. Puts no limit if paramter is omitted.
      */
-    @pl.wendigo.chrome.protocol.Experimental val maxScriptsCacheSize: Double? = null,
-
-    /**
-     * Whether to report Wasm modules as raw binaries instead of disassembled functions.
-     */
-    @pl.wendigo.chrome.protocol.Experimental val supportsWasmDwarf: Boolean? = null
+    @pl.wendigo.chrome.protocol.Experimental val maxScriptsCacheSize: Double? = null
 
 )
 /**
