@@ -187,7 +187,17 @@ data class CSSStyleSheetHeader(
     /**  
      * Size of the content (in characters).  
      */  
-    val length: Double
+    val length: Double,
+
+    /**  
+     * Line offset of the end of the stylesheet within the resource (zero based).  
+     */  
+    val endLine: Double,
+
+    /**  
+     * Column offset of the end of the stylesheet within the resource (zero based).  
+     */  
+    val endColumn: Double
 )
 
 /**
