@@ -496,7 +496,12 @@ This implies `disableBreaks` below.
     /**
      * Disable breakpoints during execution.
      */
-    @pl.wendigo.chrome.protocol.Experimental val disableBreaks: Boolean? = null
+    @pl.wendigo.chrome.protocol.Experimental val disableBreaks: Boolean? = null,
+
+    /**
+     * Reserved flag for future REPL mode support. Setting this flag has currently no effect.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val replMode: Boolean? = null
 
 )
 /**
