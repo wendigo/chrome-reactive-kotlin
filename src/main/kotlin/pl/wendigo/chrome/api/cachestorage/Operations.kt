@@ -173,12 +173,12 @@ data class RequestEntriesRequest(
     /**
      * Number of records to skip.
      */
-    val skipCount: Int,
+    val skipCount: Int? = null,
 
     /**
      * Number of records to fetch.
      */
-    val pageSize: Int,
+    val pageSize: Int? = null,
 
     /**
      * If present, only return the entries containing this substring in the path
