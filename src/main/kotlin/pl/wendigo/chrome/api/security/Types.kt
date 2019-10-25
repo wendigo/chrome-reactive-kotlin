@@ -38,7 +38,9 @@ enum class SecurityState {
     @com.fasterxml.jackson.annotation.JsonProperty("secure")
     SECURE,
     @com.fasterxml.jackson.annotation.JsonProperty("info")
-    INFO;
+    INFO,
+    @com.fasterxml.jackson.annotation.JsonProperty("insecure-broken")
+    INSECURE_BROKEN;
 }
 
 /**
