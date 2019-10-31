@@ -161,8 +161,6 @@ enum class CookieSameSite {
     STRICT,
     @com.fasterxml.jackson.annotation.JsonProperty("Lax")
     LAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("Extended")
-    EXTENDED,
     @com.fasterxml.jackson.annotation.JsonProperty("None")
     NONE;
 }
