@@ -800,8 +800,6 @@ enum class SetCookieBlockedReason {
     SAMESITESTRICT,
     @com.fasterxml.jackson.annotation.JsonProperty("SameSiteLax")
     SAMESITELAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteExtended")
-    SAMESITEEXTENDED,
     @com.fasterxml.jackson.annotation.JsonProperty("SameSiteUnspecifiedTreatedAsLax")
     SAMESITEUNSPECIFIEDTREATEDASLAX,
     @com.fasterxml.jackson.annotation.JsonProperty("SameSiteNoneInsecure")
@@ -838,8 +836,6 @@ enum class CookieBlockedReason {
     SAMESITESTRICT,
     @com.fasterxml.jackson.annotation.JsonProperty("SameSiteLax")
     SAMESITELAX,
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteExtended")
-    SAMESITEEXTENDED,
     @com.fasterxml.jackson.annotation.JsonProperty("SameSiteUnspecifiedTreatedAsLax")
     SAMESITEUNSPECIFIEDTREATEDASLAX,
     @com.fasterxml.jackson.annotation.JsonProperty("SameSiteNoneInsecure")
