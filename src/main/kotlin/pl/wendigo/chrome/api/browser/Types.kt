@@ -85,6 +85,8 @@ enum class PermissionType {
     MIDI,
     @com.fasterxml.jackson.annotation.JsonProperty("midiSysex")
     MIDISYSEX,
+    @com.fasterxml.jackson.annotation.JsonProperty("nfc")
+    NFC,
     @com.fasterxml.jackson.annotation.JsonProperty("notifications")
     NOTIFICATIONS,
     @com.fasterxml.jackson.annotation.JsonProperty("paymentHandler")
