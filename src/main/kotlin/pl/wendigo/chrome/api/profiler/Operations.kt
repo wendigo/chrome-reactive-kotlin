@@ -102,6 +102,33 @@ coverage needs to have started.
     fun takeTypeProfile() = connection.request("Profiler.takeTypeProfile", null, TakeTypeProfileResponse::class.java)
 
     /**
+     * Enable run time call stats collection.
+     *
+     * @link Protocol [Profiler#enableRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-enableRuntimeCallStats) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun enableRuntimeCallStats() = connection.request("Profiler.enableRuntimeCallStats", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Disable run time call stats collection.
+     *
+     * @link Protocol [Profiler#disableRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-disableRuntimeCallStats) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun disableRuntimeCallStats() = connection.request("Profiler.disableRuntimeCallStats", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Retrieve run time call stats.
+     *
+     * @link Protocol [Profiler#getRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getRuntimeCallStats) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getRuntimeCallStats() = connection.request("Profiler.getRuntimeCallStats", null, GetRuntimeCallStatsResponse::class.java)
+
+    /**
      *  Returns observable capturing all Profiler.consoleProfileFinished events.
      */
     fun consoleProfileFinished(): io.reactivex.Flowable<ConsoleProfileFinishedEvent> = connection.events("Profiler.consoleProfileFinished", ConsoleProfileFinishedEvent::class.java)
@@ -221,6 +248,22 @@ data class TakeTypeProfileResponse(
      * Type profile for all scripts since startTypeProfile() was turned on.  
      */  
     val result: List<ScriptTypeProfile>
+
+)
+
+/**
+ * Represents response frame that is returned from [Profiler#getRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getRuntimeCallStats) operation call.
+ * Retrieve run time call stats.
+ *
+  
+ * @link [Profiler#getRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getRuntimeCallStats) method documentation.
+ * @see [ProfilerOperations.getRuntimeCallStats]
+ */
+data class GetRuntimeCallStatsResponse(
+    /**  
+     * Collected counter information.  
+     */  
+    val result: List<CounterInfo>
 
 )
 

@@ -213,3 +213,21 @@ data class ScriptTypeProfile(
      */  
     val entries: List<TypeProfileEntry>
 )
+
+/**
+ * Collected counter information.
+ *
+ * @link [Profiler#CounterInfo](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-CounterInfo) type documentation.
+ */
+
+data class CounterInfo(
+    /**  
+     * Counter name.  
+     */  
+    val name: String,
+
+    /**  
+     * Counter value.  
+     */  
+    val value: Int
+)
