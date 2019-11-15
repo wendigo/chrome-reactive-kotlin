@@ -52,10 +52,11 @@ the same.
     fun getScriptSource(input: GetScriptSourceRequest) = connection.request("Debugger.getScriptSource", input, GetScriptSourceResponse::class.java)
 
     /**
-     * Returns bytecode for the WebAssembly script with given id.
+     * This command is deprecated. Use getScriptSource instead.
      *
      * @link Protocol [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) method documentation.
      */
+    @Deprecated(level = DeprecationLevel.WARNING, message = "getWasmBytecode is deprecated.")
     fun getWasmBytecode(input: GetWasmBytecodeRequest) = connection.request("Debugger.getWasmBytecode", input, GetWasmBytecodeResponse::class.java)
 
     /**
@@ -477,16 +478,21 @@ data class GetScriptSourceRequest(
  */
 data class GetScriptSourceResponse(
     /**  
-     * Script source.  
+     * Script source (empty in case of Wasm bytecode).  
      */  
-    val scriptSource: String
+    val scriptSource: String,
+
+    /**  
+     * Wasm bytecode.  
+     */  
+    val bytecode: String? = null
 
 )
 
 /**
  * Represents request frame that can be used with [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) operation call.
  *
- * Returns bytecode for the WebAssembly script with given id.
+ * This command is deprecated. Use getScriptSource instead.
  * @link [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) method documentation.
  * @see [DebuggerOperations.getWasmBytecode]
  */
@@ -499,7 +505,7 @@ data class GetWasmBytecodeRequest(
 )
 /**
  * Represents response frame that is returned from [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) operation call.
- * Returns bytecode for the WebAssembly script with given id.
+ * This command is deprecated. Use getScriptSource instead.
  *
   
  * @link [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) method documentation.
