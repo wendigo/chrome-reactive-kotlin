@@ -101,9 +101,19 @@ data class CertificateSecurityState(
     val validTo: pl.wendigo.chrome.api.network.TimeSinceEpoch,
 
     /**  
+     * The highest priority network error code, if the certificate has an error.  
+     */  
+    val certificateNetworkError: String? = null,
+
+    /**  
      * True if the certificate uses a weak signature aglorithm.  
      */  
-    val certifcateHasWeakSignature: Boolean,
+    val certificateHasWeakSignature: Boolean,
+
+    /**  
+     * True if the certificate has a SHA1 signature in the chain.  
+     */  
+    val certificateHasSha1Signature: Boolean,
 
     /**  
      * True if modern SSL  
