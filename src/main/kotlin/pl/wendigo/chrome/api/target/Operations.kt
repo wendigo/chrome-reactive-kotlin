@@ -335,7 +335,7 @@ data class CreateBrowserContextResponse(
     /**  
      * The id of the context created.  
      */  
-    val browserContextId: BrowserContextID
+    val browserContextId: pl.wendigo.chrome.api.browser.BrowserContextID
 
 )
 
@@ -351,7 +351,7 @@ data class GetBrowserContextsResponse(
     /**  
      * An array of browser context ids.  
      */  
-    val browserContextIds: List<BrowserContextID>
+    val browserContextIds: List<pl.wendigo.chrome.api.browser.BrowserContextID>
 
 )
 
@@ -381,7 +381,7 @@ data class CreateTargetRequest(
     /**
      * The browser context to create the page in.
      */
-    val browserContextId: BrowserContextID? = null,
+    val browserContextId: pl.wendigo.chrome.api.browser.BrowserContextID? = null,
 
     /**
      * Whether BeginFrames for this target will be controlled via DevTools (headless chrome only,
@@ -451,7 +451,7 @@ data class DisposeBrowserContextRequest(
     /**
      *
      */
-    val browserContextId: BrowserContextID
+    val browserContextId: pl.wendigo.chrome.api.browser.BrowserContextID
 
 )
 

@@ -164,7 +164,7 @@ data class SetPermissionRequest(
     /**
      * Context to override. When omitted, default browser context is used.
      */
-    val browserContextId: pl.wendigo.chrome.api.target.TargetID? = null
+    val browserContextId: BrowserContextID? = null
 
 )
 
@@ -189,7 +189,7 @@ data class GrantPermissionsRequest(
     /**
      * BrowserContext to override permissions. When omitted, default browser context is used.
      */
-    val browserContextId: pl.wendigo.chrome.api.target.BrowserContextID? = null
+    val browserContextId: BrowserContextID? = null
 
 )
 
@@ -204,7 +204,7 @@ data class ResetPermissionsRequest(
     /**
      * BrowserContext to reset permissions. When omitted, default browser context is used.
      */
-    val browserContextId: pl.wendigo.chrome.api.target.BrowserContextID? = null
+    val browserContextId: BrowserContextID? = null
 
 )
 

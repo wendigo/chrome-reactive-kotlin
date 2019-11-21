@@ -16,6 +16,27 @@ class StorageOperations internal constructor(private val connection: pl.wendigo.
     fun clearDataForOrigin(input: ClearDataForOriginRequest) = connection.request("Storage.clearDataForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Returns all browser cookies.
+     *
+     * @link Protocol [Storage#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getCookies) method documentation.
+     */
+    fun getCookies(input: GetCookiesRequest) = connection.request("Storage.getCookies", input, GetCookiesResponse::class.java)
+
+    /**
+     * Sets given cookies.
+     *
+     * @link Protocol [Storage#setCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-setCookies) method documentation.
+     */
+    fun setCookies(input: SetCookiesRequest) = connection.request("Storage.setCookies", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Clears cookies.
+     *
+     * @link Protocol [Storage#clearCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearCookies) method documentation.
+     */
+    fun clearCookies(input: ClearCookiesRequest) = connection.request("Storage.clearCookies", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Returns usage and quota in bytes.
      *
      * @link Protocol [Storage#getUsageAndQuota](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getUsageAndQuota) method documentation.
@@ -96,6 +117,71 @@ data class ClearDataForOriginRequest(
      * Comma separated list of StorageType to clear.
      */
     val storageTypes: String
+
+)
+
+/**
+ * Represents request frame that can be used with [Storage#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getCookies) operation call.
+ *
+ * Returns all browser cookies.
+ * @link [Storage#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getCookies) method documentation.
+ * @see [StorageOperations.getCookies]
+ */
+data class GetCookiesRequest(
+    /**
+     * Browser context to use when called on the browser endpoint.
+     */
+    val browserContextId: pl.wendigo.chrome.api.browser.BrowserContextID? = null
+
+)
+/**
+ * Represents response frame that is returned from [Storage#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getCookies) operation call.
+ * Returns all browser cookies.
+ *
+  
+ * @link [Storage#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getCookies) method documentation.
+ * @see [StorageOperations.getCookies]
+ */
+data class GetCookiesResponse(
+    /**  
+     * Array of cookie objects.  
+     */  
+    val cookies: List<pl.wendigo.chrome.api.network.Cookie>
+
+)
+
+/**
+ * Represents request frame that can be used with [Storage#setCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-setCookies) operation call.
+ *
+ * Sets given cookies.
+ * @link [Storage#setCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-setCookies) method documentation.
+ * @see [StorageOperations.setCookies]
+ */
+data class SetCookiesRequest(
+    /**
+     * Cookies to be set.
+     */
+    val cookies: List<pl.wendigo.chrome.api.network.CookieParam>,
+
+    /**
+     * Browser context to use when called on the browser endpoint.
+     */
+    val browserContextId: pl.wendigo.chrome.api.browser.BrowserContextID? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Storage#clearCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearCookies) operation call.
+ *
+ * Clears cookies.
+ * @link [Storage#clearCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearCookies) method documentation.
+ * @see [StorageOperations.clearCookies]
+ */
+data class ClearCookiesRequest(
+    /**
+     * Browser context to use when called on the browser endpoint.
+     */
+    val browserContextId: pl.wendigo.chrome.api.browser.BrowserContextID? = null
 
 )
 

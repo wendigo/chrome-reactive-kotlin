@@ -132,6 +132,36 @@ data class CertificateSecurityState(
 )
 
 /**
+ *
+ *
+ * @link [Security#SafetyTipStatus](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-SafetyTipStatus) type documentation.
+ */
+enum class SafetyTipStatus {
+    @com.fasterxml.jackson.annotation.JsonProperty("badReputation")
+    BADREPUTATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("lookalike")
+    LOOKALIKE;
+}
+
+/**
+ *
+ *
+ * @link [Security#SafetyTipInfo](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-SafetyTipInfo) type documentation.
+ */
+
+data class SafetyTipInfo(
+    /**  
+     * Describes whether the page triggers any safety tips or reputation warnings. Default is unknown.  
+     */  
+    val safetyTipStatus: SafetyTipStatus,
+
+    /**  
+     * The URL the safety tip suggested ("Did you mean?"). Only filled in for lookalike matches.  
+     */  
+    val safeUrl: String? = null
+)
+
+/**
  * Security state information about the page.
  *
  * @link [Security#VisibleSecurityState](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-VisibleSecurityState) type documentation.
@@ -147,6 +177,11 @@ data class VisibleSecurityState(
      * Security state details about the page certificate.  
      */  
     val certificateSecurityState: CertificateSecurityState? = null,
+
+    /**  
+     * The type of Safety Tip triggered on the page. Note that this field will be set even if the Safety Tip UI was not actually shown.  
+     */  
+    val safetyTipInfo: SafetyTipInfo? = null,
 
     /**  
      * Array of security state issues ids.  
