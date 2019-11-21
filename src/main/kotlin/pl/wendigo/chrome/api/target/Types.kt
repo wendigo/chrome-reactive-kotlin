@@ -19,14 +19,6 @@ typealias SessionID = String
 /**
  *
  *
- * @link [Target#BrowserContextID](https://chromedevtools.github.io/devtools-protocol/tot/Target#type-BrowserContextID) type documentation.
- */
-
-typealias BrowserContextID = String
-
-/**
- *
- *
  * @link [Target#TargetInfo](https://chromedevtools.github.io/devtools-protocol/tot/Target#type-TargetInfo) type documentation.
  */
 
@@ -64,7 +56,7 @@ data class TargetInfo(
     /**  
      *  
      */  
-    @pl.wendigo.chrome.protocol.Experimental val browserContextId: BrowserContextID? = null
+    @pl.wendigo.chrome.protocol.Experimental val browserContextId: pl.wendigo.chrome.api.browser.BrowserContextID? = null
 )
 
 /**

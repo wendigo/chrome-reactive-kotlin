@@ -3,6 +3,14 @@ package pl.wendigo.chrome.api.browser
 /**
  *
  *
+ * @link [Browser#BrowserContextID](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-BrowserContextID) type documentation.
+ */
+
+typealias BrowserContextID = String
+
+/**
+ *
+ *
  * @link [Browser#WindowID](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-WindowID) type documentation.
  */
 
