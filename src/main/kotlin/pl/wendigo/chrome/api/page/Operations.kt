@@ -455,22 +455,12 @@ cross-process navigation.
      * Intercept file chooser requests and transfer control to protocol clients.
 When file chooser interception is enabled, native file chooser dialog is not shown.
 Instead, a protocol event `Page.fileChooserOpened` is emitted.
-File chooser can be handled with `page.handleFileChooser` command.
      *
      * @link Protocol [Page#setInterceptFileChooserDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setInterceptFileChooserDialog) method documentation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
     fun setInterceptFileChooserDialog(input: SetInterceptFileChooserDialogRequest) = connection.request("Page.setInterceptFileChooserDialog", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
-
-    /**
-     * Accepts or cancels an intercepted file chooser dialog.
-     *
-     * @link Protocol [Page#handleFileChooser](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-handleFileChooser) method documentation.
-     */
-    
-    @pl.wendigo.chrome.protocol.Experimental
-    fun handleFileChooser(input: HandleFileChooserRequest) = connection.request("Page.handleFileChooser", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Returns observable capturing all Page.domContentEventFired events.
@@ -1686,7 +1676,6 @@ data class GenerateTestReportRequest(
  * Intercept file chooser requests and transfer control to protocol clients.
 When file chooser interception is enabled, native file chooser dialog is not shown.
 Instead, a protocol event `Page.fileChooserOpened` is emitted.
-File chooser can be handled with `page.handleFileChooser` command.
  * @link [Page#setInterceptFileChooserDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setInterceptFileChooserDialog) method documentation.
  * @see [PageOperations.setInterceptFileChooserDialog]
  */
@@ -1695,26 +1684,6 @@ data class SetInterceptFileChooserDialogRequest(
      *
      */
     val enabled: Boolean
-
-)
-
-/**
- * Represents request frame that can be used with [Page#handleFileChooser](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-handleFileChooser) operation call.
- *
- * Accepts or cancels an intercepted file chooser dialog.
- * @link [Page#handleFileChooser](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-handleFileChooser) method documentation.
- * @see [PageOperations.handleFileChooser]
- */
-data class HandleFileChooserRequest(
-    /**
-     *
-     */
-    val action: String,
-
-    /**
-     * Array of absolute file paths to set, only respected with `accept` action.
-     */
-    val files: List<String>? = null
 
 )
 
@@ -1738,7 +1707,17 @@ data class DomContentEventFiredEvent(
  */
 data class FileChooserOpenedEvent(
     /**  
-     *  
+     * Id of the frame containing input node.  
+     */  
+    val frameId: FrameId,
+
+    /**  
+     * Input node id.  
+     */  
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId,
+
+    /**  
+     * Input mode.  
      */  
     val mode: String
 
