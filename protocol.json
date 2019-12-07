@@ -4474,8 +4474,8 @@
                         "audioCapture",
                         "backgroundSync",
                         "backgroundFetch",
-                        "clipboardRead",
-                        "clipboardWrite",
+                        "clipboardReadWrite",
+                        "clipboardSanitizedWrite",
                         "durableStorage",
                         "flash",
                         "geolocation",
@@ -4531,6 +4531,12 @@
                             "description": "For \"wake-lock\" permission, must specify type as either \"screen\" or \"system\".",
                             "optional": true,
                             "type": "string"
+                        },
+                        {
+                            "name": "allowWithoutSanitization",
+                            "description": "For \"clipboard\" permission, may specify allowWithoutSanitization.",
+                            "optional": true,
+                            "type": "boolean"
                         }
                     ]
                 },
