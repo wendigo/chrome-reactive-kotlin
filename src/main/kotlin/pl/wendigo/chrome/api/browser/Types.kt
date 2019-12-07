@@ -79,10 +79,10 @@ enum class PermissionType {
     BACKGROUNDSYNC,
     @com.fasterxml.jackson.annotation.JsonProperty("backgroundFetch")
     BACKGROUNDFETCH,
-    @com.fasterxml.jackson.annotation.JsonProperty("clipboardRead")
-    CLIPBOARDREAD,
-    @com.fasterxml.jackson.annotation.JsonProperty("clipboardWrite")
-    CLIPBOARDWRITE,
+    @com.fasterxml.jackson.annotation.JsonProperty("clipboardReadWrite")
+    CLIPBOARDREADWRITE,
+    @com.fasterxml.jackson.annotation.JsonProperty("clipboardSanitizedWrite")
+    CLIPBOARDSANITIZEDWRITE,
     @com.fasterxml.jackson.annotation.JsonProperty("durableStorage")
     DURABLESTORAGE,
     @com.fasterxml.jackson.annotation.JsonProperty("flash")
@@ -157,7 +157,12 @@ data class PermissionDescriptor(
     /**  
      * For "wake-lock" permission, must specify type as either "screen" or "system".  
      */  
-    val type: String? = null
+    val type: String? = null,
+
+    /**  
+     * For "clipboard" permission, may specify allowWithoutSanitization.  
+     */  
+    val allowWithoutSanitization: Boolean? = null
 )
 
 /**
