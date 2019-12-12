@@ -54,6 +54,8 @@ enum class PseudoType {
     BEFORE,
     @com.fasterxml.jackson.annotation.JsonProperty("after")
     AFTER,
+    @com.fasterxml.jackson.annotation.JsonProperty("marker")
+    MARKER,
     @com.fasterxml.jackson.annotation.JsonProperty("backdrop")
     BACKDROP,
     @com.fasterxml.jackson.annotation.JsonProperty("selection")
