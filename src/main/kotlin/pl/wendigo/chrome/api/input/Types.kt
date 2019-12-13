@@ -59,6 +59,26 @@ enum class GestureSourceType {
 }
 
 /**
+ *
+ *
+ * @link [Input#MouseButton](https://chromedevtools.github.io/devtools-protocol/tot/Input#type-MouseButton) type documentation.
+ */
+enum class MouseButton {
+    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    NONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("left")
+    LEFT,
+    @com.fasterxml.jackson.annotation.JsonProperty("middle")
+    MIDDLE,
+    @com.fasterxml.jackson.annotation.JsonProperty("right")
+    RIGHT,
+    @com.fasterxml.jackson.annotation.JsonProperty("back")
+    BACK,
+    @com.fasterxml.jackson.annotation.JsonProperty("forward")
+    FORWARD;
+}
+
+/**
  * UTC time in seconds, counted from January 1, 1970.
  *
  * @link [Input#TimeSinceEpoch](https://chromedevtools.github.io/devtools-protocol/tot/Input#type-TimeSinceEpoch) type documentation.

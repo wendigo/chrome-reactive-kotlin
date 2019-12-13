@@ -10401,6 +10401,18 @@
                     ]
                 },
                 {
+                    "id": "MouseButton",
+                    "type": "string",
+                    "enum": [
+                        "none",
+                        "left",
+                        "middle",
+                        "right",
+                        "back",
+                        "forward"
+                    ]
+                },
+                {
                     "id": "TimeSinceEpoch",
                     "description": "UTC time in seconds, counted from January 1, 1970.",
                     "type": "number"
@@ -10555,15 +10567,7 @@
                             "name": "button",
                             "description": "Mouse button (default: \"none\").",
                             "optional": true,
-                            "type": "string",
-                            "enum": [
-                                "none",
-                                "left",
-                                "middle",
-                                "right",
-                                "back",
-                                "forward"
-                            ]
+                            "$ref": "MouseButton"
                         },
                         {
                             "name": "buttons",
@@ -10666,14 +10670,8 @@
                         },
                         {
                             "name": "button",
-                            "description": "Mouse button.",
-                            "type": "string",
-                            "enum": [
-                                "none",
-                                "left",
-                                "middle",
-                                "right"
-                            ]
+                            "description": "Mouse button. Only \"none\", \"left\", \"right\" are supported.",
+                            "$ref": "MouseButton"
                         },
                         {
                             "name": "timestamp",
