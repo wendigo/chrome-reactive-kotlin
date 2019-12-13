@@ -925,7 +925,12 @@ default domain and path values of the created cookie.
     /**
      * Cookie expiration date, session cookie if not set
      */
-    val expires: TimeSinceEpoch? = null
+    val expires: TimeSinceEpoch? = null,
+
+    /**
+     * Cookie Priority type.
+     */
+    val priority: CookiePriority? = null
 
 )
 /**
