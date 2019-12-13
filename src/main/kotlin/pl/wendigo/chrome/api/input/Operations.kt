@@ -228,7 +228,7 @@ the top of the viewport and Y increases as it proceeds towards the bottom of the
     /**
      * Mouse button (default: "none").
      */
-    val button: String? = null,
+    val button: MouseButton? = null,
 
     /**
      * A number indicating which buttons are pressed on the mouse when a mouse event is triggered.
@@ -316,9 +316,9 @@ data class EmulateTouchFromMouseEventRequest(
     val y: Int,
 
     /**
-     * Mouse button.
+     * Mouse button. Only "none", "left", "right" are supported.
      */
-    val button: String,
+    val button: MouseButton,
 
     /**
      * Time at which the event occurred (default: current time).
