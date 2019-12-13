@@ -166,6 +166,21 @@ enum class CookieSameSite {
 }
 
 /**
+ * Represents the cookie&apos;s &apos;Priority&apos; status:
+https://tools.ietf.org/html/draft-west-cookie-priority-00
+ *
+ * @link [Network#CookiePriority](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CookiePriority) type documentation.
+ */
+enum class CookiePriority {
+    @com.fasterxml.jackson.annotation.JsonProperty("Low")
+    LOW,
+    @com.fasterxml.jackson.annotation.JsonProperty("Medium")
+    MEDIUM,
+    @com.fasterxml.jackson.annotation.JsonProperty("High")
+    HIGH;
+}
+
+/**
  * Timing information for the request.
  *
  * @link [Network#ResourceTiming](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ResourceTiming) type documentation.
@@ -785,7 +800,12 @@ data class Cookie(
     /**  
      * Cookie SameSite type.  
      */  
-    val sameSite: CookieSameSite? = null
+    val sameSite: CookieSameSite? = null,
+
+    /**  
+     * Cookie Priority  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority
 )
 
 /**
@@ -941,7 +961,12 @@ data class CookieParam(
     /**  
      * Cookie expiration date, session cookie if not set  
      */  
-    val expires: TimeSinceEpoch? = null
+    val expires: TimeSinceEpoch? = null,
+
+    /**  
+     * Cookie Priority.  
+     */  
+    val priority: CookiePriority? = null
 )
 
 /**
