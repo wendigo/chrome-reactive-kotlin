@@ -818,7 +818,12 @@ data class GetAppManifestResponse(
     /**  
      * Manifest content.  
      */  
-    val data: String? = null
+    val data: String? = null,
+
+    /**  
+     * Parsed manifest properties  
+     */  
+    val parsed: AppManifestParsedProperties? = null
 
 )
 
