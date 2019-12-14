@@ -123,6 +123,15 @@ iframes, shadow DOM, external resources, and element-inline styles.
     fun getInstallabilityErrors() = connection.request("Page.getInstallabilityErrors", null, GetInstallabilityErrorsResponse::class.java)
 
     /**
+     *
+     *
+     * @link Protocol [Page#getManifestIcons](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getManifestIcons) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getManifestIcons() = connection.request("Page.getManifestIcons", null, GetManifestIconsResponse::class.java)
+
+    /**
      * Returns all browser cookies. Depending on the backend support, will return detailed cookie
 information in the `cookies` field.
      *
@@ -840,6 +849,22 @@ data class GetInstallabilityErrorsResponse(
      *  
      */  
     val errors: List<String>
+
+)
+
+/**
+ * Represents response frame that is returned from [Page#getManifestIcons](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getManifestIcons) operation call.
+ *
+ *
+  
+ * @link [Page#getManifestIcons](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getManifestIcons) method documentation.
+ * @see [PageOperations.getManifestIcons]
+ */
+data class GetManifestIconsResponse(
+    /**  
+     *  
+     */  
+    val primaryIcon: String? = null
 
 )
 
