@@ -308,6 +308,19 @@ data class AppManifestError(
 )
 
 /**
+ * Parsed app manifest properties.
+ *
+ * @link [Page#AppManifestParsedProperties](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-AppManifestParsedProperties) type documentation.
+ */
+
+data class AppManifestParsedProperties(
+    /**  
+     * Computed scope value  
+     */  
+    val scope: String
+)
+
+/**
  * Layout viewport position and dimensions.
  *
  * @link [Page#LayoutViewport](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-LayoutViewport) type documentation.
