@@ -13331,6 +13331,7 @@
                         {
                             "name": "priority",
                             "description": "Cookie Priority type.",
+                            "experimental": true,
                             "optional": true,
                             "$ref": "CookiePriority"
                         }

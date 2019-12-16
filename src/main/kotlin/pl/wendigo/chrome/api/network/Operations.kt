@@ -930,7 +930,7 @@ default domain and path values of the created cookie.
     /**
      * Cookie Priority type.
      */
-    val priority: CookiePriority? = null
+    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority? = null
 
 )
 /**
