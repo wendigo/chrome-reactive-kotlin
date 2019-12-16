@@ -966,7 +966,7 @@ data class CookieParam(
     /**  
      * Cookie Priority.  
      */  
-    val priority: CookiePriority? = null
+    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority? = null
 )
 
 /**
