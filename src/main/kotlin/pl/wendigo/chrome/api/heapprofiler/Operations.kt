@@ -285,7 +285,12 @@ data class StopTrackingHeapObjectsRequest(
      * If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken
 when the tracking is stopped.
      */
-    val reportProgress: Boolean? = null
+    val reportProgress: Boolean? = null,
+
+    /**
+     *
+     */
+    val treatGlobalObjectsAsRoots: Boolean? = null
 
 )
 
@@ -300,7 +305,12 @@ data class TakeHeapSnapshotRequest(
     /**
      * If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken.
      */
-    val reportProgress: Boolean? = null
+    val reportProgress: Boolean? = null,
+
+    /**
+     * If true, a raw snapshot without artifical roots will be generated
+     */
+    val treatGlobalObjectsAsRoots: Boolean? = null
 
 )
 
