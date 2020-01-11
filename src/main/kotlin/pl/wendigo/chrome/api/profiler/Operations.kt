@@ -49,7 +49,7 @@ counters.
      *
      * @link Protocol [Profiler#startPreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startPreciseCoverage) method documentation.
      */
-    fun startPreciseCoverage(input: StartPreciseCoverageRequest) = connection.request("Profiler.startPreciseCoverage", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startPreciseCoverage(input: StartPreciseCoverageRequest) = connection.request("Profiler.startPreciseCoverage", input, StartPreciseCoverageResponse::class.java)
 
     /**
      * Enable type profile.
@@ -201,6 +201,23 @@ data class StartPreciseCoverageRequest(
     val detailed: Boolean? = null
 
 )
+/**
+ * Represents response frame that is returned from [Profiler#startPreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startPreciseCoverage) operation call.
+ * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code
+coverage may be incomplete. Enabling prevents running optimized code and resets execution
+counters.
+ *
+  
+ * @link [Profiler#startPreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startPreciseCoverage) method documentation.
+ * @see [ProfilerOperations.startPreciseCoverage]
+ */
+data class StartPreciseCoverageResponse(
+    /**  
+     * The timestamp (in milliseconds) the coverage update was taken in the backend.  
+     */  
+    val timestamp: Double
+
+)
 
 /**
  * Represents response frame that is returned from [Profiler#stop](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-stop) operation call.
@@ -231,7 +248,12 @@ data class TakePreciseCoverageResponse(
     /**  
      * Coverage data for the current isolate.  
      */  
-    val result: List<ScriptCoverage>
+    val result: List<ScriptCoverage>,
+
+    /**  
+     * The timestamp (in milliseconds) the coverage update was taken in the backend.  
+     */  
+    val timestamp: Double
 
 )
 
