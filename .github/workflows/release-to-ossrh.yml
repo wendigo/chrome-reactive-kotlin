@@ -14,6 +14,9 @@ jobs:
       - name: Tests
         run: ./gradlew clean test
       - name: Populate gradle.properties
-        run: echo -e "nexusUsername=${{ secrets.SONATYPE_USER }}\nnexusPassword=${{ secrets.SONATYPE_PASSWORD }}\nsigningKey=${{ secrets.SIGNING_KEY }}\nsigningKeyPassword=${{ secrets.SIGNING_PASSWORD }}\n" > gradle.properties
+        run: echo -e "nexusUsername=${{ secrets.SONATYPE_USER }}\nnexusPassword=${{ secrets.SONATYPE_PASSWORD }}" > gradle.properties
       - name: Release to Sonatype OSS
         run: bash deploy/deploy.sh
+	env:
+	   ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
