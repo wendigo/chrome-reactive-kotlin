@@ -213,7 +213,7 @@ counters.
  */
 data class StartPreciseCoverageResponse(
     /**  
-     * The timestamp (in milliseconds) the coverage update was taken in the backend.  
+     * Monotonically increasing time (in seconds) when the coverage update was taken in the backend.  
      */  
     val timestamp: Double
 
@@ -251,7 +251,7 @@ data class TakePreciseCoverageResponse(
     val result: List<ScriptCoverage>,
 
     /**  
-     * The timestamp (in milliseconds) the coverage update was taken in the backend.  
+     * Monotonically increasing time (in seconds) when the coverage update was taken in the backend.  
      */  
     val timestamp: Double
 
