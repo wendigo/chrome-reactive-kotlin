@@ -146,6 +146,7 @@ publishing {
 }
 
 signing {
+    useInMemoryPgpKeys(signingKey, signingKeyPassword)
     sign publishing.publications.mavenJava
 }
 
