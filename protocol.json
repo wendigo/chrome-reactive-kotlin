@@ -6013,6 +6013,11 @@
                             "items": {
                                 "$ref": "RuleUsage"
                             }
+                        },
+                        {
+                            "name": "timestamp",
+                            "description": "Monotonically increasing time, in seconds.",
+                            "type": "number"
                         }
                     ]
                 }
