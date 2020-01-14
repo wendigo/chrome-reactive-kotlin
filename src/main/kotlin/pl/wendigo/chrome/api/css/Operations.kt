@@ -820,7 +820,12 @@ data class TakeCoverageDeltaResponse(
     /**  
      *  
      */  
-    val coverage: List<RuleUsage>
+    val coverage: List<RuleUsage>,
+
+    /**  
+     * Monotonically increasing time, in seconds.  
+     */  
+    val timestamp: Double
 
 )
 
