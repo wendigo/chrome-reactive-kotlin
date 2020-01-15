@@ -16,7 +16,7 @@ jobs:
       - name: Populate gradle.properties
         run: echo -e "nexusUsername=${{ secrets.SONATYPE_USER }}\nnexusPassword=${{ secrets.SONATYPE_PASSWORD }}" > gradle.properties
       - name: Release to Sonatype OSS
-        run: bash deploy/deploy.sh
+        run: . deploy/deploy.sh
         env:
            SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
            SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
