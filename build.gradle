@@ -69,7 +69,7 @@ dependencies {
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.3.1'
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: kotlinVersion
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: kotlinVersion
-    compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.12'
+    compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.17'
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
