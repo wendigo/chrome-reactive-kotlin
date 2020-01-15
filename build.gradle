@@ -20,7 +20,7 @@ buildscript {
         classpath group: 'com.github.ben-manes', name: 'gradle-versions-plugin', version: '0.17.0'
         classpath group: 'org.jmailen.gradle', name: 'kotlinter-gradle', version: '2.1.1'
         classpath group: 'de.marcphilipp.gradle', name: 'nexus-publish-plugin', version: '0.4.0'
-        classpath group: 'org.jetbrains.dokka', name: 'dokka-gradle-plugin', version: '0.9.18'
+        classpath group: 'org.jetbrains.dokka', name: 'dokka-gradle-plugin', version: '0.10.0'
     }
 }
 
