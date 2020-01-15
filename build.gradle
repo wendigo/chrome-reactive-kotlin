@@ -87,16 +87,20 @@ task sourcesJar(type: Jar) {
 
 task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
     outputFormat = 'html'
-    jdkVersion = 8
-    includes = ['package.md', 'domains.md']
-    samples = ['samples/basic.kt']
-    reportUndocumented = true
-    linkMapping {
-        dir = "src/main/kotlin"
-        url = "https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin"
-        suffix = "#L"
-    }
     outputDirectory = javadoc.destinationDir
+
+    configuration {
+        jdkVersion = 8
+        includes = ['package.md', 'domains.md']
+        samples = ['samples/basic.kt']
+        reportUndocumented = true
+
+        sourceLink {
+            path = "src/main/kotlin"
+            url = "https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin"
+            lineSuffix = "#L"
+        }
+    }
 }
 
 task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
