@@ -1859,7 +1859,7 @@ data class FrameScheduledNavigationEvent(
     /**  
      * The reason for the navigation.  
      */  
-    val reason: String,
+    val reason: ClientNavigationReason,
 
     /**  
      * The destination URL for the scheduled navigation.  

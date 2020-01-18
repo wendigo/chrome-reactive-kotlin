@@ -147,15 +147,12 @@ data class StartRequest(
     /**
      * Category/tag filter
      */
-    @Deprecated(message = "")
-    val categories: String? = null,
+    @Deprecated(message = "") val categories: String? = null,
 
     /**
      * Tracing options
      */
-    @Deprecated(message = "")
-
-    val options: String? = null,
+    @Deprecated(message = "") val options: String? = null,
 
     /**
      * If set, the agent will issue bufferUsage events at this interval, specified in milliseconds

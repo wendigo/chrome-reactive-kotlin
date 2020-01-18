@@ -433,9 +433,7 @@ data class DetachFromTargetRequest(
     /**
      * Deprecated.
      */
-    @Deprecated(message = "")
-
-    val targetId: TargetID? = null
+    @Deprecated(message = "") val targetId: TargetID? = null
 
 )
 
@@ -524,9 +522,7 @@ data class SendMessageToTargetRequest(
     /**
      * Deprecated.
      */
-    @Deprecated(message = "")
-
-    val targetId: TargetID? = null
+    @Deprecated(message = "") val targetId: TargetID? = null
 
 )
 

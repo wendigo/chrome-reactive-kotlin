@@ -1324,8 +1324,7 @@ data class ResolveNodeResponse(
     /**  
      * JavaScript object wrapper for given node.  
      */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("object")
-    val _object: pl.wendigo.chrome.api.runtime.RemoteObject
+    @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: pl.wendigo.chrome.api.runtime.RemoteObject
 
 )
 

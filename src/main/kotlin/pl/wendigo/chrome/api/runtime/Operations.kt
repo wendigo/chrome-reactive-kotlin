@@ -1021,8 +1021,7 @@ data class InspectRequestedEvent(
     /**  
      *  
      */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("object")
-    val _object: RemoteObject,
+    @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: RemoteObject,
 
     /**  
      *  

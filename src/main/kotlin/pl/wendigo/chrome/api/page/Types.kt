@@ -509,5 +509,7 @@ enum class ClientNavigationReason {
     @com.fasterxml.jackson.annotation.JsonProperty("pageBlockInterstitial")
     PAGEBLOCKINTERSTITIAL,
     @com.fasterxml.jackson.annotation.JsonProperty("reload")
-    RELOAD;
+    RELOAD,
+    @com.fasterxml.jackson.annotation.JsonProperty("anchorClick")
+    ANCHORCLICK;
 }

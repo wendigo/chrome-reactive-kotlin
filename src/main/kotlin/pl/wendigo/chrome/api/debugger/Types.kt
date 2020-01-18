@@ -97,9 +97,7 @@ data class CallFrame(
     /**  
      * `this` object for this call frame.  
      */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("this")
-
-    val _this: pl.wendigo.chrome.api.runtime.RemoteObject,
+    @get:com.fasterxml.jackson.annotation.JsonProperty("this") val _this: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      * The value being returned, if the function is at return point.  
@@ -124,9 +122,7 @@ data class Scope(
      object; for the rest of the scopes, it is artificial transient object enumerating scope  
      variables as its properties.  
      */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("object")
-
-    val _object: pl.wendigo.chrome.api.runtime.RemoteObject,
+    @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      *  
