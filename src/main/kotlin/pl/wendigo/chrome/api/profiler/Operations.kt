@@ -139,6 +139,14 @@ coverage needs to have started.
     fun consoleProfileStarted(): io.reactivex.Flowable<ConsoleProfileStartedEvent> = connection.events("Profiler.consoleProfileStarted", ConsoleProfileStartedEvent::class.java)
 
     /**
+     *  Reports coverage delta since the last poll (either from an event like this, or from
+`takePreciseCoverage` for the current isolate. May only be sent if precise code
+coverage has been started. This event can be trigged by the embedder to, for example,
+trigger collection of coverage data immediatelly at a certain point in time.
+     */
+    fun preciseCoverageDeltaUpdate(): io.reactivex.Flowable<PreciseCoverageDeltaUpdateEvent> = connection.events("Profiler.preciseCoverageDeltaUpdate", PreciseCoverageDeltaUpdateEvent::class.java)
+
+    /**
      * Returns flowable capturing all Profiler domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
@@ -339,3 +347,29 @@ data class ConsoleProfileStartedEvent(
     val title: String? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Profiler", name = "consoleProfileStarted")
+
+/**
+ * Reports coverage delta since the last poll (either from an event like this, or from
+`takePreciseCoverage` for the current isolate. May only be sent if precise code
+coverage has been started. This event can be trigged by the embedder to, for example,
+trigger collection of coverage data immediatelly at a certain point in time.
+ *
+ * @link [Profiler#preciseCoverageDeltaUpdate](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#event-preciseCoverageDeltaUpdate) event documentation.
+ */
+data class PreciseCoverageDeltaUpdateEvent(
+    /**  
+     * Monotonically increasing time (in seconds) when the coverage update was taken in the backend.  
+     */  
+    val timestamp: Double,
+
+    /**  
+     * Identifier for distinguishing coverage events.  
+     */  
+    val occassion: String,
+
+    /**  
+     * Coverage data for the current isolate.  
+     */  
+    val result: List<ScriptCoverage>
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Profiler", name = "preciseCoverageDeltaUpdate")

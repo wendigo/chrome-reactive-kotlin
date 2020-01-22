@@ -167,6 +167,7 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
         connection.addEventMapping("Performance.metrics", pl.wendigo.chrome.api.performance.MetricsEvent::class.java)
         connection.addEventMapping("Profiler.consoleProfileFinished", pl.wendigo.chrome.api.profiler.ConsoleProfileFinishedEvent::class.java)
         connection.addEventMapping("Profiler.consoleProfileStarted", pl.wendigo.chrome.api.profiler.ConsoleProfileStartedEvent::class.java)
+        connection.addEventMapping("Profiler.preciseCoverageDeltaUpdate", pl.wendigo.chrome.api.profiler.PreciseCoverageDeltaUpdateEvent::class.java)
         connection.addEventMapping("Runtime.bindingCalled", pl.wendigo.chrome.api.runtime.BindingCalledEvent::class.java)
         connection.addEventMapping("Runtime.consoleAPICalled", pl.wendigo.chrome.api.runtime.ConsoleAPICalledEvent::class.java)
         connection.addEventMapping("Runtime.exceptionRevoked", pl.wendigo.chrome.api.runtime.ExceptionRevokedEvent::class.java)
