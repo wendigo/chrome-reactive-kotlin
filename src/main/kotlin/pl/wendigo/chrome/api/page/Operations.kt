@@ -848,7 +848,12 @@ data class GetInstallabilityErrorsResponse(
     /**  
      *  
      */  
-    val errors: List<String>
+    val errors: List<String>,
+
+    /**  
+     *  
+     */  
+    val installabilityErrors: List<InstallabilityError>
 
 )
 

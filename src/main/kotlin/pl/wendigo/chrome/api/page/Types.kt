@@ -513,3 +513,39 @@ enum class ClientNavigationReason {
     @com.fasterxml.jackson.annotation.JsonProperty("anchorClick")
     ANCHORCLICK;
 }
+
+/**
+ *
+ *
+ * @link [Page#InstallabilityErrorArgument](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-InstallabilityErrorArgument) type documentation.
+ */
+
+data class InstallabilityErrorArgument(
+    /**  
+     * Argument name (e.g. name:'minimum-icon-size-in-pixels').  
+     */  
+    val name: String,
+
+    /**  
+     * Argument value (e.g. value:'64').  
+     */  
+    val value: String
+)
+
+/**
+ * The installability error
+ *
+ * @link [Page#InstallabilityError](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-InstallabilityError) type documentation.
+ */
+
+data class InstallabilityError(
+    /**  
+     * The error id (e.g. 'manifest-missing-suitable-icon').  
+     */  
+    val errorId: String,
+
+    /**  
+     * The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels', value:'64'}).  
+     */  
+    val errorArguments: List<InstallabilityErrorArgument>
+)
