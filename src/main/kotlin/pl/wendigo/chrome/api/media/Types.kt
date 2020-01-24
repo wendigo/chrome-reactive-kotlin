@@ -40,10 +40,10 @@ data class PlayerProperty(
  * @link [Media#PlayerEventType](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-PlayerEventType) type documentation.
  */
 enum class PlayerEventType {
-    @com.fasterxml.jackson.annotation.JsonProperty("playbackEvent")
-    PLAYBACKEVENT,
-    @com.fasterxml.jackson.annotation.JsonProperty("systemEvent")
-    SYSTEMEVENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("errorEvent")
+    ERROREVENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("triggeredEvent")
+    TRIGGEREDEVENT,
     @com.fasterxml.jackson.annotation.JsonProperty("messageEvent")
     MESSAGEEVENT;
 }
