@@ -116,7 +116,12 @@ data class CompositingReasonsResponse(
     /**  
      * A list of strings specifying reasons for the given layer to become composited.  
      */  
-    val compositingReasons: List<String>
+    val compositingReasons: List<String>,
+
+    /**  
+     * A list of strings specifying reason IDs for the given layer to become composited.  
+     */  
+    val compositingReasonIds: List<String>
 
 )
 
