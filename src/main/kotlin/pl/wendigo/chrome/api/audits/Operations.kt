@@ -17,6 +17,26 @@ applies to images.
     fun getEncodedResponse(input: GetEncodedResponseRequest) = connection.request("Audits.getEncodedResponse", input, GetEncodedResponseResponse::class.java)
 
     /**
+     * Disables issues domain, prevents further issues from being reported to the client.
+     *
+     * @link Protocol [Audits#disable](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-disable) method documentation.
+     */
+    fun disable() = connection.request("Audits.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Enables issues domain, sends the issues collected so far to the client by means of the
+`issueAdded` event.
+     *
+     * @link Protocol [Audits#enable](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-enable) method documentation.
+     */
+    fun enable() = connection.request("Audits.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     *  Returns observable capturing all Audits.issueAdded events.
+     */
+    fun issueAdded(): io.reactivex.Flowable<IssueAddedEvent> = connection.events("Audits.issueAdded", IssueAddedEvent::class.java)
+
+    /**
      * Returns flowable capturing all Audits domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
@@ -81,3 +101,16 @@ data class GetEncodedResponseResponse(
     val encodedSize: Int
 
 )
+
+/**
+ *
+ *
+ * @link [Audits#issueAdded](https://chromedevtools.github.io/devtools-protocol/tot/Audits#event-issueAdded) event documentation.
+ */
+data class IssueAddedEvent(
+    /**  
+     *  
+     */  
+    val issue: Issue
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Audits", name = "issueAdded")

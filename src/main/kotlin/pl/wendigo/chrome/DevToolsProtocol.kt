@@ -66,6 +66,7 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
         connection.addEventMapping("Animation.animationStarted", pl.wendigo.chrome.api.animation.AnimationStartedEvent::class.java)
         connection.addEventMapping("ApplicationCache.applicationCacheStatusUpdated", pl.wendigo.chrome.api.applicationcache.ApplicationCacheStatusUpdatedEvent::class.java)
         connection.addEventMapping("ApplicationCache.networkStateUpdated", pl.wendigo.chrome.api.applicationcache.NetworkStateUpdatedEvent::class.java)
+        connection.addEventMapping("Audits.issueAdded", pl.wendigo.chrome.api.audits.IssueAddedEvent::class.java)
         connection.addEventMapping("BackgroundService.backgroundServiceEventReceived", pl.wendigo.chrome.api.backgroundservice.BackgroundServiceEventReceivedEvent::class.java)
         connection.addEventMapping("BackgroundService.recordingStateChanged", pl.wendigo.chrome.api.backgroundservice.RecordingStateChangedEvent::class.java)
         connection.addEventMapping("CSS.fontsUpdated", pl.wendigo.chrome.api.css.FontsUpdatedEvent::class.java)
