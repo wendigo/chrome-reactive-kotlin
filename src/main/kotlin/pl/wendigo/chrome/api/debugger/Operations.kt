@@ -104,7 +104,7 @@ the same.
      *
      * @link Protocol [Debugger#resume](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-resume) method documentation.
      */
-    fun resume() = connection.request("Debugger.resume", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun resume(input: ResumeRequest) = connection.request("Debugger.resume", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Searches for given string in script content.
@@ -616,6 +616,25 @@ data class RestartFrameResponse(
      * Async stack trace, if any.  
      */  
     val asyncStackTraceId: pl.wendigo.chrome.api.runtime.StackTraceId? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Debugger#resume](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-resume) operation call.
+ *
+ * Resumes JavaScript execution.
+ * @link [Debugger#resume](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-resume) method documentation.
+ * @see [DebuggerOperations.resume]
+ */
+data class ResumeRequest(
+    /**
+     * Set to true to terminate execution upon resuming execution. In contrast
+to Runtime.terminateExecution, this will allows to execute further
+JavaScript (i.e. via evaluation) until execution of the paused code
+is actually resumed, at which point termination is triggered.
+If execution is currently not paused, this parameter has no effect.
+     */
+    val terminateOnResume: Boolean? = null
 
 )
 
