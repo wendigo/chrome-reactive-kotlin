@@ -60,7 +60,7 @@ one.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun createBrowserContext() = connection.request("Target.createBrowserContext", null, CreateBrowserContextResponse::class.java)
+    fun createBrowserContext(input: CreateBrowserContextRequest) = connection.request("Target.createBrowserContext", input, CreateBrowserContextResponse::class.java)
 
     /**
      * Returns all browser contexts created with `Target.createBrowserContext` method.
@@ -322,6 +322,21 @@ data class ExposeDevToolsProtocolRequest(
 
 )
 
+/**
+ * Represents request frame that can be used with [Target#createBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createBrowserContext) operation call.
+ *
+ * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than
+one.
+ * @link [Target#createBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createBrowserContext) method documentation.
+ * @see [TargetOperations.createBrowserContext]
+ */
+data class CreateBrowserContextRequest(
+    /**
+     * If specified, disposes this context when debugging session disconnects.
+     */
+    val disposeOnDetach: Boolean? = null
+
+)
 /**
  * Represents response frame that is returned from [Target#createBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createBrowserContext) operation call.
  * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than

@@ -15313,16 +15313,7 @@
                     "experimental": true,
                     "returns": [
                         {
-                            "name": "errors",
-                            "deprecated": true,
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
                             "name": "installabilityErrors",
-                            "experimental": true,
                             "type": "array",
                             "items": {
                                 "$ref": "InstallabilityError"
@@ -18016,6 +18007,14 @@
                     "name": "createBrowserContext",
                     "description": "Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than\none.",
                     "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "disposeOnDetach",
+                            "description": "If specified, disposes this context when debugging session disconnects.",
+                            "optional": true,
+                            "type": "boolean"
+                        }
+                    ],
                     "returns": [
                         {
                             "name": "browserContextId",
