@@ -40,6 +40,17 @@ objects, can be used for automation.
     fun describeNode(input: DescribeNodeRequest) = connection.request("DOM.describeNode", input, DescribeNodeResponse::class.java)
 
     /**
+     * Scrolls the specified rect of the given node into view if not already visible.
+Note: exactly one between nodeId, backendNodeId and objectId should be passed
+to identify the node.
+     *
+     * @link Protocol [DOM#scrollIntoViewIfNeeded](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-scrollIntoViewIfNeeded) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun scrollIntoViewIfNeeded(input: ScrollIntoViewIfNeededRequest) = connection.request("DOM.scrollIntoViewIfNeeded", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Disables DOM agent for the given page.
      *
      * @link Protocol [DOM#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-disable) method documentation.
@@ -572,6 +583,39 @@ data class DescribeNodeResponse(
      * Node description.  
      */  
     val node: Node
+
+)
+
+/**
+ * Represents request frame that can be used with [DOM#scrollIntoViewIfNeeded](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-scrollIntoViewIfNeeded) operation call.
+ *
+ * Scrolls the specified rect of the given node into view if not already visible.
+Note: exactly one between nodeId, backendNodeId and objectId should be passed
+to identify the node.
+ * @link [DOM#scrollIntoViewIfNeeded](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-scrollIntoViewIfNeeded) method documentation.
+ * @see [DOMOperations.scrollIntoViewIfNeeded]
+ */
+data class ScrollIntoViewIfNeededRequest(
+    /**
+     * Identifier of the node.
+     */
+    val nodeId: NodeId? = null,
+
+    /**
+     * Identifier of the backend node.
+     */
+    val backendNodeId: BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node wrapper.
+     */
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null,
+
+    /**
+     * The rect to be scrolled into view, relative to the node's border box, in CSS pixels.
+When omitted, center of the node will be used, similar to Element.scrollIntoView.
+     */
+    val rect: Rect? = null
 
 )
 
