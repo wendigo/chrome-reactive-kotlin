@@ -4,14 +4,7 @@ import java.io.Closeable
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.DevToolsProtocol
-import pl.wendigo.chrome.api.target.AttachToTargetRequest
-import pl.wendigo.chrome.api.target.CloseTargetRequest
-import pl.wendigo.chrome.api.target.CreateTargetRequest
-import pl.wendigo.chrome.api.target.DisposeBrowserContextRequest
-import pl.wendigo.chrome.api.target.GetTargetInfoRequest
-import pl.wendigo.chrome.api.target.SetDiscoverTargetsRequest
-import pl.wendigo.chrome.api.target.TargetID
-import pl.wendigo.chrome.api.target.TargetInfo
+import pl.wendigo.chrome.api.target.*
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 
@@ -99,7 +92,7 @@ class Manager(
 
         val browserContextId = when (incognito) {
             true -> await {
-                api.Target.createBrowserContext()
+                api.Target.createBrowserContext(CreateBrowserContextRequest(disposeOnDetach = true))
             }.browserContextId
             false -> null
         }
