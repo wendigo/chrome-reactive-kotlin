@@ -157,6 +157,15 @@ the current virtual time policy.  Note this supersedes any previous time budget.
     fun setVirtualTimePolicy(input: SetVirtualTimePolicyRequest) = connection.request("Emulation.setVirtualTimePolicy", input, SetVirtualTimePolicyResponse::class.java)
 
     /**
+     * Overrides default host system locale with the specified one.
+     *
+     * @link Protocol [Emulation#setLocaleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setLocaleOverride) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setLocaleOverride(input: SetLocaleOverrideRequest) = connection.request("Emulation.setLocaleOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Overrides default host system timezone with the specified one.
      *
      * @link Protocol [Emulation#setTimezoneOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setTimezoneOverride) method documentation.
@@ -549,6 +558,22 @@ data class SetVirtualTimePolicyResponse(
      * Absolute timestamp at which virtual time was first enabled (up time in milliseconds).  
      */  
     val virtualTimeTicksBase: Double
+
+)
+
+/**
+ * Represents request frame that can be used with [Emulation#setLocaleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setLocaleOverride) operation call.
+ *
+ * Overrides default host system locale with the specified one.
+ * @link [Emulation#setLocaleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setLocaleOverride) method documentation.
+ * @see [EmulationOperations.setLocaleOverride]
+ */
+data class SetLocaleOverrideRequest(
+    /**
+     * ICU style C locale (e.g. "en_US"). If not specified or empty, disables the override and
+restores default host system locale.
+     */
+    val locale: String? = null
 
 )
 

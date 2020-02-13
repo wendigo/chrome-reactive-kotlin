@@ -206,7 +206,12 @@ data class StartPreciseCoverageRequest(
     /**
      * Collect block-based coverage.
      */
-    val detailed: Boolean? = null
+    val detailed: Boolean? = null,
+
+    /**
+     * Allow the backend to send updates on its own initiative
+     */
+    val allowTriggeredUpdates: Boolean? = null
 
 )
 /**
