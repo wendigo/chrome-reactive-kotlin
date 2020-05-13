@@ -52,3 +52,64 @@ enum class VirtualTimePolicy {
     @com.fasterxml.jackson.annotation.JsonProperty("pauseIfNetworkFetchesPending")
     PAUSEIFNETWORKFETCHESPENDING;
 }
+
+/**
+ * Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints
+ *
+ * @link [Emulation#UserAgentBrandVersion](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-UserAgentBrandVersion) type documentation.
+ */
+
+data class UserAgentBrandVersion(
+    /**  
+     *  
+     */  
+    val brand: String,
+
+    /**  
+     *  
+     */  
+    val version: String
+)
+
+/**
+ * Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints
+ *
+ * @link [Emulation#UserAgentMetadata](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-UserAgentMetadata) type documentation.
+ */
+
+data class UserAgentMetadata(
+    /**  
+     *  
+     */  
+    val brands: List<UserAgentBrandVersion>,
+
+    /**  
+     *  
+     */  
+    val fullVersion: String,
+
+    /**  
+     *  
+     */  
+    val platform: String,
+
+    /**  
+     *  
+     */  
+    val platformVersion: String,
+
+    /**  
+     *  
+     */  
+    val architecture: String,
+
+    /**  
+     *  
+     */  
+    val model: String,
+
+    /**  
+     *  
+     */  
+    val mobile: Boolean
+)

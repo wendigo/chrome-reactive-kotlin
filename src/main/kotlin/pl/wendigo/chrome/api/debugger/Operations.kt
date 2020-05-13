@@ -37,6 +37,15 @@ enabled until the result for this command is received.
     fun evaluateOnCallFrame(input: EvaluateOnCallFrameRequest) = connection.request("Debugger.evaluateOnCallFrame", input, EvaluateOnCallFrameResponse::class.java)
 
     /**
+     * Execute a Wasm Evaluator module on a given call frame.
+     *
+     * @link Protocol [Debugger#executeWasmEvaluator](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-executeWasmEvaluator) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun executeWasmEvaluator(input: ExecuteWasmEvaluatorRequest) = connection.request("Debugger.executeWasmEvaluator", input, ExecuteWasmEvaluatorResponse::class.java)
+
+    /**
      * Returns possible locations for breakpoint. scriptId in start and end range locations should be
 the same.
      *
@@ -399,6 +408,51 @@ execution. Overrides `setPauseOnException` state.
  * @see [DebuggerOperations.evaluateOnCallFrame]
  */
 data class EvaluateOnCallFrameResponse(
+    /**  
+     * Object wrapper for the evaluation result.  
+     */  
+    val result: pl.wendigo.chrome.api.runtime.RemoteObject,
+
+    /**  
+     * Exception details.  
+     */  
+    val exceptionDetails: pl.wendigo.chrome.api.runtime.ExceptionDetails? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Debugger#executeWasmEvaluator](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-executeWasmEvaluator) operation call.
+ *
+ * Execute a Wasm Evaluator module on a given call frame.
+ * @link [Debugger#executeWasmEvaluator](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-executeWasmEvaluator) method documentation.
+ * @see [DebuggerOperations.executeWasmEvaluator]
+ */
+data class ExecuteWasmEvaluatorRequest(
+    /**
+     * WebAssembly call frame identifier to evaluate on.
+     */
+    val callFrameId: CallFrameId,
+
+    /**
+     * Code of the evaluator module.
+     */
+    val evaluator: String,
+
+    /**
+     * Terminate execution after timing out (number of milliseconds).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val timeout: pl.wendigo.chrome.api.runtime.TimeDelta? = null
+
+)
+/**
+ * Represents response frame that is returned from [Debugger#executeWasmEvaluator](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-executeWasmEvaluator) operation call.
+ * Execute a Wasm Evaluator module on a given call frame.
+ *
+  
+ * @link [Debugger#executeWasmEvaluator](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-executeWasmEvaluator) method documentation.
+ * @see [DebuggerOperations.executeWasmEvaluator]
+ */
+data class ExecuteWasmEvaluatorResponse(
     /**  
      * Object wrapper for the evaluation result.  
      */  
@@ -1223,7 +1277,17 @@ data class ScriptFailedToParseEvent(
     /**  
      * JavaScript top stack frame of where the script parsed event was triggered if available.  
      */  
-    val stackTrace: pl.wendigo.chrome.api.runtime.StackTrace? = null
+    val stackTrace: pl.wendigo.chrome.api.runtime.StackTrace? = null,
+
+    /**  
+     * If the scriptLanguage is WebAssembly, the code section offset in the module.  
+     */  
+    val codeOffset: Int? = null,
+
+    /**  
+     * The language of the script.  
+     */  
+    val scriptLanguage: pl.wendigo.chrome.api.debugger.ScriptLanguage? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Debugger", name = "scriptFailedToParse")
 
@@ -1307,6 +1371,21 @@ data class ScriptParsedEvent(
     /**  
      * JavaScript top stack frame of where the script parsed event was triggered if available.  
      */  
-    val stackTrace: pl.wendigo.chrome.api.runtime.StackTrace? = null
+    val stackTrace: pl.wendigo.chrome.api.runtime.StackTrace? = null,
+
+    /**  
+     * If the scriptLanguage is WebAssembly, the code section offset in the module.  
+     */  
+    val codeOffset: Int? = null,
+
+    /**  
+     * The language of the script.  
+     */  
+    val scriptLanguage: pl.wendigo.chrome.api.debugger.ScriptLanguage? = null,
+
+    /**  
+     * If the scriptLanguage is WebASsembly, the source of debug symbols for the module.  
+     */  
+    val debugSymbols: pl.wendigo.chrome.api.debugger.DebugSymbols? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Debugger", name = "scriptParsed")

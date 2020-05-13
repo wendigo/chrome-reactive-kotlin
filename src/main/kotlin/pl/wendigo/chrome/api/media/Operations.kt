@@ -35,6 +35,16 @@ congestion. If batched, events must ALWAYS be in chronological order.
     fun playerEventsAdded(): io.reactivex.Flowable<PlayerEventsAddedEvent> = connection.events("Media.playerEventsAdded", PlayerEventsAddedEvent::class.java)
 
     /**
+     *  Send a list of any messages that need to be delivered.
+     */
+    fun playerMessagesLogged(): io.reactivex.Flowable<PlayerMessagesLoggedEvent> = connection.events("Media.playerMessagesLogged", PlayerMessagesLoggedEvent::class.java)
+
+    /**
+     *  Send a list of any errors that need to be delivered.
+     */
+    fun playerErrorsRaised(): io.reactivex.Flowable<PlayerErrorsRaisedEvent> = connection.events("Media.playerErrorsRaised", PlayerErrorsRaisedEvent::class.java)
+
+    /**
      *  Called whenever a player is created, or when a new agent joins and recieves
 a list of active players. If an agent is restored, it will recieve the full
 list of player ids and all events again.
@@ -88,6 +98,42 @@ data class PlayerEventsAddedEvent(
     val events: List<PlayerEvent>
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Media", name = "playerEventsAdded")
+
+/**
+ * Send a list of any messages that need to be delivered.
+ *
+ * @link [Media#playerMessagesLogged](https://chromedevtools.github.io/devtools-protocol/tot/Media#event-playerMessagesLogged) event documentation.
+ */
+data class PlayerMessagesLoggedEvent(
+    /**  
+     *  
+     */  
+    val playerId: PlayerId,
+
+    /**  
+     *  
+     */  
+    val messages: List<PlayerMessage>
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Media", name = "playerMessagesLogged")
+
+/**
+ * Send a list of any errors that need to be delivered.
+ *
+ * @link [Media#playerErrorsRaised](https://chromedevtools.github.io/devtools-protocol/tot/Media#event-playerErrorsRaised) event documentation.
+ */
+data class PlayerErrorsRaisedEvent(
+    /**  
+     *  
+     */  
+    val playerId: PlayerId,
+
+    /**  
+     *  
+     */  
+    val errors: List<PlayerError>
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Media", name = "playerErrorsRaised")
 
 /**
  * Called whenever a player is created, or when a new agent joins and recieves

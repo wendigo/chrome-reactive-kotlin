@@ -517,6 +517,22 @@ enum class ClientNavigationReason {
 /**
  *
  *
+ * @link [Page#ClientNavigationDisposition](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-ClientNavigationDisposition) type documentation.
+ */
+enum class ClientNavigationDisposition {
+    @com.fasterxml.jackson.annotation.JsonProperty("currentTab")
+    CURRENTTAB,
+    @com.fasterxml.jackson.annotation.JsonProperty("newTab")
+    NEWTAB,
+    @com.fasterxml.jackson.annotation.JsonProperty("newWindow")
+    NEWWINDOW,
+    @com.fasterxml.jackson.annotation.JsonProperty("download")
+    DOWNLOAD;
+}
+
+/**
+ *
+ *
  * @link [Page#InstallabilityErrorArgument](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-InstallabilityErrorArgument) type documentation.
  */
 
@@ -549,3 +565,27 @@ data class InstallabilityError(
      */  
     val errorArguments: List<InstallabilityErrorArgument>
 )
+
+/**
+ * The referring-policy used for the navigation.
+ *
+ * @link [Page#ReferrerPolicy](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-ReferrerPolicy) type documentation.
+ */
+enum class ReferrerPolicy {
+    @com.fasterxml.jackson.annotation.JsonProperty("noReferrer")
+    NOREFERRER,
+    @com.fasterxml.jackson.annotation.JsonProperty("noReferrerWhenDowngrade")
+    NOREFERRERWHENDOWNGRADE,
+    @com.fasterxml.jackson.annotation.JsonProperty("origin")
+    ORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("originWhenCrossOrigin")
+    ORIGINWHENCROSSORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("sameOrigin")
+    SAMEORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("strictOrigin")
+    STRICTORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("strictOriginWhenCrossOrigin")
+    STRICTORIGINWHENCROSSORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("unsafeUrl")
+    UNSAFEURL;
+}

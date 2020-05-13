@@ -501,7 +501,17 @@ enum class BlockedReason {
     @com.fasterxml.jackson.annotation.JsonProperty("content-type")
     CONTENT_TYPE,
     @com.fasterxml.jackson.annotation.JsonProperty("collapsed-by-client")
-    COLLAPSED_BY_CLIENT;
+    COLLAPSED_BY_CLIENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("coep-frame-resource-needs-coep-header")
+    COEP_FRAME_RESOURCE_NEEDS_COEP_HEADER,
+    @com.fasterxml.jackson.annotation.JsonProperty("coop-sandboxed-iframe-cannot-navigate-to-coop-page")
+    COOP_SANDBOXED_IFRAME_CANNOT_NAVIGATE_TO_COOP_PAGE,
+    @com.fasterxml.jackson.annotation.JsonProperty("corp-not-same-origin")
+    CORP_NOT_SAME_ORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("corp-not-same-origin-after-defaulted-to-same-origin-by-coep")
+    CORP_NOT_SAME_ORIGIN_AFTER_DEFAULTED_TO_SAME_ORIGIN_BY_COEP,
+    @com.fasterxml.jackson.annotation.JsonProperty("corp-not-same-site")
+    CORP_NOT_SAME_SITE;
 }
 
 /**

@@ -1037,7 +1037,12 @@ data class SetUserAgentOverrideRequest(
     /**
      * The platform navigator.platform should return.
      */
-    val platform: String? = null
+    val platform: String? = null,
+
+    /**
+     * To be sent in Sec-CH-UA-* headers and returned in navigator.userAgentData
+     */
+    @pl.wendigo.chrome.protocol.Experimental val userAgentMetadata: pl.wendigo.chrome.api.emulation.UserAgentMetadata? = null
 
 )
 
@@ -1578,10 +1583,10 @@ data class RequestWillBeSentExtraInfoEvent(
     val requestId: RequestId,
 
     /**  
-     * A list of cookies which will not be sent with this request along with corresponding reasons  
-     for blocking.  
+     * A list of cookies potentially associated to the requested URL. This includes both cookies sent with  
+     the request and the ones not sent; the latter are distinguished by having blockedReason field set.  
      */  
-    val blockedCookies: List<BlockedCookieWithReason>,
+    val associatedCookies: List<BlockedCookieWithReason>,
 
     /**  
      * Raw request headers as they will be sent over the wire.  

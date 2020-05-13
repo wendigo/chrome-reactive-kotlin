@@ -227,7 +227,8 @@
                                 "block",
                                 "script",
                                 "eval",
-                                "module"
+                                "module",
+                                "wasm-expression-stack"
                             ]
                         },
                         {
@@ -300,6 +301,39 @@
                                 "call",
                                 "return"
                             ]
+                        }
+                    ]
+                },
+                {
+                    "id": "ScriptLanguage",
+                    "description": "Enum of possible script languages.",
+                    "type": "string",
+                    "enum": [
+                        "JavaScript",
+                        "WebAssembly"
+                    ]
+                },
+                {
+                    "id": "DebugSymbols",
+                    "description": "Debug symbols available for a wasm script.",
+                    "type": "object",
+                    "properties": [
+                        {
+                            "name": "type",
+                            "description": "Type of the debug symbols.",
+                            "type": "string",
+                            "enum": [
+                                "None",
+                                "SourceMap",
+                                "EmbeddedDWARF",
+                                "ExternalDWARF"
+                            ]
+                        },
+                        {
+                            "name": "externalURL",
+                            "description": "URL of the external symbol source.",
+                            "optional": true,
+                            "type": "string"
                         }
                     ]
                 }
@@ -400,6 +434,43 @@
                             "description": "Whether to throw an exception if side effect cannot be ruled out during evaluation.",
                             "optional": true,
                             "type": "boolean"
+                        },
+                        {
+                            "name": "timeout",
+                            "description": "Terminate execution after timing out (number of milliseconds).",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "Runtime.TimeDelta"
+                        }
+                    ],
+                    "returns": [
+                        {
+                            "name": "result",
+                            "description": "Object wrapper for the evaluation result.",
+                            "$ref": "Runtime.RemoteObject"
+                        },
+                        {
+                            "name": "exceptionDetails",
+                            "description": "Exception details.",
+                            "optional": true,
+                            "$ref": "Runtime.ExceptionDetails"
+                        }
+                    ]
+                },
+                {
+                    "name": "executeWasmEvaluator",
+                    "description": "Execute a Wasm Evaluator module on a given call frame.",
+                    "experimental": true,
+                    "parameters": [
+                        {
+                            "name": "callFrameId",
+                            "description": "WebAssembly call frame identifier to evaluate on.",
+                            "$ref": "CallFrameId"
+                        },
+                        {
+                            "name": "evaluator",
+                            "description": "Code of the evaluator module.",
+                            "type": "string"
                         },
                         {
                             "name": "timeout",
@@ -1128,6 +1199,20 @@
                             "experimental": true,
                             "optional": true,
                             "$ref": "Runtime.StackTrace"
+                        },
+                        {
+                            "name": "codeOffset",
+                            "description": "If the scriptLanguage is WebAssembly, the code section offset in the module.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "scriptLanguage",
+                            "description": "The language of the script.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "Debugger.ScriptLanguage"
                         }
                     ]
                 },
@@ -1218,6 +1303,27 @@
                             "experimental": true,
                             "optional": true,
                             "$ref": "Runtime.StackTrace"
+                        },
+                        {
+                            "name": "codeOffset",
+                            "description": "If the scriptLanguage is WebAssembly, the code section offset in the module.",
+                            "experimental": true,
+                            "optional": true,
+                            "type": "integer"
+                        },
+                        {
+                            "name": "scriptLanguage",
+                            "description": "The language of the script.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "Debugger.ScriptLanguage"
+                        },
+                        {
+                            "name": "debugSymbols",
+                            "description": "If the scriptLanguage is WebASsembly, the source of debug symbols for the module.",
+                            "experimental": true,
+                            "optional": true,
+                            "$ref": "Debugger.DebugSymbols"
                         }
                     ]
                 }
@@ -2026,12 +2132,13 @@
                                 "number",
                                 "boolean",
                                 "symbol",
-                                "bigint"
+                                "bigint",
+                                "wasm"
                             ]
                         },
                         {
                             "name": "subtype",
-                            "description": "Object subtype hint. Specified for `object` type values only.",
+                            "description": "Object subtype hint. Specified for `object` or `wasm` type values only.",
                             "optional": true,
                             "type": "string",
                             "enum": [
@@ -2051,7 +2158,13 @@
                                 "promise",
                                 "typedarray",
                                 "arraybuffer",
-                                "dataview"
+                                "dataview",
+                                "i32",
+                                "i64",
+                                "f32",
+                                "f64",
+                                "v128",
+                                "anyref"
                             ]
                         },
                         {
@@ -2847,7 +2960,7 @@
                         },
                         {
                             "name": "replMode",
-                            "description": "Reserved flag for future REPL mode support. Setting this flag has currently no effect.",
+                            "description": "Setting this flag to true enables `let` re-declaration and top-level `await`.\nNote that `let` variables can only be re-declared if they originate from\n`replMode` themselves.",
                             "experimental": true,
                             "optional": true,
                             "type": "boolean"

@@ -34,6 +34,15 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
     fun resetPermissions(input: ResetPermissionsRequest) = connection.request("Browser.resetPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Set the behavior when downloading a file.
+     *
+     * @link Protocol [Browser#setDownloadBehavior](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setDownloadBehavior) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setDownloadBehavior(input: SetDownloadBehaviorRequest) = connection.request("Browser.setDownloadBehavior", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Close browser gracefully.
      *
      * @link Protocol [Browser#close](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-close) method documentation.
@@ -147,11 +156,6 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
  */
 data class SetPermissionRequest(
     /**
-     * Origin the permission applies to.
-     */
-    val origin: String,
-
-    /**
      * Descriptor of permission to override.
      */
     val permission: PermissionDescriptor,
@@ -160,6 +164,11 @@ data class SetPermissionRequest(
      * Setting of the permission.
      */
     val setting: PermissionSetting,
+
+    /**
+     * Origin the permission applies to, all origins if not specified.
+     */
+    val origin: String? = null,
 
     /**
      * Context to override. When omitted, default browser context is used.
@@ -179,12 +188,12 @@ data class GrantPermissionsRequest(
     /**
      *
      */
-    val origin: String,
+    val permissions: List<PermissionType>,
 
     /**
-     *
+     * Origin the permission applies to, all origins if not specified.
      */
-    val permissions: List<PermissionType>,
+    val origin: String? = null,
 
     /**
      * BrowserContext to override permissions. When omitted, default browser context is used.
@@ -205,6 +214,34 @@ data class ResetPermissionsRequest(
      * BrowserContext to reset permissions. When omitted, default browser context is used.
      */
     val browserContextId: BrowserContextID? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Browser#setDownloadBehavior](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setDownloadBehavior) operation call.
+ *
+ * Set the behavior when downloading a file.
+ * @link [Browser#setDownloadBehavior](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setDownloadBehavior) method documentation.
+ * @see [BrowserOperations.setDownloadBehavior]
+ */
+data class SetDownloadBehaviorRequest(
+    /**
+     * Whether to allow all or deny all download requests, or use default Chrome behavior if
+available (otherwise deny). |allowAndName| allows download and names files according to
+their dowmload guids.
+     */
+    val behavior: String,
+
+    /**
+     * BrowserContext to set download behavior. When omitted, default browser context is used.
+     */
+    val browserContextId: BrowserContextID? = null,
+
+    /**
+     * The default path to save downloaded files to. This is requred if behavior is set to 'allow'
+or 'allowAndName'.
+     */
+    val downloadPath: String? = null
 
 )
 

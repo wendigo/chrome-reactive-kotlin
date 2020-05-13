@@ -137,6 +137,13 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
     fun setShowViewportSizeOnResize(input: SetShowViewportSizeOnResizeRequest) = connection.request("Overlay.setShowViewportSizeOnResize", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Add a dual screen device hinge
+     *
+     * @link Protocol [Overlay#setShowHinge](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowHinge) method documentation.
+     */
+    fun setShowHinge(input: SetShowHingeRequest) = connection.request("Overlay.setShowHinge", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      *  Fired when the node should be inspected. This happens after call to `setInspectMode` or when
 user manually inspects an element.
      */
@@ -188,7 +195,12 @@ data class GetHighlightObjectForTestRequest(
     /**
      * Whether to include style info.
      */
-    val includeStyle: Boolean? = null
+    val includeStyle: Boolean? = null,
+
+    /**
+     * The color format to get config with (default: hex)
+     */
+    val colorFormat: ColorFormat? = null
 
 )
 /**
@@ -487,6 +499,21 @@ data class SetShowViewportSizeOnResizeRequest(
      * Whether to paint size or not.
      */
     val show: Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with [Overlay#setShowHinge](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowHinge) operation call.
+ *
+ * Add a dual screen device hinge
+ * @link [Overlay#setShowHinge](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowHinge) method documentation.
+ * @see [OverlayOperations.setShowHinge]
+ */
+data class SetShowHingeRequest(
+    /**
+     * hinge data, null means hideHinge
+     */
+    val hingeConfig: HingeConfig? = null
 
 )
 

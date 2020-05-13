@@ -222,7 +222,7 @@ data class ContinueRequestRequest(
     val postData: String? = null,
 
     /**
-     * If set, overrides the request headrts.
+     * If set, overrides the request headers.
      */
     val headers: List<HeaderEntry>? = null
 

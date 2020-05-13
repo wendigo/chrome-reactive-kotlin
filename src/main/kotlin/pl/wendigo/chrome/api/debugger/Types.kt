@@ -185,3 +185,33 @@ data class BreakLocation(
      */  
     val type: String? = null
 )
+
+/**
+ * Enum of possible script languages.
+ *
+ * @link [Debugger#ScriptLanguage](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-ScriptLanguage) type documentation.
+ */
+enum class ScriptLanguage {
+    @com.fasterxml.jackson.annotation.JsonProperty("JavaScript")
+    JAVASCRIPT,
+    @com.fasterxml.jackson.annotation.JsonProperty("WebAssembly")
+    WEBASSEMBLY;
+}
+
+/**
+ * Debug symbols available for a wasm script.
+ *
+ * @link [Debugger#DebugSymbols](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-DebugSymbols) type documentation.
+ */
+
+data class DebugSymbols(
+    /**  
+     * Type of the debug symbols.  
+     */  
+    val type: String,
+
+    /**  
+     * URL of the external symbol source.  
+     */  
+    val externalURL: String? = null
+)

@@ -567,12 +567,7 @@ to run paused targets.
 We plan to make this the default, deprecate non-flattened mode,
 and eventually retire it. See crbug.com/991325.
      */
-    val flatten: Boolean? = null,
-
-    /**
-     * Auto-attach to the targets created via window.open from current target.
-     */
-    @pl.wendigo.chrome.protocol.Experimental val windowOpen: Boolean? = null
+    val flatten: Boolean? = null
 
 )
 

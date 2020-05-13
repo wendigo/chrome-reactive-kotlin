@@ -328,6 +328,7 @@ query results).
      *
      * @link Protocol [Page#setDownloadBehavior](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDownloadBehavior) method documentation.
      */
+    @Deprecated(level = DeprecationLevel.WARNING, message = "setDownloadBehavior is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
     fun setDownloadBehavior(input: SetDownloadBehaviorRequest) = connection.request("Page.setDownloadBehavior", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
@@ -531,6 +532,11 @@ Navigation may still be cancelled after the event is issued.
      *  Fired when page is about to start a download.
      */
     fun downloadWillBegin(): io.reactivex.Flowable<DownloadWillBeginEvent> = connection.events("Page.downloadWillBegin", DownloadWillBeginEvent::class.java)
+
+    /**
+     *  Fired when download makes progress. Last call has |done| == true.
+     */
+    fun downloadProgress(): io.reactivex.Flowable<DownloadProgressEvent> = connection.events("Page.downloadProgress", DownloadProgressEvent::class.java)
 
     /**
      *  Fired when interstitial page was hidden
@@ -1051,7 +1057,12 @@ data class NavigateRequest(
     /**
      * Frame id to navigate, if not specified navigates the top frame.
      */
-    val frameId: FrameId? = null
+    val frameId: FrameId? = null,
+
+    /**
+     * Referrer-policy used for the navigation.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val referrerPolicy: ReferrerPolicy? = null
 
 )
 /**
@@ -1835,7 +1846,12 @@ data class FrameRequestedNavigationEvent(
     /**  
      * The destination URL for the requested navigation.  
      */  
-    val url: String
+    val url: String,
+
+    /**  
+     * The disposition for the navigation.  
+     */  
+    val disposition: ClientNavigationDisposition
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameRequestedNavigation")
 
@@ -1906,11 +1922,49 @@ data class DownloadWillBeginEvent(
     val frameId: FrameId,
 
     /**  
+     * Global unique identifier of the download.  
+     */  
+    val guid: String,
+
+    /**  
      * URL of the resource being downloaded.  
      */  
-    val url: String
+    val url: String,
+
+    /**  
+     * Suggested file name of the resource (the actual name of the file saved on disk may differ).  
+     */  
+    val suggestedFilename: String
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "downloadWillBegin")
+
+/**
+ * Fired when download makes progress. Last call has |done| == true.
+ *
+ * @link [Page#downloadProgress](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-downloadProgress) event documentation.
+ */
+data class DownloadProgressEvent(
+    /**  
+     * Global unique identifier of the download.  
+     */  
+    val guid: String,
+
+    /**  
+     * Total expected bytes to download.  
+     */  
+    val totalBytes: Double,
+
+    /**  
+     * Total bytes received.  
+     */  
+    val receivedBytes: Double,
+
+    /**  
+     * Download status.  
+     */  
+    val state: String
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "downloadProgress")
 
 /**
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been

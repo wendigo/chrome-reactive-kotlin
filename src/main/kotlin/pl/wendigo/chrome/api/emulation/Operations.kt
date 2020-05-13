@@ -106,6 +106,15 @@ query results).
     fun setEmulatedMedia(input: SetEmulatedMediaRequest) = connection.request("Emulation.setEmulatedMedia", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Emulates the given vision deficiency.
+     *
+     * @link Protocol [Emulation#setEmulatedVisionDeficiency](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedVisionDeficiency) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setEmulatedVisionDeficiency(input: SetEmulatedVisionDeficiencyRequest) = connection.request("Emulation.setEmulatedVisionDeficiency", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position
 unavailable.
      *
@@ -416,6 +425,21 @@ data class SetEmulatedMediaRequest(
 )
 
 /**
+ * Represents request frame that can be used with [Emulation#setEmulatedVisionDeficiency](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedVisionDeficiency) operation call.
+ *
+ * Emulates the given vision deficiency.
+ * @link [Emulation#setEmulatedVisionDeficiency](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedVisionDeficiency) method documentation.
+ * @see [EmulationOperations.setEmulatedVisionDeficiency]
+ */
+data class SetEmulatedVisionDeficiencyRequest(
+    /**
+     * Vision deficiency to emulate.
+     */
+    val type: String
+
+)
+
+/**
  * Represents request frame that can be used with [Emulation#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setGeolocationOverride) operation call.
  *
  * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position
@@ -636,6 +660,11 @@ data class SetUserAgentOverrideRequest(
     /**
      * The platform navigator.platform should return.
      */
-    val platform: String? = null
+    val platform: String? = null,
+
+    /**
+     * To be sent in Sec-CH-UA-* headers and returned in navigator.userAgentData
+     */
+    @pl.wendigo.chrome.protocol.Experimental val userAgentMetadata: UserAgentMetadata? = null
 
 )

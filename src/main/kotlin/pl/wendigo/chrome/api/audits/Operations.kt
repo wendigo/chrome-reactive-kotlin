@@ -111,6 +111,6 @@ data class IssueAddedEvent(
     /**  
      *  
      */  
-    val issue: Issue
+    val issue: InspectorIssue
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Audits", name = "issueAdded")

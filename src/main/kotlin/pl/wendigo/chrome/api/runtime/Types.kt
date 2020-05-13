@@ -38,7 +38,7 @@ data class RemoteObject(
     val type: String,
 
     /**  
-     * Object subtype hint. Specified for `object` type values only.  
+     * Object subtype hint. Specified for `object` or `wasm` type values only.  
      */  
     val subtype: String? = null,
 

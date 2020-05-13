@@ -499,7 +499,9 @@ This implies `disableBreaks` below.
     @pl.wendigo.chrome.protocol.Experimental val disableBreaks: Boolean? = null,
 
     /**
-     * Reserved flag for future REPL mode support. Setting this flag has currently no effect.
+     * Setting this flag to true enables `let` re-declaration and top-level `await`.
+Note that `let` variables can only be re-declared if they originate from
+`replMode` themselves.
      */
     @pl.wendigo.chrome.protocol.Experimental val replMode: Boolean? = null
 

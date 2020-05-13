@@ -18,7 +18,7 @@ class PerformanceOperations internal constructor(private val connection: pl.wend
      *
      * @link Protocol [Performance#enable](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-enable) method documentation.
      */
-    fun enable() = connection.request("Performance.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable(input: EnableRequest) = connection.request("Performance.enable", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets time domain to use for collecting and reporting duration metrics.
@@ -27,6 +27,7 @@ this method while metrics collection is enabled returns an error.
      *
      * @link Protocol [Performance#setTimeDomain](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-setTimeDomain) method documentation.
      */
+    @Deprecated(level = DeprecationLevel.WARNING, message = "setTimeDomain is deprecated.")
     
     @pl.wendigo.chrome.protocol.Experimental
     fun setTimeDomain(input: SetTimeDomainRequest) = connection.request("Performance.setTimeDomain", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
@@ -52,6 +53,21 @@ this method while metrics collection is enabled returns an error.
         }
     }
 }
+
+/**
+ * Represents request frame that can be used with [Performance#enable](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-enable) operation call.
+ *
+ * Enable collecting and reporting metrics.
+ * @link [Performance#enable](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-enable) method documentation.
+ * @see [PerformanceOperations.enable]
+ */
+data class EnableRequest(
+    /**
+     * Time domain to use for collecting and reporting duration metrics.
+     */
+    val timeDomain: String? = null
+
+)
 
 /**
  * Represents request frame that can be used with [Performance#setTimeDomain](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-setTimeDomain) operation call.
