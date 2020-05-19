@@ -265,6 +265,50 @@ data class MixedContentIssueDetails(
 )
 
 /**
+ * Enum indicating the reason a response has been blocked. These reasons are
+refinements of the net error BLOCKED_BY_RESPONSE.
+ *
+ * @link [Audits#BlockedByResponseReason](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-BlockedByResponseReason) type documentation.
+ */
+enum class BlockedByResponseReason {
+    @com.fasterxml.jackson.annotation.JsonProperty("CoepFrameResourceNeedsCoepHeader")
+    COEPFRAMERESOURCENEEDSCOEPHEADER,
+    @com.fasterxml.jackson.annotation.JsonProperty("CoopSandboxedIFrameCannotNavigateToCoopPage")
+    COOPSANDBOXEDIFRAMECANNOTNAVIGATETOCOOPPAGE,
+    @com.fasterxml.jackson.annotation.JsonProperty("CorpNotSameOrigin")
+    CORPNOTSAMEORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("CorpNotSameOriginAfterDefaultedToSameOriginByCoep")
+    CORPNOTSAMEORIGINAFTERDEFAULTEDTOSAMEORIGINBYCOEP,
+    @com.fasterxml.jackson.annotation.JsonProperty("CorpNotSameSite")
+    CORPNOTSAMESITE;
+}
+
+/**
+ * Details for a request that has been blocked with the BLOCKED_BY_RESPONSE
+code. Currently only used for COEP/COOP, but may be extended to include
+some CSP errors in the future.
+ *
+ * @link [Audits#BlockedByResponseIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-BlockedByResponseIssueDetails) type documentation.
+ */
+
+data class BlockedByResponseIssueDetails(
+    /**  
+     *  
+     */  
+    val request: AffectedRequest,
+
+    /**  
+     *  
+     */  
+    val frame: AffectedFrame? = null,
+
+    /**  
+     *  
+     */  
+    val reason: BlockedByResponseReason
+)
+
+/**
  * A unique identifier for the type of issue. Each type may use one of the
 optional fields in InspectorIssueDetails to convey more specific
 information about the kind of issue.
@@ -275,7 +319,9 @@ enum class InspectorIssueCode {
     @com.fasterxml.jackson.annotation.JsonProperty("SameSiteCookieIssue")
     SAMESITECOOKIEISSUE,
     @com.fasterxml.jackson.annotation.JsonProperty("MixedContentIssue")
-    MIXEDCONTENTISSUE;
+    MIXEDCONTENTISSUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("BlockedByResponseIssue")
+    BLOCKEDBYRESPONSEISSUE;
 }
 
 /**
@@ -295,7 +341,12 @@ data class InspectorIssueDetails(
     /**  
      *  
      */  
-    val mixedContentIssueDetails: MixedContentIssueDetails? = null
+    val mixedContentIssueDetails: MixedContentIssueDetails? = null,
+
+    /**  
+     *  
+     */  
+    val blockedByResponseIssueDetails: BlockedByResponseIssueDetails? = null
 )
 
 /**
