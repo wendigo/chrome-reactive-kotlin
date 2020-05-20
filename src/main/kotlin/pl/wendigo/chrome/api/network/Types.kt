@@ -244,6 +244,16 @@ data class ResourceTiming(
     @pl.wendigo.chrome.protocol.Experimental val workerReady: Double,
 
     /**  
+     * Started fetch event.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val workerFetchStart: Double,
+
+    /**  
+     * Settled fetch event respondWith promise.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val workerRespondWithSettled: Double,
+
+    /**  
      * Started sending request.  
      */  
     val sendStart: Double,
