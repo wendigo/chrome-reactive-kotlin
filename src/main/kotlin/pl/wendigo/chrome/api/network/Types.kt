@@ -525,6 +525,22 @@ enum class BlockedReason {
 }
 
 /**
+ * Source of serviceworker response.
+ *
+ * @link [Network#ServiceWorkerResponseSource](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ServiceWorkerResponseSource) type documentation.
+ */
+enum class ServiceWorkerResponseSource {
+    @com.fasterxml.jackson.annotation.JsonProperty("cache-storage")
+    CACHE_STORAGE,
+    @com.fasterxml.jackson.annotation.JsonProperty("http-cache")
+    HTTP_CACHE,
+    @com.fasterxml.jackson.annotation.JsonProperty("fallback-code")
+    FALLBACK_CODE,
+    @com.fasterxml.jackson.annotation.JsonProperty("network")
+    NETWORK;
+}
+
+/**
  * HTTP response data.
  *
  * @link [Network#Response](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Response) type documentation.
@@ -615,6 +631,21 @@ data class Response(
      * Timing information for the given request.  
      */  
     val timing: ResourceTiming? = null,
+
+    /**  
+     * Response source of response from ServiceWorker.  
+     */  
+    val serviceWorkerResponseSource: ServiceWorkerResponseSource? = null,
+
+    /**  
+     * The time at which the returned response was generated.  
+     */  
+    val responseTime: TimeSinceEpoch? = null,
+
+    /**  
+     * Cache Storage Cache Name.  
+     */  
+    val cacheStorageCacheName: String? = null,
 
     /**  
      * Protocol used to fetch this request.  
