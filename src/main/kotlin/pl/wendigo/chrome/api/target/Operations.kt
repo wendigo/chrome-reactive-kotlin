@@ -334,7 +334,17 @@ data class CreateBrowserContextRequest(
     /**
      * If specified, disposes this context when debugging session disconnects.
      */
-    val disposeOnDetach: Boolean? = null
+    val disposeOnDetach: Boolean? = null,
+
+    /**
+     * Proxy server, similar to the one passed to --proxy-server
+     */
+    val proxyServer: String? = null,
+
+    /**
+     * Proxy bypass list, similar to the one passed to --proxy-bypass-list
+     */
+    val proxyBypassList: String? = null
 
 )
 /**
