@@ -175,6 +175,14 @@ data class CSSStyleSheetHeader(
     val isInline: Boolean,
 
     /**  
+     * Whether this stylesheet is mutable. Inline stylesheets become mutable  
+     after they have been modified via CSSOM API.  
+     <link> element's stylesheets are never mutable. Constructed stylesheets  
+     (new CSSStyleSheet()) are mutable immediately after creation.  
+     */  
+    val isMutable: Boolean,
+
+    /**  
      * Line offset of the stylesheet within the resource (zero based).  
      */  
     val startLine: Double,
