@@ -13,6 +13,11 @@ data class GridHighlightConfig(
     val showGridExtensionLines: Boolean? = null,
 
     /**  
+     * Show Positive line number labels (default: false).  
+     */  
+    val showPositiveLineNumbers: Boolean? = null,
+
+    /**  
      * The grid container border highlight color (default: transparent).  
      */  
     val gridBorderColor: pl.wendigo.chrome.api.dom.RGBA? = null,
