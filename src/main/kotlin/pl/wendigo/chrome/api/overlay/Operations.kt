@@ -198,9 +198,14 @@ data class GetHighlightObjectForTestRequest(
     val includeStyle: Boolean? = null,
 
     /**
-     * The color format to get config with (default: hex)
+     * The color format to get config with (default: hex).
      */
-    val colorFormat: ColorFormat? = null
+    val colorFormat: ColorFormat? = null,
+
+    /**
+     * Whether to show accessibility info (default: true).
+     */
+    val showAccessibilityInfo: Boolean? = null
 
 )
 /**
