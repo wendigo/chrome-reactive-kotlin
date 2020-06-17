@@ -86,11 +86,6 @@ data class HighlightConfig(
     val showRulers: Boolean? = null,
 
     /**  
-     * Whether the a11y info should be shown (default: true).  
-     */  
-    val showAccessibilityInfo: Boolean? = null,
-
-    /**  
      * Whether the extension lines from node to the rulers should be shown (default: false).  
      */  
     val showExtensionLines: Boolean? = null,
