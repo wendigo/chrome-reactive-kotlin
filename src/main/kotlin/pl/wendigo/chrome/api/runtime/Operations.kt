@@ -503,7 +503,15 @@ This implies `disableBreaks` below.
 Note that `let` variables can only be re-declared if they originate from
 `replMode` themselves.
      */
-    @pl.wendigo.chrome.protocol.Experimental val replMode: Boolean? = null
+    @pl.wendigo.chrome.protocol.Experimental val replMode: Boolean? = null,
+
+    /**
+     * The Content Security Policy (CSP) for the target might block 'unsafe-eval'
+which includes eval(), Function(), setTimeout() and setInterval()
+when called with non-callable arguments. This flag bypasses CSP for this
+evaluation and allows unsafe-eval. Defaults to true.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val allowUnsafeEvalBlockedByCSP: Boolean? = null
 
 )
 /**
