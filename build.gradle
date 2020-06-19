@@ -18,7 +18,7 @@ buildscript {
         classpath group: 'pl.allegro.tech.build', name: 'axion-release-plugin', version: '1.11.0'
         classpath group: 'io.codearte.gradle.nexus', name: 'gradle-nexus-staging-plugin', version: '0.21.2'
         classpath group: 'com.github.ben-manes', name: 'gradle-versions-plugin', version: '0.17.0'
-        classpath group: 'org.jmailen.gradle', name: 'kotlinter-gradle', version: '2.3.2'
+        classpath group: 'org.jmailen.gradle', name: 'kotlinter-gradle', version: '2.4.1'
         classpath group: 'de.marcphilipp.gradle', name: 'nexus-publish-plugin', version: '0.4.0'
         classpath group: 'org.jetbrains.dokka', name: 'dokka-gradle-plugin', version: '0.10.1'
     }
