@@ -309,6 +309,55 @@ data class BlockedByResponseIssueDetails(
 )
 
 /**
+ *
+ *
+ * @link [Audits#HeavyAdResolutionStatus](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-HeavyAdResolutionStatus) type documentation.
+ */
+enum class HeavyAdResolutionStatus {
+    @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdBlocked")
+    HEAVYADBLOCKED,
+    @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdWarning")
+    HEAVYADWARNING;
+}
+
+/**
+ *
+ *
+ * @link [Audits#HeavyAdReason](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-HeavyAdReason) type documentation.
+ */
+enum class HeavyAdReason {
+    @com.fasterxml.jackson.annotation.JsonProperty("NetworkTotalLimit")
+    NETWORKTOTALLIMIT,
+    @com.fasterxml.jackson.annotation.JsonProperty("CpuTotalLimit")
+    CPUTOTALLIMIT,
+    @com.fasterxml.jackson.annotation.JsonProperty("CpuPeakLimit")
+    CPUPEAKLIMIT;
+}
+
+/**
+ *
+ *
+ * @link [Audits#HeavyAdIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-HeavyAdIssueDetails) type documentation.
+ */
+
+data class HeavyAdIssueDetails(
+    /**  
+     * The resolution status, either blocking the content or warning.  
+     */  
+    val resolution: HeavyAdResolutionStatus,
+
+    /**  
+     * The reason the ad was blocked, total network or cpu or peak cpu.  
+     */  
+    val reason: HeavyAdReason,
+
+    /**  
+     * The frame that was blocked.  
+     */  
+    val frame: AffectedFrame
+)
+
+/**
  * A unique identifier for the type of issue. Each type may use one of the
 optional fields in InspectorIssueDetails to convey more specific
 information about the kind of issue.
@@ -321,7 +370,9 @@ enum class InspectorIssueCode {
     @com.fasterxml.jackson.annotation.JsonProperty("MixedContentIssue")
     MIXEDCONTENTISSUE,
     @com.fasterxml.jackson.annotation.JsonProperty("BlockedByResponseIssue")
-    BLOCKEDBYRESPONSEISSUE;
+    BLOCKEDBYRESPONSEISSUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdIssue")
+    HEAVYADISSUE;
 }
 
 /**
@@ -346,7 +397,12 @@ data class InspectorIssueDetails(
     /**  
      *  
      */  
-    val blockedByResponseIssueDetails: BlockedByResponseIssueDetails? = null
+    val blockedByResponseIssueDetails: BlockedByResponseIssueDetails? = null,
+
+    /**  
+     *  
+     */  
+    val heavyAdIssueDetails: HeavyAdIssueDetails? = null
 )
 
 /**

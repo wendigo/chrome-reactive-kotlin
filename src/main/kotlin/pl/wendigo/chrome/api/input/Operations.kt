@@ -170,7 +170,14 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
      * Whether the event was from the left or right side of the keyboard. 1=Left, 2=Right (default:
 0).
      */
-    val location: Int? = null
+    val location: Int? = null,
+
+    /**
+     * Editing commands to send with the key event (e.g., 'selectAll') (default: []).
+These are related to but not equal the command names used in `document.execCommand` and NSStandardKeyBindingResponding.
+See https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/editing/commands/editor_command_names.h for valid command names.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val commands: List<String>? = null
 
 )
 
