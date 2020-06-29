@@ -176,6 +176,15 @@ instrumentation)
     fun takeCoverageDelta() = connection.request("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java)
 
     /**
+     * Enables/disables rendering of local CSS fonts (enabled by default).
+     *
+     * @link Protocol [CSS#setLocalFontsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setLocalFontsEnabled) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setLocalFontsEnabled(input: SetLocalFontsEnabledRequest) = connection.request("CSS.setLocalFontsEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      *  Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
 web font
      */
@@ -826,6 +835,21 @@ data class TakeCoverageDeltaResponse(
      * Monotonically increasing time, in seconds.  
      */  
     val timestamp: Double
+
+)
+
+/**
+ * Represents request frame that can be used with [CSS#setLocalFontsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setLocalFontsEnabled) operation call.
+ *
+ * Enables/disables rendering of local CSS fonts (enabled by default).
+ * @link [CSS#setLocalFontsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setLocalFontsEnabled) method documentation.
+ * @see [CSSOperations.setLocalFontsEnabled]
+ */
+data class SetLocalFontsEnabledRequest(
+    /**
+     * Whether rendering of local fonts is enabled.
+     */
+    val enabled: Boolean
 
 )
 
