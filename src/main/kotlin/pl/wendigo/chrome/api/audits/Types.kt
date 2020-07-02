@@ -358,6 +358,52 @@ data class HeavyAdIssueDetails(
 )
 
 /**
+ *
+ *
+ * @link [Audits#ContentSecurityPolicyViolationType](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-ContentSecurityPolicyViolationType) type documentation.
+ */
+enum class ContentSecurityPolicyViolationType {
+    @com.fasterxml.jackson.annotation.JsonProperty("kInlineViolation")
+    KINLINEVIOLATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("kEvalViolation")
+    KEVALVIOLATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("kURLViolation")
+    KURLVIOLATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("kTrustedTypesSinkViolation")
+    KTRUSTEDTYPESSINKVIOLATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("kTrustedTypesPolicyViolation")
+    KTRUSTEDTYPESPOLICYVIOLATION;
+}
+
+/**
+ *
+ *
+ * @link [Audits#ContentSecurityPolicyIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-ContentSecurityPolicyIssueDetails) type documentation.
+ */
+
+data class ContentSecurityPolicyIssueDetails(
+    /**  
+     * The url not included in allowed sources.  
+     */  
+    val blockedURL: String? = null,
+
+    /**  
+     * Specific directive that is violated, causing the CSP issue.  
+     */  
+    val violatedDirective: String,
+
+    /**  
+     *  
+     */  
+    val contentSecurityPolicyViolationType: ContentSecurityPolicyViolationType,
+
+    /**  
+     *  
+     */  
+    val frameAncestor: AffectedFrame? = null
+)
+
+/**
  * A unique identifier for the type of issue. Each type may use one of the
 optional fields in InspectorIssueDetails to convey more specific
 information about the kind of issue.
@@ -372,7 +418,9 @@ enum class InspectorIssueCode {
     @com.fasterxml.jackson.annotation.JsonProperty("BlockedByResponseIssue")
     BLOCKEDBYRESPONSEISSUE,
     @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdIssue")
-    HEAVYADISSUE;
+    HEAVYADISSUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("ContentSecurityPolicyIssue")
+    CONTENTSECURITYPOLICYISSUE;
 }
 
 /**
@@ -402,7 +450,12 @@ data class InspectorIssueDetails(
     /**  
      *  
      */  
-    val heavyAdIssueDetails: HeavyAdIssueDetails? = null
+    val heavyAdIssueDetails: HeavyAdIssueDetails? = null,
+
+    /**  
+     *  
+     */  
+    val contentSecurityPolicyIssueDetails: ContentSecurityPolicyIssueDetails? = null
 )
 
 /**
