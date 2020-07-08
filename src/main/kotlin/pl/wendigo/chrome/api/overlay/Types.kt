@@ -23,6 +23,11 @@ data class GridHighlightConfig(
     val showNegativeLineNumbers: Boolean? = null,
 
     /**  
+     * Show area name labels (default: false).  
+     */  
+    val showAreaNames: Boolean? = null,
+
+    /**  
      * The grid container border highlight color (default: transparent).  
      */  
     val gridBorderColor: pl.wendigo.chrome.api.dom.RGBA? = null,
@@ -60,7 +65,12 @@ data class GridHighlightConfig(
     /**  
      * The column gap hatching fill color (default: transparent).  
      */  
-    val columnHatchColor: pl.wendigo.chrome.api.dom.RGBA? = null
+    val columnHatchColor: pl.wendigo.chrome.api.dom.RGBA? = null,
+
+    /**  
+     * The named grid areas border color (Default: transparent).  
+     */  
+    val areaBorderColor: pl.wendigo.chrome.api.dom.RGBA? = null
 )
 
 /**
