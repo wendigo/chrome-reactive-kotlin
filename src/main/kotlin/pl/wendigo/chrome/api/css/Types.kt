@@ -540,7 +540,41 @@ data class PlatformFontUsage(
 )
 
 /**
+ * Information about font variation axes for variable fonts
+ *
+ * @link [CSS#FontVariationAxis](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-FontVariationAxis) type documentation.
+ */
+
+data class FontVariationAxis(
+    /**  
+     * The font-variation-setting tag (a.k.a. "axis tag").  
+     */  
+    val tag: String,
+
+    /**  
+     * Human-readable variation name in the default language (normally, "en").  
+     */  
+    val name: String,
+
+    /**  
+     * The minimum value (inclusive) the font supports for this tag.  
+     */  
+    val minValue: Double,
+
+    /**  
+     * The maximum value (inclusive) the font supports for this tag.  
+     */  
+    val maxValue: Double,
+
+    /**  
+     * The default value.  
+     */  
+    val defaultValue: Double
+)
+
+/**
  * Properties of a web font: https://www.w3.org/TR/2008/REC-CSS2-20080411/fonts.html#font-descriptions
+and additional information such as platformFontFamily and fontVariationAxes.
  *
  * @link [CSS#FontFace](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-FontFace) type documentation.
  */
@@ -584,7 +618,12 @@ data class FontFace(
     /**  
      * The resolved platform font family  
      */  
-    val platformFontFamily: String
+    val platformFontFamily: String,
+
+    /**  
+     * Available variation settings (a.k.a. "axes").  
+     */  
+    val fontVariationAxes: List<FontVariationAxis>? = null
 )
 
 /**
