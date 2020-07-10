@@ -21,6 +21,32 @@ data class ScreenOrientation(
 /**
  *
  *
+ * @link [Emulation#DisplayFeature](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-DisplayFeature) type documentation.
+ */
+
+data class DisplayFeature(
+    /**  
+     * Orientation of a display feature in relation to screen  
+     */  
+    val orientation: String,
+
+    /**  
+     * The offset from the screen origin in either the x (for vertical  
+     orientation) or y (for horizontal orientation) direction.  
+     */  
+    val offset: Int,
+
+    /**  
+     * A display feature may mask content such that it is not physically  
+     displayed - this length along with the offset describes this area.  
+     A display feature that only splits content will have a 0 mask_length.  
+     */  
+    val maskLength: Int
+)
+
+/**
+ *
+ *
  * @link [Emulation#MediaFeature](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-MediaFeature) type documentation.
  */
 

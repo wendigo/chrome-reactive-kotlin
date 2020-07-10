@@ -350,7 +350,13 @@ autosizing and more.
      * If set, the visible area of the page will be overridden to this viewport. This viewport
 change is not observed by the page, e.g. viewport-relative elements do not change positions.
      */
-    @pl.wendigo.chrome.protocol.Experimental val viewport: pl.wendigo.chrome.api.page.Viewport? = null
+    @pl.wendigo.chrome.protocol.Experimental val viewport: pl.wendigo.chrome.api.page.Viewport? = null,
+
+    /**
+     * If set, the display feature of a multi-segment screen. If not set, multi-segment support
+is turned-off.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val displayFeature: DisplayFeature? = null
 
 )
 
