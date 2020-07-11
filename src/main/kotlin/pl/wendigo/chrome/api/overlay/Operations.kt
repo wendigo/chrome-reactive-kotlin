@@ -30,6 +30,13 @@ class OverlayOperations internal constructor(private val connection: pl.wendigo.
     fun getHighlightObjectForTest(input: GetHighlightObjectForTestRequest) = connection.request("Overlay.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java)
 
     /**
+     * For Persistent Grid testing.
+     *
+     * @link Protocol [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) method documentation.
+     */
+    fun getGridHighlightObjectsForTest(input: GetGridHighlightObjectsForTestRequest) = connection.request("Overlay.getGridHighlightObjectsForTest", input, GetGridHighlightObjectsForTestResponse::class.java)
+
+    /**
      * Hides any highlight.
      *
      * @link Protocol [Overlay#hideHighlight](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-hideHighlight) method documentation.
@@ -100,6 +107,13 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowFPSCounter](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFPSCounter) method documentation.
      */
     fun setShowFPSCounter(input: SetShowFPSCounterRequest) = connection.request("Overlay.setShowFPSCounter", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Highlight multiple elements with the CSS Grid overlay.
+     *
+     * @link Protocol [Overlay#setShowGridOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowGridOverlays) method documentation.
+     */
+    fun setShowGridOverlays(input: SetShowGridOverlaysRequest) = connection.request("Overlay.setShowGridOverlays", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Requests that backend shows paint rectangles
@@ -221,6 +235,36 @@ data class GetHighlightObjectForTestResponse(
      * Highlight data for the node.  
      */  
     val highlight: com.fasterxml.jackson.databind.JsonNode
+
+)
+
+/**
+ * Represents request frame that can be used with [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) operation call.
+ *
+ * For Persistent Grid testing.
+ * @link [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) method documentation.
+ * @see [OverlayOperations.getGridHighlightObjectsForTest]
+ */
+data class GetGridHighlightObjectsForTestRequest(
+    /**
+     * Ids of the node to get highlight object for.
+     */
+    val nodeIds: List<pl.wendigo.chrome.api.dom.NodeId>
+
+)
+/**
+ * Represents response frame that is returned from [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) operation call.
+ * For Persistent Grid testing.
+ *
+  
+ * @link [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) method documentation.
+ * @see [OverlayOperations.getGridHighlightObjectsForTest]
+ */
+data class GetGridHighlightObjectsForTestResponse(
+    /**  
+     * Grid Highlight data for the node ids provided.  
+     */  
+    val highlights: com.fasterxml.jackson.databind.JsonNode
 
 )
 
@@ -429,6 +473,21 @@ data class SetShowFPSCounterRequest(
      * True for showing the FPS counter
      */
     val show: Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with [Overlay#setShowGridOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowGridOverlays) operation call.
+ *
+ * Highlight multiple elements with the CSS Grid overlay.
+ * @link [Overlay#setShowGridOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowGridOverlays) method documentation.
+ * @see [OverlayOperations.setShowGridOverlays]
+ */
+data class SetShowGridOverlaysRequest(
+    /**
+     * An array of node identifiers and descriptors for the highlight appearance.
+     */
+    val gridNodeHighlightConfigs: List<GridNodeHighlightConfig>
 
 )
 

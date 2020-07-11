@@ -171,6 +171,24 @@ enum class ColorFormat {
 }
 
 /**
+ * Configurations for Persistent Grid Highlight
+ *
+ * @link [Overlay#GridNodeHighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-GridNodeHighlightConfig) type documentation.
+ */
+
+data class GridNodeHighlightConfig(
+    /**  
+     * A descriptor for the highlight appearance.  
+     */  
+    val gridHighlightConfig: GridHighlightConfig,
+
+    /**  
+     * Identifier of the node to highlight.  
+     */  
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId
+)
+
+/**
  * Configuration for dual screen hinge
  *
  * @link [Overlay#HingeConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-HingeConfig) type documentation.
