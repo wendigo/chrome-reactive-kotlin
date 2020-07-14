@@ -9,6 +9,20 @@ package pl.wendigo.chrome.api.page
 typealias FrameId = String
 
 /**
+ * Indicates whether a frame has been identified as an ad.
+ *
+ * @link [Page#AdFrameType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-AdFrameType) type documentation.
+ */
+enum class AdFrameType {
+    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    NONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("child")
+    CHILD,
+    @com.fasterxml.jackson.annotation.JsonProperty("root")
+    ROOT;
+}
+
+/**
  * Information about the Frame on the page.
  *
  * @link [Page#Frame](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-Frame) type documentation.
@@ -58,7 +72,12 @@ data class Frame(
     /**  
      * If the frame failed to load, this contains the URL that could not be loaded. Note that unlike url above, this URL may contain a fragment.  
      */  
-    @pl.wendigo.chrome.protocol.Experimental val unreachableUrl: String? = null
+    @pl.wendigo.chrome.protocol.Experimental val unreachableUrl: String? = null,
+
+    /**  
+     * Indicates whether this frame was tagged as an ad.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val adFrameType: AdFrameType? = null
 )
 
 /**
