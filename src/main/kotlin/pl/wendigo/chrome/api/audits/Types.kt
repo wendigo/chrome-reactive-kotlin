@@ -378,6 +378,29 @@ enum class ContentSecurityPolicyViolationType {
 /**
  *
  *
+ * @link [Audits#SourceCodeLocation](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SourceCodeLocation) type documentation.
+ */
+
+data class SourceCodeLocation(
+    /**  
+     *  
+     */  
+    val url: String,
+
+    /**  
+     *  
+     */  
+    val lineNumber: Int,
+
+    /**  
+     *  
+     */  
+    val columnNumber: Int
+)
+
+/**
+ *
+ *
  * @link [Audits#ContentSecurityPolicyIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-ContentSecurityPolicyIssueDetails) type documentation.
  */
 
@@ -400,7 +423,12 @@ data class ContentSecurityPolicyIssueDetails(
     /**  
      *  
      */  
-    val frameAncestor: AffectedFrame? = null
+    val frameAncestor: AffectedFrame? = null,
+
+    /**  
+     *  
+     */  
+    val sourceCodeLocation: SourceCodeLocation? = null
 )
 
 /**
