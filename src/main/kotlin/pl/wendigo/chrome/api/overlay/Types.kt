@@ -28,6 +28,11 @@ data class GridHighlightConfig(
     val showAreaNames: Boolean? = null,
 
     /**  
+     * Show line name labels (default: false).  
+     */  
+    val showLineNames: Boolean? = null,
+
+    /**  
      * The grid container border highlight color (default: transparent).  
      */  
     val gridBorderColor: pl.wendigo.chrome.api.dom.RGBA? = null,
