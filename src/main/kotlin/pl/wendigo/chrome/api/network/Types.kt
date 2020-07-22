@@ -298,6 +298,19 @@ enum class ResourcePriority {
 }
 
 /**
+ * Post data entry for HTTP request
+ *
+ * @link [Network#PostDataEntry](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-PostDataEntry) type documentation.
+ */
+
+data class PostDataEntry(
+    /**  
+     *  
+     */  
+    val bytes: String? = null
+)
+
+/**
  * HTTP request data.
  *
  * @link [Network#Request](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Request) type documentation.
@@ -333,6 +346,11 @@ data class Request(
      * True when the request has POST data. Note that postData might still be omitted when this flag is true when the data is too long.  
      */  
     val hasPostData: Boolean? = null,
+
+    /**  
+     * Request body elements. This will be converted from base64 to binary  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val postDataEntries: List<PostDataEntry>? = null,
 
     /**  
      * The mixed content type of the request.  
