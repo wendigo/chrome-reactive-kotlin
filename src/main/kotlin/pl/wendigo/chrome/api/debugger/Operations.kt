@@ -1287,7 +1287,12 @@ data class ScriptFailedToParseEvent(
     /**  
      * The language of the script.  
      */  
-    val scriptLanguage: pl.wendigo.chrome.api.debugger.ScriptLanguage? = null
+    val scriptLanguage: pl.wendigo.chrome.api.debugger.ScriptLanguage? = null,
+
+    /**  
+     * The name the embedder supplied for this script.  
+     */  
+    val embedderName: String? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Debugger", name = "scriptFailedToParse")
 
@@ -1386,6 +1391,11 @@ data class ScriptParsedEvent(
     /**  
      * If the scriptLanguage is WebASsembly, the source of debug symbols for the module.  
      */  
-    val debugSymbols: pl.wendigo.chrome.api.debugger.DebugSymbols? = null
+    val debugSymbols: pl.wendigo.chrome.api.debugger.DebugSymbols? = null,
+
+    /**  
+     * The name the embedder supplied for this script.  
+     */  
+    val embedderName: String? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Debugger", name = "scriptParsed")
