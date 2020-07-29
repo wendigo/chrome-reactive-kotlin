@@ -63,7 +63,11 @@ enum class SameSiteCookieExclusionReason {
     @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteUnspecifiedTreatedAsLax")
     EXCLUDESAMESITEUNSPECIFIEDTREATEDASLAX,
     @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteNoneInsecure")
-    EXCLUDESAMESITENONEINSECURE;
+    EXCLUDESAMESITENONEINSECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteLax")
+    EXCLUDESAMESITELAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteStrict")
+    EXCLUDESAMESITESTRICT;
 }
 
 /**

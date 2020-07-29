@@ -123,6 +123,24 @@ unavailable.
     fun setGeolocationOverride(input: SetGeolocationOverrideRequest) = connection.request("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Overrides the Idle state.
+     *
+     * @link Protocol [Emulation#setIdleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setIdleOverride) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setIdleOverride(input: SetIdleOverrideRequest) = connection.request("Emulation.setIdleOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Clears Idle state overrides.
+     *
+     * @link Protocol [Emulation#clearIdleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-clearIdleOverride) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun clearIdleOverride() = connection.request("Emulation.clearIdleOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Overrides value returned by the javascript navigator object.
      *
      * @link Protocol [Emulation#setNavigatorOverrides](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setNavigatorOverrides) method documentation.
@@ -468,6 +486,26 @@ data class SetGeolocationOverrideRequest(
      * Mock accuracy
      */
     val accuracy: Double? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Emulation#setIdleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setIdleOverride) operation call.
+ *
+ * Overrides the Idle state.
+ * @link [Emulation#setIdleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setIdleOverride) method documentation.
+ * @see [EmulationOperations.setIdleOverride]
+ */
+data class SetIdleOverrideRequest(
+    /**
+     * Mock isUserActive
+     */
+    val isUserActive: Boolean,
+
+    /**
+     * Mock isScreenUnlocked
+     */
+    val isScreenUnlocked: Boolean
 
 )
 
