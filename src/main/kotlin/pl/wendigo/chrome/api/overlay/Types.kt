@@ -1,6 +1,24 @@
 package pl.wendigo.chrome.api.overlay
 
 /**
+ * Configuration data for drawing the source order of an elements children.
+ *
+ * @link [Overlay#SourceOrderConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-SourceOrderConfig) type documentation.
+ */
+
+data class SourceOrderConfig(
+    /**  
+     * the color to outline the givent element in.  
+     */  
+    val parentOutlineColor: pl.wendigo.chrome.api.dom.RGBA,
+
+    /**  
+     * the color to outline the child elements in.  
+     */  
+    val childOutlineColor: pl.wendigo.chrome.api.dom.RGBA
+)
+
+/**
  * Configuration data for the highlighting of Grid elements.
  *
  * @link [Overlay#GridHighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-GridHighlightConfig) type documentation.

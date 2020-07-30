@@ -37,6 +37,13 @@ class OverlayOperations internal constructor(private val connection: pl.wendigo.
     fun getGridHighlightObjectsForTest(input: GetGridHighlightObjectsForTestRequest) = connection.request("Overlay.getGridHighlightObjectsForTest", input, GetGridHighlightObjectsForTestResponse::class.java)
 
     /**
+     * For Source Order Viewer testing.
+     *
+     * @link Protocol [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) method documentation.
+     */
+    fun getSourceOrderHighlightObjectForTest(input: GetSourceOrderHighlightObjectForTestRequest) = connection.request("Overlay.getSourceOrderHighlightObjectForTest", input, GetSourceOrderHighlightObjectForTestResponse::class.java)
+
+    /**
      * Hides any highlight.
      *
      * @link Protocol [Overlay#hideHighlight](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-hideHighlight) method documentation.
@@ -71,6 +78,14 @@ objectId must be specified.
      * @link Protocol [Overlay#highlightRect](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightRect) method documentation.
      */
     fun highlightRect(input: HighlightRectRequest) = connection.request("Overlay.highlightRect", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Highlights the source order of the children of the DOM node with given id or with the given
+JavaScript object wrapper. Either nodeId or objectId must be specified.
+     *
+     * @link Protocol [Overlay#highlightSourceOrder](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightSourceOrder) method documentation.
+     */
+    fun highlightSourceOrder(input: HighlightSourceOrderRequest) = connection.request("Overlay.highlightSourceOrder", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted.
@@ -269,6 +284,36 @@ data class GetGridHighlightObjectsForTestResponse(
 )
 
 /**
+ * Represents request frame that can be used with [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) operation call.
+ *
+ * For Source Order Viewer testing.
+ * @link [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) method documentation.
+ * @see [OverlayOperations.getSourceOrderHighlightObjectForTest]
+ */
+data class GetSourceOrderHighlightObjectForTestRequest(
+    /**
+     * Id of the node to highlight.
+     */
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId
+
+)
+/**
+ * Represents response frame that is returned from [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) operation call.
+ * For Source Order Viewer testing.
+ *
+  
+ * @link [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) method documentation.
+ * @see [OverlayOperations.getSourceOrderHighlightObjectForTest]
+ */
+data class GetSourceOrderHighlightObjectForTestResponse(
+    /**  
+     * Source order highlight data for the node id provided.  
+     */  
+    val highlight: com.fasterxml.jackson.databind.JsonNode
+
+)
+
+/**
  * Represents request frame that can be used with [Overlay#highlightFrame](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightFrame) operation call.
  *
  * Highlights owner element of the frame with given id.
@@ -391,6 +436,37 @@ data class HighlightRectRequest(
      * The highlight outline color (default: transparent).
      */
     val outlineColor: pl.wendigo.chrome.api.dom.RGBA? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Overlay#highlightSourceOrder](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightSourceOrder) operation call.
+ *
+ * Highlights the source order of the children of the DOM node with given id or with the given
+JavaScript object wrapper. Either nodeId or objectId must be specified.
+ * @link [Overlay#highlightSourceOrder](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightSourceOrder) method documentation.
+ * @see [OverlayOperations.highlightSourceOrder]
+ */
+data class HighlightSourceOrderRequest(
+    /**
+     * A descriptor for the appearance of the overlay drawing.
+     */
+    val sourceOrderConfig: SourceOrderConfig,
+
+    /**
+     * Identifier of the node to highlight.
+     */
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId? = null,
+
+    /**
+     * Identifier of the backend node to highlight.
+     */
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node to be highlighted.
+     */
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null
 
 )
 
