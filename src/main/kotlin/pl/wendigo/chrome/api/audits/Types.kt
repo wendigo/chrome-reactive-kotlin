@@ -304,7 +304,12 @@ data class BlockedByResponseIssueDetails(
     /**  
      *  
      */  
-    val frame: AffectedFrame? = null,
+    val parentFrame: AffectedFrame? = null,
+
+    /**  
+     *  
+     */  
+    val blockedFrame: AffectedFrame? = null,
 
     /**  
      *  
