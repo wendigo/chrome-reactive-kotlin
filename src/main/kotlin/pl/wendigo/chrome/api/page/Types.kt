@@ -60,6 +60,14 @@ data class Frame(
     @pl.wendigo.chrome.protocol.Experimental val urlFragment: String? = null,
 
     /**  
+     * Frame document's registered domain, taking the public suffixes list into account.  
+     Extracted from the Frame's url.  
+     Example URLs: http://www.google.com/file.html -> "google.com"  
+     http://a.b.co.uk/file.html      -> "b.co.uk"  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val domainAndRegistry: String,
+
+    /**  
      * Frame document's security origin.  
      */  
     val securityOrigin: String,
