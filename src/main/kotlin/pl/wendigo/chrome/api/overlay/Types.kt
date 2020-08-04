@@ -61,9 +61,19 @@ data class GridHighlightConfig(
     val gridBorderColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
-     * The cell border color (default: transparent).  
+     * The cell border color (default: transparent). Deprecated, please use rowLineColor and columnLineColor instead.  
      */  
-    val cellBorderColor: pl.wendigo.chrome.api.dom.RGBA? = null,
+    @Deprecated(message = "") val cellBorderColor: pl.wendigo.chrome.api.dom.RGBA? = null,
+
+    /**  
+     * The row line color (default: transparent).  
+     */  
+    val rowLineColor: pl.wendigo.chrome.api.dom.RGBA? = null,
+
+    /**  
+     * The column line color (default: transparent).  
+     */  
+    val columnLineColor: pl.wendigo.chrome.api.dom.RGBA? = null,
 
     /**  
      * Whether the grid border is dashed (default: false).  
@@ -71,9 +81,19 @@ data class GridHighlightConfig(
     val gridBorderDash: Boolean? = null,
 
     /**  
-     * Whether the cell border is dashed (default: false).  
+     * Whether the cell border is dashed (default: false). Deprecated, please us rowLineDash and columnLineDash instead.  
      */  
-    val cellBorderDash: Boolean? = null,
+    @Deprecated(message = "") val cellBorderDash: Boolean? = null,
+
+    /**  
+     * Whether row lines are dashed (default: false).  
+     */  
+    val rowLineDash: Boolean? = null,
+
+    /**  
+     * Whether column lines are dashed (default: false).  
+     */  
+    val columnLineDash: Boolean? = null,
 
     /**  
      * The row gap highlight fill color (default: transparent).  

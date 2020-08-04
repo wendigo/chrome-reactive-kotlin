@@ -110,6 +110,29 @@ node.
     fun getStyleSheetText(input: GetStyleSheetTextRequest) = connection.request("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java)
 
     /**
+     * Starts tracking the given computed styles for updates. The specified array of properties
+replaces the one previously specified. Pass empty array to disable tracking.
+Use takeComputedStyleUpdates to retrieve the list of nodes that had properties modified.
+The changes to computed style properties are only tracked for nodes pushed to the front-end
+by the DOM agent. If no changes to the tracked properties occur after the node has been pushed
+to the front-end, no updates will be issued for the node.
+     *
+     * @link Protocol [CSS#trackComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-trackComputedStyleUpdates) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun trackComputedStyleUpdates(input: TrackComputedStyleUpdatesRequest) = connection.request("CSS.trackComputedStyleUpdates", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Polls the next batch of computed style updates.
+     *
+     * @link Protocol [CSS#takeComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeComputedStyleUpdates) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun takeComputedStyleUpdates() = connection.request("CSS.takeComputedStyleUpdates", null, TakeComputedStyleUpdatesResponse::class.java)
+
+    /**
      * Find a rule with the given active property for the given node and set the new value for this
 property
      *
@@ -585,6 +608,42 @@ data class GetStyleSheetTextResponse(
      * The stylesheet text.  
      */  
     val text: String
+
+)
+
+/**
+ * Represents request frame that can be used with [CSS#trackComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-trackComputedStyleUpdates) operation call.
+ *
+ * Starts tracking the given computed styles for updates. The specified array of properties
+replaces the one previously specified. Pass empty array to disable tracking.
+Use takeComputedStyleUpdates to retrieve the list of nodes that had properties modified.
+The changes to computed style properties are only tracked for nodes pushed to the front-end
+by the DOM agent. If no changes to the tracked properties occur after the node has been pushed
+to the front-end, no updates will be issued for the node.
+ * @link [CSS#trackComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-trackComputedStyleUpdates) method documentation.
+ * @see [CSSOperations.trackComputedStyleUpdates]
+ */
+data class TrackComputedStyleUpdatesRequest(
+    /**
+     *
+     */
+    val propertiesToTrack: List<CSSComputedStyleProperty>
+
+)
+
+/**
+ * Represents response frame that is returned from [CSS#takeComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeComputedStyleUpdates) operation call.
+ * Polls the next batch of computed style updates.
+ *
+  
+ * @link [CSS#takeComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeComputedStyleUpdates) method documentation.
+ * @see [CSSOperations.takeComputedStyleUpdates]
+ */
+data class TakeComputedStyleUpdatesResponse(
+    /**  
+     * The list of node Ids that have their tracked computed styles updated  
+     */  
+    val nodeIds: List<pl.wendigo.chrome.api.dom.NodeId>
 
 )
 
