@@ -437,7 +437,12 @@ data class ContentSecurityPolicyIssueDetails(
     /**  
      *  
      */  
-    val sourceCodeLocation: SourceCodeLocation? = null
+    val sourceCodeLocation: SourceCodeLocation? = null,
+
+    /**  
+     *  
+     */  
+    val violatingNodeId: Int? = null
 )
 
 /**
