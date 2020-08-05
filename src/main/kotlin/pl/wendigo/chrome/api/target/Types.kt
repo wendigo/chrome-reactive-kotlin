@@ -54,6 +54,11 @@ data class TargetInfo(
     val openerId: TargetID? = null,
 
     /**  
+     * Whether the opened window has access to the originating window.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val canAccessOpener: Boolean,
+
+    /**  
      *  
      */  
     @pl.wendigo.chrome.protocol.Experimental val browserContextId: pl.wendigo.chrome.api.browser.BrowserContextID? = null
