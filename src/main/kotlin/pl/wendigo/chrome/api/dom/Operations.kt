@@ -114,9 +114,12 @@ might return multiple quads for inline nodes.
 
     /**
      * Returns the root DOM node (and optionally the subtree) to the caller.
+Deprecated, as it is not designed to work well with the rest of the DOM agent.
+Use DOMSnapshot.captureSnapshot instead.
      *
      * @link Protocol [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
      */
+    @Deprecated(level = DeprecationLevel.WARNING, message = "getFlattenedDocument is deprecated.")
     fun getFlattenedDocument(input: GetFlattenedDocumentRequest) = connection.request("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java)
 
     /**
@@ -813,6 +816,8 @@ data class GetDocumentResponse(
  * Represents request frame that can be used with [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) operation call.
  *
  * Returns the root DOM node (and optionally the subtree) to the caller.
+Deprecated, as it is not designed to work well with the rest of the DOM agent.
+Use DOMSnapshot.captureSnapshot instead.
  * @link [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
  * @see [DOMOperations.getFlattenedDocument]
  */
@@ -833,6 +838,8 @@ entire subtree or provide an integer larger than 0.
 /**
  * Represents response frame that is returned from [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) operation call.
  * Returns the root DOM node (and optionally the subtree) to the caller.
+Deprecated, as it is not designed to work well with the rest of the DOM agent.
+Use DOMSnapshot.captureSnapshot instead.
  *
   
  * @link [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
