@@ -442,7 +442,7 @@ data class ContentSecurityPolicyIssueDetails(
     /**  
      *  
      */  
-    val violatingNodeId: Int? = null
+    val violatingNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null
 )
 
 /**

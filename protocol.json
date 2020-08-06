@@ -4792,7 +4792,7 @@
                         {
                             "name": "violatingNodeId",
                             "optional": true,
-                            "type": "integer"
+                            "$ref": "DOM.BackendNodeId"
                         }
                     ]
                 },
