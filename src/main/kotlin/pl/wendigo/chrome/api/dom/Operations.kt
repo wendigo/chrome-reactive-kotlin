@@ -123,6 +123,15 @@ Use DOMSnapshot.captureSnapshot instead.
     fun getFlattenedDocument(input: GetFlattenedDocumentRequest) = connection.request("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java)
 
     /**
+     * Finds nodes with a given computed style in a subtree.
+     *
+     * @link Protocol [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getNodesForSubtreeByStyle(input: GetNodesForSubtreeByStyleRequest) = connection.request("DOM.getNodesForSubtreeByStyle", input, GetNodesForSubtreeByStyleResponse::class.java)
+
+    /**
      * Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is
 either returned or not.
      *
@@ -850,6 +859,47 @@ data class GetFlattenedDocumentResponse(
      * Resulting node.  
      */  
     val nodes: List<Node>
+
+)
+
+/**
+ * Represents request frame that can be used with [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) operation call.
+ *
+ * Finds nodes with a given computed style in a subtree.
+ * @link [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) method documentation.
+ * @see [DOMOperations.getNodesForSubtreeByStyle]
+ */
+data class GetNodesForSubtreeByStyleRequest(
+    /**
+     * Node ID pointing to the root of a subtree.
+     */
+    val nodeId: NodeId,
+
+    /**
+     * The style to filter nodes by (includes nodes if any of properties matches).
+     */
+    val computedStyles: List<CSSComputedStyleProperty>,
+
+    /**
+     * Whether or not iframes and shadow roots in the same target should be traversed when returning the
+results (default is false).
+     */
+    val pierce: Boolean? = null
+
+)
+/**
+ * Represents response frame that is returned from [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) operation call.
+ * Finds nodes with a given computed style in a subtree.
+ *
+  
+ * @link [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) method documentation.
+ * @see [DOMOperations.getNodesForSubtreeByStyle]
+ */
+data class GetNodesForSubtreeByStyleResponse(
+    /**  
+     * Resulting nodes.  
+     */  
+    val nodeIds: List<NodeId>
 
 )
 

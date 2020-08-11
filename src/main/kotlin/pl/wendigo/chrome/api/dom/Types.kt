@@ -374,3 +374,21 @@ data class Rect(
      */  
     val height: Double
 )
+
+/**
+ *
+ *
+ * @link [DOM#CSSComputedStyleProperty](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-CSSComputedStyleProperty) type documentation.
+ */
+
+data class CSSComputedStyleProperty(
+    /**  
+     * Computed style property name.  
+     */  
+    val name: String,
+
+    /**  
+     * Computed style property value.  
+     */  
+    val value: String
+)
