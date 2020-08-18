@@ -1288,3 +1288,75 @@ data class SignedExchangeInfo(
      */  
     val errors: List<SignedExchangeError>? = null
 )
+
+/**
+ *
+ *
+ * @link [Network#CrossOriginOpenerPolicyValue](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginOpenerPolicyValue) type documentation.
+ */
+enum class CrossOriginOpenerPolicyValue {
+    @com.fasterxml.jackson.annotation.JsonProperty("SameOrigin")
+    SAMEORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameOriginAllowPopups")
+    SAMEORIGINALLOWPOPUPS,
+    @com.fasterxml.jackson.annotation.JsonProperty("UnsafeNone")
+    UNSAFENONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameOriginPlusCoep")
+    SAMEORIGINPLUSCOEP;
+}
+
+/**
+ *
+ *
+ * @link [Network#CrossOriginOpenerPolicyStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginOpenerPolicyStatus) type documentation.
+ */
+
+data class CrossOriginOpenerPolicyStatus(
+    /**  
+     *  
+     */  
+    val value: CrossOriginOpenerPolicyValue
+)
+
+/**
+ *
+ *
+ * @link [Network#CrossOriginEmbedderPolicyValue](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginEmbedderPolicyValue) type documentation.
+ */
+enum class CrossOriginEmbedderPolicyValue {
+    @com.fasterxml.jackson.annotation.JsonProperty("None")
+    NONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("RequireCorp")
+    REQUIRECORP;
+}
+
+/**
+ *
+ *
+ * @link [Network#CrossOriginEmbedderPolicyStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginEmbedderPolicyStatus) type documentation.
+ */
+
+data class CrossOriginEmbedderPolicyStatus(
+    /**  
+     *  
+     */  
+    val value: CrossOriginEmbedderPolicyValue
+)
+
+/**
+ *
+ *
+ * @link [Network#SecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SecurityIsolationStatus) type documentation.
+ */
+
+data class SecurityIsolationStatus(
+    /**  
+     *  
+     */  
+    val coop: CrossOriginOpenerPolicyStatus,
+
+    /**  
+     *  
+     */  
+    val coep: CrossOriginEmbedderPolicyStatus
+)

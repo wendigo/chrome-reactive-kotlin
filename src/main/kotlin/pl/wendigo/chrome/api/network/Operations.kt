@@ -241,6 +241,15 @@ Deprecated, please use Fetch.enable instead.
     fun setUserAgentOverride(input: SetUserAgentOverrideRequest) = connection.request("Network.setUserAgentOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Returns information about the COEP/COOP isolation status.
+     *
+     * @link Protocol [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getSecurityIsolationStatus(input: GetSecurityIsolationStatusRequest) = connection.request("Network.getSecurityIsolationStatus", input, GetSecurityIsolationStatusResponse::class.java)
+
+    /**
      *  Fired when data chunk was received over the network.
      */
     fun dataReceived(): io.reactivex.Flowable<DataReceivedEvent> = connection.events("Network.dataReceived", DataReceivedEvent::class.java)
@@ -1045,6 +1054,36 @@ data class SetUserAgentOverrideRequest(
      * To be sent in Sec-CH-UA-* headers and returned in navigator.userAgentData
      */
     @pl.wendigo.chrome.protocol.Experimental val userAgentMetadata: pl.wendigo.chrome.api.emulation.UserAgentMetadata? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) operation call.
+ *
+ * Returns information about the COEP/COOP isolation status.
+ * @link [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) method documentation.
+ * @see [NetworkOperations.getSecurityIsolationStatus]
+ */
+data class GetSecurityIsolationStatusRequest(
+    /**
+     * If no frameId is provided, the status of the target is provided.
+     */
+    val frameId: pl.wendigo.chrome.api.page.FrameId? = null
+
+)
+/**
+ * Represents response frame that is returned from [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) operation call.
+ * Returns information about the COEP/COOP isolation status.
+ *
+  
+ * @link [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) method documentation.
+ * @see [NetworkOperations.getSecurityIsolationStatus]
+ */
+data class GetSecurityIsolationStatusResponse(
+    /**  
+     *  
+     */  
+    val status: SecurityIsolationStatus
 
 )
 
