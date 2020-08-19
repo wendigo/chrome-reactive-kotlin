@@ -23,6 +23,36 @@ enum class AdFrameType {
 }
 
 /**
+ * Indicates whether the frame is a secure context and why it is the case.
+ *
+ * @link [Page#SecureContextType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-SecureContextType) type documentation.
+ */
+enum class SecureContextType {
+    @com.fasterxml.jackson.annotation.JsonProperty("Secure")
+    SECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("SecureLocalhost")
+    SECURELOCALHOST,
+    @com.fasterxml.jackson.annotation.JsonProperty("InsecureScheme")
+    INSECURESCHEME,
+    @com.fasterxml.jackson.annotation.JsonProperty("InsecureAncestor")
+    INSECUREANCESTOR;
+}
+
+/**
+ * Indicates whether the frame is cross-origin isolated and why it is the case.
+ *
+ * @link [Page#CrossOriginIsolatedContextType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-CrossOriginIsolatedContextType) type documentation.
+ */
+enum class CrossOriginIsolatedContextType {
+    @com.fasterxml.jackson.annotation.JsonProperty("Isolated")
+    ISOLATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("NotIsolated")
+    NOTISOLATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("NotIsolatedFeatureDisabled")
+    NOTISOLATEDFEATUREDISABLED;
+}
+
+/**
  * Information about the Frame on the page.
  *
  * @link [Page#Frame](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-Frame) type documentation.
@@ -85,7 +115,17 @@ data class Frame(
     /**  
      * Indicates whether this frame was tagged as an ad.  
      */  
-    @pl.wendigo.chrome.protocol.Experimental val adFrameType: AdFrameType? = null
+    @pl.wendigo.chrome.protocol.Experimental val adFrameType: AdFrameType? = null,
+
+    /**  
+     * Indicates whether the main document is a secure context and explains why that is the case.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val secureContextType: SecureContextType,
+
+    /**  
+     * Indicates whether this is a cross origin isolated context.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val crossOriginIsolatedContextType: CrossOriginIsolatedContextType
 )
 
 /**
