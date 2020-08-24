@@ -155,11 +155,6 @@ data class PermissionDescriptor(
     val userVisibleOnly: Boolean? = null,
 
     /**  
-     * For "wake-lock" permission, must specify type as either "screen" or "system".  
-     */  
-    val type: String? = null,
-
-    /**  
      * For "clipboard" permission, may specify allowWithoutSanitization.  
      */  
     val allowWithoutSanitization: Boolean? = null
