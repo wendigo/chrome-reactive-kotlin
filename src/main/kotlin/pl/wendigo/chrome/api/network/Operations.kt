@@ -223,6 +223,15 @@ attribute, user, password.
     fun setExtraHTTPHeaders(input: SetExtraHTTPHeadersRequest) = connection.request("Network.setExtraHTTPHeaders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Specifies whether to sned a debug header to all outgoing requests.
+     *
+     * @link Protocol [Network#setAttachDebugHeader](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugHeader) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setAttachDebugHeader(input: SetAttachDebugHeaderRequest) = connection.request("Network.setAttachDebugHeader", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Sets the requests to intercept that match the provided patterns and optionally resource types.
 Deprecated, please use Fetch.enable instead.
      *
@@ -1007,6 +1016,21 @@ data class SetExtraHTTPHeadersRequest(
      * Map with extra HTTP headers.
      */
     val headers: Headers
+
+)
+
+/**
+ * Represents request frame that can be used with [Network#setAttachDebugHeader](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugHeader) operation call.
+ *
+ * Specifies whether to sned a debug header to all outgoing requests.
+ * @link [Network#setAttachDebugHeader](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugHeader) method documentation.
+ * @see [NetworkOperations.setAttachDebugHeader]
+ */
+data class SetAttachDebugHeaderRequest(
+    /**
+     * Whether to send a debug header.
+     */
+    val enabled: Boolean
 
 )
 
