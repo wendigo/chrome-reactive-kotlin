@@ -231,3 +231,26 @@ data class CounterInfo(
      */  
     val value: Int
 )
+
+/**
+ * Runtime call counter information.
+ *
+ * @link [Profiler#RuntimeCallCounterInfo](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-RuntimeCallCounterInfo) type documentation.
+ */
+
+data class RuntimeCallCounterInfo(
+    /**  
+     * Counter name.  
+     */  
+    val name: String,
+
+    /**  
+     * Counter value.  
+     */  
+    val value: Double,
+
+    /**  
+     * Counter time in seconds.  
+     */  
+    val time: Double
+)
