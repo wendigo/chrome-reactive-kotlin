@@ -118,7 +118,12 @@ data class GridHighlightConfig(
     /**  
      * The named grid areas border color (Default: transparent).  
      */  
-    val areaBorderColor: pl.wendigo.chrome.api.dom.RGBA? = null
+    val areaBorderColor: pl.wendigo.chrome.api.dom.RGBA? = null,
+
+    /**  
+     * The grid container background color (Default: transparent).  
+     */  
+    val gridBackgroundColor: pl.wendigo.chrome.api.dom.RGBA? = null
 )
 
 /**
