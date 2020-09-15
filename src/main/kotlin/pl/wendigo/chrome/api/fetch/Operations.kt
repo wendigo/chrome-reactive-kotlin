@@ -3,10 +3,8 @@ package pl.wendigo.chrome.api.fetch
 /**
  * A domain for letting clients substitute browser's network layer with client code.
  *
- * This API is marked as experimental in protocol definition and can change in the future.
  * @link Protocol [Fetch](https://chromedevtools.github.io/devtools-protocol/tot/Fetch) domain documentation.
  */
-@pl.wendigo.chrome.protocol.Experimental
 class FetchOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Disables the fetch domain.

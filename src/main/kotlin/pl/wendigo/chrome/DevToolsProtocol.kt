@@ -657,10 +657,8 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     /**
      * A domain for letting clients substitute browser's network layer with client code.
      *
-     * This API is marked as experimental in protocol definition and can change in the future.
      * @link [https://chromedevtools.github.io/devtools-protocol/tot/Fetch](Domain Fetch documentation)
      */
-    @pl.wendigo.chrome.protocol.Experimental
     val Fetch: FetchOperations by lazy {
         FetchOperations(connection)
     }
