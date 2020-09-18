@@ -1315,7 +1315,22 @@ data class CrossOriginOpenerPolicyStatus(
     /**  
      *  
      */  
-    val value: CrossOriginOpenerPolicyValue
+    val value: CrossOriginOpenerPolicyValue,
+
+    /**  
+     *  
+     */  
+    val reportOnlyValue: CrossOriginOpenerPolicyValue,
+
+    /**  
+     *  
+     */  
+    val reportingEndpoint: String? = null,
+
+    /**  
+     *  
+     */  
+    val reportOnlyReportingEndpoint: String? = null
 )
 
 /**
@@ -1340,7 +1355,22 @@ data class CrossOriginEmbedderPolicyStatus(
     /**  
      *  
      */  
-    val value: CrossOriginEmbedderPolicyValue
+    val value: CrossOriginEmbedderPolicyValue,
+
+    /**  
+     *  
+     */  
+    val reportOnlyValue: CrossOriginEmbedderPolicyValue,
+
+    /**  
+     *  
+     */  
+    val reportingEndpoint: String? = null,
+
+    /**  
+     *  
+     */  
+    val reportOnlyReportingEndpoint: String? = null
 )
 
 /**
