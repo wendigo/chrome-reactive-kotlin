@@ -259,6 +259,15 @@ Deprecated, please use Fetch.enable instead.
     fun getSecurityIsolationStatus(input: GetSecurityIsolationStatusRequest) = connection.request("Network.getSecurityIsolationStatus", input, GetSecurityIsolationStatusResponse::class.java)
 
     /**
+     * Fetches the resource and returns the content.
+     *
+     * @link Protocol [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun loadNetworkResource(input: LoadNetworkResourceRequest) = connection.request("Network.loadNetworkResource", input, LoadNetworkResourceResponse::class.java)
+
+    /**
      *  Fired when data chunk was received over the network.
      */
     fun dataReceived(): io.reactivex.Flowable<DataReceivedEvent> = connection.events("Network.dataReceived", DataReceivedEvent::class.java)
@@ -1108,6 +1117,46 @@ data class GetSecurityIsolationStatusResponse(
      *  
      */  
     val status: SecurityIsolationStatus
+
+)
+
+/**
+ * Represents request frame that can be used with [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) operation call.
+ *
+ * Fetches the resource and returns the content.
+ * @link [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) method documentation.
+ * @see [NetworkOperations.loadNetworkResource]
+ */
+data class LoadNetworkResourceRequest(
+    /**
+     * Frame id to get the resource for.
+     */
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
+
+    /**
+     * URL of the resource to get content for.
+     */
+    val url: String,
+
+    /**
+     * Options for the request.
+     */
+    val options: LoadNetworkResourceOptions
+
+)
+/**
+ * Represents response frame that is returned from [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) operation call.
+ * Fetches the resource and returns the content.
+ *
+  
+ * @link [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) method documentation.
+ * @see [NetworkOperations.loadNetworkResource]
+ */
+data class LoadNetworkResourceResponse(
+    /**  
+     *  
+     */  
+    val resource: LoadNetworkResourcePageResult
 
 )
 

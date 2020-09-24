@@ -1390,3 +1390,60 @@ data class SecurityIsolationStatus(
      */  
     val coep: CrossOriginEmbedderPolicyStatus
 )
+
+/**
+ * An object providing the result of a network resource load.
+ *
+ * @link [Network#LoadNetworkResourcePageResult](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-LoadNetworkResourcePageResult) type documentation.
+ */
+
+data class LoadNetworkResourcePageResult(
+    /**  
+     *  
+     */  
+    val success: Boolean,
+
+    /**  
+     * Optional values used for error reporting.  
+     */  
+    val netError: Double? = null,
+
+    /**  
+     *  
+     */  
+    val netErrorName: String? = null,
+
+    /**  
+     *  
+     */  
+    val httpStatusCode: Double? = null,
+
+    /**  
+     * If successful, one of the following two fields holds the result.  
+     */  
+    val stream: pl.wendigo.chrome.api.io.StreamHandle? = null,
+
+    /**  
+     * Response headers.  
+     */  
+    val headers: pl.wendigo.chrome.api.network.Headers? = null
+)
+
+/**
+ * An options object that may be extended later to better support CORS,
+CORB and streaming.
+ *
+ * @link [Network#LoadNetworkResourceOptions](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-LoadNetworkResourceOptions) type documentation.
+ */
+
+data class LoadNetworkResourceOptions(
+    /**  
+     *  
+     */  
+    val disableCache: Boolean,
+
+    /**  
+     *  
+     */  
+    val includeCredentials: Boolean
+)
