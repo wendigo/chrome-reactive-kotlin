@@ -972,7 +972,7 @@ default domain and path values of the created cookie.
  */
 data class SetCookieResponse(
     /**  
-     * True if successfully set cookie.  
+     * Always set to true. If an error occurs, the response indicates protocol error.  
      */  
     val success: Boolean
 

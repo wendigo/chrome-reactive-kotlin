@@ -289,7 +289,7 @@ data class CloseTargetRequest(
  */
 data class CloseTargetResponse(
     /**  
-     *  
+     * Always set to true. If an error occurs, the response indicates protocol error.  
      */  
     val success: Boolean
 
