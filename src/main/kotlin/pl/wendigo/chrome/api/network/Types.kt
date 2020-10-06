@@ -811,7 +811,13 @@ data class Initiator(
      * Initiator line number, set for Parser type or for Script type (when script is importing  
      module) (0-based).  
      */  
-    val lineNumber: Double? = null
+    val lineNumber: Double? = null,
+
+    /**  
+     * Initiator column number, set for Parser type or for Script type (when script is importing  
+     module) (0-based).  
+     */  
+    val columnNumber: Double? = null
 )
 
 /**
