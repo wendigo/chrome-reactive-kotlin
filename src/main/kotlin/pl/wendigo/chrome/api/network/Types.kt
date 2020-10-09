@@ -370,7 +370,13 @@ data class Request(
     /**  
      * Whether is loaded via link preload.  
      */  
-    val isLinkPreload: Boolean? = null
+    val isLinkPreload: Boolean? = null,
+
+    /**  
+     * Set for requests when the TrustToken API is used. Contains the parameters  
+     passed by the developer (e.g. via "fetch") as understood by the backend.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val trustTokenParams: TrustTokenParams? = null
 )
 
 /**
@@ -556,6 +562,46 @@ enum class ServiceWorkerResponseSource {
     FALLBACK_CODE,
     @com.fasterxml.jackson.annotation.JsonProperty("network")
     NETWORK;
+}
+
+/**
+ * Determines what type of Trust Token operation is executed and
+depending on the type, some additional parameters.
+ *
+ * @link [Network#TrustTokenParams](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-TrustTokenParams) type documentation.
+ */
+
+data class TrustTokenParams(
+    /**  
+     *  
+     */  
+    val type: TrustTokenOperationType,
+
+    /**  
+     * Only set for "srr-token-redemption" type and determine whether  
+     to request a fresh SRR or use a still valid cached SRR.  
+     */  
+    val refreshPolicy: String,
+
+    /**  
+     * Origins of issuers from whom to request tokens or redemption  
+     records.  
+     */  
+    val issuers: List<String>? = null
+)
+
+/**
+ *
+ *
+ * @link [Network#TrustTokenOperationType](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-TrustTokenOperationType) type documentation.
+ */
+enum class TrustTokenOperationType {
+    @com.fasterxml.jackson.annotation.JsonProperty("Issuance")
+    ISSUANCE,
+    @com.fasterxml.jackson.annotation.JsonProperty("Redemption")
+    REDEMPTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("Signing")
+    SIGNING;
 }
 
 /**
