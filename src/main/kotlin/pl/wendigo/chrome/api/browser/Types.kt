@@ -107,6 +107,8 @@ enum class PermissionType {
     SENSORS,
     @com.fasterxml.jackson.annotation.JsonProperty("videoCapture")
     VIDEOCAPTURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("videoCapturePanTiltZoom")
+    VIDEOCAPTUREPANTILTZOOM,
     @com.fasterxml.jackson.annotation.JsonProperty("idleDetection")
     IDLEDETECTION,
     @com.fasterxml.jackson.annotation.JsonProperty("wakeLockScreen")
@@ -157,7 +159,12 @@ data class PermissionDescriptor(
     /**  
      * For "clipboard" permission, may specify allowWithoutSanitization.  
      */  
-    val allowWithoutSanitization: Boolean? = null
+    val allowWithoutSanitization: Boolean? = null,
+
+    /**  
+     * For "camera" permission, may specify panTiltZoom.  
+     */  
+    val panTiltZoom: Boolean? = null
 )
 
 /**
