@@ -958,7 +958,13 @@ enum class SetCookieBlockedReason {
     @com.fasterxml.jackson.annotation.JsonProperty("InvalidPrefix")
     INVALIDPREFIX,
     @com.fasterxml.jackson.annotation.JsonProperty("UnknownError")
-    UNKNOWNERROR;
+    UNKNOWNERROR,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteStrict")
+    SCHEMEFULSAMESITESTRICT,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteLax")
+    SCHEMEFULSAMESITELAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteUnspecifiedTreatedAsLax")
+    SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX;
 }
 
 /**
@@ -984,7 +990,13 @@ enum class CookieBlockedReason {
     @com.fasterxml.jackson.annotation.JsonProperty("UserPreferences")
     USERPREFERENCES,
     @com.fasterxml.jackson.annotation.JsonProperty("UnknownError")
-    UNKNOWNERROR;
+    UNKNOWNERROR,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteStrict")
+    SCHEMEFULSAMESITESTRICT,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteLax")
+    SCHEMEFULSAMESITELAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteUnspecifiedTreatedAsLax")
+    SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX;
 }
 
 /**
