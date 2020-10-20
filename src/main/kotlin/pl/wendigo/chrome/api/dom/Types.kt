@@ -60,6 +60,8 @@ enum class PseudoType {
     BACKDROP,
     @com.fasterxml.jackson.annotation.JsonProperty("selection")
     SELECTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("target-text")
+    TARGET_TEXT,
     @com.fasterxml.jackson.annotation.JsonProperty("first-line-inherited")
     FIRST_LINE_INHERITED,
     @com.fasterxml.jackson.annotation.JsonProperty("scrollbar")
