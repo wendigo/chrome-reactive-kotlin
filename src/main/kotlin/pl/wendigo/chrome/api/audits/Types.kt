@@ -427,6 +427,11 @@ data class ContentSecurityPolicyIssueDetails(
     /**  
      *  
      */  
+    val isReportOnly: Boolean,
+
+    /**  
+     *  
+     */  
     val contentSecurityPolicyViolationType: ContentSecurityPolicyViolationType,
 
     /**  
