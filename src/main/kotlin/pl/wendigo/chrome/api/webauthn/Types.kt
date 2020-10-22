@@ -23,6 +23,18 @@ enum class AuthenticatorProtocol {
 /**
  *
  *
+ * @link [WebAuthn#Ctap2Version](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-Ctap2Version) type documentation.
+ */
+enum class Ctap2Version {
+    @com.fasterxml.jackson.annotation.JsonProperty("ctap2_0")
+    CTAP2_0,
+    @com.fasterxml.jackson.annotation.JsonProperty("ctap2_1")
+    CTAP2_1;
+}
+
+/**
+ *
+ *
  * @link [WebAuthn#AuthenticatorTransport](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-AuthenticatorTransport) type documentation.
  */
 enum class AuthenticatorTransport {
@@ -49,6 +61,11 @@ data class VirtualAuthenticatorOptions(
      *  
      */  
     val protocol: AuthenticatorProtocol,
+
+    /**  
+     * Defaults to ctap2_0. Ignored if |protocol| == u2f.  
+     */  
+    val ctap2Version: Ctap2Version? = null,
 
     /**  
      *  
@@ -124,5 +141,11 @@ data class Credential(
      assertion.  
      See https://w3c.github.io/webauthn/#signature-counter  
      */  
-    val signCount: Int
+    val signCount: Int,
+
+    /**  
+     * The large blob associated with the credential.  
+     See https://w3c.github.io/webauthn/#sctn-large-blob-extension  
+     */  
+    val largeBlob: String? = null
 )
