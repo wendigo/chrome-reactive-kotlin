@@ -249,6 +249,31 @@ Left=1, Right=2, Middle=4, Back=8, Forward=16, None=0.
     val clickCount: Int? = null,
 
     /**
+     * The normalized pressure, which has a range of [0,1] (default: 0).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val force: Double? = null,
+
+    /**
+     * The normalized tangential pressure, which has a range of [-1,1] (default: 0).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val tangentialPressure: Double? = null,
+
+    /**
+     * The plane angle between the Y-Z plane and the plane containing both the stylus axis and the Y axis, in degrees of the range [-90,90], a positive tiltX is to the right (default: 0).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val tiltX: Int? = null,
+
+    /**
+     * The plane angle between the X-Z plane and the plane containing both the stylus axis and the X axis, in degrees of the range [-90,90], a positive tiltY is towards the user (default: 0).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val tiltY: Int? = null,
+
+    /**
+     * The clockwise rotation of a pen stylus around its own major axis, in degrees in the range [0,359] (default: 0).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val twist: Int? = null,
+
+    /**
      * X delta in CSS pixels for mouse wheel event (default: 0).
      */
     val deltaX: Double? = null,

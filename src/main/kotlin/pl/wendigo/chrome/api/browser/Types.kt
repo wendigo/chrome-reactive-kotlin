@@ -168,6 +168,16 @@ data class PermissionDescriptor(
 )
 
 /**
+ * Browser command ids used by executeBrowserCommand.
+ *
+ * @link [Browser#BrowserCommandId](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-BrowserCommandId) type documentation.
+ */
+enum class BrowserCommandId {
+    @com.fasterxml.jackson.annotation.JsonProperty("openTabSearch")
+    OPENTABSEARCH;
+}
+
+/**
  * Chrome histogram bucket.
  *
  * @link [Browser#Bucket](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-Bucket) type documentation.

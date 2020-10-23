@@ -139,6 +139,15 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
     fun setDockTile(input: SetDockTileRequest) = connection.request("Browser.setDockTile", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Invoke custom browser commands used by telemetry.
+     *
+     * @link Protocol [Browser#executeBrowserCommand](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-executeBrowserCommand) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun executeBrowserCommand(input: ExecuteBrowserCommandRequest) = connection.request("Browser.executeBrowserCommand", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Returns flowable capturing all Browser domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
@@ -475,5 +484,20 @@ data class SetDockTileRequest(
      * Png encoded image.
      */
     val image: String? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Browser#executeBrowserCommand](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-executeBrowserCommand) operation call.
+ *
+ * Invoke custom browser commands used by telemetry.
+ * @link [Browser#executeBrowserCommand](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-executeBrowserCommand) method documentation.
+ * @see [BrowserOperations.executeBrowserCommand]
+ */
+data class ExecuteBrowserCommandRequest(
+    /**
+     *
+     */
+    val commandId: BrowserCommandId
 
 )
