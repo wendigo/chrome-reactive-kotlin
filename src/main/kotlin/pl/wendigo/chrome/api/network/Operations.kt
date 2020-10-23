@@ -223,13 +223,13 @@ attribute, user, password.
     fun setExtraHTTPHeaders(input: SetExtraHTTPHeadersRequest) = connection.request("Network.setExtraHTTPHeaders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
-     * Specifies whether to sned a debug header to all outgoing requests.
+     * Specifies whether to attach a page script stack id in requests
      *
-     * @link Protocol [Network#setAttachDebugHeader](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugHeader) method documentation.
+     * @link Protocol [Network#setAttachDebugStack](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugStack) method documentation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setAttachDebugHeader(input: SetAttachDebugHeaderRequest) = connection.request("Network.setAttachDebugHeader", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAttachDebugStack(input: SetAttachDebugStackRequest) = connection.request("Network.setAttachDebugStack", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Sets the requests to intercept that match the provided patterns and optionally resource types.
@@ -1029,15 +1029,15 @@ data class SetExtraHTTPHeadersRequest(
 )
 
 /**
- * Represents request frame that can be used with [Network#setAttachDebugHeader](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugHeader) operation call.
+ * Represents request frame that can be used with [Network#setAttachDebugStack](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugStack) operation call.
  *
- * Specifies whether to sned a debug header to all outgoing requests.
- * @link [Network#setAttachDebugHeader](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugHeader) method documentation.
- * @see [NetworkOperations.setAttachDebugHeader]
+ * Specifies whether to attach a page script stack id in requests
+ * @link [Network#setAttachDebugStack](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugStack) method documentation.
+ * @see [NetworkOperations.setAttachDebugStack]
  */
-data class SetAttachDebugHeaderRequest(
+data class SetAttachDebugStackRequest(
     /**
-     * Whether to send a debug header.
+     * Whether to attach a page script stack for debugging purpose.
      */
     val enabled: Boolean
 
