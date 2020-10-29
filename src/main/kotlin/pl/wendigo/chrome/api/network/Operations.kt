@@ -1255,7 +1255,12 @@ data class LoadingFailedEvent(
     /**  
      * The reason why loading was blocked, if any.  
      */  
-    val blockedReason: BlockedReason? = null
+    val blockedReason: BlockedReason? = null,
+
+    /**  
+     * The reason why loading was blocked by CORS, if any.  
+     */  
+    val corsErrorStatus: CorsErrorStatus? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "loadingFailed")
 

@@ -549,6 +549,80 @@ enum class BlockedReason {
 }
 
 /**
+ * The reason why request was blocked.
+ *
+ * @link [Network#CorsError](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CorsError) type documentation.
+ */
+enum class CorsError {
+    @com.fasterxml.jackson.annotation.JsonProperty("DisallowedByMode")
+    DISALLOWEDBYMODE,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidResponse")
+    INVALIDRESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("WildcardOriginNotAllowed")
+    WILDCARDORIGINNOTALLOWED,
+    @com.fasterxml.jackson.annotation.JsonProperty("MissingAllowOriginHeader")
+    MISSINGALLOWORIGINHEADER,
+    @com.fasterxml.jackson.annotation.JsonProperty("MultipleAllowOriginValues")
+    MULTIPLEALLOWORIGINVALUES,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowOriginValue")
+    INVALIDALLOWORIGINVALUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("AllowOriginMismatch")
+    ALLOWORIGINMISMATCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowCredentials")
+    INVALIDALLOWCREDENTIALS,
+    @com.fasterxml.jackson.annotation.JsonProperty("CorsDisabledScheme")
+    CORSDISABLEDSCHEME,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidStatus")
+    PREFLIGHTINVALIDSTATUS,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightDisallowedRedirect")
+    PREFLIGHTDISALLOWEDREDIRECT,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightWildcardOriginNotAllowed")
+    PREFLIGHTWILDCARDORIGINNOTALLOWED,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightMissingAllowOriginHeader")
+    PREFLIGHTMISSINGALLOWORIGINHEADER,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightMultipleAllowOriginValues")
+    PREFLIGHTMULTIPLEALLOWORIGINVALUES,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidAllowOriginValue")
+    PREFLIGHTINVALIDALLOWORIGINVALUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightAllowOriginMismatch")
+    PREFLIGHTALLOWORIGINMISMATCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidAllowCredentials")
+    PREFLIGHTINVALIDALLOWCREDENTIALS,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightMissingAllowExternal")
+    PREFLIGHTMISSINGALLOWEXTERNAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidAllowExternal")
+    PREFLIGHTINVALIDALLOWEXTERNAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowMethodsPreflightResponse")
+    INVALIDALLOWMETHODSPREFLIGHTRESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowHeadersPreflightResponse")
+    INVALIDALLOWHEADERSPREFLIGHTRESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("MethodDisallowedByPreflightResponse")
+    METHODDISALLOWEDBYPREFLIGHTRESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("HeaderDisallowedByPreflightResponse")
+    HEADERDISALLOWEDBYPREFLIGHTRESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("RedirectContainsCredentials")
+    REDIRECTCONTAINSCREDENTIALS;
+}
+
+/**
+ *
+ *
+ * @link [Network#CorsErrorStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CorsErrorStatus) type documentation.
+ */
+
+data class CorsErrorStatus(
+    /**  
+     *  
+     */  
+    val corsError: CorsError,
+
+    /**  
+     *  
+     */  
+    val failedParameter: String
+)
+
+/**
  * Source of serviceworker response.
  *
  * @link [Network#ServiceWorkerResponseSource](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ServiceWorkerResponseSource) type documentation.
