@@ -214,6 +214,15 @@ on Android.
     fun setVisibleSize(input: SetVisibleSizeRequest) = connection.request("Emulation.setVisibleSize", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     *
+     *
+     * @link Protocol [Emulation#setDisabledImageTypes](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDisabledImageTypes) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setDisabledImageTypes(input: SetDisabledImageTypesRequest) = connection.request("Emulation.setDisabledImageTypes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Allows overriding user agent with the given string.
      *
      * @link Protocol [Emulation#setUserAgentOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setUserAgentOverride) method documentation.
@@ -680,6 +689,21 @@ data class SetVisibleSizeRequest(
      * Frame height (DIP).
      */
     val height: Int
+
+)
+
+/**
+ * Represents request frame that can be used with [Emulation#setDisabledImageTypes](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDisabledImageTypes) operation call.
+ *
+ *
+ * @link [Emulation#setDisabledImageTypes](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDisabledImageTypes) method documentation.
+ * @see [EmulationOperations.setDisabledImageTypes]
+ */
+data class SetDisabledImageTypesRequest(
+    /**
+     * Image types to disable.
+     */
+    val imageTypes: List<DisabledImageType>
 
 )
 

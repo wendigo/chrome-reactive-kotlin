@@ -139,3 +139,15 @@ data class UserAgentMetadata(
      */  
     val mobile: Boolean
 )
+
+/**
+ * Enum of image types that can be disabled.
+ *
+ * @link [Emulation#DisabledImageType](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-DisabledImageType) type documentation.
+ */
+enum class DisabledImageType {
+    @com.fasterxml.jackson.annotation.JsonProperty("avif")
+    AVIF,
+    @com.fasterxml.jackson.annotation.JsonProperty("webp")
+    WEBP;
+}
