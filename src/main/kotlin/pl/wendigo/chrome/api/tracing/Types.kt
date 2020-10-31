@@ -80,3 +80,19 @@ enum class StreamCompression {
     @com.fasterxml.jackson.annotation.JsonProperty("gzip")
     GZIP;
 }
+
+/**
+ * Details exposed when memory request explicitly declared.
+Keep consistent with memory_dump_request_args.h and
+memory_instrumentation.mojom
+ *
+ * @link [Tracing#MemoryDumpLevelOfDetail](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-MemoryDumpLevelOfDetail) type documentation.
+ */
+enum class MemoryDumpLevelOfDetail {
+    @com.fasterxml.jackson.annotation.JsonProperty("background")
+    BACKGROUND,
+    @com.fasterxml.jackson.annotation.JsonProperty("light")
+    LIGHT,
+    @com.fasterxml.jackson.annotation.JsonProperty("detailed")
+    DETAILED;
+}

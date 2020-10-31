@@ -112,7 +112,12 @@ data class RequestMemoryDumpRequest(
     /**
      * Enables more deterministic results by forcing garbage collection
      */
-    val deterministic: Boolean? = null
+    val deterministic: Boolean? = null,
+
+    /**
+     * Specifies level of details in memory dump. Defaults to "detailed".
+     */
+    val levelOfDetail: MemoryDumpLevelOfDetail? = null
 
 )
 /**
