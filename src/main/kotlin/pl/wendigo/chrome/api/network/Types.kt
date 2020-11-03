@@ -601,7 +601,9 @@ enum class CorsError {
     @com.fasterxml.jackson.annotation.JsonProperty("HeaderDisallowedByPreflightResponse")
     HEADERDISALLOWEDBYPREFLIGHTRESPONSE,
     @com.fasterxml.jackson.annotation.JsonProperty("RedirectContainsCredentials")
-    REDIRECTCONTAINSCREDENTIALS;
+    REDIRECTCONTAINSCREDENTIALS,
+    @com.fasterxml.jackson.annotation.JsonProperty("InsecurePrivateNetwork")
+    INSECUREPRIVATENETWORK;
 }
 
 /**
