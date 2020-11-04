@@ -16416,6 +16416,17 @@
                     ]
                 },
                 {
+                    "id": "GatedAPIFeatures",
+                    "experimental": true,
+                    "type": "string",
+                    "enum": [
+                        "SharedArrayBuffers",
+                        "SharedArrayBuffersTransferAllowed",
+                        "PerformanceMeasureMemory",
+                        "PerformanceProfile"
+                    ]
+                },
+                {
                     "id": "Frame",
                     "description": "Information about the Frame on the page.",
                     "type": "object",
@@ -16495,6 +16506,15 @@
                             "description": "Indicates whether this is a cross origin isolated context.",
                             "experimental": true,
                             "$ref": "CrossOriginIsolatedContextType"
+                        },
+                        {
+                            "name": "gatedAPIFeatures",
+                            "description": "Indicated which gated APIs / features are available.",
+                            "experimental": true,
+                            "type": "array",
+                            "items": {
+                                "$ref": "GatedAPIFeatures"
+                            }
                         }
                     ]
                 },

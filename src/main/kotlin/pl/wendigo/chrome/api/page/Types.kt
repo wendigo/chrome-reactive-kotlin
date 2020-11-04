@@ -53,6 +53,22 @@ enum class CrossOriginIsolatedContextType {
 }
 
 /**
+ *
+ *
+ * @link [Page#GatedAPIFeatures](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-GatedAPIFeatures) type documentation.
+ */
+enum class GatedAPIFeatures {
+    @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBuffers")
+    SHAREDARRAYBUFFERS,
+    @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBuffersTransferAllowed")
+    SHAREDARRAYBUFFERSTRANSFERALLOWED,
+    @com.fasterxml.jackson.annotation.JsonProperty("PerformanceMeasureMemory")
+    PERFORMANCEMEASUREMEMORY,
+    @com.fasterxml.jackson.annotation.JsonProperty("PerformanceProfile")
+    PERFORMANCEPROFILE;
+}
+
+/**
  * Information about the Frame on the page.
  *
  * @link [Page#Frame](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-Frame) type documentation.
@@ -125,7 +141,12 @@ data class Frame(
     /**  
      * Indicates whether this is a cross origin isolated context.  
      */  
-    @pl.wendigo.chrome.protocol.Experimental val crossOriginIsolatedContextType: CrossOriginIsolatedContextType
+    @pl.wendigo.chrome.protocol.Experimental val crossOriginIsolatedContextType: CrossOriginIsolatedContextType,
+
+    /**  
+     * Indicated which gated APIs / features are available.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val gatedAPIFeatures: List<GatedAPIFeatures>
 )
 
 /**
