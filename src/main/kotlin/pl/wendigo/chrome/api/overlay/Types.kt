@@ -127,6 +127,37 @@ data class GridHighlightConfig(
 )
 
 /**
+ * Configuration data for the highlighting of Flex container elements.
+ *
+ * @link [Overlay#FlexContainerHighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-FlexContainerHighlightConfig) type documentation.
+ */
+
+data class FlexContainerHighlightConfig(
+    /**  
+     * The style of the container border  
+     */  
+    val containerBorder: LineStyle? = null
+)
+
+/**
+ * Style information for drawing a line.
+ *
+ * @link [Overlay#LineStyle](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-LineStyle) type documentation.
+ */
+
+data class LineStyle(
+    /**  
+     * The color of the line (default: transparent)  
+     */  
+    val color: pl.wendigo.chrome.api.dom.RGBA? = null,
+
+    /**  
+     * The line pattern (default: solid)  
+     */  
+    val pattern: String? = null
+)
+
+/**
  * Configuration data for the highlighting of page elements.
  *
  * @link [Overlay#HighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-HighlightConfig) type documentation.
@@ -206,7 +237,12 @@ data class HighlightConfig(
     /**  
      * The grid layout highlight configuration (default: all transparent).  
      */  
-    val gridHighlightConfig: GridHighlightConfig? = null
+    val gridHighlightConfig: GridHighlightConfig? = null,
+
+    /**  
+     * The flex container highlight configuration (default: all transparent).  
+     */  
+    val flexContainerHighlightConfig: FlexContainerHighlightConfig? = null
 )
 
 /**
