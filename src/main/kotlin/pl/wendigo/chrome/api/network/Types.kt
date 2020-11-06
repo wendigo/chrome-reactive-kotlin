@@ -1523,12 +1523,12 @@ data class SecurityIsolationStatus(
     /**  
      *  
      */  
-    val coop: CrossOriginOpenerPolicyStatus,
+    val coop: CrossOriginOpenerPolicyStatus? = null,
 
     /**  
      *  
      */  
-    val coep: CrossOriginEmbedderPolicyStatus
+    val coep: CrossOriginEmbedderPolicyStatus? = null
 )
 
 /**
