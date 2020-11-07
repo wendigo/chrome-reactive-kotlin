@@ -174,7 +174,9 @@ data class PermissionDescriptor(
  */
 enum class BrowserCommandId {
     @com.fasterxml.jackson.annotation.JsonProperty("openTabSearch")
-    OPENTABSEARCH;
+    OPENTABSEARCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("closeTabSearch")
+    CLOSETABSEARCH;
 }
 
 /**
