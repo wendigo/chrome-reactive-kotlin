@@ -136,7 +136,17 @@ data class FlexContainerHighlightConfig(
     /**  
      * The style of the container border  
      */  
-    val containerBorder: LineStyle? = null
+    val containerBorder: LineStyle? = null,
+
+    /**  
+     * The style of the separator between lines  
+     */  
+    val lineSeparator: LineStyle? = null,
+
+    /**  
+     * The style of the separator between items  
+     */  
+    val itemSeparator: LineStyle? = null
 )
 
 /**
