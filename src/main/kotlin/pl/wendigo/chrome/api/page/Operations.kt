@@ -1809,7 +1809,12 @@ data class FrameDetachedEvent(
     /**  
      * Id of the frame that has been detached.  
      */  
-    val frameId: FrameId
+    val frameId: FrameId,
+
+    /**  
+     *  
+     */  
+    val reason: String
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameDetached")
 
