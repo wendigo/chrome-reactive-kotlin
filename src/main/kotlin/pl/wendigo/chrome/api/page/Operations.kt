@@ -699,7 +699,12 @@ data class CaptureScreenshotRequest(
     /**
      * Capture the screenshot from the surface, rather than the view. Defaults to true.
      */
-    @pl.wendigo.chrome.protocol.Experimental val fromSurface: Boolean? = null
+    @pl.wendigo.chrome.protocol.Experimental val fromSurface: Boolean? = null,
+
+    /**
+     * Capture the screenshot beyond the viewport. Defaults to false.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val captureBeyondViewport: Boolean? = null
 
 )
 /**
