@@ -45,6 +45,15 @@ class DOMDebuggerOperations internal constructor(private val connection: pl.wend
     fun removeXHRBreakpoint(input: RemoveXHRBreakpointRequest) = connection.request("DOMDebugger.removeXHRBreakpoint", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Sets breakpoint on particular CSP violations.
+     *
+     * @link Protocol [DOMDebugger#setBreakOnCSPViolation](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setBreakOnCSPViolation) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setBreakOnCSPViolation(input: SetBreakOnCSPViolationRequest) = connection.request("DOMDebugger.setBreakOnCSPViolation", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Sets breakpoint on particular operation with DOM.
      *
      * @link Protocol [DOMDebugger#setDOMBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setDOMBreakpoint) method documentation.
@@ -192,6 +201,21 @@ data class RemoveXHRBreakpointRequest(
      * Resource URL substring.
      */
     val url: String
+
+)
+
+/**
+ * Represents request frame that can be used with [DOMDebugger#setBreakOnCSPViolation](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setBreakOnCSPViolation) operation call.
+ *
+ * Sets breakpoint on particular CSP violations.
+ * @link [DOMDebugger#setBreakOnCSPViolation](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setBreakOnCSPViolation) method documentation.
+ * @see [DOMDebuggerOperations.setBreakOnCSPViolation]
+ */
+data class SetBreakOnCSPViolationRequest(
+    /**
+     * CSP Violations to stop upon.
+     */
+    val violationTypes: List<CSPViolationType>
 
 )
 

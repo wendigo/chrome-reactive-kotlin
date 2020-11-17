@@ -288,6 +288,24 @@ data class GridNodeHighlightConfig(
 )
 
 /**
+ *
+ *
+ * @link [Overlay#FlexNodeHighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-FlexNodeHighlightConfig) type documentation.
+ */
+
+data class FlexNodeHighlightConfig(
+    /**  
+     * A descriptor for the highlight appearance of flex containers.  
+     */  
+    val flexContainerHighlightConfig: FlexContainerHighlightConfig,
+
+    /**  
+     * Identifier of the node to highlight.  
+     */  
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId
+)
+
+/**
  * Configuration for dual screen hinge
  *
  * @link [Overlay#HingeConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-HingeConfig) type documentation.

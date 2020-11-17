@@ -15,6 +15,18 @@ enum class DOMBreakpointType {
 }
 
 /**
+ * CSP Violation type.
+ *
+ * @link [DOMDebugger#CSPViolationType](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#type-CSPViolationType) type documentation.
+ */
+enum class CSPViolationType {
+    @com.fasterxml.jackson.annotation.JsonProperty("trustedtype-sink-violation")
+    TRUSTEDTYPE_SINK_VIOLATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("trustedtype-policy-violation")
+    TRUSTEDTYPE_POLICY_VIOLATION;
+}
+
+/**
  * Object event listener.
  *
  * @link [DOMDebugger#EventListener](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#type-EventListener) type documentation.

@@ -131,6 +131,13 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
     fun setShowGridOverlays(input: SetShowGridOverlaysRequest) = connection.request("Overlay.setShowGridOverlays", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     *
+     *
+     * @link Protocol [Overlay#setShowFlexOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFlexOverlays) method documentation.
+     */
+    fun setShowFlexOverlays(input: SetShowFlexOverlaysRequest) = connection.request("Overlay.setShowFlexOverlays", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Requests that backend shows paint rectangles
      *
      * @link Protocol [Overlay#setShowPaintRects](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowPaintRects) method documentation.
@@ -564,6 +571,21 @@ data class SetShowGridOverlaysRequest(
      * An array of node identifiers and descriptors for the highlight appearance.
      */
     val gridNodeHighlightConfigs: List<GridNodeHighlightConfig>
+
+)
+
+/**
+ * Represents request frame that can be used with [Overlay#setShowFlexOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFlexOverlays) operation call.
+ *
+ *
+ * @link [Overlay#setShowFlexOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFlexOverlays) method documentation.
+ * @see [OverlayOperations.setShowFlexOverlays]
+ */
+data class SetShowFlexOverlaysRequest(
+    /**
+     * An array of node identifiers and descriptors for the highlight appearance.
+     */
+    val flexNodeHighlightConfigs: List<FlexNodeHighlightConfig>
 
 )
 
