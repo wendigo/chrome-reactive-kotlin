@@ -145,7 +145,6 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
         connection.addEventMapping("Overlay.nodeHighlightRequested", pl.wendigo.chrome.api.overlay.NodeHighlightRequestedEvent::class.java)
         connection.addEventMapping("Overlay.screenshotRequested", pl.wendigo.chrome.api.overlay.ScreenshotRequestedEvent::class.java)
         connection.addEventMapping("Page.compilationCacheProduced", pl.wendigo.chrome.api.page.CompilationCacheProducedEvent::class.java)
-        connection.addEventMapping("Page.documentOpened", pl.wendigo.chrome.api.page.DocumentOpenedEvent::class.java)
         connection.addEventMapping("Page.domContentEventFired", pl.wendigo.chrome.api.page.DomContentEventFiredEvent::class.java)
         connection.addEventMapping("Page.downloadProgress", pl.wendigo.chrome.api.page.DownloadProgressEvent::class.java)
         connection.addEventMapping("Page.downloadWillBegin", pl.wendigo.chrome.api.page.DownloadWillBeginEvent::class.java)
