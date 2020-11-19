@@ -146,7 +146,27 @@ data class FlexContainerHighlightConfig(
     /**  
      * The style of the separator between items  
      */  
-    val itemSeparator: LineStyle? = null
+    val itemSeparator: LineStyle? = null,
+
+    /**  
+     * Style of content-distribution space on the main axis (justify-content).  
+     */  
+    val mainDistributedSpace: BoxStyle? = null,
+
+    /**  
+     * Style of content-distribution space on the cross axis (align-content).  
+     */  
+    val crossDistributedSpace: BoxStyle? = null,
+
+    /**  
+     * Style of empty space caused by row gaps (gap/row-gap).  
+     */  
+    val rowGapSpace: BoxStyle? = null,
+
+    /**  
+     * Style of empty space caused by columns gaps (gap/column-gap).  
+     */  
+    val columnGapSpace: BoxStyle? = null
 )
 
 /**
@@ -165,6 +185,24 @@ data class LineStyle(
      * The line pattern (default: solid)  
      */  
     val pattern: String? = null
+)
+
+/**
+ * Style information for drawing a box.
+ *
+ * @link [Overlay#BoxStyle](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-BoxStyle) type documentation.
+ */
+
+data class BoxStyle(
+    /**  
+     * The background color for the box (default: transparent)  
+     */  
+    val fillColor: pl.wendigo.chrome.api.dom.RGBA? = null,
+
+    /**  
+     * The hatching color for the box (default: transparent)  
+     */  
+    val hatchColor: pl.wendigo.chrome.api.dom.RGBA? = null
 )
 
 /**
