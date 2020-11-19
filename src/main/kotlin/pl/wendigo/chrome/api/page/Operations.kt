@@ -503,6 +503,11 @@ Instead, a protocol event `Page.fileChooserOpened` is emitted.
     fun frameNavigated(): io.reactivex.Flowable<FrameNavigatedEvent> = connection.events("Page.frameNavigated", FrameNavigatedEvent::class.java)
 
     /**
+     *  Fired when opening document to write to.
+     */
+    fun documentOpened(): io.reactivex.Flowable<DocumentOpenedEvent> = connection.events("Page.documentOpened", DocumentOpenedEvent::class.java)
+
+    /**
      *  Returns observable capturing all Page.frameResized events.
      */
     fun frameResized(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.frameResized", pl.wendigo.chrome.protocol.Event::class.java)
@@ -699,12 +704,7 @@ data class CaptureScreenshotRequest(
     /**
      * Capture the screenshot from the surface, rather than the view. Defaults to true.
      */
-    @pl.wendigo.chrome.protocol.Experimental val fromSurface: Boolean? = null,
-
-    /**
-     * Capture the screenshot beyond the viewport. Defaults to false.
-     */
-    @pl.wendigo.chrome.protocol.Experimental val captureBeyondViewport: Boolean? = null
+    @pl.wendigo.chrome.protocol.Experimental val fromSurface: Boolean? = null
 
 )
 /**
@@ -1835,6 +1835,19 @@ data class FrameNavigatedEvent(
     val frame: Frame
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameNavigated")
+
+/**
+ * Fired when opening document to write to.
+ *
+ * @link [Page#documentOpened](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-documentOpened) event documentation.
+ */
+data class DocumentOpenedEvent(
+    /**  
+     * Frame object.  
+     */  
+    val frame: Frame
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "documentOpened")
 
 /**
  * Fired when a renderer-initiated navigation is requested.
