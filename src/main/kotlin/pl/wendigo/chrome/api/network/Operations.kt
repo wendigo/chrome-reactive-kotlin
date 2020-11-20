@@ -1710,7 +1710,12 @@ data class RequestWillBeSentExtraInfoEvent(
     /**  
      * Raw request headers as they will be sent over the wire.  
      */  
-    val headers: Headers
+    val headers: Headers,
+
+    /**  
+     * The client security state set for the request.  
+     */  
+    val clientSecurityState: ClientSecurityState? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "requestWillBeSentExtraInfo")
 

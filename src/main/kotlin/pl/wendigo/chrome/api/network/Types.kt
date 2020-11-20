@@ -1433,6 +1433,57 @@ data class SignedExchangeInfo(
 /**
  *
  *
+ * @link [Network#PrivateNetworkRequestPolicy](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-PrivateNetworkRequestPolicy) type documentation.
+ */
+enum class PrivateNetworkRequestPolicy {
+    @com.fasterxml.jackson.annotation.JsonProperty("Allow")
+    ALLOW,
+    @com.fasterxml.jackson.annotation.JsonProperty("BlockFromInsecureToMorePrivate")
+    BLOCKFROMINSECURETOMOREPRIVATE;
+}
+
+/**
+ *
+ *
+ * @link [Network#IPAddressSpace](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-IPAddressSpace) type documentation.
+ */
+enum class IPAddressSpace {
+    @com.fasterxml.jackson.annotation.JsonProperty("Local")
+    LOCAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("Private")
+    PRIVATE,
+    @com.fasterxml.jackson.annotation.JsonProperty("Public")
+    PUBLIC,
+    @com.fasterxml.jackson.annotation.JsonProperty("Unknown")
+    UNKNOWN;
+}
+
+/**
+ *
+ *
+ * @link [Network#ClientSecurityState](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ClientSecurityState) type documentation.
+ */
+
+data class ClientSecurityState(
+    /**  
+     *  
+     */  
+    val initiatorIsSecureContext: Boolean,
+
+    /**  
+     *  
+     */  
+    val initiatorIPAddressSpace: IPAddressSpace,
+
+    /**  
+     *  
+     */  
+    val privateNetworkRequestPolicy: PrivateNetworkRequestPolicy
+)
+
+/**
+ *
+ *
  * @link [Network#CrossOriginOpenerPolicyValue](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginOpenerPolicyValue) type documentation.
  */
 enum class CrossOriginOpenerPolicyValue {

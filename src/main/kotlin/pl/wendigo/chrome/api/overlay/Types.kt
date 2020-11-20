@@ -206,6 +206,20 @@ data class BoxStyle(
 )
 
 /**
+ *
+ *
+ * @link [Overlay#ContrastAlgorithm](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-ContrastAlgorithm) type documentation.
+ */
+enum class ContrastAlgorithm {
+    @com.fasterxml.jackson.annotation.JsonProperty("aa")
+    AA,
+    @com.fasterxml.jackson.annotation.JsonProperty("aaa")
+    AAA,
+    @com.fasterxml.jackson.annotation.JsonProperty("apca")
+    APCA;
+}
+
+/**
  * Configuration data for the highlighting of page elements.
  *
  * @link [Overlay#HighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-HighlightConfig) type documentation.
@@ -290,7 +304,12 @@ data class HighlightConfig(
     /**  
      * The flex container highlight configuration (default: all transparent).  
      */  
-    val flexContainerHighlightConfig: FlexContainerHighlightConfig? = null
+    val flexContainerHighlightConfig: FlexContainerHighlightConfig? = null,
+
+    /**  
+     * The contrast algorithm to use for the contrast ratio (default: aa).  
+     */  
+    val contrastAlgorithm: ContrastAlgorithm? = null
 )
 
 /**
