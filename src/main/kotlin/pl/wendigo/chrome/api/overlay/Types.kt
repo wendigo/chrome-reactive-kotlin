@@ -166,7 +166,12 @@ data class FlexContainerHighlightConfig(
     /**  
      * Style of empty space caused by columns gaps (gap/column-gap).  
      */  
-    val columnGapSpace: BoxStyle? = null
+    val columnGapSpace: BoxStyle? = null,
+
+    /**  
+     * Style of the self-alignment line (align-items).  
+     */  
+    val crossAlignment: LineStyle? = null
 )
 
 /**

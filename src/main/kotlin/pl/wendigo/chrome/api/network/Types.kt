@@ -36,6 +36,8 @@ enum class ResourceType {
     PING,
     @com.fasterxml.jackson.annotation.JsonProperty("CSPViolationReport")
     CSPVIOLATIONREPORT,
+    @com.fasterxml.jackson.annotation.JsonProperty("Preflight")
+    PREFLIGHT,
     @com.fasterxml.jackson.annotation.JsonProperty("Other")
     OTHER;
 }
@@ -940,7 +942,12 @@ data class Initiator(
      * Initiator column number, set for Parser type or for Script type (when script is importing  
      module) (0-based).  
      */  
-    val columnNumber: Double? = null
+    val columnNumber: Double? = null,
+
+    /**  
+     * Set if another request triggered this request (e.g. preflight).  
+     */  
+    val requestId: RequestId? = null
 )
 
 /**
