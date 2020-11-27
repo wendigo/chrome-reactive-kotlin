@@ -355,6 +355,16 @@ Deprecated, use Fetch.requestPaused instead.
     fun webSocketWillSendHandshakeRequest(): io.reactivex.Flowable<WebSocketWillSendHandshakeRequestEvent> = connection.events("Network.webSocketWillSendHandshakeRequest", WebSocketWillSendHandshakeRequestEvent::class.java)
 
     /**
+     *  Fired upon WebTransport creation.
+     */
+    fun webTransportCreated(): io.reactivex.Flowable<WebTransportCreatedEvent> = connection.events("Network.webTransportCreated", WebTransportCreatedEvent::class.java)
+
+    /**
+     *  Returns observable capturing all Network.webTransportClosed events.
+     */
+    fun webTransportClosed(): io.reactivex.Flowable<WebTransportClosedEvent> = connection.events("Network.webTransportClosed", WebTransportClosedEvent::class.java)
+
+    /**
      *  Fired when additional information about a requestWillBeSent event is available from the
 network stack. Not every requestWillBeSent event will have an additional
 requestWillBeSentExtraInfo fired for it, and there is no guarantee whether requestWillBeSent
@@ -1686,6 +1696,42 @@ data class WebSocketWillSendHandshakeRequestEvent(
     val request: WebSocketRequest
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "webSocketWillSendHandshakeRequest")
+
+/**
+ * Fired upon WebTransport creation.
+ *
+ * @link [Network#webTransportCreated](https://chromedevtools.github.io/devtools-protocol/tot/Network#event-webTransportCreated) event documentation.
+ */
+data class WebTransportCreatedEvent(
+    /**  
+     * WebTransport identifier.  
+     */  
+    val transportId: RequestId,
+
+    /**  
+     * WebTransport request URL.  
+     */  
+    val url: String,
+
+    /**  
+     * Request initiator.  
+     */  
+    val initiator: Initiator? = null
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "webTransportCreated")
+
+/**
+ *
+ *
+ * @link [Network#webTransportClosed](https://chromedevtools.github.io/devtools-protocol/tot/Network#event-webTransportClosed) event documentation.
+ */
+data class WebTransportClosedEvent(
+    /**  
+     * WebTransport identifier.  
+     */  
+    val transportId: RequestId
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "webTransportClosed")
 
 /**
  * Fired when additional information about a requestWillBeSent event is available from the
