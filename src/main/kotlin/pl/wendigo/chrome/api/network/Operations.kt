@@ -380,6 +380,14 @@ it, and responseReceivedExtraInfo may be fired before or after responseReceived.
     fun responseReceivedExtraInfo(): io.reactivex.Flowable<ResponseReceivedExtraInfoEvent> = connection.events("Network.responseReceivedExtraInfo", ResponseReceivedExtraInfoEvent::class.java)
 
     /**
+     *  Fired exactly once for each Trust Token operation. Depending on
+the type of the operation and whether the operation succeeded or
+failed, the event is fired before the corresponding request was sent
+or after the response was received.
+     */
+    fun trustTokenOperationDone(): io.reactivex.Flowable<TrustTokenOperationDoneEvent> = connection.events("Network.trustTokenOperationDone", TrustTokenOperationDoneEvent::class.java)
+
+    /**
      * Returns flowable capturing all Network domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
@@ -1797,3 +1805,47 @@ data class ResponseReceivedExtraInfoEvent(
     val headersText: String? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "responseReceivedExtraInfo")
+
+/**
+ * Fired exactly once for each Trust Token operation. Depending on
+the type of the operation and whether the operation succeeded or
+failed, the event is fired before the corresponding request was sent
+or after the response was received.
+ *
+ * @link [Network#trustTokenOperationDone](https://chromedevtools.github.io/devtools-protocol/tot/Network#event-trustTokenOperationDone) event documentation.
+ */
+data class TrustTokenOperationDoneEvent(
+    /**  
+     * Detailed success or error status of the operation.  
+     'AlreadyExists' also signifies a successful operation, as the result  
+     of the operation already exists und thus, the operation was abort  
+     preemptively (e.g. a cache hit).  
+     */  
+    val status: String,
+
+    /**  
+     *  
+     */  
+    val type: TrustTokenOperationType,
+
+    /**  
+     *  
+     */  
+    val requestId: RequestId,
+
+    /**  
+     * Top level origin. The context in which the operation was attempted.  
+     */  
+    val topLevelOrigin: String? = null,
+
+    /**  
+     * Origin of the issuer in case of a "Issuance" or "Redemption" operation.  
+     */  
+    val issuerOrigin: String? = null,
+
+    /**  
+     * The number of obtained Trust Tokens on a successful "Issuance" operation.  
+     */  
+    val issuedTokenCount: Int? = null
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "trustTokenOperationDone")

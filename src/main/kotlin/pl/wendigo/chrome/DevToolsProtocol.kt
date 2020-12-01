@@ -133,6 +133,7 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
         connection.addEventMapping("Network.responseReceived", pl.wendigo.chrome.api.network.ResponseReceivedEvent::class.java)
         connection.addEventMapping("Network.responseReceivedExtraInfo", pl.wendigo.chrome.api.network.ResponseReceivedExtraInfoEvent::class.java)
         connection.addEventMapping("Network.signedExchangeReceived", pl.wendigo.chrome.api.network.SignedExchangeReceivedEvent::class.java)
+        connection.addEventMapping("Network.trustTokenOperationDone", pl.wendigo.chrome.api.network.TrustTokenOperationDoneEvent::class.java)
         connection.addEventMapping("Network.webSocketClosed", pl.wendigo.chrome.api.network.WebSocketClosedEvent::class.java)
         connection.addEventMapping("Network.webSocketCreated", pl.wendigo.chrome.api.network.WebSocketCreatedEvent::class.java)
         connection.addEventMapping("Network.webSocketFrameError", pl.wendigo.chrome.api.network.WebSocketFrameErrorEvent::class.java)
