@@ -33,13 +33,23 @@ This turns on accessibility for the page, which can impact performance until acc
     fun getPartialAXTree(input: GetPartialAXTreeRequest) = connection.request("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
 
     /**
-     * Fetches the entire accessibility tree
+     * Fetches the entire accessibility tree for the root Document
      *
      * @link Protocol [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) method documentation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getFullAXTree() = connection.request("Accessibility.getFullAXTree", null, GetFullAXTreeResponse::class.java)
+    fun getFullAXTree(input: GetFullAXTreeRequest) = connection.request("Accessibility.getFullAXTree", input, GetFullAXTreeResponse::class.java)
+
+    /**
+     * Fetches a particular accessibility node by AXNodeId.
+Requires `enable()` to have been called previously.
+     *
+     * @link Protocol [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getChildAXNodes(input: GetChildAXNodesRequest) = connection.request("Accessibility.getChildAXNodes", input, GetChildAXNodesResponse::class.java)
 
     /**
      * Query a DOM node's accessibility subtree for accessible name and role.
@@ -111,14 +121,61 @@ data class GetPartialAXTreeResponse(
 )
 
 /**
+ * Represents request frame that can be used with [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) operation call.
+ *
+ * Fetches the entire accessibility tree for the root Document
+ * @link [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) method documentation.
+ * @see [AccessibilityOperations.getFullAXTree]
+ */
+data class GetFullAXTreeRequest(
+    /**
+     * The maximum depth at which descendants of the root node should be retrieved.
+If omitted, the full tree is returned.
+     */
+    val max_depth: Int? = null
+
+)
+/**
  * Represents response frame that is returned from [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) operation call.
- * Fetches the entire accessibility tree
+ * Fetches the entire accessibility tree for the root Document
  *
   
  * @link [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) method documentation.
  * @see [AccessibilityOperations.getFullAXTree]
  */
 data class GetFullAXTreeResponse(
+    /**  
+     *  
+     */  
+    val nodes: List<AXNode>
+
+)
+
+/**
+ * Represents request frame that can be used with [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) operation call.
+ *
+ * Fetches a particular accessibility node by AXNodeId.
+Requires `enable()` to have been called previously.
+ * @link [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) method documentation.
+ * @see [AccessibilityOperations.getChildAXNodes]
+ */
+data class GetChildAXNodesRequest(
+    /**
+     *
+     */
+    val id: AXNodeId
+
+)
+/**
+ * Represents response frame that is returned from [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) operation call.
+ * Fetches a particular accessibility node by AXNodeId.
+Requires `enable()` to have been called previously.
+ *
+  
+ * @link [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) method documentation.
+ * @see [AccessibilityOperations.getChildAXNodes]
+ */
+data class GetChildAXNodesResponse(
     /**  
      *  
      */  
