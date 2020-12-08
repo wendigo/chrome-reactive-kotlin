@@ -15687,6 +15687,11 @@
                             "type": "string"
                         },
                         {
+                            "name": "timestamp",
+                            "description": "Timestamp.",
+                            "$ref": "MonotonicTime"
+                        },
+                        {
                             "name": "initiator",
                             "description": "Request initiator.",
                             "optional": true,
@@ -15701,6 +15706,11 @@
                             "name": "transportId",
                             "description": "WebTransport identifier.",
                             "$ref": "RequestId"
+                        },
+                        {
+                            "name": "timestamp",
+                            "description": "Timestamp.",
+                            "$ref": "MonotonicTime"
                         }
                     ]
                 },

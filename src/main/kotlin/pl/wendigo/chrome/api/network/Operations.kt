@@ -1722,6 +1722,11 @@ data class WebTransportCreatedEvent(
     val url: String,
 
     /**  
+     * Timestamp.  
+     */  
+    val timestamp: MonotonicTime,
+
+    /**  
      * Request initiator.  
      */  
     val initiator: Initiator? = null
@@ -1737,7 +1742,12 @@ data class WebTransportClosedEvent(
     /**  
      * WebTransport identifier.  
      */  
-    val transportId: RequestId
+    val transportId: RequestId,
+
+    /**  
+     * Timestamp.  
+     */  
+    val timestamp: MonotonicTime
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "webTransportClosed")
 
