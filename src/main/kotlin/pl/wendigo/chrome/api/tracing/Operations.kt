@@ -185,7 +185,14 @@ transfer mode (defaults to `none`)
     /**
      *
      */
-    val traceConfig: TraceConfig? = null
+    val traceConfig: TraceConfig? = null,
+
+    /**
+     * Base64-encoded serialized perfetto.protos.TraceConfig protobuf message
+When specified, the parameters `categories`, `options`, `traceConfig`
+are ignored.
+     */
+    val perfettoConfig: String? = null
 
 )
 

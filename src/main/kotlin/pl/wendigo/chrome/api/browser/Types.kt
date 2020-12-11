@@ -83,6 +83,8 @@ enum class PermissionType {
     CLIPBOARDREADWRITE,
     @com.fasterxml.jackson.annotation.JsonProperty("clipboardSanitizedWrite")
     CLIPBOARDSANITIZEDWRITE,
+    @com.fasterxml.jackson.annotation.JsonProperty("displayCapture")
+    DISPLAYCAPTURE,
     @com.fasterxml.jackson.annotation.JsonProperty("durableStorage")
     DURABLESTORAGE,
     @com.fasterxml.jackson.annotation.JsonProperty("flash")
