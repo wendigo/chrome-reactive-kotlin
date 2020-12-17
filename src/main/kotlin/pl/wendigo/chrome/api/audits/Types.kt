@@ -451,6 +451,26 @@ data class ContentSecurityPolicyIssueDetails(
 )
 
 /**
+ * Details for a request that has been blocked with the BLOCKED_BY_RESPONSE
+code. Currently only used for COEP/COOP, but may be extended to include
+some CSP errors in the future.
+ *
+ * @link [Audits#SharedArrayBufferTransferIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SharedArrayBufferTransferIssueDetails) type documentation.
+ */
+
+data class SharedArrayBufferTransferIssueDetails(
+    /**  
+     *  
+     */  
+    val sourceCodeLocation: SourceCodeLocation,
+
+    /**  
+     *  
+     */  
+    val isWarning: Boolean
+)
+
+/**
  * A unique identifier for the type of issue. Each type may use one of the
 optional fields in InspectorIssueDetails to convey more specific
 information about the kind of issue.
@@ -467,7 +487,9 @@ enum class InspectorIssueCode {
     @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdIssue")
     HEAVYADISSUE,
     @com.fasterxml.jackson.annotation.JsonProperty("ContentSecurityPolicyIssue")
-    CONTENTSECURITYPOLICYISSUE;
+    CONTENTSECURITYPOLICYISSUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBufferTransferIssue")
+    SHAREDARRAYBUFFERTRANSFERISSUE;
 }
 
 /**
@@ -502,7 +524,12 @@ data class InspectorIssueDetails(
     /**  
      *  
      */  
-    val contentSecurityPolicyIssueDetails: ContentSecurityPolicyIssueDetails? = null
+    val contentSecurityPolicyIssueDetails: ContentSecurityPolicyIssueDetails? = null,
+
+    /**  
+     *  
+     */  
+    val sharedArrayBufferTransferIssueDetails: SharedArrayBufferTransferIssueDetails? = null
 )
 
 /**
