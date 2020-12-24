@@ -190,7 +190,7 @@ transfer mode (defaults to `none`)
     /**
      * Base64-encoded serialized perfetto.protos.TraceConfig protobuf message
 When specified, the parameters `categories`, `options`, `traceConfig`
-are ignored.
+are ignored. (Encoded as a base64 string when passed over JSON)
      */
     val perfettoConfig: String? = null
 

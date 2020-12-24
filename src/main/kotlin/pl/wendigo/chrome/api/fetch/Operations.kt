@@ -174,12 +174,12 @@ data class FulfillRequestRequest(
      * Alternative way of specifying response headers as a \0-separated
 series of name: value pairs. Prefer the above method unless you
 need to represent some non-UTF8 values that can't be transmitted
-over the protocol as text.
+over the protocol as text. (Encoded as a base64 string when passed over JSON)
      */
     val binaryResponseHeaders: String? = null,
 
     /**
-     * A response body.
+     * A response body. (Encoded as a base64 string when passed over JSON)
      */
     val body: String? = null,
 
@@ -215,7 +215,7 @@ data class ContinueRequestRequest(
     val method: String? = null,
 
     /**
-     * If set, overrides the post data in the request.
+     * If set, overrides the post data in the request. (Encoded as a base64 string when passed over JSON)
      */
     val postData: String? = null,
 

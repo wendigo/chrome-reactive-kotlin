@@ -434,7 +434,7 @@ data class ExecuteWasmEvaluatorRequest(
     val callFrameId: CallFrameId,
 
     /**
-     * Code of the evaluator module.
+     * Code of the evaluator module. (Encoded as a base64 string when passed over JSON)
      */
     val evaluator: String,
 
@@ -537,7 +537,7 @@ data class GetScriptSourceResponse(
     val scriptSource: String,
 
     /**  
-     * Wasm bytecode.  
+     * Wasm bytecode. (Encoded as a base64 string when passed over JSON)  
      */  
     val bytecode: String? = null
 
@@ -567,7 +567,7 @@ data class GetWasmBytecodeRequest(
  */
 data class GetWasmBytecodeResponse(
     /**  
-     * Script source.  
+     * Script source. (Encoded as a base64 string when passed over JSON)  
      */  
     val bytecode: String
 

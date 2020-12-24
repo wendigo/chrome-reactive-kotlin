@@ -105,7 +105,7 @@ data class BeginFrameResponse(
     val hasDamage: Boolean,
 
     /**  
-     * Base64-encoded image data of the screenshot, if one was requested and successfully taken.  
+     * Base64-encoded image data of the screenshot, if one was requested and successfully taken. (Encoded as a base64 string when passed over JSON)  
      */  
     val screenshotData: String? = null
 

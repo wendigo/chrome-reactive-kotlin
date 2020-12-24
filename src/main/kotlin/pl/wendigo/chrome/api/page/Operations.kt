@@ -722,7 +722,7 @@ data class CaptureScreenshotRequest(
  */
 data class CaptureScreenshotResponse(
     /**  
-     * Base64-encoded image data.  
+     * Base64-encoded image data. (Encoded as a base64 string when passed over JSON)  
      */  
     val data: String
 
@@ -1226,7 +1226,7 @@ in which case the content will be scaled to fit the paper size.
  */
 data class PrintToPDFResponse(
     /**  
-     * Base64-encoded pdf data. Empty if |returnAsStream| is specified.  
+     * Base64-encoded pdf data. Empty if |returnAsStream| is specified. (Encoded as a base64 string when passed over JSON)  
      */  
     val data: String,
 
@@ -1695,7 +1695,7 @@ data class AddCompilationCacheRequest(
     val url: String,
 
     /**
-     * Base64-encoded data
+     * Base64-encoded data (Encoded as a base64 string when passed over JSON)
      */
     val data: String
 
@@ -2115,7 +2115,7 @@ data class NavigatedWithinDocumentEvent(
  */
 data class ScreencastFrameEvent(
     /**  
-     * Base64-encoded compressed image.  
+     * Base64-encoded compressed image. (Encoded as a base64 string when passed over JSON)  
      */  
     val data: String,
 
@@ -2186,7 +2186,7 @@ data class CompilationCacheProducedEvent(
     val url: String,
 
     /**  
-     * Base64-encoded data  
+     * Base64-encoded data (Encoded as a base64 string when passed over JSON)  
      */  
     val data: String
 

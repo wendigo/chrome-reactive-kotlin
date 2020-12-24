@@ -86,7 +86,7 @@ applies to images.
  */
 data class GetEncodedResponseResponse(
     /**  
-     * The encoded body as a base64 string. Omitted if sizeOnly is true.  
+     * The encoded body as a base64 string. Omitted if sizeOnly is true. (Encoded as a base64 string when passed over JSON)  
      */  
     val body: String? = null,
 

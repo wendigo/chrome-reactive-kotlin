@@ -80,7 +80,7 @@ data class PictureTile(
     val y: Double,
 
     /**  
-     * Base64-encoded snapshot data.  
+     * Base64-encoded snapshot data. (Encoded as a base64 string when passed over JSON)  
      */  
     val picture: String
 )

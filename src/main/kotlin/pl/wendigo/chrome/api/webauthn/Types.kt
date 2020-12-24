@@ -126,13 +126,13 @@ data class Credential(
     val rpId: String? = null,
 
     /**  
-     * The ECDSA P-256 private key in PKCS#8 format.  
+     * The ECDSA P-256 private key in PKCS#8 format. (Encoded as a base64 string when passed over JSON)  
      */  
     val privateKey: String,
 
     /**  
      * An opaque byte sequence with a maximum size of 64 bytes mapping the  
-     credential to a specific user.  
+     credential to a specific user. (Encoded as a base64 string when passed over JSON)  
      */  
     val userHandle: String? = null,
 
@@ -145,7 +145,7 @@ data class Credential(
 
     /**  
      * The large blob associated with the credential.  
-     See https://w3c.github.io/webauthn/#sctn-large-blob-extension  
+     See https://w3c.github.io/webauthn/#sctn-large-blob-extension (Encoded as a base64 string when passed over JSON)  
      */  
     val largeBlob: String? = null
 )
