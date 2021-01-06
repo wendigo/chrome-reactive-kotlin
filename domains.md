@@ -136,6 +136,10 @@ Contains DevTools Protocol [Page](https://chromedevtools.github.io/devtools-prot
 
 Contains DevTools Protocol [Performance](https://chromedevtools.github.io/devtools-protocol/tot/Performance) domain implementation accessible via [PerformanceOperations] class.
 
+# Package pl.wendigo.chrome.api.performancetimeline
+
+Contains DevTools Protocol [PerformanceTimeline](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline) domain implementation accessible via [PerformanceTimelineOperations] class.
+
 # Package pl.wendigo.chrome.api.security
 
 Contains DevTools Protocol [Security](https://chromedevtools.github.io/devtools-protocol/tot/Security) domain implementation accessible via [SecurityOperations] class.

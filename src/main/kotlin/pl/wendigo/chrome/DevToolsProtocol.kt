@@ -35,6 +35,7 @@ import pl.wendigo.chrome.api.network.NetworkOperations
 import pl.wendigo.chrome.api.overlay.OverlayOperations
 import pl.wendigo.chrome.api.page.PageOperations
 import pl.wendigo.chrome.api.performance.PerformanceOperations
+import pl.wendigo.chrome.api.performancetimeline.PerformanceTimelineOperations
 import pl.wendigo.chrome.api.profiler.ProfilerOperations
 import pl.wendigo.chrome.api.runtime.RuntimeOperations
 import pl.wendigo.chrome.api.schema.SchemaOperations
@@ -173,6 +174,7 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
         connection.addEventMapping("Page.screencastVisibilityChanged", pl.wendigo.chrome.api.page.ScreencastVisibilityChangedEvent::class.java)
         connection.addEventMapping("Page.windowOpen", pl.wendigo.chrome.api.page.WindowOpenEvent::class.java)
         connection.addEventMapping("Performance.metrics", pl.wendigo.chrome.api.performance.MetricsEvent::class.java)
+        connection.addEventMapping("PerformanceTimeline.timelineEventAdded", pl.wendigo.chrome.api.performancetimeline.TimelineEventAddedEvent::class.java)
         connection.addEventMapping("Profiler.consoleProfileFinished", pl.wendigo.chrome.api.profiler.ConsoleProfileFinishedEvent::class.java)
         connection.addEventMapping("Profiler.consoleProfileStarted", pl.wendigo.chrome.api.profiler.ConsoleProfileStartedEvent::class.java)
         connection.addEventMapping("Profiler.preciseCoverageDeltaUpdate", pl.wendigo.chrome.api.profiler.PreciseCoverageDeltaUpdateEvent::class.java)
@@ -583,6 +585,18 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
      */
     val Performance: PerformanceOperations by lazy {
         PerformanceOperations(connection)
+    }
+
+    /**
+     * Reporting of performance timeline events, as specified in
+https://w3c.github.io/performance-timeline/#dom-performanceobserver.
+     *
+     * This API is marked as experimental in protocol definition and can change in the future.
+     * @link [https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline](Domain PerformanceTimeline documentation)
+     */
+    @pl.wendigo.chrome.protocol.Experimental
+    val PerformanceTimeline: PerformanceTimelineOperations by lazy {
+        PerformanceTimelineOperations(connection)
     }
 
     /**
