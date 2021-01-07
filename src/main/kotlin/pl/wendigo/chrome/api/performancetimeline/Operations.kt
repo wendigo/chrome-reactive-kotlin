@@ -11,9 +11,6 @@ https://w3c.github.io/performance-timeline/#dom-performanceobserver.
 class PerformanceTimelineOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Previously buffered events would be reported before method returns.
-The specified filter overrides any previous filters, passing empty
-filter disables recording.
-Note that not all types exposed to the web platform are currently supported.
 See also: timelineEventAdded
      *
      * @link Protocol [PerformanceTimeline#enable](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#method-enable) method documentation.
@@ -38,16 +35,17 @@ See also: timelineEventAdded
  * Represents request frame that can be used with [PerformanceTimeline#enable](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#method-enable) operation call.
  *
  * Previously buffered events would be reported before method returns.
-The specified filter overrides any previous filters, passing empty
-filter disables recording.
-Note that not all types exposed to the web platform are currently supported.
 See also: timelineEventAdded
  * @link [PerformanceTimeline#enable](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#method-enable) method documentation.
  * @see [PerformanceTimelineOperations.enable]
  */
 data class EnableRequest(
     /**
-     *
+     * The types of event to report, as specified in
+https://w3c.github.io/performance-timeline/#dom-performanceentry-entrytype
+The specified filter overrides any previous filters, passing empty
+filter disables recording.
+Note that not all types exposed to the web platform are currently supported.
      */
     val eventTypes: List<String>
 
