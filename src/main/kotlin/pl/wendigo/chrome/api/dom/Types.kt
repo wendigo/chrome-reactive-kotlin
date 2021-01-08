@@ -62,6 +62,10 @@ enum class PseudoType {
     SELECTION,
     @com.fasterxml.jackson.annotation.JsonProperty("target-text")
     TARGET_TEXT,
+    @com.fasterxml.jackson.annotation.JsonProperty("spelling-error")
+    SPELLING_ERROR,
+    @com.fasterxml.jackson.annotation.JsonProperty("grammar-error")
+    GRAMMAR_ERROR,
     @com.fasterxml.jackson.annotation.JsonProperty("first-line-inherited")
     FIRST_LINE_INHERITED,
     @com.fasterxml.jackson.annotation.JsonProperty("scrollbar")
