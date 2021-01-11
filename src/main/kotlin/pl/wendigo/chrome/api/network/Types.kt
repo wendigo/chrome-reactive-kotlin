@@ -1010,7 +1010,12 @@ data class Cookie(
     /**  
      * Cookie Priority  
      */  
-    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority
+    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority,
+
+    /**  
+     * True if cookie is SameParty.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val sameParty: Boolean
 )
 
 /**
