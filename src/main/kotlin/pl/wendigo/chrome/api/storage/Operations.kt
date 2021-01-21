@@ -81,6 +81,16 @@ class StorageOperations internal constructor(private val connection: pl.wendigo.
     fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest) = connection.request("Storage.untrackIndexedDBForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Returns the number of stored Trust Tokens per issuer for the
+current browsing context.
+     *
+     * @link Protocol [Storage#getTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getTrustTokens) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getTrustTokens() = connection.request("Storage.getTrustTokens", null, GetTrustTokensResponse::class.java)
+
+    /**
      *  A cache's contents have been modified.
      */
     fun cacheStorageContentUpdated(): io.reactivex.Flowable<CacheStorageContentUpdatedEvent> = connection.events("Storage.cacheStorageContentUpdated", CacheStorageContentUpdatedEvent::class.java)
@@ -322,6 +332,23 @@ data class UntrackIndexedDBForOriginRequest(
      * Security origin.
      */
     val origin: String
+
+)
+
+/**
+ * Represents response frame that is returned from [Storage#getTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getTrustTokens) operation call.
+ * Returns the number of stored Trust Tokens per issuer for the
+current browsing context.
+ *
+  
+ * @link [Storage#getTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getTrustTokens) method documentation.
+ * @see [StorageOperations.getTrustTokens]
+ */
+data class GetTrustTokensResponse(
+    /**  
+     *  
+     */  
+    val tokens: List<TrustTokens>
 
 )
 

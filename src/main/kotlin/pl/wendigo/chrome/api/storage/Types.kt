@@ -47,3 +47,22 @@ data class UsageForType(
      */  
     val usage: Double
 )
+
+/**
+ * Pair of issuer origin and number of available (signed, but not used) Trust
+Tokens from that issuer.
+ *
+ * @link [Storage#TrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#type-TrustTokens) type documentation.
+ */
+
+data class TrustTokens(
+    /**  
+     *  
+     */  
+    val issuerOrigin: String,
+
+    /**  
+     *  
+     */  
+    val count: Double
+)
