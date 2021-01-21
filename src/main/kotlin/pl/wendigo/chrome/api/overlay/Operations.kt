@@ -166,6 +166,13 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
     fun setShowHitTestBorders(input: SetShowHitTestBordersRequest) = connection.request("Overlay.setShowHitTestBorders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Request that backend shows an overlay with web vital metrics.
+     *
+     * @link Protocol [Overlay#setShowWebVitals](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowWebVitals) method documentation.
+     */
+    fun setShowWebVitals(input: SetShowWebVitalsRequest) = connection.request("Overlay.setShowWebVitals", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Paints viewport size upon main frame resize.
      *
      * @link Protocol [Overlay#setShowViewportSizeOnResize](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowViewportSizeOnResize) method documentation.
@@ -644,6 +651,21 @@ data class SetShowScrollBottleneckRectsRequest(
 data class SetShowHitTestBordersRequest(
     /**
      * True for showing hit-test borders
+     */
+    val show: Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with [Overlay#setShowWebVitals](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowWebVitals) operation call.
+ *
+ * Request that backend shows an overlay with web vital metrics.
+ * @link [Overlay#setShowWebVitals](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowWebVitals) method documentation.
+ * @see [OverlayOperations.setShowWebVitals]
+ */
+data class SetShowWebVitalsRequest(
+    /**
+     *
      */
     val show: Boolean
 
