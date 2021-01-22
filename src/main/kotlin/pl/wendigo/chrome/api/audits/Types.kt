@@ -471,6 +471,55 @@ data class SharedArrayBufferTransferIssueDetails(
 )
 
 /**
+ *
+ *
+ * @link [Audits#TwaQualityEnforcementViolationType](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-TwaQualityEnforcementViolationType) type documentation.
+ */
+enum class TwaQualityEnforcementViolationType {
+    @com.fasterxml.jackson.annotation.JsonProperty("kHttpError")
+    KHTTPERROR,
+    @com.fasterxml.jackson.annotation.JsonProperty("kUnavailableOffline")
+    KUNAVAILABLEOFFLINE,
+    @com.fasterxml.jackson.annotation.JsonProperty("kDigitalAssetLinks")
+    KDIGITALASSETLINKS;
+}
+
+/**
+ *
+ *
+ * @link [Audits#TrustedWebActivityIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-TrustedWebActivityIssueDetails) type documentation.
+ */
+
+data class TrustedWebActivityIssueDetails(
+    /**  
+     * The url that triggers the violation.  
+     */  
+    val url: String,
+
+    /**  
+     *  
+     */  
+    val violationType: TwaQualityEnforcementViolationType,
+
+    /**  
+     *  
+     */  
+    val httpStatusCode: Int? = null,
+
+    /**  
+     * The package name of the Trusted Web Activity client app. This field is  
+     only used when violation type is kDigitalAssetLinks.  
+     */  
+    val packageName: String? = null,
+
+    /**  
+     * The signature of the Trusted Web Activity client app. This field is only  
+     used when violation type is kDigitalAssetLinks.  
+     */  
+    val signature: String? = null
+)
+
+/**
  * A unique identifier for the type of issue. Each type may use one of the
 optional fields in InspectorIssueDetails to convey more specific
 information about the kind of issue.
@@ -489,7 +538,9 @@ enum class InspectorIssueCode {
     @com.fasterxml.jackson.annotation.JsonProperty("ContentSecurityPolicyIssue")
     CONTENTSECURITYPOLICYISSUE,
     @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBufferTransferIssue")
-    SHAREDARRAYBUFFERTRANSFERISSUE;
+    SHAREDARRAYBUFFERTRANSFERISSUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("TrustedWebActivityIssue")
+    TRUSTEDWEBACTIVITYISSUE;
 }
 
 /**
@@ -529,7 +580,12 @@ data class InspectorIssueDetails(
     /**  
      *  
      */  
-    val sharedArrayBufferTransferIssueDetails: SharedArrayBufferTransferIssueDetails? = null
+    val sharedArrayBufferTransferIssueDetails: SharedArrayBufferTransferIssueDetails? = null,
+
+    /**  
+     *  
+     */  
+    val twaQualityEnforcementDetails: TrustedWebActivityIssueDetails? = null
 )
 
 /**
