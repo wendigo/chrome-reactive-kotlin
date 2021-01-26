@@ -360,7 +360,12 @@ Deprecated, use Fetch.requestPaused instead.
     fun webTransportCreated(): io.reactivex.Flowable<WebTransportCreatedEvent> = connection.events("Network.webTransportCreated", WebTransportCreatedEvent::class.java)
 
     /**
-     *  Returns observable capturing all Network.webTransportClosed events.
+     *  Fired when WebTransport handshake is finished.
+     */
+    fun webTransportConnectionEstablished(): io.reactivex.Flowable<WebTransportConnectionEstablishedEvent> = connection.events("Network.webTransportConnectionEstablished", WebTransportConnectionEstablishedEvent::class.java)
+
+    /**
+     *  Fired when WebTransport is disposed.
      */
     fun webTransportClosed(): io.reactivex.Flowable<WebTransportClosedEvent> = connection.events("Network.webTransportClosed", WebTransportClosedEvent::class.java)
 
@@ -1734,7 +1739,25 @@ data class WebTransportCreatedEvent(
 ) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "webTransportCreated")
 
 /**
+ * Fired when WebTransport handshake is finished.
  *
+ * @link [Network#webTransportConnectionEstablished](https://chromedevtools.github.io/devtools-protocol/tot/Network#event-webTransportConnectionEstablished) event documentation.
+ */
+data class WebTransportConnectionEstablishedEvent(
+    /**  
+     * WebTransport identifier.  
+     */  
+    val transportId: RequestId,
+
+    /**  
+     * Timestamp.  
+     */  
+    val timestamp: MonotonicTime
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "webTransportConnectionEstablished")
+
+/**
+ * Fired when WebTransport is disposed.
  *
  * @link [Network#webTransportClosed](https://chromedevtools.github.io/devtools-protocol/tot/Network#event-webTransportClosed) event documentation.
  */

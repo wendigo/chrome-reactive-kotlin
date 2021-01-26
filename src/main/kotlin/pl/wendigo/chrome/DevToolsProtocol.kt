@@ -143,6 +143,7 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
         connection.addEventMapping("Network.webSocketHandshakeResponseReceived", pl.wendigo.chrome.api.network.WebSocketHandshakeResponseReceivedEvent::class.java)
         connection.addEventMapping("Network.webSocketWillSendHandshakeRequest", pl.wendigo.chrome.api.network.WebSocketWillSendHandshakeRequestEvent::class.java)
         connection.addEventMapping("Network.webTransportClosed", pl.wendigo.chrome.api.network.WebTransportClosedEvent::class.java)
+        connection.addEventMapping("Network.webTransportConnectionEstablished", pl.wendigo.chrome.api.network.WebTransportConnectionEstablishedEvent::class.java)
         connection.addEventMapping("Network.webTransportCreated", pl.wendigo.chrome.api.network.WebTransportCreatedEvent::class.java)
         connection.addEventMapping("Overlay.inspectModeCanceled", pl.wendigo.chrome.protocol.Event::class.java)
         connection.addEventMapping("Overlay.inspectNodeRequested", pl.wendigo.chrome.api.overlay.InspectNodeRequestedEvent::class.java)
