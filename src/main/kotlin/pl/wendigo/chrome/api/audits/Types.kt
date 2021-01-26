@@ -451,14 +451,26 @@ data class ContentSecurityPolicyIssueDetails(
 )
 
 /**
+ *
+ *
+ * @link [Audits#SharedArrayBufferIssueType](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SharedArrayBufferIssueType) type documentation.
+ */
+enum class SharedArrayBufferIssueType {
+    @com.fasterxml.jackson.annotation.JsonProperty("TransferIssue")
+    TRANSFERISSUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("CreationIssue")
+    CREATIONISSUE;
+}
+
+/**
  * Details for a request that has been blocked with the BLOCKED_BY_RESPONSE
 code. Currently only used for COEP/COOP, but may be extended to include
 some CSP errors in the future.
  *
- * @link [Audits#SharedArrayBufferTransferIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SharedArrayBufferTransferIssueDetails) type documentation.
+ * @link [Audits#SharedArrayBufferIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SharedArrayBufferIssueDetails) type documentation.
  */
 
-data class SharedArrayBufferTransferIssueDetails(
+data class SharedArrayBufferIssueDetails(
     /**  
      *  
      */  
@@ -467,7 +479,12 @@ data class SharedArrayBufferTransferIssueDetails(
     /**  
      *  
      */  
-    val isWarning: Boolean
+    val isWarning: Boolean,
+
+    /**  
+     *  
+     */  
+    val type: SharedArrayBufferIssueType
 )
 
 /**
@@ -537,8 +554,8 @@ enum class InspectorIssueCode {
     HEAVYADISSUE,
     @com.fasterxml.jackson.annotation.JsonProperty("ContentSecurityPolicyIssue")
     CONTENTSECURITYPOLICYISSUE,
-    @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBufferTransferIssue")
-    SHAREDARRAYBUFFERTRANSFERISSUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBufferIssue")
+    SHAREDARRAYBUFFERISSUE,
     @com.fasterxml.jackson.annotation.JsonProperty("TrustedWebActivityIssue")
     TRUSTEDWEBACTIVITYISSUE;
 }
@@ -580,7 +597,7 @@ data class InspectorIssueDetails(
     /**  
      *  
      */  
-    val sharedArrayBufferTransferIssueDetails: SharedArrayBufferTransferIssueDetails? = null,
+    val sharedArrayBufferIssueDetails: SharedArrayBufferIssueDetails? = null,
 
     /**  
      *  
