@@ -394,6 +394,11 @@ data class SourceCodeLocation(
     /**  
      *  
      */  
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId? = null,
+
+    /**  
+     *  
+     */  
     val url: String,
 
     /**  
