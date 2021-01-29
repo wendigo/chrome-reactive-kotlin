@@ -10534,12 +10534,13 @@
                 },
                 {
                     "id": "UserAgentMetadata",
-                    "description": "Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints",
+                    "description": "Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints\nMissing optional values will be filled in by the target with what it would normally use.",
                     "experimental": true,
                     "type": "object",
                     "properties": [
                         {
                             "name": "brands",
+                            "optional": true,
                             "type": "array",
                             "items": {
                                 "$ref": "UserAgentBrandVersion"
@@ -10547,6 +10548,7 @@
                         },
                         {
                             "name": "fullVersion",
+                            "optional": true,
                             "type": "string"
                         },
                         {

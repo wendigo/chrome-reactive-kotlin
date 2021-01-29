@@ -99,6 +99,7 @@ data class UserAgentBrandVersion(
 
 /**
  * Used to specify User Agent Cient Hints to emulate. See https://wicg.github.io/ua-client-hints
+Missing optional values will be filled in by the target with what it would normally use.
  *
  * @link [Emulation#UserAgentMetadata](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-UserAgentMetadata) type documentation.
  */
@@ -107,12 +108,12 @@ data class UserAgentMetadata(
     /**  
      *  
      */  
-    val brands: List<UserAgentBrandVersion>,
+    val brands: List<UserAgentBrandVersion>? = null,
 
     /**  
      *  
      */  
-    val fullVersion: String,
+    val fullVersion: String? = null,
 
     /**  
      *  
