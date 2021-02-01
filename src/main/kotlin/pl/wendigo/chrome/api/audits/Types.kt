@@ -542,6 +542,49 @@ data class TrustedWebActivityIssueDetails(
 )
 
 /**
+ *
+ *
+ * @link [Audits#LowTextContrastIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-LowTextContrastIssueDetails) type documentation.
+ */
+
+data class LowTextContrastIssueDetails(
+    /**  
+     *  
+     */  
+    val violatingNodeId: pl.wendigo.chrome.api.dom.BackendNodeId,
+
+    /**  
+     *  
+     */  
+    val violatingNodeSelector: String,
+
+    /**  
+     *  
+     */  
+    val contrastRatio: Double,
+
+    /**  
+     *  
+     */  
+    val thresholdAA: Double,
+
+    /**  
+     *  
+     */  
+    val thresholdAAA: Double,
+
+    /**  
+     *  
+     */  
+    val fontSize: String,
+
+    /**  
+     *  
+     */  
+    val fontWeight: String
+)
+
+/**
  * A unique identifier for the type of issue. Each type may use one of the
 optional fields in InspectorIssueDetails to convey more specific
 information about the kind of issue.
@@ -562,7 +605,9 @@ enum class InspectorIssueCode {
     @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBufferIssue")
     SHAREDARRAYBUFFERISSUE,
     @com.fasterxml.jackson.annotation.JsonProperty("TrustedWebActivityIssue")
-    TRUSTEDWEBACTIVITYISSUE;
+    TRUSTEDWEBACTIVITYISSUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("LowTextContrastIssue")
+    LOWTEXTCONTRASTISSUE;
 }
 
 /**
@@ -607,7 +652,12 @@ data class InspectorIssueDetails(
     /**  
      *  
      */  
-    val twaQualityEnforcementDetails: TrustedWebActivityIssueDetails? = null
+    val twaQualityEnforcementDetails: TrustedWebActivityIssueDetails? = null,
+
+    /**  
+     *  
+     */  
+    val lowTextContrastIssueDetails: LowTextContrastIssueDetails? = null
 )
 
 /**

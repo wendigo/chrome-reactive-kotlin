@@ -32,6 +32,14 @@ applies to images.
     fun enable() = connection.request("Audits.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Runs the contrast check for the target page. Found issues are reported
+using Audits.issueAdded event.
+     *
+     * @link Protocol [Audits#checkContrast](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-checkContrast) method documentation.
+     */
+    fun checkContrast() = connection.request("Audits.checkContrast", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      *  Returns observable capturing all Audits.issueAdded events.
      */
     fun issueAdded(): io.reactivex.Flowable<IssueAddedEvent> = connection.events("Audits.issueAdded", IssueAddedEvent::class.java)
