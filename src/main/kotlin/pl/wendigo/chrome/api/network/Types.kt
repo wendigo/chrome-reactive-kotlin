@@ -1053,7 +1053,11 @@ enum class SetCookieBlockedReason {
     @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteLax")
     SCHEMEFULSAMESITELAX,
     @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteUnspecifiedTreatedAsLax")
-    SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX;
+    SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SamePartyFromCrossPartyContext")
+    SAMEPARTYFROMCROSSPARTYCONTEXT,
+    @com.fasterxml.jackson.annotation.JsonProperty("SamePartyConflictsWithOtherAttributes")
+    SAMEPARTYCONFLICTSWITHOTHERATTRIBUTES;
 }
 
 /**
@@ -1085,7 +1089,9 @@ enum class CookieBlockedReason {
     @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteLax")
     SCHEMEFULSAMESITELAX,
     @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteUnspecifiedTreatedAsLax")
-    SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX;
+    SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SamePartyFromCrossPartyContext")
+    SAMEPARTYFROMCROSSPARTYCONTEXT;
 }
 
 /**
