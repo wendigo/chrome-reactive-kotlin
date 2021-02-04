@@ -175,6 +175,29 @@ data class FlexContainerHighlightConfig(
 )
 
 /**
+ * Configuration data for the highlighting of Flex item elements.
+ *
+ * @link [Overlay#FlexItemHighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-FlexItemHighlightConfig) type documentation.
+ */
+
+data class FlexItemHighlightConfig(
+    /**  
+     * Style of the box representing the item's base size  
+     */  
+    val baseSizeBox: BoxStyle? = null,
+
+    /**  
+     * Style of the border around the box representing the item's base size  
+     */  
+    val baseSizeBorder: LineStyle? = null,
+
+    /**  
+     * Style of the arrow representing if the item grew or shrank  
+     */  
+    val flexibilityArrow: LineStyle? = null
+)
+
+/**
  * Style information for drawing a line.
  *
  * @link [Overlay#LineStyle](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-LineStyle) type documentation.
@@ -310,6 +333,11 @@ data class HighlightConfig(
      * The flex container highlight configuration (default: all transparent).  
      */  
     val flexContainerHighlightConfig: FlexContainerHighlightConfig? = null,
+
+    /**  
+     * The flex item highlight configuration (default: all transparent).  
+     */  
+    val flexItemHighlightConfig: FlexItemHighlightConfig? = null,
 
     /**  
      * The contrast algorithm to use for the contrast ratio (default: aa).  
