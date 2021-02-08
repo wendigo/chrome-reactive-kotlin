@@ -166,7 +166,7 @@ nexusStaging {
 }
 
 wrapper {
-    version = '5.6.2'
+    version = '6.8.2'
     distributionType = Wrapper.DistributionType.ALL
 }
 
