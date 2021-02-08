@@ -44,6 +44,15 @@ class StorageOperations internal constructor(private val connection: pl.wendigo.
     fun getUsageAndQuota(input: GetUsageAndQuotaRequest) = connection.request("Storage.getUsageAndQuota", input, GetUsageAndQuotaResponse::class.java)
 
     /**
+     * Override quota for the specified origin
+     *
+     * @link Protocol [Storage#overrideQuotaForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-overrideQuotaForOrigin) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun overrideQuotaForOrigin(input: OverrideQuotaForOriginRequest) = connection.request("Storage.overrideQuotaForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Registers origin to be notified when an update occurs to its cache storage list.
      *
      * @link Protocol [Storage#trackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackCacheStorageForOrigin) method documentation.
@@ -70,6 +79,16 @@ class StorageOperations internal constructor(private val connection: pl.wendigo.
      * @link Protocol [Storage#untrackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackIndexedDBForOrigin) method documentation.
      */
     fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest) = connection.request("Storage.untrackIndexedDBForOrigin", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Returns the number of stored Trust Tokens per issuer for the
+current browsing context.
+     *
+     * @link Protocol [Storage#getTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getTrustTokens) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getTrustTokens() = connection.request("Storage.getTrustTokens", null, GetTrustTokensResponse::class.java)
 
     /**
      *  A cache's contents have been modified.
@@ -219,9 +238,40 @@ data class GetUsageAndQuotaResponse(
     val quota: Double,
 
     /**  
+     * Whether or not the origin has an active storage quota override  
+     */  
+    val overrideActive: Boolean,
+
+    /**  
      * Storage usage per type (bytes).  
      */  
     val usageBreakdown: List<UsageForType>
+
+)
+
+/**
+ * Represents request frame that can be used with [Storage#overrideQuotaForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-overrideQuotaForOrigin) operation call.
+ *
+ * Override quota for the specified origin
+ * @link [Storage#overrideQuotaForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-overrideQuotaForOrigin) method documentation.
+ * @see [StorageOperations.overrideQuotaForOrigin]
+ */
+data class OverrideQuotaForOriginRequest(
+    /**
+     * Security origin.
+     */
+    val origin: String,
+
+    /**
+     * The quota size (in bytes) to override the original quota with.
+If this is called multiple times, the overriden quota will be equal to
+the quotaSize provided in the final call. If this is called without
+specifying a quotaSize, the quota will be reset to the default value for
+the specified origin. If this is called multiple times with different
+origins, the override will be maintained for each origin until it is
+disabled (called without a quotaSize).
+     */
+    val quotaSize: Double? = null
 
 )
 
@@ -282,6 +332,23 @@ data class UntrackIndexedDBForOriginRequest(
      * Security origin.
      */
     val origin: String
+
+)
+
+/**
+ * Represents response frame that is returned from [Storage#getTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getTrustTokens) operation call.
+ * Returns the number of stored Trust Tokens per issuer for the
+current browsing context.
+ *
+  
+ * @link [Storage#getTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getTrustTokens) method documentation.
+ * @see [StorageOperations.getTrustTokens]
+ */
+data class GetTrustTokensResponse(
+    /**  
+     *  
+     */  
+    val tokens: List<TrustTokens>
 
 )
 

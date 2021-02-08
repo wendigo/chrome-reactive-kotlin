@@ -110,6 +110,29 @@ node.
     fun getStyleSheetText(input: GetStyleSheetTextRequest) = connection.request("CSS.getStyleSheetText", input, GetStyleSheetTextResponse::class.java)
 
     /**
+     * Starts tracking the given computed styles for updates. The specified array of properties
+replaces the one previously specified. Pass empty array to disable tracking.
+Use takeComputedStyleUpdates to retrieve the list of nodes that had properties modified.
+The changes to computed style properties are only tracked for nodes pushed to the front-end
+by the DOM agent. If no changes to the tracked properties occur after the node has been pushed
+to the front-end, no updates will be issued for the node.
+     *
+     * @link Protocol [CSS#trackComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-trackComputedStyleUpdates) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun trackComputedStyleUpdates(input: TrackComputedStyleUpdatesRequest) = connection.request("CSS.trackComputedStyleUpdates", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Polls the next batch of computed style updates.
+     *
+     * @link Protocol [CSS#takeComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeComputedStyleUpdates) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun takeComputedStyleUpdates() = connection.request("CSS.takeComputedStyleUpdates", null, TakeComputedStyleUpdatesResponse::class.java)
+
+    /**
      * Find a rule with the given active property for the given node and set the new value for this
 property
      *
@@ -174,6 +197,15 @@ instrumentation)
      * @link Protocol [CSS#takeCoverageDelta](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeCoverageDelta) method documentation.
      */
     fun takeCoverageDelta() = connection.request("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse::class.java)
+
+    /**
+     * Enables/disables rendering of local CSS fonts (enabled by default).
+     *
+     * @link Protocol [CSS#setLocalFontsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setLocalFontsEnabled) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setLocalFontsEnabled(input: SetLocalFontsEnabledRequest) = connection.request("CSS.setLocalFontsEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
@@ -580,6 +612,42 @@ data class GetStyleSheetTextResponse(
 )
 
 /**
+ * Represents request frame that can be used with [CSS#trackComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-trackComputedStyleUpdates) operation call.
+ *
+ * Starts tracking the given computed styles for updates. The specified array of properties
+replaces the one previously specified. Pass empty array to disable tracking.
+Use takeComputedStyleUpdates to retrieve the list of nodes that had properties modified.
+The changes to computed style properties are only tracked for nodes pushed to the front-end
+by the DOM agent. If no changes to the tracked properties occur after the node has been pushed
+to the front-end, no updates will be issued for the node.
+ * @link [CSS#trackComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-trackComputedStyleUpdates) method documentation.
+ * @see [CSSOperations.trackComputedStyleUpdates]
+ */
+data class TrackComputedStyleUpdatesRequest(
+    /**
+     *
+     */
+    val propertiesToTrack: List<CSSComputedStyleProperty>
+
+)
+
+/**
+ * Represents response frame that is returned from [CSS#takeComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeComputedStyleUpdates) operation call.
+ * Polls the next batch of computed style updates.
+ *
+  
+ * @link [CSS#takeComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeComputedStyleUpdates) method documentation.
+ * @see [CSSOperations.takeComputedStyleUpdates]
+ */
+data class TakeComputedStyleUpdatesResponse(
+    /**  
+     * The list of node Ids that have their tracked computed styles updated  
+     */  
+    val nodeIds: List<pl.wendigo.chrome.api.dom.NodeId>
+
+)
+
+/**
  * Represents request frame that can be used with [CSS#setEffectivePropertyValueForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setEffectivePropertyValueForNode) operation call.
  *
  * Find a rule with the given active property for the given node and set the new value for this
@@ -826,6 +894,21 @@ data class TakeCoverageDeltaResponse(
      * Monotonically increasing time, in seconds.  
      */  
     val timestamp: Double
+
+)
+
+/**
+ * Represents request frame that can be used with [CSS#setLocalFontsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setLocalFontsEnabled) operation call.
+ *
+ * Enables/disables rendering of local CSS fonts (enabled by default).
+ * @link [CSS#setLocalFontsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setLocalFontsEnabled) method documentation.
+ * @see [CSSOperations.setLocalFontsEnabled]
+ */
+data class SetLocalFontsEnabledRequest(
+    /**
+     * Whether rendering of local fonts is enabled.
+     */
+    val enabled: Boolean
 
 )
 

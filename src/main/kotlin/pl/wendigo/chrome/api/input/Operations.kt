@@ -170,7 +170,14 @@ modifiers, keyboard layout, etc (e.g., 'AltGr') (default: "").
      * Whether the event was from the left or right side of the keyboard. 1=Left, 2=Right (default:
 0).
      */
-    val location: Int? = null
+    val location: Int? = null,
+
+    /**
+     * Editing commands to send with the key event (e.g., 'selectAll') (default: []).
+These are related to but not equal the command names used in `document.execCommand` and NSStandardKeyBindingResponding.
+See https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/editing/commands/editor_command_names.h for valid command names.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val commands: List<String>? = null
 
 )
 
@@ -240,6 +247,31 @@ Left=1, Right=2, Middle=4, Back=8, Forward=16, None=0.
      * Number of times the mouse button was clicked (default: 0).
      */
     val clickCount: Int? = null,
+
+    /**
+     * The normalized pressure, which has a range of [0,1] (default: 0).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val force: Double? = null,
+
+    /**
+     * The normalized tangential pressure, which has a range of [-1,1] (default: 0).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val tangentialPressure: Double? = null,
+
+    /**
+     * The plane angle between the Y-Z plane and the plane containing both the stylus axis and the Y axis, in degrees of the range [-90,90], a positive tiltX is to the right (default: 0).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val tiltX: Int? = null,
+
+    /**
+     * The plane angle between the X-Z plane and the plane containing both the stylus axis and the X axis, in degrees of the range [-90,90], a positive tiltY is towards the user (default: 0).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val tiltY: Int? = null,
+
+    /**
+     * The clockwise rotation of a pen stylus around its own major axis, in degrees in the range [0,359] (default: 0).
+     */
+    @pl.wendigo.chrome.protocol.Experimental val twist: Int? = null,
 
     /**
      * X delta in CSS pixels for mouse wheel event (default: 0).

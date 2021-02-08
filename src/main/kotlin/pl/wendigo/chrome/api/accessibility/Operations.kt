@@ -33,13 +33,36 @@ This turns on accessibility for the page, which can impact performance until acc
     fun getPartialAXTree(input: GetPartialAXTreeRequest) = connection.request("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
 
     /**
-     * Fetches the entire accessibility tree
+     * Fetches the entire accessibility tree for the root Document
      *
      * @link Protocol [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) method documentation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getFullAXTree() = connection.request("Accessibility.getFullAXTree", null, GetFullAXTreeResponse::class.java)
+    fun getFullAXTree(input: GetFullAXTreeRequest) = connection.request("Accessibility.getFullAXTree", input, GetFullAXTreeResponse::class.java)
+
+    /**
+     * Fetches a particular accessibility node by AXNodeId.
+Requires `enable()` to have been called previously.
+     *
+     * @link Protocol [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getChildAXNodes(input: GetChildAXNodesRequest) = connection.request("Accessibility.getChildAXNodes", input, GetChildAXNodesResponse::class.java)
+
+    /**
+     * Query a DOM node's accessibility subtree for accessible name and role.
+This command computes the name and role for all nodes in the subtree, including those that are
+ignored for accessibility, and returns those that mactch the specified name and role. If no DOM
+node is specified, or the DOM node does not exist, the command returns an error. If neither
+`accessibleName` or `role` is specified, it returns all the accessibility nodes in the subtree.
+     *
+     * @link Protocol [Accessibility#queryAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-queryAXTree) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun queryAXTree(input: QueryAXTreeRequest) = connection.request("Accessibility.queryAXTree", input, QueryAXTreeResponse::class.java)
 
     /**
      * Returns flowable capturing all Accessibility domains events.
@@ -98,8 +121,23 @@ data class GetPartialAXTreeResponse(
 )
 
 /**
+ * Represents request frame that can be used with [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) operation call.
+ *
+ * Fetches the entire accessibility tree for the root Document
+ * @link [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) method documentation.
+ * @see [AccessibilityOperations.getFullAXTree]
+ */
+data class GetFullAXTreeRequest(
+    /**
+     * The maximum depth at which descendants of the root node should be retrieved.
+If omitted, the full tree is returned.
+     */
+    val max_depth: Int? = null
+
+)
+/**
  * Represents response frame that is returned from [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) operation call.
- * Fetches the entire accessibility tree
+ * Fetches the entire accessibility tree for the root Document
  *
   
  * @link [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) method documentation.
@@ -108,6 +146,97 @@ data class GetPartialAXTreeResponse(
 data class GetFullAXTreeResponse(
     /**  
      *  
+     */  
+    val nodes: List<AXNode>
+
+)
+
+/**
+ * Represents request frame that can be used with [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) operation call.
+ *
+ * Fetches a particular accessibility node by AXNodeId.
+Requires `enable()` to have been called previously.
+ * @link [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) method documentation.
+ * @see [AccessibilityOperations.getChildAXNodes]
+ */
+data class GetChildAXNodesRequest(
+    /**
+     *
+     */
+    val id: AXNodeId
+
+)
+/**
+ * Represents response frame that is returned from [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) operation call.
+ * Fetches a particular accessibility node by AXNodeId.
+Requires `enable()` to have been called previously.
+ *
+  
+ * @link [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) method documentation.
+ * @see [AccessibilityOperations.getChildAXNodes]
+ */
+data class GetChildAXNodesResponse(
+    /**  
+     *  
+     */  
+    val nodes: List<AXNode>
+
+)
+
+/**
+ * Represents request frame that can be used with [Accessibility#queryAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-queryAXTree) operation call.
+ *
+ * Query a DOM node's accessibility subtree for accessible name and role.
+This command computes the name and role for all nodes in the subtree, including those that are
+ignored for accessibility, and returns those that mactch the specified name and role. If no DOM
+node is specified, or the DOM node does not exist, the command returns an error. If neither
+`accessibleName` or `role` is specified, it returns all the accessibility nodes in the subtree.
+ * @link [Accessibility#queryAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-queryAXTree) method documentation.
+ * @see [AccessibilityOperations.queryAXTree]
+ */
+data class QueryAXTreeRequest(
+    /**
+     * Identifier of the node for the root to query.
+     */
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId? = null,
+
+    /**
+     * Identifier of the backend node for the root to query.
+     */
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node wrapper for the root to query.
+     */
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null,
+
+    /**
+     * Find nodes with this computed name.
+     */
+    val accessibleName: String? = null,
+
+    /**
+     * Find nodes with this computed role.
+     */
+    val role: String? = null
+
+)
+/**
+ * Represents response frame that is returned from [Accessibility#queryAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-queryAXTree) operation call.
+ * Query a DOM node's accessibility subtree for accessible name and role.
+This command computes the name and role for all nodes in the subtree, including those that are
+ignored for accessibility, and returns those that mactch the specified name and role. If no DOM
+node is specified, or the DOM node does not exist, the command returns an error. If neither
+`accessibleName` or `role` is specified, it returns all the accessibility nodes in the subtree.
+ *
+  
+ * @link [Accessibility#queryAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-queryAXTree) method documentation.
+ * @see [AccessibilityOperations.queryAXTree]
+ */
+data class QueryAXTreeResponse(
+    /**  
+     * A list of `Accessibility.AXNode` matching the specified attributes,  
+     including nodes that are ignored for accessibility.  
      */  
     val nodes: List<AXNode>
 

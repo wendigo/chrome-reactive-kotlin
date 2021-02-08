@@ -86,6 +86,8 @@ enum class AXValueNativeSourceType {
     LABELWRAPPED,
     @com.fasterxml.jackson.annotation.JsonProperty("legend")
     LEGEND,
+    @com.fasterxml.jackson.annotation.JsonProperty("rubyannotation")
+    RUBYANNOTATION,
     @com.fasterxml.jackson.annotation.JsonProperty("tablecaption")
     TABLECAPTION,
     @com.fasterxml.jackson.annotation.JsonProperty("title")

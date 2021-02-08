@@ -112,7 +112,12 @@ data class RequestMemoryDumpRequest(
     /**
      * Enables more deterministic results by forcing garbage collection
      */
-    val deterministic: Boolean? = null
+    val deterministic: Boolean? = null,
+
+    /**
+     * Specifies level of details in memory dump. Defaults to "detailed".
+     */
+    val levelOfDetail: MemoryDumpLevelOfDetail? = null
 
 )
 /**
@@ -180,7 +185,14 @@ transfer mode (defaults to `none`)
     /**
      *
      */
-    val traceConfig: TraceConfig? = null
+    val traceConfig: TraceConfig? = null,
+
+    /**
+     * Base64-encoded serialized perfetto.protos.TraceConfig protobuf message
+When specified, the parameters `categories`, `options`, `traceConfig`
+are ignored. (Encoded as a base64 string when passed over JSON)
+     */
+    val perfettoConfig: String? = null
 
 )
 

@@ -35,6 +35,7 @@ import pl.wendigo.chrome.api.network.NetworkOperations
 import pl.wendigo.chrome.api.overlay.OverlayOperations
 import pl.wendigo.chrome.api.page.PageOperations
 import pl.wendigo.chrome.api.performance.PerformanceOperations
+import pl.wendigo.chrome.api.performancetimeline.PerformanceTimelineOperations
 import pl.wendigo.chrome.api.profiler.ProfilerOperations
 import pl.wendigo.chrome.api.runtime.RuntimeOperations
 import pl.wendigo.chrome.api.schema.SchemaOperations
@@ -133,6 +134,7 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
         connection.addEventMapping("Network.responseReceived", pl.wendigo.chrome.api.network.ResponseReceivedEvent::class.java)
         connection.addEventMapping("Network.responseReceivedExtraInfo", pl.wendigo.chrome.api.network.ResponseReceivedExtraInfoEvent::class.java)
         connection.addEventMapping("Network.signedExchangeReceived", pl.wendigo.chrome.api.network.SignedExchangeReceivedEvent::class.java)
+        connection.addEventMapping("Network.trustTokenOperationDone", pl.wendigo.chrome.api.network.TrustTokenOperationDoneEvent::class.java)
         connection.addEventMapping("Network.webSocketClosed", pl.wendigo.chrome.api.network.WebSocketClosedEvent::class.java)
         connection.addEventMapping("Network.webSocketCreated", pl.wendigo.chrome.api.network.WebSocketCreatedEvent::class.java)
         connection.addEventMapping("Network.webSocketFrameError", pl.wendigo.chrome.api.network.WebSocketFrameErrorEvent::class.java)
@@ -140,11 +142,15 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
         connection.addEventMapping("Network.webSocketFrameSent", pl.wendigo.chrome.api.network.WebSocketFrameSentEvent::class.java)
         connection.addEventMapping("Network.webSocketHandshakeResponseReceived", pl.wendigo.chrome.api.network.WebSocketHandshakeResponseReceivedEvent::class.java)
         connection.addEventMapping("Network.webSocketWillSendHandshakeRequest", pl.wendigo.chrome.api.network.WebSocketWillSendHandshakeRequestEvent::class.java)
+        connection.addEventMapping("Network.webTransportClosed", pl.wendigo.chrome.api.network.WebTransportClosedEvent::class.java)
+        connection.addEventMapping("Network.webTransportConnectionEstablished", pl.wendigo.chrome.api.network.WebTransportConnectionEstablishedEvent::class.java)
+        connection.addEventMapping("Network.webTransportCreated", pl.wendigo.chrome.api.network.WebTransportCreatedEvent::class.java)
         connection.addEventMapping("Overlay.inspectModeCanceled", pl.wendigo.chrome.protocol.Event::class.java)
         connection.addEventMapping("Overlay.inspectNodeRequested", pl.wendigo.chrome.api.overlay.InspectNodeRequestedEvent::class.java)
         connection.addEventMapping("Overlay.nodeHighlightRequested", pl.wendigo.chrome.api.overlay.NodeHighlightRequestedEvent::class.java)
         connection.addEventMapping("Overlay.screenshotRequested", pl.wendigo.chrome.api.overlay.ScreenshotRequestedEvent::class.java)
         connection.addEventMapping("Page.compilationCacheProduced", pl.wendigo.chrome.api.page.CompilationCacheProducedEvent::class.java)
+        connection.addEventMapping("Page.documentOpened", pl.wendigo.chrome.api.page.DocumentOpenedEvent::class.java)
         connection.addEventMapping("Page.domContentEventFired", pl.wendigo.chrome.api.page.DomContentEventFiredEvent::class.java)
         connection.addEventMapping("Page.downloadProgress", pl.wendigo.chrome.api.page.DownloadProgressEvent::class.java)
         connection.addEventMapping("Page.downloadWillBegin", pl.wendigo.chrome.api.page.DownloadWillBeginEvent::class.java)
@@ -169,6 +175,7 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
         connection.addEventMapping("Page.screencastVisibilityChanged", pl.wendigo.chrome.api.page.ScreencastVisibilityChangedEvent::class.java)
         connection.addEventMapping("Page.windowOpen", pl.wendigo.chrome.api.page.WindowOpenEvent::class.java)
         connection.addEventMapping("Performance.metrics", pl.wendigo.chrome.api.performance.MetricsEvent::class.java)
+        connection.addEventMapping("PerformanceTimeline.timelineEventAdded", pl.wendigo.chrome.api.performancetimeline.TimelineEventAddedEvent::class.java)
         connection.addEventMapping("Profiler.consoleProfileFinished", pl.wendigo.chrome.api.profiler.ConsoleProfileFinishedEvent::class.java)
         connection.addEventMapping("Profiler.consoleProfileStarted", pl.wendigo.chrome.api.profiler.ConsoleProfileStartedEvent::class.java)
         connection.addEventMapping("Profiler.preciseCoverageDeltaUpdate", pl.wendigo.chrome.api.profiler.PreciseCoverageDeltaUpdateEvent::class.java)
@@ -582,6 +589,18 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     }
 
     /**
+     * Reporting of performance timeline events, as specified in
+https://w3c.github.io/performance-timeline/#dom-performanceobserver.
+     *
+     * This API is marked as experimental in protocol definition and can change in the future.
+     * @link [https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline](Domain PerformanceTimeline documentation)
+     */
+    @pl.wendigo.chrome.protocol.Experimental
+    val PerformanceTimeline: PerformanceTimelineOperations by lazy {
+        PerformanceTimelineOperations(connection)
+    }
+
+    /**
      * Security
      *
      * @link [https://chromedevtools.github.io/devtools-protocol/tot/Security](Domain Security documentation)
@@ -657,10 +676,8 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
     /**
      * A domain for letting clients substitute browser's network layer with client code.
      *
-     * This API is marked as experimental in protocol definition and can change in the future.
      * @link [https://chromedevtools.github.io/devtools-protocol/tot/Fetch](Domain Fetch documentation)
      */
-    @pl.wendigo.chrome.protocol.Experimental
     val Fetch: FetchOperations by lazy {
         FetchOperations(connection)
     }

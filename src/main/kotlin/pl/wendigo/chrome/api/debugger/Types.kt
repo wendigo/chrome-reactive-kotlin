@@ -58,6 +58,29 @@ data class ScriptPosition(
 )
 
 /**
+ * Location range within one script.
+ *
+ * @link [Debugger#LocationRange](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-LocationRange) type documentation.
+ */
+
+data class LocationRange(
+    /**  
+     *  
+     */  
+    val scriptId: pl.wendigo.chrome.api.runtime.ScriptId,
+
+    /**  
+     *  
+     */  
+    val start: ScriptPosition,
+
+    /**  
+     *  
+     */  
+    val end: ScriptPosition
+)
+
+/**
  * JavaScript call frame. Array of call frames form the call stack.
  *
  * @link [Debugger#CallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-CallFrame) type documentation.

@@ -102,6 +102,33 @@ coverage needs to have started.
     fun takeTypeProfile() = connection.request("Profiler.takeTypeProfile", null, TakeTypeProfileResponse::class.java)
 
     /**
+     * Enable counters collection.
+     *
+     * @link Protocol [Profiler#enableCounters](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-enableCounters) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun enableCounters() = connection.request("Profiler.enableCounters", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Disable counters collection.
+     *
+     * @link Protocol [Profiler#disableCounters](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-disableCounters) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun disableCounters() = connection.request("Profiler.disableCounters", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Retrieve counters.
+     *
+     * @link Protocol [Profiler#getCounters](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getCounters) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getCounters() = connection.request("Profiler.getCounters", null, GetCountersResponse::class.java)
+
+    /**
      * Enable run time call stats collection.
      *
      * @link Protocol [Profiler#enableRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-enableRuntimeCallStats) method documentation.
@@ -287,6 +314,22 @@ data class TakeTypeProfileResponse(
 )
 
 /**
+ * Represents response frame that is returned from [Profiler#getCounters](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getCounters) operation call.
+ * Retrieve counters.
+ *
+  
+ * @link [Profiler#getCounters](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getCounters) method documentation.
+ * @see [ProfilerOperations.getCounters]
+ */
+data class GetCountersResponse(
+    /**  
+     * Collected counters information.  
+     */  
+    val result: List<CounterInfo>
+
+)
+
+/**
  * Represents response frame that is returned from [Profiler#getRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getRuntimeCallStats) operation call.
  * Retrieve run time call stats.
  *
@@ -296,9 +339,9 @@ data class TakeTypeProfileResponse(
  */
 data class GetRuntimeCallStatsResponse(
     /**  
-     * Collected counter information.  
+     * Collected runtime call counter information.  
      */  
-    val result: List<CounterInfo>
+    val result: List<RuntimeCallCounterInfo>
 
 )
 

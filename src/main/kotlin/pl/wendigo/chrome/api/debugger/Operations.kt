@@ -252,7 +252,7 @@ mutated manually.
      *
      * @link Protocol [Debugger#stepOver](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepOver) method documentation.
      */
-    fun stepOver() = connection.request("Debugger.stepOver", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stepOver(input: StepOverRequest) = connection.request("Debugger.stepOver", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Fired when breakpoint is resolved to an actual script and location.
@@ -434,7 +434,7 @@ data class ExecuteWasmEvaluatorRequest(
     val callFrameId: CallFrameId,
 
     /**
-     * Code of the evaluator module.
+     * Code of the evaluator module. (Encoded as a base64 string when passed over JSON)
      */
     val evaluator: String,
 
@@ -537,7 +537,7 @@ data class GetScriptSourceResponse(
     val scriptSource: String,
 
     /**  
-     * Wasm bytecode.  
+     * Wasm bytecode. (Encoded as a base64 string when passed over JSON)  
      */  
     val bytecode: String? = null
 
@@ -567,7 +567,7 @@ data class GetWasmBytecodeRequest(
  */
 data class GetWasmBytecodeResponse(
     /**  
-     * Script source.  
+     * Script source. (Encoded as a base64 string when passed over JSON)  
      */  
     val bytecode: String
 
@@ -1138,7 +1138,27 @@ data class StepIntoRequest(
      * Debugger will pause on the execution of the first async task which was scheduled
 before next pause.
      */
-    @pl.wendigo.chrome.protocol.Experimental val breakOnAsyncCall: Boolean? = null
+    @pl.wendigo.chrome.protocol.Experimental val breakOnAsyncCall: Boolean? = null,
+
+    /**
+     * The skipList specifies location ranges that should be skipped on step into.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val skipList: List<LocationRange>? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Debugger#stepOver](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepOver) operation call.
+ *
+ * Steps over the statement.
+ * @link [Debugger#stepOver](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepOver) method documentation.
+ * @see [DebuggerOperations.stepOver]
+ */
+data class StepOverRequest(
+    /**
+     * The skipList specifies location ranges that should be skipped on step over.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val skipList: List<LocationRange>? = null
 
 )
 
@@ -1287,7 +1307,12 @@ data class ScriptFailedToParseEvent(
     /**  
      * The language of the script.  
      */  
-    val scriptLanguage: pl.wendigo.chrome.api.debugger.ScriptLanguage? = null
+    val scriptLanguage: pl.wendigo.chrome.api.debugger.ScriptLanguage? = null,
+
+    /**  
+     * The name the embedder supplied for this script.  
+     */  
+    val embedderName: String? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Debugger", name = "scriptFailedToParse")
 
@@ -1386,6 +1411,11 @@ data class ScriptParsedEvent(
     /**  
      * If the scriptLanguage is WebASsembly, the source of debug symbols for the module.  
      */  
-    val debugSymbols: pl.wendigo.chrome.api.debugger.DebugSymbols? = null
+    val debugSymbols: pl.wendigo.chrome.api.debugger.DebugSymbols? = null,
+
+    /**  
+     * The name the embedder supplied for this script.  
+     */  
+    val embedderName: String? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Debugger", name = "scriptParsed")

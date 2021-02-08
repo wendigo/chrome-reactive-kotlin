@@ -83,6 +83,14 @@ The default is true.
     fun setUserVerified(input: SetUserVerifiedRequest) = connection.request("WebAuthn.setUserVerified", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Sets whether tests of user presence will succeed immediately (if true) or fail to resolve (if false) for an authenticator.
+The default is true.
+     *
+     * @link Protocol [WebAuthn#setAutomaticPresenceSimulation](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setAutomaticPresenceSimulation) method documentation.
+     */
+    fun setAutomaticPresenceSimulation(input: SetAutomaticPresenceSimulationRequest) = connection.request("WebAuthn.setAutomaticPresenceSimulation", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Returns flowable capturing all WebAuthn domains events.
      */
     fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
@@ -277,5 +285,26 @@ data class SetUserVerifiedRequest(
      *
      */
     val isUserVerified: Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with [WebAuthn#setAutomaticPresenceSimulation](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setAutomaticPresenceSimulation) operation call.
+ *
+ * Sets whether tests of user presence will succeed immediately (if true) or fail to resolve (if false) for an authenticator.
+The default is true.
+ * @link [WebAuthn#setAutomaticPresenceSimulation](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setAutomaticPresenceSimulation) method documentation.
+ * @see [WebAuthnOperations.setAutomaticPresenceSimulation]
+ */
+data class SetAutomaticPresenceSimulationRequest(
+    /**
+     *
+     */
+    val authenticatorId: AuthenticatorId,
+
+    /**
+     *
+     */
+    val enabled: Boolean
 
 )

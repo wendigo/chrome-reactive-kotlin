@@ -3,10 +3,8 @@ package pl.wendigo.chrome.api.fetch
 /**
  * A domain for letting clients substitute browser's network layer with client code.
  *
- * This API is marked as experimental in protocol definition and can change in the future.
  * @link Protocol [Fetch](https://chromedevtools.github.io/devtools-protocol/tot/Fetch) domain documentation.
  */
-@pl.wendigo.chrome.protocol.Experimental
 class FetchOperations internal constructor(private val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) {
     /**
      * Disables the fetch domain.
@@ -176,12 +174,12 @@ data class FulfillRequestRequest(
      * Alternative way of specifying response headers as a \0-separated
 series of name: value pairs. Prefer the above method unless you
 need to represent some non-UTF8 values that can't be transmitted
-over the protocol as text.
+over the protocol as text. (Encoded as a base64 string when passed over JSON)
      */
     val binaryResponseHeaders: String? = null,
 
     /**
-     * A response body.
+     * A response body. (Encoded as a base64 string when passed over JSON)
      */
     val body: String? = null,
 
@@ -217,7 +215,7 @@ data class ContinueRequestRequest(
     val method: String? = null,
 
     /**
-     * If set, overrides the post data in the request.
+     * If set, overrides the post data in the request. (Encoded as a base64 string when passed over JSON)
      */
     val postData: String? = null,
 

@@ -223,6 +223,15 @@ attribute, user, password.
     fun setExtraHTTPHeaders(input: SetExtraHTTPHeadersRequest) = connection.request("Network.setExtraHTTPHeaders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Specifies whether to attach a page script stack id in requests
+     *
+     * @link Protocol [Network#setAttachDebugStack](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugStack) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setAttachDebugStack(input: SetAttachDebugStackRequest) = connection.request("Network.setAttachDebugStack", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Sets the requests to intercept that match the provided patterns and optionally resource types.
 Deprecated, please use Fetch.enable instead.
      *
@@ -239,6 +248,24 @@ Deprecated, please use Fetch.enable instead.
      * @link Protocol [Network#setUserAgentOverride](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setUserAgentOverride) method documentation.
      */
     fun setUserAgentOverride(input: SetUserAgentOverrideRequest) = connection.request("Network.setUserAgentOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Returns information about the COEP/COOP isolation status.
+     *
+     * @link Protocol [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getSecurityIsolationStatus(input: GetSecurityIsolationStatusRequest) = connection.request("Network.getSecurityIsolationStatus", input, GetSecurityIsolationStatusResponse::class.java)
+
+    /**
+     * Fetches the resource and returns the content.
+     *
+     * @link Protocol [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun loadNetworkResource(input: LoadNetworkResourceRequest) = connection.request("Network.loadNetworkResource", input, LoadNetworkResourceResponse::class.java)
 
     /**
      *  Fired when data chunk was received over the network.
@@ -328,6 +355,21 @@ Deprecated, use Fetch.requestPaused instead.
     fun webSocketWillSendHandshakeRequest(): io.reactivex.Flowable<WebSocketWillSendHandshakeRequestEvent> = connection.events("Network.webSocketWillSendHandshakeRequest", WebSocketWillSendHandshakeRequestEvent::class.java)
 
     /**
+     *  Fired upon WebTransport creation.
+     */
+    fun webTransportCreated(): io.reactivex.Flowable<WebTransportCreatedEvent> = connection.events("Network.webTransportCreated", WebTransportCreatedEvent::class.java)
+
+    /**
+     *  Fired when WebTransport handshake is finished.
+     */
+    fun webTransportConnectionEstablished(): io.reactivex.Flowable<WebTransportConnectionEstablishedEvent> = connection.events("Network.webTransportConnectionEstablished", WebTransportConnectionEstablishedEvent::class.java)
+
+    /**
+     *  Fired when WebTransport is disposed.
+     */
+    fun webTransportClosed(): io.reactivex.Flowable<WebTransportClosedEvent> = connection.events("Network.webTransportClosed", WebTransportClosedEvent::class.java)
+
+    /**
      *  Fired when additional information about a requestWillBeSent event is available from the
 network stack. Not every requestWillBeSent event will have an additional
 requestWillBeSentExtraInfo fired for it, and there is no guarantee whether requestWillBeSent
@@ -341,6 +383,14 @@ stack. Not every responseReceived event will have an additional responseReceived
 it, and responseReceivedExtraInfo may be fired before or after responseReceived.
      */
     fun responseReceivedExtraInfo(): io.reactivex.Flowable<ResponseReceivedExtraInfoEvent> = connection.events("Network.responseReceivedExtraInfo", ResponseReceivedExtraInfoEvent::class.java)
+
+    /**
+     *  Fired exactly once for each Trust Token operation. Depending on
+the type of the operation and whether the operation succeeded or
+failed, the event is fired before the corresponding request was sent
+or after the response was received.
+     */
+    fun trustTokenOperationDone(): io.reactivex.Flowable<TrustTokenOperationDoneEvent> = connection.events("Network.trustTokenOperationDone", TrustTokenOperationDoneEvent::class.java)
 
     /**
      * Returns flowable capturing all Network domains events.
@@ -426,7 +476,7 @@ to an authChallenge.
 
     /**
      * If set the requests completes using with the provided base64 encoded raw response, including
-HTTP status line and headers etc... Must not be set in response to an authChallenge.
+HTTP status line and headers etc... Must not be set in response to an authChallenge. (Encoded as a base64 string when passed over JSON)
      */
     val rawResponse: String? = null,
 
@@ -608,7 +658,9 @@ detailed cookie information in the `cookies` field.
  */
 data class GetCookiesRequest(
     /**
-     * The list of URLs for which applicable cookies will be fetched
+     * The list of URLs for which applicable cookies will be fetched.
+If not specified, it's assumed to be set to the list containing
+the URLs of the page and all of its subframes.
      */
     val urls: List<String>? = null
 
@@ -943,7 +995,7 @@ default domain and path values of the created cookie.
  */
 data class SetCookieResponse(
     /**  
-     * True if successfully set cookie.  
+     * Always set to true. If an error occurs, the response indicates protocol error.  
      */  
     val success: Boolean
 
@@ -1000,6 +1052,21 @@ data class SetExtraHTTPHeadersRequest(
 )
 
 /**
+ * Represents request frame that can be used with [Network#setAttachDebugStack](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugStack) operation call.
+ *
+ * Specifies whether to attach a page script stack id in requests
+ * @link [Network#setAttachDebugStack](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugStack) method documentation.
+ * @see [NetworkOperations.setAttachDebugStack]
+ */
+data class SetAttachDebugStackRequest(
+    /**
+     * Whether to attach a page script stack for debugging purpose.
+     */
+    val enabled: Boolean
+
+)
+
+/**
  * Represents request frame that can be used with [Network#setRequestInterception](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setRequestInterception) operation call.
  *
  * Sets the requests to intercept that match the provided patterns and optionally resource types.
@@ -1043,6 +1110,76 @@ data class SetUserAgentOverrideRequest(
      * To be sent in Sec-CH-UA-* headers and returned in navigator.userAgentData
      */
     @pl.wendigo.chrome.protocol.Experimental val userAgentMetadata: pl.wendigo.chrome.api.emulation.UserAgentMetadata? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) operation call.
+ *
+ * Returns information about the COEP/COOP isolation status.
+ * @link [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) method documentation.
+ * @see [NetworkOperations.getSecurityIsolationStatus]
+ */
+data class GetSecurityIsolationStatusRequest(
+    /**
+     * If no frameId is provided, the status of the target is provided.
+     */
+    val frameId: pl.wendigo.chrome.api.page.FrameId? = null
+
+)
+/**
+ * Represents response frame that is returned from [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) operation call.
+ * Returns information about the COEP/COOP isolation status.
+ *
+  
+ * @link [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) method documentation.
+ * @see [NetworkOperations.getSecurityIsolationStatus]
+ */
+data class GetSecurityIsolationStatusResponse(
+    /**  
+     *  
+     */  
+    val status: SecurityIsolationStatus
+
+)
+
+/**
+ * Represents request frame that can be used with [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) operation call.
+ *
+ * Fetches the resource and returns the content.
+ * @link [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) method documentation.
+ * @see [NetworkOperations.loadNetworkResource]
+ */
+data class LoadNetworkResourceRequest(
+    /**
+     * Frame id to get the resource for.
+     */
+    val frameId: pl.wendigo.chrome.api.page.FrameId,
+
+    /**
+     * URL of the resource to get content for.
+     */
+    val url: String,
+
+    /**
+     * Options for the request.
+     */
+    val options: LoadNetworkResourceOptions
+
+)
+/**
+ * Represents response frame that is returned from [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) operation call.
+ * Fetches the resource and returns the content.
+ *
+  
+ * @link [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) method documentation.
+ * @see [NetworkOperations.loadNetworkResource]
+ */
+data class LoadNetworkResourceResponse(
+    /**  
+     *  
+     */  
+    val resource: LoadNetworkResourcePageResult
 
 )
 
@@ -1141,7 +1278,12 @@ data class LoadingFailedEvent(
     /**  
      * The reason why loading was blocked, if any.  
      */  
-    val blockedReason: BlockedReason? = null
+    val blockedReason: BlockedReason? = null,
+
+    /**  
+     * The reason why loading was blocked by CORS, if any.  
+     */  
+    val corsErrorStatus: CorsErrorStatus? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "loadingFailed")
 
@@ -1569,6 +1711,70 @@ data class WebSocketWillSendHandshakeRequestEvent(
 ) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "webSocketWillSendHandshakeRequest")
 
 /**
+ * Fired upon WebTransport creation.
+ *
+ * @link [Network#webTransportCreated](https://chromedevtools.github.io/devtools-protocol/tot/Network#event-webTransportCreated) event documentation.
+ */
+data class WebTransportCreatedEvent(
+    /**  
+     * WebTransport identifier.  
+     */  
+    val transportId: RequestId,
+
+    /**  
+     * WebTransport request URL.  
+     */  
+    val url: String,
+
+    /**  
+     * Timestamp.  
+     */  
+    val timestamp: MonotonicTime,
+
+    /**  
+     * Request initiator.  
+     */  
+    val initiator: Initiator? = null
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "webTransportCreated")
+
+/**
+ * Fired when WebTransport handshake is finished.
+ *
+ * @link [Network#webTransportConnectionEstablished](https://chromedevtools.github.io/devtools-protocol/tot/Network#event-webTransportConnectionEstablished) event documentation.
+ */
+data class WebTransportConnectionEstablishedEvent(
+    /**  
+     * WebTransport identifier.  
+     */  
+    val transportId: RequestId,
+
+    /**  
+     * Timestamp.  
+     */  
+    val timestamp: MonotonicTime
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "webTransportConnectionEstablished")
+
+/**
+ * Fired when WebTransport is disposed.
+ *
+ * @link [Network#webTransportClosed](https://chromedevtools.github.io/devtools-protocol/tot/Network#event-webTransportClosed) event documentation.
+ */
+data class WebTransportClosedEvent(
+    /**  
+     * WebTransport identifier.  
+     */  
+    val transportId: RequestId,
+
+    /**  
+     * Timestamp.  
+     */  
+    val timestamp: MonotonicTime
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "webTransportClosed")
+
+/**
  * Fired when additional information about a requestWillBeSent event is available from the
 network stack. Not every requestWillBeSent event will have an additional
 requestWillBeSentExtraInfo fired for it, and there is no guarantee whether requestWillBeSent
@@ -1591,7 +1797,12 @@ data class RequestWillBeSentExtraInfoEvent(
     /**  
      * Raw request headers as they will be sent over the wire.  
      */  
-    val headers: Headers
+    val headers: Headers,
+
+    /**  
+     * The client security state set for the request.  
+     */  
+    val clientSecurityState: ClientSecurityState? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "requestWillBeSentExtraInfo")
 
@@ -1621,9 +1832,59 @@ data class ResponseReceivedExtraInfoEvent(
     val headers: Headers,
 
     /**  
+     * The IP address space of the resource. The address space can only be determined once the transport  
+     established the connection, so we can't send it in `requestWillBeSentExtraInfo`.  
+     */  
+    val resourceIPAddressSpace: IPAddressSpace,
+
+    /**  
      * Raw response header text as it was received over the wire. The raw text may not always be  
      available, such as in the case of HTTP/2 or QUIC.  
      */  
     val headersText: String? = null
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "responseReceivedExtraInfo")
+
+/**
+ * Fired exactly once for each Trust Token operation. Depending on
+the type of the operation and whether the operation succeeded or
+failed, the event is fired before the corresponding request was sent
+or after the response was received.
+ *
+ * @link [Network#trustTokenOperationDone](https://chromedevtools.github.io/devtools-protocol/tot/Network#event-trustTokenOperationDone) event documentation.
+ */
+data class TrustTokenOperationDoneEvent(
+    /**  
+     * Detailed success or error status of the operation.  
+     'AlreadyExists' also signifies a successful operation, as the result  
+     of the operation already exists und thus, the operation was abort  
+     preemptively (e.g. a cache hit).  
+     */  
+    val status: String,
+
+    /**  
+     *  
+     */  
+    val type: TrustTokenOperationType,
+
+    /**  
+     *  
+     */  
+    val requestId: RequestId,
+
+    /**  
+     * Top level origin. The context in which the operation was attempted.  
+     */  
+    val topLevelOrigin: String? = null,
+
+    /**  
+     * Origin of the issuer in case of a "Issuance" or "Redemption" operation.  
+     */  
+    val issuerOrigin: String? = null,
+
+    /**  
+     * The number of obtained Trust Tokens on a successful "Issuance" operation.  
+     */  
+    val issuedTokenCount: Int? = null
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Network", name = "trustTokenOperationDone")

@@ -123,6 +123,24 @@ unavailable.
     fun setGeolocationOverride(input: SetGeolocationOverrideRequest) = connection.request("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Overrides the Idle state.
+     *
+     * @link Protocol [Emulation#setIdleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setIdleOverride) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setIdleOverride(input: SetIdleOverrideRequest) = connection.request("Emulation.setIdleOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Clears Idle state overrides.
+     *
+     * @link Protocol [Emulation#clearIdleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-clearIdleOverride) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun clearIdleOverride() = connection.request("Emulation.clearIdleOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Overrides value returned by the javascript navigator object.
      *
      * @link Protocol [Emulation#setNavigatorOverrides](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setNavigatorOverrides) method documentation.
@@ -194,6 +212,15 @@ on Android.
     
     @pl.wendigo.chrome.protocol.Experimental
     fun setVisibleSize(input: SetVisibleSizeRequest) = connection.request("Emulation.setVisibleSize", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     *
+     *
+     * @link Protocol [Emulation#setDisabledImageTypes](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDisabledImageTypes) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun setDisabledImageTypes(input: SetDisabledImageTypesRequest) = connection.request("Emulation.setDisabledImageTypes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Allows overriding user agent with the given string.
@@ -350,7 +377,13 @@ autosizing and more.
      * If set, the visible area of the page will be overridden to this viewport. This viewport
 change is not observed by the page, e.g. viewport-relative elements do not change positions.
      */
-    @pl.wendigo.chrome.protocol.Experimental val viewport: pl.wendigo.chrome.api.page.Viewport? = null
+    @pl.wendigo.chrome.protocol.Experimental val viewport: pl.wendigo.chrome.api.page.Viewport? = null,
+
+    /**
+     * If set, the display feature of a multi-segment screen. If not set, multi-segment support
+is turned-off.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val displayFeature: DisplayFeature? = null
 
 )
 
@@ -462,6 +495,26 @@ data class SetGeolocationOverrideRequest(
      * Mock accuracy
      */
     val accuracy: Double? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Emulation#setIdleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setIdleOverride) operation call.
+ *
+ * Overrides the Idle state.
+ * @link [Emulation#setIdleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setIdleOverride) method documentation.
+ * @see [EmulationOperations.setIdleOverride]
+ */
+data class SetIdleOverrideRequest(
+    /**
+     * Mock isUserActive
+     */
+    val isUserActive: Boolean,
+
+    /**
+     * Mock isScreenUnlocked
+     */
+    val isScreenUnlocked: Boolean
 
 )
 
@@ -636,6 +689,21 @@ data class SetVisibleSizeRequest(
      * Frame height (DIP).
      */
     val height: Int
+
+)
+
+/**
+ * Represents request frame that can be used with [Emulation#setDisabledImageTypes](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDisabledImageTypes) operation call.
+ *
+ *
+ * @link [Emulation#setDisabledImageTypes](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDisabledImageTypes) method documentation.
+ * @see [EmulationOperations.setDisabledImageTypes]
+ */
+data class SetDisabledImageTypesRequest(
+    /**
+     * Image types to disable.
+     */
+    val imageTypes: List<DisabledImageType>
 
 )
 

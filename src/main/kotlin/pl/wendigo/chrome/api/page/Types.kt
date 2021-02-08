@@ -9,6 +9,66 @@ package pl.wendigo.chrome.api.page
 typealias FrameId = String
 
 /**
+ * Indicates whether a frame has been identified as an ad.
+ *
+ * @link [Page#AdFrameType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-AdFrameType) type documentation.
+ */
+enum class AdFrameType {
+    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    NONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("child")
+    CHILD,
+    @com.fasterxml.jackson.annotation.JsonProperty("root")
+    ROOT;
+}
+
+/**
+ * Indicates whether the frame is a secure context and why it is the case.
+ *
+ * @link [Page#SecureContextType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-SecureContextType) type documentation.
+ */
+enum class SecureContextType {
+    @com.fasterxml.jackson.annotation.JsonProperty("Secure")
+    SECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("SecureLocalhost")
+    SECURELOCALHOST,
+    @com.fasterxml.jackson.annotation.JsonProperty("InsecureScheme")
+    INSECURESCHEME,
+    @com.fasterxml.jackson.annotation.JsonProperty("InsecureAncestor")
+    INSECUREANCESTOR;
+}
+
+/**
+ * Indicates whether the frame is cross-origin isolated and why it is the case.
+ *
+ * @link [Page#CrossOriginIsolatedContextType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-CrossOriginIsolatedContextType) type documentation.
+ */
+enum class CrossOriginIsolatedContextType {
+    @com.fasterxml.jackson.annotation.JsonProperty("Isolated")
+    ISOLATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("NotIsolated")
+    NOTISOLATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("NotIsolatedFeatureDisabled")
+    NOTISOLATEDFEATUREDISABLED;
+}
+
+/**
+ *
+ *
+ * @link [Page#GatedAPIFeatures](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-GatedAPIFeatures) type documentation.
+ */
+enum class GatedAPIFeatures {
+    @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBuffers")
+    SHAREDARRAYBUFFERS,
+    @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBuffersTransferAllowed")
+    SHAREDARRAYBUFFERSTRANSFERALLOWED,
+    @com.fasterxml.jackson.annotation.JsonProperty("PerformanceMeasureMemory")
+    PERFORMANCEMEASUREMEMORY,
+    @com.fasterxml.jackson.annotation.JsonProperty("PerformanceProfile")
+    PERFORMANCEPROFILE;
+}
+
+/**
  * Information about the Frame on the page.
  *
  * @link [Page#Frame](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-Frame) type documentation.
@@ -46,6 +106,14 @@ data class Frame(
     @pl.wendigo.chrome.protocol.Experimental val urlFragment: String? = null,
 
     /**  
+     * Frame document's registered domain, taking the public suffixes list into account.  
+     Extracted from the Frame's url.  
+     Example URLs: http://www.google.com/file.html -> "google.com"  
+     http://a.b.co.uk/file.html      -> "b.co.uk"  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val domainAndRegistry: String,
+
+    /**  
      * Frame document's security origin.  
      */  
     val securityOrigin: String,
@@ -58,7 +126,27 @@ data class Frame(
     /**  
      * If the frame failed to load, this contains the URL that could not be loaded. Note that unlike url above, this URL may contain a fragment.  
      */  
-    @pl.wendigo.chrome.protocol.Experimental val unreachableUrl: String? = null
+    @pl.wendigo.chrome.protocol.Experimental val unreachableUrl: String? = null,
+
+    /**  
+     * Indicates whether this frame was tagged as an ad.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val adFrameType: AdFrameType? = null,
+
+    /**  
+     * Indicates whether the main document is a secure context and explains why that is the case.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val secureContextType: SecureContextType,
+
+    /**  
+     * Indicates whether this is a cross origin isolated context.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val crossOriginIsolatedContextType: CrossOriginIsolatedContextType,
+
+    /**  
+     * Indicated which gated APIs / features are available.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val gatedAPIFeatures: List<GatedAPIFeatures>
 )
 
 /**

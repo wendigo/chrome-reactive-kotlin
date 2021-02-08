@@ -36,6 +36,8 @@ enum class ResourceType {
     PING,
     @com.fasterxml.jackson.annotation.JsonProperty("CSPViolationReport")
     CSPVIOLATIONREPORT,
+    @com.fasterxml.jackson.annotation.JsonProperty("Preflight")
+    PREFLIGHT,
     @com.fasterxml.jackson.annotation.JsonProperty("Other")
     OTHER;
 }
@@ -298,6 +300,19 @@ enum class ResourcePriority {
 }
 
 /**
+ * Post data entry for HTTP request
+ *
+ * @link [Network#PostDataEntry](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-PostDataEntry) type documentation.
+ */
+
+data class PostDataEntry(
+    /**  
+     *  
+     */  
+    val bytes: String? = null
+)
+
+/**
  * HTTP request data.
  *
  * @link [Network#Request](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Request) type documentation.
@@ -335,6 +350,11 @@ data class Request(
     val hasPostData: Boolean? = null,
 
     /**  
+     * Request body elements. This will be converted from base64 to binary  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val postDataEntries: List<PostDataEntry>? = null,
+
+    /**  
      * The mixed content type of the request.  
      */  
     val mixedContentType: pl.wendigo.chrome.api.security.MixedContentType? = null,
@@ -352,7 +372,13 @@ data class Request(
     /**  
      * Whether is loaded via link preload.  
      */  
-    val isLinkPreload: Boolean? = null
+    val isLinkPreload: Boolean? = null,
+
+    /**  
+     * Set for requests when the TrustToken API is used. Contains the parameters  
+     passed by the developer (e.g. via "fetch") as understood by the backend.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val trustTokenParams: TrustTokenParams? = null
 )
 
 /**
@@ -525,6 +551,82 @@ enum class BlockedReason {
 }
 
 /**
+ * The reason why request was blocked.
+ *
+ * @link [Network#CorsError](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CorsError) type documentation.
+ */
+enum class CorsError {
+    @com.fasterxml.jackson.annotation.JsonProperty("DisallowedByMode")
+    DISALLOWEDBYMODE,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidResponse")
+    INVALIDRESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("WildcardOriginNotAllowed")
+    WILDCARDORIGINNOTALLOWED,
+    @com.fasterxml.jackson.annotation.JsonProperty("MissingAllowOriginHeader")
+    MISSINGALLOWORIGINHEADER,
+    @com.fasterxml.jackson.annotation.JsonProperty("MultipleAllowOriginValues")
+    MULTIPLEALLOWORIGINVALUES,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowOriginValue")
+    INVALIDALLOWORIGINVALUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("AllowOriginMismatch")
+    ALLOWORIGINMISMATCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowCredentials")
+    INVALIDALLOWCREDENTIALS,
+    @com.fasterxml.jackson.annotation.JsonProperty("CorsDisabledScheme")
+    CORSDISABLEDSCHEME,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidStatus")
+    PREFLIGHTINVALIDSTATUS,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightDisallowedRedirect")
+    PREFLIGHTDISALLOWEDREDIRECT,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightWildcardOriginNotAllowed")
+    PREFLIGHTWILDCARDORIGINNOTALLOWED,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightMissingAllowOriginHeader")
+    PREFLIGHTMISSINGALLOWORIGINHEADER,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightMultipleAllowOriginValues")
+    PREFLIGHTMULTIPLEALLOWORIGINVALUES,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidAllowOriginValue")
+    PREFLIGHTINVALIDALLOWORIGINVALUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightAllowOriginMismatch")
+    PREFLIGHTALLOWORIGINMISMATCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidAllowCredentials")
+    PREFLIGHTINVALIDALLOWCREDENTIALS,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightMissingAllowExternal")
+    PREFLIGHTMISSINGALLOWEXTERNAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidAllowExternal")
+    PREFLIGHTINVALIDALLOWEXTERNAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowMethodsPreflightResponse")
+    INVALIDALLOWMETHODSPREFLIGHTRESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowHeadersPreflightResponse")
+    INVALIDALLOWHEADERSPREFLIGHTRESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("MethodDisallowedByPreflightResponse")
+    METHODDISALLOWEDBYPREFLIGHTRESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("HeaderDisallowedByPreflightResponse")
+    HEADERDISALLOWEDBYPREFLIGHTRESPONSE,
+    @com.fasterxml.jackson.annotation.JsonProperty("RedirectContainsCredentials")
+    REDIRECTCONTAINSCREDENTIALS,
+    @com.fasterxml.jackson.annotation.JsonProperty("InsecurePrivateNetwork")
+    INSECUREPRIVATENETWORK;
+}
+
+/**
+ *
+ *
+ * @link [Network#CorsErrorStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CorsErrorStatus) type documentation.
+ */
+
+data class CorsErrorStatus(
+    /**  
+     *  
+     */  
+    val corsError: CorsError,
+
+    /**  
+     *  
+     */  
+    val failedParameter: String
+)
+
+/**
  * Source of serviceworker response.
  *
  * @link [Network#ServiceWorkerResponseSource](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ServiceWorkerResponseSource) type documentation.
@@ -538,6 +640,47 @@ enum class ServiceWorkerResponseSource {
     FALLBACK_CODE,
     @com.fasterxml.jackson.annotation.JsonProperty("network")
     NETWORK;
+}
+
+/**
+ * Determines what type of Trust Token operation is executed and
+depending on the type, some additional parameters. The values
+are specified in third_party/blink/renderer/core/fetch/trust_token.idl.
+ *
+ * @link [Network#TrustTokenParams](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-TrustTokenParams) type documentation.
+ */
+
+data class TrustTokenParams(
+    /**  
+     *  
+     */  
+    val type: TrustTokenOperationType,
+
+    /**  
+     * Only set for "token-redemption" type and determine whether  
+     to request a fresh SRR or use a still valid cached SRR.  
+     */  
+    val refreshPolicy: String,
+
+    /**  
+     * Origins of issuers from whom to request tokens or redemption  
+     records.  
+     */  
+    val issuers: List<String>? = null
+)
+
+/**
+ *
+ *
+ * @link [Network#TrustTokenOperationType](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-TrustTokenOperationType) type documentation.
+ */
+enum class TrustTokenOperationType {
+    @com.fasterxml.jackson.annotation.JsonProperty("Issuance")
+    ISSUANCE,
+    @com.fasterxml.jackson.annotation.JsonProperty("Redemption")
+    REDEMPTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("Signing")
+    SIGNING;
 }
 
 /**
@@ -793,7 +936,18 @@ data class Initiator(
      * Initiator line number, set for Parser type or for Script type (when script is importing  
      module) (0-based).  
      */  
-    val lineNumber: Double? = null
+    val lineNumber: Double? = null,
+
+    /**  
+     * Initiator column number, set for Parser type or for Script type (when script is importing  
+     module) (0-based).  
+     */  
+    val columnNumber: Double? = null,
+
+    /**  
+     * Set if another request triggered this request (e.g. preflight).  
+     */  
+    val requestId: RequestId? = null
 )
 
 /**
@@ -856,7 +1010,12 @@ data class Cookie(
     /**  
      * Cookie Priority  
      */  
-    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority
+    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority,
+
+    /**  
+     * True if cookie is SameParty.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val sameParty: Boolean
 )
 
 /**
@@ -888,7 +1047,17 @@ enum class SetCookieBlockedReason {
     @com.fasterxml.jackson.annotation.JsonProperty("InvalidPrefix")
     INVALIDPREFIX,
     @com.fasterxml.jackson.annotation.JsonProperty("UnknownError")
-    UNKNOWNERROR;
+    UNKNOWNERROR,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteStrict")
+    SCHEMEFULSAMESITESTRICT,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteLax")
+    SCHEMEFULSAMESITELAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteUnspecifiedTreatedAsLax")
+    SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SamePartyFromCrossPartyContext")
+    SAMEPARTYFROMCROSSPARTYCONTEXT,
+    @com.fasterxml.jackson.annotation.JsonProperty("SamePartyConflictsWithOtherAttributes")
+    SAMEPARTYCONFLICTSWITHOTHERATTRIBUTES;
 }
 
 /**
@@ -914,7 +1083,15 @@ enum class CookieBlockedReason {
     @com.fasterxml.jackson.annotation.JsonProperty("UserPreferences")
     USERPREFERENCES,
     @com.fasterxml.jackson.annotation.JsonProperty("UnknownError")
-    UNKNOWNERROR;
+    UNKNOWNERROR,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteStrict")
+    SCHEMEFULSAMESITESTRICT,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteLax")
+    SCHEMEFULSAMESITELAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteUnspecifiedTreatedAsLax")
+    SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX,
+    @com.fasterxml.jackson.annotation.JsonProperty("SamePartyFromCrossPartyContext")
+    SAMEPARTYFROMCROSSPARTYCONTEXT;
 }
 
 /**
@@ -1269,4 +1446,214 @@ data class SignedExchangeInfo(
      * Errors occurred while handling the signed exchagne.  
      */  
     val errors: List<SignedExchangeError>? = null
+)
+
+/**
+ *
+ *
+ * @link [Network#PrivateNetworkRequestPolicy](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-PrivateNetworkRequestPolicy) type documentation.
+ */
+enum class PrivateNetworkRequestPolicy {
+    @com.fasterxml.jackson.annotation.JsonProperty("Allow")
+    ALLOW,
+    @com.fasterxml.jackson.annotation.JsonProperty("BlockFromInsecureToMorePrivate")
+    BLOCKFROMINSECURETOMOREPRIVATE;
+}
+
+/**
+ *
+ *
+ * @link [Network#IPAddressSpace](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-IPAddressSpace) type documentation.
+ */
+enum class IPAddressSpace {
+    @com.fasterxml.jackson.annotation.JsonProperty("Local")
+    LOCAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("Private")
+    PRIVATE,
+    @com.fasterxml.jackson.annotation.JsonProperty("Public")
+    PUBLIC,
+    @com.fasterxml.jackson.annotation.JsonProperty("Unknown")
+    UNKNOWN;
+}
+
+/**
+ *
+ *
+ * @link [Network#ClientSecurityState](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ClientSecurityState) type documentation.
+ */
+
+data class ClientSecurityState(
+    /**  
+     *  
+     */  
+    val initiatorIsSecureContext: Boolean,
+
+    /**  
+     *  
+     */  
+    val initiatorIPAddressSpace: IPAddressSpace,
+
+    /**  
+     *  
+     */  
+    val privateNetworkRequestPolicy: PrivateNetworkRequestPolicy
+)
+
+/**
+ *
+ *
+ * @link [Network#CrossOriginOpenerPolicyValue](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginOpenerPolicyValue) type documentation.
+ */
+enum class CrossOriginOpenerPolicyValue {
+    @com.fasterxml.jackson.annotation.JsonProperty("SameOrigin")
+    SAMEORIGIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameOriginAllowPopups")
+    SAMEORIGINALLOWPOPUPS,
+    @com.fasterxml.jackson.annotation.JsonProperty("UnsafeNone")
+    UNSAFENONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("SameOriginPlusCoep")
+    SAMEORIGINPLUSCOEP;
+}
+
+/**
+ *
+ *
+ * @link [Network#CrossOriginOpenerPolicyStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginOpenerPolicyStatus) type documentation.
+ */
+
+data class CrossOriginOpenerPolicyStatus(
+    /**  
+     *  
+     */  
+    val value: CrossOriginOpenerPolicyValue,
+
+    /**  
+     *  
+     */  
+    val reportOnlyValue: CrossOriginOpenerPolicyValue,
+
+    /**  
+     *  
+     */  
+    val reportingEndpoint: String? = null,
+
+    /**  
+     *  
+     */  
+    val reportOnlyReportingEndpoint: String? = null
+)
+
+/**
+ *
+ *
+ * @link [Network#CrossOriginEmbedderPolicyValue](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginEmbedderPolicyValue) type documentation.
+ */
+enum class CrossOriginEmbedderPolicyValue {
+    @com.fasterxml.jackson.annotation.JsonProperty("None")
+    NONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("RequireCorp")
+    REQUIRECORP;
+}
+
+/**
+ *
+ *
+ * @link [Network#CrossOriginEmbedderPolicyStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginEmbedderPolicyStatus) type documentation.
+ */
+
+data class CrossOriginEmbedderPolicyStatus(
+    /**  
+     *  
+     */  
+    val value: CrossOriginEmbedderPolicyValue,
+
+    /**  
+     *  
+     */  
+    val reportOnlyValue: CrossOriginEmbedderPolicyValue,
+
+    /**  
+     *  
+     */  
+    val reportingEndpoint: String? = null,
+
+    /**  
+     *  
+     */  
+    val reportOnlyReportingEndpoint: String? = null
+)
+
+/**
+ *
+ *
+ * @link [Network#SecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SecurityIsolationStatus) type documentation.
+ */
+
+data class SecurityIsolationStatus(
+    /**  
+     *  
+     */  
+    val coop: CrossOriginOpenerPolicyStatus? = null,
+
+    /**  
+     *  
+     */  
+    val coep: CrossOriginEmbedderPolicyStatus? = null
+)
+
+/**
+ * An object providing the result of a network resource load.
+ *
+ * @link [Network#LoadNetworkResourcePageResult](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-LoadNetworkResourcePageResult) type documentation.
+ */
+
+data class LoadNetworkResourcePageResult(
+    /**  
+     *  
+     */  
+    val success: Boolean,
+
+    /**  
+     * Optional values used for error reporting.  
+     */  
+    val netError: Double? = null,
+
+    /**  
+     *  
+     */  
+    val netErrorName: String? = null,
+
+    /**  
+     *  
+     */  
+    val httpStatusCode: Double? = null,
+
+    /**  
+     * If successful, one of the following two fields holds the result.  
+     */  
+    val stream: pl.wendigo.chrome.api.io.StreamHandle? = null,
+
+    /**  
+     * Response headers.  
+     */  
+    val headers: pl.wendigo.chrome.api.network.Headers? = null
+)
+
+/**
+ * An options object that may be extended later to better support CORS,
+CORB and streaming.
+ *
+ * @link [Network#LoadNetworkResourceOptions](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-LoadNetworkResourceOptions) type documentation.
+ */
+
+data class LoadNetworkResourceOptions(
+    /**  
+     *  
+     */  
+    val disableCache: Boolean,
+
+    /**  
+     *  
+     */  
+    val includeCredentials: Boolean
 )

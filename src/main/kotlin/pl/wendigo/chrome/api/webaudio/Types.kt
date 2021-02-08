@@ -162,7 +162,7 @@ data class BaseAudioContext(
 )
 
 /**
- * Protocol object for AudioListner
+ * Protocol object for AudioListener
  *
  * @link [WebAudio#AudioListener](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-AudioListener) type documentation.
  */

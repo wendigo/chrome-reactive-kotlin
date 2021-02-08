@@ -114,10 +114,22 @@ might return multiple quads for inline nodes.
 
     /**
      * Returns the root DOM node (and optionally the subtree) to the caller.
+Deprecated, as it is not designed to work well with the rest of the DOM agent.
+Use DOMSnapshot.captureSnapshot instead.
      *
      * @link Protocol [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
      */
+    @Deprecated(level = DeprecationLevel.WARNING, message = "getFlattenedDocument is deprecated.")
     fun getFlattenedDocument(input: GetFlattenedDocumentRequest) = connection.request("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java)
+
+    /**
+     * Finds nodes with a given computed style in a subtree.
+     *
+     * @link Protocol [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getNodesForSubtreeByStyle(input: GetNodesForSubtreeByStyleRequest) = connection.request("DOM.getNodesForSubtreeByStyle", input, GetNodesForSubtreeByStyleResponse::class.java)
 
     /**
      * Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is
@@ -813,6 +825,8 @@ data class GetDocumentResponse(
  * Represents request frame that can be used with [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) operation call.
  *
  * Returns the root DOM node (and optionally the subtree) to the caller.
+Deprecated, as it is not designed to work well with the rest of the DOM agent.
+Use DOMSnapshot.captureSnapshot instead.
  * @link [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
  * @see [DOMOperations.getFlattenedDocument]
  */
@@ -833,6 +847,8 @@ entire subtree or provide an integer larger than 0.
 /**
  * Represents response frame that is returned from [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) operation call.
  * Returns the root DOM node (and optionally the subtree) to the caller.
+Deprecated, as it is not designed to work well with the rest of the DOM agent.
+Use DOMSnapshot.captureSnapshot instead.
  *
   
  * @link [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
@@ -843,6 +859,47 @@ data class GetFlattenedDocumentResponse(
      * Resulting node.  
      */  
     val nodes: List<Node>
+
+)
+
+/**
+ * Represents request frame that can be used with [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) operation call.
+ *
+ * Finds nodes with a given computed style in a subtree.
+ * @link [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) method documentation.
+ * @see [DOMOperations.getNodesForSubtreeByStyle]
+ */
+data class GetNodesForSubtreeByStyleRequest(
+    /**
+     * Node ID pointing to the root of a subtree.
+     */
+    val nodeId: NodeId,
+
+    /**
+     * The style to filter nodes by (includes nodes if any of properties matches).
+     */
+    val computedStyles: List<CSSComputedStyleProperty>,
+
+    /**
+     * Whether or not iframes and shadow roots in the same target should be traversed when returning the
+results (default is false).
+     */
+    val pierce: Boolean? = null
+
+)
+/**
+ * Represents response frame that is returned from [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) operation call.
+ * Finds nodes with a given computed style in a subtree.
+ *
+  
+ * @link [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) method documentation.
+ * @see [DOMOperations.getNodesForSubtreeByStyle]
+ */
+data class GetNodesForSubtreeByStyleResponse(
+    /**  
+     * Resulting nodes.  
+     */  
+    val nodeIds: List<NodeId>
 
 )
 

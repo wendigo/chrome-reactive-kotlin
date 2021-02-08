@@ -23,6 +23,18 @@ enum class AuthenticatorProtocol {
 /**
  *
  *
+ * @link [WebAuthn#Ctap2Version](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-Ctap2Version) type documentation.
+ */
+enum class Ctap2Version {
+    @com.fasterxml.jackson.annotation.JsonProperty("ctap2_0")
+    CTAP2_0,
+    @com.fasterxml.jackson.annotation.JsonProperty("ctap2_1")
+    CTAP2_1;
+}
+
+/**
+ *
+ *
  * @link [WebAuthn#AuthenticatorTransport](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-AuthenticatorTransport) type documentation.
  */
 enum class AuthenticatorTransport {
@@ -51,6 +63,11 @@ data class VirtualAuthenticatorOptions(
     val protocol: AuthenticatorProtocol,
 
     /**  
+     * Defaults to ctap2_0. Ignored if |protocol| == u2f.  
+     */  
+    val ctap2Version: Ctap2Version? = null,
+
+    /**  
      *  
      */  
     val transport: AuthenticatorTransport,
@@ -64,6 +81,13 @@ data class VirtualAuthenticatorOptions(
      * Defaults to false.  
      */  
     val hasUserVerification: Boolean? = null,
+
+    /**  
+     * If set to true, the authenticator will support the largeBlob extension.  
+     https://w3c.github.io/webauthn#largeBlob  
+     Defaults to false.  
+     */  
+    val hasLargeBlob: Boolean? = null,
 
     /**  
      * If set to true, tests of user presence will succeed immediately.  
@@ -102,13 +126,13 @@ data class Credential(
     val rpId: String? = null,
 
     /**  
-     * The ECDSA P-256 private key in PKCS#8 format.  
+     * The ECDSA P-256 private key in PKCS#8 format. (Encoded as a base64 string when passed over JSON)  
      */  
     val privateKey: String,
 
     /**  
      * An opaque byte sequence with a maximum size of 64 bytes mapping the  
-     credential to a specific user.  
+     credential to a specific user. (Encoded as a base64 string when passed over JSON)  
      */  
     val userHandle: String? = null,
 
@@ -117,5 +141,11 @@ data class Credential(
      assertion.  
      See https://w3c.github.io/webauthn/#signature-counter  
      */  
-    val signCount: Int
+    val signCount: Int,
+
+    /**  
+     * The large blob associated with the credential.  
+     See https://w3c.github.io/webauthn/#sctn-large-blob-extension (Encoded as a base64 string when passed over JSON)  
+     */  
+    val largeBlob: String? = null
 )

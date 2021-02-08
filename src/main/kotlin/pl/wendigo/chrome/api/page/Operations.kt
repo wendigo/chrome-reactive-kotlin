@@ -503,6 +503,11 @@ Instead, a protocol event `Page.fileChooserOpened` is emitted.
     fun frameNavigated(): io.reactivex.Flowable<FrameNavigatedEvent> = connection.events("Page.frameNavigated", FrameNavigatedEvent::class.java)
 
     /**
+     *  Fired when opening document to write to.
+     */
+    fun documentOpened(): io.reactivex.Flowable<DocumentOpenedEvent> = connection.events("Page.documentOpened", DocumentOpenedEvent::class.java)
+
+    /**
      *  Returns observable capturing all Page.frameResized events.
      */
     fun frameResized(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.frameResized", pl.wendigo.chrome.protocol.Event::class.java)
@@ -699,7 +704,12 @@ data class CaptureScreenshotRequest(
     /**
      * Capture the screenshot from the surface, rather than the view. Defaults to true.
      */
-    @pl.wendigo.chrome.protocol.Experimental val fromSurface: Boolean? = null
+    @pl.wendigo.chrome.protocol.Experimental val fromSurface: Boolean? = null,
+
+    /**
+     * Capture the screenshot beyond the viewport. Defaults to false.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val captureBeyondViewport: Boolean? = null
 
 )
 /**
@@ -712,7 +722,7 @@ data class CaptureScreenshotRequest(
  */
 data class CaptureScreenshotResponse(
     /**  
-     * Base64-encoded image data.  
+     * Base64-encoded image data. (Encoded as a base64 string when passed over JSON)  
      */  
     val data: String
 
@@ -1216,7 +1226,7 @@ in which case the content will be scaled to fit the paper size.
  */
 data class PrintToPDFResponse(
     /**  
-     * Base64-encoded pdf data. Empty if |returnAsStream| is specified.  
+     * Base64-encoded pdf data. Empty if |returnAsStream| is specified. (Encoded as a base64 string when passed over JSON)  
      */  
     val data: String,
 
@@ -1685,7 +1695,7 @@ data class AddCompilationCacheRequest(
     val url: String,
 
     /**
-     * Base64-encoded data
+     * Base64-encoded data (Encoded as a base64 string when passed over JSON)
      */
     val data: String
 
@@ -1809,7 +1819,12 @@ data class FrameDetachedEvent(
     /**  
      * Id of the frame that has been detached.  
      */  
-    val frameId: FrameId
+    val frameId: FrameId,
+
+    /**  
+     *  
+     */  
+    val reason: String
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameDetached")
 
@@ -1825,6 +1840,19 @@ data class FrameNavigatedEvent(
     val frame: Frame
 
 ) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameNavigated")
+
+/**
+ * Fired when opening document to write to.
+ *
+ * @link [Page#documentOpened](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-documentOpened) event documentation.
+ */
+data class DocumentOpenedEvent(
+    /**  
+     * Frame object.  
+     */  
+    val frame: Frame
+
+) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "documentOpened")
 
 /**
  * Fired when a renderer-initiated navigation is requested.
@@ -2087,7 +2115,7 @@ data class NavigatedWithinDocumentEvent(
  */
 data class ScreencastFrameEvent(
     /**  
-     * Base64-encoded compressed image.  
+     * Base64-encoded compressed image. (Encoded as a base64 string when passed over JSON)  
      */  
     val data: String,
 
@@ -2158,7 +2186,7 @@ data class CompilationCacheProducedEvent(
     val url: String,
 
     /**  
-     * Base64-encoded data  
+     * Base64-encoded data (Encoded as a base64 string when passed over JSON)  
      */  
     val data: String
 

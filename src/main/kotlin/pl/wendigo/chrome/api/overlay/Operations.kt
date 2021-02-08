@@ -30,6 +30,20 @@ class OverlayOperations internal constructor(private val connection: pl.wendigo.
     fun getHighlightObjectForTest(input: GetHighlightObjectForTestRequest) = connection.request("Overlay.getHighlightObjectForTest", input, GetHighlightObjectForTestResponse::class.java)
 
     /**
+     * For Persistent Grid testing.
+     *
+     * @link Protocol [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) method documentation.
+     */
+    fun getGridHighlightObjectsForTest(input: GetGridHighlightObjectsForTestRequest) = connection.request("Overlay.getGridHighlightObjectsForTest", input, GetGridHighlightObjectsForTestResponse::class.java)
+
+    /**
+     * For Source Order Viewer testing.
+     *
+     * @link Protocol [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) method documentation.
+     */
+    fun getSourceOrderHighlightObjectForTest(input: GetSourceOrderHighlightObjectForTestRequest) = connection.request("Overlay.getSourceOrderHighlightObjectForTest", input, GetSourceOrderHighlightObjectForTestResponse::class.java)
+
+    /**
      * Hides any highlight.
      *
      * @link Protocol [Overlay#hideHighlight](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-hideHighlight) method documentation.
@@ -64,6 +78,14 @@ objectId must be specified.
      * @link Protocol [Overlay#highlightRect](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightRect) method documentation.
      */
     fun highlightRect(input: HighlightRectRequest) = connection.request("Overlay.highlightRect", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Highlights the source order of the children of the DOM node with given id or with the given
+JavaScript object wrapper. Either nodeId or objectId must be specified.
+     *
+     * @link Protocol [Overlay#highlightSourceOrder](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightSourceOrder) method documentation.
+     */
+    fun highlightSourceOrder(input: HighlightSourceOrderRequest) = connection.request("Overlay.highlightSourceOrder", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted.
@@ -102,6 +124,20 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
     fun setShowFPSCounter(input: SetShowFPSCounterRequest) = connection.request("Overlay.setShowFPSCounter", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Highlight multiple elements with the CSS Grid overlay.
+     *
+     * @link Protocol [Overlay#setShowGridOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowGridOverlays) method documentation.
+     */
+    fun setShowGridOverlays(input: SetShowGridOverlaysRequest) = connection.request("Overlay.setShowGridOverlays", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     *
+     *
+     * @link Protocol [Overlay#setShowFlexOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFlexOverlays) method documentation.
+     */
+    fun setShowFlexOverlays(input: SetShowFlexOverlaysRequest) = connection.request("Overlay.setShowFlexOverlays", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Requests that backend shows paint rectangles
      *
      * @link Protocol [Overlay#setShowPaintRects](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowPaintRects) method documentation.
@@ -128,6 +164,13 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowHitTestBorders](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowHitTestBorders) method documentation.
      */
     fun setShowHitTestBorders(input: SetShowHitTestBordersRequest) = connection.request("Overlay.setShowHitTestBorders", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Request that backend shows an overlay with web vital metrics.
+     *
+     * @link Protocol [Overlay#setShowWebVitals](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowWebVitals) method documentation.
+     */
+    fun setShowWebVitals(input: SetShowWebVitalsRequest) = connection.request("Overlay.setShowWebVitals", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Paints viewport size upon main frame resize.
@@ -198,9 +241,14 @@ data class GetHighlightObjectForTestRequest(
     val includeStyle: Boolean? = null,
 
     /**
-     * The color format to get config with (default: hex)
+     * The color format to get config with (default: hex).
      */
-    val colorFormat: ColorFormat? = null
+    val colorFormat: ColorFormat? = null,
+
+    /**
+     * Whether to show accessibility info (default: true).
+     */
+    val showAccessibilityInfo: Boolean? = null
 
 )
 /**
@@ -214,6 +262,66 @@ data class GetHighlightObjectForTestRequest(
 data class GetHighlightObjectForTestResponse(
     /**  
      * Highlight data for the node.  
+     */  
+    val highlight: com.fasterxml.jackson.databind.JsonNode
+
+)
+
+/**
+ * Represents request frame that can be used with [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) operation call.
+ *
+ * For Persistent Grid testing.
+ * @link [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) method documentation.
+ * @see [OverlayOperations.getGridHighlightObjectsForTest]
+ */
+data class GetGridHighlightObjectsForTestRequest(
+    /**
+     * Ids of the node to get highlight object for.
+     */
+    val nodeIds: List<pl.wendigo.chrome.api.dom.NodeId>
+
+)
+/**
+ * Represents response frame that is returned from [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) operation call.
+ * For Persistent Grid testing.
+ *
+  
+ * @link [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) method documentation.
+ * @see [OverlayOperations.getGridHighlightObjectsForTest]
+ */
+data class GetGridHighlightObjectsForTestResponse(
+    /**  
+     * Grid Highlight data for the node ids provided.  
+     */  
+    val highlights: com.fasterxml.jackson.databind.JsonNode
+
+)
+
+/**
+ * Represents request frame that can be used with [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) operation call.
+ *
+ * For Source Order Viewer testing.
+ * @link [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) method documentation.
+ * @see [OverlayOperations.getSourceOrderHighlightObjectForTest]
+ */
+data class GetSourceOrderHighlightObjectForTestRequest(
+    /**
+     * Id of the node to highlight.
+     */
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId
+
+)
+/**
+ * Represents response frame that is returned from [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) operation call.
+ * For Source Order Viewer testing.
+ *
+  
+ * @link [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) method documentation.
+ * @see [OverlayOperations.getSourceOrderHighlightObjectForTest]
+ */
+data class GetSourceOrderHighlightObjectForTestResponse(
+    /**  
+     * Source order highlight data for the node id provided.  
      */  
     val highlight: com.fasterxml.jackson.databind.JsonNode
 
@@ -346,6 +454,37 @@ data class HighlightRectRequest(
 )
 
 /**
+ * Represents request frame that can be used with [Overlay#highlightSourceOrder](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightSourceOrder) operation call.
+ *
+ * Highlights the source order of the children of the DOM node with given id or with the given
+JavaScript object wrapper. Either nodeId or objectId must be specified.
+ * @link [Overlay#highlightSourceOrder](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightSourceOrder) method documentation.
+ * @see [OverlayOperations.highlightSourceOrder]
+ */
+data class HighlightSourceOrderRequest(
+    /**
+     * A descriptor for the appearance of the overlay drawing.
+     */
+    val sourceOrderConfig: SourceOrderConfig,
+
+    /**
+     * Identifier of the node to highlight.
+     */
+    val nodeId: pl.wendigo.chrome.api.dom.NodeId? = null,
+
+    /**
+     * Identifier of the backend node to highlight.
+     */
+    val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId? = null,
+
+    /**
+     * JavaScript object id of the node to be highlighted.
+     */
+    val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null
+
+)
+
+/**
  * Represents request frame that can be used with [Overlay#setInspectMode](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setInspectMode) operation call.
  *
  * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted.
@@ -428,6 +567,36 @@ data class SetShowFPSCounterRequest(
 )
 
 /**
+ * Represents request frame that can be used with [Overlay#setShowGridOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowGridOverlays) operation call.
+ *
+ * Highlight multiple elements with the CSS Grid overlay.
+ * @link [Overlay#setShowGridOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowGridOverlays) method documentation.
+ * @see [OverlayOperations.setShowGridOverlays]
+ */
+data class SetShowGridOverlaysRequest(
+    /**
+     * An array of node identifiers and descriptors for the highlight appearance.
+     */
+    val gridNodeHighlightConfigs: List<GridNodeHighlightConfig>
+
+)
+
+/**
+ * Represents request frame that can be used with [Overlay#setShowFlexOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFlexOverlays) operation call.
+ *
+ *
+ * @link [Overlay#setShowFlexOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFlexOverlays) method documentation.
+ * @see [OverlayOperations.setShowFlexOverlays]
+ */
+data class SetShowFlexOverlaysRequest(
+    /**
+     * An array of node identifiers and descriptors for the highlight appearance.
+     */
+    val flexNodeHighlightConfigs: List<FlexNodeHighlightConfig>
+
+)
+
+/**
  * Represents request frame that can be used with [Overlay#setShowPaintRects](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowPaintRects) operation call.
  *
  * Requests that backend shows paint rectangles
@@ -482,6 +651,21 @@ data class SetShowScrollBottleneckRectsRequest(
 data class SetShowHitTestBordersRequest(
     /**
      * True for showing hit-test borders
+     */
+    val show: Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with [Overlay#setShowWebVitals](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowWebVitals) operation call.
+ *
+ * Request that backend shows an overlay with web vital metrics.
+ * @link [Overlay#setShowWebVitals](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowWebVitals) method documentation.
+ * @see [OverlayOperations.setShowWebVitals]
+ */
+data class SetShowWebVitalsRequest(
+    /**
+     *
      */
     val show: Boolean
 

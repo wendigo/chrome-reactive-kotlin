@@ -83,6 +83,8 @@ enum class PermissionType {
     CLIPBOARDREADWRITE,
     @com.fasterxml.jackson.annotation.JsonProperty("clipboardSanitizedWrite")
     CLIPBOARDSANITIZEDWRITE,
+    @com.fasterxml.jackson.annotation.JsonProperty("displayCapture")
+    DISPLAYCAPTURE,
     @com.fasterxml.jackson.annotation.JsonProperty("durableStorage")
     DURABLESTORAGE,
     @com.fasterxml.jackson.annotation.JsonProperty("flash")
@@ -107,6 +109,8 @@ enum class PermissionType {
     SENSORS,
     @com.fasterxml.jackson.annotation.JsonProperty("videoCapture")
     VIDEOCAPTURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("videoCapturePanTiltZoom")
+    VIDEOCAPTUREPANTILTZOOM,
     @com.fasterxml.jackson.annotation.JsonProperty("idleDetection")
     IDLEDETECTION,
     @com.fasterxml.jackson.annotation.JsonProperty("wakeLockScreen")
@@ -155,15 +159,27 @@ data class PermissionDescriptor(
     val userVisibleOnly: Boolean? = null,
 
     /**  
-     * For "wake-lock" permission, must specify type as either "screen" or "system".  
-     */  
-    val type: String? = null,
-
-    /**  
      * For "clipboard" permission, may specify allowWithoutSanitization.  
      */  
-    val allowWithoutSanitization: Boolean? = null
+    val allowWithoutSanitization: Boolean? = null,
+
+    /**  
+     * For "camera" permission, may specify panTiltZoom.  
+     */  
+    val panTiltZoom: Boolean? = null
 )
+
+/**
+ * Browser command ids used by executeBrowserCommand.
+ *
+ * @link [Browser#BrowserCommandId](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-BrowserCommandId) type documentation.
+ */
+enum class BrowserCommandId {
+    @com.fasterxml.jackson.annotation.JsonProperty("openTabSearch")
+    OPENTABSEARCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("closeTabSearch")
+    CLOSETABSEARCH;
+}
 
 /**
  * Chrome histogram bucket.
