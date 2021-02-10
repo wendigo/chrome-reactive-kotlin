@@ -119,6 +119,7 @@ data class GetRealtimeDataRequest(
     val contextId: GraphObjectId
 
 )
+
 /**
  * Represents response frame that is returned from [WebAudio#getRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-getRealtimeData) operation call.
  * Fetch the realtime data from the registered contexts.

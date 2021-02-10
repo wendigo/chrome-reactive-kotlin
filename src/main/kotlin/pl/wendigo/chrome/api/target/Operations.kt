@@ -197,6 +197,7 @@ issued multiple times per target if multiple sessions have been attached to it.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [Target#activateTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-activateTarget) operation call.
  *
@@ -233,6 +234,7 @@ and eventually retire it. See crbug.com/991325.
     val flatten: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Target#attachToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToTarget) operation call.
  * Attaches to the target with given id.
@@ -279,6 +281,7 @@ data class CloseTargetRequest(
     val targetId: TargetID
 
 )
+
 /**
  * Represents response frame that is returned from [Target#closeTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-closeTarget) operation call.
  * Closes the target. If the target is a page that gets closed too.
@@ -347,6 +350,7 @@ data class CreateBrowserContextRequest(
     val proxyBypassList: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Target#createBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createBrowserContext) operation call.
  * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than
@@ -426,6 +430,7 @@ false by default).
     val background: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Target#createTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createTarget) operation call.
  * Creates a new page.
@@ -492,6 +497,7 @@ data class GetTargetInfoRequest(
     val targetId: TargetID? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Target#getTargetInfo](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargetInfo) operation call.
  * Returns information about a target.

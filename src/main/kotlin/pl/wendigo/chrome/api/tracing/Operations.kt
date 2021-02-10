@@ -120,6 +120,7 @@ data class RequestMemoryDumpRequest(
     val levelOfDetail: MemoryDumpLevelOfDetail? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) operation call.
  * Request a global memory dump.

@@ -36,6 +36,7 @@ class TetheringOperations internal constructor(private val connection: pl.wendig
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [Tethering#bind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-bind) operation call.
  *

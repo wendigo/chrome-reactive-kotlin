@@ -611,6 +611,7 @@ if Page.setGenerateCompilationCache is enabled.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [Page#addScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnLoad) operation call.
  *
@@ -625,6 +626,7 @@ data class AddScriptToEvaluateOnLoadRequest(
     val scriptSource: String
 
 )
+
 /**
  * Represents response frame that is returned from [Page#addScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnLoad) operation call.
  * Deprecated, please use addScriptToEvaluateOnNewDocument instead.
@@ -662,6 +664,7 @@ event is emitted.
     @pl.wendigo.chrome.protocol.Experimental val worldName: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Page#addScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnNewDocument) operation call.
  * Evaluates given script in every frame upon creation (before loading frame's scripts).
@@ -712,6 +715,7 @@ data class CaptureScreenshotRequest(
     @pl.wendigo.chrome.protocol.Experimental val captureBeyondViewport: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Page#captureScreenshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot) operation call.
  * Capture page screenshot.
@@ -743,6 +747,7 @@ data class CaptureSnapshotRequest(
     val format: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Page#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureSnapshot) operation call.
  * Returns a snapshot of the page as a string. For MHTML format, the serialization includes
@@ -785,6 +790,7 @@ option, use with caution.
     val grantUniveralAccess: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Page#createIsolatedWorld](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-createIsolatedWorld) operation call.
  * Creates an isolated world for the given frame.
@@ -983,6 +989,7 @@ data class GetResourceContentRequest(
     val url: String
 
 )
+
 /**
  * Represents response frame that is returned from [Page#getResourceContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceContent) operation call.
  * Returns content of the given resource.
@@ -1075,6 +1082,7 @@ data class NavigateRequest(
     @pl.wendigo.chrome.protocol.Experimental val referrerPolicy: ReferrerPolicy? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Page#navigate](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigate) operation call.
  * Navigates current page to the given URL.
@@ -1216,6 +1224,7 @@ in which case the content will be scaled to fit the paper size.
     @pl.wendigo.chrome.protocol.Experimental val transferMode: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Page#printToPDF](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-printToPDF) operation call.
  * Print page as PDF.
@@ -1337,6 +1346,7 @@ data class SearchInResourceRequest(
     val isRegex: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Page#searchInResource](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-searchInResource) operation call.
  * Searches for given string in resource content.

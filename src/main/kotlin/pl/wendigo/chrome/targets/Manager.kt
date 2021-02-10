@@ -1,6 +1,5 @@
 package pl.wendigo.chrome.targets
 
-import java.io.Closeable
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.DevToolsProtocol
@@ -15,6 +14,7 @@ import pl.wendigo.chrome.api.target.TargetID
 import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
+import java.io.Closeable
 
 /**
  * [Manager] is responsible for querying, creating, closing, attaching to debuggable targets on the browser side.

@@ -114,6 +114,7 @@ data class AddVirtualAuthenticatorRequest(
     val options: VirtualAuthenticatorOptions
 
 )
+
 /**
  * Represents response frame that is returned from [WebAuthn#addVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addVirtualAuthenticator) operation call.
  * Creates and adds a virtual authenticator.
@@ -185,6 +186,7 @@ data class GetCredentialRequest(
     val credentialId: String
 
 )
+
 /**
  * Represents response frame that is returned from [WebAuthn#getCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredential) operation call.
  * Returns a single credential stored in the given virtual authenticator that
@@ -216,6 +218,7 @@ data class GetCredentialsRequest(
     val authenticatorId: AuthenticatorId
 
 )
+
 /**
  * Represents response frame that is returned from [WebAuthn#getCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredentials) operation call.
  * Returns all the credentials stored in the given virtual authenticator.

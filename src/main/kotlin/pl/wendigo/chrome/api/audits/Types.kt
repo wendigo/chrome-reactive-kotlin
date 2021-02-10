@@ -468,9 +468,8 @@ enum class SharedArrayBufferIssueType {
 }
 
 /**
- * Details for a request that has been blocked with the BLOCKED_BY_RESPONSE
-code. Currently only used for COEP/COOP, but may be extended to include
-some CSP errors in the future.
+ * Details for a issue arising from an SAB being instantiated in, or
+transfered to a context that is not cross-origin isolated.
  *
  * @link [Audits#SharedArrayBufferIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SharedArrayBufferIssueDetails) type documentation.
  */
@@ -585,6 +584,40 @@ data class LowTextContrastIssueDetails(
 )
 
 /**
+ * Details for a CORS related issue, e.g. a warning or error related to
+CORS RFC1918 enforcement.
+ *
+ * @link [Audits#CorsIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-CorsIssueDetails) type documentation.
+ */
+
+data class CorsIssueDetails(
+    /**  
+     *  
+     */  
+    val corsErrorStatus: pl.wendigo.chrome.api.network.CorsErrorStatus,
+
+    /**  
+     *  
+     */  
+    val isWarning: Boolean,
+
+    /**  
+     *  
+     */  
+    val request: AffectedRequest,
+
+    /**  
+     *  
+     */  
+    val resourceIPAddressSpace: pl.wendigo.chrome.api.network.IPAddressSpace? = null,
+
+    /**  
+     *  
+     */  
+    val clientSecurityState: pl.wendigo.chrome.api.network.ClientSecurityState? = null
+)
+
+/**
  * A unique identifier for the type of issue. Each type may use one of the
 optional fields in InspectorIssueDetails to convey more specific
 information about the kind of issue.
@@ -607,7 +640,9 @@ enum class InspectorIssueCode {
     @com.fasterxml.jackson.annotation.JsonProperty("TrustedWebActivityIssue")
     TRUSTEDWEBACTIVITYISSUE,
     @com.fasterxml.jackson.annotation.JsonProperty("LowTextContrastIssue")
-    LOWTEXTCONTRASTISSUE;
+    LOWTEXTCONTRASTISSUE,
+    @com.fasterxml.jackson.annotation.JsonProperty("CorsIssue")
+    CORSISSUE;
 }
 
 /**
@@ -657,7 +692,12 @@ data class InspectorIssueDetails(
     /**  
      *  
      */  
-    val lowTextContrastIssueDetails: LowTextContrastIssueDetails? = null
+    val lowTextContrastIssueDetails: LowTextContrastIssueDetails? = null,
+
+    /**  
+     *  
+     */  
+    val corsIssueDetails: CorsIssueDetails? = null
 )
 
 /**

@@ -48,6 +48,7 @@ beginFrame to detect whether the frames were suppressed.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) operation call.
  *
@@ -86,6 +87,7 @@ during renderer initialization. In such a case, no screenshot data will be retur
     val screenshot: ScreenshotParams? = null
 
 )
+
 /**
  * Represents response frame that is returned from [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) operation call.
  * Sends a BeginFrame to the target and returns when the frame was completed. Optionally captures a

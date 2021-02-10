@@ -92,6 +92,7 @@ class DOMDebuggerOperations internal constructor(private val connection: pl.wend
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [DOMDebugger#getEventListeners](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-getEventListeners) operation call.
  *
@@ -118,6 +119,7 @@ entire subtree or provide an integer larger than 0.
     val pierce: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOMDebugger#getEventListeners](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-getEventListeners) operation call.
  * Returns event listeners of the given object.

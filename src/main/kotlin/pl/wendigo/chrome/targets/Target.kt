@@ -1,11 +1,11 @@
 package pl.wendigo.chrome.targets
 
-import java.io.Closeable
 import pl.wendigo.chrome.DevToolsProtocol
 import pl.wendigo.chrome.api.target.GetTargetInfoRequest
 import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
+import java.io.Closeable
 
 /**
  * Represents browser [Target] that can be controlled via DevTools Protocol API

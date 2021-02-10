@@ -123,6 +123,7 @@ class ServiceWorkerOperations internal constructor(private val connection: pl.we
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [ServiceWorker#deliverPushMessage](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-deliverPushMessage) operation call.
  *

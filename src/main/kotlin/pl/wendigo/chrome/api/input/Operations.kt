@@ -89,6 +89,7 @@ for example an emoji keyboard or an IME.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [Input#dispatchKeyEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchKeyEvent) operation call.
  *

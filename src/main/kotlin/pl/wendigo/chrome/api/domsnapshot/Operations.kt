@@ -85,6 +85,7 @@ data class GetSnapshotRequest(
     val includeUserAgentShadowTree: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) operation call.
  * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
@@ -141,6 +142,7 @@ data class CaptureSnapshotRequest(
     val includeDOMRects: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) operation call.
  * Returns a document snapshot, including the full DOM tree of the root node (including iframes,

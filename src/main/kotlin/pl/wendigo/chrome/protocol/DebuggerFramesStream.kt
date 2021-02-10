@@ -6,13 +6,13 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.ReplaySubject
 import io.reactivex.subjects.Subject
-import java.io.EOFException
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import org.slf4j.LoggerFactory
+import java.io.EOFException
 
 /**
  * DebuggerFramesStream represents connection to remote websocket endpoint of the DevTools Protocol

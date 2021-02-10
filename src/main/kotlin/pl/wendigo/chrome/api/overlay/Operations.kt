@@ -251,6 +251,7 @@ data class GetHighlightObjectForTestRequest(
     val showAccessibilityInfo: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Overlay#getHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getHighlightObjectForTest) operation call.
  * For testing.
@@ -281,6 +282,7 @@ data class GetGridHighlightObjectsForTestRequest(
     val nodeIds: List<pl.wendigo.chrome.api.dom.NodeId>
 
 )
+
 /**
  * Represents response frame that is returned from [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) operation call.
  * For Persistent Grid testing.
@@ -311,6 +313,7 @@ data class GetSourceOrderHighlightObjectForTestRequest(
     val nodeId: pl.wendigo.chrome.api.dom.NodeId
 
 )
+
 /**
  * Represents response frame that is returned from [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) operation call.
  * For Source Order Viewer testing.

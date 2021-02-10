@@ -79,6 +79,7 @@ class DOMStorageOperations internal constructor(private val connection: pl.wendi
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [DOMStorage#clear](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-clear) operation call.
  *
@@ -108,6 +109,7 @@ data class GetDOMStorageItemsRequest(
     val storageId: StorageId
 
 )
+
 /**
  * Represents response frame that is returned from [DOMStorage#getDOMStorageItems](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-getDOMStorageItems) operation call.
  *

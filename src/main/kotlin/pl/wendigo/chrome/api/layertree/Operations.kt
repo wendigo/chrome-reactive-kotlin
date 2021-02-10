@@ -90,6 +90,7 @@ class LayerTreeOperations internal constructor(private val connection: pl.wendig
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) operation call.
  *
@@ -104,6 +105,7 @@ data class CompositingReasonsRequest(
     val layerId: LayerId
 
 )
+
 /**
  * Represents response frame that is returned from [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) operation call.
  * Provides the reasons why the given layer was composited.
@@ -139,6 +141,7 @@ data class LoadSnapshotRequest(
     val tiles: List<PictureTile>
 
 )
+
 /**
  * Represents response frame that is returned from [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) operation call.
  * Returns the snapshot identifier.
@@ -169,6 +172,7 @@ data class MakeSnapshotRequest(
     val layerId: LayerId
 
 )
+
 /**
  * Represents response frame that is returned from [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) operation call.
  * Returns the layer snapshot identifier.
@@ -214,6 +218,7 @@ data class ProfileSnapshotRequest(
     val clipRect: pl.wendigo.chrome.api.dom.Rect? = null
 
 )
+
 /**
  * Represents response frame that is returned from [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) operation call.
  *
@@ -274,6 +279,7 @@ data class ReplaySnapshotRequest(
     val scale: Double? = null
 
 )
+
 /**
  * Represents response frame that is returned from [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) operation call.
  * Replays the layer snapshot and returns the resulting bitmap.
@@ -304,6 +310,7 @@ data class SnapshotCommandLogRequest(
     val snapshotId: SnapshotId
 
 )
+
 /**
  * Represents response frame that is returned from [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) operation call.
  * Replays the layer snapshot and returns canvas log.

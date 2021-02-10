@@ -56,6 +56,7 @@ events afterwards if enabled and recording.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [BackgroundService#startObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-startObserving) operation call.
  *

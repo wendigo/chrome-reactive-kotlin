@@ -3,9 +3,9 @@ package pl.wendigo.chrome.protocol
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.atomic.AtomicLong
 import okhttp3.OkHttpClient
 import pl.wendigo.chrome.api.target.SessionID
+import java.util.concurrent.atomic.AtomicLong
 
 /**
  * ChromeDebuggerConnection represents connection to chrome's debugger via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).

@@ -621,6 +621,7 @@ Note any previous deferred policy change is superseded.
     val initialVirtualTime: pl.wendigo.chrome.api.network.TimeSinceEpoch? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Emulation#setVirtualTimePolicy](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setVirtualTimePolicy) operation call.
  * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets

@@ -71,6 +71,7 @@ data class GetApplicationCacheForFrameRequest(
     val frameId: pl.wendigo.chrome.api.page.FrameId
 
 )
+
 /**
  * Represents response frame that is returned from [ApplicationCache#getApplicationCacheForFrame](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getApplicationCacheForFrame) operation call.
  * Returns relevant application cache data for the document in given frame.
@@ -119,6 +120,7 @@ data class GetManifestForFrameRequest(
     val frameId: pl.wendigo.chrome.api.page.FrameId
 
 )
+
 /**
  * Represents response frame that is returned from [ApplicationCache#getManifestForFrame](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getManifestForFrame) operation call.
  * Returns manifest URL for document in the given frame.

@@ -36,6 +36,7 @@ class IOOperations internal constructor(private val connection: pl.wendigo.chrom
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [IO#close](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-close) operation call.
  *
@@ -76,6 +77,7 @@ following the last read). Some types of streams may only support sequential read
     val size: Int? = null
 
 )
+
 /**
  * Represents response frame that is returned from [IO#read](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-read) operation call.
  * Read a chunk of the stream
@@ -116,6 +118,7 @@ data class ResolveBlobRequest(
     val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId
 
 )
+
 /**
  * Represents response frame that is returned from [IO#resolveBlob](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-resolveBlob) operation call.
  * Return UUID of Blob object specified by a remote object id.

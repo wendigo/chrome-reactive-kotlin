@@ -242,6 +242,7 @@ call).
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) operation call.
  *
@@ -266,6 +267,7 @@ data class AwaitPromiseRequest(
     val generatePreview: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) operation call.
  * Add handler to promise with given promise object id.
@@ -353,6 +355,7 @@ specified and objectId is, objectGroup will be inherited from object.
     val objectGroup: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) operation call.
  * Calls function with given declaration on the given object. Object group of the result is
@@ -405,6 +408,7 @@ evaluation will be performed in the context of the inspected page.
     val executionContextId: ExecutionContextId? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) operation call.
  * Compiles expression.
@@ -514,6 +518,7 @@ evaluation and allows unsafe-eval. Defaults to true.
     @pl.wendigo.chrome.protocol.Experimental val allowUnsafeEvalBlockedByCSP: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) operation call.
  * Evaluates expression on global object.
@@ -605,6 +610,7 @@ returned either.
     @pl.wendigo.chrome.protocol.Experimental val generatePreview: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) operation call.
  * Returns properties of a given object. Object group of the result is inherited from the target
@@ -651,6 +657,7 @@ data class GlobalLexicalScopeNamesRequest(
     val executionContextId: ExecutionContextId? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) operation call.
  * Returns all let, const and class variables from global scope.
@@ -686,6 +693,7 @@ data class QueryObjectsRequest(
     val objectGroup: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) operation call.
  *
@@ -784,6 +792,7 @@ resolved.
     val awaitPromise: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) operation call.
  * Runs script with given id in a given context.

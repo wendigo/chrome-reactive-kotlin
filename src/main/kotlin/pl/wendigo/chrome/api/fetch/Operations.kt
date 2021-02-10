@@ -265,6 +265,7 @@ data class GetResponseBodyRequest(
     val requestId: RequestId
 
 )
+
 /**
  * Represents response frame that is returned from [Fetch#getResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-getResponseBody) operation call.
  * Causes the body of the response to be received from the server and
@@ -314,6 +315,7 @@ data class TakeResponseBodyAsStreamRequest(
     val requestId: RequestId
 
 )
+
 /**
  * Represents response frame that is returned from [Fetch#takeResponseBodyAsStream](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-takeResponseBodyAsStream) operation call.
  * Returns a handle to the stream representing the response body.

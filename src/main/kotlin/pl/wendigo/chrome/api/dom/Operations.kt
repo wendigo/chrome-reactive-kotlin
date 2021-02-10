@@ -471,6 +471,7 @@ most of the calls requesting node ids.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [DOM#collectClassNamesFromSubtree](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-collectClassNamesFromSubtree) operation call.
  *
@@ -485,6 +486,7 @@ data class CollectClassNamesFromSubtreeRequest(
     val nodeId: NodeId
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#collectClassNamesFromSubtree](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-collectClassNamesFromSubtree) operation call.
  * Collects class names for the node with given id and all of it's child nodes.
@@ -527,6 +529,7 @@ data class CopyToRequest(
     val insertBeforeNodeId: NodeId? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#copyTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-copyTo) operation call.
  * Creates a deep copy of the specified node and places it into the target container before the
@@ -581,6 +584,7 @@ entire subtree or provide an integer larger than 0.
     val pierce: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#describeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-describeNode) operation call.
  * Describes node given its id, does not require domain to be enabled. Does not start tracking any
@@ -686,6 +690,7 @@ data class GetAttributesRequest(
     val nodeId: NodeId
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getAttributes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getAttributes) operation call.
  * Returns attributes for the specified node.
@@ -726,6 +731,7 @@ data class GetBoxModelRequest(
     val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getBoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getBoxModel) operation call.
  * Returns boxes for the given node.
@@ -767,6 +773,7 @@ data class GetContentQuadsRequest(
     val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getContentQuads](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getContentQuads) operation call.
  * Returns quads that describe node position on the page. This method
@@ -805,6 +812,7 @@ entire subtree or provide an integer larger than 0.
     val pierce: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getDocument) operation call.
  * Returns the root DOM node (and optionally the subtree) to the caller.
@@ -844,6 +852,7 @@ entire subtree or provide an integer larger than 0.
     val pierce: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) operation call.
  * Returns the root DOM node (and optionally the subtree) to the caller.
@@ -887,6 +896,7 @@ results (default is false).
     val pierce: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) operation call.
  * Finds nodes with a given computed style in a subtree.
@@ -933,6 +943,7 @@ data class GetNodeForLocationRequest(
     val ignorePointerEventsNone: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getNodeForLocation](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeForLocation) operation call.
  * Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is
@@ -984,6 +995,7 @@ data class GetOuterHTMLRequest(
     val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getOuterHTML) operation call.
  * Returns node's HTML markup.
@@ -1014,6 +1026,7 @@ data class GetRelayoutBoundaryRequest(
     val nodeId: NodeId
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getRelayoutBoundary](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getRelayoutBoundary) operation call.
  * Returns the id of the nearest ancestor that is a relayout boundary.
@@ -1055,6 +1068,7 @@ data class GetSearchResultsRequest(
     val toIndex: Int
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getSearchResults](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getSearchResults) operation call.
  * Returns search results from given `fromIndex` to given `toIndex` from the search with the given
@@ -1097,6 +1111,7 @@ data class MoveToRequest(
     val insertBeforeNodeId: NodeId? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#moveTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-moveTo) operation call.
  * Moves node into the new container, places it before the given anchor.
@@ -1133,6 +1148,7 @@ data class PerformSearchRequest(
     val includeUserAgentShadowDOM: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#performSearch](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-performSearch) operation call.
  * Searches for a given string in the DOM tree. Use `getSearchResults` to access search results or
@@ -1169,6 +1185,7 @@ data class PushNodeByPathToFrontendRequest(
     val path: String
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#pushNodeByPathToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodeByPathToFrontend) operation call.
  * Requests that the node is sent to the caller given its path. // FIXME, use XPath
@@ -1199,6 +1216,7 @@ data class PushNodesByBackendIdsToFrontendRequest(
     val backendNodeIds: List<BackendNodeId>
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#pushNodesByBackendIdsToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodesByBackendIdsToFrontend) operation call.
  * Requests that a batch of nodes is sent to the caller given their backend node ids.
@@ -1235,6 +1253,7 @@ data class QuerySelectorRequest(
     val selector: String
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#querySelector](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelector) operation call.
  * Executes `querySelector` on a given node.
@@ -1270,6 +1289,7 @@ data class QuerySelectorAllRequest(
     val selector: String
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#querySelectorAll](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelectorAll) operation call.
  * Executes `querySelectorAll` on a given node.
@@ -1366,6 +1386,7 @@ data class RequestNodeRequest(
     val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#requestNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestNode) operation call.
  * Requests that the node is sent to the caller given the JavaScript node object reference. All
@@ -1413,6 +1434,7 @@ data class ResolveNodeRequest(
     val executionContextId: pl.wendigo.chrome.api.runtime.ExecutionContextId? = null
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#resolveNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-resolveNode) operation call.
  * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
@@ -1540,6 +1562,7 @@ data class GetNodeStackTracesRequest(
     val nodeId: NodeId
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getNodeStackTraces](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeStackTraces) operation call.
  * Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation.
@@ -1571,6 +1594,7 @@ data class GetFileInfoRequest(
     val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getFileInfo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFileInfo) operation call.
  * Returns file information for the given
@@ -1623,6 +1647,7 @@ data class SetNodeNameRequest(
     val name: String
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#setNodeName](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeName) operation call.
  * Sets node name for a node with given id.
@@ -1693,6 +1718,7 @@ data class GetFrameOwnerRequest(
     val frameId: pl.wendigo.chrome.api.page.FrameId
 
 )
+
 /**
  * Represents response frame that is returned from [DOM#getFrameOwner](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFrameOwner) operation call.
  * Returns iframe node that owns iframe with the given domain.

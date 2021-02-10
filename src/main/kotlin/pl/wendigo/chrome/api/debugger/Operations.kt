@@ -289,6 +289,7 @@ scripts upon enabling debugger.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [Debugger#continueToLocation](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-continueToLocation) operation call.
  *
@@ -325,6 +326,7 @@ the debugger can hold. Puts no limit if paramter is omitted.
     @pl.wendigo.chrome.protocol.Experimental val maxScriptsCacheSize: Double? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#enable](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-enable) operation call.
  * Enables debugger for the given page. Clients should not assume that the debugging has been
@@ -399,6 +401,7 @@ execution. Overrides `setPauseOnException` state.
     @pl.wendigo.chrome.protocol.Experimental val timeout: pl.wendigo.chrome.api.runtime.TimeDelta? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#evaluateOnCallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-evaluateOnCallFrame) operation call.
  * Evaluates expression on a given call frame.
@@ -444,6 +447,7 @@ data class ExecuteWasmEvaluatorRequest(
     @pl.wendigo.chrome.protocol.Experimental val timeout: pl.wendigo.chrome.api.runtime.TimeDelta? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#executeWasmEvaluator](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-executeWasmEvaluator) operation call.
  * Execute a Wasm Evaluator module on a given call frame.
@@ -491,6 +495,7 @@ of scripts is used as end of range.
     val restrictToFunction: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#getPossibleBreakpoints](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getPossibleBreakpoints) operation call.
  * Returns possible locations for breakpoint. scriptId in start and end range locations should be
@@ -522,6 +527,7 @@ data class GetScriptSourceRequest(
     val scriptId: pl.wendigo.chrome.api.runtime.ScriptId
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#getScriptSource](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getScriptSource) operation call.
  * Returns source for the script with given id.
@@ -557,6 +563,7 @@ data class GetWasmBytecodeRequest(
     val scriptId: pl.wendigo.chrome.api.runtime.ScriptId
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) operation call.
  * This command is deprecated. Use getScriptSource instead.
@@ -587,6 +594,7 @@ data class GetStackTraceRequest(
     val stackTraceId: pl.wendigo.chrome.api.runtime.StackTraceId
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#getStackTrace](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getStackTrace) operation call.
  * Returns stack trace with given `stackTraceId`.
@@ -647,6 +655,7 @@ data class RestartFrameRequest(
     val callFrameId: CallFrameId
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#restartFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-restartFrame) operation call.
  * Restarts particular call frame from the beginning.
@@ -721,6 +730,7 @@ data class SearchInContentRequest(
     val isRegex: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#searchInContent](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-searchInContent) operation call.
  * Searches for given string in script content.
@@ -813,6 +823,7 @@ breakpoint if this expression evaluates to true.
     val condition: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#setBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpoint) operation call.
  * Sets JavaScript breakpoint at a given location.
@@ -848,6 +859,7 @@ data class SetInstrumentationBreakpointRequest(
     val instrumentation: String
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#setInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setInstrumentationBreakpoint) operation call.
  * Sets instrumentation breakpoint.
@@ -908,6 +920,7 @@ breakpoint if this expression evaluates to true.
     val condition: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#setBreakpointByUrl](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointByUrl) operation call.
  * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this
@@ -954,6 +967,7 @@ stop on the breakpoint if this expression evaluates to true.
     val condition: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#setBreakpointOnFunctionCall](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointOnFunctionCall) operation call.
  * Sets JavaScript breakpoint before each call to the given function.
@@ -1043,6 +1057,7 @@ description without actually modifying the code.
     val dryRun: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Debugger#setScriptSource](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setScriptSource) operation call.
  * Edits JavaScript source live.

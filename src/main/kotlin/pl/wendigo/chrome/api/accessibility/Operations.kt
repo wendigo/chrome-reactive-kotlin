@@ -103,6 +103,7 @@ data class GetPartialAXTreeRequest(
     val fetchRelatives: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Accessibility#getPartialAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getPartialAXTree) operation call.
  * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
@@ -135,6 +136,7 @@ If omitted, the full tree is returned.
     val max_depth: Int? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) operation call.
  * Fetches the entire accessibility tree for the root Document
@@ -166,6 +168,7 @@ data class GetChildAXNodesRequest(
     val id: AXNodeId
 
 )
+
 /**
  * Represents response frame that is returned from [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) operation call.
  * Fetches a particular accessibility node by AXNodeId.
@@ -221,6 +224,7 @@ data class QueryAXTreeRequest(
     val role: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Accessibility#queryAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-queryAXTree) operation call.
  * Query a DOM node's accessibility subtree for accessible name and role.

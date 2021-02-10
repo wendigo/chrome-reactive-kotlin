@@ -70,6 +70,7 @@ device or a software surface that you can cast to.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [Cast#enable](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-enable) operation call.
  *

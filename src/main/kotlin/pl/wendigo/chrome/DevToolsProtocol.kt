@@ -1,7 +1,6 @@
 package pl.wendigo.chrome
 
 import io.reactivex.Flowable
-import java.io.Closeable
 import pl.wendigo.chrome.api.accessibility.AccessibilityOperations
 import pl.wendigo.chrome.api.animation.AnimationOperations
 import pl.wendigo.chrome.api.applicationcache.ApplicationCacheOperations
@@ -49,6 +48,7 @@ import pl.wendigo.chrome.api.tracing.TracingOperations
 import pl.wendigo.chrome.api.webaudio.WebAudioOperations
 import pl.wendigo.chrome.api.webauthn.WebAuthnOperations
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
+import java.io.Closeable
 
 /**
  * DevToolsProtocol represents all operations on all domains that can be issued to control Chrome via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).

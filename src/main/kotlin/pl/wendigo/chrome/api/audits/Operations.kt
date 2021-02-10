@@ -53,6 +53,7 @@ using Audits.issueAdded event.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) operation call.
  *
@@ -83,6 +84,7 @@ data class GetEncodedResponseRequest(
     val sizeOnly: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) operation call.
  * Returns the response body and size if it were re-encoded with the specified settings. Only

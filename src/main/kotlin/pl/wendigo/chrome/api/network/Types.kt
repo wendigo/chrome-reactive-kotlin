@@ -1457,7 +1457,9 @@ enum class PrivateNetworkRequestPolicy {
     @com.fasterxml.jackson.annotation.JsonProperty("Allow")
     ALLOW,
     @com.fasterxml.jackson.annotation.JsonProperty("BlockFromInsecureToMorePrivate")
-    BLOCKFROMINSECURETOMOREPRIVATE;
+    BLOCKFROMINSECURETOMOREPRIVATE,
+    @com.fasterxml.jackson.annotation.JsonProperty("WarnFromInsecureToMorePrivate")
+    WARNFROMINSECURETOMOREPRIVATE;
 }
 
 /**

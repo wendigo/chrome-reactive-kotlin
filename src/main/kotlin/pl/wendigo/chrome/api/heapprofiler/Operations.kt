@@ -129,6 +129,7 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [HeapProfiler#addInspectedHeapObject](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-addInspectedHeapObject) operation call.
  *
@@ -159,6 +160,7 @@ data class GetHeapObjectIdRequest(
     val objectId: pl.wendigo.chrome.api.runtime.RemoteObjectId
 
 )
+
 /**
  * Represents response frame that is returned from [HeapProfiler#getHeapObjectId](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getHeapObjectId) operation call.
  *
@@ -194,6 +196,7 @@ data class GetObjectByHeapObjectIdRequest(
     val objectGroup: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [HeapProfiler#getObjectByHeapObjectId](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getObjectByHeapObjectId) operation call.
  *

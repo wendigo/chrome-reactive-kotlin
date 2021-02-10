@@ -117,6 +117,7 @@ data class GetCurrentTimeRequest(
     val id: String
 
 )
+
 /**
  * Represents response frame that is returned from [Animation#getCurrentTime](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-getCurrentTime) operation call.
  * Returns the current time of the an animation.
@@ -178,6 +179,7 @@ data class ResolveAnimationRequest(
     val animationId: String
 
 )
+
 /**
  * Represents response frame that is returned from [Animation#resolveAnimation](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-resolveAnimation) operation call.
  * Gets the remote object of the Animation.

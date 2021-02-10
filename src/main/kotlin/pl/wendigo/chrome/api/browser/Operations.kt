@@ -156,6 +156,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [Browser#setPermission](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setPermission) operation call.
  *
@@ -328,6 +329,7 @@ all histograms.
     val delta: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Browser#getHistograms](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistograms) operation call.
  * Get Chrome histograms.
@@ -363,6 +365,7 @@ data class GetHistogramRequest(
     val delta: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Browser#getHistogram](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistogram) operation call.
  * Get a Chrome histogram by name.
@@ -393,6 +396,7 @@ data class GetWindowBoundsRequest(
     val windowId: WindowID
 
 )
+
 /**
  * Represents response frame that is returned from [Browser#getWindowBounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowBounds) operation call.
  * Get position and size of the browser window.
@@ -424,6 +428,7 @@ data class GetWindowForTargetRequest(
     val targetId: pl.wendigo.chrome.api.target.TargetID? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Browser#getWindowForTarget](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowForTarget) operation call.
  * Get the browser window that contains the devtools target.

@@ -632,6 +632,7 @@ data class GetCertificateRequest(
     val origin: String
 
 )
+
 /**
  * Represents response frame that is returned from [Network#getCertificate](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getCertificate) operation call.
  * Returns the DER-encoded certificate.
@@ -665,6 +666,7 @@ the URLs of the page and all of its subframes.
     val urls: List<String>? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Network#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getCookies) operation call.
  * Returns all browser cookies for the current URL. Depending on the backend support, will return
@@ -696,6 +698,7 @@ data class GetResponseBodyRequest(
     val requestId: RequestId
 
 )
+
 /**
  * Represents response frame that is returned from [Network#getResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getResponseBody) operation call.
  * Returns content served for the given request.
@@ -731,6 +734,7 @@ data class GetRequestPostDataRequest(
     val requestId: RequestId
 
 )
+
 /**
  * Represents response frame that is returned from [Network#getRequestPostData](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getRequestPostData) operation call.
  * Returns post data sent with the request. Returns an error when no data was sent with the request.
@@ -761,6 +765,7 @@ data class GetResponseBodyForInterceptionRequest(
     val interceptionId: InterceptionId
 
 )
+
 /**
  * Represents response frame that is returned from [Network#getResponseBodyForInterception](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getResponseBodyForInterception) operation call.
  * Returns content served for the given currently intercepted request.
@@ -799,6 +804,7 @@ data class TakeResponseBodyForInterceptionAsStreamRequest(
     val interceptionId: InterceptionId
 
 )
+
 /**
  * Represents response frame that is returned from [Network#takeResponseBodyForInterceptionAsStream](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-takeResponseBodyForInterceptionAsStream) operation call.
  * Returns a handle to the stream representing the response body. Note that after this command,
@@ -864,6 +870,7 @@ data class SearchInResponseBodyRequest(
     val isRegex: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Network#searchInResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-searchInResponseBody) operation call.
  * Searches for given string in response content.
@@ -985,6 +992,7 @@ default domain and path values of the created cookie.
     @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Network#setCookie](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setCookie) operation call.
  * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
@@ -1127,6 +1135,7 @@ data class GetSecurityIsolationStatusRequest(
     val frameId: pl.wendigo.chrome.api.page.FrameId? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Network#getSecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-getSecurityIsolationStatus) operation call.
  * Returns information about the COEP/COOP isolation status.
@@ -1167,6 +1176,7 @@ data class LoadNetworkResourceRequest(
     val options: LoadNetworkResourceOptions
 
 )
+
 /**
  * Represents response frame that is returned from [Network#loadNetworkResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-loadNetworkResource) operation call.
  * Fetches the resource and returns the content.

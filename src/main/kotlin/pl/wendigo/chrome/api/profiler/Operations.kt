@@ -241,6 +241,7 @@ data class StartPreciseCoverageRequest(
     val allowTriggeredUpdates: Boolean? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Profiler#startPreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startPreciseCoverage) operation call.
  * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code

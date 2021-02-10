@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import java.io.Closeable
-import kotlin.math.max
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 import pl.wendigo.chrome.targets.Manager
 import pl.wendigo.chrome.targets.Target
+import java.io.Closeable
+import kotlin.math.max
 
 /**
  * Creates new browser that allows querying remote chrome instance for debugging sessions

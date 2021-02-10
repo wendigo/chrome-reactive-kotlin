@@ -31,6 +31,7 @@ See also: timelineEventAdded
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [PerformanceTimeline#enable](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#method-enable) operation call.
  *

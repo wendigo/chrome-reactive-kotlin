@@ -70,6 +70,7 @@ data class ExecuteSQLRequest(
     val query: String
 
 )
+
 /**
  * Represents response frame that is returned from [Database#executeSQL](https://chromedevtools.github.io/devtools-protocol/tot/Database#method-executeSQL) operation call.
  *
@@ -110,6 +111,7 @@ data class GetDatabaseTableNamesRequest(
     val databaseId: DatabaseId
 
 )
+
 /**
  * Represents response frame that is returned from [Database#getDatabaseTableNames](https://chromedevtools.github.io/devtools-protocol/tot/Database#method-getDatabaseTableNames) operation call.
  *

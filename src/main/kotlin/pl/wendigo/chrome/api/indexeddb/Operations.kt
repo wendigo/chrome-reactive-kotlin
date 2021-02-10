@@ -80,6 +80,7 @@ class IndexedDBOperations internal constructor(private val connection: pl.wendig
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [IndexedDB#clearObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-clearObjectStore) operation call.
  *
@@ -199,6 +200,7 @@ data class RequestDataRequest(
     val keyRange: KeyRange? = null
 
 )
+
 /**
  * Represents response frame that is returned from [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) operation call.
  * Requests data from object store or index.
@@ -244,6 +246,7 @@ data class GetMetadataRequest(
     val objectStoreName: String
 
 )
+
 /**
  * Represents response frame that is returned from [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) operation call.
  * Gets metadata of an object store
@@ -286,6 +289,7 @@ data class RequestDatabaseRequest(
     val databaseName: String
 
 )
+
 /**
  * Represents response frame that is returned from [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) operation call.
  * Requests database with given name in given frame.
@@ -316,6 +320,7 @@ data class RequestDatabaseNamesRequest(
     val securityOrigin: String
 
 )
+
 /**
  * Represents response frame that is returned from [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) operation call.
  * Requests database names for given security origin.

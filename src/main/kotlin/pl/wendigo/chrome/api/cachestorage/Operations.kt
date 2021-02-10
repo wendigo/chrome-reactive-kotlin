@@ -52,6 +52,7 @@ class CacheStorageOperations internal constructor(private val connection: pl.wen
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [CacheStorage#deleteCache](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteCache) operation call.
  *
@@ -101,6 +102,7 @@ data class RequestCacheNamesRequest(
     val securityOrigin: String
 
 )
+
 /**
  * Represents response frame that is returned from [CacheStorage#requestCacheNames](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCacheNames) operation call.
  * Requests cache names.
@@ -141,6 +143,7 @@ data class RequestCachedResponseRequest(
     val requestHeaders: List<Header>
 
 )
+
 /**
  * Represents response frame that is returned from [CacheStorage#requestCachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCachedResponse) operation call.
  * Fetches cache entry.
@@ -186,6 +189,7 @@ data class RequestEntriesRequest(
     val pathFilter: String? = null
 
 )
+
 /**
  * Represents response frame that is returned from [CacheStorage#requestEntries](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestEntries) operation call.
  * Requests data from cache.

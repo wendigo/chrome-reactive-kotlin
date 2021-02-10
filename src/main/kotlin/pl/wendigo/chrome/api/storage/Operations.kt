@@ -119,6 +119,7 @@ current browsing context.
         }
     }
 }
+
 /**
  * Represents request frame that can be used with [Storage#clearDataForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearDataForOrigin) operation call.
  *
@@ -153,6 +154,7 @@ data class GetCookiesRequest(
     val browserContextId: pl.wendigo.chrome.api.browser.BrowserContextID? = null
 
 )
+
 /**
  * Represents response frame that is returned from [Storage#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getCookies) operation call.
  * Returns all browser cookies.
@@ -218,6 +220,7 @@ data class GetUsageAndQuotaRequest(
     val origin: String
 
 )
+
 /**
  * Represents response frame that is returned from [Storage#getUsageAndQuota](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getUsageAndQuota) operation call.
  * Returns usage and quota in bytes.
