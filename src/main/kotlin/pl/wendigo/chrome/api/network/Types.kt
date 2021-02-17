@@ -183,6 +183,22 @@ enum class CookiePriority {
 }
 
 /**
+ * Represents the source scheme of the origin that originally set the cookie.
+A value of &quot;Unset&quot; allows protocol clients to emulate legacy cookie scope for the scheme.
+This is a temporary ability and it will be removed in the future.
+ *
+ * @link [Network#CookieSourceScheme](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CookieSourceScheme) type documentation.
+ */
+enum class CookieSourceScheme {
+    @com.fasterxml.jackson.annotation.JsonProperty("Unset")
+    UNSET,
+    @com.fasterxml.jackson.annotation.JsonProperty("NonSecure")
+    NONSECURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("Secure")
+    SECURE;
+}
+
+/**
  * Timing information for the request.
  *
  * @link [Network#ResourceTiming](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ResourceTiming) type documentation.
@@ -1015,7 +1031,19 @@ data class Cookie(
     /**  
      * True if cookie is SameParty.  
      */  
-    @pl.wendigo.chrome.protocol.Experimental val sameParty: Boolean
+    @pl.wendigo.chrome.protocol.Experimental val sameParty: Boolean,
+
+    /**  
+     * Cookie source scheme type.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val sourceScheme: CookieSourceScheme,
+
+    /**  
+     * Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates an unspecified port.  
+     An unspecified port value allows protocol clients to emulate legacy cookie scope for the port.  
+     This is a temporary ability and it will be removed in the future.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val sourcePort: Int
 )
 
 /**
@@ -1157,7 +1185,7 @@ data class CookieParam(
 
     /**  
      * The request-URI to associate with the setting of the cookie. This value can affect the  
-     default domain and path values of the created cookie.  
+     default domain, path, source port, and source scheme values of the created cookie.  
      */  
     val url: String? = null,
 
@@ -1194,7 +1222,24 @@ data class CookieParam(
     /**  
      * Cookie Priority.  
      */  
-    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority? = null
+    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority? = null,
+
+    /**  
+     * True if cookie is SameParty.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val sameParty: Boolean? = null,
+
+    /**  
+     * Cookie source scheme type.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val sourceScheme: CookieSourceScheme? = null,
+
+    /**  
+     * Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates an unspecified port.  
+     An unspecified port value allows protocol clients to emulate legacy cookie scope for the port.  
+     This is a temporary ability and it will be removed in the future.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val sourcePort: Int? = null
 )
 
 /**

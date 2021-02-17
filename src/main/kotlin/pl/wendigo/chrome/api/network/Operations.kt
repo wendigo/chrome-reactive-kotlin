@@ -952,7 +952,7 @@ data class SetCookieRequest(
 
     /**
      * The request-URI to associate with the setting of the cookie. This value can affect the
-default domain and path values of the created cookie.
+default domain, path, source port, and source scheme values of the created cookie.
      */
     val url: String? = null,
 
@@ -989,7 +989,24 @@ default domain and path values of the created cookie.
     /**
      * Cookie Priority type.
      */
-    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority? = null
+    @pl.wendigo.chrome.protocol.Experimental val priority: CookiePriority? = null,
+
+    /**
+     * True if cookie is SameParty.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val sameParty: Boolean? = null,
+
+    /**
+     * Cookie source scheme type.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val sourceScheme: CookieSourceScheme? = null,
+
+    /**
+     * Cookie source port. Valid values are {-1, [1, 65535]}, -1 indicates an unspecified port.
+An unspecified port value allows protocol clients to emulate legacy cookie scope for the port.
+This is a temporary ability and it will be removed in the future.
+     */
+    @pl.wendigo.chrome.protocol.Experimental val sourcePort: Int? = null
 
 )
 
