@@ -277,6 +277,15 @@ information in the `cookies` field.
     fun setBypassCSP(input: SetBypassCSPRequest) = connection.request("Page.setBypassCSP", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Get Permissions Policy state on given frame.
+     *
+     * @link Protocol [Page#getPermissionsPolicyState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getPermissionsPolicyState) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun getPermissionsPolicyState(input: GetPermissionsPolicyStateRequest) = connection.request("Page.getPermissionsPolicyState", input, GetPermissionsPolicyStateResponse::class.java)
+
+    /**
      * Overrides the values of device screen dimensions (window.screen.width, window.screen.height,
 window.innerWidth, window.innerHeight, and "device-width"/"device-height"-related CSS media
 query results).
@@ -1390,6 +1399,37 @@ data class SetBypassCSPRequest(
      * Whether to bypass page CSP.
      */
     val enabled: Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with [Page#getPermissionsPolicyState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getPermissionsPolicyState) operation call.
+ *
+ * Get Permissions Policy state on given frame.
+ * @link [Page#getPermissionsPolicyState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getPermissionsPolicyState) method documentation.
+ * @see [PageOperations.getPermissionsPolicyState]
+ */
+data class GetPermissionsPolicyStateRequest(
+    /**
+     *
+     */
+    val frameId: FrameId
+
+)
+
+/**
+ * Represents response frame that is returned from [Page#getPermissionsPolicyState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getPermissionsPolicyState) operation call.
+ * Get Permissions Policy state on given frame.
+ *
+  
+ * @link [Page#getPermissionsPolicyState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getPermissionsPolicyState) method documentation.
+ * @see [PageOperations.getPermissionsPolicyState]
+ */
+data class GetPermissionsPolicyStateResponse(
+    /**  
+     *  
+     */  
+    val states: List<PermissionsPolicyFeatureState>
 
 )
 

@@ -69,6 +69,174 @@ enum class GatedAPIFeatures {
 }
 
 /**
+ * All Permissions Policy features. This enum should match the one defined
+in renderer/core/feature_policy/feature_policy_features.json5.
+ *
+ * @link [Page#PermissionsPolicyFeature](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-PermissionsPolicyFeature) type documentation.
+ */
+enum class PermissionsPolicyFeature {
+    @com.fasterxml.jackson.annotation.JsonProperty("accelerometer")
+    ACCELEROMETER,
+    @com.fasterxml.jackson.annotation.JsonProperty("ambient-light-sensor")
+    AMBIENT_LIGHT_SENSOR,
+    @com.fasterxml.jackson.annotation.JsonProperty("autoplay")
+    AUTOPLAY,
+    @com.fasterxml.jackson.annotation.JsonProperty("camera")
+    CAMERA,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-dpr")
+    CH_DPR,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-device-memory")
+    CH_DEVICE_MEMORY,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-downlink")
+    CH_DOWNLINK,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-ect")
+    CH_ECT,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-lang")
+    CH_LANG,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-rtt")
+    CH_RTT,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua")
+    CH_UA,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-arch")
+    CH_UA_ARCH,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-platform")
+    CH_UA_PLATFORM,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-model")
+    CH_UA_MODEL,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-mobile")
+    CH_UA_MOBILE,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-full-version")
+    CH_UA_FULL_VERSION,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-platform-version")
+    CH_UA_PLATFORM_VERSION,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-viewport-width")
+    CH_VIEWPORT_WIDTH,
+    @com.fasterxml.jackson.annotation.JsonProperty("ch-width")
+    CH_WIDTH,
+    @com.fasterxml.jackson.annotation.JsonProperty("clipboard-read")
+    CLIPBOARD_READ,
+    @com.fasterxml.jackson.annotation.JsonProperty("clipboard-write")
+    CLIPBOARD_WRITE,
+    @com.fasterxml.jackson.annotation.JsonProperty("conversion-measurement")
+    CONVERSION_MEASUREMENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("cross-origin-isolated")
+    CROSS_ORIGIN_ISOLATED,
+    @com.fasterxml.jackson.annotation.JsonProperty("display-capture")
+    DISPLAY_CAPTURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("document-domain")
+    DOCUMENT_DOMAIN,
+    @com.fasterxml.jackson.annotation.JsonProperty("encrypted-media")
+    ENCRYPTED_MEDIA,
+    @com.fasterxml.jackson.annotation.JsonProperty("execution-while-out-of-viewport")
+    EXECUTION_WHILE_OUT_OF_VIEWPORT,
+    @com.fasterxml.jackson.annotation.JsonProperty("execution-while-not-rendered")
+    EXECUTION_WHILE_NOT_RENDERED,
+    @com.fasterxml.jackson.annotation.JsonProperty("focus-without-user-activation")
+    FOCUS_WITHOUT_USER_ACTIVATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("fullscreen")
+    FULLSCREEN,
+    @com.fasterxml.jackson.annotation.JsonProperty("frobulate")
+    FROBULATE,
+    @com.fasterxml.jackson.annotation.JsonProperty("gamepad")
+    GAMEPAD,
+    @com.fasterxml.jackson.annotation.JsonProperty("geolocation")
+    GEOLOCATION,
+    @com.fasterxml.jackson.annotation.JsonProperty("gyroscope")
+    GYROSCOPE,
+    @com.fasterxml.jackson.annotation.JsonProperty("hid")
+    HID,
+    @com.fasterxml.jackson.annotation.JsonProperty("idle-detection")
+    IDLE_DETECTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("interest-cohort")
+    INTEREST_COHORT,
+    @com.fasterxml.jackson.annotation.JsonProperty("magnetometer")
+    MAGNETOMETER,
+    @com.fasterxml.jackson.annotation.JsonProperty("microphone")
+    MICROPHONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("midi")
+    MIDI,
+    @com.fasterxml.jackson.annotation.JsonProperty("otp-credentials")
+    OTP_CREDENTIALS,
+    @com.fasterxml.jackson.annotation.JsonProperty("payment")
+    PAYMENT,
+    @com.fasterxml.jackson.annotation.JsonProperty("picture-in-picture")
+    PICTURE_IN_PICTURE,
+    @com.fasterxml.jackson.annotation.JsonProperty("publickey-credentials-get")
+    PUBLICKEY_CREDENTIALS_GET,
+    @com.fasterxml.jackson.annotation.JsonProperty("screen-wake-lock")
+    SCREEN_WAKE_LOCK,
+    @com.fasterxml.jackson.annotation.JsonProperty("serial")
+    SERIAL,
+    @com.fasterxml.jackson.annotation.JsonProperty("storage-access-api")
+    STORAGE_ACCESS_API,
+    @com.fasterxml.jackson.annotation.JsonProperty("sync-xhr")
+    SYNC_XHR,
+    @com.fasterxml.jackson.annotation.JsonProperty("trust-token-redemption")
+    TRUST_TOKEN_REDEMPTION,
+    @com.fasterxml.jackson.annotation.JsonProperty("usb")
+    USB,
+    @com.fasterxml.jackson.annotation.JsonProperty("vertical-scroll")
+    VERTICAL_SCROLL,
+    @com.fasterxml.jackson.annotation.JsonProperty("web-share")
+    WEB_SHARE,
+    @com.fasterxml.jackson.annotation.JsonProperty("xr-spatial-tracking")
+    XR_SPATIAL_TRACKING;
+}
+
+/**
+ * Reason for a permissions policy feature to be disabled.
+ *
+ * @link [Page#PermissionsPolicyBlockReason](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-PermissionsPolicyBlockReason) type documentation.
+ */
+enum class PermissionsPolicyBlockReason {
+    @com.fasterxml.jackson.annotation.JsonProperty("Header")
+    HEADER,
+    @com.fasterxml.jackson.annotation.JsonProperty("IframeAttribute")
+    IFRAMEATTRIBUTE;
+}
+
+/**
+ *
+ *
+ * @link [Page#PermissionsPolicyBlockLocator](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-PermissionsPolicyBlockLocator) type documentation.
+ */
+
+data class PermissionsPolicyBlockLocator(
+    /**  
+     *  
+     */  
+    val frameId: FrameId,
+
+    /**  
+     *  
+     */  
+    val blockReason: PermissionsPolicyBlockReason
+)
+
+/**
+ *
+ *
+ * @link [Page#PermissionsPolicyFeatureState](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-PermissionsPolicyFeatureState) type documentation.
+ */
+
+data class PermissionsPolicyFeatureState(
+    /**  
+     *  
+     */  
+    val feature: PermissionsPolicyFeature,
+
+    /**  
+     *  
+     */  
+    val allowed: Boolean,
+
+    /**  
+     *  
+     */  
+    val locator: PermissionsPolicyBlockLocator? = null
+)
+
+/**
  * Information about the Frame on the page.
  *
  * @link [Page#Frame](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-Frame) type documentation.
