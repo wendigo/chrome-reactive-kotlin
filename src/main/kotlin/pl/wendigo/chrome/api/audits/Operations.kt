@@ -37,7 +37,7 @@ using Audits.issueAdded event.
      *
      * @link Protocol [Audits#checkContrast](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-checkContrast) method documentation.
      */
-    fun checkContrast() = connection.request("Audits.checkContrast", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun checkContrast(input: CheckContrastRequest) = connection.request("Audits.checkContrast", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      *  Returns observable capturing all Audits.issueAdded events.
@@ -109,6 +109,22 @@ data class GetEncodedResponseResponse(
      * Size after re-encoding.  
      */  
     val encodedSize: Int
+
+)
+
+/**
+ * Represents request frame that can be used with [Audits#checkContrast](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-checkContrast) operation call.
+ *
+ * Runs the contrast check for the target page. Found issues are reported
+using Audits.issueAdded event.
+ * @link [Audits#checkContrast](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-checkContrast) method documentation.
+ * @see [AuditsOperations.checkContrast]
+ */
+data class CheckContrastRequest(
+    /**
+     * Whether to report WCAG AAA level issues. Default is false.
+     */
+    val reportAAA: Boolean? = null
 
 )
 
