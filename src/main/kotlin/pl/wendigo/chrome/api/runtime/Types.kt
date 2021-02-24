@@ -38,7 +38,9 @@ data class RemoteObject(
     val type: String,
 
     /**  
-     * Object subtype hint. Specified for `object` or `wasm` type values only.  
+     * Object subtype hint. Specified for `object` type values only.  
+     NOTE: If you change anything here, make sure to also update  
+     `subtype` in `ObjectPreview` and `PropertyPreview` below.  
      */  
     val subtype: String? = null,
 
@@ -353,6 +355,13 @@ data class ExecutionContextDescription(
      * Human readable name describing given context.  
      */  
     val name: String,
+
+    /**  
+     * A system-unique execution context identifier. Unlike the id, this is unique accross  
+     multiple processes, so can be reliably used to identify specific context while backend  
+     performs a cross-process navigation.  
+     */  
+    @pl.wendigo.chrome.protocol.Experimental val uniqueId: String,
 
     /**  
      * Embedder-specific auxiliary data.  
