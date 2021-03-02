@@ -845,3 +845,22 @@ enum class ReferrerPolicy {
     @com.fasterxml.jackson.annotation.JsonProperty("unsafeUrl")
     UNSAFEURL;
 }
+
+/**
+ * Per-script compilation cache parameters for `Page.produceCompilationCache`
+ *
+ * @link [Page#CompilationCacheParams](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-CompilationCacheParams) type documentation.
+ */
+
+data class CompilationCacheParams(
+    /**  
+     * The URL of the script to produce a compilation cache entry for.  
+     */  
+    val url: String,
+
+    /**  
+     * A hint to the backend whether eager compilation is recommended.  
+     (the actual compilation mode used is upon backend discretion).  
+     */  
+    val eager: Boolean? = null
+)

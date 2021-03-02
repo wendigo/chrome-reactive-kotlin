@@ -426,12 +426,30 @@ https://github.com/WICG/web-lifecycle/
 
     /**
      * Forces compilation cache to be generated for every subresource script.
+See also: `Page.produceCompilationCache`.
      *
      * @link Protocol [Page#setProduceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setProduceCompilationCache) method documentation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
     fun setProduceCompilationCache(input: SetProduceCompilationCacheRequest) = connection.request("Page.setProduceCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
+     * Requests backend to produce compilation cache for the specified scripts.
+Unlike setProduceCompilationCache, this allows client to only produce cache
+for specific scripts. `scripts` are appeneded to the list of scripts
+for which the cache for would produced. Disabling compilation cache with
+`setProduceCompilationCache` would reset all pending cache requests.
+The list may also be reset during page navigation.
+When script with a matching URL is encountered, the cache is optionally
+produced upon backend discretion, based on internal heuristics.
+See also: `Page.compilationCacheProduced`.
+     *
+     * @link Protocol [Page#produceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-produceCompilationCache) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun produceCompilationCache(input: ProduceCompilationCacheRequest) = connection.request("Page.produceCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
      * Seeds compilation cache for given url. Compilation cache does not survive
@@ -1719,6 +1737,7 @@ data class SetWebLifecycleStateRequest(
  * Represents request frame that can be used with [Page#setProduceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setProduceCompilationCache) operation call.
  *
  * Forces compilation cache to be generated for every subresource script.
+See also: `Page.produceCompilationCache`.
  * @link [Page#setProduceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setProduceCompilationCache) method documentation.
  * @see [PageOperations.setProduceCompilationCache]
  */
@@ -1727,6 +1746,29 @@ data class SetProduceCompilationCacheRequest(
      *
      */
     val enabled: Boolean
+
+)
+
+/**
+ * Represents request frame that can be used with [Page#produceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-produceCompilationCache) operation call.
+ *
+ * Requests backend to produce compilation cache for the specified scripts.
+Unlike setProduceCompilationCache, this allows client to only produce cache
+for specific scripts. `scripts` are appeneded to the list of scripts
+for which the cache for would produced. Disabling compilation cache with
+`setProduceCompilationCache` would reset all pending cache requests.
+The list may also be reset during page navigation.
+When script with a matching URL is encountered, the cache is optionally
+produced upon backend discretion, based on internal heuristics.
+See also: `Page.compilationCacheProduced`.
+ * @link [Page#produceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-produceCompilationCache) method documentation.
+ * @see [PageOperations.produceCompilationCache]
+ */
+data class ProduceCompilationCacheRequest(
+    /**
+     *
+     */
+    val scripts: List<CompilationCacheParams>
 
 )
 
