@@ -43,6 +43,15 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
     fun setDownloadBehavior(input: SetDownloadBehaviorRequest) = connection.request("Browser.setDownloadBehavior", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
     /**
+     * Cancel a download if in progress
+     *
+     * @link Protocol [Browser#cancelDownload](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-cancelDownload) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun cancelDownload(input: CancelDownloadRequest) = connection.request("Browser.cancelDownload", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+
+    /**
      * Close browser gracefully.
      *
      * @link Protocol [Browser#close](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-close) method documentation.
@@ -252,6 +261,26 @@ their dowmload guids.
 or 'allowAndName'.
      */
     val downloadPath: String? = null
+
+)
+
+/**
+ * Represents request frame that can be used with [Browser#cancelDownload](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-cancelDownload) operation call.
+ *
+ * Cancel a download if in progress
+ * @link [Browser#cancelDownload](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-cancelDownload) method documentation.
+ * @see [BrowserOperations.cancelDownload]
+ */
+data class CancelDownloadRequest(
+    /**
+     * Global unique identifier of the download.
+     */
+    val guid: String,
+
+    /**
+     * BrowserContext to perform the action in. When omitted, default browser context is used.
+     */
+    val browserContextId: BrowserContextID? = null
 
 )
 
