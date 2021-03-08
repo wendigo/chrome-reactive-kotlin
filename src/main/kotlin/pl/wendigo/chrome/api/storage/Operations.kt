@@ -91,6 +91,16 @@ current browsing context.
     fun getTrustTokens() = connection.request("Storage.getTrustTokens", null, GetTrustTokensResponse::class.java)
 
     /**
+     * Removes all Trust Tokens issued by the provided issuerOrigin.
+Leaves other stored data, including the issuer's Redemption Records, intact.
+     *
+     * @link Protocol [Storage#clearTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearTrustTokens) method documentation.
+     */
+    
+    @pl.wendigo.chrome.protocol.Experimental
+    fun clearTrustTokens(input: ClearTrustTokensRequest) = connection.request("Storage.clearTrustTokens", input, ClearTrustTokensResponse::class.java)
+
+    /**
      *  A cache's contents have been modified.
      */
     fun cacheStorageContentUpdated(): io.reactivex.Flowable<CacheStorageContentUpdatedEvent> = connection.events("Storage.cacheStorageContentUpdated", CacheStorageContentUpdatedEvent::class.java)
@@ -352,6 +362,39 @@ data class GetTrustTokensResponse(
      *  
      */  
     val tokens: List<TrustTokens>
+
+)
+
+/**
+ * Represents request frame that can be used with [Storage#clearTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearTrustTokens) operation call.
+ *
+ * Removes all Trust Tokens issued by the provided issuerOrigin.
+Leaves other stored data, including the issuer's Redemption Records, intact.
+ * @link [Storage#clearTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearTrustTokens) method documentation.
+ * @see [StorageOperations.clearTrustTokens]
+ */
+data class ClearTrustTokensRequest(
+    /**
+     *
+     */
+    val issuerOrigin: String
+
+)
+
+/**
+ * Represents response frame that is returned from [Storage#clearTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearTrustTokens) operation call.
+ * Removes all Trust Tokens issued by the provided issuerOrigin.
+Leaves other stored data, including the issuer's Redemption Records, intact.
+ *
+  
+ * @link [Storage#clearTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearTrustTokens) method documentation.
+ * @see [StorageOperations.clearTrustTokens]
+ */
+data class ClearTrustTokensResponse(
+    /**  
+     * True if any tokens were deleted, false otherwise.  
+     */  
+    val didDeleteTokens: Boolean
 
 )
 
