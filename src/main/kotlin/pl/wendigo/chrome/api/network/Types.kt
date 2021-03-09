@@ -1598,6 +1598,8 @@ data class CrossOriginOpenerPolicyStatus(
 enum class CrossOriginEmbedderPolicyValue {
     @com.fasterxml.jackson.annotation.JsonProperty("None")
     NONE,
+    @com.fasterxml.jackson.annotation.JsonProperty("CorsOrCredentialless")
+    CORSORCREDENTIALLESS,
     @com.fasterxml.jackson.annotation.JsonProperty("RequireCorp")
     REQUIRECORP;
 }
