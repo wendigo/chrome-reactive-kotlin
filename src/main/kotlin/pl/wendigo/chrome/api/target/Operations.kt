@@ -393,7 +393,7 @@ data class GetBrowserContextsResponse(
  */
 data class CreateTargetRequest(
     /**
-     * The initial URL the page will be navigated to.
+     * The initial URL the page will be navigated to. An empty string indicates about:blank.
      */
     val url: String,
 
