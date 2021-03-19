@@ -13,9 +13,7 @@ jobs:
         run: ./gradlew clean dokkaJavadoc
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.0
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BASE_BRANCH: master
-          BRANCH: gh-pages
-          FOLDER: build/dokka/javadoc
-          BUILD_SCRIPT:
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
+          folder: build/dokka/javadoc
