@@ -12,7 +12,7 @@ jobs:
       - name: Build docs
         run: ./gradlew clean dokkaJavadoc
       - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: JamesIves/github-pages-deploy-action@4.1.0
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: master
