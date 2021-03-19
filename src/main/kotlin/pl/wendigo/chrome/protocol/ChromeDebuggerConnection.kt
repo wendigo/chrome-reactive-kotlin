@@ -27,13 +27,6 @@ class ChromeDebuggerConnection constructor(
     private val nextRequestId = AtomicLong(0)
 
     /**
-     * Registers event name to class mappings.
-     */
-    fun registerEventSerializer(name: String, clazz: KSerializer<out Event>) {
-        eventMapper.addMapping(name, clazz)
-    }
-
-    /**
      * Closes connection to remote debugger.
      */
     fun close() {
@@ -44,18 +37,18 @@ class ChromeDebuggerConnection constructor(
      * Sends request and captures response from the stream.
      */
     fun <T> request(methodName: String, request: JsonElement?, responseSerializer: KSerializer<T>): Single<T> {
-        val request = RequestFrame(
+        val requestFrame = RequestFrame(
             id = nextRequestId.incrementAndGet(),
             method = methodName,
             params = request,
             sessionId = sessionId
         )
 
-        return frames.send(request).flatMap { sent ->
+        return frames.send(requestFrame).flatMap { sent ->
             if (sent) {
-                frames.getResponse(request, responseSerializer)
+                frames.getResponse(requestFrame, responseSerializer)
             } else {
-                Single.error(RequestFailed(request, "Could not enqueue message $request"))
+                Single.error(RequestFailed(requestFrame, "Could not enqueue message $request"))
             }
         }
     }
@@ -76,7 +69,7 @@ class ChromeDebuggerConnection constructor(
     fun allEvents(): Flowable<Event> {
         return frames.eventFrames()
             .filter { frame -> frame.matches(sessionId) }
-            .map { frame -> eventMapper.deserializeEvent(frame) }
+            .map { frame -> eventMapper.deserialize(frame) }
             .subscribeOn(Schedulers.io())
     }
 

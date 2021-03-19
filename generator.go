@@ -34,7 +34,7 @@ func (p Protocol) EventMappings() []EventMapping {
 			if event.HasReturnValue() {
 				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.api.%s.%s", basePackage, domain.LowerName(), event.ClassName())
 			} else {
-				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.%s", basePackage, "protocol.Event")
+				mappings[fmt.Sprintf("%s.%s", domain.Name, event.Name)] = fmt.Sprintf("%s.%s", basePackage, "protocol.RawEvent")
 			}
 		}
 	}
@@ -348,8 +348,8 @@ func (e Event) ClassName() string {
 	return e.SimpleName() + "Event"
 }
 
-func (e Event) ImplementingInterfaces() []string {
-	return []string{fmt.Sprintf("%s.protocol.Event(domainName = \"%s\", domainEventName = \"%s\")", basePackage, currentDomain, e.Name)}
+func (e Event) ImplementingInterfaces() string {
+	return fmt.Sprintf("%s.protocol.Event {\noverride fun domain() = \"%s\" \n override fun eventName() = \"%s\"\n }", basePackage, currentDomain, e.Name)
 }
 
 var protocolFile string
@@ -468,6 +468,16 @@ func main() {
 		Protocol Protocol
 	}{
 		Protocol: *protocol,
+	}); err != nil {
+		log.Panicf("Could not generate file: %s", err)
+	}
+
+	log.Println("Generating event serializers")
+
+	if err := generateAndWrite(kotlinFilename("api/EventSerializers"), "serializers", struct {
+		Events []EventMapping
+	}{
+		Events: protocol.EventMappings(),
 	}); err != nil {
 		log.Panicf("Could not generate file: %s", err)
 	}

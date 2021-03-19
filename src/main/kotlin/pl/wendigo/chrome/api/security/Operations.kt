@@ -71,7 +71,7 @@ certificate errors at the same time.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Security"
+            it.domain() == "Security"
         }
     }
 }
@@ -155,7 +155,10 @@ data class CertificateErrorEvent(
      */  
     val requestURL: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Security", domainEventName = "certificateError")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Security" 
+    override fun eventName() = "certificateError"
+} 
 
 /**
  * The security state of the page changed.
@@ -169,7 +172,10 @@ data class VisibleSecurityStateChangedEvent(
      */  
     val visibleSecurityState: VisibleSecurityState
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Security", domainEventName = "visibleSecurityStateChanged")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Security" 
+    override fun eventName() = "visibleSecurityStateChanged"
+} 
 
 /**
  * The security state of the page changed.
@@ -204,4 +210,7 @@ data class SecurityStateChangedEvent(
      */  
     val summary: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Security", domainEventName = "securityStateChanged")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Security" 
+    override fun eventName() = "securityStateChanged"
+} 

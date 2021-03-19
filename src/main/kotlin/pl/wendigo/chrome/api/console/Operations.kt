@@ -39,7 +39,7 @@ class ConsoleOperations internal constructor(private val connection: pl.wendigo.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Console"
+            it.domain() == "Console"
         }
     }
 }
@@ -56,4 +56,7 @@ data class MessageAddedEvent(
      */  
     val message: ConsoleMessage
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Console", domainEventName = "messageAdded")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Console" 
+    override fun eventName() = "messageAdded"
+} 

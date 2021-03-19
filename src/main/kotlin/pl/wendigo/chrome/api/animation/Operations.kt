@@ -100,7 +100,7 @@ class AnimationOperations internal constructor(private val connection: pl.wendig
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Animation"
+            it.domain() == "Animation"
         }
     }
 }
@@ -300,7 +300,10 @@ data class AnimationCanceledEvent(
      */  
     val id: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Animation", domainEventName = "animationCanceled")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Animation" 
+    override fun eventName() = "animationCanceled"
+} 
 
 /**
  * Event for each animation that has been created.
@@ -314,7 +317,10 @@ data class AnimationCreatedEvent(
      */  
     val id: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Animation", domainEventName = "animationCreated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Animation" 
+    override fun eventName() = "animationCreated"
+} 
 
 /**
  * Event for animation that has been started.
@@ -328,4 +334,7 @@ data class AnimationStartedEvent(
      */  
     val animation: Animation
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Animation", domainEventName = "animationStarted")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Animation" 
+    override fun eventName() = "animationStarted"
+} 

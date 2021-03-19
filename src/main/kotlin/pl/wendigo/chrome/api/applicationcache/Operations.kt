@@ -54,7 +54,7 @@ associated with some application cache.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "ApplicationCache"
+            it.domain() == "ApplicationCache"
         }
     }
 }
@@ -166,7 +166,10 @@ data class ApplicationCacheStatusUpdatedEvent(
      */  
     val status: Int
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "ApplicationCache", domainEventName = "applicationCacheStatusUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "ApplicationCache" 
+    override fun eventName() = "applicationCacheStatusUpdated"
+} 
 
 /**
  *
@@ -180,4 +183,7 @@ data class NetworkStateUpdatedEvent(
      */  
     val isNowOnline: Boolean
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "ApplicationCache", domainEventName = "networkStateUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "ApplicationCache" 
+    override fun eventName() = "networkStateUpdated"
+} 

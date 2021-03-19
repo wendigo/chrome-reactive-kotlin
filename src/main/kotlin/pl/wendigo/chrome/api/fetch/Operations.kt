@@ -100,7 +100,7 @@ The request is paused until client responds with continueWithAuth.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Fetch"
+            it.domain() == "Fetch"
         }
     }
 }
@@ -405,7 +405,10 @@ data class RequestPausedEvent(
      */  
     val networkId: RequestId? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Fetch", domainEventName = "requestPaused")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Fetch" 
+    override fun eventName() = "requestPaused"
+} 
 
 /**
  * Issued when the domain is enabled with handleAuthRequests set to true.
@@ -442,4 +445,7 @@ data class AuthRequiredEvent(
      */  
     val authChallenge: AuthChallenge
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Fetch", domainEventName = "authRequired")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Fetch" 
+    override fun eventName() = "authRequired"
+} 

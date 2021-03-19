@@ -120,14 +120,14 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
     /**
      *  Returns observable capturing all HeapProfiler.resetProfiles events.
      */
-    fun resetProfiles(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("HeapProfiler.resetProfiles", pl.wendigo.chrome.protocol.Event.serializer())
+    fun resetProfiles(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("HeapProfiler.resetProfiles", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      * Returns flowable capturing all HeapProfiler domains events.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "HeapProfiler"
+            it.domain() == "HeapProfiler"
         }
     }
 }
@@ -342,7 +342,10 @@ data class AddHeapSnapshotChunkEvent(
      */  
     val chunk: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "HeapProfiler", domainEventName = "addHeapSnapshotChunk")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "HeapProfiler" 
+    override fun eventName() = "addHeapSnapshotChunk"
+} 
 
 /**
  * If heap objects tracking has been started then backend may send update for one or more fragments
@@ -358,7 +361,10 @@ data class HeapStatsUpdateEvent(
      */  
     val statsUpdate: List<Int>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "HeapProfiler", domainEventName = "heapStatsUpdate")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "HeapProfiler" 
+    override fun eventName() = "heapStatsUpdate"
+} 
 
 /**
  * If heap objects tracking has been started then backend regularly sends a current value for last
@@ -379,7 +385,10 @@ data class LastSeenObjectIdEvent(
      */  
     val timestamp: Double
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "HeapProfiler", domainEventName = "lastSeenObjectId")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "HeapProfiler" 
+    override fun eventName() = "lastSeenObjectId"
+} 
 
 /**
  *
@@ -403,4 +412,7 @@ data class ReportHeapSnapshotProgressEvent(
      */  
     val finished: Boolean? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "HeapProfiler", domainEventName = "reportHeapSnapshotProgress")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "HeapProfiler" 
+    override fun eventName() = "reportHeapSnapshotProgress"
+} 

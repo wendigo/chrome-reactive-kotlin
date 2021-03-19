@@ -48,7 +48,7 @@ class DatabaseOperations internal constructor(private val connection: pl.wendigo
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Database"
+            it.domain() == "Database"
         }
     }
 }
@@ -146,4 +146,7 @@ data class AddDatabaseEvent(
      */  
     val database: Database
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Database", domainEventName = "addDatabase")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Database" 
+    override fun eventName() = "addDatabase"
+} 

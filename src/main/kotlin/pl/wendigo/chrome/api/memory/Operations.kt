@@ -88,7 +88,7 @@ collected since browser process startup.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Memory"
+            it.domain() == "Memory"
         }
     }
 }

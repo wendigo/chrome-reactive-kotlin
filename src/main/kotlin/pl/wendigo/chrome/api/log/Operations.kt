@@ -54,7 +54,7 @@ class LogOperations internal constructor(private val connection: pl.wendigo.chro
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Log"
+            it.domain() == "Log"
         }
     }
 }
@@ -87,4 +87,7 @@ data class EntryAddedEvent(
      */  
     val entry: LogEntry
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Log", domainEventName = "entryAdded")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Log" 
+    override fun eventName() = "entryAdded"
+} 

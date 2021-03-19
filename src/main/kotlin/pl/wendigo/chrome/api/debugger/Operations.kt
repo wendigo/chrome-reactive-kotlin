@@ -259,7 +259,7 @@ mutated manually.
     /**
      *  Fired when the virtual machine resumed execution.
      */
-    fun resumed(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Debugger.resumed", pl.wendigo.chrome.protocol.Event.serializer())
+    fun resumed(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("Debugger.resumed", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      *  Fired when virtual machine fails to parse the script.
@@ -277,7 +277,7 @@ scripts upon enabling debugger.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Debugger"
+            it.domain() == "Debugger"
         }
     }
 }
@@ -1180,7 +1180,10 @@ data class BreakpointResolvedEvent(
      */  
     val location: Location
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Debugger", domainEventName = "breakpointResolved")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Debugger" 
+    override fun eventName() = "breakpointResolved"
+} 
 
 /**
  * Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
@@ -1224,7 +1227,10 @@ data class PausedEvent(
      */  
     val asyncCallStackTraceId: pl.wendigo.chrome.api.runtime.StackTraceId? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Debugger", domainEventName = "paused")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Debugger" 
+    override fun eventName() = "paused"
+} 
 
 /**
  * Fired when virtual machine fails to parse the script.
@@ -1318,7 +1324,10 @@ data class ScriptFailedToParseEvent(
      */  
     val embedderName: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Debugger", domainEventName = "scriptFailedToParse")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Debugger" 
+    override fun eventName() = "scriptFailedToParse"
+} 
 
 /**
  * Fired when virtual machine parses script. This event is also fired for all known and uncollected
@@ -1423,4 +1432,7 @@ data class ScriptParsedEvent(
      */  
     val embedderName: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Debugger", domainEventName = "scriptParsed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Debugger" 
+    override fun eventName() = "scriptParsed"
+} 

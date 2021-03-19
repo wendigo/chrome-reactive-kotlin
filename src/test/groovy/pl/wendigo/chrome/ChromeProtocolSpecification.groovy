@@ -4,6 +4,7 @@ import org.testcontainers.containers.GenericContainer
 import org.testcontainers.spock.Testcontainers
 import org.testcontainers.utility.DockerImageName
 import pl.wendigo.chrome.api.target.TargetCreatedEvent
+import pl.wendigo.chrome.protocol.Event
 import pl.wendigo.chrome.testing.ChromeHeadlessContainer
 import spock.lang.Shared
 import spock.lang.Specification
@@ -76,13 +77,17 @@ class ChromeProtocolSpecification
         given:
         def chrome = getBrowser()
         def target = chrome.target("https://google.com")
+        def events = [] as List<Event>
 
         when:
+        target.getPage().events().subscribe(events.&add)
         target.getPage().enable()
+
         def frame = target.getPage().frameNavigated().blockingFirst()
 
         then:
         frame.frame.url == "https://www.google.com/"
+        events.size() > 0
 
         cleanup:
         target.close()

@@ -180,7 +180,7 @@ trigger collection of coverage data immediatelly at a certain point in time.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Profiler"
+            it.domain() == "Profiler"
         }
     }
 }
@@ -384,7 +384,10 @@ data class ConsoleProfileFinishedEvent(
      */  
     val title: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Profiler", domainEventName = "consoleProfileFinished")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Profiler" 
+    override fun eventName() = "consoleProfileFinished"
+} 
 
 /**
  * Sent when new profile recording is started using console.profile() call.
@@ -408,7 +411,10 @@ data class ConsoleProfileStartedEvent(
      */  
     val title: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Profiler", domainEventName = "consoleProfileStarted")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Profiler" 
+    override fun eventName() = "consoleProfileStarted"
+} 
 
 /**
  * Reports coverage delta since the last poll (either from an event like this, or from
@@ -435,4 +441,7 @@ data class PreciseCoverageDeltaUpdateEvent(
      */  
     val result: List<ScriptCoverage>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Profiler", domainEventName = "preciseCoverageDeltaUpdate")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Profiler" 
+    override fun eventName() = "preciseCoverageDeltaUpdate"
+} 

@@ -68,7 +68,7 @@ device or a software surface that you can cast to.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Cast"
+            it.domain() == "Cast"
         }
     }
 }
@@ -155,7 +155,10 @@ data class SinksUpdatedEvent(
      */  
     val sinks: List<Sink>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Cast", domainEventName = "sinksUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Cast" 
+    override fun eventName() = "sinksUpdated"
+} 
 
 /**
  * This is fired whenever the outstanding issue/error message changes.
@@ -170,4 +173,7 @@ data class IssueUpdatedEvent(
      */  
     val issueMessage: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Cast", domainEventName = "issueUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Cast" 
+    override fun eventName() = "issueUpdated"
+} 

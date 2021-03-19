@@ -34,7 +34,7 @@ class IOOperations internal constructor(private val connection: pl.wendigo.chrom
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "IO"
+            it.domain() == "IO"
         }
     }
 }

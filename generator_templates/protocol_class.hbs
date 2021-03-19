@@ -15,16 +15,6 @@ import {{Package}}.protocol.ChromeDebuggerConnection
  * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
 open class DevToolsProtocol internal constructor(internal val connection: ChromeDebuggerConnection): Closeable {
-
-    /**
-     * Register events mappings.
-     */
-    init {
-        {{#each Protocol.EventMappings}}
-            connection.registerEventSerializer("{{EventName}}", {{Class}}.serializer())
-        {{/each}}
-    }
-
     {{#each Protocol.Domains}}
     /**
      * {{#if Description}}{{{Description}}}{{else}}Lazily returns [{{Name}}Operations] domain object allowing to perform operations on [{{Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Name}}) protocol domain.{{/if}}

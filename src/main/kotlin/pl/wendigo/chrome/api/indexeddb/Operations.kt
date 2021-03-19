@@ -78,7 +78,7 @@ class IndexedDBOperations internal constructor(private val connection: pl.wendig
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "IndexedDB"
+            it.domain() == "IndexedDB"
         }
     }
 }

@@ -121,7 +121,7 @@ class ServiceWorkerOperations internal constructor(private val connection: pl.we
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "ServiceWorker"
+            it.domain() == "ServiceWorker"
         }
     }
 }
@@ -333,7 +333,10 @@ data class WorkerErrorReportedEvent(
      */  
     val errorMessage: ServiceWorkerErrorMessage
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "ServiceWorker", domainEventName = "workerErrorReported")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "ServiceWorker" 
+    override fun eventName() = "workerErrorReported"
+} 
 
 /**
  *
@@ -347,7 +350,10 @@ data class WorkerRegistrationUpdatedEvent(
      */  
     val registrations: List<ServiceWorkerRegistration>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "ServiceWorker", domainEventName = "workerRegistrationUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "ServiceWorker" 
+    override fun eventName() = "workerRegistrationUpdated"
+} 
 
 /**
  *
@@ -361,4 +367,7 @@ data class WorkerVersionUpdatedEvent(
      */  
     val versions: List<ServiceWorkerVersion>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "ServiceWorker", domainEventName = "workerVersionUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "ServiceWorker" 
+    override fun eventName() = "workerVersionUpdated"
+} 

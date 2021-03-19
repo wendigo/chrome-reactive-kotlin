@@ -102,7 +102,7 @@ class WebAudioOperations internal constructor(private val connection: pl.wendigo
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "WebAudio"
+            it.domain() == "WebAudio"
         }
     }
 }
@@ -152,7 +152,10 @@ data class ContextCreatedEvent(
      */  
     val context: BaseAudioContext
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "contextCreated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "contextCreated"
+} 
 
 /**
  * Notifies that an existing BaseAudioContext will be destroyed.
@@ -166,7 +169,10 @@ data class ContextWillBeDestroyedEvent(
      */  
     val contextId: GraphObjectId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "contextWillBeDestroyed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "contextWillBeDestroyed"
+} 
 
 /**
  * Notifies that existing BaseAudioContext has changed some properties (id stays the same)..
@@ -180,7 +186,10 @@ data class ContextChangedEvent(
      */  
     val context: BaseAudioContext
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "contextChanged")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "contextChanged"
+} 
 
 /**
  * Notifies that the construction of an AudioListener has finished.
@@ -194,7 +203,10 @@ data class AudioListenerCreatedEvent(
      */  
     val listener: AudioListener
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioListenerCreated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "audioListenerCreated"
+} 
 
 /**
  * Notifies that a new AudioListener has been created.
@@ -213,7 +225,10 @@ data class AudioListenerWillBeDestroyedEvent(
      */  
     val listenerId: GraphObjectId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioListenerWillBeDestroyed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "audioListenerWillBeDestroyed"
+} 
 
 /**
  * Notifies that a new AudioNode has been created.
@@ -227,7 +242,10 @@ data class AudioNodeCreatedEvent(
      */  
     val node: AudioNode
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioNodeCreated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "audioNodeCreated"
+} 
 
 /**
  * Notifies that an existing AudioNode has been destroyed.
@@ -246,7 +264,10 @@ data class AudioNodeWillBeDestroyedEvent(
      */  
     val nodeId: GraphObjectId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioNodeWillBeDestroyed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "audioNodeWillBeDestroyed"
+} 
 
 /**
  * Notifies that a new AudioParam has been created.
@@ -260,7 +281,10 @@ data class AudioParamCreatedEvent(
      */  
     val param: AudioParam
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioParamCreated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "audioParamCreated"
+} 
 
 /**
  * Notifies that an existing AudioParam has been destroyed.
@@ -284,7 +308,10 @@ data class AudioParamWillBeDestroyedEvent(
      */  
     val paramId: GraphObjectId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioParamWillBeDestroyed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "audioParamWillBeDestroyed"
+} 
 
 /**
  * Notifies that two AudioNodes are connected.
@@ -318,7 +345,10 @@ data class NodesConnectedEvent(
      */  
     val destinationInputIndex: Double? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "nodesConnected")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "nodesConnected"
+} 
 
 /**
  * Notifies that AudioNodes are disconnected. The destination can be null, and it means all the outgoing connections from the source are disconnected.
@@ -352,7 +382,10 @@ data class NodesDisconnectedEvent(
      */  
     val destinationInputIndex: Double? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "nodesDisconnected")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "nodesDisconnected"
+} 
 
 /**
  * Notifies that an AudioNode is connected to an AudioParam.
@@ -381,7 +414,10 @@ data class NodeParamConnectedEvent(
      */  
     val sourceOutputIndex: Double? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "nodeParamConnected")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "nodeParamConnected"
+} 
 
 /**
  * Notifies that an AudioNode is disconnected to an AudioParam.
@@ -410,4 +446,7 @@ data class NodeParamDisconnectedEvent(
      */  
     val sourceOutputIndex: Double? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "nodeParamDisconnected")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "WebAudio" 
+    override fun eventName() = "nodeParamDisconnected"
+} 

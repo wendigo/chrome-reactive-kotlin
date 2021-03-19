@@ -88,7 +88,7 @@ class LayerTreeOperations internal constructor(private val connection: pl.wendig
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "LayerTree"
+            it.domain() == "LayerTree"
         }
     }
 }
@@ -359,7 +359,10 @@ data class LayerPaintedEvent(
      */  
     val clip: pl.wendigo.chrome.api.dom.Rect
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "LayerTree", domainEventName = "layerPainted")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "LayerTree" 
+    override fun eventName() = "layerPainted"
+} 
 
 /**
  *
@@ -373,4 +376,7 @@ data class LayerTreeDidChangeEvent(
      */  
     val layers: List<Layer>? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "LayerTree", domainEventName = "layerTreeDidChange")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "LayerTree" 
+    override fun eventName() = "layerTreeDidChange"
+} 

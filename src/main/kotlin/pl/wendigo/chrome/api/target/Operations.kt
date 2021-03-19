@@ -195,7 +195,7 @@ issued multiple times per target if multiple sessions have been attached to it.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Target"
+            it.domain() == "Target"
         }
     }
 }
@@ -664,7 +664,10 @@ data class AttachedToTargetEvent(
      */  
     val waitingForDebugger: Boolean
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "attachedToTarget")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Target" 
+    override fun eventName() = "attachedToTarget"
+} 
 
 /**
  * Issued when detached from target for any reason (including `detachFromTarget` command). Can be
@@ -684,7 +687,10 @@ data class DetachedFromTargetEvent(
      */  
     val targetId: TargetID? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "detachedFromTarget")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Target" 
+    override fun eventName() = "detachedFromTarget"
+} 
 
 /**
  * Notifies about a new protocol message received from the session (as reported in
@@ -709,7 +715,10 @@ data class ReceivedMessageFromTargetEvent(
      */  
     val targetId: TargetID? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "receivedMessageFromTarget")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Target" 
+    override fun eventName() = "receivedMessageFromTarget"
+} 
 
 /**
  * Issued when a possible inspection target is created.
@@ -723,7 +732,10 @@ data class TargetCreatedEvent(
      */  
     val targetInfo: TargetInfo
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "targetCreated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Target" 
+    override fun eventName() = "targetCreated"
+} 
 
 /**
  * Issued when a target is destroyed.
@@ -737,7 +749,10 @@ data class TargetDestroyedEvent(
      */  
     val targetId: TargetID
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "targetDestroyed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Target" 
+    override fun eventName() = "targetDestroyed"
+} 
 
 /**
  * Issued when a target has crashed.
@@ -761,7 +776,10 @@ data class TargetCrashedEvent(
      */  
     val errorCode: Int
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "targetCrashed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Target" 
+    override fun eventName() = "targetCrashed"
+} 
 
 /**
  * Issued when some information about a target has changed. This only happens between
@@ -776,4 +794,7 @@ data class TargetInfoChangedEvent(
      */  
     val targetInfo: TargetInfo
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "targetInfoChanged")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Target" 
+    override fun eventName() = "targetInfoChanged"
+} 

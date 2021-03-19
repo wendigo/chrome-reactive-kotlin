@@ -207,14 +207,14 @@ user manually inspects an element.
     /**
      *  Fired when user cancels the inspect mode.
      */
-    fun inspectModeCanceled(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Overlay.inspectModeCanceled", pl.wendigo.chrome.protocol.Event.serializer())
+    fun inspectModeCanceled(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("Overlay.inspectModeCanceled", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      * Returns flowable capturing all Overlay domains events.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Overlay"
+            it.domain() == "Overlay"
         }
     }
 }
@@ -744,7 +744,10 @@ data class InspectNodeRequestedEvent(
      */  
     val backendNodeId: pl.wendigo.chrome.api.dom.BackendNodeId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Overlay", domainEventName = "inspectNodeRequested")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Overlay" 
+    override fun eventName() = "inspectNodeRequested"
+} 
 
 /**
  * Fired when the node should be highlighted. This happens after call to `setInspectMode`.
@@ -758,7 +761,10 @@ data class NodeHighlightRequestedEvent(
      */  
     val nodeId: pl.wendigo.chrome.api.dom.NodeId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Overlay", domainEventName = "nodeHighlightRequested")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Overlay" 
+    override fun eventName() = "nodeHighlightRequested"
+} 
 
 /**
  * Fired when user asks to capture screenshot of some area on the page.
@@ -772,4 +778,7 @@ data class ScreenshotRequestedEvent(
      */  
     val viewport: pl.wendigo.chrome.api.page.Viewport
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Overlay", domainEventName = "screenshotRequested")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Overlay" 
+    override fun eventName() = "screenshotRequested"
+} 

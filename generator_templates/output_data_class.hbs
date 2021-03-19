@@ -21,4 +21,4 @@ data class {{Type.ClassName}}(
   {{#if Type.Experimental}}@Experimental {{/if}}{{#if Type.Deprecated}}@Deprecated {{/if}}{{{value Name}}}: {{{GetFormattedType}}}{{#if Optional}}? = null{{/if}}{{#unless @last}},{{/unless}}
 
   {{/each}}
-){{#each Type.ImplementingInterfaces}}{{#if @first}}: {{/if}}{{{.}}}{{#unless @last}}, {{/unless}}{{/each}}
+){{#if Type.ImplementingInterfaces}}: {{{ Type.ImplementingInterfaces }}} {{/if}}

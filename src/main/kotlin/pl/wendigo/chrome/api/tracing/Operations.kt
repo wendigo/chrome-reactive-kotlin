@@ -67,7 +67,7 @@ delivered via dataCollected events.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Tracing"
+            it.domain() == "Tracing"
         }
     }
 }
@@ -228,7 +228,10 @@ data class BufferUsageEvent(
      */  
     val value: Double? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Tracing", domainEventName = "bufferUsage")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Tracing" 
+    override fun eventName() = "bufferUsage"
+} 
 
 /**
  * Contains an bucket of collected trace events. When tracing is stopped collected events will be
@@ -243,7 +246,10 @@ data class DataCollectedEvent(
      */  
     val value: List<kotlinx.serialization.json.JsonElement>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Tracing", domainEventName = "dataCollected")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Tracing" 
+    override fun eventName() = "dataCollected"
+} 
 
 /**
  * Signals that tracing is stopped and there is no trace buffers pending flush, all data were
@@ -274,4 +280,7 @@ data class TracingCompleteEvent(
      */  
     val streamCompression: StreamCompression? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Tracing", domainEventName = "tracingComplete")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Tracing" 
+    override fun eventName() = "tracingComplete"
+} 

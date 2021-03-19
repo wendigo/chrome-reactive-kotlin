@@ -1,0 +1,13 @@
+package {{Package}}.api
+
+import kotlinx.serialization.KSerializer
+import pl.wendigo.chrome.protocol.Event
+
+object EventSerializers {
+    fun getByEventName(eventName: String): KSerializer<out Event> = when(eventName) {
+        {{#each Events}}
+        "{{EventName}}" -> {{Class}}.serializer()
+        {{/each}}
+        else -> throw RuntimeException("Unrecognized event type $eventName")
+    }
+}

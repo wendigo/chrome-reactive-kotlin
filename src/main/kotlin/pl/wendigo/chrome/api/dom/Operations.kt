@@ -431,7 +431,7 @@ $x functions).
     /**
      *  Fired when `Document` has been totally updated. Node ids are no longer valid.
      */
-    fun documentUpdated(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("DOM.documentUpdated", pl.wendigo.chrome.protocol.Event.serializer())
+    fun documentUpdated(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("DOM.documentUpdated", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      *  Fired when `Element`'s inline style is modified via a CSS property modification.
@@ -469,7 +469,7 @@ most of the calls requesting node ids.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "DOM"
+            it.domain() == "DOM"
         }
     }
 }
@@ -1827,7 +1827,10 @@ data class AttributeModifiedEvent(
      */  
     val value: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "attributeModified")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "attributeModified"
+} 
 
 /**
  * Fired when `Element`'s attribute is removed.
@@ -1846,7 +1849,10 @@ data class AttributeRemovedEvent(
      */  
     val name: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "attributeRemoved")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "attributeRemoved"
+} 
 
 /**
  * Mirrors `DOMCharacterDataModified` event.
@@ -1865,7 +1871,10 @@ data class CharacterDataModifiedEvent(
      */  
     val characterData: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "characterDataModified")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "characterDataModified"
+} 
 
 /**
  * Fired when `Container`'s child node count has changed.
@@ -1884,7 +1893,10 @@ data class ChildNodeCountUpdatedEvent(
      */  
     val childNodeCount: Int
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "childNodeCountUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "childNodeCountUpdated"
+} 
 
 /**
  * Mirrors `DOMNodeInserted` event.
@@ -1908,7 +1920,10 @@ data class ChildNodeInsertedEvent(
      */  
     val node: Node
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "childNodeInserted")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "childNodeInserted"
+} 
 
 /**
  * Mirrors `DOMNodeRemoved` event.
@@ -1927,7 +1942,10 @@ data class ChildNodeRemovedEvent(
      */  
     val nodeId: NodeId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "childNodeRemoved")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "childNodeRemoved"
+} 
 
 /**
  * Called when distrubution is changed.
@@ -1946,7 +1964,10 @@ data class DistributedNodesUpdatedEvent(
      */  
     val distributedNodes: List<BackendNode>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "distributedNodesUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "distributedNodesUpdated"
+} 
 
 /**
  * Fired when `Element`'s inline style is modified via a CSS property modification.
@@ -1960,7 +1981,10 @@ data class InlineStyleInvalidatedEvent(
      */  
     val nodeIds: List<NodeId>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "inlineStyleInvalidated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "inlineStyleInvalidated"
+} 
 
 /**
  * Called when a pseudo element is added to an element.
@@ -1979,7 +2003,10 @@ data class PseudoElementAddedEvent(
      */  
     val pseudoElement: Node
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "pseudoElementAdded")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "pseudoElementAdded"
+} 
 
 /**
  * Called when a pseudo element is removed from an element.
@@ -1998,7 +2025,10 @@ data class PseudoElementRemovedEvent(
      */  
     val pseudoElementId: NodeId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "pseudoElementRemoved")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "pseudoElementRemoved"
+} 
 
 /**
  * Fired when backend wants to provide client with the missing DOM structure. This happens upon
@@ -2018,7 +2048,10 @@ data class SetChildNodesEvent(
      */  
     val nodes: List<Node>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "setChildNodes")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "setChildNodes"
+} 
 
 /**
  * Called when shadow root is popped from the element.
@@ -2037,7 +2070,10 @@ data class ShadowRootPoppedEvent(
      */  
     val rootId: NodeId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "shadowRootPopped")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "shadowRootPopped"
+} 
 
 /**
  * Called when shadow root is pushed into the element.
@@ -2056,4 +2092,7 @@ data class ShadowRootPushedEvent(
      */  
     val root: Node
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "shadowRootPushed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOM" 
+    override fun eventName() = "shadowRootPushed"
+} 

@@ -117,7 +117,7 @@ current browsing context.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Storage"
+            it.domain() == "Storage"
         }
     }
 }
@@ -387,7 +387,10 @@ data class CacheStorageContentUpdatedEvent(
      */  
     val cacheName: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Storage", domainEventName = "cacheStorageContentUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Storage" 
+    override fun eventName() = "cacheStorageContentUpdated"
+} 
 
 /**
  * A cache has been added/deleted.
@@ -401,7 +404,10 @@ data class CacheStorageListUpdatedEvent(
      */  
     val origin: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Storage", domainEventName = "cacheStorageListUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Storage" 
+    override fun eventName() = "cacheStorageListUpdated"
+} 
 
 /**
  * The origin's IndexedDB object store has been modified.
@@ -425,7 +431,10 @@ data class IndexedDBContentUpdatedEvent(
      */  
     val objectStoreName: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Storage", domainEventName = "indexedDBContentUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Storage" 
+    override fun eventName() = "indexedDBContentUpdated"
+} 
 
 /**
  * The origin's IndexedDB database list has been modified.
@@ -439,4 +448,7 @@ data class IndexedDBListUpdatedEvent(
      */  
     val origin: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Storage", domainEventName = "indexedDBListUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Storage" 
+    override fun eventName() = "indexedDBListUpdated"
+} 

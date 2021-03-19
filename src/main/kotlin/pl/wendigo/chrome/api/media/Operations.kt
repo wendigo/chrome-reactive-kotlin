@@ -56,7 +56,7 @@ list of player ids and all events again.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Media"
+            it.domain() == "Media"
         }
     }
 }
@@ -79,7 +79,10 @@ data class PlayerPropertiesChangedEvent(
      */  
     val properties: List<PlayerProperty>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Media", domainEventName = "playerPropertiesChanged")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Media" 
+    override fun eventName() = "playerPropertiesChanged"
+} 
 
 /**
  * Send events as a list, allowing them to be batched on the browser for less
@@ -99,7 +102,10 @@ data class PlayerEventsAddedEvent(
      */  
     val events: List<PlayerEvent>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Media", domainEventName = "playerEventsAdded")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Media" 
+    override fun eventName() = "playerEventsAdded"
+} 
 
 /**
  * Send a list of any messages that need to be delivered.
@@ -118,7 +124,10 @@ data class PlayerMessagesLoggedEvent(
      */  
     val messages: List<PlayerMessage>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Media", domainEventName = "playerMessagesLogged")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Media" 
+    override fun eventName() = "playerMessagesLogged"
+} 
 
 /**
  * Send a list of any errors that need to be delivered.
@@ -137,7 +146,10 @@ data class PlayerErrorsRaisedEvent(
      */  
     val errors: List<PlayerError>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Media", domainEventName = "playerErrorsRaised")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Media" 
+    override fun eventName() = "playerErrorsRaised"
+} 
 
 /**
  * Called whenever a player is created, or when a new agent joins and recieves
@@ -153,4 +165,7 @@ data class PlayersCreatedEvent(
      */  
     val players: List<PlayerId>
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Media", domainEventName = "playersCreated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Media" 
+    override fun eventName() = "playersCreated"
+} 

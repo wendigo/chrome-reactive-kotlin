@@ -54,7 +54,7 @@ events afterwards if enabled and recording.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "BackgroundService"
+            it.domain() == "BackgroundService"
         }
     }
 }
@@ -145,7 +145,10 @@ data class RecordingStateChangedEvent(
      */  
     val service: ServiceName
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "BackgroundService", domainEventName = "recordingStateChanged")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "BackgroundService" 
+    override fun eventName() = "recordingStateChanged"
+} 
 
 /**
  * Called with all existing backgroundServiceEvents when enabled, and all new
@@ -160,4 +163,7 @@ data class BackgroundServiceEventReceivedEvent(
      */  
     val backgroundServiceEvent: BackgroundServiceEvent
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "BackgroundService", domainEventName = "backgroundServiceEventReceived")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "BackgroundService" 
+    override fun eventName() = "backgroundServiceEventReceived"
+} 

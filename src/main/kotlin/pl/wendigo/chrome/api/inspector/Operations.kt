@@ -30,19 +30,19 @@ class InspectorOperations internal constructor(private val connection: pl.wendig
     /**
      *  Fired when debugging target has crashed
      */
-    fun targetCrashed(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Inspector.targetCrashed", pl.wendigo.chrome.protocol.Event.serializer())
+    fun targetCrashed(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("Inspector.targetCrashed", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      *  Fired when debugging target has reloaded after crash
      */
-    fun targetReloadedAfterCrash(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Inspector.targetReloadedAfterCrash", pl.wendigo.chrome.protocol.Event.serializer())
+    fun targetReloadedAfterCrash(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("Inspector.targetReloadedAfterCrash", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      * Returns flowable capturing all Inspector domains events.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Inspector"
+            it.domain() == "Inspector"
         }
     }
 }
@@ -59,4 +59,7 @@ data class DetachedEvent(
      */  
     val reason: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Inspector", domainEventName = "detached")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Inspector" 
+    override fun eventName() = "detached"
+} 

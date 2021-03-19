@@ -232,14 +232,14 @@ on Android.
     /**
      *  Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
      */
-    fun virtualTimeBudgetExpired(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.protocol.Event.serializer())
+    fun virtualTimeBudgetExpired(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      * Returns flowable capturing all Emulation domains events.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Emulation"
+            it.domain() == "Emulation"
         }
     }
 }

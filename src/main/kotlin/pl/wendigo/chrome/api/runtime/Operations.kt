@@ -225,7 +225,7 @@ unsubscribes current runtime agent from Runtime.bindingCalled notifications.
     /**
      *  Issued when all executionContexts were cleared in browser
      */
-    fun executionContextsCleared(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Runtime.executionContextsCleared", pl.wendigo.chrome.protocol.Event.serializer())
+    fun executionContextsCleared(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("Runtime.executionContextsCleared", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      *  Issued when object should be inspected (for example, as a result of inspect() command line API
@@ -238,7 +238,7 @@ call).
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Runtime"
+            it.domain() == "Runtime"
         }
     }
 }
@@ -973,7 +973,10 @@ data class BindingCalledEvent(
      */  
     val executionContextId: ExecutionContextId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "bindingCalled")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Runtime" 
+    override fun eventName() = "bindingCalled"
+} 
 
 /**
  * Issued when console API was called.
@@ -1016,7 +1019,10 @@ data class ConsoleAPICalledEvent(
      */  
     val context: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "consoleAPICalled")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Runtime" 
+    override fun eventName() = "consoleAPICalled"
+} 
 
 /**
  * Issued when unhandled exception was revoked.
@@ -1035,7 +1041,10 @@ data class ExceptionRevokedEvent(
      */  
     val exceptionId: Int
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "exceptionRevoked")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Runtime" 
+    override fun eventName() = "exceptionRevoked"
+} 
 
 /**
  * Issued when exception was thrown and unhandled.
@@ -1054,7 +1063,10 @@ data class ExceptionThrownEvent(
      */  
     val exceptionDetails: ExceptionDetails
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "exceptionThrown")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Runtime" 
+    override fun eventName() = "exceptionThrown"
+} 
 
 /**
  * Issued when new execution context is created.
@@ -1068,7 +1080,10 @@ data class ExecutionContextCreatedEvent(
      */  
     val context: ExecutionContextDescription
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "executionContextCreated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Runtime" 
+    override fun eventName() = "executionContextCreated"
+} 
 
 /**
  * Issued when execution context is destroyed.
@@ -1082,7 +1097,10 @@ data class ExecutionContextDestroyedEvent(
      */  
     val executionContextId: ExecutionContextId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "executionContextDestroyed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Runtime" 
+    override fun eventName() = "executionContextDestroyed"
+} 
 
 /**
  * Issued when object should be inspected (for example, as a result of inspect() command line API
@@ -1102,4 +1120,7 @@ data class InspectRequestedEvent(
      */  
     val hints: kotlinx.serialization.json.JsonElement
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "inspectRequested")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Runtime" 
+    override fun eventName() = "inspectRequested"
+} 

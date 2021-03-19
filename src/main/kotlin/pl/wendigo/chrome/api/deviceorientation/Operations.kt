@@ -29,7 +29,7 @@ class DeviceOrientationOperations internal constructor(private val connection: p
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "DeviceOrientation"
+            it.domain() == "DeviceOrientation"
         }
     }
 }

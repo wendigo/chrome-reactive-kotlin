@@ -77,7 +77,7 @@ class DOMStorageOperations internal constructor(private val connection: pl.wendi
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "DOMStorage"
+            it.domain() == "DOMStorage"
         }
     }
 }
@@ -200,7 +200,10 @@ data class DomStorageItemAddedEvent(
      */  
     val newValue: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOMStorage", domainEventName = "domStorageItemAdded")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOMStorage" 
+    override fun eventName() = "domStorageItemAdded"
+} 
 
 /**
  *
@@ -219,7 +222,10 @@ data class DomStorageItemRemovedEvent(
      */  
     val key: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOMStorage", domainEventName = "domStorageItemRemoved")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOMStorage" 
+    override fun eventName() = "domStorageItemRemoved"
+} 
 
 /**
  *
@@ -248,7 +254,10 @@ data class DomStorageItemUpdatedEvent(
      */  
     val newValue: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOMStorage", domainEventName = "domStorageItemUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOMStorage" 
+    override fun eventName() = "domStorageItemUpdated"
+} 
 
 /**
  *
@@ -262,4 +271,7 @@ data class DomStorageItemsClearedEvent(
      */  
     val storageId: StorageId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "DOMStorage", domainEventName = "domStorageItemsCleared")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "DOMStorage" 
+    override fun eventName() = "domStorageItemsCleared"
+} 

@@ -2,35 +2,26 @@ package pl.wendigo.chrome.protocol
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
-import java.util.concurrent.ConcurrentHashMap
+import pl.wendigo.chrome.api.EventSerializers
 
 /**
- * EventMapper is responsible for mapping events carried by [ResponseFrame] to typed events representations.
+ * EventMapper is responsible for mapping events carried by [EventResponseFrame] to typed events representations.
  */
 class EventMapper {
-    private val eventNameToSerializerMapping: ConcurrentHashMap<String, KSerializer<out Event>> = ConcurrentHashMap()
-
-    /**
-     * Add mapping from event name to class.
-     */
-    fun addMapping(name: String, serializer: KSerializer<out Event>) {
-        eventNameToSerializerMapping[name] = serializer
-    }
-
-    fun <T> deserialize(frame: EventResponseFrame, serializer: KSerializer<T>): T where T : Event {
+    fun <T> deserialize(eventFrame: EventResponseFrame, eventSerializer: KSerializer<T>): T where T : Event {
         try {
-            if (serializer == Event.serializer()) {
+            if (eventSerializer == RawEvent.serializer()) {
                 @Suppress("UNCHECKED_CAST")
-                return Event.fromMethodName(frame.method) as T
+                return Event.fromFrame(eventFrame) as T
             } else {
-                return Json.decodeFromJsonElement(serializer, frame.params)
+                return Json.decodeFromJsonElement(eventSerializer, eventFrame.params)
             }
         } catch (e: Throwable) {
-            throw DeserializationFailed("Could not deserialize event $frame with $serializer", e)
+            throw DeserializationFailed("Could not deserialize event $eventFrame with $eventSerializer", e)
         }
     }
 
-    fun deserializeEvent(frame: EventResponseFrame): Event {
-        return deserialize(frame, eventNameToSerializerMapping[frame.method] ?: Event.serializer())
+    fun deserialize(eventFrame: EventResponseFrame): Event {
+        return deserialize(eventFrame, EventSerializers.getByEventName(eventFrame.method))
     }
 }

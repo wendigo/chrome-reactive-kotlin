@@ -51,7 +51,7 @@ using Audits.issueAdded event.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Audits"
+            it.domain() == "Audits"
         }
     }
 }
@@ -145,4 +145,7 @@ data class IssueAddedEvent(
      */  
     val issue: InspectorIssue
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Audits", domainEventName = "issueAdded")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Audits" 
+    override fun eventName() = "issueAdded"
+} 

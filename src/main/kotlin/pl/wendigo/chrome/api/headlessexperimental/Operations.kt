@@ -46,7 +46,7 @@ beginFrame to detect whether the frames were suppressed.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "HeadlessExperimental"
+            it.domain() == "HeadlessExperimental"
         }
     }
 }
@@ -131,4 +131,7 @@ data class NeedsBeginFramesChangedEvent(
      */  
     val needsBeginFrames: Boolean
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "HeadlessExperimental", domainEventName = "needsBeginFramesChanged")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "HeadlessExperimental" 
+    override fun eventName() = "needsBeginFramesChanged"
+} 

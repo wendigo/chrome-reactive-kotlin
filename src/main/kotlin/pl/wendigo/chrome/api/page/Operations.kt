@@ -529,7 +529,7 @@ Instead, a protocol event `Page.fileChooserOpened` is emitted.
     /**
      *  Returns observable capturing all Page.frameResized events.
      */
-    fun frameResized(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.frameResized", pl.wendigo.chrome.protocol.Event.serializer())
+    fun frameResized(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("Page.frameResized", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      *  Fired when a renderer-initiated navigation is requested.
@@ -565,12 +565,12 @@ Navigation may still be cancelled after the event is issued.
     /**
      *  Fired when interstitial page was hidden
      */
-    fun interstitialHidden(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.interstitialHidden", pl.wendigo.chrome.protocol.Event.serializer())
+    fun interstitialHidden(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("Page.interstitialHidden", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      *  Fired when interstitial page was shown
      */
-    fun interstitialShown(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.interstitialShown", pl.wendigo.chrome.protocol.Event.serializer())
+    fun interstitialShown(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("Page.interstitialShown", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      *  Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been
@@ -626,7 +626,7 @@ if Page.setGenerateCompilationCache is enabled.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Page"
+            it.domain() == "Page"
         }
     }
 }
@@ -1887,7 +1887,10 @@ data class DomContentEventFiredEvent(
      */  
     val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "domContentEventFired")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "domContentEventFired"
+} 
 
 /**
  * Emitted only when `page.interceptFileChooser` is enabled.
@@ -1911,7 +1914,10 @@ data class FileChooserOpenedEvent(
      */  
     val mode: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "fileChooserOpened")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "fileChooserOpened"
+} 
 
 /**
  * Fired when frame has been attached to its parent.
@@ -1935,7 +1941,10 @@ data class FrameAttachedEvent(
      */  
     val stack: pl.wendigo.chrome.api.runtime.StackTrace? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameAttached")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "frameAttached"
+} 
 
 /**
  * Fired when frame no longer has a scheduled navigation.
@@ -1949,7 +1958,10 @@ data class FrameClearedScheduledNavigationEvent(
      */  
     val frameId: FrameId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameClearedScheduledNavigation")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "frameClearedScheduledNavigation"
+} 
 
 /**
  * Fired when frame has been detached from its parent.
@@ -1968,7 +1980,10 @@ data class FrameDetachedEvent(
      */  
     val reason: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameDetached")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "frameDetached"
+} 
 
 /**
  * Fired once navigation of the frame has completed. Frame is now associated with the new loader.
@@ -1982,7 +1997,10 @@ data class FrameNavigatedEvent(
      */  
     val frame: Frame
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameNavigated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "frameNavigated"
+} 
 
 /**
  * Fired when opening document to write to.
@@ -1996,7 +2014,10 @@ data class DocumentOpenedEvent(
      */  
     val frame: Frame
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "documentOpened")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "documentOpened"
+} 
 
 /**
  * Fired when a renderer-initiated navigation is requested.
@@ -2026,7 +2047,10 @@ data class FrameRequestedNavigationEvent(
      */  
     val disposition: ClientNavigationDisposition
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameRequestedNavigation")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "frameRequestedNavigation"
+} 
 
 /**
  * Fired when frame schedules a potential navigation.
@@ -2056,7 +2080,10 @@ data class FrameScheduledNavigationEvent(
      */  
     val url: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameScheduledNavigation")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "frameScheduledNavigation"
+} 
 
 /**
  * Fired when frame has started loading.
@@ -2070,7 +2097,10 @@ data class FrameStartedLoadingEvent(
      */  
     val frameId: FrameId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameStartedLoading")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "frameStartedLoading"
+} 
 
 /**
  * Fired when frame has stopped loading.
@@ -2084,7 +2114,10 @@ data class FrameStoppedLoadingEvent(
      */  
     val frameId: FrameId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameStoppedLoading")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "frameStoppedLoading"
+} 
 
 /**
  * Fired when page is about to start a download.
@@ -2113,7 +2146,10 @@ data class DownloadWillBeginEvent(
      */  
     val suggestedFilename: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "downloadWillBegin")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "downloadWillBegin"
+} 
 
 /**
  * Fired when download makes progress. Last call has |done| == true.
@@ -2142,7 +2178,10 @@ data class DownloadProgressEvent(
      */  
     val state: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "downloadProgress")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "downloadProgress"
+} 
 
 /**
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been
@@ -2162,7 +2201,10 @@ data class JavascriptDialogClosedEvent(
      */  
     val userInput: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "javascriptDialogClosed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "javascriptDialogClosed"
+} 
 
 /**
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to
@@ -2199,7 +2241,10 @@ data class JavascriptDialogOpeningEvent(
      */  
     val defaultPrompt: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "javascriptDialogOpening")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "javascriptDialogOpening"
+} 
 
 /**
  * Fired for top level page lifecycle events such as navigation, load, paint, etc.
@@ -2228,7 +2273,10 @@ data class LifecycleEventEvent(
      */  
     val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "lifecycleEvent")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "lifecycleEvent"
+} 
 
 /**
  *
@@ -2242,7 +2290,10 @@ data class LoadEventFiredEvent(
      */  
     val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "loadEventFired")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "loadEventFired"
+} 
 
 /**
  * Fired when same-document navigation happens, e.g. due to history API usage or anchor navigation.
@@ -2261,7 +2312,10 @@ data class NavigatedWithinDocumentEvent(
      */  
     val url: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "navigatedWithinDocument")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "navigatedWithinDocument"
+} 
 
 /**
  * Compressed image data requested by the `startScreencast`.
@@ -2285,7 +2339,10 @@ data class ScreencastFrameEvent(
      */  
     val sessionId: Int
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "screencastFrame")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "screencastFrame"
+} 
 
 /**
  * Fired when the page with currently enabled screencast was shown or hidden `.
@@ -2299,7 +2356,10 @@ data class ScreencastVisibilityChangedEvent(
      */  
     val visible: Boolean
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "screencastVisibilityChanged")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "screencastVisibilityChanged"
+} 
 
 /**
  * Fired when a new window is going to be opened, via window.open(), link click, form submission,
@@ -2329,7 +2389,10 @@ data class WindowOpenEvent(
      */  
     val userGesture: Boolean
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "windowOpen")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "windowOpen"
+} 
 
 /**
  * Issued for every compilation cache generated. Is only available
@@ -2349,4 +2412,7 @@ data class CompilationCacheProducedEvent(
      */  
     val data: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "compilationCacheProduced")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Page" 
+    override fun eventName() = "compilationCacheProduced"
+} 

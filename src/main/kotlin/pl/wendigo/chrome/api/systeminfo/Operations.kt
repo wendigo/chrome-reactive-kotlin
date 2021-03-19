@@ -27,7 +27,7 @@ class SystemInfoOperations internal constructor(private val connection: pl.wendi
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "SystemInfo"
+            it.domain() == "SystemInfo"
         }
     }
 }

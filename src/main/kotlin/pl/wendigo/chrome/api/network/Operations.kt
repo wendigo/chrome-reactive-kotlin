@@ -397,7 +397,7 @@ or after the response was received.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Network"
+            it.domain() == "Network"
         }
     }
 }
@@ -1275,7 +1275,10 @@ data class DataReceivedEvent(
      */  
     val encodedDataLength: Int
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "dataReceived")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "dataReceived"
+} 
 
 /**
  * Fired when EventSource message is received.
@@ -1309,7 +1312,10 @@ data class EventSourceMessageReceivedEvent(
      */  
     val data: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "eventSourceMessageReceived")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "eventSourceMessageReceived"
+} 
 
 /**
  * Fired when HTTP request has failed to load.
@@ -1353,7 +1359,10 @@ data class LoadingFailedEvent(
      */  
     val corsErrorStatus: CorsErrorStatus? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "loadingFailed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "loadingFailed"
+} 
 
 /**
  * Fired when HTTP request has finished loading.
@@ -1383,7 +1392,10 @@ data class LoadingFinishedEvent(
      */  
     val shouldReportCorbBlocking: Boolean? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "loadingFinished")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "loadingFinished"
+} 
 
 /**
  * Details of an intercepted HTTP request, which must be either allowed, blocked, modified or
@@ -1462,7 +1474,10 @@ data class RequestInterceptedEvent(
      */  
     val requestId: RequestId? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "requestIntercepted")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "requestIntercepted"
+} 
 
 /**
  * Fired if request ended up loading from cache.
@@ -1476,7 +1491,10 @@ data class RequestServedFromCacheEvent(
      */  
     val requestId: RequestId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "requestServedFromCache")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "requestServedFromCache"
+} 
 
 /**
  * Fired when page is about to send HTTP request.
@@ -1540,7 +1558,10 @@ data class RequestWillBeSentEvent(
      */  
     val hasUserGesture: Boolean? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "requestWillBeSent")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "requestWillBeSent"
+} 
 
 /**
  * Fired when resource loading priority is changed
@@ -1564,7 +1585,10 @@ data class ResourceChangedPriorityEvent(
      */  
     val timestamp: MonotonicTime
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "resourceChangedPriority")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "resourceChangedPriority"
+} 
 
 /**
  * Fired when a signed exchange was received over the network
@@ -1583,7 +1607,10 @@ data class SignedExchangeReceivedEvent(
      */  
     val info: SignedExchangeInfo
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "signedExchangeReceived")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "signedExchangeReceived"
+} 
 
 /**
  * Fired when HTTP response is available.
@@ -1622,7 +1649,10 @@ data class ResponseReceivedEvent(
      */  
     val frameId: pl.wendigo.chrome.api.page.FrameId? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "responseReceived")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "responseReceived"
+} 
 
 /**
  * Fired when WebSocket is closed.
@@ -1641,7 +1671,10 @@ data class WebSocketClosedEvent(
      */  
     val timestamp: MonotonicTime
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "webSocketClosed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "webSocketClosed"
+} 
 
 /**
  * Fired upon WebSocket creation.
@@ -1665,7 +1698,10 @@ data class WebSocketCreatedEvent(
      */  
     val initiator: Initiator? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "webSocketCreated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "webSocketCreated"
+} 
 
 /**
  * Fired when WebSocket message error occurs.
@@ -1689,7 +1725,10 @@ data class WebSocketFrameErrorEvent(
      */  
     val errorMessage: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "webSocketFrameError")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "webSocketFrameError"
+} 
 
 /**
  * Fired when WebSocket message is received.
@@ -1713,7 +1752,10 @@ data class WebSocketFrameReceivedEvent(
      */  
     val response: WebSocketFrame
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "webSocketFrameReceived")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "webSocketFrameReceived"
+} 
 
 /**
  * Fired when WebSocket message is sent.
@@ -1737,7 +1779,10 @@ data class WebSocketFrameSentEvent(
      */  
     val response: WebSocketFrame
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "webSocketFrameSent")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "webSocketFrameSent"
+} 
 
 /**
  * Fired when WebSocket handshake response becomes available.
@@ -1761,7 +1806,10 @@ data class WebSocketHandshakeResponseReceivedEvent(
      */  
     val response: WebSocketResponse
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "webSocketHandshakeResponseReceived")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "webSocketHandshakeResponseReceived"
+} 
 
 /**
  * Fired when WebSocket is about to initiate handshake.
@@ -1790,7 +1838,10 @@ data class WebSocketWillSendHandshakeRequestEvent(
      */  
     val request: WebSocketRequest
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "webSocketWillSendHandshakeRequest")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "webSocketWillSendHandshakeRequest"
+} 
 
 /**
  * Fired upon WebTransport creation.
@@ -1819,7 +1870,10 @@ data class WebTransportCreatedEvent(
      */  
     val initiator: Initiator? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "webTransportCreated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "webTransportCreated"
+} 
 
 /**
  * Fired when WebTransport handshake is finished.
@@ -1838,7 +1892,10 @@ data class WebTransportConnectionEstablishedEvent(
      */  
     val timestamp: MonotonicTime
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "webTransportConnectionEstablished")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "webTransportConnectionEstablished"
+} 
 
 /**
  * Fired when WebTransport is disposed.
@@ -1857,7 +1914,10 @@ data class WebTransportClosedEvent(
      */  
     val timestamp: MonotonicTime
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "webTransportClosed")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "webTransportClosed"
+} 
 
 /**
  * Fired when additional information about a requestWillBeSent event is available from the
@@ -1890,7 +1950,10 @@ data class RequestWillBeSentExtraInfoEvent(
      */  
     val clientSecurityState: ClientSecurityState? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "requestWillBeSentExtraInfo")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "requestWillBeSentExtraInfo"
+} 
 
 /**
  * Fired when additional information about a responseReceived event is available from the network
@@ -1930,7 +1993,10 @@ data class ResponseReceivedExtraInfoEvent(
      */  
     val headersText: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "responseReceivedExtraInfo")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "responseReceivedExtraInfo"
+} 
 
 /**
  * Fired exactly once for each Trust Token operation. Depending on
@@ -1975,4 +2041,7 @@ data class TrustTokenOperationDoneEvent(
      */  
     val issuedTokenCount: Int? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Network", domainEventName = "trustTokenOperationDone")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Network" 
+    override fun eventName() = "trustTokenOperationDone"
+} 

@@ -34,7 +34,7 @@ class TetheringOperations internal constructor(private val connection: pl.wendig
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Tethering"
+            it.domain() == "Tethering"
         }
     }
 }
@@ -88,4 +88,7 @@ data class AcceptedEvent(
      */  
     val connectionId: String
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "Tethering", domainEventName = "accepted")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "Tethering" 
+    override fun eventName() = "accepted"
+} 

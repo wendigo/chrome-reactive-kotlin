@@ -29,7 +29,7 @@ See also: timelineEventAdded
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "PerformanceTimeline"
+            it.domain() == "PerformanceTimeline"
         }
     }
 }
@@ -67,4 +67,7 @@ data class TimelineEventAddedEvent(
      */  
     val event: TimelineEvent
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "PerformanceTimeline", domainEventName = "timelineEventAdded")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "PerformanceTimeline" 
+    override fun eventName() = "timelineEventAdded"
+} 

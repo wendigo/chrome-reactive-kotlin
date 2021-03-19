@@ -219,7 +219,7 @@ web font
      *  Fires whenever a MediaQuery result changes (for example, after a browser window has been
 resized.) The current implementation considers only viewport-dependent media features.
      */
-    fun mediaQueryResultChanged(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("CSS.mediaQueryResultChanged", pl.wendigo.chrome.protocol.Event.serializer())
+    fun mediaQueryResultChanged(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.RawEvent> = connection.events("CSS.mediaQueryResultChanged", pl.wendigo.chrome.protocol.RawEvent.serializer())
 
     /**
      *  Fired whenever an active document stylesheet is added.
@@ -241,7 +241,7 @@ resized.) The current implementation considers only viewport-dependent media fea
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "CSS"
+            it.domain() == "CSS"
         }
     }
 }
@@ -978,7 +978,10 @@ data class FontsUpdatedEvent(
      */  
     val font: FontFace? = null
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "CSS", domainEventName = "fontsUpdated")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "CSS" 
+    override fun eventName() = "fontsUpdated"
+} 
 
 /**
  * Fired whenever an active document stylesheet is added.
@@ -992,7 +995,10 @@ data class StyleSheetAddedEvent(
      */  
     val header: CSSStyleSheetHeader
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "CSS", domainEventName = "styleSheetAdded")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "CSS" 
+    override fun eventName() = "styleSheetAdded"
+} 
 
 /**
  * Fired whenever a stylesheet is changed as a result of the client operation.
@@ -1006,7 +1012,10 @@ data class StyleSheetChangedEvent(
      */  
     val styleSheetId: StyleSheetId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "CSS", domainEventName = "styleSheetChanged")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "CSS" 
+    override fun eventName() = "styleSheetChanged"
+} 
 
 /**
  * Fired whenever an active document stylesheet is removed.
@@ -1020,4 +1029,7 @@ data class StyleSheetRemovedEvent(
      */  
     val styleSheetId: StyleSheetId
 
-) : pl.wendigo.chrome.protocol.Event(domainName = "CSS", domainEventName = "styleSheetRemoved")
+) : pl.wendigo.chrome.protocol.Event {
+    override fun domain() = "CSS" 
+    override fun eventName() = "styleSheetRemoved"
+} 

@@ -1,4 +1,4 @@
-# Module chrome-reactive-kotlin
+# Module Chrome Reactive Kotlin
 
 # Package pl.wendigo.chrome.api.console
 

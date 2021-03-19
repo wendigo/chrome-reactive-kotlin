@@ -71,7 +71,7 @@ node is specified, or the DOM node does not exist, the command returns an error.
      */
     fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
-            it.protocolDomain() == "Accessibility"
+            it.domain() == "Accessibility"
         }
     }
 }
