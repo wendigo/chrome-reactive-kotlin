@@ -5,17 +5,17 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 # based on https://github.com/cyrus-and/chrome-remote-interface/blob/master/scripts/update-protocol.sh
-#version="master"
-version="219a9d66a51e135d96e261ebbe6bf385dc11389b"
+# version="master"
+version="219a9d66a51e135d96e261ebbe6bf385dc11389b" # pin to version for now
 REPOSITORY_PATH="https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
-#trap "rm -f 'browser_protocol.json' 'js_protocol.json'" EXIT
+trap "rm -f 'browser_protocol.json' 'js_protocol.json'" EXIT
 
 base='https://raw.githubusercontent.com/ChromeDevTools/devtools-protocol'
 printf "${GREEN}Fetching:\n\t/$version/json/browser_protocol.json...${NC}\n"
-curl "$base/$version/json/browser_protocol.json" >"browser_protocol.json"
+curl -s "$base/$version/json/browser_protocol.json" >"browser_protocol.json"
 printf "${GREEN}Fetching:\n\t/$version/json/js_protocol.json...${NC}\n"
-curl "$base/$version/json/js_protocol.json" >"js_protocol.json"
+curl -s "$base/$version/json/js_protocol.json" >"js_protocol.json"
 
 printf "${GREEN}Merging files js_protocol.json, browser_protocol.json into protocol.json${NC}\n"
 
