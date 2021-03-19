@@ -2,6 +2,9 @@ package pl.wendigo.chrome
 
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.spock.Testcontainers
+import org.testcontainers.utility.DockerImageName
+import pl.wendigo.chrome.api.target.TargetCreatedEvent
+import pl.wendigo.chrome.testing.ChromeHeadlessContainer
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -11,21 +14,7 @@ class ChromeProtocolSpecification
 {
 
     @Shared
-    public GenericContainer container = new GenericContainer("eu.gcr.io/zenika-hub/alpine-chrome:89")
-            .withExposedPorts(9222)
-            .withCommand(
-                    "chromium-browser",
-                    "--headless",
-                    "--disable-gpu",
-                    "--disable-software-rasterizer",
-                    "--disable-dev-shm-usage",
-                    "--no-sandbox",
-                    "--disable-setuid-sandbox",
-                    "--remote-debugging-port=9222",
-                    "--remote-debugging-address=0.0.0.0",
-                    "about:blank"
-            )
-            .withPrivilegedMode(true)
+    public GenericContainer container = new ChromeHeadlessContainer(DockerImageName.parse("eu.gcr.io/zenika-hub/alpine-chrome:89"))
 
     def "should return browser information"()
     {
@@ -34,6 +23,25 @@ class ChromeProtocolSpecification
 
         expect:
         chrome.getInfo().browser == "HeadlessChrome/89.0.4389.72"
+    }
+
+    def "should capture target events"()
+    {
+        given:
+        def chrome = getBrowser()
+
+        when:
+        def targetCreated = [] as List<TargetCreatedEvent>
+        chrome.targetCreated().subscribe(targetCreated.&add)
+
+        def target = chrome.target()
+
+        then:
+            targetCreated.findIndexOf {it.targetInfo.targetId == target.info().targetId} > -1
+            chrome.targets().findIndexOf {it.targetId == target.info().targetId} > -1
+
+        cleanup:
+        target.close()
     }
 
     def "should open new target given provided options"()
@@ -60,15 +68,29 @@ class ChromeProtocolSpecification
 
         cleanup:
         target.close()
-        chrome.close()
+    }
+
+    def "should open and navigate to new target"()
+    {
+        given:
+        def chrome = getBrowser()
+        def target = chrome.target("https://google.com")
+
+        when:
+        target.getPage().enable()
+        def frame = target.getPage().frameNavigated().blockingFirst()
+
+        then:
+        frame.frame.url == "https://www.google.com/"
+
+        cleanup:
+        target.close()
     }
 
     private Browser getBrowser()
     {
-        def address = container.getContainerIpAddress() + ":" + container.firstMappedPort
-
         return Browser.builder()
-                .withAddress(address)
+                .withAddress(container.getAddress())
                 .withEventsBufferSize(128)
                 .withViewportHeight(600)
                 .withViewportWidth(900)

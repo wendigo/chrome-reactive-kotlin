@@ -5,9 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import io.reactivex.rxjava3.core.Flowable
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import pl.wendigo.chrome.api.target.TargetCrashedEvent
+import pl.wendigo.chrome.api.target.TargetCreatedEvent
+import pl.wendigo.chrome.api.target.TargetDestroyedEvent
 import pl.wendigo.chrome.api.target.TargetInfo
+import pl.wendigo.chrome.api.target.TargetInfoChangedEvent
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 import pl.wendigo.chrome.targets.Manager
 import pl.wendigo.chrome.targets.Target
@@ -18,8 +25,8 @@ import kotlin.math.max
  * Creates new browser that allows querying remote chrome instance for debugging sessions
  */
 class Browser private constructor(
-    private val options: Options,
     val info: Info,
+    private val options: Options,
     private val manager: Manager
 ) : AutoCloseable, Closeable {
     /**
@@ -45,7 +52,7 @@ class Browser private constructor(
     /**
      * Returns information on browser.
      */
-    fun browserInfo() = info;
+    fun browserInfo() = info
 
     /**
      * Attaches to existing target creating new session if multiplexed connections is used.
@@ -60,11 +67,35 @@ class Browser private constructor(
     }
 
     /**
+     * Returns Flowable of [TargetCrashedEvent]
+     */
+    fun targetCrashed(): Flowable<TargetCrashedEvent> = manager.targetCrashed()
+
+    /**
+     * Returns Flowable of [TargetCreatedEvent]
+     */
+    fun targetCreated(): Flowable<TargetCreatedEvent> = manager.targetCreated()
+
+    /**
+     * Returns Flowable of [TargetInfoChangedEvent]
+     */
+    fun targetInfoChanged(): Flowable<TargetInfoChangedEvent> = manager.targetInfoChanged()
+
+    /**
+     * Returns Flowable of [TargetDestroyedEvent]
+     */
+    fun targetDestroyed(): Flowable<TargetDestroyedEvent> = manager.targetDestroyed()
+
+    /**
      * Closes session manager and all established connections to debugger.
      */
     override fun close() {
-        manager.close()
-        ChromeDebuggerConnection.Factory.close()
+        try {
+            manager.close()
+            ChromeDebuggerConnection.close()
+        } catch (e: Exception) {
+            logger.info("Caught exception while closing Browser", e)
+        }
     }
 
     override fun toString(): String {
@@ -72,6 +103,9 @@ class Browser private constructor(
     }
 
     companion object {
+
+        private val logger: Logger = LoggerFactory.getLogger(Browser::class.java)
+
         /**
          * Creates new Browser instance by connecting to remote chrome debugger.
          */
@@ -79,8 +113,8 @@ class Browser private constructor(
             val info = fetchInfo(chromeAddress)
 
             return Browser(
-                options,
                 info,
+                options,
                 Manager(
                     info.webSocketDebuggerUrl,
                     options.multiplexConnections,
