@@ -1,0 +1,1648 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>DOMOperations 0.6.2-SNAPSHOT API </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <h2 title="Class DOMOperations" class="title">Class DOMOperations</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public final class <span class="typeNameLabel"><a href=DOMOperations.html>DOMOperations</a></span>
+
+                    </pre>
+                    <div class="block"><p>This domain exposes DOM read/write operations. Each DOM Node is represented with its mirror object that has an <code>id</code>. This <code>id</code> can be used to get additional information on the Node, resolve it into the JavaScript object wrapper, etc. It is important that client receives DOM events only for the nodes that are known to the client. Backend keeps track of the nodes that were sent to the client and never sends the same node twice. It is client's responsibility to collect information about the nodes that were sent to the client.&lt;p&gt;Note that <code>iframe</code> owner elements will return corresponding document elements as their child nodes.&lt;/p&gt;</p></div>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=CollectClassNamesFromSubtreeResponse.html>CollectClassNamesFromSubtreeResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#collectClassNamesFromSubtree(CollectClassNamesFromSubtreeRequest)>collectClassNamesFromSubtree</a>(<a href=CollectClassNamesFromSubtreeRequest.html>CollectClassNamesFromSubtreeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Collects class names for the node with given id and all of it's child nodes.</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=CopyToResponse.html>CopyToResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#copyTo(CopyToRequest)>copyTo</a>(<a href=CopyToRequest.html>CopyToRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Creates a deep copy of the specified node and places it into the target container before the given anchor.</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=DescribeNodeResponse.html>DescribeNodeResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#describeNode(DescribeNodeRequest)>describeNode</a>(<a href=DescribeNodeRequest.html>DescribeNodeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Describes node given its id, does not require domain to be enabled.</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#scrollIntoViewIfNeeded(ScrollIntoViewIfNeededRequest)>scrollIntoViewIfNeeded</a>(<a href=ScrollIntoViewIfNeededRequest.html>ScrollIntoViewIfNeededRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Scrolls the specified rect of the given node into view if not already visible.</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#disable()>disable</a>() </code>
+                                            </th>
+                                            <td class="colLast">Disables DOM agent for the given page.</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#discardSearchResults(DiscardSearchResultsRequest)>discardSearchResults</a>(<a href=DiscardSearchResultsRequest.html>DiscardSearchResultsRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Discards search results from the session with the given id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#enable()>enable</a>() </code>
+                                            </th>
+                                            <td class="colLast">Enables DOM agent for the given page.</td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#focus(FocusRequest)>focus</a>(<a href=FocusRequest.html>FocusRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Focuses the given element.</td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetAttributesResponse.html>GetAttributesResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getAttributes(GetAttributesRequest)>getAttributes</a>(<a href=GetAttributesRequest.html>GetAttributesRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns attributes for the specified node.</td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetBoxModelResponse.html>GetBoxModelResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getBoxModel(GetBoxModelRequest)>getBoxModel</a>(<a href=GetBoxModelRequest.html>GetBoxModelRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns boxes for the given node.</td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetContentQuadsResponse.html>GetContentQuadsResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getContentQuads(GetContentQuadsRequest)>getContentQuads</a>(<a href=GetContentQuadsRequest.html>GetContentQuadsRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns quads that describe node position on the page.</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetDocumentResponse.html>GetDocumentResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getDocument(GetDocumentRequest)>getDocument</a>(<a href=GetDocumentRequest.html>GetDocumentRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns the root DOM node (and optionally the subtree) to the caller.</td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetFlattenedDocumentResponse.html>GetFlattenedDocumentResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getFlattenedDocument(GetFlattenedDocumentRequest)>getFlattenedDocument</a>(<a href=GetFlattenedDocumentRequest.html>GetFlattenedDocumentRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns the root DOM node (and optionally the subtree) to the caller.</td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetNodesForSubtreeByStyleResponse.html>GetNodesForSubtreeByStyleResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getNodesForSubtreeByStyle(GetNodesForSubtreeByStyleRequest)>getNodesForSubtreeByStyle</a>(<a href=GetNodesForSubtreeByStyleRequest.html>GetNodesForSubtreeByStyleRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Finds nodes with a given computed style in a subtree.</td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetNodeForLocationResponse.html>GetNodeForLocationResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getNodeForLocation(GetNodeForLocationRequest)>getNodeForLocation</a>(<a href=GetNodeForLocationRequest.html>GetNodeForLocationRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns node id at given location.</td>
+                                        </tr>
+                                        
+                                        <tr id="i15" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetOuterHTMLResponse.html>GetOuterHTMLResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getOuterHTML(GetOuterHTMLRequest)>getOuterHTML</a>(<a href=GetOuterHTMLRequest.html>GetOuterHTMLRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns node's HTML markup.</td>
+                                        </tr>
+                                        
+                                        <tr id="i16" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetRelayoutBoundaryResponse.html>GetRelayoutBoundaryResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getRelayoutBoundary(GetRelayoutBoundaryRequest)>getRelayoutBoundary</a>(<a href=GetRelayoutBoundaryRequest.html>GetRelayoutBoundaryRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns the id of the nearest ancestor that is a relayout boundary.</td>
+                                        </tr>
+                                        
+                                        <tr id="i17" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetSearchResultsResponse.html>GetSearchResultsResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getSearchResults(GetSearchResultsRequest)>getSearchResults</a>(<a href=GetSearchResultsRequest.html>GetSearchResultsRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the search with the given identifier.</td>
+                                        </tr>
+                                        
+                                        <tr id="i18" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#hideHighlight()>hideHighlight</a>() </code>
+                                            </th>
+                                            <td class="colLast">Hides any highlight.</td>
+                                        </tr>
+                                        
+                                        <tr id="i19" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#highlightNode()>highlightNode</a>() </code>
+                                            </th>
+                                            <td class="colLast">Highlights DOM node.</td>
+                                        </tr>
+                                        
+                                        <tr id="i20" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#highlightRect()>highlightRect</a>() </code>
+                                            </th>
+                                            <td class="colLast">Highlights given rectangle.</td>
+                                        </tr>
+                                        
+                                        <tr id="i21" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#markUndoableState()>markUndoableState</a>() </code>
+                                            </th>
+                                            <td class="colLast">Marks last undoable state.</td>
+                                        </tr>
+                                        
+                                        <tr id="i22" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=MoveToResponse.html>MoveToResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#moveTo(MoveToRequest)>moveTo</a>(<a href=MoveToRequest.html>MoveToRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Moves node into the new container, places it before the given anchor.</td>
+                                        </tr>
+                                        
+                                        <tr id="i23" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=PerformSearchResponse.html>PerformSearchResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#performSearch(PerformSearchRequest)>performSearch</a>(<a href=PerformSearchRequest.html>PerformSearchRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Searches for a given string in the DOM tree.</td>
+                                        </tr>
+                                        
+                                        <tr id="i24" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=PushNodeByPathToFrontendResponse.html>PushNodeByPathToFrontendResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#pushNodeByPathToFrontend(PushNodeByPathToFrontendRequest)>pushNodeByPathToFrontend</a>(<a href=PushNodeByPathToFrontendRequest.html>PushNodeByPathToFrontendRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Requests that the node is sent to the caller given its path.</td>
+                                        </tr>
+                                        
+                                        <tr id="i25" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=PushNodesByBackendIdsToFrontendResponse.html>PushNodesByBackendIdsToFrontendResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#pushNodesByBackendIdsToFrontend(PushNodesByBackendIdsToFrontendRequest)>pushNodesByBackendIdsToFrontend</a>(<a href=PushNodesByBackendIdsToFrontendRequest.html>PushNodesByBackendIdsToFrontendRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Requests that a batch of nodes is sent to the caller given their backend node ids.</td>
+                                        </tr>
+                                        
+                                        <tr id="i26" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=QuerySelectorResponse.html>QuerySelectorResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#querySelector(QuerySelectorRequest)>querySelector</a>(<a href=QuerySelectorRequest.html>QuerySelectorRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Executes <code>querySelector</code> on a given node.</td>
+                                        </tr>
+                                        
+                                        <tr id="i27" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=QuerySelectorAllResponse.html>QuerySelectorAllResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#querySelectorAll(QuerySelectorAllRequest)>querySelectorAll</a>(<a href=QuerySelectorAllRequest.html>QuerySelectorAllRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Executes <code>querySelectorAll</code> on a given node.</td>
+                                        </tr>
+                                        
+                                        <tr id="i28" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#redo()>redo</a>() </code>
+                                            </th>
+                                            <td class="colLast">Re-does the last undone action.</td>
+                                        </tr>
+                                        
+                                        <tr id="i29" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#removeAttribute(RemoveAttributeRequest)>removeAttribute</a>(<a href=RemoveAttributeRequest.html>RemoveAttributeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Removes attribute with given name from an element with given id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i30" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#removeNode(RemoveNodeRequest)>removeNode</a>(<a href=RemoveNodeRequest.html>RemoveNodeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Removes node with given id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i31" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#requestChildNodes(RequestChildNodesRequest)>requestChildNodes</a>(<a href=RequestChildNodesRequest.html>RequestChildNodesRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Requests that children of the node with given id are returned to the caller in form of <code>setChildNodes</code> events where not only immediate children are retrieved, but all children down to the specified depth.</td>
+                                        </tr>
+                                        
+                                        <tr id="i32" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=RequestNodeResponse.html>RequestNodeResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#requestNode(RequestNodeRequest)>requestNode</a>(<a href=RequestNodeRequest.html>RequestNodeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Requests that the node is sent to the caller given the JavaScript node object reference.</td>
+                                        </tr>
+                                        
+                                        <tr id="i33" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=ResolveNodeResponse.html>ResolveNodeResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#resolveNode(ResolveNodeRequest)>resolveNode</a>(<a href=ResolveNodeRequest.html>ResolveNodeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Resolves the JavaScript node object for a given NodeId or BackendNodeId.</td>
+                                        </tr>
+                                        
+                                        <tr id="i34" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#setAttributeValue(SetAttributeValueRequest)>setAttributeValue</a>(<a href=SetAttributeValueRequest.html>SetAttributeValueRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Sets attribute for an element with given id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i35" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#setAttributesAsText(SetAttributesAsTextRequest)>setAttributesAsText</a>(<a href=SetAttributesAsTextRequest.html>SetAttributesAsTextRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Sets attributes on element with given id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i36" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#setFileInputFiles(SetFileInputFilesRequest)>setFileInputFiles</a>(<a href=SetFileInputFilesRequest.html>SetFileInputFilesRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Sets files for the given file input element.</td>
+                                        </tr>
+                                        
+                                        <tr id="i37" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#setNodeStackTracesEnabled(SetNodeStackTracesEnabledRequest)>setNodeStackTracesEnabled</a>(<a href=SetNodeStackTracesEnabledRequest.html>SetNodeStackTracesEnabledRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Sets if stack traces should be captured for Nodes.</td>
+                                        </tr>
+                                        
+                                        <tr id="i38" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetNodeStackTracesResponse.html>GetNodeStackTracesResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getNodeStackTraces(GetNodeStackTracesRequest)>getNodeStackTraces</a>(<a href=GetNodeStackTracesRequest.html>GetNodeStackTracesRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Gets stack traces associated with a Node.</td>
+                                        </tr>
+                                        
+                                        <tr id="i39" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetFileInfoResponse.html>GetFileInfoResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getFileInfo(GetFileInfoRequest)>getFileInfo</a>(<a href=GetFileInfoRequest.html>GetFileInfoRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns file information for the given File wrapper.</td>
+                                        </tr>
+                                        
+                                        <tr id="i40" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#setInspectedNode(SetInspectedNodeRequest)>setInspectedNode</a>(<a href=SetInspectedNodeRequest.html>SetInspectedNodeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).</td>
+                                        </tr>
+                                        
+                                        <tr id="i41" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=SetNodeNameResponse.html>SetNodeNameResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#setNodeName(SetNodeNameRequest)>setNodeName</a>(<a href=SetNodeNameRequest.html>SetNodeNameRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Sets node name for a node with given id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i42" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#setNodeValue(SetNodeValueRequest)>setNodeValue</a>(<a href=SetNodeValueRequest.html>SetNodeValueRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Sets node value for a node with given id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i43" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#setOuterHTML(SetOuterHTMLRequest)>setOuterHTML</a>(<a href=SetOuterHTMLRequest.html>SetOuterHTMLRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Sets node HTML markup, returns new node id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i44" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#undo()>undo</a>() </code>
+                                            </th>
+                                            <td class="colLast">Undoes the last performed action.</td>
+                                        </tr>
+                                        
+                                        <tr id="i45" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetFrameOwnerResponse.html>GetFrameOwnerResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#getFrameOwner(GetFrameOwnerRequest)>getFrameOwner</a>(<a href=GetFrameOwnerRequest.html>GetFrameOwnerRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns iframe node that owns iframe with the given domain.</td>
+                                        </tr>
+                                        
+                                        <tr id="i46" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=AttributeModifiedEvent.html>AttributeModifiedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#attributeModified()>attributeModified</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fired when <code>Element</code>'s attribute is modified.</td>
+                                        </tr>
+                                        
+                                        <tr id="i47" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=AttributeRemovedEvent.html>AttributeRemovedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#attributeRemoved()>attributeRemoved</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fired when <code>Element</code>'s attribute is removed.</td>
+                                        </tr>
+                                        
+                                        <tr id="i48" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=CharacterDataModifiedEvent.html>CharacterDataModifiedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#characterDataModified()>characterDataModified</a>() </code>
+                                            </th>
+                                            <td class="colLast">Mirrors <code>DOMCharacterDataModified</code> event.</td>
+                                        </tr>
+                                        
+                                        <tr id="i49" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=ChildNodeCountUpdatedEvent.html>ChildNodeCountUpdatedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#childNodeCountUpdated()>childNodeCountUpdated</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fired when <code>Container</code>'s child node count has changed.</td>
+                                        </tr>
+                                        
+                                        <tr id="i50" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=ChildNodeInsertedEvent.html>ChildNodeInsertedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#childNodeInserted()>childNodeInserted</a>() </code>
+                                            </th>
+                                            <td class="colLast">Mirrors <code>DOMNodeInserted</code> event.</td>
+                                        </tr>
+                                        
+                                        <tr id="i51" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=ChildNodeRemovedEvent.html>ChildNodeRemovedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#childNodeRemoved()>childNodeRemoved</a>() </code>
+                                            </th>
+                                            <td class="colLast">Mirrors <code>DOMNodeRemoved</code> event.</td>
+                                        </tr>
+                                        
+                                        <tr id="i52" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=DistributedNodesUpdatedEvent.html>DistributedNodesUpdatedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#distributedNodesUpdated()>distributedNodesUpdated</a>() </code>
+                                            </th>
+                                            <td class="colLast">Called when distrubution is changed.</td>
+                                        </tr>
+                                        
+                                        <tr id="i53" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#documentUpdated()>documentUpdated</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fired when <code>Document</code> has been totally updated.</td>
+                                        </tr>
+                                        
+                                        <tr id="i54" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=InlineStyleInvalidatedEvent.html>InlineStyleInvalidatedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#inlineStyleInvalidated()>inlineStyleInvalidated</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fired when <code>Element</code>'s inline style is modified via a CSS property modification.</td>
+                                        </tr>
+                                        
+                                        <tr id="i55" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=PseudoElementAddedEvent.html>PseudoElementAddedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#pseudoElementAdded()>pseudoElementAdded</a>() </code>
+                                            </th>
+                                            <td class="colLast">Called when a pseudo element is added to an element.</td>
+                                        </tr>
+                                        
+                                        <tr id="i56" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=PseudoElementRemovedEvent.html>PseudoElementRemovedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#pseudoElementRemoved()>pseudoElementRemoved</a>() </code>
+                                            </th>
+                                            <td class="colLast">Called when a pseudo element is removed from an element.</td>
+                                        </tr>
+                                        
+                                        <tr id="i57" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=SetChildNodesEvent.html>SetChildNodesEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#setChildNodes()>setChildNodes</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fired when backend wants to provide client with the missing DOM structure.</td>
+                                        </tr>
+                                        
+                                        <tr id="i58" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=ShadowRootPoppedEvent.html>ShadowRootPoppedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#shadowRootPopped()>shadowRootPopped</a>() </code>
+                                            </th>
+                                            <td class="colLast">Called when shadow root is popped from the element.</td>
+                                        </tr>
+                                        
+                                        <tr id="i59" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=ShadowRootPushedEvent.html>ShadowRootPushedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#shadowRootPushed()>shadowRootPushed</a>() </code>
+                                            </th>
+                                            <td class="colLast">Called when shadow root is pushed into the element.</td>
+                                        </tr>
+                                        
+                                        <tr id="i60" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=DOMOperations.html#events()>events</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns flowable capturing all DOM domains events.</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="collectClassNamesFromSubtree(CollectClassNamesFromSubtreeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>collectClassNamesFromSubtree</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=CollectClassNamesFromSubtreeResponse.html>CollectClassNamesFromSubtreeResponse</a>&gt; <a href=DOMOperations.html#collectClassNamesFromSubtree(CollectClassNamesFromSubtreeRequest)>collectClassNamesFromSubtree</a>(<a href=CollectClassNamesFromSubtreeRequest.html>CollectClassNamesFromSubtreeRequest</a> input)</pre>
+                                        <div class="block"><p>Collects class names for the node with given id and all of it's child nodes.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="copyTo(CopyToRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>copyTo</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=CopyToResponse.html>CopyToResponse</a>&gt; <a href=DOMOperations.html#copyTo(CopyToRequest)>copyTo</a>(<a href=CopyToRequest.html>CopyToRequest</a> input)</pre>
+                                        <div class="block"><p>Creates a deep copy of the specified node and places it into the target container before the given anchor.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="describeNode(DescribeNodeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>describeNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=DescribeNodeResponse.html>DescribeNodeResponse</a>&gt; <a href=DOMOperations.html#describeNode(DescribeNodeRequest)>describeNode</a>(<a href=DescribeNodeRequest.html>DescribeNodeRequest</a> input)</pre>
+                                        <div class="block"><p>Describes node given its id, does not require domain to be enabled. Does not start tracking any objects, can be used for automation.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="scrollIntoViewIfNeeded(ScrollIntoViewIfNeededRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>scrollIntoViewIfNeeded</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#scrollIntoViewIfNeeded(ScrollIntoViewIfNeededRequest)>scrollIntoViewIfNeeded</a>(<a href=ScrollIntoViewIfNeededRequest.html>ScrollIntoViewIfNeededRequest</a> input)</pre>
+                                        <div class="block"><p>Scrolls the specified rect of the given node into view if not already visible. Note: exactly one between nodeId, backendNodeId and objectId should be passed to identify the node.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="disable()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>disable</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#disable()>disable</a>()</pre>
+                                        <div class="block"><p>Disables DOM agent for the given page.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="discardSearchResults(DiscardSearchResultsRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>discardSearchResults</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#discardSearchResults(DiscardSearchResultsRequest)>discardSearchResults</a>(<a href=DiscardSearchResultsRequest.html>DiscardSearchResultsRequest</a> input)</pre>
+                                        <div class="block"><p>Discards search results from the session with the given id. <code>getSearchResults</code> should no longer be called for that search.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="enable()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>enable</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#enable()>enable</a>()</pre>
+                                        <div class="block"><p>Enables DOM agent for the given page.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="focus(FocusRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>focus</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#focus(FocusRequest)>focus</a>(<a href=FocusRequest.html>FocusRequest</a> input)</pre>
+                                        <div class="block"><p>Focuses the given element.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getAttributes(GetAttributesRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getAttributes</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetAttributesResponse.html>GetAttributesResponse</a>&gt; <a href=DOMOperations.html#getAttributes(GetAttributesRequest)>getAttributes</a>(<a href=GetAttributesRequest.html>GetAttributesRequest</a> input)</pre>
+                                        <div class="block"><p>Returns attributes for the specified node.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getBoxModel(GetBoxModelRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getBoxModel</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetBoxModelResponse.html>GetBoxModelResponse</a>&gt; <a href=DOMOperations.html#getBoxModel(GetBoxModelRequest)>getBoxModel</a>(<a href=GetBoxModelRequest.html>GetBoxModelRequest</a> input)</pre>
+                                        <div class="block"><p>Returns boxes for the given node.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getContentQuads(GetContentQuadsRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getContentQuads</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetContentQuadsResponse.html>GetContentQuadsResponse</a>&gt; <a href=DOMOperations.html#getContentQuads(GetContentQuadsRequest)>getContentQuads</a>(<a href=GetContentQuadsRequest.html>GetContentQuadsRequest</a> input)</pre>
+                                        <div class="block"><p>Returns quads that describe node position on the page. This method might return multiple quads for inline nodes.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getDocument(GetDocumentRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getDocument</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetDocumentResponse.html>GetDocumentResponse</a>&gt; <a href=DOMOperations.html#getDocument(GetDocumentRequest)>getDocument</a>(<a href=GetDocumentRequest.html>GetDocumentRequest</a> input)</pre>
+                                        <div class="block"><p>Returns the root DOM node (and optionally the subtree) to the caller.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getFlattenedDocument(GetFlattenedDocumentRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getFlattenedDocument</h4>
+                                        <pre class="methodSignature">@<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-deprecated/index.html>Deprecated</a>(level = <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-deprecation-level/-w-a-r-n-i-n-g/index.html>DeprecationLevel.WARNING</a>, message = getFlattenedDocument is deprecated.) final Single&lt;<a href=GetFlattenedDocumentResponse.html>GetFlattenedDocumentResponse</a>&gt; <a href=DOMOperations.html#getFlattenedDocument(GetFlattenedDocumentRequest)>getFlattenedDocument</a>(<a href=GetFlattenedDocumentRequest.html>GetFlattenedDocumentRequest</a> input)</pre>
+                                        <div class="block"><p>Returns the root DOM node (and optionally the subtree) to the caller. Deprecated, as it is not designed to work well with the rest of the DOM agent. Use DOMSnapshot.captureSnapshot instead.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getNodesForSubtreeByStyle(GetNodesForSubtreeByStyleRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getNodesForSubtreeByStyle</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetNodesForSubtreeByStyleResponse.html>GetNodesForSubtreeByStyleResponse</a>&gt; <a href=DOMOperations.html#getNodesForSubtreeByStyle(GetNodesForSubtreeByStyleRequest)>getNodesForSubtreeByStyle</a>(<a href=GetNodesForSubtreeByStyleRequest.html>GetNodesForSubtreeByStyleRequest</a> input)</pre>
+                                        <div class="block"><p>Finds nodes with a given computed style in a subtree.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getNodeForLocation(GetNodeForLocationRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getNodeForLocation</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetNodeForLocationResponse.html>GetNodeForLocationResponse</a>&gt; <a href=DOMOperations.html#getNodeForLocation(GetNodeForLocationRequest)>getNodeForLocation</a>(<a href=GetNodeForLocationRequest.html>GetNodeForLocationRequest</a> input)</pre>
+                                        <div class="block"><p>Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is either returned or not.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getOuterHTML(GetOuterHTMLRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getOuterHTML</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetOuterHTMLResponse.html>GetOuterHTMLResponse</a>&gt; <a href=DOMOperations.html#getOuterHTML(GetOuterHTMLRequest)>getOuterHTML</a>(<a href=GetOuterHTMLRequest.html>GetOuterHTMLRequest</a> input)</pre>
+                                        <div class="block"><p>Returns node's HTML markup.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getRelayoutBoundary(GetRelayoutBoundaryRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getRelayoutBoundary</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetRelayoutBoundaryResponse.html>GetRelayoutBoundaryResponse</a>&gt; <a href=DOMOperations.html#getRelayoutBoundary(GetRelayoutBoundaryRequest)>getRelayoutBoundary</a>(<a href=GetRelayoutBoundaryRequest.html>GetRelayoutBoundaryRequest</a> input)</pre>
+                                        <div class="block"><p>Returns the id of the nearest ancestor that is a relayout boundary.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getSearchResults(GetSearchResultsRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSearchResults</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetSearchResultsResponse.html>GetSearchResultsResponse</a>&gt; <a href=DOMOperations.html#getSearchResults(GetSearchResultsRequest)>getSearchResults</a>(<a href=GetSearchResultsRequest.html>GetSearchResultsRequest</a> input)</pre>
+                                        <div class="block"><p>Returns search results from given <code>fromIndex</code> to given <code>toIndex</code> from the search with the given identifier.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="hideHighlight()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>hideHighlight</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#hideHighlight()>hideHighlight</a>()</pre>
+                                        <div class="block"><p>Hides any highlight.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="highlightNode()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>highlightNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#highlightNode()>highlightNode</a>()</pre>
+                                        <div class="block"><p>Highlights DOM node.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="highlightRect()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>highlightRect</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#highlightRect()>highlightRect</a>()</pre>
+                                        <div class="block"><p>Highlights given rectangle.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="markUndoableState()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>markUndoableState</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#markUndoableState()>markUndoableState</a>()</pre>
+                                        <div class="block"><p>Marks last undoable state.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="moveTo(MoveToRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>moveTo</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=MoveToResponse.html>MoveToResponse</a>&gt; <a href=DOMOperations.html#moveTo(MoveToRequest)>moveTo</a>(<a href=MoveToRequest.html>MoveToRequest</a> input)</pre>
+                                        <div class="block"><p>Moves node into the new container, places it before the given anchor.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="performSearch(PerformSearchRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>performSearch</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=PerformSearchResponse.html>PerformSearchResponse</a>&gt; <a href=DOMOperations.html#performSearch(PerformSearchRequest)>performSearch</a>(<a href=PerformSearchRequest.html>PerformSearchRequest</a> input)</pre>
+                                        <div class="block"><p>Searches for a given string in the DOM tree. Use <code>getSearchResults</code> to access search results or <code>cancelSearch</code> to end this search session.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="pushNodeByPathToFrontend(PushNodeByPathToFrontendRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>pushNodeByPathToFrontend</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=PushNodeByPathToFrontendResponse.html>PushNodeByPathToFrontendResponse</a>&gt; <a href=DOMOperations.html#pushNodeByPathToFrontend(PushNodeByPathToFrontendRequest)>pushNodeByPathToFrontend</a>(<a href=PushNodeByPathToFrontendRequest.html>PushNodeByPathToFrontendRequest</a> input)</pre>
+                                        <div class="block"><p>Requests that the node is sent to the caller given its path. // FIXME, use XPath</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="pushNodesByBackendIdsToFrontend(PushNodesByBackendIdsToFrontendRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>pushNodesByBackendIdsToFrontend</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=PushNodesByBackendIdsToFrontendResponse.html>PushNodesByBackendIdsToFrontendResponse</a>&gt; <a href=DOMOperations.html#pushNodesByBackendIdsToFrontend(PushNodesByBackendIdsToFrontendRequest)>pushNodesByBackendIdsToFrontend</a>(<a href=PushNodesByBackendIdsToFrontendRequest.html>PushNodesByBackendIdsToFrontendRequest</a> input)</pre>
+                                        <div class="block"><p>Requests that a batch of nodes is sent to the caller given their backend node ids.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="querySelector(QuerySelectorRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>querySelector</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=QuerySelectorResponse.html>QuerySelectorResponse</a>&gt; <a href=DOMOperations.html#querySelector(QuerySelectorRequest)>querySelector</a>(<a href=QuerySelectorRequest.html>QuerySelectorRequest</a> input)</pre>
+                                        <div class="block"><p>Executes <code>querySelector</code> on a given node.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="querySelectorAll(QuerySelectorAllRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>querySelectorAll</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=QuerySelectorAllResponse.html>QuerySelectorAllResponse</a>&gt; <a href=DOMOperations.html#querySelectorAll(QuerySelectorAllRequest)>querySelectorAll</a>(<a href=QuerySelectorAllRequest.html>QuerySelectorAllRequest</a> input)</pre>
+                                        <div class="block"><p>Executes <code>querySelectorAll</code> on a given node.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="redo()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>redo</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#redo()>redo</a>()</pre>
+                                        <div class="block"><p>Re-does the last undone action.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="removeAttribute(RemoveAttributeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>removeAttribute</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#removeAttribute(RemoveAttributeRequest)>removeAttribute</a>(<a href=RemoveAttributeRequest.html>RemoveAttributeRequest</a> input)</pre>
+                                        <div class="block"><p>Removes attribute with given name from an element with given id.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="removeNode(RemoveNodeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>removeNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#removeNode(RemoveNodeRequest)>removeNode</a>(<a href=RemoveNodeRequest.html>RemoveNodeRequest</a> input)</pre>
+                                        <div class="block"><p>Removes node with given id.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="requestChildNodes(RequestChildNodesRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>requestChildNodes</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#requestChildNodes(RequestChildNodesRequest)>requestChildNodes</a>(<a href=RequestChildNodesRequest.html>RequestChildNodesRequest</a> input)</pre>
+                                        <div class="block"><p>Requests that children of the node with given id are returned to the caller in form of <code>setChildNodes</code> events where not only immediate children are retrieved, but all children down to the specified depth.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="requestNode(RequestNodeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>requestNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=RequestNodeResponse.html>RequestNodeResponse</a>&gt; <a href=DOMOperations.html#requestNode(RequestNodeRequest)>requestNode</a>(<a href=RequestNodeRequest.html>RequestNodeRequest</a> input)</pre>
+                                        <div class="block"><p>Requests that the node is sent to the caller given the JavaScript node object reference. All nodes that form the path from the node to the root are also sent to the client as a series of <code>setChildNodes</code> notifications.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="resolveNode(ResolveNodeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>resolveNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=ResolveNodeResponse.html>ResolveNodeResponse</a>&gt; <a href=DOMOperations.html#resolveNode(ResolveNodeRequest)>resolveNode</a>(<a href=ResolveNodeRequest.html>ResolveNodeRequest</a> input)</pre>
+                                        <div class="block"><p>Resolves the JavaScript node object for a given NodeId or BackendNodeId.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setAttributeValue(SetAttributeValueRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setAttributeValue</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#setAttributeValue(SetAttributeValueRequest)>setAttributeValue</a>(<a href=SetAttributeValueRequest.html>SetAttributeValueRequest</a> input)</pre>
+                                        <div class="block"><p>Sets attribute for an element with given id.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setAttributesAsText(SetAttributesAsTextRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setAttributesAsText</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#setAttributesAsText(SetAttributesAsTextRequest)>setAttributesAsText</a>(<a href=SetAttributesAsTextRequest.html>SetAttributesAsTextRequest</a> input)</pre>
+                                        <div class="block"><p>Sets attributes on element with given id. This method is useful when user edits some existing attribute value and types in several attribute name/value pairs.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setFileInputFiles(SetFileInputFilesRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setFileInputFiles</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#setFileInputFiles(SetFileInputFilesRequest)>setFileInputFiles</a>(<a href=SetFileInputFilesRequest.html>SetFileInputFilesRequest</a> input)</pre>
+                                        <div class="block"><p>Sets files for the given file input element.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setNodeStackTracesEnabled(SetNodeStackTracesEnabledRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setNodeStackTracesEnabled</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#setNodeStackTracesEnabled(SetNodeStackTracesEnabledRequest)>setNodeStackTracesEnabled</a>(<a href=SetNodeStackTracesEnabledRequest.html>SetNodeStackTracesEnabledRequest</a> input)</pre>
+                                        <div class="block"><p>Sets if stack traces should be captured for Nodes. See <code>Node.getNodeStackTraces</code>. Default is disabled.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getNodeStackTraces(GetNodeStackTracesRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getNodeStackTraces</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetNodeStackTracesResponse.html>GetNodeStackTracesResponse</a>&gt; <a href=DOMOperations.html#getNodeStackTraces(GetNodeStackTracesRequest)>getNodeStackTraces</a>(<a href=GetNodeStackTracesRequest.html>GetNodeStackTracesRequest</a> input)</pre>
+                                        <div class="block"><p>Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getFileInfo(GetFileInfoRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getFileInfo</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetFileInfoResponse.html>GetFileInfoResponse</a>&gt; <a href=DOMOperations.html#getFileInfo(GetFileInfoRequest)>getFileInfo</a>(<a href=GetFileInfoRequest.html>GetFileInfoRequest</a> input)</pre>
+                                        <div class="block"><p>Returns file information for the given File wrapper.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setInspectedNode(SetInspectedNodeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setInspectedNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#setInspectedNode(SetInspectedNodeRequest)>setInspectedNode</a>(<a href=SetInspectedNodeRequest.html>SetInspectedNodeRequest</a> input)</pre>
+                                        <div class="block"><p>Enables console to refer to the node with given id via $x (see Command Line API for more details $x functions).</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setNodeName(SetNodeNameRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setNodeName</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=SetNodeNameResponse.html>SetNodeNameResponse</a>&gt; <a href=DOMOperations.html#setNodeName(SetNodeNameRequest)>setNodeName</a>(<a href=SetNodeNameRequest.html>SetNodeNameRequest</a> input)</pre>
+                                        <div class="block"><p>Sets node name for a node with given id.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setNodeValue(SetNodeValueRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setNodeValue</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#setNodeValue(SetNodeValueRequest)>setNodeValue</a>(<a href=SetNodeValueRequest.html>SetNodeValueRequest</a> input)</pre>
+                                        <div class="block"><p>Sets node value for a node with given id.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setOuterHTML(SetOuterHTMLRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setOuterHTML</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#setOuterHTML(SetOuterHTMLRequest)>setOuterHTML</a>(<a href=SetOuterHTMLRequest.html>SetOuterHTMLRequest</a> input)</pre>
+                                        <div class="block"><p>Sets node HTML markup, returns new node id.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="undo()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>undo</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=DOMOperations.html#undo()>undo</a>()</pre>
+                                        <div class="block"><p>Undoes the last performed action.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getFrameOwner(GetFrameOwnerRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getFrameOwner</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetFrameOwnerResponse.html>GetFrameOwnerResponse</a>&gt; <a href=DOMOperations.html#getFrameOwner(GetFrameOwnerRequest)>getFrameOwner</a>(<a href=GetFrameOwnerRequest.html>GetFrameOwnerRequest</a> input)</pre>
+                                        <div class="block"><p>Returns iframe node that owns iframe with the given domain.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="attributeModified()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>attributeModified</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=AttributeModifiedEvent.html>AttributeModifiedEvent</a>&gt; <a href=DOMOperations.html#attributeModified()>attributeModified</a>()</pre>
+                                        <div class="block"><p>Fired when <code>Element</code>'s attribute is modified.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="attributeRemoved()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>attributeRemoved</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=AttributeRemovedEvent.html>AttributeRemovedEvent</a>&gt; <a href=DOMOperations.html#attributeRemoved()>attributeRemoved</a>()</pre>
+                                        <div class="block"><p>Fired when <code>Element</code>'s attribute is removed.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="characterDataModified()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>characterDataModified</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=CharacterDataModifiedEvent.html>CharacterDataModifiedEvent</a>&gt; <a href=DOMOperations.html#characterDataModified()>characterDataModified</a>()</pre>
+                                        <div class="block"><p>Mirrors <code>DOMCharacterDataModified</code> event.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="childNodeCountUpdated()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>childNodeCountUpdated</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=ChildNodeCountUpdatedEvent.html>ChildNodeCountUpdatedEvent</a>&gt; <a href=DOMOperations.html#childNodeCountUpdated()>childNodeCountUpdated</a>()</pre>
+                                        <div class="block"><p>Fired when <code>Container</code>'s child node count has changed.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="childNodeInserted()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>childNodeInserted</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=ChildNodeInsertedEvent.html>ChildNodeInsertedEvent</a>&gt; <a href=DOMOperations.html#childNodeInserted()>childNodeInserted</a>()</pre>
+                                        <div class="block"><p>Mirrors <code>DOMNodeInserted</code> event.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="childNodeRemoved()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>childNodeRemoved</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=ChildNodeRemovedEvent.html>ChildNodeRemovedEvent</a>&gt; <a href=DOMOperations.html#childNodeRemoved()>childNodeRemoved</a>()</pre>
+                                        <div class="block"><p>Mirrors <code>DOMNodeRemoved</code> event.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="distributedNodesUpdated()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>distributedNodesUpdated</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=DistributedNodesUpdatedEvent.html>DistributedNodesUpdatedEvent</a>&gt; <a href=DOMOperations.html#distributedNodesUpdated()>distributedNodesUpdated</a>()</pre>
+                                        <div class="block"><p>Called when distrubution is changed.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="documentUpdated()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>documentUpdated</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt; <a href=DOMOperations.html#documentUpdated()>documentUpdated</a>()</pre>
+                                        <div class="block"><p>Fired when <code>Document</code> has been totally updated. Node ids are no longer valid.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="inlineStyleInvalidated()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>inlineStyleInvalidated</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=InlineStyleInvalidatedEvent.html>InlineStyleInvalidatedEvent</a>&gt; <a href=DOMOperations.html#inlineStyleInvalidated()>inlineStyleInvalidated</a>()</pre>
+                                        <div class="block"><p>Fired when <code>Element</code>'s inline style is modified via a CSS property modification.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="pseudoElementAdded()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>pseudoElementAdded</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=PseudoElementAddedEvent.html>PseudoElementAddedEvent</a>&gt; <a href=DOMOperations.html#pseudoElementAdded()>pseudoElementAdded</a>()</pre>
+                                        <div class="block"><p>Called when a pseudo element is added to an element.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="pseudoElementRemoved()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>pseudoElementRemoved</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=PseudoElementRemovedEvent.html>PseudoElementRemovedEvent</a>&gt; <a href=DOMOperations.html#pseudoElementRemoved()>pseudoElementRemoved</a>()</pre>
+                                        <div class="block"><p>Called when a pseudo element is removed from an element.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setChildNodes()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setChildNodes</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=SetChildNodesEvent.html>SetChildNodesEvent</a>&gt; <a href=DOMOperations.html#setChildNodes()>setChildNodes</a>()</pre>
+                                        <div class="block"><p>Fired when backend wants to provide client with the missing DOM structure. This happens upon most of the calls requesting node ids.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="shadowRootPopped()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>shadowRootPopped</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=ShadowRootPoppedEvent.html>ShadowRootPoppedEvent</a>&gt; <a href=DOMOperations.html#shadowRootPopped()>shadowRootPopped</a>()</pre>
+                                        <div class="block"><p>Called when shadow root is popped from the element.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="shadowRootPushed()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>shadowRootPushed</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=ShadowRootPushedEvent.html>ShadowRootPushedEvent</a>&gt; <a href=DOMOperations.html#shadowRootPushed()>shadowRootPushed</a>()</pre>
+                                        <div class="block"><p>Called when shadow root is pushed into the element.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="events()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>events</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt; <a href=DOMOperations.html#events()>events</a>()</pre>
+                                        <div class="block"><p>Returns flowable capturing all DOM domains events.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

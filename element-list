@@ -1,0 +1,61 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:pl.wendigo.chrome.protocol/ChromeDebuggerConnection.Factory///PointingToDeclaration/pl/wendigo/chrome/protocol/ChromeDebuggerConnection.Factory.html
+$dokka.location:pl.wendigo.chrome.protocol/DebuggerFramesStream.Companion///PointingToDeclaration/pl/wendigo/chrome/protocol/DebuggerFramesStream.Companion.html
+$dokka.location:pl.wendigo.chrome.protocol/Event.Companion///PointingToDeclaration/pl/wendigo/chrome/protocol/Event.Companion.html
+$dokka.location:pl.wendigo.chrome.protocol/EventMapper.Companion///PointingToDeclaration/pl/wendigo/chrome/protocol/EventMapper.Companion.html
+$dokka.location:pl.wendigo.chrome.protocol/FrameMapper.Companion///PointingToDeclaration/pl/wendigo/chrome/protocol/FrameMapper.Companion.html
+$dokka.location:pl.wendigo.chrome.targets/Manager.Companion///PointingToDeclaration/pl/wendigo/chrome/targets/Manager.Companion.html
+$dokka.location:pl.wendigo.chrome/Browser.Builder///PointingToDeclaration/pl/wendigo/chrome/Browser.Builder.html
+$dokka.location:pl.wendigo.chrome/Browser.Companion///PointingToDeclaration/pl/wendigo/chrome/Browser.Companion.html
+$dokka.location:pl.wendigo.chrome/Browser.Info///PointingToDeclaration/pl/wendigo/chrome/Browser.Info.html
+pl.wendigo.chrome
+pl.wendigo.chrome.api.accessibility
+pl.wendigo.chrome.api.animation
+pl.wendigo.chrome.api.applicationcache
+pl.wendigo.chrome.api.audits
+pl.wendigo.chrome.api.backgroundservice
+pl.wendigo.chrome.api.browser
+pl.wendigo.chrome.api.cachestorage
+pl.wendigo.chrome.api.cast
+pl.wendigo.chrome.api.console
+pl.wendigo.chrome.api.css
+pl.wendigo.chrome.api.database
+pl.wendigo.chrome.api.debugger
+pl.wendigo.chrome.api.deviceorientation
+pl.wendigo.chrome.api.dom
+pl.wendigo.chrome.api.domdebugger
+pl.wendigo.chrome.api.domsnapshot
+pl.wendigo.chrome.api.domstorage
+pl.wendigo.chrome.api.emulation
+pl.wendigo.chrome.api.fetch
+pl.wendigo.chrome.api.headlessexperimental
+pl.wendigo.chrome.api.heapprofiler
+pl.wendigo.chrome.api.indexeddb
+pl.wendigo.chrome.api.input
+pl.wendigo.chrome.api.inspector
+pl.wendigo.chrome.api.io
+pl.wendigo.chrome.api.layertree
+pl.wendigo.chrome.api.log
+pl.wendigo.chrome.api.media
+pl.wendigo.chrome.api.memory
+pl.wendigo.chrome.api.network
+pl.wendigo.chrome.api.overlay
+pl.wendigo.chrome.api.page
+pl.wendigo.chrome.api.performance
+pl.wendigo.chrome.api.performancetimeline
+pl.wendigo.chrome.api.profiler
+pl.wendigo.chrome.api.runtime
+pl.wendigo.chrome.api.schema
+pl.wendigo.chrome.api.security
+pl.wendigo.chrome.api.serviceworker
+pl.wendigo.chrome.api.storage
+pl.wendigo.chrome.api.systeminfo
+pl.wendigo.chrome.api.target
+pl.wendigo.chrome.api.tethering
+pl.wendigo.chrome.api.tracing
+pl.wendigo.chrome.api.webaudio
+pl.wendigo.chrome.api.webauthn
+pl.wendigo.chrome.protocol
+pl.wendigo.chrome.targets
+

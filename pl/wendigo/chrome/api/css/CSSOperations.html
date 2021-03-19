@@ -1,0 +1,958 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>CSSOperations 0.6.2-SNAPSHOT API </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <h2 title="Class CSSOperations" class="title">Class CSSOperations</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public final class <span class="typeNameLabel"><a href=CSSOperations.html>CSSOperations</a></span>
+
+                    </pre>
+                    <div class="block"><p>This domain exposes CSS read/write operations. All CSS objects (stylesheets, rules, and styles) have an associated <code>id</code> used in subsequent operations on the related object. Each object type has a specific <code>id</code> structure, and those are not interchangeable between objects of different kinds. CSS objects can be loaded using the <code>get*ForNode()</code> calls (which accept a DOM node id). A client can also keep track of stylesheets via the <code>styleSheetAdded</code>/<code>styleSheetRemoved</code> events and subsequently load the required stylesheet contents using the <code>getStyleSheet[Text]()</code> methods.</p><p>This API is marked as experimental in protocol definition and can change in the future.</p></div>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=AddRuleResponse.html>AddRuleResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#addRule(AddRuleRequest)>addRule</a>(<a href=AddRuleRequest.html>AddRuleRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=CollectClassNamesResponse.html>CollectClassNamesResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#collectClassNames(CollectClassNamesRequest)>collectClassNames</a>(<a href=CollectClassNamesRequest.html>CollectClassNamesRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns all class names from specified stylesheet.</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=CreateStyleSheetResponse.html>CreateStyleSheetResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#createStyleSheet(CreateStyleSheetRequest)>createStyleSheet</a>(<a href=CreateStyleSheetRequest.html>CreateStyleSheetRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#disable()>disable</a>() </code>
+                                            </th>
+                                            <td class="colLast">Disables the CSS agent for the given page.</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#enable()>enable</a>() </code>
+                                            </th>
+                                            <td class="colLast">Enables the CSS agent for the given page.</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#forcePseudoState(ForcePseudoStateRequest)>forcePseudoState</a>(<a href=ForcePseudoStateRequest.html>ForcePseudoStateRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.</td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetBackgroundColorsResponse.html>GetBackgroundColorsResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#getBackgroundColors(GetBackgroundColorsRequest)>getBackgroundColors</a>(<a href=GetBackgroundColorsRequest.html>GetBackgroundColorsRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetComputedStyleForNodeResponse.html>GetComputedStyleForNodeResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#getComputedStyleForNode(GetComputedStyleForNodeRequest)>getComputedStyleForNode</a>(<a href=GetComputedStyleForNodeRequest.html>GetComputedStyleForNodeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns the computed style for a DOM node identified by <code>nodeId</code>.</td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetInlineStylesForNodeResponse.html>GetInlineStylesForNodeResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#getInlineStylesForNode(GetInlineStylesForNodeRequest)>getInlineStylesForNode</a>(<a href=GetInlineStylesForNodeRequest.html>GetInlineStylesForNodeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.</td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetMatchedStylesForNodeResponse.html>GetMatchedStylesForNodeResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#getMatchedStylesForNode(GetMatchedStylesForNodeRequest)>getMatchedStylesForNode</a>(<a href=GetMatchedStylesForNodeRequest.html>GetMatchedStylesForNodeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns requested styles for a DOM node identified by <code>nodeId</code>.</td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetMediaQueriesResponse.html>GetMediaQueriesResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#getMediaQueries()>getMediaQueries</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns all media queries parsed by the rendering engine.</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetPlatformFontsForNodeResponse.html>GetPlatformFontsForNodeResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#getPlatformFontsForNode(GetPlatformFontsForNodeRequest)>getPlatformFontsForNode</a>(<a href=GetPlatformFontsForNodeRequest.html>GetPlatformFontsForNodeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Requests information about platform fonts which we used to render child TextNodes in the given node.</td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetStyleSheetTextResponse.html>GetStyleSheetTextResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#getStyleSheetText(GetStyleSheetTextRequest)>getStyleSheetText</a>(<a href=GetStyleSheetTextRequest.html>GetStyleSheetTextRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns the current textual content for a stylesheet.</td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#trackComputedStyleUpdates(TrackComputedStyleUpdatesRequest)>trackComputedStyleUpdates</a>(<a href=TrackComputedStyleUpdatesRequest.html>TrackComputedStyleUpdatesRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Starts tracking the given computed styles for updates.</td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=TakeComputedStyleUpdatesResponse.html>TakeComputedStyleUpdatesResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#takeComputedStyleUpdates()>takeComputedStyleUpdates</a>() </code>
+                                            </th>
+                                            <td class="colLast">Polls the next batch of computed style updates.</td>
+                                        </tr>
+                                        
+                                        <tr id="i15" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#setEffectivePropertyValueForNode(SetEffectivePropertyValueForNodeRequest)>setEffectivePropertyValueForNode</a>(<a href=SetEffectivePropertyValueForNodeRequest.html>SetEffectivePropertyValueForNodeRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Find a rule with the given active property for the given node and set the new value for this property</td>
+                                        </tr>
+                                        
+                                        <tr id="i16" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=SetKeyframeKeyResponse.html>SetKeyframeKeyResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#setKeyframeKey(SetKeyframeKeyRequest)>setKeyframeKey</a>(<a href=SetKeyframeKeyRequest.html>SetKeyframeKeyRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Modifies the keyframe rule key text.</td>
+                                        </tr>
+                                        
+                                        <tr id="i17" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=SetMediaTextResponse.html>SetMediaTextResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#setMediaText(SetMediaTextRequest)>setMediaText</a>(<a href=SetMediaTextRequest.html>SetMediaTextRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Modifies the rule selector.</td>
+                                        </tr>
+                                        
+                                        <tr id="i18" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=SetRuleSelectorResponse.html>SetRuleSelectorResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#setRuleSelector(SetRuleSelectorRequest)>setRuleSelector</a>(<a href=SetRuleSelectorRequest.html>SetRuleSelectorRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Modifies the rule selector.</td>
+                                        </tr>
+                                        
+                                        <tr id="i19" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=SetStyleSheetTextResponse.html>SetStyleSheetTextResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#setStyleSheetText(SetStyleSheetTextRequest)>setStyleSheetText</a>(<a href=SetStyleSheetTextRequest.html>SetStyleSheetTextRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Sets the new stylesheet text.</td>
+                                        </tr>
+                                        
+                                        <tr id="i20" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=SetStyleTextsResponse.html>SetStyleTextsResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#setStyleTexts(SetStyleTextsRequest)>setStyleTexts</a>(<a href=SetStyleTextsRequest.html>SetStyleTextsRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Applies specified style edits one after another in the given order.</td>
+                                        </tr>
+                                        
+                                        <tr id="i21" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#startRuleUsageTracking()>startRuleUsageTracking</a>() </code>
+                                            </th>
+                                            <td class="colLast">Enables the selector recording.</td>
+                                        </tr>
+                                        
+                                        <tr id="i22" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=StopRuleUsageTrackingResponse.html>StopRuleUsageTrackingResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#stopRuleUsageTracking()>stopRuleUsageTracking</a>() </code>
+                                            </th>
+                                            <td class="colLast">Stop tracking rule usage and return the list of rules that were used since last call to <code>takeCoverageDelta</code> (or since start of coverage instrumentation)</td>
+                                        </tr>
+                                        
+                                        <tr id="i23" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=TakeCoverageDeltaResponse.html>TakeCoverageDeltaResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#takeCoverageDelta()>takeCoverageDelta</a>() </code>
+                                            </th>
+                                            <td class="colLast">Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)</td>
+                                        </tr>
+                                        
+                                        <tr id="i24" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#setLocalFontsEnabled(SetLocalFontsEnabledRequest)>setLocalFontsEnabled</a>(<a href=SetLocalFontsEnabledRequest.html>SetLocalFontsEnabledRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Enables/disables rendering of local CSS fonts (enabled by default).</td>
+                                        </tr>
+                                        
+                                        <tr id="i25" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=FontsUpdatedEvent.html>FontsUpdatedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#fontsUpdated()>fontsUpdated</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fires whenever a web font is updated.</td>
+                                        </tr>
+                                        
+                                        <tr id="i26" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#mediaQueryResultChanged()>mediaQueryResultChanged</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fires whenever a MediaQuery result changes (for example, after a browser window has been resized.) The current implementation considers only viewport-dependent media features.</td>
+                                        </tr>
+                                        
+                                        <tr id="i27" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=StyleSheetAddedEvent.html>StyleSheetAddedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#styleSheetAdded()>styleSheetAdded</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fired whenever an active document stylesheet is added.</td>
+                                        </tr>
+                                        
+                                        <tr id="i28" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=StyleSheetChangedEvent.html>StyleSheetChangedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#styleSheetChanged()>styleSheetChanged</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fired whenever a stylesheet is changed as a result of the client operation.</td>
+                                        </tr>
+                                        
+                                        <tr id="i29" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=StyleSheetRemovedEvent.html>StyleSheetRemovedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#styleSheetRemoved()>styleSheetRemoved</a>() </code>
+                                            </th>
+                                            <td class="colLast">Fired whenever an active document stylesheet is removed.</td>
+                                        </tr>
+                                        
+                                        <tr id="i30" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=CSSOperations.html#events()>events</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns flowable capturing all CSS domains events.</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="addRule(AddRuleRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>addRule</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=AddRuleResponse.html>AddRuleResponse</a>&gt; <a href=CSSOperations.html#addRule(AddRuleRequest)>addRule</a>(<a href=AddRuleRequest.html>AddRuleRequest</a> input)</pre>
+                                        <div class="block"><p>Inserts a new rule with the given <code>ruleText</code> in a stylesheet with given <code>styleSheetId</code>, at the position specified by <code>location</code>.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="collectClassNames(CollectClassNamesRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>collectClassNames</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=CollectClassNamesResponse.html>CollectClassNamesResponse</a>&gt; <a href=CSSOperations.html#collectClassNames(CollectClassNamesRequest)>collectClassNames</a>(<a href=CollectClassNamesRequest.html>CollectClassNamesRequest</a> input)</pre>
+                                        <div class="block"><p>Returns all class names from specified stylesheet.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="createStyleSheet(CreateStyleSheetRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createStyleSheet</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=CreateStyleSheetResponse.html>CreateStyleSheetResponse</a>&gt; <a href=CSSOperations.html#createStyleSheet(CreateStyleSheetRequest)>createStyleSheet</a>(<a href=CreateStyleSheetRequest.html>CreateStyleSheetRequest</a> input)</pre>
+                                        <div class="block"><p>Creates a new special "via-inspector" stylesheet in the frame with given <code>frameId</code>.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="disable()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>disable</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=CSSOperations.html#disable()>disable</a>()</pre>
+                                        <div class="block"><p>Disables the CSS agent for the given page.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="enable()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>enable</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=CSSOperations.html#enable()>enable</a>()</pre>
+                                        <div class="block"><p>Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been enabled until the result of this command is received.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="forcePseudoState(ForcePseudoStateRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>forcePseudoState</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=CSSOperations.html#forcePseudoState(ForcePseudoStateRequest)>forcePseudoState</a>(<a href=ForcePseudoStateRequest.html>ForcePseudoStateRequest</a> input)</pre>
+                                        <div class="block"><p>Ensures that the given node will have specified pseudo-classes whenever its style is computed by the browser.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getBackgroundColors(GetBackgroundColorsRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getBackgroundColors</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetBackgroundColorsResponse.html>GetBackgroundColorsResponse</a>&gt; <a href=CSSOperations.html#getBackgroundColors(GetBackgroundColorsRequest)>getBackgroundColors</a>(<a href=GetBackgroundColorsRequest.html>GetBackgroundColorsRequest</a> input)</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getComputedStyleForNode(GetComputedStyleForNodeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getComputedStyleForNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetComputedStyleForNodeResponse.html>GetComputedStyleForNodeResponse</a>&gt; <a href=CSSOperations.html#getComputedStyleForNode(GetComputedStyleForNodeRequest)>getComputedStyleForNode</a>(<a href=GetComputedStyleForNodeRequest.html>GetComputedStyleForNodeRequest</a> input)</pre>
+                                        <div class="block"><p>Returns the computed style for a DOM node identified by <code>nodeId</code>.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getInlineStylesForNode(GetInlineStylesForNodeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getInlineStylesForNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetInlineStylesForNodeResponse.html>GetInlineStylesForNodeResponse</a>&gt; <a href=CSSOperations.html#getInlineStylesForNode(GetInlineStylesForNodeRequest)>getInlineStylesForNode</a>(<a href=GetInlineStylesForNodeRequest.html>GetInlineStylesForNodeRequest</a> input)</pre>
+                                        <div class="block"><p>Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM attributes) for a DOM node identified by <code>nodeId</code>.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getMatchedStylesForNode(GetMatchedStylesForNodeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getMatchedStylesForNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetMatchedStylesForNodeResponse.html>GetMatchedStylesForNodeResponse</a>&gt; <a href=CSSOperations.html#getMatchedStylesForNode(GetMatchedStylesForNodeRequest)>getMatchedStylesForNode</a>(<a href=GetMatchedStylesForNodeRequest.html>GetMatchedStylesForNodeRequest</a> input)</pre>
+                                        <div class="block"><p>Returns requested styles for a DOM node identified by <code>nodeId</code>.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getMediaQueries()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getMediaQueries</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetMediaQueriesResponse.html>GetMediaQueriesResponse</a>&gt; <a href=CSSOperations.html#getMediaQueries()>getMediaQueries</a>()</pre>
+                                        <div class="block"><p>Returns all media queries parsed by the rendering engine.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getPlatformFontsForNode(GetPlatformFontsForNodeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getPlatformFontsForNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetPlatformFontsForNodeResponse.html>GetPlatformFontsForNodeResponse</a>&gt; <a href=CSSOperations.html#getPlatformFontsForNode(GetPlatformFontsForNodeRequest)>getPlatformFontsForNode</a>(<a href=GetPlatformFontsForNodeRequest.html>GetPlatformFontsForNodeRequest</a> input)</pre>
+                                        <div class="block"><p>Requests information about platform fonts which we used to render child TextNodes in the given node.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getStyleSheetText(GetStyleSheetTextRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getStyleSheetText</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetStyleSheetTextResponse.html>GetStyleSheetTextResponse</a>&gt; <a href=CSSOperations.html#getStyleSheetText(GetStyleSheetTextRequest)>getStyleSheetText</a>(<a href=GetStyleSheetTextRequest.html>GetStyleSheetTextRequest</a> input)</pre>
+                                        <div class="block"><p>Returns the current textual content for a stylesheet.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="trackComputedStyleUpdates(TrackComputedStyleUpdatesRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>trackComputedStyleUpdates</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=CSSOperations.html#trackComputedStyleUpdates(TrackComputedStyleUpdatesRequest)>trackComputedStyleUpdates</a>(<a href=TrackComputedStyleUpdatesRequest.html>TrackComputedStyleUpdatesRequest</a> input)</pre>
+                                        <div class="block"><p>Starts tracking the given computed styles for updates. The specified array of properties replaces the one previously specified. Pass empty array to disable tracking. Use takeComputedStyleUpdates to retrieve the list of nodes that had properties modified. The changes to computed style properties are only tracked for nodes pushed to the front-end by the DOM agent. If no changes to the tracked properties occur after the node has been pushed to the front-end, no updates will be issued for the node.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="takeComputedStyleUpdates()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>takeComputedStyleUpdates</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=TakeComputedStyleUpdatesResponse.html>TakeComputedStyleUpdatesResponse</a>&gt; <a href=CSSOperations.html#takeComputedStyleUpdates()>takeComputedStyleUpdates</a>()</pre>
+                                        <div class="block"><p>Polls the next batch of computed style updates.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setEffectivePropertyValueForNode(SetEffectivePropertyValueForNodeRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setEffectivePropertyValueForNode</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=CSSOperations.html#setEffectivePropertyValueForNode(SetEffectivePropertyValueForNodeRequest)>setEffectivePropertyValueForNode</a>(<a href=SetEffectivePropertyValueForNodeRequest.html>SetEffectivePropertyValueForNodeRequest</a> input)</pre>
+                                        <div class="block"><p>Find a rule with the given active property for the given node and set the new value for this property</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setKeyframeKey(SetKeyframeKeyRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setKeyframeKey</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=SetKeyframeKeyResponse.html>SetKeyframeKeyResponse</a>&gt; <a href=CSSOperations.html#setKeyframeKey(SetKeyframeKeyRequest)>setKeyframeKey</a>(<a href=SetKeyframeKeyRequest.html>SetKeyframeKeyRequest</a> input)</pre>
+                                        <div class="block"><p>Modifies the keyframe rule key text.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setMediaText(SetMediaTextRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setMediaText</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=SetMediaTextResponse.html>SetMediaTextResponse</a>&gt; <a href=CSSOperations.html#setMediaText(SetMediaTextRequest)>setMediaText</a>(<a href=SetMediaTextRequest.html>SetMediaTextRequest</a> input)</pre>
+                                        <div class="block"><p>Modifies the rule selector.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setRuleSelector(SetRuleSelectorRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setRuleSelector</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=SetRuleSelectorResponse.html>SetRuleSelectorResponse</a>&gt; <a href=CSSOperations.html#setRuleSelector(SetRuleSelectorRequest)>setRuleSelector</a>(<a href=SetRuleSelectorRequest.html>SetRuleSelectorRequest</a> input)</pre>
+                                        <div class="block"><p>Modifies the rule selector.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setStyleSheetText(SetStyleSheetTextRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setStyleSheetText</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=SetStyleSheetTextResponse.html>SetStyleSheetTextResponse</a>&gt; <a href=CSSOperations.html#setStyleSheetText(SetStyleSheetTextRequest)>setStyleSheetText</a>(<a href=SetStyleSheetTextRequest.html>SetStyleSheetTextRequest</a> input)</pre>
+                                        <div class="block"><p>Sets the new stylesheet text.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setStyleTexts(SetStyleTextsRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setStyleTexts</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=SetStyleTextsResponse.html>SetStyleTextsResponse</a>&gt; <a href=CSSOperations.html#setStyleTexts(SetStyleTextsRequest)>setStyleTexts</a>(<a href=SetStyleTextsRequest.html>SetStyleTextsRequest</a> input)</pre>
+                                        <div class="block"><p>Applies specified style edits one after another in the given order.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="startRuleUsageTracking()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>startRuleUsageTracking</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=CSSOperations.html#startRuleUsageTracking()>startRuleUsageTracking</a>()</pre>
+                                        <div class="block"><p>Enables the selector recording.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="stopRuleUsageTracking()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>stopRuleUsageTracking</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=StopRuleUsageTrackingResponse.html>StopRuleUsageTrackingResponse</a>&gt; <a href=CSSOperations.html#stopRuleUsageTracking()>stopRuleUsageTracking</a>()</pre>
+                                        <div class="block"><p>Stop tracking rule usage and return the list of rules that were used since last call to <code>takeCoverageDelta</code> (or since start of coverage instrumentation)</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="takeCoverageDelta()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>takeCoverageDelta</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=TakeCoverageDeltaResponse.html>TakeCoverageDeltaResponse</a>&gt; <a href=CSSOperations.html#takeCoverageDelta()>takeCoverageDelta</a>()</pre>
+                                        <div class="block"><p>Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setLocalFontsEnabled(SetLocalFontsEnabledRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setLocalFontsEnabled</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=CSSOperations.html#setLocalFontsEnabled(SetLocalFontsEnabledRequest)>setLocalFontsEnabled</a>(<a href=SetLocalFontsEnabledRequest.html>SetLocalFontsEnabledRequest</a> input)</pre>
+                                        <div class="block"><p>Enables/disables rendering of local CSS fonts (enabled by default).</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="fontsUpdated()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>fontsUpdated</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=FontsUpdatedEvent.html>FontsUpdatedEvent</a>&gt; <a href=CSSOperations.html#fontsUpdated()>fontsUpdated</a>()</pre>
+                                        <div class="block"><p>Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded web font</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="mediaQueryResultChanged()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>mediaQueryResultChanged</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt; <a href=CSSOperations.html#mediaQueryResultChanged()>mediaQueryResultChanged</a>()</pre>
+                                        <div class="block"><p>Fires whenever a MediaQuery result changes (for example, after a browser window has been resized.) The current implementation considers only viewport-dependent media features.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="styleSheetAdded()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>styleSheetAdded</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=StyleSheetAddedEvent.html>StyleSheetAddedEvent</a>&gt; <a href=CSSOperations.html#styleSheetAdded()>styleSheetAdded</a>()</pre>
+                                        <div class="block"><p>Fired whenever an active document stylesheet is added.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="styleSheetChanged()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>styleSheetChanged</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=StyleSheetChangedEvent.html>StyleSheetChangedEvent</a>&gt; <a href=CSSOperations.html#styleSheetChanged()>styleSheetChanged</a>()</pre>
+                                        <div class="block"><p>Fired whenever a stylesheet is changed as a result of the client operation.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="styleSheetRemoved()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>styleSheetRemoved</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=StyleSheetRemovedEvent.html>StyleSheetRemovedEvent</a>&gt; <a href=CSSOperations.html#styleSheetRemoved()>styleSheetRemoved</a>()</pre>
+                                        <div class="block"><p>Fired whenever an active document stylesheet is removed.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="events()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>events</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt; <a href=CSSOperations.html#events()>events</a>()</pre>
+                                        <div class="block"><p>Returns flowable capturing all CSS domains events.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

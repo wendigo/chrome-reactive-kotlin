@@ -1,0 +1,958 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>RuntimeOperations 0.6.2-SNAPSHOT API </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <h2 title="Class RuntimeOperations" class="title">Class RuntimeOperations</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public final class <span class="typeNameLabel"><a href=RuntimeOperations.html>RuntimeOperations</a></span>
+
+                    </pre>
+                    <div class="block"><p>Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects. Evaluation results are returned as mirror object that expose object type, string representation and unique identifier that can be used for further object reference. Original objects are maintained in memory unless they are either explicitly released or are released along with the other objects in their object group.</p></div>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=AwaitPromiseResponse.html>AwaitPromiseResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#awaitPromise(AwaitPromiseRequest)>awaitPromise</a>(<a href=AwaitPromiseRequest.html>AwaitPromiseRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Add handler to promise with given promise object id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=CallFunctionOnResponse.html>CallFunctionOnResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#callFunctionOn(CallFunctionOnRequest)>callFunctionOn</a>(<a href=CallFunctionOnRequest.html>CallFunctionOnRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Calls function with given declaration on the given object.</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=CompileScriptResponse.html>CompileScriptResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#compileScript(CompileScriptRequest)>compileScript</a>(<a href=CompileScriptRequest.html>CompileScriptRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Compiles expression.</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#disable()>disable</a>() </code>
+                                            </th>
+                                            <td class="colLast">Disables reporting of execution contexts creation.</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#discardConsoleEntries()>discardConsoleEntries</a>() </code>
+                                            </th>
+                                            <td class="colLast">Discards collected exceptions and console API calls.</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#enable()>enable</a>() </code>
+                                            </th>
+                                            <td class="colLast">Enables reporting of execution contexts creation by means of <code>executionContextCreated</code> event.</td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=EvaluateResponse.html>EvaluateResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#evaluate(EvaluateRequest)>evaluate</a>(<a href=EvaluateRequest.html>EvaluateRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Evaluates expression on global object.</td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetIsolateIdResponse.html>GetIsolateIdResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#getIsolateId()>getIsolateId</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the isolate id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetHeapUsageResponse.html>GetHeapUsageResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#getHeapUsage()>getHeapUsage</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the JavaScript heap usage.</td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GetPropertiesResponse.html>GetPropertiesResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#getProperties(GetPropertiesRequest)>getProperties</a>(<a href=GetPropertiesRequest.html>GetPropertiesRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns properties of a given object.</td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=GlobalLexicalScopeNamesResponse.html>GlobalLexicalScopeNamesResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#globalLexicalScopeNames(GlobalLexicalScopeNamesRequest)>globalLexicalScopeNames</a>(<a href=GlobalLexicalScopeNamesRequest.html>GlobalLexicalScopeNamesRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Returns all let, const and class variables from global scope.</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=QueryObjectsResponse.html>QueryObjectsResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#queryObjects(QueryObjectsRequest)>queryObjects</a>(<a href=QueryObjectsRequest.html>QueryObjectsRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#releaseObject(ReleaseObjectRequest)>releaseObject</a>(<a href=ReleaseObjectRequest.html>ReleaseObjectRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Releases remote object with given id.</td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#releaseObjectGroup(ReleaseObjectGroupRequest)>releaseObjectGroup</a>(<a href=ReleaseObjectGroupRequest.html>ReleaseObjectGroupRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Releases all remote objects that belong to a given group.</td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#runIfWaitingForDebugger()>runIfWaitingForDebugger</a>() </code>
+                                            </th>
+                                            <td class="colLast">Tells inspected instance to run if it was waiting for debugger to attach.</td>
+                                        </tr>
+                                        
+                                        <tr id="i15" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=RunScriptResponse.html>RunScriptResponse</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#runScript(RunScriptRequest)>runScript</a>(<a href=RunScriptRequest.html>RunScriptRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Runs script with given id in a given context.</td>
+                                        </tr>
+                                        
+                                        <tr id="i16" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#setAsyncCallStackDepth(SetAsyncCallStackDepthRequest)>setAsyncCallStackDepth</a>(<a href=SetAsyncCallStackDepthRequest.html>SetAsyncCallStackDepthRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">Enables or disables async call stacks tracking.</td>
+                                        </tr>
+                                        
+                                        <tr id="i17" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#setCustomObjectFormatterEnabled(SetCustomObjectFormatterEnabledRequest)>setCustomObjectFormatterEnabled</a>(<a href=SetCustomObjectFormatterEnabledRequest.html>SetCustomObjectFormatterEnabledRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i18" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#setMaxCallStackSizeToCapture(SetMaxCallStackSizeToCaptureRequest)>setMaxCallStackSizeToCapture</a>(<a href=SetMaxCallStackSizeToCaptureRequest.html>SetMaxCallStackSizeToCaptureRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i19" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#terminateExecution()>terminateExecution</a>() </code>
+                                            </th>
+                                            <td class="colLast">Terminate current or next JavaScript execution.</td>
+                                        </tr>
+                                        
+                                        <tr id="i20" class="altColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#addBinding(AddBindingRequest)>addBinding</a>(<a href=AddBindingRequest.html>AddBindingRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">If executionContextId is empty, adds binding with the given name on the global objects of all inspected contexts, including those created later, bindings survive reloads.</td>
+                                        </tr>
+                                        
+                                        <tr id="i21" class="rowColor">
+                                            <td class="colFirst"><code>final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#removeBinding(RemoveBindingRequest)>removeBinding</a>(<a href=RemoveBindingRequest.html>RemoveBindingRequest</a> input) </code>
+                                            </th>
+                                            <td class="colLast">This method does not remove binding function from global object but unsubscribes current runtime agent from Runtime.bindingCalled notifications.</td>
+                                        </tr>
+                                        
+                                        <tr id="i22" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=BindingCalledEvent.html>BindingCalledEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#bindingCalled()>bindingCalled</a>() </code>
+                                            </th>
+                                            <td class="colLast">Notification is issued every time when binding is called.</td>
+                                        </tr>
+                                        
+                                        <tr id="i23" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=ConsoleAPICalledEvent.html>ConsoleAPICalledEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#consoleAPICalled()>consoleAPICalled</a>() </code>
+                                            </th>
+                                            <td class="colLast">Issued when console API was called.</td>
+                                        </tr>
+                                        
+                                        <tr id="i24" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=ExceptionRevokedEvent.html>ExceptionRevokedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#exceptionRevoked()>exceptionRevoked</a>() </code>
+                                            </th>
+                                            <td class="colLast">Issued when unhandled exception was revoked.</td>
+                                        </tr>
+                                        
+                                        <tr id="i25" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=ExceptionThrownEvent.html>ExceptionThrownEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#exceptionThrown()>exceptionThrown</a>() </code>
+                                            </th>
+                                            <td class="colLast">Issued when exception was thrown and unhandled.</td>
+                                        </tr>
+                                        
+                                        <tr id="i26" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=ExecutionContextCreatedEvent.html>ExecutionContextCreatedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#executionContextCreated()>executionContextCreated</a>() </code>
+                                            </th>
+                                            <td class="colLast">Issued when new execution context is created.</td>
+                                        </tr>
+                                        
+                                        <tr id="i27" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=ExecutionContextDestroyedEvent.html>ExecutionContextDestroyedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#executionContextDestroyed()>executionContextDestroyed</a>() </code>
+                                            </th>
+                                            <td class="colLast">Issued when execution context is destroyed.</td>
+                                        </tr>
+                                        
+                                        <tr id="i28" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#executionContextsCleared()>executionContextsCleared</a>() </code>
+                                            </th>
+                                            <td class="colLast">Issued when all executionContexts were cleared in browser</td>
+                                        </tr>
+                                        
+                                        <tr id="i29" class="rowColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=InspectRequestedEvent.html>InspectRequestedEvent</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#inspectRequested()>inspectRequested</a>() </code>
+                                            </th>
+                                            <td class="colLast">Issued when object should be inspected (for example, as a result of inspect() command line API call).</td>
+                                        </tr>
+                                        
+                                        <tr id="i30" class="altColor">
+                                            <td class="colFirst"><code>final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=RuntimeOperations.html#events()>events</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns flowable capturing all Runtime domains events.</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="awaitPromise(AwaitPromiseRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>awaitPromise</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=AwaitPromiseResponse.html>AwaitPromiseResponse</a>&gt; <a href=RuntimeOperations.html#awaitPromise(AwaitPromiseRequest)>awaitPromise</a>(<a href=AwaitPromiseRequest.html>AwaitPromiseRequest</a> input)</pre>
+                                        <div class="block"><p>Add handler to promise with given promise object id.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="callFunctionOn(CallFunctionOnRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>callFunctionOn</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=CallFunctionOnResponse.html>CallFunctionOnResponse</a>&gt; <a href=RuntimeOperations.html#callFunctionOn(CallFunctionOnRequest)>callFunctionOn</a>(<a href=CallFunctionOnRequest.html>CallFunctionOnRequest</a> input)</pre>
+                                        <div class="block"><p>Calls function with given declaration on the given object. Object group of the result is inherited from the target object.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="compileScript(CompileScriptRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>compileScript</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=CompileScriptResponse.html>CompileScriptResponse</a>&gt; <a href=RuntimeOperations.html#compileScript(CompileScriptRequest)>compileScript</a>(<a href=CompileScriptRequest.html>CompileScriptRequest</a> input)</pre>
+                                        <div class="block"><p>Compiles expression.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="disable()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>disable</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#disable()>disable</a>()</pre>
+                                        <div class="block"><p>Disables reporting of execution contexts creation.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="discardConsoleEntries()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>discardConsoleEntries</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#discardConsoleEntries()>discardConsoleEntries</a>()</pre>
+                                        <div class="block"><p>Discards collected exceptions and console API calls.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="enable()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>enable</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#enable()>enable</a>()</pre>
+                                        <div class="block"><p>Enables reporting of execution contexts creation by means of <code>executionContextCreated</code> event. When the reporting gets enabled the event will be sent immediately for each existing execution context.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="evaluate(EvaluateRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>evaluate</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=EvaluateResponse.html>EvaluateResponse</a>&gt; <a href=RuntimeOperations.html#evaluate(EvaluateRequest)>evaluate</a>(<a href=EvaluateRequest.html>EvaluateRequest</a> input)</pre>
+                                        <div class="block"><p>Evaluates expression on global object.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsolateId()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsolateId</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetIsolateIdResponse.html>GetIsolateIdResponse</a>&gt; <a href=RuntimeOperations.html#getIsolateId()>getIsolateId</a>()</pre>
+                                        <div class="block"><p>Returns the isolate id.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getHeapUsage()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getHeapUsage</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetHeapUsageResponse.html>GetHeapUsageResponse</a>&gt; <a href=RuntimeOperations.html#getHeapUsage()>getHeapUsage</a>()</pre>
+                                        <div class="block"><p>Returns the JavaScript heap usage. It is the total usage of the corresponding isolate not scoped to a particular Runtime.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getProperties(GetPropertiesRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getProperties</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GetPropertiesResponse.html>GetPropertiesResponse</a>&gt; <a href=RuntimeOperations.html#getProperties(GetPropertiesRequest)>getProperties</a>(<a href=GetPropertiesRequest.html>GetPropertiesRequest</a> input)</pre>
+                                        <div class="block"><p>Returns properties of a given object. Object group of the result is inherited from the target object.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="globalLexicalScopeNames(GlobalLexicalScopeNamesRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>globalLexicalScopeNames</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=GlobalLexicalScopeNamesResponse.html>GlobalLexicalScopeNamesResponse</a>&gt; <a href=RuntimeOperations.html#globalLexicalScopeNames(GlobalLexicalScopeNamesRequest)>globalLexicalScopeNames</a>(<a href=GlobalLexicalScopeNamesRequest.html>GlobalLexicalScopeNamesRequest</a> input)</pre>
+                                        <div class="block"><p>Returns all let, const and class variables from global scope.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="queryObjects(QueryObjectsRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>queryObjects</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=QueryObjectsResponse.html>QueryObjectsResponse</a>&gt; <a href=RuntimeOperations.html#queryObjects(QueryObjectsRequest)>queryObjects</a>(<a href=QueryObjectsRequest.html>QueryObjectsRequest</a> input)</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="releaseObject(ReleaseObjectRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>releaseObject</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#releaseObject(ReleaseObjectRequest)>releaseObject</a>(<a href=ReleaseObjectRequest.html>ReleaseObjectRequest</a> input)</pre>
+                                        <div class="block"><p>Releases remote object with given id.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="releaseObjectGroup(ReleaseObjectGroupRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>releaseObjectGroup</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#releaseObjectGroup(ReleaseObjectGroupRequest)>releaseObjectGroup</a>(<a href=ReleaseObjectGroupRequest.html>ReleaseObjectGroupRequest</a> input)</pre>
+                                        <div class="block"><p>Releases all remote objects that belong to a given group.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="runIfWaitingForDebugger()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>runIfWaitingForDebugger</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#runIfWaitingForDebugger()>runIfWaitingForDebugger</a>()</pre>
+                                        <div class="block"><p>Tells inspected instance to run if it was waiting for debugger to attach.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="runScript(RunScriptRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>runScript</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=RunScriptResponse.html>RunScriptResponse</a>&gt; <a href=RuntimeOperations.html#runScript(RunScriptRequest)>runScript</a>(<a href=RunScriptRequest.html>RunScriptRequest</a> input)</pre>
+                                        <div class="block"><p>Runs script with given id in a given context.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setAsyncCallStackDepth(SetAsyncCallStackDepthRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setAsyncCallStackDepth</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#setAsyncCallStackDepth(SetAsyncCallStackDepthRequest)>setAsyncCallStackDepth</a>(<a href=SetAsyncCallStackDepthRequest.html>SetAsyncCallStackDepthRequest</a> input)</pre>
+                                        <div class="block"><p>Enables or disables async call stacks tracking.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setCustomObjectFormatterEnabled(SetCustomObjectFormatterEnabledRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setCustomObjectFormatterEnabled</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#setCustomObjectFormatterEnabled(SetCustomObjectFormatterEnabledRequest)>setCustomObjectFormatterEnabled</a>(<a href=SetCustomObjectFormatterEnabledRequest.html>SetCustomObjectFormatterEnabledRequest</a> input)</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="setMaxCallStackSizeToCapture(SetMaxCallStackSizeToCaptureRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>setMaxCallStackSizeToCapture</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#setMaxCallStackSizeToCapture(SetMaxCallStackSizeToCaptureRequest)>setMaxCallStackSizeToCapture</a>(<a href=SetMaxCallStackSizeToCaptureRequest.html>SetMaxCallStackSizeToCaptureRequest</a> input)</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="terminateExecution()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>terminateExecution</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#terminateExecution()>terminateExecution</a>()</pre>
+                                        <div class="block"><p>Terminate current or next JavaScript execution. Will cancel the termination when the outer-most script execution ends.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="addBinding(AddBindingRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>addBinding</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#addBinding(AddBindingRequest)>addBinding</a>(<a href=AddBindingRequest.html>AddBindingRequest</a> input)</pre>
+                                        <div class="block"><p>If executionContextId is empty, adds binding with the given name on the global objects of all inspected contexts, including those created later, bindings survive reloads. Binding function takes exactly one argument, this argument should be string, in case of any other input, function throws an exception. Each binding function call produces Runtime.bindingCalled notification.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="removeBinding(RemoveBindingRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>removeBinding</h4>
+                                        <pre class="methodSignature"> final Single&lt;<a href=../../protocol/ResponseFrame.html>ResponseFrame</a>&gt; <a href=RuntimeOperations.html#removeBinding(RemoveBindingRequest)>removeBinding</a>(<a href=RemoveBindingRequest.html>RemoveBindingRequest</a> input)</pre>
+                                        <div class="block"><p>This method does not remove binding function from global object but unsubscribes current runtime agent from Runtime.bindingCalled notifications.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="bindingCalled()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>bindingCalled</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=BindingCalledEvent.html>BindingCalledEvent</a>&gt; <a href=RuntimeOperations.html#bindingCalled()>bindingCalled</a>()</pre>
+                                        <div class="block"><p>Notification is issued every time when binding is called.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="consoleAPICalled()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>consoleAPICalled</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=ConsoleAPICalledEvent.html>ConsoleAPICalledEvent</a>&gt; <a href=RuntimeOperations.html#consoleAPICalled()>consoleAPICalled</a>()</pre>
+                                        <div class="block"><p>Issued when console API was called.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="exceptionRevoked()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>exceptionRevoked</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=ExceptionRevokedEvent.html>ExceptionRevokedEvent</a>&gt; <a href=RuntimeOperations.html#exceptionRevoked()>exceptionRevoked</a>()</pre>
+                                        <div class="block"><p>Issued when unhandled exception was revoked.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="exceptionThrown()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>exceptionThrown</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=ExceptionThrownEvent.html>ExceptionThrownEvent</a>&gt; <a href=RuntimeOperations.html#exceptionThrown()>exceptionThrown</a>()</pre>
+                                        <div class="block"><p>Issued when exception was thrown and unhandled.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="executionContextCreated()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>executionContextCreated</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=ExecutionContextCreatedEvent.html>ExecutionContextCreatedEvent</a>&gt; <a href=RuntimeOperations.html#executionContextCreated()>executionContextCreated</a>()</pre>
+                                        <div class="block"><p>Issued when new execution context is created.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="executionContextDestroyed()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>executionContextDestroyed</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=ExecutionContextDestroyedEvent.html>ExecutionContextDestroyedEvent</a>&gt; <a href=RuntimeOperations.html#executionContextDestroyed()>executionContextDestroyed</a>()</pre>
+                                        <div class="block"><p>Issued when execution context is destroyed.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="executionContextsCleared()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>executionContextsCleared</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt; <a href=RuntimeOperations.html#executionContextsCleared()>executionContextsCleared</a>()</pre>
+                                        <div class="block"><p>Issued when all executionContexts were cleared in browser</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="inspectRequested()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>inspectRequested</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=InspectRequestedEvent.html>InspectRequestedEvent</a>&gt; <a href=RuntimeOperations.html#inspectRequested()>inspectRequested</a>()</pre>
+                                        <div class="block"><p>Issued when object should be inspected (for example, as a result of inspect() command line API call).</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="events()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>events</h4>
+                                        <pre class="methodSignature"> final Flowable&lt;<a href=../../protocol/Event.html>Event</a>&gt; <a href=RuntimeOperations.html#events()>events</a>()</pre>
+                                        <div class="block"><p>Returns flowable capturing all Runtime domains events.</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>
