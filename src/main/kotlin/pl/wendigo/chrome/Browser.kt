@@ -19,7 +19,7 @@ import kotlin.math.max
  */
 class Browser private constructor(
     private val options: Options,
-    private val info: Info,
+    val info: Info,
     private val manager: Manager
 ) : AutoCloseable, Closeable {
     /**
@@ -41,6 +41,11 @@ class Browser private constructor(
      * Lists all targets that can be attached to.
      */
     fun targets() = manager.list()
+
+    /**
+     * Returns information on browser.
+     */
+    fun browserInfo() = info;
 
     /**
      * Attaches to existing target creating new session if multiplexed connections is used.
@@ -187,7 +192,7 @@ class Browser private constructor(
         )
     }
 
-    private data class Info(
+    data class Info(
         @get:JsonProperty("Browser")
         val browser: String,
 

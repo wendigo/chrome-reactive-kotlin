@@ -6,7 +6,9 @@ import spock.lang.Shared
 import spock.lang.Specification
 
 @Testcontainers
-class ChromeProtocolSpecification extends Specification {
+class ChromeProtocolSpecification
+        extends Specification
+{
 
     @Shared
     public GenericContainer container = new GenericContainer("eu.gcr.io/zenika-hub/alpine-chrome:89")
@@ -25,38 +27,53 @@ class ChromeProtocolSpecification extends Specification {
             )
             .withPrivilegedMode(true)
 
-    def "should open new target given provided options"() {
+    def "should return browser information"()
+    {
         given:
-            def address = container.getContainerIpAddress() + ":" + container.firstMappedPort
+        def chrome = getBrowser()
 
-            def chrome = Browser.builder()
-                    .withAddress(address)
-                    .withEventsBufferSize(128)
-                    .withViewportHeight(600)
-                    .withViewportWidth(900)
-                    .incognito(true)
-                    .multiplexConnections(true)
-                    .build()
+        expect:
+        chrome.getInfo().browser == "HeadlessChrome/89.0.4389.72"
+    }
+
+    def "should open new target given provided options"()
+    {
+        given:
+        def chrome = getBrowser()
 
         when:
-            def target = chrome.target()
-            def layout = target.page.getLayoutMetrics().blockingGet()
+        def target = chrome.target()
+        def layout = target.page.getLayoutMetrics().blockingGet()
 
         then:
-            with (target) {
-                session.sessionId != ""
-                session.browserContextID != ""
-                session.targetId != ""
-                info().type == "page"
-            }
+        with(target) {
+            session.sessionId != ""
+            session.browserContextID != ""
+            session.targetId != ""
+            info().type == "page"
+        }
 
-            with (layout.layoutViewport) {
-                clientHeight == 600
-                clientWidth == 900
-            }
+        with(layout.layoutViewport) {
+            clientHeight == 600
+            clientWidth == 900
+        }
 
         cleanup:
-            target.close()
-            chrome.close()
+        target.close()
+        chrome.close()
+    }
+
+    private Browser getBrowser()
+    {
+        def address = container.getContainerIpAddress() + ":" + container.firstMappedPort
+
+        return Browser.builder()
+                .withAddress(address)
+                .withEventsBufferSize(128)
+                .withViewportHeight(600)
+                .withViewportWidth(900)
+                .incognito(true)
+                .multiplexConnections(true)
+                .build()
     }
 }
