@@ -20,3 +20,4 @@ jobs:
         env:
            SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
            SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+           GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
