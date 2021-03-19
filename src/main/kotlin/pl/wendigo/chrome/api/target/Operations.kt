@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.target
 
+import kotlinx.serialization.json.Json
+
 /**
  * Supports additional targets discovery and allows to attach to them.
  *
@@ -11,14 +13,14 @@ class TargetOperations internal constructor(private val connection: pl.wendigo.c
      *
      * @link Protocol [Target#activateTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-activateTarget) method documentation.
      */
-    fun activateTarget(input: ActivateTargetRequest) = connection.request("Target.activateTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun activateTarget(input: ActivateTargetRequest) = connection.request("Target.activateTarget", Json.encodeToJsonElement(ActivateTargetRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Attaches to the target with given id.
      *
      * @link Protocol [Target#attachToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToTarget) method documentation.
      */
-    fun attachToTarget(input: AttachToTargetRequest) = connection.request("Target.attachToTarget", input, AttachToTargetResponse::class.java)
+    fun attachToTarget(input: AttachToTargetRequest) = connection.request("Target.attachToTarget", Json.encodeToJsonElement(AttachToTargetRequest.serializer(), input), AttachToTargetResponse.serializer())
 
     /**
      * Attaches to the browser target, only uses flat sessionId mode.
@@ -27,14 +29,14 @@ class TargetOperations internal constructor(private val connection: pl.wendigo.c
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun attachToBrowserTarget() = connection.request("Target.attachToBrowserTarget", null, AttachToBrowserTargetResponse::class.java)
+    fun attachToBrowserTarget() = connection.request("Target.attachToBrowserTarget", null, AttachToBrowserTargetResponse.serializer())
 
     /**
      * Closes the target. If the target is a page that gets closed too.
      *
      * @link Protocol [Target#closeTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-closeTarget) method documentation.
      */
-    fun closeTarget(input: CloseTargetRequest) = connection.request("Target.closeTarget", input, CloseTargetResponse::class.java)
+    fun closeTarget(input: CloseTargetRequest) = connection.request("Target.closeTarget", Json.encodeToJsonElement(CloseTargetRequest.serializer(), input), CloseTargetResponse.serializer())
 
     /**
      * Inject object to the target's main frame that provides a communication
@@ -50,7 +52,7 @@ The object has the follwing API:
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun exposeDevToolsProtocol(input: ExposeDevToolsProtocolRequest) = connection.request("Target.exposeDevToolsProtocol", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun exposeDevToolsProtocol(input: ExposeDevToolsProtocolRequest) = connection.request("Target.exposeDevToolsProtocol", Json.encodeToJsonElement(ExposeDevToolsProtocolRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than
@@ -60,7 +62,7 @@ one.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun createBrowserContext(input: CreateBrowserContextRequest) = connection.request("Target.createBrowserContext", input, CreateBrowserContextResponse::class.java)
+    fun createBrowserContext(input: CreateBrowserContextRequest) = connection.request("Target.createBrowserContext", Json.encodeToJsonElement(CreateBrowserContextRequest.serializer(), input), CreateBrowserContextResponse.serializer())
 
     /**
      * Returns all browser contexts created with `Target.createBrowserContext` method.
@@ -69,21 +71,21 @@ one.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getBrowserContexts() = connection.request("Target.getBrowserContexts", null, GetBrowserContextsResponse::class.java)
+    fun getBrowserContexts() = connection.request("Target.getBrowserContexts", null, GetBrowserContextsResponse.serializer())
 
     /**
      * Creates a new page.
      *
      * @link Protocol [Target#createTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createTarget) method documentation.
      */
-    fun createTarget(input: CreateTargetRequest) = connection.request("Target.createTarget", input, CreateTargetResponse::class.java)
+    fun createTarget(input: CreateTargetRequest) = connection.request("Target.createTarget", Json.encodeToJsonElement(CreateTargetRequest.serializer(), input), CreateTargetResponse.serializer())
 
     /**
      * Detaches session with given id.
      *
      * @link Protocol [Target#detachFromTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-detachFromTarget) method documentation.
      */
-    fun detachFromTarget(input: DetachFromTargetRequest) = connection.request("Target.detachFromTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun detachFromTarget(input: DetachFromTargetRequest) = connection.request("Target.detachFromTarget", Json.encodeToJsonElement(DetachFromTargetRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Deletes a BrowserContext. All the belonging pages will be closed without calling their
@@ -93,7 +95,7 @@ beforeunload hooks.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun disposeBrowserContext(input: DisposeBrowserContextRequest) = connection.request("Target.disposeBrowserContext", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disposeBrowserContext(input: DisposeBrowserContextRequest) = connection.request("Target.disposeBrowserContext", Json.encodeToJsonElement(DisposeBrowserContextRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns information about a target.
@@ -102,14 +104,14 @@ beforeunload hooks.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getTargetInfo(input: GetTargetInfoRequest) = connection.request("Target.getTargetInfo", input, GetTargetInfoResponse::class.java)
+    fun getTargetInfo(input: GetTargetInfoRequest) = connection.request("Target.getTargetInfo", Json.encodeToJsonElement(GetTargetInfoRequest.serializer(), input), GetTargetInfoResponse.serializer())
 
     /**
      * Retrieves a list of available targets.
      *
      * @link Protocol [Target#getTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargets) method documentation.
      */
-    fun getTargets() = connection.request("Target.getTargets", null, GetTargetsResponse::class.java)
+    fun getTargets() = connection.request("Target.getTargets", null, GetTargetsResponse.serializer())
 
     /**
      * Sends protocol message over session with given id.
@@ -119,7 +121,7 @@ and crbug.com/991325.
      * @link Protocol [Target#sendMessageToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-sendMessageToTarget) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "sendMessageToTarget is deprecated.")
-    fun sendMessageToTarget(input: SendMessageToTargetRequest) = connection.request("Target.sendMessageToTarget", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun sendMessageToTarget(input: SendMessageToTargetRequest) = connection.request("Target.sendMessageToTarget", Json.encodeToJsonElement(SendMessageToTargetRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Controls whether to automatically attach to new targets which are considered to be related to
@@ -130,7 +132,7 @@ automatically detaches from all currently attached targets.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setAutoAttach(input: SetAutoAttachRequest) = connection.request("Target.setAutoAttach", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAutoAttach(input: SetAutoAttachRequest) = connection.request("Target.setAutoAttach", Json.encodeToJsonElement(SetAutoAttachRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Controls whether to discover available targets and notify via
@@ -138,7 +140,7 @@ automatically detaches from all currently attached targets.
      *
      * @link Protocol [Target#setDiscoverTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setDiscoverTargets) method documentation.
      */
-    fun setDiscoverTargets(input: SetDiscoverTargetsRequest) = connection.request("Target.setDiscoverTargets", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDiscoverTargets(input: SetDiscoverTargetsRequest) = connection.request("Target.setDiscoverTargets", Json.encodeToJsonElement(SetDiscoverTargetsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables target discovery for the specified locations, when `setDiscoverTargets` was set to
@@ -148,45 +150,45 @@ automatically detaches from all currently attached targets.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setRemoteLocations(input: SetRemoteLocationsRequest) = connection.request("Target.setRemoteLocations", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setRemoteLocations(input: SetRemoteLocationsRequest) = connection.request("Target.setRemoteLocations", Json.encodeToJsonElement(SetRemoteLocationsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Issued when attached to target because of auto-attach or `attachToTarget` command.
      */
-    fun attachedToTarget(): io.reactivex.rxjava3.core.Flowable<AttachedToTargetEvent> = connection.events("Target.attachedToTarget", AttachedToTargetEvent::class.java)
+    fun attachedToTarget(): io.reactivex.rxjava3.core.Flowable<AttachedToTargetEvent> = connection.events("Target.attachedToTarget", AttachedToTargetEvent.serializer())
 
     /**
      *  Issued when detached from target for any reason (including `detachFromTarget` command). Can be
 issued multiple times per target if multiple sessions have been attached to it.
      */
-    fun detachedFromTarget(): io.reactivex.rxjava3.core.Flowable<DetachedFromTargetEvent> = connection.events("Target.detachedFromTarget", DetachedFromTargetEvent::class.java)
+    fun detachedFromTarget(): io.reactivex.rxjava3.core.Flowable<DetachedFromTargetEvent> = connection.events("Target.detachedFromTarget", DetachedFromTargetEvent.serializer())
 
     /**
      *  Notifies about a new protocol message received from the session (as reported in
 `attachedToTarget` event).
      */
-    fun receivedMessageFromTarget(): io.reactivex.rxjava3.core.Flowable<ReceivedMessageFromTargetEvent> = connection.events("Target.receivedMessageFromTarget", ReceivedMessageFromTargetEvent::class.java)
+    fun receivedMessageFromTarget(): io.reactivex.rxjava3.core.Flowable<ReceivedMessageFromTargetEvent> = connection.events("Target.receivedMessageFromTarget", ReceivedMessageFromTargetEvent.serializer())
 
     /**
      *  Issued when a possible inspection target is created.
      */
-    fun targetCreated(): io.reactivex.rxjava3.core.Flowable<TargetCreatedEvent> = connection.events("Target.targetCreated", TargetCreatedEvent::class.java)
+    fun targetCreated(): io.reactivex.rxjava3.core.Flowable<TargetCreatedEvent> = connection.events("Target.targetCreated", TargetCreatedEvent.serializer())
 
     /**
      *  Issued when a target is destroyed.
      */
-    fun targetDestroyed(): io.reactivex.rxjava3.core.Flowable<TargetDestroyedEvent> = connection.events("Target.targetDestroyed", TargetDestroyedEvent::class.java)
+    fun targetDestroyed(): io.reactivex.rxjava3.core.Flowable<TargetDestroyedEvent> = connection.events("Target.targetDestroyed", TargetDestroyedEvent.serializer())
 
     /**
      *  Issued when a target has crashed.
      */
-    fun targetCrashed(): io.reactivex.rxjava3.core.Flowable<TargetCrashedEvent> = connection.events("Target.targetCrashed", TargetCrashedEvent::class.java)
+    fun targetCrashed(): io.reactivex.rxjava3.core.Flowable<TargetCrashedEvent> = connection.events("Target.targetCrashed", TargetCrashedEvent.serializer())
 
     /**
      *  Issued when some information about a target has changed. This only happens between
 `targetCreated` and `targetDestroyed`.
      */
-    fun targetInfoChanged(): io.reactivex.rxjava3.core.Flowable<TargetInfoChangedEvent> = connection.events("Target.targetInfoChanged", TargetInfoChangedEvent::class.java)
+    fun targetInfoChanged(): io.reactivex.rxjava3.core.Flowable<TargetInfoChangedEvent> = connection.events("Target.targetInfoChanged", TargetInfoChangedEvent.serializer())
 
     /**
      * Returns flowable capturing all Target domains events.
@@ -205,6 +207,7 @@ issued multiple times per target if multiple sessions have been attached to it.
  * @link [Target#activateTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-activateTarget) method documentation.
  * @see [TargetOperations.activateTarget]
  */
+@kotlinx.serialization.Serializable
 data class ActivateTargetRequest(
     /**
      *
@@ -220,6 +223,7 @@ data class ActivateTargetRequest(
  * @link [Target#attachToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToTarget) method documentation.
  * @see [TargetOperations.attachToTarget]
  */
+@kotlinx.serialization.Serializable
 data class AttachToTargetRequest(
     /**
      *
@@ -243,6 +247,7 @@ and eventually retire it. See crbug.com/991325.
  * @link [Target#attachToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToTarget) method documentation.
  * @see [TargetOperations.attachToTarget]
  */
+@kotlinx.serialization.Serializable
 data class AttachToTargetResponse(
     /**  
      * Id assigned to the session.  
@@ -259,6 +264,7 @@ data class AttachToTargetResponse(
  * @link [Target#attachToBrowserTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-attachToBrowserTarget) method documentation.
  * @see [TargetOperations.attachToBrowserTarget]
  */
+@kotlinx.serialization.Serializable
 data class AttachToBrowserTargetResponse(
     /**  
      * Id assigned to the session.  
@@ -274,6 +280,7 @@ data class AttachToBrowserTargetResponse(
  * @link [Target#closeTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-closeTarget) method documentation.
  * @see [TargetOperations.closeTarget]
  */
+@kotlinx.serialization.Serializable
 data class CloseTargetRequest(
     /**
      *
@@ -290,6 +297,7 @@ data class CloseTargetRequest(
  * @link [Target#closeTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-closeTarget) method documentation.
  * @see [TargetOperations.closeTarget]
  */
+@kotlinx.serialization.Serializable
 data class CloseTargetResponse(
     /**  
      * Always set to true. If an error occurs, the response indicates protocol error.  
@@ -312,6 +320,7 @@ The object has the follwing API:
  * @link [Target#exposeDevToolsProtocol](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-exposeDevToolsProtocol) method documentation.
  * @see [TargetOperations.exposeDevToolsProtocol]
  */
+@kotlinx.serialization.Serializable
 data class ExposeDevToolsProtocolRequest(
     /**
      *
@@ -333,6 +342,7 @@ one.
  * @link [Target#createBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createBrowserContext) method documentation.
  * @see [TargetOperations.createBrowserContext]
  */
+@kotlinx.serialization.Serializable
 data class CreateBrowserContextRequest(
     /**
      * If specified, disposes this context when debugging session disconnects.
@@ -360,6 +370,7 @@ one.
  * @link [Target#createBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createBrowserContext) method documentation.
  * @see [TargetOperations.createBrowserContext]
  */
+@kotlinx.serialization.Serializable
 data class CreateBrowserContextResponse(
     /**  
      * The id of the context created.  
@@ -376,6 +387,7 @@ data class CreateBrowserContextResponse(
  * @link [Target#getBrowserContexts](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getBrowserContexts) method documentation.
  * @see [TargetOperations.getBrowserContexts]
  */
+@kotlinx.serialization.Serializable
 data class GetBrowserContextsResponse(
     /**  
      * An array of browser context ids.  
@@ -391,6 +403,7 @@ data class GetBrowserContextsResponse(
  * @link [Target#createTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createTarget) method documentation.
  * @see [TargetOperations.createTarget]
  */
+@kotlinx.serialization.Serializable
 data class CreateTargetRequest(
     /**
      * The initial URL the page will be navigated to.
@@ -439,6 +452,7 @@ false by default).
  * @link [Target#createTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-createTarget) method documentation.
  * @see [TargetOperations.createTarget]
  */
+@kotlinx.serialization.Serializable
 data class CreateTargetResponse(
     /**  
      * The id of the page opened.  
@@ -454,6 +468,7 @@ data class CreateTargetResponse(
  * @link [Target#detachFromTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-detachFromTarget) method documentation.
  * @see [TargetOperations.detachFromTarget]
  */
+@kotlinx.serialization.Serializable
 data class DetachFromTargetRequest(
     /**
      * Session to detach.
@@ -475,6 +490,7 @@ beforeunload hooks.
  * @link [Target#disposeBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-disposeBrowserContext) method documentation.
  * @see [TargetOperations.disposeBrowserContext]
  */
+@kotlinx.serialization.Serializable
 data class DisposeBrowserContextRequest(
     /**
      *
@@ -490,6 +506,7 @@ data class DisposeBrowserContextRequest(
  * @link [Target#getTargetInfo](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargetInfo) method documentation.
  * @see [TargetOperations.getTargetInfo]
  */
+@kotlinx.serialization.Serializable
 data class GetTargetInfoRequest(
     /**
      *
@@ -506,6 +523,7 @@ data class GetTargetInfoRequest(
  * @link [Target#getTargetInfo](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargetInfo) method documentation.
  * @see [TargetOperations.getTargetInfo]
  */
+@kotlinx.serialization.Serializable
 data class GetTargetInfoResponse(
     /**  
      *  
@@ -522,6 +540,7 @@ data class GetTargetInfoResponse(
  * @link [Target#getTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-getTargets) method documentation.
  * @see [TargetOperations.getTargets]
  */
+@kotlinx.serialization.Serializable
 data class GetTargetsResponse(
     /**  
      * The list of targets.  
@@ -539,6 +558,7 @@ and crbug.com/991325.
  * @link [Target#sendMessageToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-sendMessageToTarget) method documentation.
  * @see [TargetOperations.sendMessageToTarget]
  */
+@kotlinx.serialization.Serializable
 data class SendMessageToTargetRequest(
     /**
      *
@@ -566,6 +586,7 @@ automatically detaches from all currently attached targets.
  * @link [Target#setAutoAttach](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setAutoAttach) method documentation.
  * @see [TargetOperations.setAutoAttach]
  */
+@kotlinx.serialization.Serializable
 data class SetAutoAttachRequest(
     /**
      * Whether to auto-attach to related targets.
@@ -595,6 +616,7 @@ and eventually retire it. See crbug.com/991325.
  * @link [Target#setDiscoverTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setDiscoverTargets) method documentation.
  * @see [TargetOperations.setDiscoverTargets]
  */
+@kotlinx.serialization.Serializable
 data class SetDiscoverTargetsRequest(
     /**
      * Whether to discover available targets.
@@ -611,6 +633,7 @@ data class SetDiscoverTargetsRequest(
  * @link [Target#setRemoteLocations](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setRemoteLocations) method documentation.
  * @see [TargetOperations.setRemoteLocations]
  */
+@kotlinx.serialization.Serializable
 data class SetRemoteLocationsRequest(
     /**
      * List of remote locations.
@@ -624,6 +647,7 @@ data class SetRemoteLocationsRequest(
  *
  * @link [Target#attachedToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-attachedToTarget) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AttachedToTargetEvent(
     /**  
      * Identifier assigned to the session used to send/receive messages.  
@@ -640,7 +664,7 @@ data class AttachedToTargetEvent(
      */  
     val waitingForDebugger: Boolean
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "attachedToTarget")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "attachedToTarget")
 
 /**
  * Issued when detached from target for any reason (including `detachFromTarget` command). Can be
@@ -648,6 +672,7 @@ issued multiple times per target if multiple sessions have been attached to it.
  *
  * @link [Target#detachedFromTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-detachedFromTarget) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DetachedFromTargetEvent(
     /**  
      * Detached session identifier.  
@@ -659,7 +684,7 @@ data class DetachedFromTargetEvent(
      */  
     val targetId: TargetID? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "detachedFromTarget")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "detachedFromTarget")
 
 /**
  * Notifies about a new protocol message received from the session (as reported in
@@ -667,6 +692,7 @@ data class DetachedFromTargetEvent(
  *
  * @link [Target#receivedMessageFromTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-receivedMessageFromTarget) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ReceivedMessageFromTargetEvent(
     /**  
      * Identifier of a session which sends a message.  
@@ -683,39 +709,42 @@ data class ReceivedMessageFromTargetEvent(
      */  
     val targetId: TargetID? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "receivedMessageFromTarget")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "receivedMessageFromTarget")
 
 /**
  * Issued when a possible inspection target is created.
  *
  * @link [Target#targetCreated](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-targetCreated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class TargetCreatedEvent(
     /**  
      *  
      */  
     val targetInfo: TargetInfo
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetCreated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "targetCreated")
 
 /**
  * Issued when a target is destroyed.
  *
  * @link [Target#targetDestroyed](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-targetDestroyed) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class TargetDestroyedEvent(
     /**  
      *  
      */  
     val targetId: TargetID
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetDestroyed")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "targetDestroyed")
 
 /**
  * Issued when a target has crashed.
  *
  * @link [Target#targetCrashed](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-targetCrashed) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class TargetCrashedEvent(
     /**  
      *  
@@ -732,7 +761,7 @@ data class TargetCrashedEvent(
      */  
     val errorCode: Int
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetCrashed")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "targetCrashed")
 
 /**
  * Issued when some information about a target has changed. This only happens between
@@ -740,10 +769,11 @@ data class TargetCrashedEvent(
  *
  * @link [Target#targetInfoChanged](https://chromedevtools.github.io/devtools-protocol/tot/Target#event-targetInfoChanged) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class TargetInfoChangedEvent(
     /**  
      *  
      */  
     val targetInfo: TargetInfo
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Target", name = "targetInfoChanged")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Target", domainEventName = "targetInfoChanged")

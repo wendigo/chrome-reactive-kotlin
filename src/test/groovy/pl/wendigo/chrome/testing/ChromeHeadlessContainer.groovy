@@ -27,6 +27,7 @@ class ChromeHeadlessContainer
                         "about:blank"
                 )
                 .withPrivilegedMode(true)
+                .withReuse(true)
 
             addFixedExposedPort(PORT, PORT)
     }

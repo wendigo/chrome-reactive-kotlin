@@ -14,14 +14,15 @@ https://www.w3.org/TR/mixed-content/#categories
  *
  * @link [Security#MixedContentType](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-MixedContentType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class MixedContentType {
-    @com.fasterxml.jackson.annotation.JsonProperty("blockable")
+    @kotlinx.serialization.SerialName("blockable")
     BLOCKABLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("optionally-blockable")
+    @kotlinx.serialization.SerialName("optionally-blockable")
     OPTIONALLY_BLOCKABLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    @kotlinx.serialization.SerialName("none")
     NONE;
 }
 
@@ -30,23 +31,24 @@ enum class MixedContentType {
  *
  * @link [Security#SecurityState](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-SecurityState) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class SecurityState {
-    @com.fasterxml.jackson.annotation.JsonProperty("unknown")
+    @kotlinx.serialization.SerialName("unknown")
     UNKNOWN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("neutral")
+    @kotlinx.serialization.SerialName("neutral")
     NEUTRAL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("insecure")
+    @kotlinx.serialization.SerialName("insecure")
     INSECURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("secure")
+    @kotlinx.serialization.SerialName("secure")
     SECURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("info")
+    @kotlinx.serialization.SerialName("info")
     INFO,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("insecure-broken")
+    @kotlinx.serialization.SerialName("insecure-broken")
     INSECURE_BROKEN;
 }
 
@@ -56,6 +58,7 @@ enum class SecurityState {
  * @link [Security#CertificateSecurityState](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-CertificateSecurityState) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CertificateSecurityState(
     /**  
      * Protocol name (e.g. "TLS 1.2" or "QUIC").  
@@ -153,11 +156,12 @@ data class CertificateSecurityState(
  *
  * @link [Security#SafetyTipStatus](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-SafetyTipStatus) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class SafetyTipStatus {
-    @com.fasterxml.jackson.annotation.JsonProperty("badReputation")
+    @kotlinx.serialization.SerialName("badReputation")
     BADREPUTATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("lookalike")
+    @kotlinx.serialization.SerialName("lookalike")
     LOOKALIKE;
 }
 
@@ -167,6 +171,7 @@ enum class SafetyTipStatus {
  * @link [Security#SafetyTipInfo](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-SafetyTipInfo) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SafetyTipInfo(
     /**  
      * Describes whether the page triggers any safety tips or reputation warnings. Default is unknown.  
@@ -185,6 +190,7 @@ data class SafetyTipInfo(
  * @link [Security#VisibleSecurityState](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-VisibleSecurityState) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class VisibleSecurityState(
     /**  
      * The security level of the page.  
@@ -213,6 +219,7 @@ data class VisibleSecurityState(
  * @link [Security#SecurityStateExplanation](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-SecurityStateExplanation) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SecurityStateExplanation(
     /**  
      * Security state representing the severity of the factor being explained.  
@@ -256,6 +263,7 @@ data class SecurityStateExplanation(
  * @link [Security#InsecureContentStatus](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-InsecureContentStatus) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class InsecureContentStatus(
     /**  
      * Always false.  
@@ -299,10 +307,11 @@ request and cancel will cancel the request.
  *
  * @link [Security#CertificateErrorAction](https://chromedevtools.github.io/devtools-protocol/tot/Security#type-CertificateErrorAction) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CertificateErrorAction {
-    @com.fasterxml.jackson.annotation.JsonProperty("continue")
+    @kotlinx.serialization.SerialName("continue")
     CONTINUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("cancel")
+    @kotlinx.serialization.SerialName("cancel")
     CANCEL;
 }

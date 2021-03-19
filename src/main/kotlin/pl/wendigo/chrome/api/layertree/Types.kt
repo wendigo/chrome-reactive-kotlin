@@ -22,6 +22,7 @@ typealias SnapshotId = String
  * @link [LayerTree#ScrollRect](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-ScrollRect) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ScrollRect(
     /**  
      * Rectangle itself.  
@@ -40,6 +41,7 @@ data class ScrollRect(
  * @link [LayerTree#StickyPositionConstraint](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-StickyPositionConstraint) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class StickyPositionConstraint(
     /**  
      * Layout rectangle of the sticky element before being shifted  
@@ -68,6 +70,7 @@ data class StickyPositionConstraint(
  * @link [LayerTree#PictureTile](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-PictureTile) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PictureTile(
     /**  
      * Offset from owning layer left boundary  
@@ -91,6 +94,7 @@ data class PictureTile(
  * @link [LayerTree#Layer](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#type-Layer) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Layer(
     /**  
      * The unique id for this layer.  

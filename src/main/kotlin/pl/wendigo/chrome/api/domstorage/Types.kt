@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.domstorage
  * @link [DOMStorage#StorageId](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#type-StorageId) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class StorageId(
     /**  
      * Security origin for the storage.  

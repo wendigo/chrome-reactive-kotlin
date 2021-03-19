@@ -15,11 +15,12 @@ body is received.
  *
  * @link [Fetch#RequestStage](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-RequestStage) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class RequestStage {
-    @com.fasterxml.jackson.annotation.JsonProperty("Request")
+    @kotlinx.serialization.SerialName("Request")
     REQUEST,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Response")
+    @kotlinx.serialization.SerialName("Response")
     RESPONSE;
 }
 
@@ -29,6 +30,7 @@ enum class RequestStage {
  * @link [Fetch#RequestPattern](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-RequestPattern) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RequestPattern(
     /**  
      * Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is  
@@ -53,6 +55,7 @@ data class RequestPattern(
  * @link [Fetch#HeaderEntry](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-HeaderEntry) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class HeaderEntry(
     /**  
      *  
@@ -71,6 +74,7 @@ data class HeaderEntry(
  * @link [Fetch#AuthChallenge](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-AuthChallenge) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AuthChallenge(
     /**  
      * Source of the authentication challenge.  
@@ -99,6 +103,7 @@ data class AuthChallenge(
  * @link [Fetch#AuthChallengeResponse](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#type-AuthChallengeResponse) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AuthChallengeResponse(
     /**  
      * The decision on what to do in response to the authorization challenge.  Default means  

@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.tracing
 
+import kotlinx.serialization.json.Json
+
 /**
  * TracingOperations represents Tracing protocol domain request/response operations and events that can be captured.
  *
@@ -13,52 +15,52 @@ class TracingOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Tracing#end](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-end) method documentation.
      */
-    fun end() = connection.request("Tracing.end", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun end() = connection.request("Tracing.end", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Gets supported tracing categories.
      *
      * @link Protocol [Tracing#getCategories](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-getCategories) method documentation.
      */
-    fun getCategories() = connection.request("Tracing.getCategories", null, GetCategoriesResponse::class.java)
+    fun getCategories() = connection.request("Tracing.getCategories", null, GetCategoriesResponse.serializer())
 
     /**
      * Record a clock sync marker in the trace.
      *
      * @link Protocol [Tracing#recordClockSyncMarker](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-recordClockSyncMarker) method documentation.
      */
-    fun recordClockSyncMarker(input: RecordClockSyncMarkerRequest) = connection.request("Tracing.recordClockSyncMarker", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun recordClockSyncMarker(input: RecordClockSyncMarkerRequest) = connection.request("Tracing.recordClockSyncMarker", Json.encodeToJsonElement(RecordClockSyncMarkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Request a global memory dump.
      *
      * @link Protocol [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) method documentation.
      */
-    fun requestMemoryDump(input: RequestMemoryDumpRequest) = connection.request("Tracing.requestMemoryDump", input, RequestMemoryDumpResponse::class.java)
+    fun requestMemoryDump(input: RequestMemoryDumpRequest) = connection.request("Tracing.requestMemoryDump", Json.encodeToJsonElement(RequestMemoryDumpRequest.serializer(), input), RequestMemoryDumpResponse.serializer())
 
     /**
      * Start trace events collection.
      *
      * @link Protocol [Tracing#start](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-start) method documentation.
      */
-    fun start(input: StartRequest) = connection.request("Tracing.start", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun start(input: StartRequest) = connection.request("Tracing.start", Json.encodeToJsonElement(StartRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all Tracing.bufferUsage events.
      */
-    fun bufferUsage(): io.reactivex.rxjava3.core.Flowable<BufferUsageEvent> = connection.events("Tracing.bufferUsage", BufferUsageEvent::class.java)
+    fun bufferUsage(): io.reactivex.rxjava3.core.Flowable<BufferUsageEvent> = connection.events("Tracing.bufferUsage", BufferUsageEvent.serializer())
 
     /**
      *  Contains an bucket of collected trace events. When tracing is stopped collected events will be
 send as a sequence of dataCollected events followed by tracingComplete event.
      */
-    fun dataCollected(): io.reactivex.rxjava3.core.Flowable<DataCollectedEvent> = connection.events("Tracing.dataCollected", DataCollectedEvent::class.java)
+    fun dataCollected(): io.reactivex.rxjava3.core.Flowable<DataCollectedEvent> = connection.events("Tracing.dataCollected", DataCollectedEvent.serializer())
 
     /**
      *  Signals that tracing is stopped and there is no trace buffers pending flush, all data were
 delivered via dataCollected events.
      */
-    fun tracingComplete(): io.reactivex.rxjava3.core.Flowable<TracingCompleteEvent> = connection.events("Tracing.tracingComplete", TracingCompleteEvent::class.java)
+    fun tracingComplete(): io.reactivex.rxjava3.core.Flowable<TracingCompleteEvent> = connection.events("Tracing.tracingComplete", TracingCompleteEvent.serializer())
 
     /**
      * Returns flowable capturing all Tracing domains events.
@@ -78,6 +80,7 @@ delivered via dataCollected events.
  * @link [Tracing#getCategories](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-getCategories) method documentation.
  * @see [TracingOperations.getCategories]
  */
+@kotlinx.serialization.Serializable
 data class GetCategoriesResponse(
     /**  
      * A list of supported tracing categories.  
@@ -93,6 +96,7 @@ data class GetCategoriesResponse(
  * @link [Tracing#recordClockSyncMarker](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-recordClockSyncMarker) method documentation.
  * @see [TracingOperations.recordClockSyncMarker]
  */
+@kotlinx.serialization.Serializable
 data class RecordClockSyncMarkerRequest(
     /**
      * The ID of this clock sync marker
@@ -108,6 +112,7 @@ data class RecordClockSyncMarkerRequest(
  * @link [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) method documentation.
  * @see [TracingOperations.requestMemoryDump]
  */
+@kotlinx.serialization.Serializable
 data class RequestMemoryDumpRequest(
     /**
      * Enables more deterministic results by forcing garbage collection
@@ -129,6 +134,7 @@ data class RequestMemoryDumpRequest(
  * @link [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) method documentation.
  * @see [TracingOperations.requestMemoryDump]
  */
+@kotlinx.serialization.Serializable
 data class RequestMemoryDumpResponse(
     /**  
      * GUID of the resulting global memory dump.  
@@ -149,6 +155,7 @@ data class RequestMemoryDumpResponse(
  * @link [Tracing#start](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-start) method documentation.
  * @see [TracingOperations.start]
  */
+@kotlinx.serialization.Serializable
 data class StartRequest(
     /**
      * Category/tag filter
@@ -202,6 +209,7 @@ are ignored. (Encoded as a base64 string when passed over JSON)
  *
  * @link [Tracing#bufferUsage](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#event-bufferUsage) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class BufferUsageEvent(
     /**  
      * A number in range [0..1] that indicates the used size of event buffer as a fraction of its  
@@ -220,7 +228,7 @@ data class BufferUsageEvent(
      */  
     val value: Double? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Tracing", name = "bufferUsage")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Tracing", domainEventName = "bufferUsage")
 
 /**
  * Contains an bucket of collected trace events. When tracing is stopped collected events will be
@@ -228,13 +236,14 @@ send as a sequence of dataCollected events followed by tracingComplete event.
  *
  * @link [Tracing#dataCollected](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#event-dataCollected) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DataCollectedEvent(
     /**  
      *  
      */  
-    val value: List<Any>
+    val value: List<kotlinx.serialization.json.JsonElement>
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Tracing", name = "dataCollected")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Tracing", domainEventName = "dataCollected")
 
 /**
  * Signals that tracing is stopped and there is no trace buffers pending flush, all data were
@@ -242,6 +251,7 @@ delivered via dataCollected events.
  *
  * @link [Tracing#tracingComplete](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#event-tracingComplete) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class TracingCompleteEvent(
     /**  
      * Indicates whether some trace data is known to have been lost, e.g. because the trace ring  
@@ -264,4 +274,4 @@ data class TracingCompleteEvent(
      */  
     val streamCompression: StreamCompression? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Tracing", name = "tracingComplete")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Tracing", domainEventName = "tracingComplete")

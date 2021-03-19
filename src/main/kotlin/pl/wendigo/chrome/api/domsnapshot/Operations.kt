@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.domsnapshot
 
+import kotlinx.serialization.json.Json
+
 /**
  * This domain facilitates obtaining document snapshots with DOM, layout, and style information.
  *
@@ -13,14 +15,14 @@ class DOMSnapshotOperations internal constructor(private val connection: pl.wend
      *
      * @link Protocol [DOMSnapshot#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-disable) method documentation.
      */
-    fun disable() = connection.request("DOMSnapshot.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("DOMSnapshot.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables DOM snapshot agent for the given page.
      *
      * @link Protocol [DOMSnapshot#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-enable) method documentation.
      */
-    fun enable() = connection.request("DOMSnapshot.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("DOMSnapshot.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
@@ -31,7 +33,7 @@ flattened.
      * @link Protocol [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "getSnapshot is deprecated.")
-    fun getSnapshot(input: GetSnapshotRequest) = connection.request("DOMSnapshot.getSnapshot", input, GetSnapshotResponse::class.java)
+    fun getSnapshot(input: GetSnapshotRequest) = connection.request("DOMSnapshot.getSnapshot", Json.encodeToJsonElement(GetSnapshotRequest.serializer(), input), GetSnapshotResponse.serializer())
 
     /**
      * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
@@ -41,7 +43,7 @@ flattened.
      *
      * @link Protocol [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
      */
-    fun captureSnapshot(input: CaptureSnapshotRequest) = connection.request("DOMSnapshot.captureSnapshot", input, CaptureSnapshotResponse::class.java)
+    fun captureSnapshot(input: CaptureSnapshotRequest) = connection.request("DOMSnapshot.captureSnapshot", Json.encodeToJsonElement(CaptureSnapshotRequest.serializer(), input), CaptureSnapshotResponse.serializer())
 
     /**
      * Returns flowable capturing all DOMSnapshot domains events.
@@ -63,6 +65,7 @@ flattened.
  * @link [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
  * @see [DOMSnapshotOperations.getSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class GetSnapshotRequest(
     /**
      * Whitelist of computed styles to return.
@@ -97,6 +100,7 @@ flattened.
  * @link [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
  * @see [DOMSnapshotOperations.getSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class GetSnapshotResponse(
     /**  
      * The nodes in the DOM tree. The DOMNode at index 0 corresponds to the root document.  
@@ -125,6 +129,7 @@ flattened.
  * @link [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
  * @see [DOMSnapshotOperations.captureSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class CaptureSnapshotRequest(
     /**
      * Whitelist of computed styles to return.
@@ -154,6 +159,7 @@ flattened.
  * @link [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
  * @see [DOMSnapshotOperations.captureSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class CaptureSnapshotResponse(
     /**  
      * The nodes in the DOM tree. The DOMNode at index 0 corresponds to the root document.  

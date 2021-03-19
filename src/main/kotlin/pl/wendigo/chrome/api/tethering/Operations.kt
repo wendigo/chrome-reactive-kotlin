@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.tethering
 
+import kotlinx.serialization.json.Json
+
 /**
  * The Tethering domain defines methods and events for browser port binding.
  *
@@ -13,19 +15,19 @@ class TetheringOperations internal constructor(private val connection: pl.wendig
      *
      * @link Protocol [Tethering#bind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-bind) method documentation.
      */
-    fun bind(input: BindRequest) = connection.request("Tethering.bind", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun bind(input: BindRequest) = connection.request("Tethering.bind", Json.encodeToJsonElement(BindRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Request browser port unbinding.
      *
      * @link Protocol [Tethering#unbind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-unbind) method documentation.
      */
-    fun unbind(input: UnbindRequest) = connection.request("Tethering.unbind", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun unbind(input: UnbindRequest) = connection.request("Tethering.unbind", Json.encodeToJsonElement(UnbindRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Informs that port was successfully bound and got a specified connection id.
      */
-    fun accepted(): io.reactivex.rxjava3.core.Flowable<AcceptedEvent> = connection.events("Tethering.accepted", AcceptedEvent::class.java)
+    fun accepted(): io.reactivex.rxjava3.core.Flowable<AcceptedEvent> = connection.events("Tethering.accepted", AcceptedEvent.serializer())
 
     /**
      * Returns flowable capturing all Tethering domains events.
@@ -44,6 +46,7 @@ class TetheringOperations internal constructor(private val connection: pl.wendig
  * @link [Tethering#bind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-bind) method documentation.
  * @see [TetheringOperations.bind]
  */
+@kotlinx.serialization.Serializable
 data class BindRequest(
     /**
      * Port number to bind.
@@ -59,6 +62,7 @@ data class BindRequest(
  * @link [Tethering#unbind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-unbind) method documentation.
  * @see [TetheringOperations.unbind]
  */
+@kotlinx.serialization.Serializable
 data class UnbindRequest(
     /**
      * Port number to unbind.
@@ -72,6 +76,7 @@ data class UnbindRequest(
  *
  * @link [Tethering#accepted](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#event-accepted) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AcceptedEvent(
     /**  
      * Port number that was successfully bound.  
@@ -83,4 +88,4 @@ data class AcceptedEvent(
      */  
     val connectionId: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Tethering", name = "accepted")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Tethering", domainEventName = "accepted")

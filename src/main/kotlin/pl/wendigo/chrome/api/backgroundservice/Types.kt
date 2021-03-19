@@ -7,23 +7,24 @@ API.
  *
  * @link [BackgroundService#ServiceName](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#type-ServiceName) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ServiceName {
-    @com.fasterxml.jackson.annotation.JsonProperty("backgroundFetch")
+    @kotlinx.serialization.SerialName("backgroundFetch")
     BACKGROUNDFETCH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("backgroundSync")
+    @kotlinx.serialization.SerialName("backgroundSync")
     BACKGROUNDSYNC,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("pushMessaging")
+    @kotlinx.serialization.SerialName("pushMessaging")
     PUSHMESSAGING,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("notifications")
+    @kotlinx.serialization.SerialName("notifications")
     NOTIFICATIONS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("paymentHandler")
+    @kotlinx.serialization.SerialName("paymentHandler")
     PAYMENTHANDLER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("periodicBackgroundSync")
+    @kotlinx.serialization.SerialName("periodicBackgroundSync")
     PERIODICBACKGROUNDSYNC;
 }
 
@@ -33,6 +34,7 @@ enum class ServiceName {
  * @link [BackgroundService#EventMetadata](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#type-EventMetadata) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class EventMetadata(
     /**  
      *  
@@ -51,6 +53,7 @@ data class EventMetadata(
  * @link [BackgroundService#BackgroundServiceEvent](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#type-BackgroundServiceEvent) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class BackgroundServiceEvent(
     /**  
      * Timestamp of the event (in seconds).  

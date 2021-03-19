@@ -13,14 +13,14 @@ class SystemInfoOperations internal constructor(private val connection: pl.wendi
      *
      * @link Protocol [SystemInfo#getInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getInfo) method documentation.
      */
-    fun getInfo() = connection.request("SystemInfo.getInfo", null, GetInfoResponse::class.java)
+    fun getInfo() = connection.request("SystemInfo.getInfo", null, GetInfoResponse.serializer())
 
     /**
      * Returns information about all running processes.
      *
      * @link Protocol [SystemInfo#getProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getProcessInfo) method documentation.
      */
-    fun getProcessInfo() = connection.request("SystemInfo.getProcessInfo", null, GetProcessInfoResponse::class.java)
+    fun getProcessInfo() = connection.request("SystemInfo.getProcessInfo", null, GetProcessInfoResponse.serializer())
 
     /**
      * Returns flowable capturing all SystemInfo domains events.
@@ -40,6 +40,7 @@ class SystemInfoOperations internal constructor(private val connection: pl.wendi
  * @link [SystemInfo#getInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getInfo) method documentation.
  * @see [SystemInfoOperations.getInfo]
  */
+@kotlinx.serialization.Serializable
 data class GetInfoResponse(
     /**  
      * Information about the GPUs on the system.  
@@ -74,6 +75,7 @@ data class GetInfoResponse(
  * @link [SystemInfo#getProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getProcessInfo) method documentation.
  * @see [SystemInfoOperations.getProcessInfo]
  */
+@kotlinx.serialization.Serializable
 data class GetProcessInfoResponse(
     /**  
      * An array of process info blocks.  

@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.log
  * @link [Log#LogEntry](https://chromedevtools.github.io/devtools-protocol/tot/Log#type-LogEntry) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LogEntry(
     /**  
      * Log entry source.  
@@ -64,6 +65,7 @@ data class LogEntry(
  * @link [Log#ViolationSetting](https://chromedevtools.github.io/devtools-protocol/tot/Log#type-ViolationSetting) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ViolationSetting(
     /**  
      * Violation type.  

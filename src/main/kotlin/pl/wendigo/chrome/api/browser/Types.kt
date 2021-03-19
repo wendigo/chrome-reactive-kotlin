@@ -21,17 +21,18 @@ typealias WindowID = Int
  *
  * @link [Browser#WindowState](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-WindowState) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class WindowState {
-    @com.fasterxml.jackson.annotation.JsonProperty("normal")
+    @kotlinx.serialization.SerialName("normal")
     NORMAL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("minimized")
+    @kotlinx.serialization.SerialName("minimized")
     MINIMIZED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("maximized")
+    @kotlinx.serialization.SerialName("maximized")
     MAXIMIZED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("fullscreen")
+    @kotlinx.serialization.SerialName("fullscreen")
     FULLSCREEN;
 }
 
@@ -41,6 +42,7 @@ enum class WindowState {
  * @link [Browser#Bounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-Bounds) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Bounds(
     /**  
      * The offset from the left edge of the screen to the window in pixels.  
@@ -73,74 +75,75 @@ data class Bounds(
  *
  * @link [Browser#PermissionType](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-PermissionType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class PermissionType {
-    @com.fasterxml.jackson.annotation.JsonProperty("accessibilityEvents")
+    @kotlinx.serialization.SerialName("accessibilityEvents")
     ACCESSIBILITYEVENTS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("audioCapture")
+    @kotlinx.serialization.SerialName("audioCapture")
     AUDIOCAPTURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("backgroundSync")
+    @kotlinx.serialization.SerialName("backgroundSync")
     BACKGROUNDSYNC,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("backgroundFetch")
+    @kotlinx.serialization.SerialName("backgroundFetch")
     BACKGROUNDFETCH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("clipboardReadWrite")
+    @kotlinx.serialization.SerialName("clipboardReadWrite")
     CLIPBOARDREADWRITE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("clipboardSanitizedWrite")
+    @kotlinx.serialization.SerialName("clipboardSanitizedWrite")
     CLIPBOARDSANITIZEDWRITE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("displayCapture")
+    @kotlinx.serialization.SerialName("displayCapture")
     DISPLAYCAPTURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("durableStorage")
+    @kotlinx.serialization.SerialName("durableStorage")
     DURABLESTORAGE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("flash")
+    @kotlinx.serialization.SerialName("flash")
     FLASH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("geolocation")
+    @kotlinx.serialization.SerialName("geolocation")
     GEOLOCATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("midi")
+    @kotlinx.serialization.SerialName("midi")
     MIDI,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("midiSysex")
+    @kotlinx.serialization.SerialName("midiSysex")
     MIDISYSEX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("nfc")
+    @kotlinx.serialization.SerialName("nfc")
     NFC,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("notifications")
+    @kotlinx.serialization.SerialName("notifications")
     NOTIFICATIONS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("paymentHandler")
+    @kotlinx.serialization.SerialName("paymentHandler")
     PAYMENTHANDLER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("periodicBackgroundSync")
+    @kotlinx.serialization.SerialName("periodicBackgroundSync")
     PERIODICBACKGROUNDSYNC,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("protectedMediaIdentifier")
+    @kotlinx.serialization.SerialName("protectedMediaIdentifier")
     PROTECTEDMEDIAIDENTIFIER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("sensors")
+    @kotlinx.serialization.SerialName("sensors")
     SENSORS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("videoCapture")
+    @kotlinx.serialization.SerialName("videoCapture")
     VIDEOCAPTURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("videoCapturePanTiltZoom")
+    @kotlinx.serialization.SerialName("videoCapturePanTiltZoom")
     VIDEOCAPTUREPANTILTZOOM,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("idleDetection")
+    @kotlinx.serialization.SerialName("idleDetection")
     IDLEDETECTION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("wakeLockScreen")
+    @kotlinx.serialization.SerialName("wakeLockScreen")
     WAKELOCKSCREEN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("wakeLockSystem")
+    @kotlinx.serialization.SerialName("wakeLockSystem")
     WAKELOCKSYSTEM;
 }
 
@@ -149,14 +152,15 @@ enum class PermissionType {
  *
  * @link [Browser#PermissionSetting](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-PermissionSetting) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class PermissionSetting {
-    @com.fasterxml.jackson.annotation.JsonProperty("granted")
+    @kotlinx.serialization.SerialName("granted")
     GRANTED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("denied")
+    @kotlinx.serialization.SerialName("denied")
     DENIED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("prompt")
+    @kotlinx.serialization.SerialName("prompt")
     PROMPT;
 }
 
@@ -167,6 +171,7 @@ https://w3c.github.io/permissions/#dictdef-permissiondescriptor.
  * @link [Browser#PermissionDescriptor](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-PermissionDescriptor) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PermissionDescriptor(
     /**  
      * Name of permission.  
@@ -201,11 +206,12 @@ data class PermissionDescriptor(
  *
  * @link [Browser#BrowserCommandId](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-BrowserCommandId) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class BrowserCommandId {
-    @com.fasterxml.jackson.annotation.JsonProperty("openTabSearch")
+    @kotlinx.serialization.SerialName("openTabSearch")
     OPENTABSEARCH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("closeTabSearch")
+    @kotlinx.serialization.SerialName("closeTabSearch")
     CLOSETABSEARCH;
 }
 
@@ -215,6 +221,7 @@ enum class BrowserCommandId {
  * @link [Browser#Bucket](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-Bucket) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Bucket(
     /**  
      * Minimum value (inclusive).  
@@ -238,6 +245,7 @@ data class Bucket(
  * @link [Browser#Histogram](https://chromedevtools.github.io/devtools-protocol/tot/Browser#type-Histogram) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Histogram(
     /**  
      * Name.  

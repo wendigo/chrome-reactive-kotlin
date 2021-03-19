@@ -1,5 +1,7 @@
 package {{Package}}.api.{{Domain.LowerName}}
 
+import kotlinx.serialization.json.Json
+
 /**
  *{{#if Domain.Description}}{{{trim Domain.Description}}}{{else}} {{Domain.Name}}Operations represents {{Domain.Name}} protocol domain request/response operations and events that can be captured.{{/if}}
  *
@@ -27,7 +29,7 @@ class {{Domain.Name}}Operations internal constructor(private val connection : {{
     {{#if Experimental}}
     @{{Package}}.protocol.Experimental
     {{/if}}
-    fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}) = connection.request("{{Domain}}.{{Name}}", {{#if HasInputParams}}input{{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.ResponseFrame{{/if}}::class.java)
+    fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}) = connection.request("{{Domain}}.{{Name}}", {{#if HasInputParams}}Json.encodeToJsonElement({{SimpleName}}Request.serializer(), input){{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.RequestResponseFrame{{/if}}.serializer())
 
 
 {{/each}}
@@ -35,7 +37,7 @@ class {{Domain.Name}}Operations internal constructor(private val connection : {{
     /**
      * {{#if Description}}{{{trim Description}}}{{else}} Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
      */
-    fun {{Name}}(): io.reactivex.rxjava3.core.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}> = connection.events("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}::class.java);
+    fun {{Name}}(): io.reactivex.rxjava3.core.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}> = connection.events("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}.serializer())
 
 {{/each}}
 

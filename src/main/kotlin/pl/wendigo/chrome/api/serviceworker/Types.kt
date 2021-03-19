@@ -14,6 +14,7 @@ typealias RegistrationID = String
  * @link [ServiceWorker#ServiceWorkerRegistration](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-ServiceWorkerRegistration) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ServiceWorkerRegistration(
     /**  
      *  
@@ -36,17 +37,18 @@ data class ServiceWorkerRegistration(
  *
  * @link [ServiceWorker#ServiceWorkerVersionRunningStatus](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-ServiceWorkerVersionRunningStatus) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ServiceWorkerVersionRunningStatus {
-    @com.fasterxml.jackson.annotation.JsonProperty("stopped")
+    @kotlinx.serialization.SerialName("stopped")
     STOPPED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("starting")
+    @kotlinx.serialization.SerialName("starting")
     STARTING,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("running")
+    @kotlinx.serialization.SerialName("running")
     RUNNING,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("stopping")
+    @kotlinx.serialization.SerialName("stopping")
     STOPPING;
 }
 
@@ -55,23 +57,24 @@ enum class ServiceWorkerVersionRunningStatus {
  *
  * @link [ServiceWorker#ServiceWorkerVersionStatus](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-ServiceWorkerVersionStatus) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ServiceWorkerVersionStatus {
-    @com.fasterxml.jackson.annotation.JsonProperty("new")
+    @kotlinx.serialization.SerialName("new")
     NEW,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("installing")
+    @kotlinx.serialization.SerialName("installing")
     INSTALLING,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("installed")
+    @kotlinx.serialization.SerialName("installed")
     INSTALLED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("activating")
+    @kotlinx.serialization.SerialName("activating")
     ACTIVATING,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("activated")
+    @kotlinx.serialization.SerialName("activated")
     ACTIVATED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("redundant")
+    @kotlinx.serialization.SerialName("redundant")
     REDUNDANT;
 }
 
@@ -81,6 +84,7 @@ enum class ServiceWorkerVersionStatus {
  * @link [ServiceWorker#ServiceWorkerVersion](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-ServiceWorkerVersion) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ServiceWorkerVersion(
     /**  
      *  
@@ -135,6 +139,7 @@ data class ServiceWorkerVersion(
  * @link [ServiceWorker#ServiceWorkerErrorMessage](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#type-ServiceWorkerErrorMessage) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ServiceWorkerErrorMessage(
     /**  
      *  

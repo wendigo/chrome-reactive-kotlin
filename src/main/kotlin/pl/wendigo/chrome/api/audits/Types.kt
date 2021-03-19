@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.audits
  * @link [Audits#AffectedCookie](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-AffectedCookie) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AffectedCookie(
     /**  
      * The following three properties uniquely identify a cookie  
@@ -29,6 +30,7 @@ data class AffectedCookie(
  * @link [Audits#AffectedRequest](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-AffectedRequest) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AffectedRequest(
     /**  
      * The unique request id.  
@@ -47,6 +49,7 @@ data class AffectedRequest(
  * @link [Audits#AffectedFrame](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-AffectedFrame) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AffectedFrame(
     /**  
      *  
@@ -59,17 +62,18 @@ data class AffectedFrame(
  *
  * @link [Audits#SameSiteCookieExclusionReason](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SameSiteCookieExclusionReason) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class SameSiteCookieExclusionReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteUnspecifiedTreatedAsLax")
+    @kotlinx.serialization.SerialName("ExcludeSameSiteUnspecifiedTreatedAsLax")
     EXCLUDESAMESITEUNSPECIFIEDTREATEDASLAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteNoneInsecure")
+    @kotlinx.serialization.SerialName("ExcludeSameSiteNoneInsecure")
     EXCLUDESAMESITENONEINSECURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteLax")
+    @kotlinx.serialization.SerialName("ExcludeSameSiteLax")
     EXCLUDESAMESITELAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteStrict")
+    @kotlinx.serialization.SerialName("ExcludeSameSiteStrict")
     EXCLUDESAMESITESTRICT;
 }
 
@@ -78,29 +82,30 @@ enum class SameSiteCookieExclusionReason {
  *
  * @link [Audits#SameSiteCookieWarningReason](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SameSiteCookieWarningReason) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class SameSiteCookieWarningReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteUnspecifiedCrossSiteContext")
+    @kotlinx.serialization.SerialName("WarnSameSiteUnspecifiedCrossSiteContext")
     WARNSAMESITEUNSPECIFIEDCROSSSITECONTEXT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteNoneInsecure")
+    @kotlinx.serialization.SerialName("WarnSameSiteNoneInsecure")
     WARNSAMESITENONEINSECURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteUnspecifiedLaxAllowUnsafe")
+    @kotlinx.serialization.SerialName("WarnSameSiteUnspecifiedLaxAllowUnsafe")
     WARNSAMESITEUNSPECIFIEDLAXALLOWUNSAFE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteStrictLaxDowngradeStrict")
+    @kotlinx.serialization.SerialName("WarnSameSiteStrictLaxDowngradeStrict")
     WARNSAMESITESTRICTLAXDOWNGRADESTRICT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteStrictCrossDowngradeStrict")
+    @kotlinx.serialization.SerialName("WarnSameSiteStrictCrossDowngradeStrict")
     WARNSAMESITESTRICTCROSSDOWNGRADESTRICT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteStrictCrossDowngradeLax")
+    @kotlinx.serialization.SerialName("WarnSameSiteStrictCrossDowngradeLax")
     WARNSAMESITESTRICTCROSSDOWNGRADELAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteLaxCrossDowngradeStrict")
+    @kotlinx.serialization.SerialName("WarnSameSiteLaxCrossDowngradeStrict")
     WARNSAMESITELAXCROSSDOWNGRADESTRICT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteLaxCrossDowngradeLax")
+    @kotlinx.serialization.SerialName("WarnSameSiteLaxCrossDowngradeLax")
     WARNSAMESITELAXCROSSDOWNGRADELAX;
 }
 
@@ -109,11 +114,12 @@ enum class SameSiteCookieWarningReason {
  *
  * @link [Audits#SameSiteCookieOperation](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SameSiteCookieOperation) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class SameSiteCookieOperation {
-    @com.fasterxml.jackson.annotation.JsonProperty("SetCookie")
+    @kotlinx.serialization.SerialName("SetCookie")
     SETCOOKIE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ReadCookie")
+    @kotlinx.serialization.SerialName("ReadCookie")
     READCOOKIE;
 }
 
@@ -125,6 +131,7 @@ information without the cookie.
  * @link [Audits#SameSiteCookieIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SameSiteCookieIssueDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SameSiteCookieIssueDetails(
     /**  
      *  
@@ -168,14 +175,15 @@ data class SameSiteCookieIssueDetails(
  *
  * @link [Audits#MixedContentResolutionStatus](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-MixedContentResolutionStatus) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class MixedContentResolutionStatus {
-    @com.fasterxml.jackson.annotation.JsonProperty("MixedContentBlocked")
+    @kotlinx.serialization.SerialName("MixedContentBlocked")
     MIXEDCONTENTBLOCKED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("MixedContentAutomaticallyUpgraded")
+    @kotlinx.serialization.SerialName("MixedContentAutomaticallyUpgraded")
     MIXEDCONTENTAUTOMATICALLYUPGRADED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("MixedContentWarning")
+    @kotlinx.serialization.SerialName("MixedContentWarning")
     MIXEDCONTENTWARNING;
 }
 
@@ -184,83 +192,84 @@ enum class MixedContentResolutionStatus {
  *
  * @link [Audits#MixedContentResourceType](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-MixedContentResourceType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class MixedContentResourceType {
-    @com.fasterxml.jackson.annotation.JsonProperty("Audio")
+    @kotlinx.serialization.SerialName("Audio")
     AUDIO,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Beacon")
+    @kotlinx.serialization.SerialName("Beacon")
     BEACON,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CSPReport")
+    @kotlinx.serialization.SerialName("CSPReport")
     CSPREPORT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Download")
+    @kotlinx.serialization.SerialName("Download")
     DOWNLOAD,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("EventSource")
+    @kotlinx.serialization.SerialName("EventSource")
     EVENTSOURCE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Favicon")
+    @kotlinx.serialization.SerialName("Favicon")
     FAVICON,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Font")
+    @kotlinx.serialization.SerialName("Font")
     FONT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Form")
+    @kotlinx.serialization.SerialName("Form")
     FORM,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Frame")
+    @kotlinx.serialization.SerialName("Frame")
     FRAME,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Image")
+    @kotlinx.serialization.SerialName("Image")
     IMAGE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Import")
+    @kotlinx.serialization.SerialName("Import")
     IMPORT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Manifest")
+    @kotlinx.serialization.SerialName("Manifest")
     MANIFEST,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Ping")
+    @kotlinx.serialization.SerialName("Ping")
     PING,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PluginData")
+    @kotlinx.serialization.SerialName("PluginData")
     PLUGINDATA,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PluginResource")
+    @kotlinx.serialization.SerialName("PluginResource")
     PLUGINRESOURCE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Prefetch")
+    @kotlinx.serialization.SerialName("Prefetch")
     PREFETCH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Resource")
+    @kotlinx.serialization.SerialName("Resource")
     RESOURCE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Script")
+    @kotlinx.serialization.SerialName("Script")
     SCRIPT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ServiceWorker")
+    @kotlinx.serialization.SerialName("ServiceWorker")
     SERVICEWORKER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SharedWorker")
+    @kotlinx.serialization.SerialName("SharedWorker")
     SHAREDWORKER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Stylesheet")
+    @kotlinx.serialization.SerialName("Stylesheet")
     STYLESHEET,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Track")
+    @kotlinx.serialization.SerialName("Track")
     TRACK,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Video")
+    @kotlinx.serialization.SerialName("Video")
     VIDEO,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Worker")
+    @kotlinx.serialization.SerialName("Worker")
     WORKER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("XMLHttpRequest")
+    @kotlinx.serialization.SerialName("XMLHttpRequest")
     XMLHTTPREQUEST,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("XSLT")
+    @kotlinx.serialization.SerialName("XSLT")
     XSLT;
 }
 
@@ -270,6 +279,7 @@ enum class MixedContentResourceType {
  * @link [Audits#MixedContentIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-MixedContentIssueDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class MixedContentIssueDetails(
     /**  
      * The type of resource causing the mixed content issue (css, js, iframe,  
@@ -312,20 +322,21 @@ refinements of the net error BLOCKED_BY_RESPONSE.
  *
  * @link [Audits#BlockedByResponseReason](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-BlockedByResponseReason) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class BlockedByResponseReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("CoepFrameResourceNeedsCoepHeader")
+    @kotlinx.serialization.SerialName("CoepFrameResourceNeedsCoepHeader")
     COEPFRAMERESOURCENEEDSCOEPHEADER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CoopSandboxedIFrameCannotNavigateToCoopPage")
+    @kotlinx.serialization.SerialName("CoopSandboxedIFrameCannotNavigateToCoopPage")
     COOPSANDBOXEDIFRAMECANNOTNAVIGATETOCOOPPAGE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CorpNotSameOrigin")
+    @kotlinx.serialization.SerialName("CorpNotSameOrigin")
     CORPNOTSAMEORIGIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CorpNotSameOriginAfterDefaultedToSameOriginByCoep")
+    @kotlinx.serialization.SerialName("CorpNotSameOriginAfterDefaultedToSameOriginByCoep")
     CORPNOTSAMEORIGINAFTERDEFAULTEDTOSAMEORIGINBYCOEP,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CorpNotSameSite")
+    @kotlinx.serialization.SerialName("CorpNotSameSite")
     CORPNOTSAMESITE;
 }
 
@@ -337,6 +348,7 @@ some CSP errors in the future.
  * @link [Audits#BlockedByResponseIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-BlockedByResponseIssueDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class BlockedByResponseIssueDetails(
     /**  
      *  
@@ -364,11 +376,12 @@ data class BlockedByResponseIssueDetails(
  *
  * @link [Audits#HeavyAdResolutionStatus](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-HeavyAdResolutionStatus) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class HeavyAdResolutionStatus {
-    @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdBlocked")
+    @kotlinx.serialization.SerialName("HeavyAdBlocked")
     HEAVYADBLOCKED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdWarning")
+    @kotlinx.serialization.SerialName("HeavyAdWarning")
     HEAVYADWARNING;
 }
 
@@ -377,14 +390,15 @@ enum class HeavyAdResolutionStatus {
  *
  * @link [Audits#HeavyAdReason](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-HeavyAdReason) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class HeavyAdReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("NetworkTotalLimit")
+    @kotlinx.serialization.SerialName("NetworkTotalLimit")
     NETWORKTOTALLIMIT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CpuTotalLimit")
+    @kotlinx.serialization.SerialName("CpuTotalLimit")
     CPUTOTALLIMIT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CpuPeakLimit")
+    @kotlinx.serialization.SerialName("CpuPeakLimit")
     CPUPEAKLIMIT;
 }
 
@@ -394,6 +408,7 @@ enum class HeavyAdReason {
  * @link [Audits#HeavyAdIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-HeavyAdIssueDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class HeavyAdIssueDetails(
     /**  
      * The resolution status, either blocking the content or warning.  
@@ -416,20 +431,21 @@ data class HeavyAdIssueDetails(
  *
  * @link [Audits#ContentSecurityPolicyViolationType](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-ContentSecurityPolicyViolationType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ContentSecurityPolicyViolationType {
-    @com.fasterxml.jackson.annotation.JsonProperty("kInlineViolation")
+    @kotlinx.serialization.SerialName("kInlineViolation")
     KINLINEVIOLATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("kEvalViolation")
+    @kotlinx.serialization.SerialName("kEvalViolation")
     KEVALVIOLATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("kURLViolation")
+    @kotlinx.serialization.SerialName("kURLViolation")
     KURLVIOLATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("kTrustedTypesSinkViolation")
+    @kotlinx.serialization.SerialName("kTrustedTypesSinkViolation")
     KTRUSTEDTYPESSINKVIOLATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("kTrustedTypesPolicyViolation")
+    @kotlinx.serialization.SerialName("kTrustedTypesPolicyViolation")
     KTRUSTEDTYPESPOLICYVIOLATION;
 }
 
@@ -439,6 +455,7 @@ enum class ContentSecurityPolicyViolationType {
  * @link [Audits#SourceCodeLocation](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SourceCodeLocation) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SourceCodeLocation(
     /**  
      *  
@@ -467,6 +484,7 @@ data class SourceCodeLocation(
  * @link [Audits#ContentSecurityPolicyIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-ContentSecurityPolicyIssueDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ContentSecurityPolicyIssueDetails(
     /**  
      * The url not included in allowed sources.  
@@ -509,11 +527,12 @@ data class ContentSecurityPolicyIssueDetails(
  *
  * @link [Audits#SharedArrayBufferIssueType](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SharedArrayBufferIssueType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class SharedArrayBufferIssueType {
-    @com.fasterxml.jackson.annotation.JsonProperty("TransferIssue")
+    @kotlinx.serialization.SerialName("TransferIssue")
     TRANSFERISSUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CreationIssue")
+    @kotlinx.serialization.SerialName("CreationIssue")
     CREATIONISSUE;
 }
 
@@ -524,6 +543,7 @@ transfered to a context that is not cross-origin isolated.
  * @link [Audits#SharedArrayBufferIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-SharedArrayBufferIssueDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SharedArrayBufferIssueDetails(
     /**  
      *  
@@ -546,14 +566,15 @@ data class SharedArrayBufferIssueDetails(
  *
  * @link [Audits#TwaQualityEnforcementViolationType](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-TwaQualityEnforcementViolationType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class TwaQualityEnforcementViolationType {
-    @com.fasterxml.jackson.annotation.JsonProperty("kHttpError")
+    @kotlinx.serialization.SerialName("kHttpError")
     KHTTPERROR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("kUnavailableOffline")
+    @kotlinx.serialization.SerialName("kUnavailableOffline")
     KUNAVAILABLEOFFLINE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("kDigitalAssetLinks")
+    @kotlinx.serialization.SerialName("kDigitalAssetLinks")
     KDIGITALASSETLINKS;
 }
 
@@ -563,6 +584,7 @@ enum class TwaQualityEnforcementViolationType {
  * @link [Audits#TrustedWebActivityIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-TrustedWebActivityIssueDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class TrustedWebActivityIssueDetails(
     /**  
      * The url that triggers the violation.  
@@ -598,6 +620,7 @@ data class TrustedWebActivityIssueDetails(
  * @link [Audits#LowTextContrastIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-LowTextContrastIssueDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LowTextContrastIssueDetails(
     /**  
      *  
@@ -642,6 +665,7 @@ CORS RFC1918 enforcement.
  * @link [Audits#CorsIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-CorsIssueDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CorsIssueDetails(
     /**  
      *  
@@ -676,32 +700,33 @@ information about the kind of issue.
  *
  * @link [Audits#InspectorIssueCode](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-InspectorIssueCode) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class InspectorIssueCode {
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteCookieIssue")
+    @kotlinx.serialization.SerialName("SameSiteCookieIssue")
     SAMESITECOOKIEISSUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("MixedContentIssue")
+    @kotlinx.serialization.SerialName("MixedContentIssue")
     MIXEDCONTENTISSUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("BlockedByResponseIssue")
+    @kotlinx.serialization.SerialName("BlockedByResponseIssue")
     BLOCKEDBYRESPONSEISSUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdIssue")
+    @kotlinx.serialization.SerialName("HeavyAdIssue")
     HEAVYADISSUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ContentSecurityPolicyIssue")
+    @kotlinx.serialization.SerialName("ContentSecurityPolicyIssue")
     CONTENTSECURITYPOLICYISSUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBufferIssue")
+    @kotlinx.serialization.SerialName("SharedArrayBufferIssue")
     SHAREDARRAYBUFFERISSUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("TrustedWebActivityIssue")
+    @kotlinx.serialization.SerialName("TrustedWebActivityIssue")
     TRUSTEDWEBACTIVITYISSUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("LowTextContrastIssue")
+    @kotlinx.serialization.SerialName("LowTextContrastIssue")
     LOWTEXTCONTRASTISSUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CorsIssue")
+    @kotlinx.serialization.SerialName("CorsIssue")
     CORSISSUE;
 }
 
@@ -713,6 +738,7 @@ add a new optional field to this type.
  * @link [Audits#InspectorIssueDetails](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-InspectorIssueDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class InspectorIssueDetails(
     /**  
      *  
@@ -766,6 +792,7 @@ data class InspectorIssueDetails(
  * @link [Audits#InspectorIssue](https://chromedevtools.github.io/devtools-protocol/tot/Audits#type-InspectorIssue) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class InspectorIssue(
     /**  
      *  

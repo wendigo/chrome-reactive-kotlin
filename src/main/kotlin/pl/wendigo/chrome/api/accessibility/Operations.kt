@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.accessibility
 
+import kotlinx.serialization.json.Json
+
 /**
  * AccessibilityOperations represents Accessibility protocol domain request/response operations and events that can be captured.
  *
@@ -13,7 +15,7 @@ class AccessibilityOperations internal constructor(private val connection: pl.we
      *
      * @link Protocol [Accessibility#disable](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-disable) method documentation.
      */
-    fun disable() = connection.request("Accessibility.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Accessibility.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables the accessibility domain which causes `AXNodeId`s to remain consistent between method calls.
@@ -21,7 +23,7 @@ This turns on accessibility for the page, which can impact performance until acc
      *
      * @link Protocol [Accessibility#enable](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-enable) method documentation.
      */
-    fun enable() = connection.request("Accessibility.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Accessibility.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.
@@ -30,7 +32,7 @@ This turns on accessibility for the page, which can impact performance until acc
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getPartialAXTree(input: GetPartialAXTreeRequest) = connection.request("Accessibility.getPartialAXTree", input, GetPartialAXTreeResponse::class.java)
+    fun getPartialAXTree(input: GetPartialAXTreeRequest) = connection.request("Accessibility.getPartialAXTree", Json.encodeToJsonElement(GetPartialAXTreeRequest.serializer(), input), GetPartialAXTreeResponse.serializer())
 
     /**
      * Fetches the entire accessibility tree for the root Document
@@ -39,7 +41,7 @@ This turns on accessibility for the page, which can impact performance until acc
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getFullAXTree(input: GetFullAXTreeRequest) = connection.request("Accessibility.getFullAXTree", input, GetFullAXTreeResponse::class.java)
+    fun getFullAXTree(input: GetFullAXTreeRequest) = connection.request("Accessibility.getFullAXTree", Json.encodeToJsonElement(GetFullAXTreeRequest.serializer(), input), GetFullAXTreeResponse.serializer())
 
     /**
      * Fetches a particular accessibility node by AXNodeId.
@@ -49,7 +51,7 @@ Requires `enable()` to have been called previously.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getChildAXNodes(input: GetChildAXNodesRequest) = connection.request("Accessibility.getChildAXNodes", input, GetChildAXNodesResponse::class.java)
+    fun getChildAXNodes(input: GetChildAXNodesRequest) = connection.request("Accessibility.getChildAXNodes", Json.encodeToJsonElement(GetChildAXNodesRequest.serializer(), input), GetChildAXNodesResponse.serializer())
 
     /**
      * Query a DOM node's accessibility subtree for accessible name and role.
@@ -62,7 +64,7 @@ node is specified, or the DOM node does not exist, the command returns an error.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun queryAXTree(input: QueryAXTreeRequest) = connection.request("Accessibility.queryAXTree", input, QueryAXTreeResponse::class.java)
+    fun queryAXTree(input: QueryAXTreeRequest) = connection.request("Accessibility.queryAXTree", Json.encodeToJsonElement(QueryAXTreeRequest.serializer(), input), QueryAXTreeResponse.serializer())
 
     /**
      * Returns flowable capturing all Accessibility domains events.
@@ -81,6 +83,7 @@ node is specified, or the DOM node does not exist, the command returns an error.
  * @link [Accessibility#getPartialAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getPartialAXTree) method documentation.
  * @see [AccessibilityOperations.getPartialAXTree]
  */
+@kotlinx.serialization.Serializable
 data class GetPartialAXTreeRequest(
     /**
      * Identifier of the node to get the partial accessibility tree for.
@@ -112,6 +115,7 @@ data class GetPartialAXTreeRequest(
  * @link [Accessibility#getPartialAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getPartialAXTree) method documentation.
  * @see [AccessibilityOperations.getPartialAXTree]
  */
+@kotlinx.serialization.Serializable
 data class GetPartialAXTreeResponse(
     /**  
      * The `Accessibility.AXNode` for this DOM node, if it exists, plus its ancestors, siblings and  
@@ -128,6 +132,7 @@ data class GetPartialAXTreeResponse(
  * @link [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) method documentation.
  * @see [AccessibilityOperations.getFullAXTree]
  */
+@kotlinx.serialization.Serializable
 data class GetFullAXTreeRequest(
     /**
      * The maximum depth at which descendants of the root node should be retrieved.
@@ -145,6 +150,7 @@ If omitted, the full tree is returned.
  * @link [Accessibility#getFullAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getFullAXTree) method documentation.
  * @see [AccessibilityOperations.getFullAXTree]
  */
+@kotlinx.serialization.Serializable
 data class GetFullAXTreeResponse(
     /**  
      *  
@@ -161,6 +167,7 @@ Requires `enable()` to have been called previously.
  * @link [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) method documentation.
  * @see [AccessibilityOperations.getChildAXNodes]
  */
+@kotlinx.serialization.Serializable
 data class GetChildAXNodesRequest(
     /**
      *
@@ -178,6 +185,7 @@ Requires `enable()` to have been called previously.
  * @link [Accessibility#getChildAXNodes](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-getChildAXNodes) method documentation.
  * @see [AccessibilityOperations.getChildAXNodes]
  */
+@kotlinx.serialization.Serializable
 data class GetChildAXNodesResponse(
     /**  
      *  
@@ -197,6 +205,7 @@ node is specified, or the DOM node does not exist, the command returns an error.
  * @link [Accessibility#queryAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-queryAXTree) method documentation.
  * @see [AccessibilityOperations.queryAXTree]
  */
+@kotlinx.serialization.Serializable
 data class QueryAXTreeRequest(
     /**
      * Identifier of the node for the root to query.
@@ -237,6 +246,7 @@ node is specified, or the DOM node does not exist, the command returns an error.
  * @link [Accessibility#queryAXTree](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-queryAXTree) method documentation.
  * @see [AccessibilityOperations.queryAXTree]
  */
+@kotlinx.serialization.Serializable
 data class QueryAXTreeResponse(
     /**  
      * A list of `Accessibility.AXNode` matching the specified attributes,  

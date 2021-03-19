@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.fetch
 
+import kotlinx.serialization.json.Json
+
 /**
  * A domain for letting clients substitute browser's network layer with client code.
  *
@@ -11,7 +13,7 @@ class FetchOperations internal constructor(private val connection: pl.wendigo.ch
      *
      * @link Protocol [Fetch#disable](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-disable) method documentation.
      */
-    fun disable() = connection.request("Fetch.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Fetch.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables issuing of requestPaused events. A request will be paused until client
@@ -19,35 +21,35 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      *
      * @link Protocol [Fetch#enable](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-enable) method documentation.
      */
-    fun enable(input: EnableRequest) = connection.request("Fetch.enable", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable(input: EnableRequest) = connection.request("Fetch.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Causes the request to fail with specified reason.
      *
      * @link Protocol [Fetch#failRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-failRequest) method documentation.
      */
-    fun failRequest(input: FailRequestRequest) = connection.request("Fetch.failRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun failRequest(input: FailRequestRequest) = connection.request("Fetch.failRequest", Json.encodeToJsonElement(FailRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Provides response to the request.
      *
      * @link Protocol [Fetch#fulfillRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-fulfillRequest) method documentation.
      */
-    fun fulfillRequest(input: FulfillRequestRequest) = connection.request("Fetch.fulfillRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun fulfillRequest(input: FulfillRequestRequest) = connection.request("Fetch.fulfillRequest", Json.encodeToJsonElement(FulfillRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Continues the request, optionally modifying some of its parameters.
      *
      * @link Protocol [Fetch#continueRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueRequest) method documentation.
      */
-    fun continueRequest(input: ContinueRequestRequest) = connection.request("Fetch.continueRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun continueRequest(input: ContinueRequestRequest) = connection.request("Fetch.continueRequest", Json.encodeToJsonElement(ContinueRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Continues a request supplying authChallengeResponse following authRequired event.
      *
      * @link Protocol [Fetch#continueWithAuth](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueWithAuth) method documentation.
      */
-    fun continueWithAuth(input: ContinueWithAuthRequest) = connection.request("Fetch.continueWithAuth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun continueWithAuth(input: ContinueWithAuthRequest) = connection.request("Fetch.continueWithAuth", Json.encodeToJsonElement(ContinueWithAuthRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Causes the body of the response to be received from the server and
@@ -59,7 +61,7 @@ results in an undefined behavior.
      *
      * @link Protocol [Fetch#getResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-getResponseBody) method documentation.
      */
-    fun getResponseBody(input: GetResponseBodyRequest) = connection.request("Fetch.getResponseBody", input, GetResponseBodyResponse::class.java)
+    fun getResponseBody(input: GetResponseBodyRequest) = connection.request("Fetch.getResponseBody", Json.encodeToJsonElement(GetResponseBodyRequest.serializer(), input), GetResponseBodyResponse.serializer())
 
     /**
      * Returns a handle to the stream representing the response body.
@@ -75,7 +77,7 @@ domain before body is received results in an undefined behavior.
      *
      * @link Protocol [Fetch#takeResponseBodyAsStream](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-takeResponseBodyAsStream) method documentation.
      */
-    fun takeResponseBodyAsStream(input: TakeResponseBodyAsStreamRequest) = connection.request("Fetch.takeResponseBodyAsStream", input, TakeResponseBodyAsStreamResponse::class.java)
+    fun takeResponseBodyAsStream(input: TakeResponseBodyAsStreamRequest) = connection.request("Fetch.takeResponseBodyAsStream", Json.encodeToJsonElement(TakeResponseBodyAsStreamRequest.serializer(), input), TakeResponseBodyAsStreamResponse.serializer())
 
     /**
      *  Issued when the domain is enabled and the request URL matches the
@@ -85,13 +87,13 @@ The stage of the request can be determined by presence of responseErrorReason
 and responseStatusCode -- the request is at the response stage if either
 of these fields is present and in the request stage otherwise.
      */
-    fun requestPaused(): io.reactivex.rxjava3.core.Flowable<RequestPausedEvent> = connection.events("Fetch.requestPaused", RequestPausedEvent::class.java)
+    fun requestPaused(): io.reactivex.rxjava3.core.Flowable<RequestPausedEvent> = connection.events("Fetch.requestPaused", RequestPausedEvent.serializer())
 
     /**
      *  Issued when the domain is enabled with handleAuthRequests set to true.
 The request is paused until client responds with continueWithAuth.
      */
-    fun authRequired(): io.reactivex.rxjava3.core.Flowable<AuthRequiredEvent> = connection.events("Fetch.authRequired", AuthRequiredEvent::class.java)
+    fun authRequired(): io.reactivex.rxjava3.core.Flowable<AuthRequiredEvent> = connection.events("Fetch.authRequired", AuthRequiredEvent.serializer())
 
     /**
      * Returns flowable capturing all Fetch domains events.
@@ -111,6 +113,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
  * @link [Fetch#enable](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-enable) method documentation.
  * @see [FetchOperations.enable]
  */
+@kotlinx.serialization.Serializable
 data class EnableRequest(
     /**
      * If specified, only requests matching any of these patterns will produce
@@ -134,6 +137,7 @@ expecting a call to continueWithAuth.
  * @link [Fetch#failRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-failRequest) method documentation.
  * @see [FetchOperations.failRequest]
  */
+@kotlinx.serialization.Serializable
 data class FailRequestRequest(
     /**
      * An id the client received in requestPaused event.
@@ -154,6 +158,7 @@ data class FailRequestRequest(
  * @link [Fetch#fulfillRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-fulfillRequest) method documentation.
  * @see [FetchOperations.fulfillRequest]
  */
+@kotlinx.serialization.Serializable
 data class FulfillRequestRequest(
     /**
      * An id the client received in requestPaused event.
@@ -198,6 +203,7 @@ If absent, a standard phrase matching responseCode is used.
  * @link [Fetch#continueRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueRequest) method documentation.
  * @see [FetchOperations.continueRequest]
  */
+@kotlinx.serialization.Serializable
 data class ContinueRequestRequest(
     /**
      * An id the client received in requestPaused event.
@@ -233,6 +239,7 @@ data class ContinueRequestRequest(
  * @link [Fetch#continueWithAuth](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueWithAuth) method documentation.
  * @see [FetchOperations.continueWithAuth]
  */
+@kotlinx.serialization.Serializable
 data class ContinueWithAuthRequest(
     /**
      * An id the client received in authRequired event.
@@ -258,6 +265,7 @@ results in an undefined behavior.
  * @link [Fetch#getResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-getResponseBody) method documentation.
  * @see [FetchOperations.getResponseBody]
  */
+@kotlinx.serialization.Serializable
 data class GetResponseBodyRequest(
     /**
      * Identifier for the intercepted request to get body for.
@@ -279,6 +287,7 @@ results in an undefined behavior.
  * @link [Fetch#getResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-getResponseBody) method documentation.
  * @see [FetchOperations.getResponseBody]
  */
+@kotlinx.serialization.Serializable
 data class GetResponseBodyResponse(
     /**  
      * Response body.  
@@ -308,6 +317,7 @@ domain before body is received results in an undefined behavior.
  * @link [Fetch#takeResponseBodyAsStream](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-takeResponseBodyAsStream) method documentation.
  * @see [FetchOperations.takeResponseBodyAsStream]
  */
+@kotlinx.serialization.Serializable
 data class TakeResponseBodyAsStreamRequest(
     /**
      *
@@ -333,6 +343,7 @@ domain before body is received results in an undefined behavior.
  * @link [Fetch#takeResponseBodyAsStream](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-takeResponseBodyAsStream) method documentation.
  * @see [FetchOperations.takeResponseBodyAsStream]
  */
+@kotlinx.serialization.Serializable
 data class TakeResponseBodyAsStreamResponse(
     /**  
      *  
@@ -351,6 +362,7 @@ of these fields is present and in the request stage otherwise.
  *
  * @link [Fetch#requestPaused](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#event-requestPaused) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class RequestPausedEvent(
     /**  
      * Each request the page makes will have a unique id.  
@@ -393,7 +405,7 @@ data class RequestPausedEvent(
      */  
     val networkId: RequestId? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Fetch", name = "requestPaused")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Fetch", domainEventName = "requestPaused")
 
 /**
  * Issued when the domain is enabled with handleAuthRequests set to true.
@@ -401,6 +413,7 @@ The request is paused until client responds with continueWithAuth.
  *
  * @link [Fetch#authRequired](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#event-authRequired) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AuthRequiredEvent(
     /**  
      * Each request the page makes will have a unique id.  
@@ -429,4 +442,4 @@ data class AuthRequiredEvent(
      */  
     val authChallenge: AuthChallenge
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Fetch", name = "authRequired")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Fetch", domainEventName = "authRequired")

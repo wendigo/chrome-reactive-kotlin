@@ -5,14 +5,15 @@ package pl.wendigo.chrome.api.domdebugger
  *
  * @link [DOMDebugger#DOMBreakpointType](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#type-DOMBreakpointType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class DOMBreakpointType {
-    @com.fasterxml.jackson.annotation.JsonProperty("subtree-modified")
+    @kotlinx.serialization.SerialName("subtree-modified")
     SUBTREE_MODIFIED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("attribute-modified")
+    @kotlinx.serialization.SerialName("attribute-modified")
     ATTRIBUTE_MODIFIED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("node-removed")
+    @kotlinx.serialization.SerialName("node-removed")
     NODE_REMOVED;
 }
 
@@ -21,11 +22,12 @@ enum class DOMBreakpointType {
  *
  * @link [DOMDebugger#CSPViolationType](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#type-CSPViolationType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CSPViolationType {
-    @com.fasterxml.jackson.annotation.JsonProperty("trustedtype-sink-violation")
+    @kotlinx.serialization.SerialName("trustedtype-sink-violation")
     TRUSTEDTYPE_SINK_VIOLATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("trustedtype-policy-violation")
+    @kotlinx.serialization.SerialName("trustedtype-policy-violation")
     TRUSTEDTYPE_POLICY_VIOLATION;
 }
 
@@ -35,6 +37,7 @@ enum class CSPViolationType {
  * @link [DOMDebugger#EventListener](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#type-EventListener) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class EventListener(
     /**  
      * `EventListener`'s type.  

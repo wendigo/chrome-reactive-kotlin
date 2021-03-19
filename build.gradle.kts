@@ -1,4 +1,3 @@
-val jacksonVersion = "2.12.0"
 val kotlinVersion = "1.4.31"
 val githubToken: String by project
 
@@ -7,7 +6,6 @@ plugins {
     id("maven-publish")
     id("signing")
     id("groovy")
-    id("org.jetbrains.kotlin.jvm") version "1.4.31"
     id("pl.allegro.tech.build.axion-release") version "1.12.1"
     id("io.codearte.nexus-staging") version "0.30.0"
     id("com.github.ben-manes.versions") version "0.38.0"
@@ -15,6 +13,9 @@ plugins {
     id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
     id("org.jetbrains.dokka") version "1.4.30"
     id("com.adarshr.test-logger") version "2.1.1"
+    kotlin("jvm") version "1.4.31"
+    kotlin("kapt") version "1.4.31"
+    kotlin("plugin.serialization") version "1.4.31"
 }
 
 java {
@@ -35,6 +36,9 @@ scmVersion.repository.customUsername = githubToken
 repositories {
     mavenCentral()
     jcenter()
+    maven {
+        url = uri("https://jitpack.io")
+    }
 }
 
 testlogger {
@@ -57,14 +61,13 @@ testlogger {
 }
 
 dependencies {
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
-    implementation("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
-
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("io.reactivex.rxjava3:rxjava:3.0.11")
     implementation("ch.qos.logback:logback-classic:1.2.3")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
     implementation("org.slf4j:slf4j-api:1.7.30")
 
@@ -81,6 +84,7 @@ java {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions.languageVersion = "1.4"
+    kotlinOptions.javaParameters = true
     kotlinOptions.jvmTarget = "11"
     kotlinOptions.verbose = false
 }

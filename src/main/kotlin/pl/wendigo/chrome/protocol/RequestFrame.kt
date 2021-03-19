@@ -1,10 +1,13 @@
 package pl.wendigo.chrome.protocol
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
 
 /**
  * Represents request frame.
  */
+@Serializable
 data class RequestFrame(
     /**
      * Request id, must be unique.
@@ -14,7 +17,7 @@ data class RequestFrame(
     /**
      * Session ID for Target's flatten mode requests (see [http://crbug.com/991325](http://crbug.com/991325)).
      */
-    @get:JsonProperty("sessionId")
+    @SerialName("sessionId")
     val sessionId: String? = null,
 
     /**
@@ -25,5 +28,5 @@ data class RequestFrame(
     /**
      * Request params (if any)
      */
-    val params: Any?
+    val params: JsonElement?
 )

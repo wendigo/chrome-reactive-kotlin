@@ -22,6 +22,7 @@ typealias SessionID = String
  * @link [Target#TargetInfo](https://chromedevtools.github.io/devtools-protocol/tot/Target#type-TargetInfo) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class TargetInfo(
     /**  
      *  
@@ -75,6 +76,7 @@ data class TargetInfo(
  * @link [Target#RemoteLocation](https://chromedevtools.github.io/devtools-protocol/tot/Target#type-RemoteLocation) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RemoteLocation(
     /**  
      *  

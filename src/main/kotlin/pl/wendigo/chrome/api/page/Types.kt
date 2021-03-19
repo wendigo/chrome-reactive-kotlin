@@ -13,14 +13,15 @@ typealias FrameId = String
  *
  * @link [Page#AdFrameType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-AdFrameType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class AdFrameType {
-    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    @kotlinx.serialization.SerialName("none")
     NONE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("child")
+    @kotlinx.serialization.SerialName("child")
     CHILD,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("root")
+    @kotlinx.serialization.SerialName("root")
     ROOT;
 }
 
@@ -29,17 +30,18 @@ enum class AdFrameType {
  *
  * @link [Page#SecureContextType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-SecureContextType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class SecureContextType {
-    @com.fasterxml.jackson.annotation.JsonProperty("Secure")
+    @kotlinx.serialization.SerialName("Secure")
     SECURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SecureLocalhost")
+    @kotlinx.serialization.SerialName("SecureLocalhost")
     SECURELOCALHOST,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InsecureScheme")
+    @kotlinx.serialization.SerialName("InsecureScheme")
     INSECURESCHEME,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InsecureAncestor")
+    @kotlinx.serialization.SerialName("InsecureAncestor")
     INSECUREANCESTOR;
 }
 
@@ -48,14 +50,15 @@ enum class SecureContextType {
  *
  * @link [Page#CrossOriginIsolatedContextType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-CrossOriginIsolatedContextType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CrossOriginIsolatedContextType {
-    @com.fasterxml.jackson.annotation.JsonProperty("Isolated")
+    @kotlinx.serialization.SerialName("Isolated")
     ISOLATED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("NotIsolated")
+    @kotlinx.serialization.SerialName("NotIsolated")
     NOTISOLATED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("NotIsolatedFeatureDisabled")
+    @kotlinx.serialization.SerialName("NotIsolatedFeatureDisabled")
     NOTISOLATEDFEATUREDISABLED;
 }
 
@@ -64,17 +67,18 @@ enum class CrossOriginIsolatedContextType {
  *
  * @link [Page#GatedAPIFeatures](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-GatedAPIFeatures) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class GatedAPIFeatures {
-    @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBuffers")
+    @kotlinx.serialization.SerialName("SharedArrayBuffers")
     SHAREDARRAYBUFFERS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBuffersTransferAllowed")
+    @kotlinx.serialization.SerialName("SharedArrayBuffersTransferAllowed")
     SHAREDARRAYBUFFERSTRANSFERALLOWED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PerformanceMeasureMemory")
+    @kotlinx.serialization.SerialName("PerformanceMeasureMemory")
     PERFORMANCEMEASUREMEMORY,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PerformanceProfile")
+    @kotlinx.serialization.SerialName("PerformanceProfile")
     PERFORMANCEPROFILE;
 }
 
@@ -84,164 +88,165 @@ in renderer/core/feature_policy/feature_policy_features.json5.
  *
  * @link [Page#PermissionsPolicyFeature](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-PermissionsPolicyFeature) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class PermissionsPolicyFeature {
-    @com.fasterxml.jackson.annotation.JsonProperty("accelerometer")
+    @kotlinx.serialization.SerialName("accelerometer")
     ACCELEROMETER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ambient-light-sensor")
+    @kotlinx.serialization.SerialName("ambient-light-sensor")
     AMBIENT_LIGHT_SENSOR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("autoplay")
+    @kotlinx.serialization.SerialName("autoplay")
     AUTOPLAY,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("camera")
+    @kotlinx.serialization.SerialName("camera")
     CAMERA,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-dpr")
+    @kotlinx.serialization.SerialName("ch-dpr")
     CH_DPR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-device-memory")
+    @kotlinx.serialization.SerialName("ch-device-memory")
     CH_DEVICE_MEMORY,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-downlink")
+    @kotlinx.serialization.SerialName("ch-downlink")
     CH_DOWNLINK,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-ect")
+    @kotlinx.serialization.SerialName("ch-ect")
     CH_ECT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-lang")
+    @kotlinx.serialization.SerialName("ch-lang")
     CH_LANG,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-rtt")
+    @kotlinx.serialization.SerialName("ch-rtt")
     CH_RTT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua")
+    @kotlinx.serialization.SerialName("ch-ua")
     CH_UA,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-arch")
+    @kotlinx.serialization.SerialName("ch-ua-arch")
     CH_UA_ARCH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-platform")
+    @kotlinx.serialization.SerialName("ch-ua-platform")
     CH_UA_PLATFORM,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-model")
+    @kotlinx.serialization.SerialName("ch-ua-model")
     CH_UA_MODEL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-mobile")
+    @kotlinx.serialization.SerialName("ch-ua-mobile")
     CH_UA_MOBILE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-full-version")
+    @kotlinx.serialization.SerialName("ch-ua-full-version")
     CH_UA_FULL_VERSION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-ua-platform-version")
+    @kotlinx.serialization.SerialName("ch-ua-platform-version")
     CH_UA_PLATFORM_VERSION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-viewport-width")
+    @kotlinx.serialization.SerialName("ch-viewport-width")
     CH_VIEWPORT_WIDTH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ch-width")
+    @kotlinx.serialization.SerialName("ch-width")
     CH_WIDTH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("clipboard-read")
+    @kotlinx.serialization.SerialName("clipboard-read")
     CLIPBOARD_READ,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("clipboard-write")
+    @kotlinx.serialization.SerialName("clipboard-write")
     CLIPBOARD_WRITE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("conversion-measurement")
+    @kotlinx.serialization.SerialName("conversion-measurement")
     CONVERSION_MEASUREMENT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("cross-origin-isolated")
+    @kotlinx.serialization.SerialName("cross-origin-isolated")
     CROSS_ORIGIN_ISOLATED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("display-capture")
+    @kotlinx.serialization.SerialName("display-capture")
     DISPLAY_CAPTURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("document-domain")
+    @kotlinx.serialization.SerialName("document-domain")
     DOCUMENT_DOMAIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("encrypted-media")
+    @kotlinx.serialization.SerialName("encrypted-media")
     ENCRYPTED_MEDIA,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("execution-while-out-of-viewport")
+    @kotlinx.serialization.SerialName("execution-while-out-of-viewport")
     EXECUTION_WHILE_OUT_OF_VIEWPORT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("execution-while-not-rendered")
+    @kotlinx.serialization.SerialName("execution-while-not-rendered")
     EXECUTION_WHILE_NOT_RENDERED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("focus-without-user-activation")
+    @kotlinx.serialization.SerialName("focus-without-user-activation")
     FOCUS_WITHOUT_USER_ACTIVATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("fullscreen")
+    @kotlinx.serialization.SerialName("fullscreen")
     FULLSCREEN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("frobulate")
+    @kotlinx.serialization.SerialName("frobulate")
     FROBULATE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("gamepad")
+    @kotlinx.serialization.SerialName("gamepad")
     GAMEPAD,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("geolocation")
+    @kotlinx.serialization.SerialName("geolocation")
     GEOLOCATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("gyroscope")
+    @kotlinx.serialization.SerialName("gyroscope")
     GYROSCOPE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("hid")
+    @kotlinx.serialization.SerialName("hid")
     HID,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("idle-detection")
+    @kotlinx.serialization.SerialName("idle-detection")
     IDLE_DETECTION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("interest-cohort")
+    @kotlinx.serialization.SerialName("interest-cohort")
     INTEREST_COHORT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("magnetometer")
+    @kotlinx.serialization.SerialName("magnetometer")
     MAGNETOMETER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("microphone")
+    @kotlinx.serialization.SerialName("microphone")
     MICROPHONE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("midi")
+    @kotlinx.serialization.SerialName("midi")
     MIDI,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("otp-credentials")
+    @kotlinx.serialization.SerialName("otp-credentials")
     OTP_CREDENTIALS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("payment")
+    @kotlinx.serialization.SerialName("payment")
     PAYMENT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("picture-in-picture")
+    @kotlinx.serialization.SerialName("picture-in-picture")
     PICTURE_IN_PICTURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("publickey-credentials-get")
+    @kotlinx.serialization.SerialName("publickey-credentials-get")
     PUBLICKEY_CREDENTIALS_GET,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("screen-wake-lock")
+    @kotlinx.serialization.SerialName("screen-wake-lock")
     SCREEN_WAKE_LOCK,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("serial")
+    @kotlinx.serialization.SerialName("serial")
     SERIAL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("storage-access-api")
+    @kotlinx.serialization.SerialName("storage-access-api")
     STORAGE_ACCESS_API,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("sync-xhr")
+    @kotlinx.serialization.SerialName("sync-xhr")
     SYNC_XHR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("trust-token-redemption")
+    @kotlinx.serialization.SerialName("trust-token-redemption")
     TRUST_TOKEN_REDEMPTION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("usb")
+    @kotlinx.serialization.SerialName("usb")
     USB,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("vertical-scroll")
+    @kotlinx.serialization.SerialName("vertical-scroll")
     VERTICAL_SCROLL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("web-share")
+    @kotlinx.serialization.SerialName("web-share")
     WEB_SHARE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("xr-spatial-tracking")
+    @kotlinx.serialization.SerialName("xr-spatial-tracking")
     XR_SPATIAL_TRACKING;
 }
 
@@ -250,11 +255,12 @@ enum class PermissionsPolicyFeature {
  *
  * @link [Page#PermissionsPolicyBlockReason](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-PermissionsPolicyBlockReason) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class PermissionsPolicyBlockReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("Header")
+    @kotlinx.serialization.SerialName("Header")
     HEADER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("IframeAttribute")
+    @kotlinx.serialization.SerialName("IframeAttribute")
     IFRAMEATTRIBUTE;
 }
 
@@ -264,6 +270,7 @@ enum class PermissionsPolicyBlockReason {
  * @link [Page#PermissionsPolicyBlockLocator](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-PermissionsPolicyBlockLocator) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PermissionsPolicyBlockLocator(
     /**  
      *  
@@ -282,6 +289,7 @@ data class PermissionsPolicyBlockLocator(
  * @link [Page#PermissionsPolicyFeatureState](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-PermissionsPolicyFeatureState) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PermissionsPolicyFeatureState(
     /**  
      *  
@@ -305,6 +313,7 @@ data class PermissionsPolicyFeatureState(
  * @link [Page#Frame](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-Frame) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Frame(
     /**  
      * Frame unique identifier.  
@@ -386,6 +395,7 @@ data class Frame(
  * @link [Page#FrameResource](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FrameResource) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FrameResource(
     /**  
      * Resource URL.  
@@ -429,6 +439,7 @@ data class FrameResource(
  * @link [Page#FrameResourceTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FrameResourceTree) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FrameResourceTree(
     /**  
      * Frame information for this tree item.  
@@ -452,6 +463,7 @@ data class FrameResourceTree(
  * @link [Page#FrameTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FrameTree) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FrameTree(
     /**  
      * Frame information for this tree item.  
@@ -477,44 +489,45 @@ typealias ScriptIdentifier = String
  *
  * @link [Page#TransitionType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-TransitionType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class TransitionType {
-    @com.fasterxml.jackson.annotation.JsonProperty("link")
+    @kotlinx.serialization.SerialName("link")
     LINK,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("typed")
+    @kotlinx.serialization.SerialName("typed")
     TYPED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("address_bar")
+    @kotlinx.serialization.SerialName("address_bar")
     ADDRESS_BAR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_bookmark")
+    @kotlinx.serialization.SerialName("auto_bookmark")
     AUTO_BOOKMARK,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_subframe")
+    @kotlinx.serialization.SerialName("auto_subframe")
     AUTO_SUBFRAME,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("manual_subframe")
+    @kotlinx.serialization.SerialName("manual_subframe")
     MANUAL_SUBFRAME,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("generated")
+    @kotlinx.serialization.SerialName("generated")
     GENERATED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("auto_toplevel")
+    @kotlinx.serialization.SerialName("auto_toplevel")
     AUTO_TOPLEVEL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("form_submit")
+    @kotlinx.serialization.SerialName("form_submit")
     FORM_SUBMIT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("reload")
+    @kotlinx.serialization.SerialName("reload")
     RELOAD,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("keyword")
+    @kotlinx.serialization.SerialName("keyword")
     KEYWORD,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("keyword_generated")
+    @kotlinx.serialization.SerialName("keyword_generated")
     KEYWORD_GENERATED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("other")
+    @kotlinx.serialization.SerialName("other")
     OTHER;
 }
 
@@ -524,6 +537,7 @@ enum class TransitionType {
  * @link [Page#NavigationEntry](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-NavigationEntry) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class NavigationEntry(
     /**  
      * Unique id of the navigation history entry.  
@@ -557,6 +571,7 @@ data class NavigationEntry(
  * @link [Page#ScreencastFrameMetadata](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-ScreencastFrameMetadata) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ScreencastFrameMetadata(
     /**  
      * Top offset in DIP.  
@@ -599,17 +614,18 @@ data class ScreencastFrameMetadata(
  *
  * @link [Page#DialogType](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-DialogType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class DialogType {
-    @com.fasterxml.jackson.annotation.JsonProperty("alert")
+    @kotlinx.serialization.SerialName("alert")
     ALERT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("confirm")
+    @kotlinx.serialization.SerialName("confirm")
     CONFIRM,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("prompt")
+    @kotlinx.serialization.SerialName("prompt")
     PROMPT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("beforeunload")
+    @kotlinx.serialization.SerialName("beforeunload")
     BEFOREUNLOAD;
 }
 
@@ -619,6 +635,7 @@ enum class DialogType {
  * @link [Page#AppManifestError](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-AppManifestError) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AppManifestError(
     /**  
      * Error message.  
@@ -647,6 +664,7 @@ data class AppManifestError(
  * @link [Page#AppManifestParsedProperties](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-AppManifestParsedProperties) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AppManifestParsedProperties(
     /**  
      * Computed scope value  
@@ -660,6 +678,7 @@ data class AppManifestParsedProperties(
  * @link [Page#LayoutViewport](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-LayoutViewport) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LayoutViewport(
     /**  
      * Horizontal offset relative to the document (CSS pixels).  
@@ -688,6 +707,7 @@ data class LayoutViewport(
  * @link [Page#VisualViewport](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-VisualViewport) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class VisualViewport(
     /**  
      * Horizontal offset relative to the layout viewport (CSS pixels).  
@@ -736,6 +756,7 @@ data class VisualViewport(
  * @link [Page#Viewport](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-Viewport) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Viewport(
     /**  
      * X offset in device independent pixels (dip).  
@@ -769,6 +790,7 @@ data class Viewport(
  * @link [Page#FontFamilies](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FontFamilies) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FontFamilies(
     /**  
      * The standard font-family.  
@@ -812,6 +834,7 @@ data class FontFamilies(
  * @link [Page#FontSizes](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-FontSizes) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FontSizes(
     /**  
      * Default standard font size.  
@@ -829,29 +852,30 @@ data class FontSizes(
  *
  * @link [Page#ClientNavigationReason](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-ClientNavigationReason) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ClientNavigationReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("formSubmissionGet")
+    @kotlinx.serialization.SerialName("formSubmissionGet")
     FORMSUBMISSIONGET,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("formSubmissionPost")
+    @kotlinx.serialization.SerialName("formSubmissionPost")
     FORMSUBMISSIONPOST,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("httpHeaderRefresh")
+    @kotlinx.serialization.SerialName("httpHeaderRefresh")
     HTTPHEADERREFRESH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("scriptInitiated")
+    @kotlinx.serialization.SerialName("scriptInitiated")
     SCRIPTINITIATED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("metaTagRefresh")
+    @kotlinx.serialization.SerialName("metaTagRefresh")
     METATAGREFRESH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("pageBlockInterstitial")
+    @kotlinx.serialization.SerialName("pageBlockInterstitial")
     PAGEBLOCKINTERSTITIAL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("reload")
+    @kotlinx.serialization.SerialName("reload")
     RELOAD,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("anchorClick")
+    @kotlinx.serialization.SerialName("anchorClick")
     ANCHORCLICK;
 }
 
@@ -860,17 +884,18 @@ enum class ClientNavigationReason {
  *
  * @link [Page#ClientNavigationDisposition](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-ClientNavigationDisposition) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ClientNavigationDisposition {
-    @com.fasterxml.jackson.annotation.JsonProperty("currentTab")
+    @kotlinx.serialization.SerialName("currentTab")
     CURRENTTAB,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("newTab")
+    @kotlinx.serialization.SerialName("newTab")
     NEWTAB,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("newWindow")
+    @kotlinx.serialization.SerialName("newWindow")
     NEWWINDOW,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("download")
+    @kotlinx.serialization.SerialName("download")
     DOWNLOAD;
 }
 
@@ -880,6 +905,7 @@ enum class ClientNavigationDisposition {
  * @link [Page#InstallabilityErrorArgument](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-InstallabilityErrorArgument) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class InstallabilityErrorArgument(
     /**  
      * Argument name (e.g. name:'minimum-icon-size-in-pixels').  
@@ -898,6 +924,7 @@ data class InstallabilityErrorArgument(
  * @link [Page#InstallabilityError](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-InstallabilityError) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class InstallabilityError(
     /**  
      * The error id (e.g. 'manifest-missing-suitable-icon').  
@@ -915,29 +942,30 @@ data class InstallabilityError(
  *
  * @link [Page#ReferrerPolicy](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-ReferrerPolicy) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ReferrerPolicy {
-    @com.fasterxml.jackson.annotation.JsonProperty("noReferrer")
+    @kotlinx.serialization.SerialName("noReferrer")
     NOREFERRER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("noReferrerWhenDowngrade")
+    @kotlinx.serialization.SerialName("noReferrerWhenDowngrade")
     NOREFERRERWHENDOWNGRADE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("origin")
+    @kotlinx.serialization.SerialName("origin")
     ORIGIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("originWhenCrossOrigin")
+    @kotlinx.serialization.SerialName("originWhenCrossOrigin")
     ORIGINWHENCROSSORIGIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("sameOrigin")
+    @kotlinx.serialization.SerialName("sameOrigin")
     SAMEORIGIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("strictOrigin")
+    @kotlinx.serialization.SerialName("strictOrigin")
     STRICTORIGIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("strictOriginWhenCrossOrigin")
+    @kotlinx.serialization.SerialName("strictOriginWhenCrossOrigin")
     STRICTORIGINWHENCROSSORIGIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("unsafeUrl")
+    @kotlinx.serialization.SerialName("unsafeUrl")
     UNSAFEURL;
 }
 
@@ -947,6 +975,7 @@ enum class ReferrerPolicy {
  * @link [Page#CompilationCacheParams](https://chromedevtools.github.io/devtools-protocol/tot/Page#type-CompilationCacheParams) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CompilationCacheParams(
     /**  
      * The URL of the script to produce a compilation cache entry for.  

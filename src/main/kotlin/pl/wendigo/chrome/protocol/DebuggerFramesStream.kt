@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.ReplaySubject
 import io.reactivex.rxjava3.subjects.Subject
+import kotlinx.serialization.KSerializer
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -43,7 +44,7 @@ class DebuggerFramesStream : WebSocketListener {
      * onMessage is called when new frame arrives on websocket.
      */
     override fun onMessage(webSocket: WebSocket, text: String) {
-        messages.onNext(mapper.deserialize(text, ResponseFrame::class.java))
+        messages.onNext(mapper.deserializeFrame(text))
     }
 
     /**
@@ -63,10 +64,11 @@ class DebuggerFramesStream : WebSocketListener {
     /**
      * Returns protocol response for given request frame (if any).
      */
-    fun <T> getResponse(requestFrame: RequestFrame, clazz: Class<T>): Single<T> {
+    fun <T> getResponse(requestFrame: RequestFrame, serializer: KSerializer<T>): Single<T> {
         return frames()
-            .filter { it.matchesRequest(requestFrame) }
-            .map { frame -> mapper.deserializeResponse(requestFrame, frame, clazz) }
+            .ofType(MethodCallResponseFrame::class.java)
+            .filter { it.matches(requestFrame) }
+            .map { frame -> mapper.deserializeResponse(requestFrame, frame, serializer) }
             .subscribeOn(Schedulers.io())
             .firstOrError()
     }
@@ -81,7 +83,7 @@ class DebuggerFramesStream : WebSocketListener {
     /**
      * Returns all frames that represent events from connection.
      */
-    fun eventFrames(): Flowable<ResponseFrame> = frames().filter(ResponseFrame::isEvent)
+    fun eventFrames(): Flowable<EventResponseFrame> = frames().ofType(EventResponseFrame::class.java)
 
     /**
      * Returns all frames received from connection.

@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.schema
  * @link [Schema#Domain](https://chromedevtools.github.io/devtools-protocol/tot/Schema#type-Domain) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Domain(
     /**  
      * Domain name.  

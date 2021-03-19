@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.emulation
  * @link [Emulation#ScreenOrientation](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-ScreenOrientation) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ScreenOrientation(
     /**  
      * Orientation type.  
@@ -24,6 +25,7 @@ data class ScreenOrientation(
  * @link [Emulation#DisplayFeature](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-DisplayFeature) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class DisplayFeature(
     /**  
      * Orientation of a display feature in relation to screen  
@@ -50,6 +52,7 @@ data class DisplayFeature(
  * @link [Emulation#MediaFeature](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-MediaFeature) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class MediaFeature(
     /**  
      *  
@@ -70,14 +73,15 @@ resource fetches.
  *
  * @link [Emulation#VirtualTimePolicy](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-VirtualTimePolicy) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class VirtualTimePolicy {
-    @com.fasterxml.jackson.annotation.JsonProperty("advance")
+    @kotlinx.serialization.SerialName("advance")
     ADVANCE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("pause")
+    @kotlinx.serialization.SerialName("pause")
     PAUSE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("pauseIfNetworkFetchesPending")
+    @kotlinx.serialization.SerialName("pauseIfNetworkFetchesPending")
     PAUSEIFNETWORKFETCHESPENDING;
 }
 
@@ -87,6 +91,7 @@ enum class VirtualTimePolicy {
  * @link [Emulation#UserAgentBrandVersion](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-UserAgentBrandVersion) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class UserAgentBrandVersion(
     /**  
      *  
@@ -106,6 +111,7 @@ Missing optional values will be filled in by the target with what it would norma
  * @link [Emulation#UserAgentMetadata](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-UserAgentMetadata) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class UserAgentMetadata(
     /**  
      *  
@@ -148,10 +154,11 @@ data class UserAgentMetadata(
  *
  * @link [Emulation#DisabledImageType](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#type-DisabledImageType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class DisabledImageType {
-    @com.fasterxml.jackson.annotation.JsonProperty("avif")
+    @kotlinx.serialization.SerialName("avif")
     AVIF,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("webp")
+    @kotlinx.serialization.SerialName("webp")
     WEBP;
 }

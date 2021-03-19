@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.domsnapshot
  * @link [DOMSnapshot#DOMNode](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-DOMNode) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class DOMNode(
     /**  
      * `Node`'s nodeType.  
@@ -161,6 +162,7 @@ stable and may change between versions.
  * @link [DOMSnapshot#InlineTextBox](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-InlineTextBox) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class InlineTextBox(
     /**  
      * The bounding box in document coordinates. Note that scroll offset of the document is ignored.  
@@ -186,6 +188,7 @@ data class InlineTextBox(
  * @link [DOMSnapshot#LayoutTreeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-LayoutTreeNode) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LayoutTreeNode(
     /**  
      * The index of the related DOM node in the `domNodes` array returned by `getSnapshot`.  
@@ -231,6 +234,7 @@ data class LayoutTreeNode(
  * @link [DOMSnapshot#ComputedStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-ComputedStyle) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ComputedStyle(
     /**  
      * Name/value pairs of computed style properties.  
@@ -244,6 +248,7 @@ data class ComputedStyle(
  * @link [DOMSnapshot#NameValue](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-NameValue) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class NameValue(
     /**  
      * Attribute/property name.  
@@ -278,6 +283,7 @@ typealias ArrayOfStrings = List<StringIndex>
  * @link [DOMSnapshot#RareStringData](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-RareStringData) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RareStringData(
     /**  
      *  
@@ -296,6 +302,7 @@ data class RareStringData(
  * @link [DOMSnapshot#RareBooleanData](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-RareBooleanData) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RareBooleanData(
     /**  
      *  
@@ -309,6 +316,7 @@ data class RareBooleanData(
  * @link [DOMSnapshot#RareIntegerData](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-RareIntegerData) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RareIntegerData(
     /**  
      *  
@@ -335,6 +343,7 @@ typealias Rectangle = List<Double>
  * @link [DOMSnapshot#DocumentSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-DocumentSnapshot) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class DocumentSnapshot(
     /**  
      * Document URL that `Document` or `FrameOwner` node points to.  
@@ -418,6 +427,7 @@ data class DocumentSnapshot(
  * @link [DOMSnapshot#NodeTreeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-NodeTreeSnapshot) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class NodeTreeSnapshot(
     /**  
      * Parent node index.  
@@ -503,6 +513,7 @@ data class NodeTreeSnapshot(
  * @link [DOMSnapshot#LayoutTreeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-LayoutTreeSnapshot) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LayoutTreeSnapshot(
     /**  
      * Index of the corresponding node in the `NodeTreeSnapshot` array returned by `captureSnapshot`.  
@@ -559,6 +570,7 @@ stable and may change between versions.
  * @link [DOMSnapshot#TextBoxSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#type-TextBoxSnapshot) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class TextBoxSnapshot(
     /**  
      * Index of the layout tree node that owns this box collection.  

@@ -227,12 +227,10 @@ func (p Parameter) GetFormattedType() string {
 			return "Double"
 		case "array":
 			return fmt.Sprintf("List<%s>", p.GetParameterArrayType())
-		case "object":
-			return "com.fasterxml.jackson.databind.JsonNode"
+		case "any", "object":
+			return "kotlinx.serialization.json.JsonElement"
 		case "binary":
 			return "String"
-		case "any":
-			return "Any"
 		default:
 			panic("Unknown type " + p.Type)
 		}
@@ -254,10 +252,8 @@ func (p Parameter) GetParameterArrayType() string {
 			return "Boolean"
 		case "integer":
 			return "Int"
-		case "any":
-			return "Any"
-		case "object":
-			return "Any"
+		case "any", "object":
+			return "kotlinx.serialization.json.JsonElement"
 		case "number":
 			return "Double"
 		}
@@ -282,7 +278,7 @@ func (t Type) GetFormattedType() string {
 		case "object":
 			return "String"
 		case "any":
-			return "Any"
+			return "kotlinx.serialization.json.JsonElement"
 		default:
 			panic("Unknown type " + t.Type)
 		}
@@ -307,7 +303,7 @@ func (t Type) GetParameterArrayType() string {
 		case "number":
 			return "Double"
 		case "any":
-			return "Any"
+			return "kotlinx.serialization.json.JsonElement"
 		case "object":
 			return "Object"
 		}
@@ -353,7 +349,7 @@ func (e Event) ClassName() string {
 }
 
 func (e Event) ImplementingInterfaces() []string {
-	return []string{fmt.Sprintf("%s.protocol.Event(domain = \"%s\", name = \"%s\")", basePackage, currentDomain, e.Name)}
+	return []string{fmt.Sprintf("%s.protocol.Event(domainName = \"%s\", domainEventName = \"%s\")", basePackage, currentDomain, e.Name)}
 }
 
 var protocolFile string
@@ -429,9 +425,9 @@ func main() {
 	raymond.RegisterHelper("value", func(name string, options *raymond.Options) string {
 		switch name {
 		case "this":
-			return "@get:com.fasterxml.jackson.annotation.JsonProperty(\"this\") val _this"
+			return "@kotlinx.serialization.SerialName(\"this\") val _this"
 		case "object":
-			return "@get:com.fasterxml.jackson.annotation.JsonProperty(\"object\") val _object"
+			return "@kotlinx.serialization.SerialName(\"object\") val _object"
 		}
 
 		return fmt.Sprintf("val %s", name)

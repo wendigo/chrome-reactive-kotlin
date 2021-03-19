@@ -1,11 +1,10 @@
 package pl.wendigo.chrome
 
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.reactivex.rxjava3.core.Flowable
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.slf4j.Logger
@@ -131,18 +130,13 @@ class Browser private constructor(
             val info = client.newCall(Request.Builder().url("http://$chromeAddress/json/version").build()).execute()
 
             return when (info.isSuccessful) {
-                true -> DEFAULT_MAPPER.readValue(info.body?.string(), Info::class.java)
+                true -> Json.decodeFromString(info.body?.string()!!)
                 false -> throw BrowserInfoDiscoveryFailedException("Could not query browser info - reponse code was ${info.code}")
             }
         }
 
         @JvmStatic
         fun builder() = Builder()
-
-        private val DEFAULT_MAPPER: ObjectMapper = ObjectMapper()
-            .registerModule(KotlinModule())
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
     }
 
     /**
@@ -226,23 +220,24 @@ class Browser private constructor(
         )
     }
 
+    @Serializable
     data class Info(
-        @get:JsonProperty("Browser")
+        @SerialName("Browser")
         val browser: String,
 
-        @get:JsonProperty("Protocol-Version")
+        @SerialName("Protocol-Version")
         val protocolVersion: String,
 
-        @get:JsonProperty("User-Agent")
+        @SerialName("User-Agent")
         val userAgent: String,
 
-        @get:JsonProperty("V8-Version")
+        @SerialName("V8-Version")
         val v8Version: String? = null,
 
-        @get:JsonProperty("WebKit-Version")
+        @SerialName("WebKit-Version")
         val webKitVersion: String,
 
-        @get:JsonProperty("webSocketDebuggerUrl")
+        @SerialName("webSocketDebuggerUrl")
         val webSocketDebuggerUrl: String
     )
 

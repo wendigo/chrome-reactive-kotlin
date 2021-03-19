@@ -14,6 +14,7 @@ typealias HeapSnapshotObjectId = String
  * @link [HeapProfiler#SamplingHeapProfileNode](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#type-SamplingHeapProfileNode) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SamplingHeapProfileNode(
     /**  
      * Function location.  
@@ -42,6 +43,7 @@ data class SamplingHeapProfileNode(
  * @link [HeapProfiler#SamplingHeapProfileSample](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#type-SamplingHeapProfileSample) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SamplingHeapProfileSample(
     /**  
      * Allocation size in bytes attributed to the sample.  
@@ -66,6 +68,7 @@ data class SamplingHeapProfileSample(
  * @link [HeapProfiler#SamplingHeapProfile](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#type-SamplingHeapProfile) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SamplingHeapProfile(
     /**  
      *  

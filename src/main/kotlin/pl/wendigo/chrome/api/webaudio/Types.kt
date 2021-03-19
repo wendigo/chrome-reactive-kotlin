@@ -13,11 +13,12 @@ typealias GraphObjectId = String
  *
  * @link [WebAudio#ContextType](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ContextType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ContextType {
-    @com.fasterxml.jackson.annotation.JsonProperty("realtime")
+    @kotlinx.serialization.SerialName("realtime")
     REALTIME,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("offline")
+    @kotlinx.serialization.SerialName("offline")
     OFFLINE;
 }
 
@@ -26,14 +27,15 @@ enum class ContextType {
  *
  * @link [WebAudio#ContextState](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ContextState) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ContextState {
-    @com.fasterxml.jackson.annotation.JsonProperty("suspended")
+    @kotlinx.serialization.SerialName("suspended")
     SUSPENDED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("running")
+    @kotlinx.serialization.SerialName("running")
     RUNNING,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("closed")
+    @kotlinx.serialization.SerialName("closed")
     CLOSED;
 }
 
@@ -50,14 +52,15 @@ typealias NodeType = String
  *
  * @link [WebAudio#ChannelCountMode](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ChannelCountMode) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ChannelCountMode {
-    @com.fasterxml.jackson.annotation.JsonProperty("clamped-max")
+    @kotlinx.serialization.SerialName("clamped-max")
     CLAMPED_MAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("explicit")
+    @kotlinx.serialization.SerialName("explicit")
     EXPLICIT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("max")
+    @kotlinx.serialization.SerialName("max")
     MAX;
 }
 
@@ -66,11 +69,12 @@ enum class ChannelCountMode {
  *
  * @link [WebAudio#ChannelInterpretation](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ChannelInterpretation) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ChannelInterpretation {
-    @com.fasterxml.jackson.annotation.JsonProperty("discrete")
+    @kotlinx.serialization.SerialName("discrete")
     DISCRETE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("speakers")
+    @kotlinx.serialization.SerialName("speakers")
     SPEAKERS;
 }
 
@@ -87,11 +91,12 @@ typealias ParamType = String
  *
  * @link [WebAudio#AutomationRate](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-AutomationRate) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class AutomationRate {
-    @com.fasterxml.jackson.annotation.JsonProperty("a-rate")
+    @kotlinx.serialization.SerialName("a-rate")
     A_RATE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("k-rate")
+    @kotlinx.serialization.SerialName("k-rate")
     K_RATE;
 }
 
@@ -101,6 +106,7 @@ enum class AutomationRate {
  * @link [WebAudio#ContextRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-ContextRealtimeData) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ContextRealtimeData(
     /**  
      * The current context time in second in BaseAudioContext.  
@@ -131,6 +137,7 @@ data class ContextRealtimeData(
  * @link [WebAudio#BaseAudioContext](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-BaseAudioContext) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class BaseAudioContext(
     /**  
      *  
@@ -174,6 +181,7 @@ data class BaseAudioContext(
  * @link [WebAudio#AudioListener](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-AudioListener) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AudioListener(
     /**  
      *  
@@ -192,6 +200,7 @@ data class AudioListener(
  * @link [WebAudio#AudioNode](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-AudioNode) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AudioNode(
     /**  
      *  
@@ -240,6 +249,7 @@ data class AudioNode(
  * @link [WebAudio#AudioParam](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#type-AudioParam) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AudioParam(
     /**  
      *  

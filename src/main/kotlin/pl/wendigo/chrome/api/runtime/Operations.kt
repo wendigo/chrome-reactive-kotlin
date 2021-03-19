@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.runtime
 
+import kotlinx.serialization.json.Json
+
 /**
  * Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects.
 Evaluation results are returned as mirror object that expose object type, string representation
@@ -15,7 +17,7 @@ class RuntimeOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) method documentation.
      */
-    fun awaitPromise(input: AwaitPromiseRequest) = connection.request("Runtime.awaitPromise", input, AwaitPromiseResponse::class.java)
+    fun awaitPromise(input: AwaitPromiseRequest) = connection.request("Runtime.awaitPromise", Json.encodeToJsonElement(AwaitPromiseRequest.serializer(), input), AwaitPromiseResponse.serializer())
 
     /**
      * Calls function with given declaration on the given object. Object group of the result is
@@ -23,28 +25,28 @@ inherited from the target object.
      *
      * @link Protocol [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) method documentation.
      */
-    fun callFunctionOn(input: CallFunctionOnRequest) = connection.request("Runtime.callFunctionOn", input, CallFunctionOnResponse::class.java)
+    fun callFunctionOn(input: CallFunctionOnRequest) = connection.request("Runtime.callFunctionOn", Json.encodeToJsonElement(CallFunctionOnRequest.serializer(), input), CallFunctionOnResponse.serializer())
 
     /**
      * Compiles expression.
      *
      * @link Protocol [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) method documentation.
      */
-    fun compileScript(input: CompileScriptRequest) = connection.request("Runtime.compileScript", input, CompileScriptResponse::class.java)
+    fun compileScript(input: CompileScriptRequest) = connection.request("Runtime.compileScript", Json.encodeToJsonElement(CompileScriptRequest.serializer(), input), CompileScriptResponse.serializer())
 
     /**
      * Disables reporting of execution contexts creation.
      *
      * @link Protocol [Runtime#disable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-disable) method documentation.
      */
-    fun disable() = connection.request("Runtime.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Runtime.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Discards collected exceptions and console API calls.
      *
      * @link Protocol [Runtime#discardConsoleEntries](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-discardConsoleEntries) method documentation.
      */
-    fun discardConsoleEntries() = connection.request("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun discardConsoleEntries() = connection.request("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables reporting of execution contexts creation by means of `executionContextCreated` event.
@@ -53,14 +55,14 @@ context.
      *
      * @link Protocol [Runtime#enable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-enable) method documentation.
      */
-    fun enable() = connection.request("Runtime.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Runtime.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Evaluates expression on global object.
      *
      * @link Protocol [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
      */
-    fun evaluate(input: EvaluateRequest) = connection.request("Runtime.evaluate", input, EvaluateResponse::class.java)
+    fun evaluate(input: EvaluateRequest) = connection.request("Runtime.evaluate", Json.encodeToJsonElement(EvaluateRequest.serializer(), input), EvaluateResponse.serializer())
 
     /**
      * Returns the isolate id.
@@ -69,7 +71,7 @@ context.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getIsolateId() = connection.request("Runtime.getIsolateId", null, GetIsolateIdResponse::class.java)
+    fun getIsolateId() = connection.request("Runtime.getIsolateId", null, GetIsolateIdResponse.serializer())
 
     /**
      * Returns the JavaScript heap usage.
@@ -79,7 +81,7 @@ It is the total usage of the corresponding isolate not scoped to a particular Ru
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHeapUsage() = connection.request("Runtime.getHeapUsage", null, GetHeapUsageResponse::class.java)
+    fun getHeapUsage() = connection.request("Runtime.getHeapUsage", null, GetHeapUsageResponse.serializer())
 
     /**
      * Returns properties of a given object. Object group of the result is inherited from the target
@@ -87,56 +89,56 @@ object.
      *
      * @link Protocol [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
      */
-    fun getProperties(input: GetPropertiesRequest) = connection.request("Runtime.getProperties", input, GetPropertiesResponse::class.java)
+    fun getProperties(input: GetPropertiesRequest) = connection.request("Runtime.getProperties", Json.encodeToJsonElement(GetPropertiesRequest.serializer(), input), GetPropertiesResponse.serializer())
 
     /**
      * Returns all let, const and class variables from global scope.
      *
      * @link Protocol [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) method documentation.
      */
-    fun globalLexicalScopeNames(input: GlobalLexicalScopeNamesRequest) = connection.request("Runtime.globalLexicalScopeNames", input, GlobalLexicalScopeNamesResponse::class.java)
+    fun globalLexicalScopeNames(input: GlobalLexicalScopeNamesRequest) = connection.request("Runtime.globalLexicalScopeNames", Json.encodeToJsonElement(GlobalLexicalScopeNamesRequest.serializer(), input), GlobalLexicalScopeNamesResponse.serializer())
 
     /**
      *
      *
      * @link Protocol [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) method documentation.
      */
-    fun queryObjects(input: QueryObjectsRequest) = connection.request("Runtime.queryObjects", input, QueryObjectsResponse::class.java)
+    fun queryObjects(input: QueryObjectsRequest) = connection.request("Runtime.queryObjects", Json.encodeToJsonElement(QueryObjectsRequest.serializer(), input), QueryObjectsResponse.serializer())
 
     /**
      * Releases remote object with given id.
      *
      * @link Protocol [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) method documentation.
      */
-    fun releaseObject(input: ReleaseObjectRequest) = connection.request("Runtime.releaseObject", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun releaseObject(input: ReleaseObjectRequest) = connection.request("Runtime.releaseObject", Json.encodeToJsonElement(ReleaseObjectRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Releases all remote objects that belong to a given group.
      *
      * @link Protocol [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) method documentation.
      */
-    fun releaseObjectGroup(input: ReleaseObjectGroupRequest) = connection.request("Runtime.releaseObjectGroup", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun releaseObjectGroup(input: ReleaseObjectGroupRequest) = connection.request("Runtime.releaseObjectGroup", Json.encodeToJsonElement(ReleaseObjectGroupRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Tells inspected instance to run if it was waiting for debugger to attach.
      *
      * @link Protocol [Runtime#runIfWaitingForDebugger](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runIfWaitingForDebugger) method documentation.
      */
-    fun runIfWaitingForDebugger() = connection.request("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun runIfWaitingForDebugger() = connection.request("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Runs script with given id in a given context.
      *
      * @link Protocol [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) method documentation.
      */
-    fun runScript(input: RunScriptRequest) = connection.request("Runtime.runScript", input, RunScriptResponse::class.java)
+    fun runScript(input: RunScriptRequest) = connection.request("Runtime.runScript", Json.encodeToJsonElement(RunScriptRequest.serializer(), input), RunScriptResponse.serializer())
 
     /**
      * Enables or disables async call stacks tracking.
      *
      * @link Protocol [Runtime#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setAsyncCallStackDepth) method documentation.
      */
-    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest) = connection.request("Runtime.setAsyncCallStackDepth", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest) = connection.request("Runtime.setAsyncCallStackDepth", Json.encodeToJsonElement(SetAsyncCallStackDepthRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -145,7 +147,7 @@ object.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setCustomObjectFormatterEnabled(input: SetCustomObjectFormatterEnabledRequest) = connection.request("Runtime.setCustomObjectFormatterEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setCustomObjectFormatterEnabled(input: SetCustomObjectFormatterEnabledRequest) = connection.request("Runtime.setCustomObjectFormatterEnabled", Json.encodeToJsonElement(SetCustomObjectFormatterEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -154,7 +156,7 @@ object.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setMaxCallStackSizeToCapture(input: SetMaxCallStackSizeToCaptureRequest) = connection.request("Runtime.setMaxCallStackSizeToCapture", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setMaxCallStackSizeToCapture(input: SetMaxCallStackSizeToCaptureRequest) = connection.request("Runtime.setMaxCallStackSizeToCapture", Json.encodeToJsonElement(SetMaxCallStackSizeToCaptureRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Terminate current or next JavaScript execution.
@@ -164,7 +166,7 @@ Will cancel the termination when the outer-most script execution ends.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun terminateExecution() = connection.request("Runtime.terminateExecution", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun terminateExecution() = connection.request("Runtime.terminateExecution", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * If executionContextId is empty, adds binding with the given name on the
@@ -178,7 +180,7 @@ Each binding function call produces Runtime.bindingCalled notification.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun addBinding(input: AddBindingRequest) = connection.request("Runtime.addBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun addBinding(input: AddBindingRequest) = connection.request("Runtime.addBinding", Json.encodeToJsonElement(AddBindingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * This method does not remove binding function from global object but
@@ -188,48 +190,48 @@ unsubscribes current runtime agent from Runtime.bindingCalled notifications.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun removeBinding(input: RemoveBindingRequest) = connection.request("Runtime.removeBinding", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeBinding(input: RemoveBindingRequest) = connection.request("Runtime.removeBinding", Json.encodeToJsonElement(RemoveBindingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Notification is issued every time when binding is called.
      */
-    fun bindingCalled(): io.reactivex.rxjava3.core.Flowable<BindingCalledEvent> = connection.events("Runtime.bindingCalled", BindingCalledEvent::class.java)
+    fun bindingCalled(): io.reactivex.rxjava3.core.Flowable<BindingCalledEvent> = connection.events("Runtime.bindingCalled", BindingCalledEvent.serializer())
 
     /**
      *  Issued when console API was called.
      */
-    fun consoleAPICalled(): io.reactivex.rxjava3.core.Flowable<ConsoleAPICalledEvent> = connection.events("Runtime.consoleAPICalled", ConsoleAPICalledEvent::class.java)
+    fun consoleAPICalled(): io.reactivex.rxjava3.core.Flowable<ConsoleAPICalledEvent> = connection.events("Runtime.consoleAPICalled", ConsoleAPICalledEvent.serializer())
 
     /**
      *  Issued when unhandled exception was revoked.
      */
-    fun exceptionRevoked(): io.reactivex.rxjava3.core.Flowable<ExceptionRevokedEvent> = connection.events("Runtime.exceptionRevoked", ExceptionRevokedEvent::class.java)
+    fun exceptionRevoked(): io.reactivex.rxjava3.core.Flowable<ExceptionRevokedEvent> = connection.events("Runtime.exceptionRevoked", ExceptionRevokedEvent.serializer())
 
     /**
      *  Issued when exception was thrown and unhandled.
      */
-    fun exceptionThrown(): io.reactivex.rxjava3.core.Flowable<ExceptionThrownEvent> = connection.events("Runtime.exceptionThrown", ExceptionThrownEvent::class.java)
+    fun exceptionThrown(): io.reactivex.rxjava3.core.Flowable<ExceptionThrownEvent> = connection.events("Runtime.exceptionThrown", ExceptionThrownEvent.serializer())
 
     /**
      *  Issued when new execution context is created.
      */
-    fun executionContextCreated(): io.reactivex.rxjava3.core.Flowable<ExecutionContextCreatedEvent> = connection.events("Runtime.executionContextCreated", ExecutionContextCreatedEvent::class.java)
+    fun executionContextCreated(): io.reactivex.rxjava3.core.Flowable<ExecutionContextCreatedEvent> = connection.events("Runtime.executionContextCreated", ExecutionContextCreatedEvent.serializer())
 
     /**
      *  Issued when execution context is destroyed.
      */
-    fun executionContextDestroyed(): io.reactivex.rxjava3.core.Flowable<ExecutionContextDestroyedEvent> = connection.events("Runtime.executionContextDestroyed", ExecutionContextDestroyedEvent::class.java)
+    fun executionContextDestroyed(): io.reactivex.rxjava3.core.Flowable<ExecutionContextDestroyedEvent> = connection.events("Runtime.executionContextDestroyed", ExecutionContextDestroyedEvent.serializer())
 
     /**
      *  Issued when all executionContexts were cleared in browser
      */
-    fun executionContextsCleared(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Runtime.executionContextsCleared", pl.wendigo.chrome.protocol.Event::class.java)
+    fun executionContextsCleared(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Runtime.executionContextsCleared", pl.wendigo.chrome.protocol.Event.serializer())
 
     /**
      *  Issued when object should be inspected (for example, as a result of inspect() command line API
 call).
      */
-    fun inspectRequested(): io.reactivex.rxjava3.core.Flowable<InspectRequestedEvent> = connection.events("Runtime.inspectRequested", InspectRequestedEvent::class.java)
+    fun inspectRequested(): io.reactivex.rxjava3.core.Flowable<InspectRequestedEvent> = connection.events("Runtime.inspectRequested", InspectRequestedEvent.serializer())
 
     /**
      * Returns flowable capturing all Runtime domains events.
@@ -248,6 +250,7 @@ call).
  * @link [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) method documentation.
  * @see [RuntimeOperations.awaitPromise]
  */
+@kotlinx.serialization.Serializable
 data class AwaitPromiseRequest(
     /**
      * Identifier of the promise.
@@ -274,6 +277,7 @@ data class AwaitPromiseRequest(
  * @link [Runtime#awaitPromise](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-awaitPromise) method documentation.
  * @see [RuntimeOperations.awaitPromise]
  */
+@kotlinx.serialization.Serializable
 data class AwaitPromiseResponse(
     /**  
      * Promise result. Will contain rejected value if promise was rejected.  
@@ -295,6 +299,7 @@ inherited from the target object.
  * @link [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) method documentation.
  * @see [RuntimeOperations.callFunctionOn]
  */
+@kotlinx.serialization.Serializable
 data class CallFunctionOnRequest(
     /**
      * Declaration of the function to call.
@@ -363,6 +368,7 @@ inherited from the target object.
  * @link [Runtime#callFunctionOn](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-callFunctionOn) method documentation.
  * @see [RuntimeOperations.callFunctionOn]
  */
+@kotlinx.serialization.Serializable
 data class CallFunctionOnResponse(
     /**  
      * Call result.  
@@ -383,6 +389,7 @@ data class CallFunctionOnResponse(
  * @link [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) method documentation.
  * @see [RuntimeOperations.compileScript]
  */
+@kotlinx.serialization.Serializable
 data class CompileScriptRequest(
     /**
      * Expression to compile.
@@ -415,6 +422,7 @@ evaluation will be performed in the context of the inspected page.
  * @link [Runtime#compileScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-compileScript) method documentation.
  * @see [RuntimeOperations.compileScript]
  */
+@kotlinx.serialization.Serializable
 data class CompileScriptResponse(
     /**  
      * Id of the script.  
@@ -435,6 +443,7 @@ data class CompileScriptResponse(
  * @link [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
  * @see [RuntimeOperations.evaluate]
  */
+@kotlinx.serialization.Serializable
 data class EvaluateRequest(
     /**
      * Expression to evaluate.
@@ -538,6 +547,7 @@ This is mutually exclusive with `contextId`.
  * @link [Runtime#evaluate](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-evaluate) method documentation.
  * @see [RuntimeOperations.evaluate]
  */
+@kotlinx.serialization.Serializable
 data class EvaluateResponse(
     /**  
      * Evaluation result.  
@@ -559,6 +569,7 @@ data class EvaluateResponse(
  * @link [Runtime#getIsolateId](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getIsolateId) method documentation.
  * @see [RuntimeOperations.getIsolateId]
  */
+@kotlinx.serialization.Serializable
 data class GetIsolateIdResponse(
     /**  
      * The isolate id.  
@@ -576,6 +587,7 @@ It is the total usage of the corresponding isolate not scoped to a particular Ru
  * @link [Runtime#getHeapUsage](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getHeapUsage) method documentation.
  * @see [RuntimeOperations.getHeapUsage]
  */
+@kotlinx.serialization.Serializable
 data class GetHeapUsageResponse(
     /**  
      * Used heap size in bytes.  
@@ -597,6 +609,7 @@ object.
  * @link [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
  * @see [RuntimeOperations.getProperties]
  */
+@kotlinx.serialization.Serializable
 data class GetPropertiesRequest(
     /**
      * Identifier of the object to return properties for.
@@ -631,6 +644,7 @@ object.
  * @link [Runtime#getProperties](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-getProperties) method documentation.
  * @see [RuntimeOperations.getProperties]
  */
+@kotlinx.serialization.Serializable
 data class GetPropertiesResponse(
     /**  
      * Object properties.  
@@ -661,6 +675,7 @@ data class GetPropertiesResponse(
  * @link [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) method documentation.
  * @see [RuntimeOperations.globalLexicalScopeNames]
  */
+@kotlinx.serialization.Serializable
 data class GlobalLexicalScopeNamesRequest(
     /**
      * Specifies in which execution context to lookup global scope variables.
@@ -677,6 +692,7 @@ data class GlobalLexicalScopeNamesRequest(
  * @link [Runtime#globalLexicalScopeNames](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-globalLexicalScopeNames) method documentation.
  * @see [RuntimeOperations.globalLexicalScopeNames]
  */
+@kotlinx.serialization.Serializable
 data class GlobalLexicalScopeNamesResponse(
     /**  
      *  
@@ -692,6 +708,7 @@ data class GlobalLexicalScopeNamesResponse(
  * @link [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) method documentation.
  * @see [RuntimeOperations.queryObjects]
  */
+@kotlinx.serialization.Serializable
 data class QueryObjectsRequest(
     /**
      * Identifier of the prototype to return objects for.
@@ -713,6 +730,7 @@ data class QueryObjectsRequest(
  * @link [Runtime#queryObjects](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-queryObjects) method documentation.
  * @see [RuntimeOperations.queryObjects]
  */
+@kotlinx.serialization.Serializable
 data class QueryObjectsResponse(
     /**  
      * Array with objects.  
@@ -728,6 +746,7 @@ data class QueryObjectsResponse(
  * @link [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) method documentation.
  * @see [RuntimeOperations.releaseObject]
  */
+@kotlinx.serialization.Serializable
 data class ReleaseObjectRequest(
     /**
      * Identifier of the object to release.
@@ -743,6 +762,7 @@ data class ReleaseObjectRequest(
  * @link [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) method documentation.
  * @see [RuntimeOperations.releaseObjectGroup]
  */
+@kotlinx.serialization.Serializable
 data class ReleaseObjectGroupRequest(
     /**
      * Symbolic object group name.
@@ -758,6 +778,7 @@ data class ReleaseObjectGroupRequest(
  * @link [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) method documentation.
  * @see [RuntimeOperations.runScript]
  */
+@kotlinx.serialization.Serializable
 data class RunScriptRequest(
     /**
      * Id of the script to run.
@@ -812,6 +833,7 @@ resolved.
  * @link [Runtime#runScript](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runScript) method documentation.
  * @see [RuntimeOperations.runScript]
  */
+@kotlinx.serialization.Serializable
 data class RunScriptResponse(
     /**  
      * Run result.  
@@ -832,6 +854,7 @@ data class RunScriptResponse(
  * @link [Runtime#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setAsyncCallStackDepth) method documentation.
  * @see [RuntimeOperations.setAsyncCallStackDepth]
  */
+@kotlinx.serialization.Serializable
 data class SetAsyncCallStackDepthRequest(
     /**
      * Maximum depth of async call stacks. Setting to `0` will effectively disable collecting async
@@ -848,6 +871,7 @@ call stacks (default).
  * @link [Runtime#setCustomObjectFormatterEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setCustomObjectFormatterEnabled) method documentation.
  * @see [RuntimeOperations.setCustomObjectFormatterEnabled]
  */
+@kotlinx.serialization.Serializable
 data class SetCustomObjectFormatterEnabledRequest(
     /**
      *
@@ -863,6 +887,7 @@ data class SetCustomObjectFormatterEnabledRequest(
  * @link [Runtime#setMaxCallStackSizeToCapture](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setMaxCallStackSizeToCapture) method documentation.
  * @see [RuntimeOperations.setMaxCallStackSizeToCapture]
  */
+@kotlinx.serialization.Serializable
 data class SetMaxCallStackSizeToCaptureRequest(
     /**
      *
@@ -883,6 +908,7 @@ Each binding function call produces Runtime.bindingCalled notification.
  * @link [Runtime#addBinding](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-addBinding) method documentation.
  * @see [RuntimeOperations.addBinding]
  */
+@kotlinx.serialization.Serializable
 data class AddBindingRequest(
     /**
      *
@@ -916,6 +942,7 @@ unsubscribes current runtime agent from Runtime.bindingCalled notifications.
  * @link [Runtime#removeBinding](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-removeBinding) method documentation.
  * @see [RuntimeOperations.removeBinding]
  */
+@kotlinx.serialization.Serializable
 data class RemoveBindingRequest(
     /**
      *
@@ -929,6 +956,7 @@ data class RemoveBindingRequest(
  *
  * @link [Runtime#bindingCalled](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-bindingCalled) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class BindingCalledEvent(
     /**  
      *  
@@ -945,13 +973,14 @@ data class BindingCalledEvent(
      */  
     val executionContextId: ExecutionContextId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "bindingCalled")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "bindingCalled")
 
 /**
  * Issued when console API was called.
  *
  * @link [Runtime#consoleAPICalled](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-consoleAPICalled) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ConsoleAPICalledEvent(
     /**  
      * Type of the call.  
@@ -987,13 +1016,14 @@ data class ConsoleAPICalledEvent(
      */  
     val context: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "consoleAPICalled")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "consoleAPICalled")
 
 /**
  * Issued when unhandled exception was revoked.
  *
  * @link [Runtime#exceptionRevoked](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-exceptionRevoked) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ExceptionRevokedEvent(
     /**  
      * Reason describing why exception was revoked.  
@@ -1005,13 +1035,14 @@ data class ExceptionRevokedEvent(
      */  
     val exceptionId: Int
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "exceptionRevoked")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "exceptionRevoked")
 
 /**
  * Issued when exception was thrown and unhandled.
  *
  * @link [Runtime#exceptionThrown](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-exceptionThrown) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ExceptionThrownEvent(
     /**  
      * Timestamp of the exception.  
@@ -1023,33 +1054,35 @@ data class ExceptionThrownEvent(
      */  
     val exceptionDetails: ExceptionDetails
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "exceptionThrown")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "exceptionThrown")
 
 /**
  * Issued when new execution context is created.
  *
  * @link [Runtime#executionContextCreated](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-executionContextCreated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ExecutionContextCreatedEvent(
     /**  
      * A newly created execution context.  
      */  
     val context: ExecutionContextDescription
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "executionContextCreated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "executionContextCreated")
 
 /**
  * Issued when execution context is destroyed.
  *
  * @link [Runtime#executionContextDestroyed](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-executionContextDestroyed) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ExecutionContextDestroyedEvent(
     /**  
      * Id of the destroyed context  
      */  
     val executionContextId: ExecutionContextId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "executionContextDestroyed")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "executionContextDestroyed")
 
 /**
  * Issued when object should be inspected (for example, as a result of inspect() command line API
@@ -1057,15 +1090,16 @@ call).
  *
  * @link [Runtime#inspectRequested](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#event-inspectRequested) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class InspectRequestedEvent(
     /**  
      *  
      */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: RemoteObject,
+    @kotlinx.serialization.SerialName("object") val _object: RemoteObject,
 
     /**  
      *  
      */  
-    val hints: com.fasterxml.jackson.databind.JsonNode
+    val hints: kotlinx.serialization.json.JsonElement
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Runtime", name = "inspectRequested")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Runtime", domainEventName = "inspectRequested")

@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.profiler
  * @link [Profiler#ProfileNode](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-ProfileNode) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ProfileNode(
     /**  
      * Unique id of the node.  
@@ -45,6 +46,7 @@ data class ProfileNode(
  * @link [Profiler#Profile](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-Profile) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Profile(
     /**  
      * The list of profile nodes. First item is the root node.  
@@ -79,6 +81,7 @@ data class Profile(
  * @link [Profiler#PositionTickInfo](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-PositionTickInfo) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PositionTickInfo(
     /**  
      * Source line number (1-based).  
@@ -97,6 +100,7 @@ data class PositionTickInfo(
  * @link [Profiler#CoverageRange](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-CoverageRange) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CoverageRange(
     /**  
      * JavaScript script source offset for the range start.  
@@ -120,6 +124,7 @@ data class CoverageRange(
  * @link [Profiler#FunctionCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-FunctionCoverage) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FunctionCoverage(
     /**  
      * JavaScript function name.  
@@ -143,6 +148,7 @@ data class FunctionCoverage(
  * @link [Profiler#ScriptCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-ScriptCoverage) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ScriptCoverage(
     /**  
      * JavaScript script id.  
@@ -166,6 +172,7 @@ data class ScriptCoverage(
  * @link [Profiler#TypeObject](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-TypeObject) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class TypeObject(
     /**  
      * Name of a type collected with type profiling.  
@@ -179,6 +186,7 @@ data class TypeObject(
  * @link [Profiler#TypeProfileEntry](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-TypeProfileEntry) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class TypeProfileEntry(
     /**  
      * Source offset of the parameter or end of function for return values.  
@@ -197,6 +205,7 @@ data class TypeProfileEntry(
  * @link [Profiler#ScriptTypeProfile](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-ScriptTypeProfile) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ScriptTypeProfile(
     /**  
      * JavaScript script id.  
@@ -220,6 +229,7 @@ data class ScriptTypeProfile(
  * @link [Profiler#CounterInfo](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-CounterInfo) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CounterInfo(
     /**  
      * Counter name.  
@@ -238,6 +248,7 @@ data class CounterInfo(
  * @link [Profiler#RuntimeCallCounterInfo](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#type-RuntimeCallCounterInfo) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RuntimeCallCounterInfo(
     /**  
      * Counter name.  

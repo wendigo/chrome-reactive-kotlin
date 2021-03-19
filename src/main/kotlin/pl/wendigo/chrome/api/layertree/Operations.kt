@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.layertree
 
+import kotlinx.serialization.json.Json
+
 /**
  * LayerTreeOperations represents LayerTree protocol domain request/response operations and events that can be captured.
  *
@@ -13,73 +15,73 @@ class LayerTreeOperations internal constructor(private val connection: pl.wendig
      *
      * @link Protocol [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
      */
-    fun compositingReasons(input: CompositingReasonsRequest) = connection.request("LayerTree.compositingReasons", input, CompositingReasonsResponse::class.java)
+    fun compositingReasons(input: CompositingReasonsRequest) = connection.request("LayerTree.compositingReasons", Json.encodeToJsonElement(CompositingReasonsRequest.serializer(), input), CompositingReasonsResponse.serializer())
 
     /**
      * Disables compositing tree inspection.
      *
      * @link Protocol [LayerTree#disable](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-disable) method documentation.
      */
-    fun disable() = connection.request("LayerTree.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("LayerTree.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables compositing tree inspection.
      *
      * @link Protocol [LayerTree#enable](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-enable) method documentation.
      */
-    fun enable() = connection.request("LayerTree.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("LayerTree.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns the snapshot identifier.
      *
      * @link Protocol [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
      */
-    fun loadSnapshot(input: LoadSnapshotRequest) = connection.request("LayerTree.loadSnapshot", input, LoadSnapshotResponse::class.java)
+    fun loadSnapshot(input: LoadSnapshotRequest) = connection.request("LayerTree.loadSnapshot", Json.encodeToJsonElement(LoadSnapshotRequest.serializer(), input), LoadSnapshotResponse.serializer())
 
     /**
      * Returns the layer snapshot identifier.
      *
      * @link Protocol [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
      */
-    fun makeSnapshot(input: MakeSnapshotRequest) = connection.request("LayerTree.makeSnapshot", input, MakeSnapshotResponse::class.java)
+    fun makeSnapshot(input: MakeSnapshotRequest) = connection.request("LayerTree.makeSnapshot", Json.encodeToJsonElement(MakeSnapshotRequest.serializer(), input), MakeSnapshotResponse.serializer())
 
     /**
      *
      *
      * @link Protocol [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
      */
-    fun profileSnapshot(input: ProfileSnapshotRequest) = connection.request("LayerTree.profileSnapshot", input, ProfileSnapshotResponse::class.java)
+    fun profileSnapshot(input: ProfileSnapshotRequest) = connection.request("LayerTree.profileSnapshot", Json.encodeToJsonElement(ProfileSnapshotRequest.serializer(), input), ProfileSnapshotResponse.serializer())
 
     /**
      * Releases layer snapshot captured by the back-end.
      *
      * @link Protocol [LayerTree#releaseSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-releaseSnapshot) method documentation.
      */
-    fun releaseSnapshot(input: ReleaseSnapshotRequest) = connection.request("LayerTree.releaseSnapshot", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun releaseSnapshot(input: ReleaseSnapshotRequest) = connection.request("LayerTree.releaseSnapshot", Json.encodeToJsonElement(ReleaseSnapshotRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Replays the layer snapshot and returns the resulting bitmap.
      *
      * @link Protocol [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
      */
-    fun replaySnapshot(input: ReplaySnapshotRequest) = connection.request("LayerTree.replaySnapshot", input, ReplaySnapshotResponse::class.java)
+    fun replaySnapshot(input: ReplaySnapshotRequest) = connection.request("LayerTree.replaySnapshot", Json.encodeToJsonElement(ReplaySnapshotRequest.serializer(), input), ReplaySnapshotResponse.serializer())
 
     /**
      * Replays the layer snapshot and returns canvas log.
      *
      * @link Protocol [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
      */
-    fun snapshotCommandLog(input: SnapshotCommandLogRequest) = connection.request("LayerTree.snapshotCommandLog", input, SnapshotCommandLogResponse::class.java)
+    fun snapshotCommandLog(input: SnapshotCommandLogRequest) = connection.request("LayerTree.snapshotCommandLog", Json.encodeToJsonElement(SnapshotCommandLogRequest.serializer(), input), SnapshotCommandLogResponse.serializer())
 
     /**
      *  Returns observable capturing all LayerTree.layerPainted events.
      */
-    fun layerPainted(): io.reactivex.rxjava3.core.Flowable<LayerPaintedEvent> = connection.events("LayerTree.layerPainted", LayerPaintedEvent::class.java)
+    fun layerPainted(): io.reactivex.rxjava3.core.Flowable<LayerPaintedEvent> = connection.events("LayerTree.layerPainted", LayerPaintedEvent.serializer())
 
     /**
      *  Returns observable capturing all LayerTree.layerTreeDidChange events.
      */
-    fun layerTreeDidChange(): io.reactivex.rxjava3.core.Flowable<LayerTreeDidChangeEvent> = connection.events("LayerTree.layerTreeDidChange", LayerTreeDidChangeEvent::class.java)
+    fun layerTreeDidChange(): io.reactivex.rxjava3.core.Flowable<LayerTreeDidChangeEvent> = connection.events("LayerTree.layerTreeDidChange", LayerTreeDidChangeEvent.serializer())
 
     /**
      * Returns flowable capturing all LayerTree domains events.
@@ -98,6 +100,7 @@ class LayerTreeOperations internal constructor(private val connection: pl.wendig
  * @link [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
  * @see [LayerTreeOperations.compositingReasons]
  */
+@kotlinx.serialization.Serializable
 data class CompositingReasonsRequest(
     /**
      * The id of the layer for which we want to get the reasons it was composited.
@@ -114,6 +117,7 @@ data class CompositingReasonsRequest(
  * @link [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
  * @see [LayerTreeOperations.compositingReasons]
  */
+@kotlinx.serialization.Serializable
 data class CompositingReasonsResponse(
     /**  
      * A list of strings specifying reasons for the given layer to become composited.  
@@ -134,6 +138,7 @@ data class CompositingReasonsResponse(
  * @link [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
  * @see [LayerTreeOperations.loadSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class LoadSnapshotRequest(
     /**
      * An array of tiles composing the snapshot.
@@ -150,6 +155,7 @@ data class LoadSnapshotRequest(
  * @link [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
  * @see [LayerTreeOperations.loadSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class LoadSnapshotResponse(
     /**  
      * The id of the snapshot.  
@@ -165,6 +171,7 @@ data class LoadSnapshotResponse(
  * @link [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
  * @see [LayerTreeOperations.makeSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class MakeSnapshotRequest(
     /**
      * The id of the layer.
@@ -181,6 +188,7 @@ data class MakeSnapshotRequest(
  * @link [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
  * @see [LayerTreeOperations.makeSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class MakeSnapshotResponse(
     /**  
      * The id of the layer snapshot.  
@@ -196,6 +204,7 @@ data class MakeSnapshotResponse(
  * @link [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
  * @see [LayerTreeOperations.profileSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class ProfileSnapshotRequest(
     /**
      * The id of the layer snapshot.
@@ -227,6 +236,7 @@ data class ProfileSnapshotRequest(
  * @link [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
  * @see [LayerTreeOperations.profileSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class ProfileSnapshotResponse(
     /**  
      * The array of paint profiles, one per run.  
@@ -242,6 +252,7 @@ data class ProfileSnapshotResponse(
  * @link [LayerTree#releaseSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-releaseSnapshot) method documentation.
  * @see [LayerTreeOperations.releaseSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class ReleaseSnapshotRequest(
     /**
      * The id of the layer snapshot.
@@ -257,6 +268,7 @@ data class ReleaseSnapshotRequest(
  * @link [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
  * @see [LayerTreeOperations.replaySnapshot]
  */
+@kotlinx.serialization.Serializable
 data class ReplaySnapshotRequest(
     /**
      * The id of the layer snapshot.
@@ -288,6 +300,7 @@ data class ReplaySnapshotRequest(
  * @link [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
  * @see [LayerTreeOperations.replaySnapshot]
  */
+@kotlinx.serialization.Serializable
 data class ReplaySnapshotResponse(
     /**  
      * A data: URL for resulting image.  
@@ -303,6 +316,7 @@ data class ReplaySnapshotResponse(
  * @link [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
  * @see [LayerTreeOperations.snapshotCommandLog]
  */
+@kotlinx.serialization.Serializable
 data class SnapshotCommandLogRequest(
     /**
      * The id of the layer snapshot.
@@ -319,11 +333,12 @@ data class SnapshotCommandLogRequest(
  * @link [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
  * @see [LayerTreeOperations.snapshotCommandLog]
  */
+@kotlinx.serialization.Serializable
 data class SnapshotCommandLogResponse(
     /**  
      * The array of canvas function calls.  
      */  
-    val commandLog: List<Any>
+    val commandLog: List<kotlinx.serialization.json.JsonElement>
 
 )
 
@@ -332,6 +347,7 @@ data class SnapshotCommandLogResponse(
  *
  * @link [LayerTree#layerPainted](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#event-layerPainted) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class LayerPaintedEvent(
     /**  
      * The id of the painted layer.  
@@ -343,17 +359,18 @@ data class LayerPaintedEvent(
      */  
     val clip: pl.wendigo.chrome.api.dom.Rect
 
-) : pl.wendigo.chrome.protocol.Event(domain = "LayerTree", name = "layerPainted")
+) : pl.wendigo.chrome.protocol.Event(domainName = "LayerTree", domainEventName = "layerPainted")
 
 /**
  *
  *
  * @link [LayerTree#layerTreeDidChange](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#event-layerTreeDidChange) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class LayerTreeDidChangeEvent(
     /**  
      * Layer tree, absent if not in the comspositing mode.  
      */  
     val layers: List<Layer>? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "LayerTree", name = "layerTreeDidChange")
+) : pl.wendigo.chrome.protocol.Event(domainName = "LayerTree", domainEventName = "layerTreeDidChange")

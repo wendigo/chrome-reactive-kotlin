@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.animation
  * @link [Animation#Animation](https://chromedevtools.github.io/devtools-protocol/tot/Animation#type-Animation) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Animation(
     /**  
      * `Animation`'s id.  
@@ -65,6 +66,7 @@ data class Animation(
  * @link [Animation#AnimationEffect](https://chromedevtools.github.io/devtools-protocol/tot/Animation#type-AnimationEffect) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AnimationEffect(
     /**  
      * `AnimationEffect`'s delay.  
@@ -123,6 +125,7 @@ data class AnimationEffect(
  * @link [Animation#KeyframesRule](https://chromedevtools.github.io/devtools-protocol/tot/Animation#type-KeyframesRule) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class KeyframesRule(
     /**  
      * CSS keyframed animation's name.  
@@ -141,6 +144,7 @@ data class KeyframesRule(
  * @link [Animation#KeyframeStyle](https://chromedevtools.github.io/devtools-protocol/tot/Animation#type-KeyframeStyle) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class KeyframeStyle(
     /**  
      * Keyframe's time offset.  

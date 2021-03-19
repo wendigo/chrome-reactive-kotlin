@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.domstorage
 
+import kotlinx.serialization.json.Json
+
 /**
  * Query and modify DOM storage.
  *
@@ -13,62 +15,62 @@ class DOMStorageOperations internal constructor(private val connection: pl.wendi
      *
      * @link Protocol [DOMStorage#clear](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-clear) method documentation.
      */
-    fun clear(input: ClearRequest) = connection.request("DOMStorage.clear", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clear(input: ClearRequest) = connection.request("DOMStorage.clear", Json.encodeToJsonElement(ClearRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables storage tracking, prevents storage events from being sent to the client.
      *
      * @link Protocol [DOMStorage#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-disable) method documentation.
      */
-    fun disable() = connection.request("DOMStorage.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("DOMStorage.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables storage tracking, storage events will now be delivered to the client.
      *
      * @link Protocol [DOMStorage#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-enable) method documentation.
      */
-    fun enable() = connection.request("DOMStorage.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("DOMStorage.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
      *
      * @link Protocol [DOMStorage#getDOMStorageItems](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-getDOMStorageItems) method documentation.
      */
-    fun getDOMStorageItems(input: GetDOMStorageItemsRequest) = connection.request("DOMStorage.getDOMStorageItems", input, GetDOMStorageItemsResponse::class.java)
+    fun getDOMStorageItems(input: GetDOMStorageItemsRequest) = connection.request("DOMStorage.getDOMStorageItems", Json.encodeToJsonElement(GetDOMStorageItemsRequest.serializer(), input), GetDOMStorageItemsResponse.serializer())
 
     /**
      *
      *
      * @link Protocol [DOMStorage#removeDOMStorageItem](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-removeDOMStorageItem) method documentation.
      */
-    fun removeDOMStorageItem(input: RemoveDOMStorageItemRequest) = connection.request("DOMStorage.removeDOMStorageItem", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeDOMStorageItem(input: RemoveDOMStorageItemRequest) = connection.request("DOMStorage.removeDOMStorageItem", Json.encodeToJsonElement(RemoveDOMStorageItemRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
      *
      * @link Protocol [DOMStorage#setDOMStorageItem](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-setDOMStorageItem) method documentation.
      */
-    fun setDOMStorageItem(input: SetDOMStorageItemRequest) = connection.request("DOMStorage.setDOMStorageItem", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDOMStorageItem(input: SetDOMStorageItemRequest) = connection.request("DOMStorage.setDOMStorageItem", Json.encodeToJsonElement(SetDOMStorageItemRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemAdded events.
      */
-    fun domStorageItemAdded(): io.reactivex.rxjava3.core.Flowable<DomStorageItemAddedEvent> = connection.events("DOMStorage.domStorageItemAdded", DomStorageItemAddedEvent::class.java)
+    fun domStorageItemAdded(): io.reactivex.rxjava3.core.Flowable<DomStorageItemAddedEvent> = connection.events("DOMStorage.domStorageItemAdded", DomStorageItemAddedEvent.serializer())
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemRemoved events.
      */
-    fun domStorageItemRemoved(): io.reactivex.rxjava3.core.Flowable<DomStorageItemRemovedEvent> = connection.events("DOMStorage.domStorageItemRemoved", DomStorageItemRemovedEvent::class.java)
+    fun domStorageItemRemoved(): io.reactivex.rxjava3.core.Flowable<DomStorageItemRemovedEvent> = connection.events("DOMStorage.domStorageItemRemoved", DomStorageItemRemovedEvent.serializer())
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemUpdated events.
      */
-    fun domStorageItemUpdated(): io.reactivex.rxjava3.core.Flowable<DomStorageItemUpdatedEvent> = connection.events("DOMStorage.domStorageItemUpdated", DomStorageItemUpdatedEvent::class.java)
+    fun domStorageItemUpdated(): io.reactivex.rxjava3.core.Flowable<DomStorageItemUpdatedEvent> = connection.events("DOMStorage.domStorageItemUpdated", DomStorageItemUpdatedEvent.serializer())
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemsCleared events.
      */
-    fun domStorageItemsCleared(): io.reactivex.rxjava3.core.Flowable<DomStorageItemsClearedEvent> = connection.events("DOMStorage.domStorageItemsCleared", DomStorageItemsClearedEvent::class.java)
+    fun domStorageItemsCleared(): io.reactivex.rxjava3.core.Flowable<DomStorageItemsClearedEvent> = connection.events("DOMStorage.domStorageItemsCleared", DomStorageItemsClearedEvent.serializer())
 
     /**
      * Returns flowable capturing all DOMStorage domains events.
@@ -87,6 +89,7 @@ class DOMStorageOperations internal constructor(private val connection: pl.wendi
  * @link [DOMStorage#clear](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-clear) method documentation.
  * @see [DOMStorageOperations.clear]
  */
+@kotlinx.serialization.Serializable
 data class ClearRequest(
     /**
      *
@@ -102,6 +105,7 @@ data class ClearRequest(
  * @link [DOMStorage#getDOMStorageItems](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-getDOMStorageItems) method documentation.
  * @see [DOMStorageOperations.getDOMStorageItems]
  */
+@kotlinx.serialization.Serializable
 data class GetDOMStorageItemsRequest(
     /**
      *
@@ -118,6 +122,7 @@ data class GetDOMStorageItemsRequest(
  * @link [DOMStorage#getDOMStorageItems](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-getDOMStorageItems) method documentation.
  * @see [DOMStorageOperations.getDOMStorageItems]
  */
+@kotlinx.serialization.Serializable
 data class GetDOMStorageItemsResponse(
     /**  
      *  
@@ -133,6 +138,7 @@ data class GetDOMStorageItemsResponse(
  * @link [DOMStorage#removeDOMStorageItem](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-removeDOMStorageItem) method documentation.
  * @see [DOMStorageOperations.removeDOMStorageItem]
  */
+@kotlinx.serialization.Serializable
 data class RemoveDOMStorageItemRequest(
     /**
      *
@@ -153,6 +159,7 @@ data class RemoveDOMStorageItemRequest(
  * @link [DOMStorage#setDOMStorageItem](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-setDOMStorageItem) method documentation.
  * @see [DOMStorageOperations.setDOMStorageItem]
  */
+@kotlinx.serialization.Serializable
 data class SetDOMStorageItemRequest(
     /**
      *
@@ -176,6 +183,7 @@ data class SetDOMStorageItemRequest(
  *
  * @link [DOMStorage#domStorageItemAdded](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#event-domStorageItemAdded) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DomStorageItemAddedEvent(
     /**  
      *  
@@ -192,13 +200,14 @@ data class DomStorageItemAddedEvent(
      */  
     val newValue: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOMStorage", name = "domStorageItemAdded")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOMStorage", domainEventName = "domStorageItemAdded")
 
 /**
  *
  *
  * @link [DOMStorage#domStorageItemRemoved](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#event-domStorageItemRemoved) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DomStorageItemRemovedEvent(
     /**  
      *  
@@ -210,13 +219,14 @@ data class DomStorageItemRemovedEvent(
      */  
     val key: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOMStorage", name = "domStorageItemRemoved")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOMStorage", domainEventName = "domStorageItemRemoved")
 
 /**
  *
  *
  * @link [DOMStorage#domStorageItemUpdated](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#event-domStorageItemUpdated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DomStorageItemUpdatedEvent(
     /**  
      *  
@@ -238,17 +248,18 @@ data class DomStorageItemUpdatedEvent(
      */  
     val newValue: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOMStorage", name = "domStorageItemUpdated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOMStorage", domainEventName = "domStorageItemUpdated")
 
 /**
  *
  *
  * @link [DOMStorage#domStorageItemsCleared](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#event-domStorageItemsCleared) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DomStorageItemsClearedEvent(
     /**  
      *  
      */  
     val storageId: StorageId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOMStorage", name = "domStorageItemsCleared")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOMStorage", domainEventName = "domStorageItemsCleared")

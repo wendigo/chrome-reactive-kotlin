@@ -5,11 +5,12 @@ package pl.wendigo.chrome.api.memory
  *
  * @link [Memory#PressureLevel](https://chromedevtools.github.io/devtools-protocol/tot/Memory#type-PressureLevel) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class PressureLevel {
-    @com.fasterxml.jackson.annotation.JsonProperty("moderate")
+    @kotlinx.serialization.SerialName("moderate")
     MODERATE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("critical")
+    @kotlinx.serialization.SerialName("critical")
     CRITICAL;
 }
 
@@ -19,6 +20,7 @@ enum class PressureLevel {
  * @link [Memory#SamplingProfileNode](https://chromedevtools.github.io/devtools-protocol/tot/Memory#type-SamplingProfileNode) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SamplingProfileNode(
     /**  
      * Size of the sampled allocation.  
@@ -42,6 +44,7 @@ data class SamplingProfileNode(
  * @link [Memory#SamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#type-SamplingProfile) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SamplingProfile(
     /**  
      *  
@@ -60,6 +63,7 @@ data class SamplingProfile(
  * @link [Memory#Module](https://chromedevtools.github.io/devtools-protocol/tot/Memory#type-Module) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Module(
     /**  
      * Name of the module.  

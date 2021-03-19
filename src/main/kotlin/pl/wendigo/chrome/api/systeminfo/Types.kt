@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.systeminfo
  * @link [SystemInfo#GPUDevice](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-GPUDevice) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class GPUDevice(
     /**  
      * PCI ID of the GPU vendor, if available; 0 otherwise.  
@@ -54,6 +55,7 @@ data class GPUDevice(
  * @link [SystemInfo#Size](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-Size) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Size(
     /**  
      * Width in pixels.  
@@ -73,6 +75,7 @@ maximum resolutions.
  * @link [SystemInfo#VideoDecodeAcceleratorCapability](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-VideoDecodeAcceleratorCapability) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class VideoDecodeAcceleratorCapability(
     /**  
      * Video codec profile that is supported, e.g. VP9 Profile 2.  
@@ -97,6 +100,7 @@ resolution and maximum framerate.
  * @link [SystemInfo#VideoEncodeAcceleratorCapability](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-VideoEncodeAcceleratorCapability) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class VideoEncodeAcceleratorCapability(
     /**  
      * Video codec profile that is supported, e.g H264 Main.  
@@ -126,14 +130,15 @@ data class VideoEncodeAcceleratorCapability(
  *
  * @link [SystemInfo#SubsamplingFormat](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-SubsamplingFormat) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class SubsamplingFormat {
-    @com.fasterxml.jackson.annotation.JsonProperty("yuv420")
+    @kotlinx.serialization.SerialName("yuv420")
     YUV420,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("yuv422")
+    @kotlinx.serialization.SerialName("yuv422")
     YUV422,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("yuv444")
+    @kotlinx.serialization.SerialName("yuv444")
     YUV444;
 }
 
@@ -142,14 +147,15 @@ enum class SubsamplingFormat {
  *
  * @link [SystemInfo#ImageType](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-ImageType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ImageType {
-    @com.fasterxml.jackson.annotation.JsonProperty("jpeg")
+    @kotlinx.serialization.SerialName("jpeg")
     JPEG,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("webp")
+    @kotlinx.serialization.SerialName("webp")
     WEBP,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("unknown")
+    @kotlinx.serialization.SerialName("unknown")
     UNKNOWN;
 }
 
@@ -160,6 +166,7 @@ maximum resolutions and subsampling.
  * @link [SystemInfo#ImageDecodeAcceleratorCapability](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-ImageDecodeAcceleratorCapability) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ImageDecodeAcceleratorCapability(
     /**  
      * Image coded, e.g. Jpeg.  
@@ -188,6 +195,7 @@ data class ImageDecodeAcceleratorCapability(
  * @link [SystemInfo#GPUInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-GPUInfo) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class GPUInfo(
     /**  
      * The graphics devices on the system. Element 0 is the primary GPU.  
@@ -197,12 +205,12 @@ data class GPUInfo(
     /**  
      * An optional dictionary of additional GPU related attributes.  
      */  
-    val auxAttributes: com.fasterxml.jackson.databind.JsonNode? = null,
+    val auxAttributes: kotlinx.serialization.json.JsonElement? = null,
 
     /**  
      * An optional dictionary of graphics features and their status.  
      */  
-    val featureStatus: com.fasterxml.jackson.databind.JsonNode? = null,
+    val featureStatus: kotlinx.serialization.json.JsonElement? = null,
 
     /**  
      * An optional array of GPU driver bug workarounds.  
@@ -231,6 +239,7 @@ data class GPUInfo(
  * @link [SystemInfo#ProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#type-ProcessInfo) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ProcessInfo(
     /**  
      * Specifies process type.  

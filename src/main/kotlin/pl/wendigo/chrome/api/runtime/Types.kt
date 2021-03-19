@@ -31,6 +31,7 @@ typealias UnserializableValue = String
  * @link [Runtime#RemoteObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-RemoteObject) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RemoteObject(
     /**  
      * Object type.  
@@ -52,7 +53,7 @@ data class RemoteObject(
     /**  
      * Remote object value in case of primitive values or JSON values (if it was requested).  
      */  
-    val value: Any? = null,
+    val value: kotlinx.serialization.json.JsonElement? = null,
 
     /**  
      * Primitive value which can not be JSON-stringified does not have `value`, but gets this  
@@ -87,6 +88,7 @@ data class RemoteObject(
  * @link [Runtime#CustomPreview](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-CustomPreview) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CustomPreview(
     /**  
      * The JSON-stringified result of formatter.header(object, config) call.  
@@ -108,6 +110,7 @@ data class CustomPreview(
  * @link [Runtime#ObjectPreview](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-ObjectPreview) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ObjectPreview(
     /**  
      * Object type.  
@@ -146,6 +149,7 @@ data class ObjectPreview(
  * @link [Runtime#PropertyPreview](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-PropertyPreview) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PropertyPreview(
     /**  
      * Property name.  
@@ -179,6 +183,7 @@ data class PropertyPreview(
  * @link [Runtime#EntryPreview](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-EntryPreview) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class EntryPreview(
     /**  
      * Preview of the key. Specified for map-like collection entries.  
@@ -197,6 +202,7 @@ data class EntryPreview(
  * @link [Runtime#PropertyDescriptor](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-PropertyDescriptor) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PropertyDescriptor(
     /**  
      * Property name or symbol description.  
@@ -259,6 +265,7 @@ data class PropertyDescriptor(
  * @link [Runtime#InternalPropertyDescriptor](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-InternalPropertyDescriptor) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class InternalPropertyDescriptor(
     /**  
      * Conventional property name.  
@@ -277,6 +284,7 @@ data class InternalPropertyDescriptor(
  * @link [Runtime#PrivatePropertyDescriptor](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-PrivatePropertyDescriptor) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PrivatePropertyDescriptor(
     /**  
      * Private property name.  
@@ -308,11 +316,12 @@ unserializable primitive value or neither of (for undefined) them should be spec
  * @link [Runtime#CallArgument](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-CallArgument) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CallArgument(
     /**  
      * Primitive value or serializable javascript object.  
      */  
-    val value: Any? = null,
+    val value: kotlinx.serialization.json.JsonElement? = null,
 
     /**  
      * Primitive value which can not be JSON-stringified.  
@@ -339,6 +348,7 @@ typealias ExecutionContextId = Int
  * @link [Runtime#ExecutionContextDescription](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-ExecutionContextDescription) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ExecutionContextDescription(
     /**  
      * Unique id of the execution context. It can be used to specify in which execution context  
@@ -366,7 +376,7 @@ data class ExecutionContextDescription(
     /**  
      * Embedder-specific auxiliary data.  
      */  
-    val auxData: com.fasterxml.jackson.databind.JsonNode? = null
+    val auxData: kotlinx.serialization.json.JsonElement? = null
 )
 
 /**
@@ -376,6 +386,7 @@ execution.
  * @link [Runtime#ExceptionDetails](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-ExceptionDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ExceptionDetails(
     /**  
      * Exception id.  
@@ -445,6 +456,7 @@ typealias TimeDelta = Double
  * @link [Runtime#CallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-CallFrame) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CallFrame(
     /**  
      * JavaScript function name.  
@@ -478,6 +490,7 @@ data class CallFrame(
  * @link [Runtime#StackTrace](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-StackTrace) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class StackTrace(
     /**  
      * String label of this stack trace. For async traces this may be a name of the function that  
@@ -516,6 +529,7 @@ allows to track cross-debugger calls. See `Runtime.StackTrace` and `Debugger.pau
  * @link [Runtime#StackTraceId](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#type-StackTraceId) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class StackTraceId(
     /**  
      *  

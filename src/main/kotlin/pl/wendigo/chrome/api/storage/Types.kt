@@ -5,38 +5,39 @@ package pl.wendigo.chrome.api.storage
  *
  * @link [Storage#StorageType](https://chromedevtools.github.io/devtools-protocol/tot/Storage#type-StorageType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class StorageType {
-    @com.fasterxml.jackson.annotation.JsonProperty("appcache")
+    @kotlinx.serialization.SerialName("appcache")
     APPCACHE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("cookies")
+    @kotlinx.serialization.SerialName("cookies")
     COOKIES,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("file_systems")
+    @kotlinx.serialization.SerialName("file_systems")
     FILE_SYSTEMS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("indexeddb")
+    @kotlinx.serialization.SerialName("indexeddb")
     INDEXEDDB,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("local_storage")
+    @kotlinx.serialization.SerialName("local_storage")
     LOCAL_STORAGE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("shader_cache")
+    @kotlinx.serialization.SerialName("shader_cache")
     SHADER_CACHE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("websql")
+    @kotlinx.serialization.SerialName("websql")
     WEBSQL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("service_workers")
+    @kotlinx.serialization.SerialName("service_workers")
     SERVICE_WORKERS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("cache_storage")
+    @kotlinx.serialization.SerialName("cache_storage")
     CACHE_STORAGE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("all")
+    @kotlinx.serialization.SerialName("all")
     ALL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("other")
+    @kotlinx.serialization.SerialName("other")
     OTHER;
 }
 
@@ -46,6 +47,7 @@ enum class StorageType {
  * @link [Storage#UsageForType](https://chromedevtools.github.io/devtools-protocol/tot/Storage#type-UsageForType) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class UsageForType(
     /**  
      * Name of storage type.  
@@ -65,6 +67,7 @@ Tokens from that issuer.
  * @link [Storage#TrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#type-TrustTokens) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class TrustTokens(
     /**  
      *  

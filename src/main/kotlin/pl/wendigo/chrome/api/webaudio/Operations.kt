@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.webaudio
 
+import kotlinx.serialization.json.Json
+
 /**
  * This domain allows inspection of Web Audio API.
 https://webaudio.github.io/web-audio-api/
@@ -14,86 +16,86 @@ class WebAudioOperations internal constructor(private val connection: pl.wendigo
      *
      * @link Protocol [WebAudio#enable](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-enable) method documentation.
      */
-    fun enable() = connection.request("WebAudio.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("WebAudio.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables the WebAudio domain.
      *
      * @link Protocol [WebAudio#disable](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-disable) method documentation.
      */
-    fun disable() = connection.request("WebAudio.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("WebAudio.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Fetch the realtime data from the registered contexts.
      *
      * @link Protocol [WebAudio#getRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-getRealtimeData) method documentation.
      */
-    fun getRealtimeData(input: GetRealtimeDataRequest) = connection.request("WebAudio.getRealtimeData", input, GetRealtimeDataResponse::class.java)
+    fun getRealtimeData(input: GetRealtimeDataRequest) = connection.request("WebAudio.getRealtimeData", Json.encodeToJsonElement(GetRealtimeDataRequest.serializer(), input), GetRealtimeDataResponse.serializer())
 
     /**
      *  Notifies that a new BaseAudioContext has been created.
      */
-    fun contextCreated(): io.reactivex.rxjava3.core.Flowable<ContextCreatedEvent> = connection.events("WebAudio.contextCreated", ContextCreatedEvent::class.java)
+    fun contextCreated(): io.reactivex.rxjava3.core.Flowable<ContextCreatedEvent> = connection.events("WebAudio.contextCreated", ContextCreatedEvent.serializer())
 
     /**
      *  Notifies that an existing BaseAudioContext will be destroyed.
      */
-    fun contextWillBeDestroyed(): io.reactivex.rxjava3.core.Flowable<ContextWillBeDestroyedEvent> = connection.events("WebAudio.contextWillBeDestroyed", ContextWillBeDestroyedEvent::class.java)
+    fun contextWillBeDestroyed(): io.reactivex.rxjava3.core.Flowable<ContextWillBeDestroyedEvent> = connection.events("WebAudio.contextWillBeDestroyed", ContextWillBeDestroyedEvent.serializer())
 
     /**
      *  Notifies that existing BaseAudioContext has changed some properties (id stays the same)..
      */
-    fun contextChanged(): io.reactivex.rxjava3.core.Flowable<ContextChangedEvent> = connection.events("WebAudio.contextChanged", ContextChangedEvent::class.java)
+    fun contextChanged(): io.reactivex.rxjava3.core.Flowable<ContextChangedEvent> = connection.events("WebAudio.contextChanged", ContextChangedEvent.serializer())
 
     /**
      *  Notifies that the construction of an AudioListener has finished.
      */
-    fun audioListenerCreated(): io.reactivex.rxjava3.core.Flowable<AudioListenerCreatedEvent> = connection.events("WebAudio.audioListenerCreated", AudioListenerCreatedEvent::class.java)
+    fun audioListenerCreated(): io.reactivex.rxjava3.core.Flowable<AudioListenerCreatedEvent> = connection.events("WebAudio.audioListenerCreated", AudioListenerCreatedEvent.serializer())
 
     /**
      *  Notifies that a new AudioListener has been created.
      */
-    fun audioListenerWillBeDestroyed(): io.reactivex.rxjava3.core.Flowable<AudioListenerWillBeDestroyedEvent> = connection.events("WebAudio.audioListenerWillBeDestroyed", AudioListenerWillBeDestroyedEvent::class.java)
+    fun audioListenerWillBeDestroyed(): io.reactivex.rxjava3.core.Flowable<AudioListenerWillBeDestroyedEvent> = connection.events("WebAudio.audioListenerWillBeDestroyed", AudioListenerWillBeDestroyedEvent.serializer())
 
     /**
      *  Notifies that a new AudioNode has been created.
      */
-    fun audioNodeCreated(): io.reactivex.rxjava3.core.Flowable<AudioNodeCreatedEvent> = connection.events("WebAudio.audioNodeCreated", AudioNodeCreatedEvent::class.java)
+    fun audioNodeCreated(): io.reactivex.rxjava3.core.Flowable<AudioNodeCreatedEvent> = connection.events("WebAudio.audioNodeCreated", AudioNodeCreatedEvent.serializer())
 
     /**
      *  Notifies that an existing AudioNode has been destroyed.
      */
-    fun audioNodeWillBeDestroyed(): io.reactivex.rxjava3.core.Flowable<AudioNodeWillBeDestroyedEvent> = connection.events("WebAudio.audioNodeWillBeDestroyed", AudioNodeWillBeDestroyedEvent::class.java)
+    fun audioNodeWillBeDestroyed(): io.reactivex.rxjava3.core.Flowable<AudioNodeWillBeDestroyedEvent> = connection.events("WebAudio.audioNodeWillBeDestroyed", AudioNodeWillBeDestroyedEvent.serializer())
 
     /**
      *  Notifies that a new AudioParam has been created.
      */
-    fun audioParamCreated(): io.reactivex.rxjava3.core.Flowable<AudioParamCreatedEvent> = connection.events("WebAudio.audioParamCreated", AudioParamCreatedEvent::class.java)
+    fun audioParamCreated(): io.reactivex.rxjava3.core.Flowable<AudioParamCreatedEvent> = connection.events("WebAudio.audioParamCreated", AudioParamCreatedEvent.serializer())
 
     /**
      *  Notifies that an existing AudioParam has been destroyed.
      */
-    fun audioParamWillBeDestroyed(): io.reactivex.rxjava3.core.Flowable<AudioParamWillBeDestroyedEvent> = connection.events("WebAudio.audioParamWillBeDestroyed", AudioParamWillBeDestroyedEvent::class.java)
+    fun audioParamWillBeDestroyed(): io.reactivex.rxjava3.core.Flowable<AudioParamWillBeDestroyedEvent> = connection.events("WebAudio.audioParamWillBeDestroyed", AudioParamWillBeDestroyedEvent.serializer())
 
     /**
      *  Notifies that two AudioNodes are connected.
      */
-    fun nodesConnected(): io.reactivex.rxjava3.core.Flowable<NodesConnectedEvent> = connection.events("WebAudio.nodesConnected", NodesConnectedEvent::class.java)
+    fun nodesConnected(): io.reactivex.rxjava3.core.Flowable<NodesConnectedEvent> = connection.events("WebAudio.nodesConnected", NodesConnectedEvent.serializer())
 
     /**
      *  Notifies that AudioNodes are disconnected. The destination can be null, and it means all the outgoing connections from the source are disconnected.
      */
-    fun nodesDisconnected(): io.reactivex.rxjava3.core.Flowable<NodesDisconnectedEvent> = connection.events("WebAudio.nodesDisconnected", NodesDisconnectedEvent::class.java)
+    fun nodesDisconnected(): io.reactivex.rxjava3.core.Flowable<NodesDisconnectedEvent> = connection.events("WebAudio.nodesDisconnected", NodesDisconnectedEvent.serializer())
 
     /**
      *  Notifies that an AudioNode is connected to an AudioParam.
      */
-    fun nodeParamConnected(): io.reactivex.rxjava3.core.Flowable<NodeParamConnectedEvent> = connection.events("WebAudio.nodeParamConnected", NodeParamConnectedEvent::class.java)
+    fun nodeParamConnected(): io.reactivex.rxjava3.core.Flowable<NodeParamConnectedEvent> = connection.events("WebAudio.nodeParamConnected", NodeParamConnectedEvent.serializer())
 
     /**
      *  Notifies that an AudioNode is disconnected to an AudioParam.
      */
-    fun nodeParamDisconnected(): io.reactivex.rxjava3.core.Flowable<NodeParamDisconnectedEvent> = connection.events("WebAudio.nodeParamDisconnected", NodeParamDisconnectedEvent::class.java)
+    fun nodeParamDisconnected(): io.reactivex.rxjava3.core.Flowable<NodeParamDisconnectedEvent> = connection.events("WebAudio.nodeParamDisconnected", NodeParamDisconnectedEvent.serializer())
 
     /**
      * Returns flowable capturing all WebAudio domains events.
@@ -112,6 +114,7 @@ class WebAudioOperations internal constructor(private val connection: pl.wendigo
  * @link [WebAudio#getRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-getRealtimeData) method documentation.
  * @see [WebAudioOperations.getRealtimeData]
  */
+@kotlinx.serialization.Serializable
 data class GetRealtimeDataRequest(
     /**
      *
@@ -128,6 +131,7 @@ data class GetRealtimeDataRequest(
  * @link [WebAudio#getRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-getRealtimeData) method documentation.
  * @see [WebAudioOperations.getRealtimeData]
  */
+@kotlinx.serialization.Serializable
 data class GetRealtimeDataResponse(
     /**  
      *  
@@ -141,58 +145,63 @@ data class GetRealtimeDataResponse(
  *
  * @link [WebAudio#contextCreated](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-contextCreated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ContextCreatedEvent(
     /**  
      *  
      */  
     val context: BaseAudioContext
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "contextCreated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "contextCreated")
 
 /**
  * Notifies that an existing BaseAudioContext will be destroyed.
  *
  * @link [WebAudio#contextWillBeDestroyed](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-contextWillBeDestroyed) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ContextWillBeDestroyedEvent(
     /**  
      *  
      */  
     val contextId: GraphObjectId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "contextWillBeDestroyed")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "contextWillBeDestroyed")
 
 /**
  * Notifies that existing BaseAudioContext has changed some properties (id stays the same)..
  *
  * @link [WebAudio#contextChanged](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-contextChanged) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ContextChangedEvent(
     /**  
      *  
      */  
     val context: BaseAudioContext
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "contextChanged")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "contextChanged")
 
 /**
  * Notifies that the construction of an AudioListener has finished.
  *
  * @link [WebAudio#audioListenerCreated](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-audioListenerCreated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AudioListenerCreatedEvent(
     /**  
      *  
      */  
     val listener: AudioListener
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "audioListenerCreated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioListenerCreated")
 
 /**
  * Notifies that a new AudioListener has been created.
  *
  * @link [WebAudio#audioListenerWillBeDestroyed](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-audioListenerWillBeDestroyed) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AudioListenerWillBeDestroyedEvent(
     /**  
      *  
@@ -204,26 +213,28 @@ data class AudioListenerWillBeDestroyedEvent(
      */  
     val listenerId: GraphObjectId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "audioListenerWillBeDestroyed")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioListenerWillBeDestroyed")
 
 /**
  * Notifies that a new AudioNode has been created.
  *
  * @link [WebAudio#audioNodeCreated](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-audioNodeCreated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AudioNodeCreatedEvent(
     /**  
      *  
      */  
     val node: AudioNode
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "audioNodeCreated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioNodeCreated")
 
 /**
  * Notifies that an existing AudioNode has been destroyed.
  *
  * @link [WebAudio#audioNodeWillBeDestroyed](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-audioNodeWillBeDestroyed) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AudioNodeWillBeDestroyedEvent(
     /**  
      *  
@@ -235,26 +246,28 @@ data class AudioNodeWillBeDestroyedEvent(
      */  
     val nodeId: GraphObjectId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "audioNodeWillBeDestroyed")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioNodeWillBeDestroyed")
 
 /**
  * Notifies that a new AudioParam has been created.
  *
  * @link [WebAudio#audioParamCreated](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-audioParamCreated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AudioParamCreatedEvent(
     /**  
      *  
      */  
     val param: AudioParam
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "audioParamCreated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioParamCreated")
 
 /**
  * Notifies that an existing AudioParam has been destroyed.
  *
  * @link [WebAudio#audioParamWillBeDestroyed](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-audioParamWillBeDestroyed) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AudioParamWillBeDestroyedEvent(
     /**  
      *  
@@ -271,13 +284,14 @@ data class AudioParamWillBeDestroyedEvent(
      */  
     val paramId: GraphObjectId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "audioParamWillBeDestroyed")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "audioParamWillBeDestroyed")
 
 /**
  * Notifies that two AudioNodes are connected.
  *
  * @link [WebAudio#nodesConnected](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-nodesConnected) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class NodesConnectedEvent(
     /**  
      *  
@@ -304,13 +318,14 @@ data class NodesConnectedEvent(
      */  
     val destinationInputIndex: Double? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "nodesConnected")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "nodesConnected")
 
 /**
  * Notifies that AudioNodes are disconnected. The destination can be null, and it means all the outgoing connections from the source are disconnected.
  *
  * @link [WebAudio#nodesDisconnected](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-nodesDisconnected) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class NodesDisconnectedEvent(
     /**  
      *  
@@ -337,13 +352,14 @@ data class NodesDisconnectedEvent(
      */  
     val destinationInputIndex: Double? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "nodesDisconnected")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "nodesDisconnected")
 
 /**
  * Notifies that an AudioNode is connected to an AudioParam.
  *
  * @link [WebAudio#nodeParamConnected](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-nodeParamConnected) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class NodeParamConnectedEvent(
     /**  
      *  
@@ -365,13 +381,14 @@ data class NodeParamConnectedEvent(
      */  
     val sourceOutputIndex: Double? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "nodeParamConnected")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "nodeParamConnected")
 
 /**
  * Notifies that an AudioNode is disconnected to an AudioParam.
  *
  * @link [WebAudio#nodeParamDisconnected](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#event-nodeParamDisconnected) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class NodeParamDisconnectedEvent(
     /**  
      *  
@@ -393,4 +410,4 @@ data class NodeParamDisconnectedEvent(
      */  
     val sourceOutputIndex: Double? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "WebAudio", name = "nodeParamDisconnected")
+) : pl.wendigo.chrome.protocol.Event(domainName = "WebAudio", domainEventName = "nodeParamDisconnected")

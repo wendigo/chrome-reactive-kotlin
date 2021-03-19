@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.performancetimeline
  * @link [PerformanceTimeline#LargestContentfulPaint](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#type-LargestContentfulPaint) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LargestContentfulPaint(
     /**  
      *  
@@ -44,6 +45,7 @@ data class LargestContentfulPaint(
  * @link [PerformanceTimeline#LayoutShiftAttribution](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#type-LayoutShiftAttribution) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LayoutShiftAttribution(
     /**  
      *  
@@ -67,6 +69,7 @@ data class LayoutShiftAttribution(
  * @link [PerformanceTimeline#LayoutShift](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#type-LayoutShift) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LayoutShift(
     /**  
      * Score increment produced by this event.  
@@ -95,6 +98,7 @@ data class LayoutShift(
  * @link [PerformanceTimeline#TimelineEvent](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#type-TimelineEvent) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class TimelineEvent(
     /**  
      * Identifies the frame that this event is related to. Empty for non-frame targets.  

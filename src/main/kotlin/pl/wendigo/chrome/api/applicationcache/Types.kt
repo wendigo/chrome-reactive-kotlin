@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.applicationcache
  * @link [ApplicationCache#ApplicationCacheResource](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#type-ApplicationCacheResource) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ApplicationCacheResource(
     /**  
      * Resource url.  
@@ -29,6 +30,7 @@ data class ApplicationCacheResource(
  * @link [ApplicationCache#ApplicationCache](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#type-ApplicationCache) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ApplicationCache(
     /**  
      * Manifest URL.  
@@ -62,6 +64,7 @@ data class ApplicationCache(
  * @link [ApplicationCache#FrameWithManifest](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#type-FrameWithManifest) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FrameWithManifest(
     /**  
      * Frame identifier.  

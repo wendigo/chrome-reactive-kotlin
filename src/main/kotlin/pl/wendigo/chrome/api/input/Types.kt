@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.input
  * @link [Input#TouchPoint](https://chromedevtools.github.io/devtools-protocol/tot/Input#type-TouchPoint) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class TouchPoint(
     /**  
      * X coordinate of the event relative to the main frame's viewport in CSS pixels.  
@@ -69,14 +70,15 @@ data class TouchPoint(
  *
  * @link [Input#GestureSourceType](https://chromedevtools.github.io/devtools-protocol/tot/Input#type-GestureSourceType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class GestureSourceType {
-    @com.fasterxml.jackson.annotation.JsonProperty("default")
+    @kotlinx.serialization.SerialName("default")
     DEFAULT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("touch")
+    @kotlinx.serialization.SerialName("touch")
     TOUCH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("mouse")
+    @kotlinx.serialization.SerialName("mouse")
     MOUSE;
 }
 
@@ -85,23 +87,24 @@ enum class GestureSourceType {
  *
  * @link [Input#MouseButton](https://chromedevtools.github.io/devtools-protocol/tot/Input#type-MouseButton) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class MouseButton {
-    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    @kotlinx.serialization.SerialName("none")
     NONE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("left")
+    @kotlinx.serialization.SerialName("left")
     LEFT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("middle")
+    @kotlinx.serialization.SerialName("middle")
     MIDDLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("right")
+    @kotlinx.serialization.SerialName("right")
     RIGHT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("back")
+    @kotlinx.serialization.SerialName("back")
     BACK,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("forward")
+    @kotlinx.serialization.SerialName("forward")
     FORWARD;
 }
 

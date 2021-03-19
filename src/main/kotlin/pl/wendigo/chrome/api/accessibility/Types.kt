@@ -13,56 +13,57 @@ typealias AXNodeId = String
  *
  * @link [Accessibility#AXValueType](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXValueType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class AXValueType {
-    @com.fasterxml.jackson.annotation.JsonProperty("boolean")
+    @kotlinx.serialization.SerialName("boolean")
     BOOLEAN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("tristate")
+    @kotlinx.serialization.SerialName("tristate")
     TRISTATE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("booleanOrUndefined")
+    @kotlinx.serialization.SerialName("booleanOrUndefined")
     BOOLEANORUNDEFINED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("idref")
+    @kotlinx.serialization.SerialName("idref")
     IDREF,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("idrefList")
+    @kotlinx.serialization.SerialName("idrefList")
     IDREFLIST,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("integer")
+    @kotlinx.serialization.SerialName("integer")
     INTEGER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("node")
+    @kotlinx.serialization.SerialName("node")
     NODE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("nodeList")
+    @kotlinx.serialization.SerialName("nodeList")
     NODELIST,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("number")
+    @kotlinx.serialization.SerialName("number")
     NUMBER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("string")
+    @kotlinx.serialization.SerialName("string")
     STRING,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("computedString")
+    @kotlinx.serialization.SerialName("computedString")
     COMPUTEDSTRING,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("token")
+    @kotlinx.serialization.SerialName("token")
     TOKEN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("tokenList")
+    @kotlinx.serialization.SerialName("tokenList")
     TOKENLIST,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("domRelation")
+    @kotlinx.serialization.SerialName("domRelation")
     DOMRELATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("role")
+    @kotlinx.serialization.SerialName("role")
     ROLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("internalRole")
+    @kotlinx.serialization.SerialName("internalRole")
     INTERNALROLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("valueUndefined")
+    @kotlinx.serialization.SerialName("valueUndefined")
     VALUEUNDEFINED;
 }
 
@@ -71,23 +72,24 @@ enum class AXValueType {
  *
  * @link [Accessibility#AXValueSourceType](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXValueSourceType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class AXValueSourceType {
-    @com.fasterxml.jackson.annotation.JsonProperty("attribute")
+    @kotlinx.serialization.SerialName("attribute")
     ATTRIBUTE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("implicit")
+    @kotlinx.serialization.SerialName("implicit")
     IMPLICIT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("style")
+    @kotlinx.serialization.SerialName("style")
     STYLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("contents")
+    @kotlinx.serialization.SerialName("contents")
     CONTENTS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("placeholder")
+    @kotlinx.serialization.SerialName("placeholder")
     PLACEHOLDER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("relatedElement")
+    @kotlinx.serialization.SerialName("relatedElement")
     RELATEDELEMENT;
 }
 
@@ -96,32 +98,33 @@ enum class AXValueSourceType {
  *
  * @link [Accessibility#AXValueNativeSourceType](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXValueNativeSourceType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class AXValueNativeSourceType {
-    @com.fasterxml.jackson.annotation.JsonProperty("figcaption")
+    @kotlinx.serialization.SerialName("figcaption")
     FIGCAPTION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("label")
+    @kotlinx.serialization.SerialName("label")
     LABEL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("labelfor")
+    @kotlinx.serialization.SerialName("labelfor")
     LABELFOR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("labelwrapped")
+    @kotlinx.serialization.SerialName("labelwrapped")
     LABELWRAPPED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("legend")
+    @kotlinx.serialization.SerialName("legend")
     LEGEND,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("rubyannotation")
+    @kotlinx.serialization.SerialName("rubyannotation")
     RUBYANNOTATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("tablecaption")
+    @kotlinx.serialization.SerialName("tablecaption")
     TABLECAPTION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("title")
+    @kotlinx.serialization.SerialName("title")
     TITLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("other")
+    @kotlinx.serialization.SerialName("other")
     OTHER;
 }
 
@@ -131,6 +134,7 @@ enum class AXValueNativeSourceType {
  * @link [Accessibility#AXValueSource](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXValueSource) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AXValueSource(
     /**  
      * What type of source this is.  
@@ -184,6 +188,7 @@ data class AXValueSource(
  * @link [Accessibility#AXRelatedNode](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXRelatedNode) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AXRelatedNode(
     /**  
      * The BackendNodeId of the related DOM node.  
@@ -207,6 +212,7 @@ data class AXRelatedNode(
  * @link [Accessibility#AXProperty](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXProperty) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AXProperty(
     /**  
      * The name of this property.  
@@ -225,6 +231,7 @@ data class AXProperty(
  * @link [Accessibility#AXValue](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXValue) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AXValue(
     /**  
      * The type of this value.  
@@ -234,7 +241,7 @@ data class AXValue(
     /**  
      * The computed value of this property.  
      */  
-    val value: Any? = null,
+    val value: kotlinx.serialization.json.JsonElement? = null,
 
     /**  
      * One or more related nodes, if applicable.  
@@ -257,122 +264,123 @@ data class AXValue(
  *
  * @link [Accessibility#AXPropertyName](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXPropertyName) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class AXPropertyName {
-    @com.fasterxml.jackson.annotation.JsonProperty("busy")
+    @kotlinx.serialization.SerialName("busy")
     BUSY,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("disabled")
+    @kotlinx.serialization.SerialName("disabled")
     DISABLED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("editable")
+    @kotlinx.serialization.SerialName("editable")
     EDITABLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("focusable")
+    @kotlinx.serialization.SerialName("focusable")
     FOCUSABLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("focused")
+    @kotlinx.serialization.SerialName("focused")
     FOCUSED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("hidden")
+    @kotlinx.serialization.SerialName("hidden")
     HIDDEN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("hiddenRoot")
+    @kotlinx.serialization.SerialName("hiddenRoot")
     HIDDENROOT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("invalid")
+    @kotlinx.serialization.SerialName("invalid")
     INVALID,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("keyshortcuts")
+    @kotlinx.serialization.SerialName("keyshortcuts")
     KEYSHORTCUTS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("settable")
+    @kotlinx.serialization.SerialName("settable")
     SETTABLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("roledescription")
+    @kotlinx.serialization.SerialName("roledescription")
     ROLEDESCRIPTION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("live")
+    @kotlinx.serialization.SerialName("live")
     LIVE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("atomic")
+    @kotlinx.serialization.SerialName("atomic")
     ATOMIC,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("relevant")
+    @kotlinx.serialization.SerialName("relevant")
     RELEVANT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("root")
+    @kotlinx.serialization.SerialName("root")
     ROOT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("autocomplete")
+    @kotlinx.serialization.SerialName("autocomplete")
     AUTOCOMPLETE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("hasPopup")
+    @kotlinx.serialization.SerialName("hasPopup")
     HASPOPUP,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("level")
+    @kotlinx.serialization.SerialName("level")
     LEVEL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("multiselectable")
+    @kotlinx.serialization.SerialName("multiselectable")
     MULTISELECTABLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("orientation")
+    @kotlinx.serialization.SerialName("orientation")
     ORIENTATION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("multiline")
+    @kotlinx.serialization.SerialName("multiline")
     MULTILINE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("readonly")
+    @kotlinx.serialization.SerialName("readonly")
     READONLY,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("required")
+    @kotlinx.serialization.SerialName("required")
     REQUIRED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("valuemin")
+    @kotlinx.serialization.SerialName("valuemin")
     VALUEMIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("valuemax")
+    @kotlinx.serialization.SerialName("valuemax")
     VALUEMAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("valuetext")
+    @kotlinx.serialization.SerialName("valuetext")
     VALUETEXT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("checked")
+    @kotlinx.serialization.SerialName("checked")
     CHECKED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("expanded")
+    @kotlinx.serialization.SerialName("expanded")
     EXPANDED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("modal")
+    @kotlinx.serialization.SerialName("modal")
     MODAL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("pressed")
+    @kotlinx.serialization.SerialName("pressed")
     PRESSED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("selected")
+    @kotlinx.serialization.SerialName("selected")
     SELECTED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("activedescendant")
+    @kotlinx.serialization.SerialName("activedescendant")
     ACTIVEDESCENDANT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("controls")
+    @kotlinx.serialization.SerialName("controls")
     CONTROLS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("describedby")
+    @kotlinx.serialization.SerialName("describedby")
     DESCRIBEDBY,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("details")
+    @kotlinx.serialization.SerialName("details")
     DETAILS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("errormessage")
+    @kotlinx.serialization.SerialName("errormessage")
     ERRORMESSAGE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("flowto")
+    @kotlinx.serialization.SerialName("flowto")
     FLOWTO,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("labelledby")
+    @kotlinx.serialization.SerialName("labelledby")
     LABELLEDBY,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("owns")
+    @kotlinx.serialization.SerialName("owns")
     OWNS;
 }
 
@@ -382,6 +390,7 @@ enum class AXPropertyName {
  * @link [Accessibility#AXNode](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#type-AXNode) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AXNode(
     /**  
      * Unique identifier for this node.  

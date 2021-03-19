@@ -23,6 +23,7 @@ class ChromeProtocolSpecification
 
         expect:
         chrome.getInfo().browser == "HeadlessChrome/89.0.4389.72"
+        chrome.getInfo().protocolVersion == "1.3"
     }
 
     def "should capture target events"()

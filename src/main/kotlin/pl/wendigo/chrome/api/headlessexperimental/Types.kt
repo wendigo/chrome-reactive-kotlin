@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.headlessexperimental
  * @link [HeadlessExperimental#ScreenshotParams](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#type-ScreenshotParams) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ScreenshotParams(
     /**  
      * Image compression format (defaults to png).  

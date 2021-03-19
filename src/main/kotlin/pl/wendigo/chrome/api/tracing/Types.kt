@@ -6,7 +6,7 @@ package pl.wendigo.chrome.api.tracing
  * @link [Tracing#MemoryDumpConfig](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-MemoryDumpConfig) type documentation.
  */
 
-typealias MemoryDumpConfig = Map<String, Any>
+typealias MemoryDumpConfig = Map<String, kotlinx.serialization.json.JsonElement>
 
 /**
  *
@@ -14,6 +14,7 @@ typealias MemoryDumpConfig = Map<String, Any>
  * @link [Tracing#TraceConfig](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-TraceConfig) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class TraceConfig(
     /**  
      * Controls how the trace buffer stores data.  
@@ -62,11 +63,12 @@ protocol buffer format. Note that the JSON format will be deprecated soon.
  *
  * @link [Tracing#StreamFormat](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-StreamFormat) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class StreamFormat {
-    @com.fasterxml.jackson.annotation.JsonProperty("json")
+    @kotlinx.serialization.SerialName("json")
     JSON,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("proto")
+    @kotlinx.serialization.SerialName("proto")
     PROTO;
 }
 
@@ -75,11 +77,12 @@ enum class StreamFormat {
  *
  * @link [Tracing#StreamCompression](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-StreamCompression) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class StreamCompression {
-    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    @kotlinx.serialization.SerialName("none")
     NONE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("gzip")
+    @kotlinx.serialization.SerialName("gzip")
     GZIP;
 }
 
@@ -90,13 +93,14 @@ memory_instrumentation.mojom
  *
  * @link [Tracing#MemoryDumpLevelOfDetail](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-MemoryDumpLevelOfDetail) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class MemoryDumpLevelOfDetail {
-    @com.fasterxml.jackson.annotation.JsonProperty("background")
+    @kotlinx.serialization.SerialName("background")
     BACKGROUND,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("light")
+    @kotlinx.serialization.SerialName("light")
     LIGHT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("detailed")
+    @kotlinx.serialization.SerialName("detailed")
     DETAILED;
 }

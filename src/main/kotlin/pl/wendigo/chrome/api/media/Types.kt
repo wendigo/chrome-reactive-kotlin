@@ -23,6 +23,7 @@ Corresponds to kMessage
  * @link [Media#PlayerMessage](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-PlayerMessage) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PlayerMessage(
     /**  
      * Keep in sync with MediaLogMessageLevel  
@@ -49,6 +50,7 @@ data class PlayerMessage(
  * @link [Media#PlayerProperty](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-PlayerProperty) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PlayerProperty(
     /**  
      *  
@@ -67,6 +69,7 @@ data class PlayerProperty(
  * @link [Media#PlayerEvent](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-PlayerEvent) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PlayerEvent(
     /**  
      *  
@@ -85,6 +88,7 @@ data class PlayerEvent(
  * @link [Media#PlayerError](https://chromedevtools.github.io/devtools-protocol/tot/Media#type-PlayerError) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PlayerError(
     /**  
      *  

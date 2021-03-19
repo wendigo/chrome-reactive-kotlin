@@ -3,6 +3,8 @@ package pl.wendigo.chrome.protocol
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.json.JsonElement
 import okhttp3.OkHttpClient
 import pl.wendigo.chrome.api.target.SessionID
 import java.util.concurrent.atomic.AtomicLong
@@ -27,7 +29,7 @@ class ChromeDebuggerConnection constructor(
     /**
      * Registers event name to class mappings.
      */
-    fun addEventMapping(name: String, clazz: Class<out Event>) {
+    fun registerEventSerializer(name: String, clazz: KSerializer<out Event>) {
         eventMapper.addMapping(name, clazz)
     }
 
@@ -41,17 +43,17 @@ class ChromeDebuggerConnection constructor(
     /**
      * Sends request and captures response from the stream.
      */
-    fun <T> request(methodName: String, requestParams: Any?, responseClazz: Class<T>): Single<T> {
+    fun <T> request(methodName: String, request: JsonElement?, responseSerializer: KSerializer<T>): Single<T> {
         val request = RequestFrame(
             id = nextRequestId.incrementAndGet(),
             method = methodName,
-            params = requestParams,
+            params = request,
             sessionId = sessionId
         )
 
         return frames.send(request).flatMap { sent ->
             if (sent) {
-                frames.getResponse(request, responseClazz)
+                frames.getResponse(request, responseSerializer)
             } else {
                 Single.error(RequestFailed(request, "Could not enqueue message $request"))
             }
@@ -61,11 +63,10 @@ class ChromeDebuggerConnection constructor(
     /**
      * Captures events by given name and casts received messages to specified class.
      */
-    fun <T> events(eventName: String, outClazz: Class<T>): Flowable<T> where T : Event {
+    fun <T> events(eventName: String, serializer: KSerializer<T>): Flowable<T> where T : Event {
         return frames.eventFrames()
-            .filter { frame -> frame.matchesSessionId(sessionId) }
-            .filter { frame -> frame.matchesMethod(eventName) }
-            .map { frame -> eventMapper.deserialize(frame, outClazz) }
+            .filter { frame -> frame.matches(eventName, sessionId) }
+            .map { frame -> eventMapper.deserialize(frame, serializer) }
             .subscribeOn(Schedulers.io())
     }
 
@@ -74,7 +75,7 @@ class ChromeDebuggerConnection constructor(
      */
     fun allEvents(): Flowable<Event> {
         return frames.eventFrames()
-            .filter { frame -> frame.matchesSessionId(sessionId) }
+            .filter { frame -> frame.matches(sessionId) }
             .map { frame -> eventMapper.deserializeEvent(frame) }
             .subscribeOn(Schedulers.io())
     }

@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.cachestorage
 
+import kotlinx.serialization.json.Json
+
 /**
  * CacheStorageOperations represents CacheStorage protocol domain request/response operations and events that can be captured.
  *
@@ -13,35 +15,35 @@ class CacheStorageOperations internal constructor(private val connection: pl.wen
      *
      * @link Protocol [CacheStorage#deleteCache](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteCache) method documentation.
      */
-    fun deleteCache(input: DeleteCacheRequest) = connection.request("CacheStorage.deleteCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun deleteCache(input: DeleteCacheRequest) = connection.request("CacheStorage.deleteCache", Json.encodeToJsonElement(DeleteCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Deletes a cache entry.
      *
      * @link Protocol [CacheStorage#deleteEntry](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteEntry) method documentation.
      */
-    fun deleteEntry(input: DeleteEntryRequest) = connection.request("CacheStorage.deleteEntry", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun deleteEntry(input: DeleteEntryRequest) = connection.request("CacheStorage.deleteEntry", Json.encodeToJsonElement(DeleteEntryRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests cache names.
      *
      * @link Protocol [CacheStorage#requestCacheNames](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCacheNames) method documentation.
      */
-    fun requestCacheNames(input: RequestCacheNamesRequest) = connection.request("CacheStorage.requestCacheNames", input, RequestCacheNamesResponse::class.java)
+    fun requestCacheNames(input: RequestCacheNamesRequest) = connection.request("CacheStorage.requestCacheNames", Json.encodeToJsonElement(RequestCacheNamesRequest.serializer(), input), RequestCacheNamesResponse.serializer())
 
     /**
      * Fetches cache entry.
      *
      * @link Protocol [CacheStorage#requestCachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCachedResponse) method documentation.
      */
-    fun requestCachedResponse(input: RequestCachedResponseRequest) = connection.request("CacheStorage.requestCachedResponse", input, RequestCachedResponseResponse::class.java)
+    fun requestCachedResponse(input: RequestCachedResponseRequest) = connection.request("CacheStorage.requestCachedResponse", Json.encodeToJsonElement(RequestCachedResponseRequest.serializer(), input), RequestCachedResponseResponse.serializer())
 
     /**
      * Requests data from cache.
      *
      * @link Protocol [CacheStorage#requestEntries](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestEntries) method documentation.
      */
-    fun requestEntries(input: RequestEntriesRequest) = connection.request("CacheStorage.requestEntries", input, RequestEntriesResponse::class.java)
+    fun requestEntries(input: RequestEntriesRequest) = connection.request("CacheStorage.requestEntries", Json.encodeToJsonElement(RequestEntriesRequest.serializer(), input), RequestEntriesResponse.serializer())
 
     /**
      * Returns flowable capturing all CacheStorage domains events.
@@ -60,6 +62,7 @@ class CacheStorageOperations internal constructor(private val connection: pl.wen
  * @link [CacheStorage#deleteCache](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteCache) method documentation.
  * @see [CacheStorageOperations.deleteCache]
  */
+@kotlinx.serialization.Serializable
 data class DeleteCacheRequest(
     /**
      * Id of cache for deletion.
@@ -75,6 +78,7 @@ data class DeleteCacheRequest(
  * @link [CacheStorage#deleteEntry](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteEntry) method documentation.
  * @see [CacheStorageOperations.deleteEntry]
  */
+@kotlinx.serialization.Serializable
 data class DeleteEntryRequest(
     /**
      * Id of cache where the entry will be deleted.
@@ -95,6 +99,7 @@ data class DeleteEntryRequest(
  * @link [CacheStorage#requestCacheNames](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCacheNames) method documentation.
  * @see [CacheStorageOperations.requestCacheNames]
  */
+@kotlinx.serialization.Serializable
 data class RequestCacheNamesRequest(
     /**
      * Security origin.
@@ -111,6 +116,7 @@ data class RequestCacheNamesRequest(
  * @link [CacheStorage#requestCacheNames](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCacheNames) method documentation.
  * @see [CacheStorageOperations.requestCacheNames]
  */
+@kotlinx.serialization.Serializable
 data class RequestCacheNamesResponse(
     /**  
      * Caches for the security origin.  
@@ -126,6 +132,7 @@ data class RequestCacheNamesResponse(
  * @link [CacheStorage#requestCachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCachedResponse) method documentation.
  * @see [CacheStorageOperations.requestCachedResponse]
  */
+@kotlinx.serialization.Serializable
 data class RequestCachedResponseRequest(
     /**
      * Id of cache that contains the entry.
@@ -152,6 +159,7 @@ data class RequestCachedResponseRequest(
  * @link [CacheStorage#requestCachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestCachedResponse) method documentation.
  * @see [CacheStorageOperations.requestCachedResponse]
  */
+@kotlinx.serialization.Serializable
 data class RequestCachedResponseResponse(
     /**  
      * Response read from the cache.  
@@ -167,6 +175,7 @@ data class RequestCachedResponseResponse(
  * @link [CacheStorage#requestEntries](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestEntries) method documentation.
  * @see [CacheStorageOperations.requestEntries]
  */
+@kotlinx.serialization.Serializable
 data class RequestEntriesRequest(
     /**
      * ID of cache to get entries from.
@@ -198,6 +207,7 @@ data class RequestEntriesRequest(
  * @link [CacheStorage#requestEntries](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-requestEntries) method documentation.
  * @see [CacheStorageOperations.requestEntries]
  */
+@kotlinx.serialization.Serializable
 data class RequestEntriesResponse(
     /**  
      * Array of object store data entries.  

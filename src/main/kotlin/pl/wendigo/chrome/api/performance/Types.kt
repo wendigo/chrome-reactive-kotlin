@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.performance
  * @link [Performance#Metric](https://chromedevtools.github.io/devtools-protocol/tot/Performance#type-Metric) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Metric(
     /**  
      * Metric name.  

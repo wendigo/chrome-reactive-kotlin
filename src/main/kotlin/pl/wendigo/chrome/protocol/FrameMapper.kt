@@ -1,27 +1,20 @@
 package pl.wendigo.chrome.protocol
 
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 /**
  * FrameMapper is responsible for (de)serializing frames exchanged via Chrome's [DevTool Protocol](https://chromedevtools.github.io/devtools-protocol/).
  */
-class FrameMapper(private val mapper: ObjectMapper = DEFAULT_MAPPER) {
-    companion object {
-        private val DEFAULT_MAPPER: ObjectMapper = ObjectMapper()
-            .registerModule(KotlinModule())
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-    }
-
+class FrameMapper {
     /**
      * Serializes request frame using internal object mapper
      */
     fun serialize(requestFrame: RequestFrame): String {
         return try {
-            mapper.writeValueAsString(requestFrame)
+            Json.encodeToString(requestFrame)
         } catch (e: Exception) {
             throw SerializationFailed("Could not serialize request frame", e)
         }
@@ -30,27 +23,27 @@ class FrameMapper(private val mapper: ObjectMapper = DEFAULT_MAPPER) {
     /**
      * Deserialize response frame as clazz
      */
-    fun <T> deserializeResponse(requestFrame: RequestFrame, responseFrame: ResponseFrame, clazz: Class<T>): T {
-        if (responseFrame.error != null) {
-            throw RequestFailed(requestFrame, responseFrame.error.message)
-        }
-
-        try {
-            if (clazz == ResponseFrame::class.java) {
-                @Suppress("UNCHECKED_CAST")
-                return responseFrame as T
-            } else {
-                return mapper.treeToValue(responseFrame.result, clazz)
+    fun <T> deserializeResponse(request: RequestFrame, response: MethodCallResponseFrame, serializer: KSerializer<T>): T {
+        when (response) {
+            is ErrorResponseFrame -> throw RequestFailed(request, response.error.message)
+            is RequestResponseFrame -> try {
+                if (serializer == RequestResponseFrame.serializer()) {
+                    @Suppress("UNCHECKED_CAST")
+                    return response as T
+                } else {
+                    return Json.decodeFromJsonElement(serializer, response.result)
+                }
+            } catch (ex: Exception) {
+                throw DeserializationFailed("Could not deserialize response frame", ex)
             }
-        } catch (ex: Exception) {
-            throw DeserializationFailed("Could not deserialize response frame", ex)
+            else -> throw RuntimeException("Unrecognized response type $response")
         }
     }
 
     /**
      * Deserialize provided text to clazz.
      */
-    fun <T> deserialize(text: String, clazz: Class<T>): T {
-        return mapper.readValue(text, clazz)
+    fun deserializeFrame(text: String): ResponseFrame {
+        return Json.decodeFromString(FrameSerializer, text)
     }
 }

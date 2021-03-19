@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.browser
 
+import kotlinx.serialization.json.Json
+
 /**
  * The Browser domain defines methods and events for browser managing.
  *
@@ -13,7 +15,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setPermission(input: SetPermissionRequest) = connection.request("Browser.setPermission", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setPermission(input: SetPermissionRequest) = connection.request("Browser.setPermission", Json.encodeToJsonElement(SetPermissionRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Grant specific permissions to the given origin and reject all others.
@@ -22,7 +24,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun grantPermissions(input: GrantPermissionsRequest) = connection.request("Browser.grantPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun grantPermissions(input: GrantPermissionsRequest) = connection.request("Browser.grantPermissions", Json.encodeToJsonElement(GrantPermissionsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Reset all permission management for all origins.
@@ -31,7 +33,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun resetPermissions(input: ResetPermissionsRequest) = connection.request("Browser.resetPermissions", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun resetPermissions(input: ResetPermissionsRequest) = connection.request("Browser.resetPermissions", Json.encodeToJsonElement(ResetPermissionsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Set the behavior when downloading a file.
@@ -40,7 +42,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDownloadBehavior(input: SetDownloadBehaviorRequest) = connection.request("Browser.setDownloadBehavior", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDownloadBehavior(input: SetDownloadBehaviorRequest) = connection.request("Browser.setDownloadBehavior", Json.encodeToJsonElement(SetDownloadBehaviorRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Cancel a download if in progress
@@ -49,14 +51,14 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun cancelDownload(input: CancelDownloadRequest) = connection.request("Browser.cancelDownload", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun cancelDownload(input: CancelDownloadRequest) = connection.request("Browser.cancelDownload", Json.encodeToJsonElement(CancelDownloadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Close browser gracefully.
      *
      * @link Protocol [Browser#close](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-close) method documentation.
      */
-    fun close() = connection.request("Browser.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun close() = connection.request("Browser.close", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Crashes browser on the main thread.
@@ -65,7 +67,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun crash() = connection.request("Browser.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun crash() = connection.request("Browser.crash", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Crashes GPU process.
@@ -74,14 +76,14 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun crashGpuProcess() = connection.request("Browser.crashGpuProcess", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun crashGpuProcess() = connection.request("Browser.crashGpuProcess", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns version information.
      *
      * @link Protocol [Browser#getVersion](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getVersion) method documentation.
      */
-    fun getVersion() = connection.request("Browser.getVersion", null, GetVersionResponse::class.java)
+    fun getVersion() = connection.request("Browser.getVersion", null, GetVersionResponse.serializer())
 
     /**
      * Returns the command line switches for the browser process if, and only if
@@ -91,7 +93,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getBrowserCommandLine() = connection.request("Browser.getBrowserCommandLine", null, GetBrowserCommandLineResponse::class.java)
+    fun getBrowserCommandLine() = connection.request("Browser.getBrowserCommandLine", null, GetBrowserCommandLineResponse.serializer())
 
     /**
      * Get Chrome histograms.
@@ -100,7 +102,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHistograms(input: GetHistogramsRequest) = connection.request("Browser.getHistograms", input, GetHistogramsResponse::class.java)
+    fun getHistograms(input: GetHistogramsRequest) = connection.request("Browser.getHistograms", Json.encodeToJsonElement(GetHistogramsRequest.serializer(), input), GetHistogramsResponse.serializer())
 
     /**
      * Get a Chrome histogram by name.
@@ -109,7 +111,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getHistogram(input: GetHistogramRequest) = connection.request("Browser.getHistogram", input, GetHistogramResponse::class.java)
+    fun getHistogram(input: GetHistogramRequest) = connection.request("Browser.getHistogram", Json.encodeToJsonElement(GetHistogramRequest.serializer(), input), GetHistogramResponse.serializer())
 
     /**
      * Get position and size of the browser window.
@@ -118,7 +120,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getWindowBounds(input: GetWindowBoundsRequest) = connection.request("Browser.getWindowBounds", input, GetWindowBoundsResponse::class.java)
+    fun getWindowBounds(input: GetWindowBoundsRequest) = connection.request("Browser.getWindowBounds", Json.encodeToJsonElement(GetWindowBoundsRequest.serializer(), input), GetWindowBoundsResponse.serializer())
 
     /**
      * Get the browser window that contains the devtools target.
@@ -127,7 +129,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getWindowForTarget(input: GetWindowForTargetRequest) = connection.request("Browser.getWindowForTarget", input, GetWindowForTargetResponse::class.java)
+    fun getWindowForTarget(input: GetWindowForTargetRequest) = connection.request("Browser.getWindowForTarget", Json.encodeToJsonElement(GetWindowForTargetRequest.serializer(), input), GetWindowForTargetResponse.serializer())
 
     /**
      * Set position and/or size of the browser window.
@@ -136,7 +138,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setWindowBounds(input: SetWindowBoundsRequest) = connection.request("Browser.setWindowBounds", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setWindowBounds(input: SetWindowBoundsRequest) = connection.request("Browser.setWindowBounds", Json.encodeToJsonElement(SetWindowBoundsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Set dock tile details, platform-specific.
@@ -145,7 +147,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDockTile(input: SetDockTileRequest) = connection.request("Browser.setDockTile", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDockTile(input: SetDockTileRequest) = connection.request("Browser.setDockTile", Json.encodeToJsonElement(SetDockTileRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Invoke custom browser commands used by telemetry.
@@ -154,7 +156,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun executeBrowserCommand(input: ExecuteBrowserCommandRequest) = connection.request("Browser.executeBrowserCommand", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun executeBrowserCommand(input: ExecuteBrowserCommandRequest) = connection.request("Browser.executeBrowserCommand", Json.encodeToJsonElement(ExecuteBrowserCommandRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns flowable capturing all Browser domains events.
@@ -173,6 +175,7 @@ class BrowserOperations internal constructor(private val connection: pl.wendigo.
  * @link [Browser#setPermission](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setPermission) method documentation.
  * @see [BrowserOperations.setPermission]
  */
+@kotlinx.serialization.Serializable
 data class SetPermissionRequest(
     /**
      * Descriptor of permission to override.
@@ -203,6 +206,7 @@ data class SetPermissionRequest(
  * @link [Browser#grantPermissions](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-grantPermissions) method documentation.
  * @see [BrowserOperations.grantPermissions]
  */
+@kotlinx.serialization.Serializable
 data class GrantPermissionsRequest(
     /**
      *
@@ -228,6 +232,7 @@ data class GrantPermissionsRequest(
  * @link [Browser#resetPermissions](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-resetPermissions) method documentation.
  * @see [BrowserOperations.resetPermissions]
  */
+@kotlinx.serialization.Serializable
 data class ResetPermissionsRequest(
     /**
      * BrowserContext to reset permissions. When omitted, default browser context is used.
@@ -243,6 +248,7 @@ data class ResetPermissionsRequest(
  * @link [Browser#setDownloadBehavior](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setDownloadBehavior) method documentation.
  * @see [BrowserOperations.setDownloadBehavior]
  */
+@kotlinx.serialization.Serializable
 data class SetDownloadBehaviorRequest(
     /**
      * Whether to allow all or deny all download requests, or use default Chrome behavior if
@@ -271,6 +277,7 @@ or 'allowAndName'.
  * @link [Browser#cancelDownload](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-cancelDownload) method documentation.
  * @see [BrowserOperations.cancelDownload]
  */
+@kotlinx.serialization.Serializable
 data class CancelDownloadRequest(
     /**
      * Global unique identifier of the download.
@@ -292,6 +299,7 @@ data class CancelDownloadRequest(
  * @link [Browser#getVersion](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getVersion) method documentation.
  * @see [BrowserOperations.getVersion]
  */
+@kotlinx.serialization.Serializable
 data class GetVersionResponse(
     /**  
      * Protocol version.  
@@ -329,6 +337,7 @@ data class GetVersionResponse(
  * @link [Browser#getBrowserCommandLine](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getBrowserCommandLine) method documentation.
  * @see [BrowserOperations.getBrowserCommandLine]
  */
+@kotlinx.serialization.Serializable
 data class GetBrowserCommandLineResponse(
     /**  
      * Commandline parameters  
@@ -344,6 +353,7 @@ data class GetBrowserCommandLineResponse(
  * @link [Browser#getHistograms](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistograms) method documentation.
  * @see [BrowserOperations.getHistograms]
  */
+@kotlinx.serialization.Serializable
 data class GetHistogramsRequest(
     /**
      * Requested substring in name. Only histograms which have query as a
@@ -367,6 +377,7 @@ all histograms.
  * @link [Browser#getHistograms](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistograms) method documentation.
  * @see [BrowserOperations.getHistograms]
  */
+@kotlinx.serialization.Serializable
 data class GetHistogramsResponse(
     /**  
      * Histograms.  
@@ -382,6 +393,7 @@ data class GetHistogramsResponse(
  * @link [Browser#getHistogram](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistogram) method documentation.
  * @see [BrowserOperations.getHistogram]
  */
+@kotlinx.serialization.Serializable
 data class GetHistogramRequest(
     /**
      * Requested histogram name.
@@ -403,6 +415,7 @@ data class GetHistogramRequest(
  * @link [Browser#getHistogram](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getHistogram) method documentation.
  * @see [BrowserOperations.getHistogram]
  */
+@kotlinx.serialization.Serializable
 data class GetHistogramResponse(
     /**  
      * Histogram.  
@@ -418,6 +431,7 @@ data class GetHistogramResponse(
  * @link [Browser#getWindowBounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowBounds) method documentation.
  * @see [BrowserOperations.getWindowBounds]
  */
+@kotlinx.serialization.Serializable
 data class GetWindowBoundsRequest(
     /**
      * Browser window id.
@@ -434,6 +448,7 @@ data class GetWindowBoundsRequest(
  * @link [Browser#getWindowBounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowBounds) method documentation.
  * @see [BrowserOperations.getWindowBounds]
  */
+@kotlinx.serialization.Serializable
 data class GetWindowBoundsResponse(
     /**  
      * Bounds information of the window. When window state is 'minimized', the restored window  
@@ -450,6 +465,7 @@ data class GetWindowBoundsResponse(
  * @link [Browser#getWindowForTarget](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowForTarget) method documentation.
  * @see [BrowserOperations.getWindowForTarget]
  */
+@kotlinx.serialization.Serializable
 data class GetWindowForTargetRequest(
     /**
      * Devtools agent host id. If called as a part of the session, associated targetId is used.
@@ -466,6 +482,7 @@ data class GetWindowForTargetRequest(
  * @link [Browser#getWindowForTarget](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-getWindowForTarget) method documentation.
  * @see [BrowserOperations.getWindowForTarget]
  */
+@kotlinx.serialization.Serializable
 data class GetWindowForTargetResponse(
     /**  
      * Browser window id.  
@@ -487,6 +504,7 @@ data class GetWindowForTargetResponse(
  * @link [Browser#setWindowBounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setWindowBounds) method documentation.
  * @see [BrowserOperations.setWindowBounds]
  */
+@kotlinx.serialization.Serializable
 data class SetWindowBoundsRequest(
     /**
      * Browser window id.
@@ -508,6 +526,7 @@ with 'left', 'top', 'width' or 'height'. Leaves unspecified fields unchanged.
  * @link [Browser#setDockTile](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setDockTile) method documentation.
  * @see [BrowserOperations.setDockTile]
  */
+@kotlinx.serialization.Serializable
 data class SetDockTileRequest(
     /**
      *
@@ -528,6 +547,7 @@ data class SetDockTileRequest(
  * @link [Browser#executeBrowserCommand](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-executeBrowserCommand) method documentation.
  * @see [BrowserOperations.executeBrowserCommand]
  */
+@kotlinx.serialization.Serializable
 data class ExecuteBrowserCommandRequest(
     /**
      *

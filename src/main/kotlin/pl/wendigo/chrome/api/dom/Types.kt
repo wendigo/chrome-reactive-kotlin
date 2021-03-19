@@ -23,6 +23,7 @@ typealias BackendNodeId = Int
  * @link [DOM#BackendNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-BackendNode) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class BackendNode(
     /**  
      * `Node`'s nodeType.  
@@ -45,62 +46,63 @@ data class BackendNode(
  *
  * @link [DOM#PseudoType](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-PseudoType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class PseudoType {
-    @com.fasterxml.jackson.annotation.JsonProperty("first-line")
+    @kotlinx.serialization.SerialName("first-line")
     FIRST_LINE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("first-letter")
+    @kotlinx.serialization.SerialName("first-letter")
     FIRST_LETTER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("before")
+    @kotlinx.serialization.SerialName("before")
     BEFORE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("after")
+    @kotlinx.serialization.SerialName("after")
     AFTER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("marker")
+    @kotlinx.serialization.SerialName("marker")
     MARKER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("backdrop")
+    @kotlinx.serialization.SerialName("backdrop")
     BACKDROP,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("selection")
+    @kotlinx.serialization.SerialName("selection")
     SELECTION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("target-text")
+    @kotlinx.serialization.SerialName("target-text")
     TARGET_TEXT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("spelling-error")
+    @kotlinx.serialization.SerialName("spelling-error")
     SPELLING_ERROR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("grammar-error")
+    @kotlinx.serialization.SerialName("grammar-error")
     GRAMMAR_ERROR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("first-line-inherited")
+    @kotlinx.serialization.SerialName("first-line-inherited")
     FIRST_LINE_INHERITED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar")
+    @kotlinx.serialization.SerialName("scrollbar")
     SCROLLBAR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-thumb")
+    @kotlinx.serialization.SerialName("scrollbar-thumb")
     SCROLLBAR_THUMB,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-button")
+    @kotlinx.serialization.SerialName("scrollbar-button")
     SCROLLBAR_BUTTON,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-track")
+    @kotlinx.serialization.SerialName("scrollbar-track")
     SCROLLBAR_TRACK,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-track-piece")
+    @kotlinx.serialization.SerialName("scrollbar-track-piece")
     SCROLLBAR_TRACK_PIECE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("scrollbar-corner")
+    @kotlinx.serialization.SerialName("scrollbar-corner")
     SCROLLBAR_CORNER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("resizer")
+    @kotlinx.serialization.SerialName("resizer")
     RESIZER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("input-list-button")
+    @kotlinx.serialization.SerialName("input-list-button")
     INPUT_LIST_BUTTON;
 }
 
@@ -109,14 +111,15 @@ enum class PseudoType {
  *
  * @link [DOM#ShadowRootType](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-ShadowRootType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ShadowRootType {
-    @com.fasterxml.jackson.annotation.JsonProperty("user-agent")
+    @kotlinx.serialization.SerialName("user-agent")
     USER_AGENT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("open")
+    @kotlinx.serialization.SerialName("open")
     OPEN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("closed")
+    @kotlinx.serialization.SerialName("closed")
     CLOSED;
 }
 
@@ -127,6 +130,7 @@ DOMNode is a base node mirror type.
  * @link [DOM#Node](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-Node) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Node(
     /**  
      * Node identifier that is passed into the rest of the DOM messages as the `nodeId`. Backend  
@@ -277,6 +281,7 @@ data class Node(
  * @link [DOM#RGBA](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-RGBA) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RGBA(
     /**  
      * The red component, in the [0-255] range.  
@@ -313,6 +318,7 @@ typealias Quad = List<Double>
  * @link [DOM#BoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-BoxModel) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class BoxModel(
     /**  
      * Content box  
@@ -356,6 +362,7 @@ data class BoxModel(
  * @link [DOM#ShapeOutsideInfo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-ShapeOutsideInfo) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ShapeOutsideInfo(
     /**  
      * Shape bounds  
@@ -365,12 +372,12 @@ data class ShapeOutsideInfo(
     /**  
      * Shape coordinate details  
      */  
-    val shape: List<Any>,
+    val shape: List<kotlinx.serialization.json.JsonElement>,
 
     /**  
      * Margin shape bounds  
      */  
-    val marginShape: List<Any>
+    val marginShape: List<kotlinx.serialization.json.JsonElement>
 )
 
 /**
@@ -379,6 +386,7 @@ data class ShapeOutsideInfo(
  * @link [DOM#Rect](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-Rect) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Rect(
     /**  
      * X coordinate  
@@ -407,6 +415,7 @@ data class Rect(
  * @link [DOM#CSSComputedStyleProperty](https://chromedevtools.github.io/devtools-protocol/tot/DOM#type-CSSComputedStyleProperty) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CSSComputedStyleProperty(
     /**  
      * Computed style property name.  

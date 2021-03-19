@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.headlessexperimental
 
+import kotlinx.serialization.json.Json
+
 /**
  * This domain provides experimental commands only supported in headless mode.
  *
@@ -16,28 +18,28 @@ https://goo.gl/3zHXhB for more background.
      *
      * @link Protocol [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
      */
-    fun beginFrame(input: BeginFrameRequest) = connection.request("HeadlessExperimental.beginFrame", input, BeginFrameResponse::class.java)
+    fun beginFrame(input: BeginFrameRequest) = connection.request("HeadlessExperimental.beginFrame", Json.encodeToJsonElement(BeginFrameRequest.serializer(), input), BeginFrameResponse.serializer())
 
     /**
      * Disables headless events for the target.
      *
      * @link Protocol [HeadlessExperimental#disable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-disable) method documentation.
      */
-    fun disable() = connection.request("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables headless events for the target.
      *
      * @link Protocol [HeadlessExperimental#enable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-enable) method documentation.
      */
-    fun enable() = connection.request("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Issued when the target starts or stops needing BeginFrames.
 Deprecated. Issue beginFrame unconditionally instead and use result from
 beginFrame to detect whether the frames were suppressed.
      */
-    fun needsBeginFramesChanged(): io.reactivex.rxjava3.core.Flowable<NeedsBeginFramesChangedEvent> = connection.events("HeadlessExperimental.needsBeginFramesChanged", NeedsBeginFramesChangedEvent::class.java)
+    fun needsBeginFramesChanged(): io.reactivex.rxjava3.core.Flowable<NeedsBeginFramesChangedEvent> = connection.events("HeadlessExperimental.needsBeginFramesChanged", NeedsBeginFramesChangedEvent.serializer())
 
     /**
      * Returns flowable capturing all HeadlessExperimental domains events.
@@ -59,6 +61,7 @@ https://goo.gl/3zHXhB for more background.
  * @link [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
  * @see [HeadlessExperimentalOperations.beginFrame]
  */
+@kotlinx.serialization.Serializable
 data class BeginFrameRequest(
     /**
      * Timestamp of this BeginFrame in Renderer TimeTicks (milliseconds of uptime). If not set,
@@ -99,6 +102,7 @@ https://goo.gl/3zHXhB for more background.
  * @link [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
  * @see [HeadlessExperimentalOperations.beginFrame]
  */
+@kotlinx.serialization.Serializable
 data class BeginFrameResponse(
     /**  
      * Whether the BeginFrame resulted in damage and, thus, a new frame was committed to the  
@@ -120,10 +124,11 @@ beginFrame to detect whether the frames were suppressed.
  *
  * @link [HeadlessExperimental#needsBeginFramesChanged](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#event-needsBeginFramesChanged) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class NeedsBeginFramesChangedEvent(
     /**  
      * True if BeginFrames are needed, false otherwise.  
      */  
     val needsBeginFrames: Boolean
 
-) : pl.wendigo.chrome.protocol.Event(domain = "HeadlessExperimental", name = "needsBeginFramesChanged")
+) : pl.wendigo.chrome.protocol.Event(domainName = "HeadlessExperimental", domainEventName = "needsBeginFramesChanged")

@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.indexeddb
 
+import kotlinx.serialization.json.Json
+
 /**
  * IndexedDBOperations represents IndexedDB protocol domain request/response operations and events that can be captured.
  *
@@ -13,63 +15,63 @@ class IndexedDBOperations internal constructor(private val connection: pl.wendig
      *
      * @link Protocol [IndexedDB#clearObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-clearObjectStore) method documentation.
      */
-    fun clearObjectStore(input: ClearObjectStoreRequest) = connection.request("IndexedDB.clearObjectStore", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearObjectStore(input: ClearObjectStoreRequest) = connection.request("IndexedDB.clearObjectStore", Json.encodeToJsonElement(ClearObjectStoreRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Deletes a database.
      *
      * @link Protocol [IndexedDB#deleteDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteDatabase) method documentation.
      */
-    fun deleteDatabase(input: DeleteDatabaseRequest) = connection.request("IndexedDB.deleteDatabase", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun deleteDatabase(input: DeleteDatabaseRequest) = connection.request("IndexedDB.deleteDatabase", Json.encodeToJsonElement(DeleteDatabaseRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Delete a range of entries from an object store
      *
      * @link Protocol [IndexedDB#deleteObjectStoreEntries](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteObjectStoreEntries) method documentation.
      */
-    fun deleteObjectStoreEntries(input: DeleteObjectStoreEntriesRequest) = connection.request("IndexedDB.deleteObjectStoreEntries", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun deleteObjectStoreEntries(input: DeleteObjectStoreEntriesRequest) = connection.request("IndexedDB.deleteObjectStoreEntries", Json.encodeToJsonElement(DeleteObjectStoreEntriesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables events from backend.
      *
      * @link Protocol [IndexedDB#disable](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-disable) method documentation.
      */
-    fun disable() = connection.request("IndexedDB.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("IndexedDB.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables events from backend.
      *
      * @link Protocol [IndexedDB#enable](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-enable) method documentation.
      */
-    fun enable() = connection.request("IndexedDB.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("IndexedDB.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests data from object store or index.
      *
      * @link Protocol [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
      */
-    fun requestData(input: RequestDataRequest) = connection.request("IndexedDB.requestData", input, RequestDataResponse::class.java)
+    fun requestData(input: RequestDataRequest) = connection.request("IndexedDB.requestData", Json.encodeToJsonElement(RequestDataRequest.serializer(), input), RequestDataResponse.serializer())
 
     /**
      * Gets metadata of an object store
      *
      * @link Protocol [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
      */
-    fun getMetadata(input: GetMetadataRequest) = connection.request("IndexedDB.getMetadata", input, GetMetadataResponse::class.java)
+    fun getMetadata(input: GetMetadataRequest) = connection.request("IndexedDB.getMetadata", Json.encodeToJsonElement(GetMetadataRequest.serializer(), input), GetMetadataResponse.serializer())
 
     /**
      * Requests database with given name in given frame.
      *
      * @link Protocol [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
      */
-    fun requestDatabase(input: RequestDatabaseRequest) = connection.request("IndexedDB.requestDatabase", input, RequestDatabaseResponse::class.java)
+    fun requestDatabase(input: RequestDatabaseRequest) = connection.request("IndexedDB.requestDatabase", Json.encodeToJsonElement(RequestDatabaseRequest.serializer(), input), RequestDatabaseResponse.serializer())
 
     /**
      * Requests database names for given security origin.
      *
      * @link Protocol [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
      */
-    fun requestDatabaseNames(input: RequestDatabaseNamesRequest) = connection.request("IndexedDB.requestDatabaseNames", input, RequestDatabaseNamesResponse::class.java)
+    fun requestDatabaseNames(input: RequestDatabaseNamesRequest) = connection.request("IndexedDB.requestDatabaseNames", Json.encodeToJsonElement(RequestDatabaseNamesRequest.serializer(), input), RequestDatabaseNamesResponse.serializer())
 
     /**
      * Returns flowable capturing all IndexedDB domains events.
@@ -88,6 +90,7 @@ class IndexedDBOperations internal constructor(private val connection: pl.wendig
  * @link [IndexedDB#clearObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-clearObjectStore) method documentation.
  * @see [IndexedDBOperations.clearObjectStore]
  */
+@kotlinx.serialization.Serializable
 data class ClearObjectStoreRequest(
     /**
      * Security origin.
@@ -113,6 +116,7 @@ data class ClearObjectStoreRequest(
  * @link [IndexedDB#deleteDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteDatabase) method documentation.
  * @see [IndexedDBOperations.deleteDatabase]
  */
+@kotlinx.serialization.Serializable
 data class DeleteDatabaseRequest(
     /**
      * Security origin.
@@ -133,6 +137,7 @@ data class DeleteDatabaseRequest(
  * @link [IndexedDB#deleteObjectStoreEntries](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteObjectStoreEntries) method documentation.
  * @see [IndexedDBOperations.deleteObjectStoreEntries]
  */
+@kotlinx.serialization.Serializable
 data class DeleteObjectStoreEntriesRequest(
     /**
      *
@@ -163,6 +168,7 @@ data class DeleteObjectStoreEntriesRequest(
  * @link [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
  * @see [IndexedDBOperations.requestData]
  */
+@kotlinx.serialization.Serializable
 data class RequestDataRequest(
     /**
      * Security origin.
@@ -209,6 +215,7 @@ data class RequestDataRequest(
  * @link [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
  * @see [IndexedDBOperations.requestData]
  */
+@kotlinx.serialization.Serializable
 data class RequestDataResponse(
     /**  
      * Array of object store data entries.  
@@ -229,6 +236,7 @@ data class RequestDataResponse(
  * @link [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
  * @see [IndexedDBOperations.getMetadata]
  */
+@kotlinx.serialization.Serializable
 data class GetMetadataRequest(
     /**
      * Security origin.
@@ -255,6 +263,7 @@ data class GetMetadataRequest(
  * @link [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
  * @see [IndexedDBOperations.getMetadata]
  */
+@kotlinx.serialization.Serializable
 data class GetMetadataResponse(
     /**  
      * the entries count  
@@ -277,6 +286,7 @@ data class GetMetadataResponse(
  * @link [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
  * @see [IndexedDBOperations.requestDatabase]
  */
+@kotlinx.serialization.Serializable
 data class RequestDatabaseRequest(
     /**
      * Security origin.
@@ -298,6 +308,7 @@ data class RequestDatabaseRequest(
  * @link [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
  * @see [IndexedDBOperations.requestDatabase]
  */
+@kotlinx.serialization.Serializable
 data class RequestDatabaseResponse(
     /**  
      * Database with an array of object stores.  
@@ -313,6 +324,7 @@ data class RequestDatabaseResponse(
  * @link [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
  * @see [IndexedDBOperations.requestDatabaseNames]
  */
+@kotlinx.serialization.Serializable
 data class RequestDatabaseNamesRequest(
     /**
      * Security origin.
@@ -329,6 +341,7 @@ data class RequestDatabaseNamesRequest(
  * @link [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
  * @see [IndexedDBOperations.requestDatabaseNames]
  */
+@kotlinx.serialization.Serializable
 data class RequestDatabaseNamesResponse(
     /**  
      * Database names for origin.  

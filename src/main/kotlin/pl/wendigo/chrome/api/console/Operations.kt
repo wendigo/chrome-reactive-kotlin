@@ -12,14 +12,14 @@ class ConsoleOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Console#clearMessages](https://chromedevtools.github.io/devtools-protocol/tot/Console#method-clearMessages) method documentation.
      */
-    fun clearMessages() = connection.request("Console.clearMessages", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearMessages() = connection.request("Console.clearMessages", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables console domain, prevents further console messages from being reported to the client.
      *
      * @link Protocol [Console#disable](https://chromedevtools.github.io/devtools-protocol/tot/Console#method-disable) method documentation.
      */
-    fun disable() = connection.request("Console.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Console.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables console domain, sends the messages collected so far to the client by means of the
@@ -27,12 +27,12 @@ class ConsoleOperations internal constructor(private val connection: pl.wendigo.
      *
      * @link Protocol [Console#enable](https://chromedevtools.github.io/devtools-protocol/tot/Console#method-enable) method documentation.
      */
-    fun enable() = connection.request("Console.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Console.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Issued when new console message is added.
      */
-    fun messageAdded(): io.reactivex.rxjava3.core.Flowable<MessageAddedEvent> = connection.events("Console.messageAdded", MessageAddedEvent::class.java)
+    fun messageAdded(): io.reactivex.rxjava3.core.Flowable<MessageAddedEvent> = connection.events("Console.messageAdded", MessageAddedEvent.serializer())
 
     /**
      * Returns flowable capturing all Console domains events.
@@ -49,10 +49,11 @@ class ConsoleOperations internal constructor(private val connection: pl.wendigo.
  *
  * @link [Console#messageAdded](https://chromedevtools.github.io/devtools-protocol/tot/Console#event-messageAdded) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class MessageAddedEvent(
     /**  
      * Console message that has been added.  
      */  
     val message: ConsoleMessage
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Console", name = "messageAdded")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Console", domainEventName = "messageAdded")

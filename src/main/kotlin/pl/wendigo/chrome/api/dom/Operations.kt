@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.dom
 
+import kotlinx.serialization.json.Json
+
 /**
  * This domain exposes DOM read/write operations. Each DOM Node is represented with its mirror object
 that has an `id`. This `id` can be used to get additional information on the Node, resolve it into
@@ -19,7 +21,7 @@ class DOMOperations internal constructor(private val connection: pl.wendigo.chro
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun collectClassNamesFromSubtree(input: CollectClassNamesFromSubtreeRequest) = connection.request("DOM.collectClassNamesFromSubtree", input, CollectClassNamesFromSubtreeResponse::class.java)
+    fun collectClassNamesFromSubtree(input: CollectClassNamesFromSubtreeRequest) = connection.request("DOM.collectClassNamesFromSubtree", Json.encodeToJsonElement(CollectClassNamesFromSubtreeRequest.serializer(), input), CollectClassNamesFromSubtreeResponse.serializer())
 
     /**
      * Creates a deep copy of the specified node and places it into the target container before the
@@ -29,7 +31,7 @@ given anchor.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun copyTo(input: CopyToRequest) = connection.request("DOM.copyTo", input, CopyToResponse::class.java)
+    fun copyTo(input: CopyToRequest) = connection.request("DOM.copyTo", Json.encodeToJsonElement(CopyToRequest.serializer(), input), CopyToResponse.serializer())
 
     /**
      * Describes node given its id, does not require domain to be enabled. Does not start tracking any
@@ -37,7 +39,7 @@ objects, can be used for automation.
      *
      * @link Protocol [DOM#describeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-describeNode) method documentation.
      */
-    fun describeNode(input: DescribeNodeRequest) = connection.request("DOM.describeNode", input, DescribeNodeResponse::class.java)
+    fun describeNode(input: DescribeNodeRequest) = connection.request("DOM.describeNode", Json.encodeToJsonElement(DescribeNodeRequest.serializer(), input), DescribeNodeResponse.serializer())
 
     /**
      * Scrolls the specified rect of the given node into view if not already visible.
@@ -48,14 +50,14 @@ to identify the node.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun scrollIntoViewIfNeeded(input: ScrollIntoViewIfNeededRequest) = connection.request("DOM.scrollIntoViewIfNeeded", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun scrollIntoViewIfNeeded(input: ScrollIntoViewIfNeededRequest) = connection.request("DOM.scrollIntoViewIfNeeded", Json.encodeToJsonElement(ScrollIntoViewIfNeededRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables DOM agent for the given page.
      *
      * @link Protocol [DOM#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-disable) method documentation.
      */
-    fun disable() = connection.request("DOM.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("DOM.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Discards search results from the session with the given id. `getSearchResults` should no longer
@@ -65,35 +67,35 @@ be called for that search.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun discardSearchResults(input: DiscardSearchResultsRequest) = connection.request("DOM.discardSearchResults", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun discardSearchResults(input: DiscardSearchResultsRequest) = connection.request("DOM.discardSearchResults", Json.encodeToJsonElement(DiscardSearchResultsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables DOM agent for the given page.
      *
      * @link Protocol [DOM#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-enable) method documentation.
      */
-    fun enable() = connection.request("DOM.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("DOM.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Focuses the given element.
      *
      * @link Protocol [DOM#focus](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-focus) method documentation.
      */
-    fun focus(input: FocusRequest) = connection.request("DOM.focus", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun focus(input: FocusRequest) = connection.request("DOM.focus", Json.encodeToJsonElement(FocusRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns attributes for the specified node.
      *
      * @link Protocol [DOM#getAttributes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getAttributes) method documentation.
      */
-    fun getAttributes(input: GetAttributesRequest) = connection.request("DOM.getAttributes", input, GetAttributesResponse::class.java)
+    fun getAttributes(input: GetAttributesRequest) = connection.request("DOM.getAttributes", Json.encodeToJsonElement(GetAttributesRequest.serializer(), input), GetAttributesResponse.serializer())
 
     /**
      * Returns boxes for the given node.
      *
      * @link Protocol [DOM#getBoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getBoxModel) method documentation.
      */
-    fun getBoxModel(input: GetBoxModelRequest) = connection.request("DOM.getBoxModel", input, GetBoxModelResponse::class.java)
+    fun getBoxModel(input: GetBoxModelRequest) = connection.request("DOM.getBoxModel", Json.encodeToJsonElement(GetBoxModelRequest.serializer(), input), GetBoxModelResponse.serializer())
 
     /**
      * Returns quads that describe node position on the page. This method
@@ -103,14 +105,14 @@ might return multiple quads for inline nodes.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getContentQuads(input: GetContentQuadsRequest) = connection.request("DOM.getContentQuads", input, GetContentQuadsResponse::class.java)
+    fun getContentQuads(input: GetContentQuadsRequest) = connection.request("DOM.getContentQuads", Json.encodeToJsonElement(GetContentQuadsRequest.serializer(), input), GetContentQuadsResponse.serializer())
 
     /**
      * Returns the root DOM node (and optionally the subtree) to the caller.
      *
      * @link Protocol [DOM#getDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getDocument) method documentation.
      */
-    fun getDocument(input: GetDocumentRequest) = connection.request("DOM.getDocument", input, GetDocumentResponse::class.java)
+    fun getDocument(input: GetDocumentRequest) = connection.request("DOM.getDocument", Json.encodeToJsonElement(GetDocumentRequest.serializer(), input), GetDocumentResponse.serializer())
 
     /**
      * Returns the root DOM node (and optionally the subtree) to the caller.
@@ -120,7 +122,7 @@ Use DOMSnapshot.captureSnapshot instead.
      * @link Protocol [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "getFlattenedDocument is deprecated.")
-    fun getFlattenedDocument(input: GetFlattenedDocumentRequest) = connection.request("DOM.getFlattenedDocument", input, GetFlattenedDocumentResponse::class.java)
+    fun getFlattenedDocument(input: GetFlattenedDocumentRequest) = connection.request("DOM.getFlattenedDocument", Json.encodeToJsonElement(GetFlattenedDocumentRequest.serializer(), input), GetFlattenedDocumentResponse.serializer())
 
     /**
      * Finds nodes with a given computed style in a subtree.
@@ -129,7 +131,7 @@ Use DOMSnapshot.captureSnapshot instead.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getNodesForSubtreeByStyle(input: GetNodesForSubtreeByStyleRequest) = connection.request("DOM.getNodesForSubtreeByStyle", input, GetNodesForSubtreeByStyleResponse::class.java)
+    fun getNodesForSubtreeByStyle(input: GetNodesForSubtreeByStyleRequest) = connection.request("DOM.getNodesForSubtreeByStyle", Json.encodeToJsonElement(GetNodesForSubtreeByStyleRequest.serializer(), input), GetNodesForSubtreeByStyleResponse.serializer())
 
     /**
      * Returns node id at given location. Depending on whether DOM domain is enabled, nodeId is
@@ -137,14 +139,14 @@ either returned or not.
      *
      * @link Protocol [DOM#getNodeForLocation](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeForLocation) method documentation.
      */
-    fun getNodeForLocation(input: GetNodeForLocationRequest) = connection.request("DOM.getNodeForLocation", input, GetNodeForLocationResponse::class.java)
+    fun getNodeForLocation(input: GetNodeForLocationRequest) = connection.request("DOM.getNodeForLocation", Json.encodeToJsonElement(GetNodeForLocationRequest.serializer(), input), GetNodeForLocationResponse.serializer())
 
     /**
      * Returns node's HTML markup.
      *
      * @link Protocol [DOM#getOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getOuterHTML) method documentation.
      */
-    fun getOuterHTML(input: GetOuterHTMLRequest) = connection.request("DOM.getOuterHTML", input, GetOuterHTMLResponse::class.java)
+    fun getOuterHTML(input: GetOuterHTMLRequest) = connection.request("DOM.getOuterHTML", Json.encodeToJsonElement(GetOuterHTMLRequest.serializer(), input), GetOuterHTMLResponse.serializer())
 
     /**
      * Returns the id of the nearest ancestor that is a relayout boundary.
@@ -153,7 +155,7 @@ either returned or not.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getRelayoutBoundary(input: GetRelayoutBoundaryRequest) = connection.request("DOM.getRelayoutBoundary", input, GetRelayoutBoundaryResponse::class.java)
+    fun getRelayoutBoundary(input: GetRelayoutBoundaryRequest) = connection.request("DOM.getRelayoutBoundary", Json.encodeToJsonElement(GetRelayoutBoundaryRequest.serializer(), input), GetRelayoutBoundaryResponse.serializer())
 
     /**
      * Returns search results from given `fromIndex` to given `toIndex` from the search with the given
@@ -163,28 +165,28 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getSearchResults(input: GetSearchResultsRequest) = connection.request("DOM.getSearchResults", input, GetSearchResultsResponse::class.java)
+    fun getSearchResults(input: GetSearchResultsRequest) = connection.request("DOM.getSearchResults", Json.encodeToJsonElement(GetSearchResultsRequest.serializer(), input), GetSearchResultsResponse.serializer())
 
     /**
      * Hides any highlight.
      *
      * @link Protocol [DOM#hideHighlight](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-hideHighlight) method documentation.
      */
-    fun hideHighlight() = connection.request("DOM.hideHighlight", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun hideHighlight() = connection.request("DOM.hideHighlight", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Highlights DOM node.
      *
      * @link Protocol [DOM#highlightNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-highlightNode) method documentation.
      */
-    fun highlightNode() = connection.request("DOM.highlightNode", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun highlightNode() = connection.request("DOM.highlightNode", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Highlights given rectangle.
      *
      * @link Protocol [DOM#highlightRect](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-highlightRect) method documentation.
      */
-    fun highlightRect() = connection.request("DOM.highlightRect", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun highlightRect() = connection.request("DOM.highlightRect", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Marks last undoable state.
@@ -193,14 +195,14 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun markUndoableState() = connection.request("DOM.markUndoableState", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun markUndoableState() = connection.request("DOM.markUndoableState", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Moves node into the new container, places it before the given anchor.
      *
      * @link Protocol [DOM#moveTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-moveTo) method documentation.
      */
-    fun moveTo(input: MoveToRequest) = connection.request("DOM.moveTo", input, MoveToResponse::class.java)
+    fun moveTo(input: MoveToRequest) = connection.request("DOM.moveTo", Json.encodeToJsonElement(MoveToRequest.serializer(), input), MoveToResponse.serializer())
 
     /**
      * Searches for a given string in the DOM tree. Use `getSearchResults` to access search results or
@@ -210,7 +212,7 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun performSearch(input: PerformSearchRequest) = connection.request("DOM.performSearch", input, PerformSearchResponse::class.java)
+    fun performSearch(input: PerformSearchRequest) = connection.request("DOM.performSearch", Json.encodeToJsonElement(PerformSearchRequest.serializer(), input), PerformSearchResponse.serializer())
 
     /**
      * Requests that the node is sent to the caller given its path. // FIXME, use XPath
@@ -219,7 +221,7 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun pushNodeByPathToFrontend(input: PushNodeByPathToFrontendRequest) = connection.request("DOM.pushNodeByPathToFrontend", input, PushNodeByPathToFrontendResponse::class.java)
+    fun pushNodeByPathToFrontend(input: PushNodeByPathToFrontendRequest) = connection.request("DOM.pushNodeByPathToFrontend", Json.encodeToJsonElement(PushNodeByPathToFrontendRequest.serializer(), input), PushNodeByPathToFrontendResponse.serializer())
 
     /**
      * Requests that a batch of nodes is sent to the caller given their backend node ids.
@@ -228,21 +230,21 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun pushNodesByBackendIdsToFrontend(input: PushNodesByBackendIdsToFrontendRequest) = connection.request("DOM.pushNodesByBackendIdsToFrontend", input, PushNodesByBackendIdsToFrontendResponse::class.java)
+    fun pushNodesByBackendIdsToFrontend(input: PushNodesByBackendIdsToFrontendRequest) = connection.request("DOM.pushNodesByBackendIdsToFrontend", Json.encodeToJsonElement(PushNodesByBackendIdsToFrontendRequest.serializer(), input), PushNodesByBackendIdsToFrontendResponse.serializer())
 
     /**
      * Executes `querySelector` on a given node.
      *
      * @link Protocol [DOM#querySelector](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelector) method documentation.
      */
-    fun querySelector(input: QuerySelectorRequest) = connection.request("DOM.querySelector", input, QuerySelectorResponse::class.java)
+    fun querySelector(input: QuerySelectorRequest) = connection.request("DOM.querySelector", Json.encodeToJsonElement(QuerySelectorRequest.serializer(), input), QuerySelectorResponse.serializer())
 
     /**
      * Executes `querySelectorAll` on a given node.
      *
      * @link Protocol [DOM#querySelectorAll](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelectorAll) method documentation.
      */
-    fun querySelectorAll(input: QuerySelectorAllRequest) = connection.request("DOM.querySelectorAll", input, QuerySelectorAllResponse::class.java)
+    fun querySelectorAll(input: QuerySelectorAllRequest) = connection.request("DOM.querySelectorAll", Json.encodeToJsonElement(QuerySelectorAllRequest.serializer(), input), QuerySelectorAllResponse.serializer())
 
     /**
      * Re-does the last undone action.
@@ -251,21 +253,21 @@ identifier.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun redo() = connection.request("DOM.redo", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun redo() = connection.request("DOM.redo", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Removes attribute with given name from an element with given id.
      *
      * @link Protocol [DOM#removeAttribute](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeAttribute) method documentation.
      */
-    fun removeAttribute(input: RemoveAttributeRequest) = connection.request("DOM.removeAttribute", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeAttribute(input: RemoveAttributeRequest) = connection.request("DOM.removeAttribute", Json.encodeToJsonElement(RemoveAttributeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Removes node with given id.
      *
      * @link Protocol [DOM#removeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeNode) method documentation.
      */
-    fun removeNode(input: RemoveNodeRequest) = connection.request("DOM.removeNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeNode(input: RemoveNodeRequest) = connection.request("DOM.removeNode", Json.encodeToJsonElement(RemoveNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests that children of the node with given id are returned to the caller in form of
@@ -274,7 +276,7 @@ the specified depth.
      *
      * @link Protocol [DOM#requestChildNodes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestChildNodes) method documentation.
      */
-    fun requestChildNodes(input: RequestChildNodesRequest) = connection.request("DOM.requestChildNodes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun requestChildNodes(input: RequestChildNodesRequest) = connection.request("DOM.requestChildNodes", Json.encodeToJsonElement(RequestChildNodesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests that the node is sent to the caller given the JavaScript node object reference. All
@@ -283,21 +285,21 @@ nodes that form the path from the node to the root are also sent to the client a
      *
      * @link Protocol [DOM#requestNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestNode) method documentation.
      */
-    fun requestNode(input: RequestNodeRequest) = connection.request("DOM.requestNode", input, RequestNodeResponse::class.java)
+    fun requestNode(input: RequestNodeRequest) = connection.request("DOM.requestNode", Json.encodeToJsonElement(RequestNodeRequest.serializer(), input), RequestNodeResponse.serializer())
 
     /**
      * Resolves the JavaScript node object for a given NodeId or BackendNodeId.
      *
      * @link Protocol [DOM#resolveNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-resolveNode) method documentation.
      */
-    fun resolveNode(input: ResolveNodeRequest) = connection.request("DOM.resolveNode", input, ResolveNodeResponse::class.java)
+    fun resolveNode(input: ResolveNodeRequest) = connection.request("DOM.resolveNode", Json.encodeToJsonElement(ResolveNodeRequest.serializer(), input), ResolveNodeResponse.serializer())
 
     /**
      * Sets attribute for an element with given id.
      *
      * @link Protocol [DOM#setAttributeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributeValue) method documentation.
      */
-    fun setAttributeValue(input: SetAttributeValueRequest) = connection.request("DOM.setAttributeValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAttributeValue(input: SetAttributeValueRequest) = connection.request("DOM.setAttributeValue", Json.encodeToJsonElement(SetAttributeValueRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets attributes on element with given id. This method is useful when user edits some existing
@@ -305,14 +307,14 @@ attribute value and types in several attribute name/value pairs.
      *
      * @link Protocol [DOM#setAttributesAsText](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributesAsText) method documentation.
      */
-    fun setAttributesAsText(input: SetAttributesAsTextRequest) = connection.request("DOM.setAttributesAsText", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAttributesAsText(input: SetAttributesAsTextRequest) = connection.request("DOM.setAttributesAsText", Json.encodeToJsonElement(SetAttributesAsTextRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets files for the given file input element.
      *
      * @link Protocol [DOM#setFileInputFiles](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setFileInputFiles) method documentation.
      */
-    fun setFileInputFiles(input: SetFileInputFilesRequest) = connection.request("DOM.setFileInputFiles", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setFileInputFiles(input: SetFileInputFilesRequest) = connection.request("DOM.setFileInputFiles", Json.encodeToJsonElement(SetFileInputFilesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets if stack traces should be captured for Nodes. See `Node.getNodeStackTraces`. Default is disabled.
@@ -321,7 +323,7 @@ attribute value and types in several attribute name/value pairs.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setNodeStackTracesEnabled(input: SetNodeStackTracesEnabledRequest) = connection.request("DOM.setNodeStackTracesEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setNodeStackTracesEnabled(input: SetNodeStackTracesEnabledRequest) = connection.request("DOM.setNodeStackTracesEnabled", Json.encodeToJsonElement(SetNodeStackTracesEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation.
@@ -330,7 +332,7 @@ attribute value and types in several attribute name/value pairs.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getNodeStackTraces(input: GetNodeStackTracesRequest) = connection.request("DOM.getNodeStackTraces", input, GetNodeStackTracesResponse::class.java)
+    fun getNodeStackTraces(input: GetNodeStackTracesRequest) = connection.request("DOM.getNodeStackTraces", Json.encodeToJsonElement(GetNodeStackTracesRequest.serializer(), input), GetNodeStackTracesResponse.serializer())
 
     /**
      * Returns file information for the given
@@ -340,7 +342,7 @@ File wrapper.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getFileInfo(input: GetFileInfoRequest) = connection.request("DOM.getFileInfo", input, GetFileInfoResponse::class.java)
+    fun getFileInfo(input: GetFileInfoRequest) = connection.request("DOM.getFileInfo", Json.encodeToJsonElement(GetFileInfoRequest.serializer(), input), GetFileInfoResponse.serializer())
 
     /**
      * Enables console to refer to the node with given id via $x (see Command Line API for more details
@@ -350,28 +352,28 @@ $x functions).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setInspectedNode(input: SetInspectedNodeRequest) = connection.request("DOM.setInspectedNode", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setInspectedNode(input: SetInspectedNodeRequest) = connection.request("DOM.setInspectedNode", Json.encodeToJsonElement(SetInspectedNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets node name for a node with given id.
      *
      * @link Protocol [DOM#setNodeName](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeName) method documentation.
      */
-    fun setNodeName(input: SetNodeNameRequest) = connection.request("DOM.setNodeName", input, SetNodeNameResponse::class.java)
+    fun setNodeName(input: SetNodeNameRequest) = connection.request("DOM.setNodeName", Json.encodeToJsonElement(SetNodeNameRequest.serializer(), input), SetNodeNameResponse.serializer())
 
     /**
      * Sets node value for a node with given id.
      *
      * @link Protocol [DOM#setNodeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeValue) method documentation.
      */
-    fun setNodeValue(input: SetNodeValueRequest) = connection.request("DOM.setNodeValue", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setNodeValue(input: SetNodeValueRequest) = connection.request("DOM.setNodeValue", Json.encodeToJsonElement(SetNodeValueRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets node HTML markup, returns new node id.
      *
      * @link Protocol [DOM#setOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setOuterHTML) method documentation.
      */
-    fun setOuterHTML(input: SetOuterHTMLRequest) = connection.request("DOM.setOuterHTML", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setOuterHTML(input: SetOuterHTMLRequest) = connection.request("DOM.setOuterHTML", Json.encodeToJsonElement(SetOuterHTMLRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Undoes the last performed action.
@@ -380,7 +382,7 @@ $x functions).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun undo() = connection.request("DOM.undo", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun undo() = connection.request("DOM.undo", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns iframe node that owns iframe with the given domain.
@@ -389,78 +391,78 @@ $x functions).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getFrameOwner(input: GetFrameOwnerRequest) = connection.request("DOM.getFrameOwner", input, GetFrameOwnerResponse::class.java)
+    fun getFrameOwner(input: GetFrameOwnerRequest) = connection.request("DOM.getFrameOwner", Json.encodeToJsonElement(GetFrameOwnerRequest.serializer(), input), GetFrameOwnerResponse.serializer())
 
     /**
      *  Fired when `Element`'s attribute is modified.
      */
-    fun attributeModified(): io.reactivex.rxjava3.core.Flowable<AttributeModifiedEvent> = connection.events("DOM.attributeModified", AttributeModifiedEvent::class.java)
+    fun attributeModified(): io.reactivex.rxjava3.core.Flowable<AttributeModifiedEvent> = connection.events("DOM.attributeModified", AttributeModifiedEvent.serializer())
 
     /**
      *  Fired when `Element`'s attribute is removed.
      */
-    fun attributeRemoved(): io.reactivex.rxjava3.core.Flowable<AttributeRemovedEvent> = connection.events("DOM.attributeRemoved", AttributeRemovedEvent::class.java)
+    fun attributeRemoved(): io.reactivex.rxjava3.core.Flowable<AttributeRemovedEvent> = connection.events("DOM.attributeRemoved", AttributeRemovedEvent.serializer())
 
     /**
      *  Mirrors `DOMCharacterDataModified` event.
      */
-    fun characterDataModified(): io.reactivex.rxjava3.core.Flowable<CharacterDataModifiedEvent> = connection.events("DOM.characterDataModified", CharacterDataModifiedEvent::class.java)
+    fun characterDataModified(): io.reactivex.rxjava3.core.Flowable<CharacterDataModifiedEvent> = connection.events("DOM.characterDataModified", CharacterDataModifiedEvent.serializer())
 
     /**
      *  Fired when `Container`'s child node count has changed.
      */
-    fun childNodeCountUpdated(): io.reactivex.rxjava3.core.Flowable<ChildNodeCountUpdatedEvent> = connection.events("DOM.childNodeCountUpdated", ChildNodeCountUpdatedEvent::class.java)
+    fun childNodeCountUpdated(): io.reactivex.rxjava3.core.Flowable<ChildNodeCountUpdatedEvent> = connection.events("DOM.childNodeCountUpdated", ChildNodeCountUpdatedEvent.serializer())
 
     /**
      *  Mirrors `DOMNodeInserted` event.
      */
-    fun childNodeInserted(): io.reactivex.rxjava3.core.Flowable<ChildNodeInsertedEvent> = connection.events("DOM.childNodeInserted", ChildNodeInsertedEvent::class.java)
+    fun childNodeInserted(): io.reactivex.rxjava3.core.Flowable<ChildNodeInsertedEvent> = connection.events("DOM.childNodeInserted", ChildNodeInsertedEvent.serializer())
 
     /**
      *  Mirrors `DOMNodeRemoved` event.
      */
-    fun childNodeRemoved(): io.reactivex.rxjava3.core.Flowable<ChildNodeRemovedEvent> = connection.events("DOM.childNodeRemoved", ChildNodeRemovedEvent::class.java)
+    fun childNodeRemoved(): io.reactivex.rxjava3.core.Flowable<ChildNodeRemovedEvent> = connection.events("DOM.childNodeRemoved", ChildNodeRemovedEvent.serializer())
 
     /**
      *  Called when distrubution is changed.
      */
-    fun distributedNodesUpdated(): io.reactivex.rxjava3.core.Flowable<DistributedNodesUpdatedEvent> = connection.events("DOM.distributedNodesUpdated", DistributedNodesUpdatedEvent::class.java)
+    fun distributedNodesUpdated(): io.reactivex.rxjava3.core.Flowable<DistributedNodesUpdatedEvent> = connection.events("DOM.distributedNodesUpdated", DistributedNodesUpdatedEvent.serializer())
 
     /**
      *  Fired when `Document` has been totally updated. Node ids are no longer valid.
      */
-    fun documentUpdated(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("DOM.documentUpdated", pl.wendigo.chrome.protocol.Event::class.java)
+    fun documentUpdated(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("DOM.documentUpdated", pl.wendigo.chrome.protocol.Event.serializer())
 
     /**
      *  Fired when `Element`'s inline style is modified via a CSS property modification.
      */
-    fun inlineStyleInvalidated(): io.reactivex.rxjava3.core.Flowable<InlineStyleInvalidatedEvent> = connection.events("DOM.inlineStyleInvalidated", InlineStyleInvalidatedEvent::class.java)
+    fun inlineStyleInvalidated(): io.reactivex.rxjava3.core.Flowable<InlineStyleInvalidatedEvent> = connection.events("DOM.inlineStyleInvalidated", InlineStyleInvalidatedEvent.serializer())
 
     /**
      *  Called when a pseudo element is added to an element.
      */
-    fun pseudoElementAdded(): io.reactivex.rxjava3.core.Flowable<PseudoElementAddedEvent> = connection.events("DOM.pseudoElementAdded", PseudoElementAddedEvent::class.java)
+    fun pseudoElementAdded(): io.reactivex.rxjava3.core.Flowable<PseudoElementAddedEvent> = connection.events("DOM.pseudoElementAdded", PseudoElementAddedEvent.serializer())
 
     /**
      *  Called when a pseudo element is removed from an element.
      */
-    fun pseudoElementRemoved(): io.reactivex.rxjava3.core.Flowable<PseudoElementRemovedEvent> = connection.events("DOM.pseudoElementRemoved", PseudoElementRemovedEvent::class.java)
+    fun pseudoElementRemoved(): io.reactivex.rxjava3.core.Flowable<PseudoElementRemovedEvent> = connection.events("DOM.pseudoElementRemoved", PseudoElementRemovedEvent.serializer())
 
     /**
      *  Fired when backend wants to provide client with the missing DOM structure. This happens upon
 most of the calls requesting node ids.
      */
-    fun setChildNodes(): io.reactivex.rxjava3.core.Flowable<SetChildNodesEvent> = connection.events("DOM.setChildNodes", SetChildNodesEvent::class.java)
+    fun setChildNodes(): io.reactivex.rxjava3.core.Flowable<SetChildNodesEvent> = connection.events("DOM.setChildNodes", SetChildNodesEvent.serializer())
 
     /**
      *  Called when shadow root is popped from the element.
      */
-    fun shadowRootPopped(): io.reactivex.rxjava3.core.Flowable<ShadowRootPoppedEvent> = connection.events("DOM.shadowRootPopped", ShadowRootPoppedEvent::class.java)
+    fun shadowRootPopped(): io.reactivex.rxjava3.core.Flowable<ShadowRootPoppedEvent> = connection.events("DOM.shadowRootPopped", ShadowRootPoppedEvent.serializer())
 
     /**
      *  Called when shadow root is pushed into the element.
      */
-    fun shadowRootPushed(): io.reactivex.rxjava3.core.Flowable<ShadowRootPushedEvent> = connection.events("DOM.shadowRootPushed", ShadowRootPushedEvent::class.java)
+    fun shadowRootPushed(): io.reactivex.rxjava3.core.Flowable<ShadowRootPushedEvent> = connection.events("DOM.shadowRootPushed", ShadowRootPushedEvent.serializer())
 
     /**
      * Returns flowable capturing all DOM domains events.
@@ -479,6 +481,7 @@ most of the calls requesting node ids.
  * @link [DOM#collectClassNamesFromSubtree](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-collectClassNamesFromSubtree) method documentation.
  * @see [DOMOperations.collectClassNamesFromSubtree]
  */
+@kotlinx.serialization.Serializable
 data class CollectClassNamesFromSubtreeRequest(
     /**
      * Id of the node to collect class names.
@@ -495,6 +498,7 @@ data class CollectClassNamesFromSubtreeRequest(
  * @link [DOM#collectClassNamesFromSubtree](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-collectClassNamesFromSubtree) method documentation.
  * @see [DOMOperations.collectClassNamesFromSubtree]
  */
+@kotlinx.serialization.Serializable
 data class CollectClassNamesFromSubtreeResponse(
     /**  
      * Class name list.  
@@ -511,6 +515,7 @@ given anchor.
  * @link [DOM#copyTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-copyTo) method documentation.
  * @see [DOMOperations.copyTo]
  */
+@kotlinx.serialization.Serializable
 data class CopyToRequest(
     /**
      * Id of the node to copy.
@@ -539,6 +544,7 @@ given anchor.
  * @link [DOM#copyTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-copyTo) method documentation.
  * @see [DOMOperations.copyTo]
  */
+@kotlinx.serialization.Serializable
 data class CopyToResponse(
     /**  
      * Id of the node clone.  
@@ -555,6 +561,7 @@ objects, can be used for automation.
  * @link [DOM#describeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-describeNode) method documentation.
  * @see [DOMOperations.describeNode]
  */
+@kotlinx.serialization.Serializable
 data class DescribeNodeRequest(
     /**
      * Identifier of the node.
@@ -594,6 +601,7 @@ objects, can be used for automation.
  * @link [DOM#describeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-describeNode) method documentation.
  * @see [DOMOperations.describeNode]
  */
+@kotlinx.serialization.Serializable
 data class DescribeNodeResponse(
     /**  
      * Node description.  
@@ -611,6 +619,7 @@ to identify the node.
  * @link [DOM#scrollIntoViewIfNeeded](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-scrollIntoViewIfNeeded) method documentation.
  * @see [DOMOperations.scrollIntoViewIfNeeded]
  */
+@kotlinx.serialization.Serializable
 data class ScrollIntoViewIfNeededRequest(
     /**
      * Identifier of the node.
@@ -643,6 +652,7 @@ be called for that search.
  * @link [DOM#discardSearchResults](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-discardSearchResults) method documentation.
  * @see [DOMOperations.discardSearchResults]
  */
+@kotlinx.serialization.Serializable
 data class DiscardSearchResultsRequest(
     /**
      * Unique search session identifier.
@@ -658,6 +668,7 @@ data class DiscardSearchResultsRequest(
  * @link [DOM#focus](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-focus) method documentation.
  * @see [DOMOperations.focus]
  */
+@kotlinx.serialization.Serializable
 data class FocusRequest(
     /**
      * Identifier of the node.
@@ -683,6 +694,7 @@ data class FocusRequest(
  * @link [DOM#getAttributes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getAttributes) method documentation.
  * @see [DOMOperations.getAttributes]
  */
+@kotlinx.serialization.Serializable
 data class GetAttributesRequest(
     /**
      * Id of the node to retrieve attibutes for.
@@ -699,6 +711,7 @@ data class GetAttributesRequest(
  * @link [DOM#getAttributes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getAttributes) method documentation.
  * @see [DOMOperations.getAttributes]
  */
+@kotlinx.serialization.Serializable
 data class GetAttributesResponse(
     /**  
      * An interleaved array of node attribute names and values.  
@@ -714,6 +727,7 @@ data class GetAttributesResponse(
  * @link [DOM#getBoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getBoxModel) method documentation.
  * @see [DOMOperations.getBoxModel]
  */
+@kotlinx.serialization.Serializable
 data class GetBoxModelRequest(
     /**
      * Identifier of the node.
@@ -740,6 +754,7 @@ data class GetBoxModelRequest(
  * @link [DOM#getBoxModel](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getBoxModel) method documentation.
  * @see [DOMOperations.getBoxModel]
  */
+@kotlinx.serialization.Serializable
 data class GetBoxModelResponse(
     /**  
      * Box model for the node.  
@@ -756,6 +771,7 @@ might return multiple quads for inline nodes.
  * @link [DOM#getContentQuads](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getContentQuads) method documentation.
  * @see [DOMOperations.getContentQuads]
  */
+@kotlinx.serialization.Serializable
 data class GetContentQuadsRequest(
     /**
      * Identifier of the node.
@@ -783,6 +799,7 @@ might return multiple quads for inline nodes.
  * @link [DOM#getContentQuads](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getContentQuads) method documentation.
  * @see [DOMOperations.getContentQuads]
  */
+@kotlinx.serialization.Serializable
 data class GetContentQuadsResponse(
     /**  
      * Quads that describe node layout relative to viewport.  
@@ -798,6 +815,7 @@ data class GetContentQuadsResponse(
  * @link [DOM#getDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getDocument) method documentation.
  * @see [DOMOperations.getDocument]
  */
+@kotlinx.serialization.Serializable
 data class GetDocumentRequest(
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
@@ -821,6 +839,7 @@ entire subtree or provide an integer larger than 0.
  * @link [DOM#getDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getDocument) method documentation.
  * @see [DOMOperations.getDocument]
  */
+@kotlinx.serialization.Serializable
 data class GetDocumentResponse(
     /**  
      * Resulting node.  
@@ -838,6 +857,7 @@ Use DOMSnapshot.captureSnapshot instead.
  * @link [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
  * @see [DOMOperations.getFlattenedDocument]
  */
+@kotlinx.serialization.Serializable
 data class GetFlattenedDocumentRequest(
     /**
      * The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the
@@ -863,6 +883,7 @@ Use DOMSnapshot.captureSnapshot instead.
  * @link [DOM#getFlattenedDocument](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFlattenedDocument) method documentation.
  * @see [DOMOperations.getFlattenedDocument]
  */
+@kotlinx.serialization.Serializable
 data class GetFlattenedDocumentResponse(
     /**  
      * Resulting node.  
@@ -878,6 +899,7 @@ data class GetFlattenedDocumentResponse(
  * @link [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) method documentation.
  * @see [DOMOperations.getNodesForSubtreeByStyle]
  */
+@kotlinx.serialization.Serializable
 data class GetNodesForSubtreeByStyleRequest(
     /**
      * Node ID pointing to the root of a subtree.
@@ -905,6 +927,7 @@ results (default is false).
  * @link [DOM#getNodesForSubtreeByStyle](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodesForSubtreeByStyle) method documentation.
  * @see [DOMOperations.getNodesForSubtreeByStyle]
  */
+@kotlinx.serialization.Serializable
 data class GetNodesForSubtreeByStyleResponse(
     /**  
      * Resulting nodes.  
@@ -921,6 +944,7 @@ either returned or not.
  * @link [DOM#getNodeForLocation](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeForLocation) method documentation.
  * @see [DOMOperations.getNodeForLocation]
  */
+@kotlinx.serialization.Serializable
 data class GetNodeForLocationRequest(
     /**
      * X coordinate.
@@ -953,6 +977,7 @@ either returned or not.
  * @link [DOM#getNodeForLocation](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeForLocation) method documentation.
  * @see [DOMOperations.getNodeForLocation]
  */
+@kotlinx.serialization.Serializable
 data class GetNodeForLocationResponse(
     /**  
      * Resulting node.  
@@ -978,6 +1003,7 @@ data class GetNodeForLocationResponse(
  * @link [DOM#getOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getOuterHTML) method documentation.
  * @see [DOMOperations.getOuterHTML]
  */
+@kotlinx.serialization.Serializable
 data class GetOuterHTMLRequest(
     /**
      * Identifier of the node.
@@ -1004,6 +1030,7 @@ data class GetOuterHTMLRequest(
  * @link [DOM#getOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getOuterHTML) method documentation.
  * @see [DOMOperations.getOuterHTML]
  */
+@kotlinx.serialization.Serializable
 data class GetOuterHTMLResponse(
     /**  
      * Outer HTML markup.  
@@ -1019,6 +1046,7 @@ data class GetOuterHTMLResponse(
  * @link [DOM#getRelayoutBoundary](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getRelayoutBoundary) method documentation.
  * @see [DOMOperations.getRelayoutBoundary]
  */
+@kotlinx.serialization.Serializable
 data class GetRelayoutBoundaryRequest(
     /**
      * Id of the node.
@@ -1035,6 +1063,7 @@ data class GetRelayoutBoundaryRequest(
  * @link [DOM#getRelayoutBoundary](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getRelayoutBoundary) method documentation.
  * @see [DOMOperations.getRelayoutBoundary]
  */
+@kotlinx.serialization.Serializable
 data class GetRelayoutBoundaryResponse(
     /**  
      * Relayout boundary node id for the given node.  
@@ -1051,6 +1080,7 @@ identifier.
  * @link [DOM#getSearchResults](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getSearchResults) method documentation.
  * @see [DOMOperations.getSearchResults]
  */
+@kotlinx.serialization.Serializable
 data class GetSearchResultsRequest(
     /**
      * Unique search session identifier.
@@ -1078,6 +1108,7 @@ identifier.
  * @link [DOM#getSearchResults](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getSearchResults) method documentation.
  * @see [DOMOperations.getSearchResults]
  */
+@kotlinx.serialization.Serializable
 data class GetSearchResultsResponse(
     /**  
      * Ids of the search result nodes.  
@@ -1093,6 +1124,7 @@ data class GetSearchResultsResponse(
  * @link [DOM#moveTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-moveTo) method documentation.
  * @see [DOMOperations.moveTo]
  */
+@kotlinx.serialization.Serializable
 data class MoveToRequest(
     /**
      * Id of the node to move.
@@ -1120,6 +1152,7 @@ data class MoveToRequest(
  * @link [DOM#moveTo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-moveTo) method documentation.
  * @see [DOMOperations.moveTo]
  */
+@kotlinx.serialization.Serializable
 data class MoveToResponse(
     /**  
      * New id of the moved node.  
@@ -1136,6 +1169,7 @@ data class MoveToResponse(
  * @link [DOM#performSearch](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-performSearch) method documentation.
  * @see [DOMOperations.performSearch]
  */
+@kotlinx.serialization.Serializable
 data class PerformSearchRequest(
     /**
      * Plain text or query selector or XPath search query.
@@ -1158,6 +1192,7 @@ data class PerformSearchRequest(
  * @link [DOM#performSearch](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-performSearch) method documentation.
  * @see [DOMOperations.performSearch]
  */
+@kotlinx.serialization.Serializable
 data class PerformSearchResponse(
     /**  
      * Unique search session identifier.  
@@ -1178,6 +1213,7 @@ data class PerformSearchResponse(
  * @link [DOM#pushNodeByPathToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodeByPathToFrontend) method documentation.
  * @see [DOMOperations.pushNodeByPathToFrontend]
  */
+@kotlinx.serialization.Serializable
 data class PushNodeByPathToFrontendRequest(
     /**
      * Path to node in the proprietary format.
@@ -1194,6 +1230,7 @@ data class PushNodeByPathToFrontendRequest(
  * @link [DOM#pushNodeByPathToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodeByPathToFrontend) method documentation.
  * @see [DOMOperations.pushNodeByPathToFrontend]
  */
+@kotlinx.serialization.Serializable
 data class PushNodeByPathToFrontendResponse(
     /**  
      * Id of the node for given path.  
@@ -1209,6 +1246,7 @@ data class PushNodeByPathToFrontendResponse(
  * @link [DOM#pushNodesByBackendIdsToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodesByBackendIdsToFrontend) method documentation.
  * @see [DOMOperations.pushNodesByBackendIdsToFrontend]
  */
+@kotlinx.serialization.Serializable
 data class PushNodesByBackendIdsToFrontendRequest(
     /**
      * The array of backend node ids.
@@ -1225,6 +1263,7 @@ data class PushNodesByBackendIdsToFrontendRequest(
  * @link [DOM#pushNodesByBackendIdsToFrontend](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-pushNodesByBackendIdsToFrontend) method documentation.
  * @see [DOMOperations.pushNodesByBackendIdsToFrontend]
  */
+@kotlinx.serialization.Serializable
 data class PushNodesByBackendIdsToFrontendResponse(
     /**  
      * The array of ids of pushed nodes that correspond to the backend ids specified in  
@@ -1241,6 +1280,7 @@ data class PushNodesByBackendIdsToFrontendResponse(
  * @link [DOM#querySelector](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelector) method documentation.
  * @see [DOMOperations.querySelector]
  */
+@kotlinx.serialization.Serializable
 data class QuerySelectorRequest(
     /**
      * Id of the node to query upon.
@@ -1262,6 +1302,7 @@ data class QuerySelectorRequest(
  * @link [DOM#querySelector](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelector) method documentation.
  * @see [DOMOperations.querySelector]
  */
+@kotlinx.serialization.Serializable
 data class QuerySelectorResponse(
     /**  
      * Query selector result.  
@@ -1277,6 +1318,7 @@ data class QuerySelectorResponse(
  * @link [DOM#querySelectorAll](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelectorAll) method documentation.
  * @see [DOMOperations.querySelectorAll]
  */
+@kotlinx.serialization.Serializable
 data class QuerySelectorAllRequest(
     /**
      * Id of the node to query upon.
@@ -1298,6 +1340,7 @@ data class QuerySelectorAllRequest(
  * @link [DOM#querySelectorAll](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-querySelectorAll) method documentation.
  * @see [DOMOperations.querySelectorAll]
  */
+@kotlinx.serialization.Serializable
 data class QuerySelectorAllResponse(
     /**  
      * Query selector result.  
@@ -1313,6 +1356,7 @@ data class QuerySelectorAllResponse(
  * @link [DOM#removeAttribute](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeAttribute) method documentation.
  * @see [DOMOperations.removeAttribute]
  */
+@kotlinx.serialization.Serializable
 data class RemoveAttributeRequest(
     /**
      * Id of the element to remove attribute from.
@@ -1333,6 +1377,7 @@ data class RemoveAttributeRequest(
  * @link [DOM#removeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeNode) method documentation.
  * @see [DOMOperations.removeNode]
  */
+@kotlinx.serialization.Serializable
 data class RemoveNodeRequest(
     /**
      * Id of the node to remove.
@@ -1350,6 +1395,7 @@ the specified depth.
  * @link [DOM#requestChildNodes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestChildNodes) method documentation.
  * @see [DOMOperations.requestChildNodes]
  */
+@kotlinx.serialization.Serializable
 data class RequestChildNodesRequest(
     /**
      * Id of the node to get children for.
@@ -1379,6 +1425,7 @@ nodes that form the path from the node to the root are also sent to the client a
  * @link [DOM#requestNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestNode) method documentation.
  * @see [DOMOperations.requestNode]
  */
+@kotlinx.serialization.Serializable
 data class RequestNodeRequest(
     /**
      * JavaScript object id to convert into node.
@@ -1397,6 +1444,7 @@ nodes that form the path from the node to the root are also sent to the client a
  * @link [DOM#requestNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestNode) method documentation.
  * @see [DOMOperations.requestNode]
  */
+@kotlinx.serialization.Serializable
 data class RequestNodeResponse(
     /**  
      * Node id for given object.  
@@ -1412,6 +1460,7 @@ data class RequestNodeResponse(
  * @link [DOM#resolveNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-resolveNode) method documentation.
  * @see [DOMOperations.resolveNode]
  */
+@kotlinx.serialization.Serializable
 data class ResolveNodeRequest(
     /**
      * Id of the node to resolve.
@@ -1443,11 +1492,12 @@ data class ResolveNodeRequest(
  * @link [DOM#resolveNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-resolveNode) method documentation.
  * @see [DOMOperations.resolveNode]
  */
+@kotlinx.serialization.Serializable
 data class ResolveNodeResponse(
     /**  
      * JavaScript object wrapper for given node.  
      */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: pl.wendigo.chrome.api.runtime.RemoteObject
+    @kotlinx.serialization.SerialName("object") val _object: pl.wendigo.chrome.api.runtime.RemoteObject
 
 )
 
@@ -1458,6 +1508,7 @@ data class ResolveNodeResponse(
  * @link [DOM#setAttributeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributeValue) method documentation.
  * @see [DOMOperations.setAttributeValue]
  */
+@kotlinx.serialization.Serializable
 data class SetAttributeValueRequest(
     /**
      * Id of the element to set attribute for.
@@ -1484,6 +1535,7 @@ attribute value and types in several attribute name/value pairs.
  * @link [DOM#setAttributesAsText](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributesAsText) method documentation.
  * @see [DOMOperations.setAttributesAsText]
  */
+@kotlinx.serialization.Serializable
 data class SetAttributesAsTextRequest(
     /**
      * Id of the element to set attributes for.
@@ -1510,6 +1562,7 @@ successfully.
  * @link [DOM#setFileInputFiles](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setFileInputFiles) method documentation.
  * @see [DOMOperations.setFileInputFiles]
  */
+@kotlinx.serialization.Serializable
 data class SetFileInputFilesRequest(
     /**
      * Array of file paths to set.
@@ -1540,6 +1593,7 @@ data class SetFileInputFilesRequest(
  * @link [DOM#setNodeStackTracesEnabled](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeStackTracesEnabled) method documentation.
  * @see [DOMOperations.setNodeStackTracesEnabled]
  */
+@kotlinx.serialization.Serializable
 data class SetNodeStackTracesEnabledRequest(
     /**
      * Enable or disable.
@@ -1555,6 +1609,7 @@ data class SetNodeStackTracesEnabledRequest(
  * @link [DOM#getNodeStackTraces](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeStackTraces) method documentation.
  * @see [DOMOperations.getNodeStackTraces]
  */
+@kotlinx.serialization.Serializable
 data class GetNodeStackTracesRequest(
     /**
      * Id of the node to get stack traces for.
@@ -1571,6 +1626,7 @@ data class GetNodeStackTracesRequest(
  * @link [DOM#getNodeStackTraces](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getNodeStackTraces) method documentation.
  * @see [DOMOperations.getNodeStackTraces]
  */
+@kotlinx.serialization.Serializable
 data class GetNodeStackTracesResponse(
     /**  
      * Creation stack trace, if available.  
@@ -1587,6 +1643,7 @@ File wrapper.
  * @link [DOM#getFileInfo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFileInfo) method documentation.
  * @see [DOMOperations.getFileInfo]
  */
+@kotlinx.serialization.Serializable
 data class GetFileInfoRequest(
     /**
      * JavaScript object id of the node wrapper.
@@ -1604,6 +1661,7 @@ File wrapper.
  * @link [DOM#getFileInfo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFileInfo) method documentation.
  * @see [DOMOperations.getFileInfo]
  */
+@kotlinx.serialization.Serializable
 data class GetFileInfoResponse(
     /**  
      *  
@@ -1620,6 +1678,7 @@ $x functions).
  * @link [DOM#setInspectedNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setInspectedNode) method documentation.
  * @see [DOMOperations.setInspectedNode]
  */
+@kotlinx.serialization.Serializable
 data class SetInspectedNodeRequest(
     /**
      * DOM node id to be accessible by means of $x command line API.
@@ -1635,6 +1694,7 @@ data class SetInspectedNodeRequest(
  * @link [DOM#setNodeName](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeName) method documentation.
  * @see [DOMOperations.setNodeName]
  */
+@kotlinx.serialization.Serializable
 data class SetNodeNameRequest(
     /**
      * Id of the node to set name for.
@@ -1656,6 +1716,7 @@ data class SetNodeNameRequest(
  * @link [DOM#setNodeName](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeName) method documentation.
  * @see [DOMOperations.setNodeName]
  */
+@kotlinx.serialization.Serializable
 data class SetNodeNameResponse(
     /**  
      * New node's id.  
@@ -1671,6 +1732,7 @@ data class SetNodeNameResponse(
  * @link [DOM#setNodeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeValue) method documentation.
  * @see [DOMOperations.setNodeValue]
  */
+@kotlinx.serialization.Serializable
 data class SetNodeValueRequest(
     /**
      * Id of the node to set value for.
@@ -1691,6 +1753,7 @@ data class SetNodeValueRequest(
  * @link [DOM#setOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setOuterHTML) method documentation.
  * @see [DOMOperations.setOuterHTML]
  */
+@kotlinx.serialization.Serializable
 data class SetOuterHTMLRequest(
     /**
      * Id of the node to set markup for.
@@ -1711,6 +1774,7 @@ data class SetOuterHTMLRequest(
  * @link [DOM#getFrameOwner](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFrameOwner) method documentation.
  * @see [DOMOperations.getFrameOwner]
  */
+@kotlinx.serialization.Serializable
 data class GetFrameOwnerRequest(
     /**
      *
@@ -1727,6 +1791,7 @@ data class GetFrameOwnerRequest(
  * @link [DOM#getFrameOwner](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-getFrameOwner) method documentation.
  * @see [DOMOperations.getFrameOwner]
  */
+@kotlinx.serialization.Serializable
 data class GetFrameOwnerResponse(
     /**  
      * Resulting node.  
@@ -1745,6 +1810,7 @@ data class GetFrameOwnerResponse(
  *
  * @link [DOM#attributeModified](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-attributeModified) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AttributeModifiedEvent(
     /**  
      * Id of the node that has changed.  
@@ -1761,13 +1827,14 @@ data class AttributeModifiedEvent(
      */  
     val value: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "attributeModified")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "attributeModified")
 
 /**
  * Fired when `Element`'s attribute is removed.
  *
  * @link [DOM#attributeRemoved](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-attributeRemoved) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class AttributeRemovedEvent(
     /**  
      * Id of the node that has changed.  
@@ -1779,13 +1846,14 @@ data class AttributeRemovedEvent(
      */  
     val name: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "attributeRemoved")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "attributeRemoved")
 
 /**
  * Mirrors `DOMCharacterDataModified` event.
  *
  * @link [DOM#characterDataModified](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-characterDataModified) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class CharacterDataModifiedEvent(
     /**  
      * Id of the node that has changed.  
@@ -1797,13 +1865,14 @@ data class CharacterDataModifiedEvent(
      */  
     val characterData: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "characterDataModified")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "characterDataModified")
 
 /**
  * Fired when `Container`'s child node count has changed.
  *
  * @link [DOM#childNodeCountUpdated](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-childNodeCountUpdated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ChildNodeCountUpdatedEvent(
     /**  
      * Id of the node that has changed.  
@@ -1815,13 +1884,14 @@ data class ChildNodeCountUpdatedEvent(
      */  
     val childNodeCount: Int
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "childNodeCountUpdated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "childNodeCountUpdated")
 
 /**
  * Mirrors `DOMNodeInserted` event.
  *
  * @link [DOM#childNodeInserted](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-childNodeInserted) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ChildNodeInsertedEvent(
     /**  
      * Id of the node that has changed.  
@@ -1838,13 +1908,14 @@ data class ChildNodeInsertedEvent(
      */  
     val node: Node
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "childNodeInserted")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "childNodeInserted")
 
 /**
  * Mirrors `DOMNodeRemoved` event.
  *
  * @link [DOM#childNodeRemoved](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-childNodeRemoved) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ChildNodeRemovedEvent(
     /**  
      * Parent id.  
@@ -1856,13 +1927,14 @@ data class ChildNodeRemovedEvent(
      */  
     val nodeId: NodeId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "childNodeRemoved")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "childNodeRemoved")
 
 /**
  * Called when distrubution is changed.
  *
  * @link [DOM#distributedNodesUpdated](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-distributedNodesUpdated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DistributedNodesUpdatedEvent(
     /**  
      * Insertion point where distrubuted nodes were updated.  
@@ -1874,26 +1946,28 @@ data class DistributedNodesUpdatedEvent(
      */  
     val distributedNodes: List<BackendNode>
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "distributedNodesUpdated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "distributedNodesUpdated")
 
 /**
  * Fired when `Element`'s inline style is modified via a CSS property modification.
  *
  * @link [DOM#inlineStyleInvalidated](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-inlineStyleInvalidated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class InlineStyleInvalidatedEvent(
     /**  
      * Ids of the nodes for which the inline styles have been invalidated.  
      */  
     val nodeIds: List<NodeId>
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "inlineStyleInvalidated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "inlineStyleInvalidated")
 
 /**
  * Called when a pseudo element is added to an element.
  *
  * @link [DOM#pseudoElementAdded](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-pseudoElementAdded) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class PseudoElementAddedEvent(
     /**  
      * Pseudo element's parent element id.  
@@ -1905,13 +1979,14 @@ data class PseudoElementAddedEvent(
      */  
     val pseudoElement: Node
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "pseudoElementAdded")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "pseudoElementAdded")
 
 /**
  * Called when a pseudo element is removed from an element.
  *
  * @link [DOM#pseudoElementRemoved](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-pseudoElementRemoved) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class PseudoElementRemovedEvent(
     /**  
      * Pseudo element's parent element id.  
@@ -1923,7 +1998,7 @@ data class PseudoElementRemovedEvent(
      */  
     val pseudoElementId: NodeId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "pseudoElementRemoved")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "pseudoElementRemoved")
 
 /**
  * Fired when backend wants to provide client with the missing DOM structure. This happens upon
@@ -1931,6 +2006,7 @@ most of the calls requesting node ids.
  *
  * @link [DOM#setChildNodes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-setChildNodes) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class SetChildNodesEvent(
     /**  
      * Parent node id to populate with children.  
@@ -1942,13 +2018,14 @@ data class SetChildNodesEvent(
      */  
     val nodes: List<Node>
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "setChildNodes")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "setChildNodes")
 
 /**
  * Called when shadow root is popped from the element.
  *
  * @link [DOM#shadowRootPopped](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-shadowRootPopped) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ShadowRootPoppedEvent(
     /**  
      * Host element id.  
@@ -1960,13 +2037,14 @@ data class ShadowRootPoppedEvent(
      */  
     val rootId: NodeId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "shadowRootPopped")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "shadowRootPopped")
 
 /**
  * Called when shadow root is pushed into the element.
  *
  * @link [DOM#shadowRootPushed](https://chromedevtools.github.io/devtools-protocol/tot/DOM#event-shadowRootPushed) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ShadowRootPushedEvent(
     /**  
      * Host element id.  
@@ -1978,4 +2056,4 @@ data class ShadowRootPushedEvent(
      */  
     val root: Node
 
-) : pl.wendigo.chrome.protocol.Event(domain = "DOM", name = "shadowRootPushed")
+) : pl.wendigo.chrome.protocol.Event(domainName = "DOM", domainEventName = "shadowRootPushed")

@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.console
  * @link [Console#ConsoleMessage](https://chromedevtools.github.io/devtools-protocol/tot/Console#type-ConsoleMessage) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ConsoleMessage(
     /**  
      * Message source.  

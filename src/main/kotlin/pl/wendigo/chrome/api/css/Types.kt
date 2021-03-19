@@ -15,17 +15,18 @@ inspector&quot; rules), &quot;regular&quot; for regular stylesheets.
  *
  * @link [CSS#StyleSheetOrigin](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-StyleSheetOrigin) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class StyleSheetOrigin {
-    @com.fasterxml.jackson.annotation.JsonProperty("injected")
+    @kotlinx.serialization.SerialName("injected")
     INJECTED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("user-agent")
+    @kotlinx.serialization.SerialName("user-agent")
     USER_AGENT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("inspector")
+    @kotlinx.serialization.SerialName("inspector")
     INSPECTOR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("regular")
+    @kotlinx.serialization.SerialName("regular")
     REGULAR;
 }
 
@@ -35,6 +36,7 @@ enum class StyleSheetOrigin {
  * @link [CSS#PseudoElementMatches](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-PseudoElementMatches) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PseudoElementMatches(
     /**  
      * Pseudo element type.  
@@ -53,6 +55,7 @@ data class PseudoElementMatches(
  * @link [CSS#InheritedStyleEntry](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-InheritedStyleEntry) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class InheritedStyleEntry(
     /**  
      * The ancestor node's inline style, if any, in the style inheritance chain.  
@@ -71,6 +74,7 @@ data class InheritedStyleEntry(
  * @link [CSS#RuleMatch](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-RuleMatch) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RuleMatch(
     /**  
      * CSS rule in the match.  
@@ -89,6 +93,7 @@ data class RuleMatch(
  * @link [CSS#Value](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-Value) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Value(
     /**  
      * Value text.  
@@ -107,6 +112,7 @@ data class Value(
  * @link [CSS#SelectorList](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-SelectorList) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SelectorList(
     /**  
      * Selectors in the list.  
@@ -125,6 +131,7 @@ data class SelectorList(
  * @link [CSS#CSSStyleSheetHeader](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSStyleSheetHeader) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CSSStyleSheetHeader(
     /**  
      * The stylesheet identifier.  
@@ -222,6 +229,7 @@ data class CSSStyleSheetHeader(
  * @link [CSS#CSSRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSRule) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CSSRule(
     /**  
      * The css style sheet identifier (absent for user agent stylesheet and user-specified  
@@ -257,6 +265,7 @@ data class CSSRule(
  * @link [CSS#RuleUsage](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-RuleUsage) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RuleUsage(
     /**  
      * The css style sheet identifier (absent for user agent stylesheet and user-specified  
@@ -286,6 +295,7 @@ data class RuleUsage(
  * @link [CSS#SourceRange](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-SourceRange) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SourceRange(
     /**  
      * Start line of range.  
@@ -314,6 +324,7 @@ data class SourceRange(
  * @link [CSS#ShorthandEntry](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-ShorthandEntry) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ShorthandEntry(
     /**  
      * Shorthand name.  
@@ -337,6 +348,7 @@ data class ShorthandEntry(
  * @link [CSS#CSSComputedStyleProperty](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSComputedStyleProperty) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CSSComputedStyleProperty(
     /**  
      * Computed style property name.  
@@ -355,6 +367,7 @@ data class CSSComputedStyleProperty(
  * @link [CSS#CSSStyle](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSStyle) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CSSStyle(
     /**  
      * The css style sheet identifier (absent for user agent stylesheet and user-specified  
@@ -389,6 +402,7 @@ data class CSSStyle(
  * @link [CSS#CSSProperty](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSProperty) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CSSProperty(
     /**  
      * The property name.  
@@ -437,6 +451,7 @@ data class CSSProperty(
  * @link [CSS#CSSMedia](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSMedia) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CSSMedia(
     /**  
      * Media query text.  
@@ -479,6 +494,7 @@ data class CSSMedia(
  * @link [CSS#MediaQuery](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-MediaQuery) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class MediaQuery(
     /**  
      * Array of media query expressions.  
@@ -497,6 +513,7 @@ data class MediaQuery(
  * @link [CSS#MediaQueryExpression](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-MediaQueryExpression) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class MediaQueryExpression(
     /**  
      * Media query expression value.  
@@ -530,6 +547,7 @@ data class MediaQueryExpression(
  * @link [CSS#PlatformFontUsage](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-PlatformFontUsage) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PlatformFontUsage(
     /**  
      * Font's family name reported by platform.  
@@ -553,6 +571,7 @@ data class PlatformFontUsage(
  * @link [CSS#FontVariationAxis](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-FontVariationAxis) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FontVariationAxis(
     /**  
      * The font-variation-setting tag (a.k.a. "axis tag").  
@@ -587,6 +606,7 @@ and additional information such as platformFontFamily and fontVariationAxes.
  * @link [CSS#FontFace](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-FontFace) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FontFace(
     /**  
      * The font-family.  
@@ -640,6 +660,7 @@ data class FontFace(
  * @link [CSS#CSSKeyframesRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSKeyframesRule) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CSSKeyframesRule(
     /**  
      * Animation name.  
@@ -658,6 +679,7 @@ data class CSSKeyframesRule(
  * @link [CSS#CSSKeyframeRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-CSSKeyframeRule) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CSSKeyframeRule(
     /**  
      * The css style sheet identifier (absent for user agent stylesheet and user-specified  
@@ -687,6 +709,7 @@ data class CSSKeyframeRule(
  * @link [CSS#StyleDeclarationEdit](https://chromedevtools.github.io/devtools-protocol/tot/CSS#type-StyleDeclarationEdit) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class StyleDeclarationEdit(
     /**  
      * The css style sheet identifier.  

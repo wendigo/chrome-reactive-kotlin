@@ -5,56 +5,57 @@ package pl.wendigo.chrome.api.network
  *
  * @link [Network#ResourceType](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ResourceType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ResourceType {
-    @com.fasterxml.jackson.annotation.JsonProperty("Document")
+    @kotlinx.serialization.SerialName("Document")
     DOCUMENT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Stylesheet")
+    @kotlinx.serialization.SerialName("Stylesheet")
     STYLESHEET,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Image")
+    @kotlinx.serialization.SerialName("Image")
     IMAGE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Media")
+    @kotlinx.serialization.SerialName("Media")
     MEDIA,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Font")
+    @kotlinx.serialization.SerialName("Font")
     FONT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Script")
+    @kotlinx.serialization.SerialName("Script")
     SCRIPT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("TextTrack")
+    @kotlinx.serialization.SerialName("TextTrack")
     TEXTTRACK,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("XHR")
+    @kotlinx.serialization.SerialName("XHR")
     XHR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Fetch")
+    @kotlinx.serialization.SerialName("Fetch")
     FETCH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("EventSource")
+    @kotlinx.serialization.SerialName("EventSource")
     EVENTSOURCE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WebSocket")
+    @kotlinx.serialization.SerialName("WebSocket")
     WEBSOCKET,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Manifest")
+    @kotlinx.serialization.SerialName("Manifest")
     MANIFEST,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SignedExchange")
+    @kotlinx.serialization.SerialName("SignedExchange")
     SIGNEDEXCHANGE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Ping")
+    @kotlinx.serialization.SerialName("Ping")
     PING,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CSPViolationReport")
+    @kotlinx.serialization.SerialName("CSPViolationReport")
     CSPVIOLATIONREPORT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Preflight")
+    @kotlinx.serialization.SerialName("Preflight")
     PREFLIGHT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Other")
+    @kotlinx.serialization.SerialName("Other")
     OTHER;
 }
 
@@ -87,47 +88,48 @@ typealias InterceptionId = String
  *
  * @link [Network#ErrorReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ErrorReason) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ErrorReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("Failed")
+    @kotlinx.serialization.SerialName("Failed")
     FAILED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Aborted")
+    @kotlinx.serialization.SerialName("Aborted")
     ABORTED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("TimedOut")
+    @kotlinx.serialization.SerialName("TimedOut")
     TIMEDOUT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("AccessDenied")
+    @kotlinx.serialization.SerialName("AccessDenied")
     ACCESSDENIED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionClosed")
+    @kotlinx.serialization.SerialName("ConnectionClosed")
     CONNECTIONCLOSED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionReset")
+    @kotlinx.serialization.SerialName("ConnectionReset")
     CONNECTIONRESET,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionRefused")
+    @kotlinx.serialization.SerialName("ConnectionRefused")
     CONNECTIONREFUSED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionAborted")
+    @kotlinx.serialization.SerialName("ConnectionAborted")
     CONNECTIONABORTED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ConnectionFailed")
+    @kotlinx.serialization.SerialName("ConnectionFailed")
     CONNECTIONFAILED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("NameNotResolved")
+    @kotlinx.serialization.SerialName("NameNotResolved")
     NAMENOTRESOLVED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InternetDisconnected")
+    @kotlinx.serialization.SerialName("InternetDisconnected")
     INTERNETDISCONNECTED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("AddressUnreachable")
+    @kotlinx.serialization.SerialName("AddressUnreachable")
     ADDRESSUNREACHABLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("BlockedByClient")
+    @kotlinx.serialization.SerialName("BlockedByClient")
     BLOCKEDBYCLIENT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("BlockedByResponse")
+    @kotlinx.serialization.SerialName("BlockedByResponse")
     BLOCKEDBYRESPONSE;
 }
 
@@ -153,39 +155,40 @@ typealias MonotonicTime = Double
  * @link [Network#Headers](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Headers) type documentation.
  */
 
-typealias Headers = Map<String, Any>
+typealias Headers = Map<String, kotlinx.serialization.json.JsonElement>
 
 /**
  * The underlying connection technology that the browser is supposedly using.
  *
  * @link [Network#ConnectionType](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ConnectionType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ConnectionType {
-    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    @kotlinx.serialization.SerialName("none")
     NONE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("cellular2g")
+    @kotlinx.serialization.SerialName("cellular2g")
     CELLULAR2G,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("cellular3g")
+    @kotlinx.serialization.SerialName("cellular3g")
     CELLULAR3G,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("cellular4g")
+    @kotlinx.serialization.SerialName("cellular4g")
     CELLULAR4G,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("bluetooth")
+    @kotlinx.serialization.SerialName("bluetooth")
     BLUETOOTH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ethernet")
+    @kotlinx.serialization.SerialName("ethernet")
     ETHERNET,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("wifi")
+    @kotlinx.serialization.SerialName("wifi")
     WIFI,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("wimax")
+    @kotlinx.serialization.SerialName("wimax")
     WIMAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("other")
+    @kotlinx.serialization.SerialName("other")
     OTHER;
 }
 
@@ -195,14 +198,15 @@ https://tools.ietf.org/html/draft-west-first-party-cookies
  *
  * @link [Network#CookieSameSite](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CookieSameSite) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CookieSameSite {
-    @com.fasterxml.jackson.annotation.JsonProperty("Strict")
+    @kotlinx.serialization.SerialName("Strict")
     STRICT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Lax")
+    @kotlinx.serialization.SerialName("Lax")
     LAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("None")
+    @kotlinx.serialization.SerialName("None")
     NONE;
 }
 
@@ -212,14 +216,15 @@ https://tools.ietf.org/html/draft-west-cookie-priority-00
  *
  * @link [Network#CookiePriority](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CookiePriority) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CookiePriority {
-    @com.fasterxml.jackson.annotation.JsonProperty("Low")
+    @kotlinx.serialization.SerialName("Low")
     LOW,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Medium")
+    @kotlinx.serialization.SerialName("Medium")
     MEDIUM,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("High")
+    @kotlinx.serialization.SerialName("High")
     HIGH;
 }
 
@@ -230,14 +235,15 @@ This is a temporary ability and it will be removed in the future.
  *
  * @link [Network#CookieSourceScheme](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CookieSourceScheme) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CookieSourceScheme {
-    @com.fasterxml.jackson.annotation.JsonProperty("Unset")
+    @kotlinx.serialization.SerialName("Unset")
     UNSET,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("NonSecure")
+    @kotlinx.serialization.SerialName("NonSecure")
     NONSECURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Secure")
+    @kotlinx.serialization.SerialName("Secure")
     SECURE;
 }
 
@@ -247,6 +253,7 @@ enum class CookieSourceScheme {
  * @link [Network#ResourceTiming](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ResourceTiming) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ResourceTiming(
     /**  
      * Timing's requestTime is a baseline in seconds, while the other numbers are ticks in  
@@ -345,20 +352,21 @@ data class ResourceTiming(
  *
  * @link [Network#ResourcePriority](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ResourcePriority) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ResourcePriority {
-    @com.fasterxml.jackson.annotation.JsonProperty("VeryLow")
+    @kotlinx.serialization.SerialName("VeryLow")
     VERYLOW,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Low")
+    @kotlinx.serialization.SerialName("Low")
     LOW,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Medium")
+    @kotlinx.serialization.SerialName("Medium")
     MEDIUM,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("High")
+    @kotlinx.serialization.SerialName("High")
     HIGH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("VeryHigh")
+    @kotlinx.serialization.SerialName("VeryHigh")
     VERYHIGH;
 }
 
@@ -368,6 +376,7 @@ enum class ResourcePriority {
  * @link [Network#PostDataEntry](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-PostDataEntry) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class PostDataEntry(
     /**  
      *  
@@ -381,6 +390,7 @@ data class PostDataEntry(
  * @link [Network#Request](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Request) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Request(
     /**  
      * Request URL (without fragment).  
@@ -450,6 +460,7 @@ data class Request(
  * @link [Network#SignedCertificateTimestamp](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedCertificateTimestamp) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SignedCertificateTimestamp(
     /**  
      * Validation status.  
@@ -498,6 +509,7 @@ data class SignedCertificateTimestamp(
  * @link [Network#SecurityDetails](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SecurityDetails) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SecurityDetails(
     /**  
      * Protocol name (e.g. "TLS 1.2" or "QUIC").  
@@ -570,14 +582,15 @@ data class SecurityDetails(
  *
  * @link [Network#CertificateTransparencyCompliance](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CertificateTransparencyCompliance) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CertificateTransparencyCompliance {
-    @com.fasterxml.jackson.annotation.JsonProperty("unknown")
+    @kotlinx.serialization.SerialName("unknown")
     UNKNOWN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("not-compliant")
+    @kotlinx.serialization.SerialName("not-compliant")
     NOT_COMPLIANT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("compliant")
+    @kotlinx.serialization.SerialName("compliant")
     COMPLIANT;
 }
 
@@ -586,44 +599,45 @@ enum class CertificateTransparencyCompliance {
  *
  * @link [Network#BlockedReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-BlockedReason) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class BlockedReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("other")
+    @kotlinx.serialization.SerialName("other")
     OTHER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("csp")
+    @kotlinx.serialization.SerialName("csp")
     CSP,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("mixed-content")
+    @kotlinx.serialization.SerialName("mixed-content")
     MIXED_CONTENT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("origin")
+    @kotlinx.serialization.SerialName("origin")
     ORIGIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("inspector")
+    @kotlinx.serialization.SerialName("inspector")
     INSPECTOR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("subresource-filter")
+    @kotlinx.serialization.SerialName("subresource-filter")
     SUBRESOURCE_FILTER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("content-type")
+    @kotlinx.serialization.SerialName("content-type")
     CONTENT_TYPE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("collapsed-by-client")
+    @kotlinx.serialization.SerialName("collapsed-by-client")
     COLLAPSED_BY_CLIENT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("coep-frame-resource-needs-coep-header")
+    @kotlinx.serialization.SerialName("coep-frame-resource-needs-coep-header")
     COEP_FRAME_RESOURCE_NEEDS_COEP_HEADER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("coop-sandboxed-iframe-cannot-navigate-to-coop-page")
+    @kotlinx.serialization.SerialName("coop-sandboxed-iframe-cannot-navigate-to-coop-page")
     COOP_SANDBOXED_IFRAME_CANNOT_NAVIGATE_TO_COOP_PAGE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("corp-not-same-origin")
+    @kotlinx.serialization.SerialName("corp-not-same-origin")
     CORP_NOT_SAME_ORIGIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("corp-not-same-origin-after-defaulted-to-same-origin-by-coep")
+    @kotlinx.serialization.SerialName("corp-not-same-origin-after-defaulted-to-same-origin-by-coep")
     CORP_NOT_SAME_ORIGIN_AFTER_DEFAULTED_TO_SAME_ORIGIN_BY_COEP,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("corp-not-same-site")
+    @kotlinx.serialization.SerialName("corp-not-same-site")
     CORP_NOT_SAME_SITE;
 }
 
@@ -632,80 +646,81 @@ enum class BlockedReason {
  *
  * @link [Network#CorsError](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CorsError) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CorsError {
-    @com.fasterxml.jackson.annotation.JsonProperty("DisallowedByMode")
+    @kotlinx.serialization.SerialName("DisallowedByMode")
     DISALLOWEDBYMODE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InvalidResponse")
+    @kotlinx.serialization.SerialName("InvalidResponse")
     INVALIDRESPONSE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WildcardOriginNotAllowed")
+    @kotlinx.serialization.SerialName("WildcardOriginNotAllowed")
     WILDCARDORIGINNOTALLOWED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("MissingAllowOriginHeader")
+    @kotlinx.serialization.SerialName("MissingAllowOriginHeader")
     MISSINGALLOWORIGINHEADER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("MultipleAllowOriginValues")
+    @kotlinx.serialization.SerialName("MultipleAllowOriginValues")
     MULTIPLEALLOWORIGINVALUES,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowOriginValue")
+    @kotlinx.serialization.SerialName("InvalidAllowOriginValue")
     INVALIDALLOWORIGINVALUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("AllowOriginMismatch")
+    @kotlinx.serialization.SerialName("AllowOriginMismatch")
     ALLOWORIGINMISMATCH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowCredentials")
+    @kotlinx.serialization.SerialName("InvalidAllowCredentials")
     INVALIDALLOWCREDENTIALS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("CorsDisabledScheme")
+    @kotlinx.serialization.SerialName("CorsDisabledScheme")
     CORSDISABLEDSCHEME,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidStatus")
+    @kotlinx.serialization.SerialName("PreflightInvalidStatus")
     PREFLIGHTINVALIDSTATUS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PreflightDisallowedRedirect")
+    @kotlinx.serialization.SerialName("PreflightDisallowedRedirect")
     PREFLIGHTDISALLOWEDREDIRECT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PreflightWildcardOriginNotAllowed")
+    @kotlinx.serialization.SerialName("PreflightWildcardOriginNotAllowed")
     PREFLIGHTWILDCARDORIGINNOTALLOWED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PreflightMissingAllowOriginHeader")
+    @kotlinx.serialization.SerialName("PreflightMissingAllowOriginHeader")
     PREFLIGHTMISSINGALLOWORIGINHEADER,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PreflightMultipleAllowOriginValues")
+    @kotlinx.serialization.SerialName("PreflightMultipleAllowOriginValues")
     PREFLIGHTMULTIPLEALLOWORIGINVALUES,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidAllowOriginValue")
+    @kotlinx.serialization.SerialName("PreflightInvalidAllowOriginValue")
     PREFLIGHTINVALIDALLOWORIGINVALUE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PreflightAllowOriginMismatch")
+    @kotlinx.serialization.SerialName("PreflightAllowOriginMismatch")
     PREFLIGHTALLOWORIGINMISMATCH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidAllowCredentials")
+    @kotlinx.serialization.SerialName("PreflightInvalidAllowCredentials")
     PREFLIGHTINVALIDALLOWCREDENTIALS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PreflightMissingAllowExternal")
+    @kotlinx.serialization.SerialName("PreflightMissingAllowExternal")
     PREFLIGHTMISSINGALLOWEXTERNAL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("PreflightInvalidAllowExternal")
+    @kotlinx.serialization.SerialName("PreflightInvalidAllowExternal")
     PREFLIGHTINVALIDALLOWEXTERNAL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowMethodsPreflightResponse")
+    @kotlinx.serialization.SerialName("InvalidAllowMethodsPreflightResponse")
     INVALIDALLOWMETHODSPREFLIGHTRESPONSE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InvalidAllowHeadersPreflightResponse")
+    @kotlinx.serialization.SerialName("InvalidAllowHeadersPreflightResponse")
     INVALIDALLOWHEADERSPREFLIGHTRESPONSE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("MethodDisallowedByPreflightResponse")
+    @kotlinx.serialization.SerialName("MethodDisallowedByPreflightResponse")
     METHODDISALLOWEDBYPREFLIGHTRESPONSE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("HeaderDisallowedByPreflightResponse")
+    @kotlinx.serialization.SerialName("HeaderDisallowedByPreflightResponse")
     HEADERDISALLOWEDBYPREFLIGHTRESPONSE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("RedirectContainsCredentials")
+    @kotlinx.serialization.SerialName("RedirectContainsCredentials")
     REDIRECTCONTAINSCREDENTIALS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InsecurePrivateNetwork")
+    @kotlinx.serialization.SerialName("InsecurePrivateNetwork")
     INSECUREPRIVATENETWORK;
 }
 
@@ -715,6 +730,7 @@ enum class CorsError {
  * @link [Network#CorsErrorStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CorsErrorStatus) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CorsErrorStatus(
     /**  
      *  
@@ -732,17 +748,18 @@ data class CorsErrorStatus(
  *
  * @link [Network#ServiceWorkerResponseSource](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ServiceWorkerResponseSource) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ServiceWorkerResponseSource {
-    @com.fasterxml.jackson.annotation.JsonProperty("cache-storage")
+    @kotlinx.serialization.SerialName("cache-storage")
     CACHE_STORAGE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("http-cache")
+    @kotlinx.serialization.SerialName("http-cache")
     HTTP_CACHE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("fallback-code")
+    @kotlinx.serialization.SerialName("fallback-code")
     FALLBACK_CODE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("network")
+    @kotlinx.serialization.SerialName("network")
     NETWORK;
 }
 
@@ -754,6 +771,7 @@ are specified in third_party/blink/renderer/core/fetch/trust_token.idl.
  * @link [Network#TrustTokenParams](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-TrustTokenParams) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class TrustTokenParams(
     /**  
      *  
@@ -778,14 +796,15 @@ data class TrustTokenParams(
  *
  * @link [Network#TrustTokenOperationType](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-TrustTokenOperationType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class TrustTokenOperationType {
-    @com.fasterxml.jackson.annotation.JsonProperty("Issuance")
+    @kotlinx.serialization.SerialName("Issuance")
     ISSUANCE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Redemption")
+    @kotlinx.serialization.SerialName("Redemption")
     REDEMPTION,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Signing")
+    @kotlinx.serialization.SerialName("Signing")
     SIGNING;
 }
 
@@ -795,6 +814,7 @@ enum class TrustTokenOperationType {
  * @link [Network#Response](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Response) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Response(
     /**  
      * Response URL. This URL can be different from CachedResource.url in case of redirect.  
@@ -918,6 +938,7 @@ data class Response(
  * @link [Network#WebSocketRequest](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-WebSocketRequest) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class WebSocketRequest(
     /**  
      * HTTP request headers.  
@@ -931,6 +952,7 @@ data class WebSocketRequest(
  * @link [Network#WebSocketResponse](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-WebSocketResponse) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class WebSocketResponse(
     /**  
      * HTTP response status code.  
@@ -969,6 +991,7 @@ data class WebSocketResponse(
  * @link [Network#WebSocketFrame](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-WebSocketFrame) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class WebSocketFrame(
     /**  
      * WebSocket message opcode.  
@@ -994,6 +1017,7 @@ data class WebSocketFrame(
  * @link [Network#CachedResource](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CachedResource) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CachedResource(
     /**  
      * Resource URL. This is the url of the original network request.  
@@ -1022,6 +1046,7 @@ data class CachedResource(
  * @link [Network#Initiator](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Initiator) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Initiator(
     /**  
      * Type of this initiator.  
@@ -1062,6 +1087,7 @@ data class Initiator(
  * @link [Network#Cookie](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-Cookie) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Cookie(
     /**  
      * Cookie name.  
@@ -1141,56 +1167,57 @@ data class Cookie(
  *
  * @link [Network#SetCookieBlockedReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SetCookieBlockedReason) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class SetCookieBlockedReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("SecureOnly")
+    @kotlinx.serialization.SerialName("SecureOnly")
     SECUREONLY,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteStrict")
+    @kotlinx.serialization.SerialName("SameSiteStrict")
     SAMESITESTRICT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteLax")
+    @kotlinx.serialization.SerialName("SameSiteLax")
     SAMESITELAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteUnspecifiedTreatedAsLax")
+    @kotlinx.serialization.SerialName("SameSiteUnspecifiedTreatedAsLax")
     SAMESITEUNSPECIFIEDTREATEDASLAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteNoneInsecure")
+    @kotlinx.serialization.SerialName("SameSiteNoneInsecure")
     SAMESITENONEINSECURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("UserPreferences")
+    @kotlinx.serialization.SerialName("UserPreferences")
     USERPREFERENCES,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SyntaxError")
+    @kotlinx.serialization.SerialName("SyntaxError")
     SYNTAXERROR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SchemeNotSupported")
+    @kotlinx.serialization.SerialName("SchemeNotSupported")
     SCHEMENOTSUPPORTED,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("OverwriteSecure")
+    @kotlinx.serialization.SerialName("OverwriteSecure")
     OVERWRITESECURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InvalidDomain")
+    @kotlinx.serialization.SerialName("InvalidDomain")
     INVALIDDOMAIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("InvalidPrefix")
+    @kotlinx.serialization.SerialName("InvalidPrefix")
     INVALIDPREFIX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("UnknownError")
+    @kotlinx.serialization.SerialName("UnknownError")
     UNKNOWNERROR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteStrict")
+    @kotlinx.serialization.SerialName("SchemefulSameSiteStrict")
     SCHEMEFULSAMESITESTRICT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteLax")
+    @kotlinx.serialization.SerialName("SchemefulSameSiteLax")
     SCHEMEFULSAMESITELAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteUnspecifiedTreatedAsLax")
+    @kotlinx.serialization.SerialName("SchemefulSameSiteUnspecifiedTreatedAsLax")
     SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SamePartyFromCrossPartyContext")
+    @kotlinx.serialization.SerialName("SamePartyFromCrossPartyContext")
     SAMEPARTYFROMCROSSPARTYCONTEXT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SamePartyConflictsWithOtherAttributes")
+    @kotlinx.serialization.SerialName("SamePartyConflictsWithOtherAttributes")
     SAMEPARTYCONFLICTSWITHOTHERATTRIBUTES;
 }
 
@@ -1199,44 +1226,45 @@ enum class SetCookieBlockedReason {
  *
  * @link [Network#CookieBlockedReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CookieBlockedReason) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CookieBlockedReason {
-    @com.fasterxml.jackson.annotation.JsonProperty("SecureOnly")
+    @kotlinx.serialization.SerialName("SecureOnly")
     SECUREONLY,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("NotOnPath")
+    @kotlinx.serialization.SerialName("NotOnPath")
     NOTONPATH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("DomainMismatch")
+    @kotlinx.serialization.SerialName("DomainMismatch")
     DOMAINMISMATCH,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteStrict")
+    @kotlinx.serialization.SerialName("SameSiteStrict")
     SAMESITESTRICT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteLax")
+    @kotlinx.serialization.SerialName("SameSiteLax")
     SAMESITELAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteUnspecifiedTreatedAsLax")
+    @kotlinx.serialization.SerialName("SameSiteUnspecifiedTreatedAsLax")
     SAMESITEUNSPECIFIEDTREATEDASLAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SameSiteNoneInsecure")
+    @kotlinx.serialization.SerialName("SameSiteNoneInsecure")
     SAMESITENONEINSECURE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("UserPreferences")
+    @kotlinx.serialization.SerialName("UserPreferences")
     USERPREFERENCES,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("UnknownError")
+    @kotlinx.serialization.SerialName("UnknownError")
     UNKNOWNERROR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteStrict")
+    @kotlinx.serialization.SerialName("SchemefulSameSiteStrict")
     SCHEMEFULSAMESITESTRICT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteLax")
+    @kotlinx.serialization.SerialName("SchemefulSameSiteLax")
     SCHEMEFULSAMESITELAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SchemefulSameSiteUnspecifiedTreatedAsLax")
+    @kotlinx.serialization.SerialName("SchemefulSameSiteUnspecifiedTreatedAsLax")
     SCHEMEFULSAMESITEUNSPECIFIEDTREATEDASLAX,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SamePartyFromCrossPartyContext")
+    @kotlinx.serialization.SerialName("SamePartyFromCrossPartyContext")
     SAMEPARTYFROMCROSSPARTYCONTEXT;
 }
 
@@ -1246,6 +1274,7 @@ enum class CookieBlockedReason {
  * @link [Network#BlockedSetCookieWithReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-BlockedSetCookieWithReason) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class BlockedSetCookieWithReason(
     /**  
      * The reason(s) this cookie was blocked.  
@@ -1272,6 +1301,7 @@ data class BlockedSetCookieWithReason(
  * @link [Network#BlockedCookieWithReason](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-BlockedCookieWithReason) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class BlockedCookieWithReason(
     /**  
      * The reason(s) the cookie was blocked.  
@@ -1290,6 +1320,7 @@ data class BlockedCookieWithReason(
  * @link [Network#CookieParam](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CookieParam) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CookieParam(
     /**  
      * Cookie name.  
@@ -1366,6 +1397,7 @@ data class CookieParam(
  * @link [Network#AuthChallenge](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-AuthChallenge) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AuthChallenge(
     /**  
      * Source of the authentication challenge.  
@@ -1394,6 +1426,7 @@ data class AuthChallenge(
  * @link [Network#AuthChallengeResponse](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-AuthChallengeResponse) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class AuthChallengeResponse(
     /**  
      * The decision on what to do in response to the authorization challenge.  Default means  
@@ -1421,11 +1454,12 @@ sent. Response will intercept after the response is received.
  *
  * @link [Network#InterceptionStage](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-InterceptionStage) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class InterceptionStage {
-    @com.fasterxml.jackson.annotation.JsonProperty("Request")
+    @kotlinx.serialization.SerialName("Request")
     REQUEST,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("HeadersReceived")
+    @kotlinx.serialization.SerialName("HeadersReceived")
     HEADERSRECEIVED;
 }
 
@@ -1435,6 +1469,7 @@ enum class InterceptionStage {
  * @link [Network#RequestPattern](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-RequestPattern) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class RequestPattern(
     /**  
      * Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is  
@@ -1460,6 +1495,7 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
  * @link [Network#SignedExchangeSignature](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedExchangeSignature) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SignedExchangeSignature(
     /**  
      * Signed exchange signature label.  
@@ -1514,6 +1550,7 @@ https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-
  * @link [Network#SignedExchangeHeader](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedExchangeHeader) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SignedExchangeHeader(
     /**  
      * Signed exchange request URL.  
@@ -1546,23 +1583,24 @@ data class SignedExchangeHeader(
  *
  * @link [Network#SignedExchangeErrorField](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedExchangeErrorField) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class SignedExchangeErrorField {
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureSig")
+    @kotlinx.serialization.SerialName("signatureSig")
     SIGNATURESIG,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureIntegrity")
+    @kotlinx.serialization.SerialName("signatureIntegrity")
     SIGNATUREINTEGRITY,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureCertUrl")
+    @kotlinx.serialization.SerialName("signatureCertUrl")
     SIGNATURECERTURL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureCertSha256")
+    @kotlinx.serialization.SerialName("signatureCertSha256")
     SIGNATURECERTSHA256,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureValidityUrl")
+    @kotlinx.serialization.SerialName("signatureValidityUrl")
     SIGNATUREVALIDITYURL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("signatureTimestamps")
+    @kotlinx.serialization.SerialName("signatureTimestamps")
     SIGNATURETIMESTAMPS;
 }
 
@@ -1572,6 +1610,7 @@ enum class SignedExchangeErrorField {
  * @link [Network#SignedExchangeError](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedExchangeError) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SignedExchangeError(
     /**  
      * Error message.  
@@ -1595,6 +1634,7 @@ data class SignedExchangeError(
  * @link [Network#SignedExchangeInfo](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SignedExchangeInfo) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SignedExchangeInfo(
     /**  
      * The outer response of signed HTTP exchange which was received from network.  
@@ -1622,14 +1662,15 @@ data class SignedExchangeInfo(
  *
  * @link [Network#PrivateNetworkRequestPolicy](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-PrivateNetworkRequestPolicy) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class PrivateNetworkRequestPolicy {
-    @com.fasterxml.jackson.annotation.JsonProperty("Allow")
+    @kotlinx.serialization.SerialName("Allow")
     ALLOW,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("BlockFromInsecureToMorePrivate")
+    @kotlinx.serialization.SerialName("BlockFromInsecureToMorePrivate")
     BLOCKFROMINSECURETOMOREPRIVATE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WarnFromInsecureToMorePrivate")
+    @kotlinx.serialization.SerialName("WarnFromInsecureToMorePrivate")
     WARNFROMINSECURETOMOREPRIVATE;
 }
 
@@ -1638,17 +1679,18 @@ enum class PrivateNetworkRequestPolicy {
  *
  * @link [Network#IPAddressSpace](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-IPAddressSpace) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class IPAddressSpace {
-    @com.fasterxml.jackson.annotation.JsonProperty("Local")
+    @kotlinx.serialization.SerialName("Local")
     LOCAL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Private")
+    @kotlinx.serialization.SerialName("Private")
     PRIVATE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Public")
+    @kotlinx.serialization.SerialName("Public")
     PUBLIC,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("Unknown")
+    @kotlinx.serialization.SerialName("Unknown")
     UNKNOWN;
 }
 
@@ -1658,6 +1700,7 @@ enum class IPAddressSpace {
  * @link [Network#ClientSecurityState](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-ClientSecurityState) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ClientSecurityState(
     /**  
      *  
@@ -1680,17 +1723,18 @@ data class ClientSecurityState(
  *
  * @link [Network#CrossOriginOpenerPolicyValue](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginOpenerPolicyValue) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CrossOriginOpenerPolicyValue {
-    @com.fasterxml.jackson.annotation.JsonProperty("SameOrigin")
+    @kotlinx.serialization.SerialName("SameOrigin")
     SAMEORIGIN,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SameOriginAllowPopups")
+    @kotlinx.serialization.SerialName("SameOriginAllowPopups")
     SAMEORIGINALLOWPOPUPS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("UnsafeNone")
+    @kotlinx.serialization.SerialName("UnsafeNone")
     UNSAFENONE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("SameOriginPlusCoep")
+    @kotlinx.serialization.SerialName("SameOriginPlusCoep")
     SAMEORIGINPLUSCOEP;
 }
 
@@ -1700,6 +1744,7 @@ enum class CrossOriginOpenerPolicyValue {
  * @link [Network#CrossOriginOpenerPolicyStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginOpenerPolicyStatus) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CrossOriginOpenerPolicyStatus(
     /**  
      *  
@@ -1727,11 +1772,12 @@ data class CrossOriginOpenerPolicyStatus(
  *
  * @link [Network#CrossOriginEmbedderPolicyValue](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginEmbedderPolicyValue) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CrossOriginEmbedderPolicyValue {
-    @com.fasterxml.jackson.annotation.JsonProperty("None")
+    @kotlinx.serialization.SerialName("None")
     NONE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("RequireCorp")
+    @kotlinx.serialization.SerialName("RequireCorp")
     REQUIRECORP;
 }
 
@@ -1741,6 +1787,7 @@ enum class CrossOriginEmbedderPolicyValue {
  * @link [Network#CrossOriginEmbedderPolicyStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-CrossOriginEmbedderPolicyStatus) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CrossOriginEmbedderPolicyStatus(
     /**  
      *  
@@ -1769,6 +1816,7 @@ data class CrossOriginEmbedderPolicyStatus(
  * @link [Network#SecurityIsolationStatus](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-SecurityIsolationStatus) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SecurityIsolationStatus(
     /**  
      *  
@@ -1787,6 +1835,7 @@ data class SecurityIsolationStatus(
  * @link [Network#LoadNetworkResourcePageResult](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-LoadNetworkResourcePageResult) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LoadNetworkResourcePageResult(
     /**  
      *  
@@ -1826,6 +1875,7 @@ CORB and streaming.
  * @link [Network#LoadNetworkResourceOptions](https://chromedevtools.github.io/devtools-protocol/tot/Network#type-LoadNetworkResourceOptions) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LoadNetworkResourceOptions(
     /**  
      *  

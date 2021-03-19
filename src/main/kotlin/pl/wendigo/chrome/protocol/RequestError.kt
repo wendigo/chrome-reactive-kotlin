@@ -1,8 +1,11 @@
 package pl.wendigo.chrome.protocol
 
+import kotlinx.serialization.Serializable
+
 /**
  * Represents protocol error.
  */
+@Serializable
 data class RequestError(
     /**
      * Error code.

@@ -13,23 +13,24 @@ typealias CacheId = String
  *
  * @link [CacheStorage#CachedResponseType](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-CachedResponseType) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class CachedResponseType {
-    @com.fasterxml.jackson.annotation.JsonProperty("basic")
+    @kotlinx.serialization.SerialName("basic")
     BASIC,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("cors")
+    @kotlinx.serialization.SerialName("cors")
     CORS,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("default")
+    @kotlinx.serialization.SerialName("default")
     DEFAULT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("error")
+    @kotlinx.serialization.SerialName("error")
     ERROR,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("opaqueResponse")
+    @kotlinx.serialization.SerialName("opaqueResponse")
     OPAQUERESPONSE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("opaqueRedirect")
+    @kotlinx.serialization.SerialName("opaqueRedirect")
     OPAQUEREDIRECT;
 }
 
@@ -39,6 +40,7 @@ enum class CachedResponseType {
  * @link [CacheStorage#DataEntry](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-DataEntry) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class DataEntry(
     /**  
      * Request URL.  
@@ -87,6 +89,7 @@ data class DataEntry(
  * @link [CacheStorage#Cache](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-Cache) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Cache(
     /**  
      * An opaque unique id of the cache.  
@@ -110,6 +113,7 @@ data class Cache(
  * @link [CacheStorage#Header](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-Header) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Header(
     /**  
      *  
@@ -128,6 +132,7 @@ data class Header(
  * @link [CacheStorage#CachedResponse](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#type-CachedResponse) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CachedResponse(
     /**  
      * Entry content, base64-encoded. (Encoded as a base64 string when passed over JSON)  

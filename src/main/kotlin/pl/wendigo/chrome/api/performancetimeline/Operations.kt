@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.performancetimeline
 
+import kotlinx.serialization.json.Json
+
 /**
  * Reporting of performance timeline events, as specified in
 https://w3c.github.io/performance-timeline/#dom-performanceobserver.
@@ -15,12 +17,12 @@ See also: timelineEventAdded
      *
      * @link Protocol [PerformanceTimeline#enable](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#method-enable) method documentation.
      */
-    fun enable(input: EnableRequest) = connection.request("PerformanceTimeline.enable", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable(input: EnableRequest) = connection.request("PerformanceTimeline.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Sent when a performance timeline event is added. See reportPerformanceTimeline method.
      */
-    fun timelineEventAdded(): io.reactivex.rxjava3.core.Flowable<TimelineEventAddedEvent> = connection.events("PerformanceTimeline.timelineEventAdded", TimelineEventAddedEvent::class.java)
+    fun timelineEventAdded(): io.reactivex.rxjava3.core.Flowable<TimelineEventAddedEvent> = connection.events("PerformanceTimeline.timelineEventAdded", TimelineEventAddedEvent.serializer())
 
     /**
      * Returns flowable capturing all PerformanceTimeline domains events.
@@ -40,6 +42,7 @@ See also: timelineEventAdded
  * @link [PerformanceTimeline#enable](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#method-enable) method documentation.
  * @see [PerformanceTimelineOperations.enable]
  */
+@kotlinx.serialization.Serializable
 data class EnableRequest(
     /**
      * The types of event to report, as specified in
@@ -57,10 +60,11 @@ Note that not all types exposed to the web platform are currently supported.
  *
  * @link [PerformanceTimeline#timelineEventAdded](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#event-timelineEventAdded) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class TimelineEventAddedEvent(
     /**  
      *  
      */  
     val event: TimelineEvent
 
-) : pl.wendigo.chrome.protocol.Event(domain = "PerformanceTimeline", name = "timelineEventAdded")
+) : pl.wendigo.chrome.protocol.Event(domainName = "PerformanceTimeline", domainEventName = "timelineEventAdded")

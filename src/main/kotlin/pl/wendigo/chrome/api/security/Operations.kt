@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.security
 
+import kotlinx.serialization.json.Json
+
 /**
  * Security
  *
@@ -11,14 +13,14 @@ class SecurityOperations internal constructor(private val connection: pl.wendigo
      *
      * @link Protocol [Security#disable](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-disable) method documentation.
      */
-    fun disable() = connection.request("Security.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Security.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables tracking security state changes.
      *
      * @link Protocol [Security#enable](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-enable) method documentation.
      */
-    fun enable() = connection.request("Security.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Security.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enable/disable whether all certificate errors should be ignored.
@@ -27,7 +29,7 @@ class SecurityOperations internal constructor(private val connection: pl.wendigo
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setIgnoreCertificateErrors(input: SetIgnoreCertificateErrorsRequest) = connection.request("Security.setIgnoreCertificateErrors", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setIgnoreCertificateErrors(input: SetIgnoreCertificateErrorsRequest) = connection.request("Security.setIgnoreCertificateErrors", Json.encodeToJsonElement(SetIgnoreCertificateErrorsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Handles a certificate error that fired a certificateError event.
@@ -35,7 +37,7 @@ class SecurityOperations internal constructor(private val connection: pl.wendigo
      * @link Protocol [Security#handleCertificateError](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-handleCertificateError) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "handleCertificateError is deprecated.")
-    fun handleCertificateError(input: HandleCertificateErrorRequest) = connection.request("Security.handleCertificateError", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun handleCertificateError(input: HandleCertificateErrorRequest) = connection.request("Security.handleCertificateError", Json.encodeToJsonElement(HandleCertificateErrorRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enable/disable overriding certificate errors. If enabled, all certificate error events need to
@@ -44,7 +46,7 @@ be handled by the DevTools client and should be answered with `handleCertificate
      * @link Protocol [Security#setOverrideCertificateErrors](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-setOverrideCertificateErrors) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setOverrideCertificateErrors is deprecated.")
-    fun setOverrideCertificateErrors(input: SetOverrideCertificateErrorsRequest) = connection.request("Security.setOverrideCertificateErrors", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setOverrideCertificateErrors(input: SetOverrideCertificateErrorsRequest) = connection.request("Security.setOverrideCertificateErrors", Json.encodeToJsonElement(SetOverrideCertificateErrorsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  There is a certificate error. If overriding certificate errors is enabled, then it should be
@@ -52,17 +54,17 @@ handled with the `handleCertificateError` command. Note: this event does not fir
 certificate error has been allowed internally. Only one client per target should override
 certificate errors at the same time.
      */
-    fun certificateError(): io.reactivex.rxjava3.core.Flowable<CertificateErrorEvent> = connection.events("Security.certificateError", CertificateErrorEvent::class.java)
+    fun certificateError(): io.reactivex.rxjava3.core.Flowable<CertificateErrorEvent> = connection.events("Security.certificateError", CertificateErrorEvent.serializer())
 
     /**
      *  The security state of the page changed.
      */
-    fun visibleSecurityStateChanged(): io.reactivex.rxjava3.core.Flowable<VisibleSecurityStateChangedEvent> = connection.events("Security.visibleSecurityStateChanged", VisibleSecurityStateChangedEvent::class.java)
+    fun visibleSecurityStateChanged(): io.reactivex.rxjava3.core.Flowable<VisibleSecurityStateChangedEvent> = connection.events("Security.visibleSecurityStateChanged", VisibleSecurityStateChangedEvent.serializer())
 
     /**
      *  The security state of the page changed.
      */
-    fun securityStateChanged(): io.reactivex.rxjava3.core.Flowable<SecurityStateChangedEvent> = connection.events("Security.securityStateChanged", SecurityStateChangedEvent::class.java)
+    fun securityStateChanged(): io.reactivex.rxjava3.core.Flowable<SecurityStateChangedEvent> = connection.events("Security.securityStateChanged", SecurityStateChangedEvent.serializer())
 
     /**
      * Returns flowable capturing all Security domains events.
@@ -81,6 +83,7 @@ certificate errors at the same time.
  * @link [Security#setIgnoreCertificateErrors](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-setIgnoreCertificateErrors) method documentation.
  * @see [SecurityOperations.setIgnoreCertificateErrors]
  */
+@kotlinx.serialization.Serializable
 data class SetIgnoreCertificateErrorsRequest(
     /**
      * If true, all certificate errors will be ignored.
@@ -96,6 +99,7 @@ data class SetIgnoreCertificateErrorsRequest(
  * @link [Security#handleCertificateError](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-handleCertificateError) method documentation.
  * @see [SecurityOperations.handleCertificateError]
  */
+@kotlinx.serialization.Serializable
 data class HandleCertificateErrorRequest(
     /**
      * The ID of the event.
@@ -117,6 +121,7 @@ be handled by the DevTools client and should be answered with `handleCertificate
  * @link [Security#setOverrideCertificateErrors](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-setOverrideCertificateErrors) method documentation.
  * @see [SecurityOperations.setOverrideCertificateErrors]
  */
+@kotlinx.serialization.Serializable
 data class SetOverrideCertificateErrorsRequest(
     /**
      * If true, certificate errors will be overridden.
@@ -133,6 +138,7 @@ certificate errors at the same time.
  *
  * @link [Security#certificateError](https://chromedevtools.github.io/devtools-protocol/tot/Security#event-certificateError) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class CertificateErrorEvent(
     /**  
      * The ID of the event.  
@@ -149,26 +155,28 @@ data class CertificateErrorEvent(
      */  
     val requestURL: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Security", name = "certificateError")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Security", domainEventName = "certificateError")
 
 /**
  * The security state of the page changed.
  *
  * @link [Security#visibleSecurityStateChanged](https://chromedevtools.github.io/devtools-protocol/tot/Security#event-visibleSecurityStateChanged) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class VisibleSecurityStateChangedEvent(
     /**  
      * Security state information about the page.  
      */  
     val visibleSecurityState: VisibleSecurityState
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Security", name = "visibleSecurityStateChanged")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Security", domainEventName = "visibleSecurityStateChanged")
 
 /**
  * The security state of the page changed.
  *
  * @link [Security#securityStateChanged](https://chromedevtools.github.io/devtools-protocol/tot/Security#event-securityStateChanged) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class SecurityStateChangedEvent(
     /**  
      * Security state.  
@@ -196,4 +204,4 @@ data class SecurityStateChangedEvent(
      */  
     val summary: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Security", name = "securityStateChanged")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Security", domainEventName = "securityStateChanged")

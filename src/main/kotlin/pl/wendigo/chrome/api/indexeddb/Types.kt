@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.indexeddb
  * @link [IndexedDB#DatabaseWithObjectStores](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-DatabaseWithObjectStores) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class DatabaseWithObjectStores(
     /**  
      * Database name.  
@@ -30,6 +31,7 @@ data class DatabaseWithObjectStores(
  * @link [IndexedDB#ObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-ObjectStore) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ObjectStore(
     /**  
      * Object store name.  
@@ -58,6 +60,7 @@ data class ObjectStore(
  * @link [IndexedDB#ObjectStoreIndex](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-ObjectStoreIndex) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ObjectStoreIndex(
     /**  
      * Index name.  
@@ -86,6 +89,7 @@ data class ObjectStoreIndex(
  * @link [IndexedDB#Key](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-Key) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Key(
     /**  
      * Key type.  
@@ -119,6 +123,7 @@ data class Key(
  * @link [IndexedDB#KeyRange](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-KeyRange) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class KeyRange(
     /**  
      * Lower bound.  
@@ -147,6 +152,7 @@ data class KeyRange(
  * @link [IndexedDB#DataEntry](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-DataEntry) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class DataEntry(
     /**  
      * Key object.  
@@ -170,6 +176,7 @@ data class DataEntry(
  * @link [IndexedDB#KeyPath](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#type-KeyPath) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class KeyPath(
     /**  
      * Key path type.  

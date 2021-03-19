@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.emulation
 
+import kotlinx.serialization.json.Json
+
 /**
  * This domain emulates different environments for the page.
  *
@@ -11,21 +13,21 @@ class EmulationOperations internal constructor(private val connection: pl.wendig
      *
      * @link Protocol [Emulation#canEmulate](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-canEmulate) method documentation.
      */
-    fun canEmulate() = connection.request("Emulation.canEmulate", null, CanEmulateResponse::class.java)
+    fun canEmulate() = connection.request("Emulation.canEmulate", null, CanEmulateResponse.serializer())
 
     /**
      * Clears the overriden device metrics.
      *
      * @link Protocol [Emulation#clearDeviceMetricsOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-clearDeviceMetricsOverride) method documentation.
      */
-    fun clearDeviceMetricsOverride() = connection.request("Emulation.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearDeviceMetricsOverride() = connection.request("Emulation.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Clears the overriden Geolocation Position and Error.
      *
      * @link Protocol [Emulation#clearGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-clearGeolocationOverride) method documentation.
      */
-    fun clearGeolocationOverride() = connection.request("Emulation.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearGeolocationOverride() = connection.request("Emulation.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests that page scale factor is reset to initial values.
@@ -34,7 +36,7 @@ class EmulationOperations internal constructor(private val connection: pl.wendig
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun resetPageScaleFactor() = connection.request("Emulation.resetPageScaleFactor", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun resetPageScaleFactor() = connection.request("Emulation.resetPageScaleFactor", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables or disables simulating a focused and active page.
@@ -43,7 +45,7 @@ class EmulationOperations internal constructor(private val connection: pl.wendig
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setFocusEmulationEnabled(input: SetFocusEmulationEnabledRequest) = connection.request("Emulation.setFocusEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setFocusEmulationEnabled(input: SetFocusEmulationEnabledRequest) = connection.request("Emulation.setFocusEmulationEnabled", Json.encodeToJsonElement(SetFocusEmulationEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables CPU throttling to emulate slow CPUs.
@@ -52,7 +54,7 @@ class EmulationOperations internal constructor(private val connection: pl.wendig
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setCPUThrottlingRate(input: SetCPUThrottlingRateRequest) = connection.request("Emulation.setCPUThrottlingRate", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setCPUThrottlingRate(input: SetCPUThrottlingRateRequest) = connection.request("Emulation.setCPUThrottlingRate", Json.encodeToJsonElement(SetCPUThrottlingRateRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets or clears an override of the default background color of the frame. This override is used
@@ -60,7 +62,7 @@ if the content does not specify one.
      *
      * @link Protocol [Emulation#setDefaultBackgroundColorOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDefaultBackgroundColorOverride) method documentation.
      */
-    fun setDefaultBackgroundColorOverride(input: SetDefaultBackgroundColorOverrideRequest) = connection.request("Emulation.setDefaultBackgroundColorOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDefaultBackgroundColorOverride(input: SetDefaultBackgroundColorOverrideRequest) = connection.request("Emulation.setDefaultBackgroundColorOverride", Json.encodeToJsonElement(SetDefaultBackgroundColorOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Overrides the values of device screen dimensions (window.screen.width, window.screen.height,
@@ -69,7 +71,7 @@ query results).
      *
      * @link Protocol [Emulation#setDeviceMetricsOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDeviceMetricsOverride) method documentation.
      */
-    fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest) = connection.request("Emulation.setDeviceMetricsOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest) = connection.request("Emulation.setDeviceMetricsOverride", Json.encodeToJsonElement(SetDeviceMetricsOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -78,7 +80,7 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setScrollbarsHidden(input: SetScrollbarsHiddenRequest) = connection.request("Emulation.setScrollbarsHidden", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setScrollbarsHidden(input: SetScrollbarsHiddenRequest) = connection.request("Emulation.setScrollbarsHidden", Json.encodeToJsonElement(SetScrollbarsHiddenRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -87,7 +89,7 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDocumentCookieDisabled(input: SetDocumentCookieDisabledRequest) = connection.request("Emulation.setDocumentCookieDisabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDocumentCookieDisabled(input: SetDocumentCookieDisabledRequest) = connection.request("Emulation.setDocumentCookieDisabled", Json.encodeToJsonElement(SetDocumentCookieDisabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -96,14 +98,14 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setEmitTouchEventsForMouse(input: SetEmitTouchEventsForMouseRequest) = connection.request("Emulation.setEmitTouchEventsForMouse", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setEmitTouchEventsForMouse(input: SetEmitTouchEventsForMouseRequest) = connection.request("Emulation.setEmitTouchEventsForMouse", Json.encodeToJsonElement(SetEmitTouchEventsForMouseRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Emulates the given media type or media feature for CSS media queries.
      *
      * @link Protocol [Emulation#setEmulatedMedia](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedMedia) method documentation.
      */
-    fun setEmulatedMedia(input: SetEmulatedMediaRequest) = connection.request("Emulation.setEmulatedMedia", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setEmulatedMedia(input: SetEmulatedMediaRequest) = connection.request("Emulation.setEmulatedMedia", Json.encodeToJsonElement(SetEmulatedMediaRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Emulates the given vision deficiency.
@@ -112,7 +114,7 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setEmulatedVisionDeficiency(input: SetEmulatedVisionDeficiencyRequest) = connection.request("Emulation.setEmulatedVisionDeficiency", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setEmulatedVisionDeficiency(input: SetEmulatedVisionDeficiencyRequest) = connection.request("Emulation.setEmulatedVisionDeficiency", Json.encodeToJsonElement(SetEmulatedVisionDeficiencyRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position
@@ -120,7 +122,7 @@ unavailable.
      *
      * @link Protocol [Emulation#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setGeolocationOverride) method documentation.
      */
-    fun setGeolocationOverride(input: SetGeolocationOverrideRequest) = connection.request("Emulation.setGeolocationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setGeolocationOverride(input: SetGeolocationOverrideRequest) = connection.request("Emulation.setGeolocationOverride", Json.encodeToJsonElement(SetGeolocationOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Overrides the Idle state.
@@ -129,7 +131,7 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setIdleOverride(input: SetIdleOverrideRequest) = connection.request("Emulation.setIdleOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setIdleOverride(input: SetIdleOverrideRequest) = connection.request("Emulation.setIdleOverride", Json.encodeToJsonElement(SetIdleOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Clears Idle state overrides.
@@ -138,7 +140,7 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun clearIdleOverride() = connection.request("Emulation.clearIdleOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearIdleOverride() = connection.request("Emulation.clearIdleOverride", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Overrides value returned by the javascript navigator object.
@@ -147,7 +149,7 @@ unavailable.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setNavigatorOverrides is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setNavigatorOverrides(input: SetNavigatorOverridesRequest) = connection.request("Emulation.setNavigatorOverrides", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setNavigatorOverrides(input: SetNavigatorOverridesRequest) = connection.request("Emulation.setNavigatorOverrides", Json.encodeToJsonElement(SetNavigatorOverridesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets a specified page scale factor.
@@ -156,21 +158,21 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setPageScaleFactor(input: SetPageScaleFactorRequest) = connection.request("Emulation.setPageScaleFactor", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setPageScaleFactor(input: SetPageScaleFactorRequest) = connection.request("Emulation.setPageScaleFactor", Json.encodeToJsonElement(SetPageScaleFactorRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Switches script execution in the page.
      *
      * @link Protocol [Emulation#setScriptExecutionDisabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setScriptExecutionDisabled) method documentation.
      */
-    fun setScriptExecutionDisabled(input: SetScriptExecutionDisabledRequest) = connection.request("Emulation.setScriptExecutionDisabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setScriptExecutionDisabled(input: SetScriptExecutionDisabledRequest) = connection.request("Emulation.setScriptExecutionDisabled", Json.encodeToJsonElement(SetScriptExecutionDisabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables touch on platforms which do not support them.
      *
      * @link Protocol [Emulation#setTouchEmulationEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setTouchEmulationEnabled) method documentation.
      */
-    fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest) = connection.request("Emulation.setTouchEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest) = connection.request("Emulation.setTouchEmulationEnabled", Json.encodeToJsonElement(SetTouchEmulationEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Turns on virtual time for all frames (replacing real-time with a synthetic time source) and sets
@@ -180,7 +182,7 @@ the current virtual time policy.  Note this supersedes any previous time budget.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setVirtualTimePolicy(input: SetVirtualTimePolicyRequest) = connection.request("Emulation.setVirtualTimePolicy", input, SetVirtualTimePolicyResponse::class.java)
+    fun setVirtualTimePolicy(input: SetVirtualTimePolicyRequest) = connection.request("Emulation.setVirtualTimePolicy", Json.encodeToJsonElement(SetVirtualTimePolicyRequest.serializer(), input), SetVirtualTimePolicyResponse.serializer())
 
     /**
      * Overrides default host system locale with the specified one.
@@ -189,7 +191,7 @@ the current virtual time policy.  Note this supersedes any previous time budget.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setLocaleOverride(input: SetLocaleOverrideRequest) = connection.request("Emulation.setLocaleOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setLocaleOverride(input: SetLocaleOverrideRequest) = connection.request("Emulation.setLocaleOverride", Json.encodeToJsonElement(SetLocaleOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Overrides default host system timezone with the specified one.
@@ -198,7 +200,7 @@ the current virtual time policy.  Note this supersedes any previous time budget.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setTimezoneOverride(input: SetTimezoneOverrideRequest) = connection.request("Emulation.setTimezoneOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setTimezoneOverride(input: SetTimezoneOverrideRequest) = connection.request("Emulation.setTimezoneOverride", Json.encodeToJsonElement(SetTimezoneOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Resizes the frame/viewport of the page. Note that this does not affect the frame's container
@@ -209,7 +211,7 @@ on Android.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setVisibleSize is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setVisibleSize(input: SetVisibleSizeRequest) = connection.request("Emulation.setVisibleSize", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setVisibleSize(input: SetVisibleSizeRequest) = connection.request("Emulation.setVisibleSize", Json.encodeToJsonElement(SetVisibleSizeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -218,19 +220,19 @@ on Android.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDisabledImageTypes(input: SetDisabledImageTypesRequest) = connection.request("Emulation.setDisabledImageTypes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDisabledImageTypes(input: SetDisabledImageTypesRequest) = connection.request("Emulation.setDisabledImageTypes", Json.encodeToJsonElement(SetDisabledImageTypesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Allows overriding user agent with the given string.
      *
      * @link Protocol [Emulation#setUserAgentOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setUserAgentOverride) method documentation.
      */
-    fun setUserAgentOverride(input: SetUserAgentOverrideRequest) = connection.request("Emulation.setUserAgentOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setUserAgentOverride(input: SetUserAgentOverrideRequest) = connection.request("Emulation.setUserAgentOverride", Json.encodeToJsonElement(SetUserAgentOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
      */
-    fun virtualTimeBudgetExpired(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.protocol.Event::class.java)
+    fun virtualTimeBudgetExpired(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.protocol.Event.serializer())
 
     /**
      * Returns flowable capturing all Emulation domains events.
@@ -250,6 +252,7 @@ on Android.
  * @link [Emulation#canEmulate](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-canEmulate) method documentation.
  * @see [EmulationOperations.canEmulate]
  */
+@kotlinx.serialization.Serializable
 data class CanEmulateResponse(
     /**  
      * True if emulation is supported.  
@@ -265,6 +268,7 @@ data class CanEmulateResponse(
  * @link [Emulation#setFocusEmulationEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setFocusEmulationEnabled) method documentation.
  * @see [EmulationOperations.setFocusEmulationEnabled]
  */
+@kotlinx.serialization.Serializable
 data class SetFocusEmulationEnabledRequest(
     /**
      * Whether to enable to disable focus emulation.
@@ -280,6 +284,7 @@ data class SetFocusEmulationEnabledRequest(
  * @link [Emulation#setCPUThrottlingRate](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setCPUThrottlingRate) method documentation.
  * @see [EmulationOperations.setCPUThrottlingRate]
  */
+@kotlinx.serialization.Serializable
 data class SetCPUThrottlingRateRequest(
     /**
      * Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc).
@@ -296,6 +301,7 @@ if the content does not specify one.
  * @link [Emulation#setDefaultBackgroundColorOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDefaultBackgroundColorOverride) method documentation.
  * @see [EmulationOperations.setDefaultBackgroundColorOverride]
  */
+@kotlinx.serialization.Serializable
 data class SetDefaultBackgroundColorOverrideRequest(
     /**
      * RGBA of the default background color. If not specified, any existing override will be
@@ -314,6 +320,7 @@ query results).
  * @link [Emulation#setDeviceMetricsOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDeviceMetricsOverride) method documentation.
  * @see [EmulationOperations.setDeviceMetricsOverride]
  */
+@kotlinx.serialization.Serializable
 data class SetDeviceMetricsOverrideRequest(
     /**
      * Overriding width value in pixels (minimum 0, maximum 10000000). 0 disables the override.
@@ -392,6 +399,7 @@ is turned-off.
  * @link [Emulation#setScrollbarsHidden](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setScrollbarsHidden) method documentation.
  * @see [EmulationOperations.setScrollbarsHidden]
  */
+@kotlinx.serialization.Serializable
 data class SetScrollbarsHiddenRequest(
     /**
      * Whether scrollbars should be always hidden.
@@ -407,6 +415,7 @@ data class SetScrollbarsHiddenRequest(
  * @link [Emulation#setDocumentCookieDisabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDocumentCookieDisabled) method documentation.
  * @see [EmulationOperations.setDocumentCookieDisabled]
  */
+@kotlinx.serialization.Serializable
 data class SetDocumentCookieDisabledRequest(
     /**
      * Whether document.coookie API should be disabled.
@@ -422,6 +431,7 @@ data class SetDocumentCookieDisabledRequest(
  * @link [Emulation#setEmitTouchEventsForMouse](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmitTouchEventsForMouse) method documentation.
  * @see [EmulationOperations.setEmitTouchEventsForMouse]
  */
+@kotlinx.serialization.Serializable
 data class SetEmitTouchEventsForMouseRequest(
     /**
      * Whether touch emulation based on mouse input should be enabled.
@@ -442,6 +452,7 @@ data class SetEmitTouchEventsForMouseRequest(
  * @link [Emulation#setEmulatedMedia](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedMedia) method documentation.
  * @see [EmulationOperations.setEmulatedMedia]
  */
+@kotlinx.serialization.Serializable
 data class SetEmulatedMediaRequest(
     /**
      * Media type to emulate. Empty string disables the override.
@@ -462,6 +473,7 @@ data class SetEmulatedMediaRequest(
  * @link [Emulation#setEmulatedVisionDeficiency](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setEmulatedVisionDeficiency) method documentation.
  * @see [EmulationOperations.setEmulatedVisionDeficiency]
  */
+@kotlinx.serialization.Serializable
 data class SetEmulatedVisionDeficiencyRequest(
     /**
      * Vision deficiency to emulate.
@@ -478,6 +490,7 @@ unavailable.
  * @link [Emulation#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setGeolocationOverride) method documentation.
  * @see [EmulationOperations.setGeolocationOverride]
  */
+@kotlinx.serialization.Serializable
 data class SetGeolocationOverrideRequest(
     /**
      * Mock latitude
@@ -503,6 +516,7 @@ data class SetGeolocationOverrideRequest(
  * @link [Emulation#setIdleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setIdleOverride) method documentation.
  * @see [EmulationOperations.setIdleOverride]
  */
+@kotlinx.serialization.Serializable
 data class SetIdleOverrideRequest(
     /**
      * Mock isUserActive
@@ -523,6 +537,7 @@ data class SetIdleOverrideRequest(
  * @link [Emulation#setNavigatorOverrides](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setNavigatorOverrides) method documentation.
  * @see [EmulationOperations.setNavigatorOverrides]
  */
+@kotlinx.serialization.Serializable
 data class SetNavigatorOverridesRequest(
     /**
      * The platform navigator.platform should return.
@@ -538,6 +553,7 @@ data class SetNavigatorOverridesRequest(
  * @link [Emulation#setPageScaleFactor](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setPageScaleFactor) method documentation.
  * @see [EmulationOperations.setPageScaleFactor]
  */
+@kotlinx.serialization.Serializable
 data class SetPageScaleFactorRequest(
     /**
      * Page scale factor.
@@ -553,6 +569,7 @@ data class SetPageScaleFactorRequest(
  * @link [Emulation#setScriptExecutionDisabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setScriptExecutionDisabled) method documentation.
  * @see [EmulationOperations.setScriptExecutionDisabled]
  */
+@kotlinx.serialization.Serializable
 data class SetScriptExecutionDisabledRequest(
     /**
      * Whether script execution should be disabled in the page.
@@ -568,6 +585,7 @@ data class SetScriptExecutionDisabledRequest(
  * @link [Emulation#setTouchEmulationEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setTouchEmulationEnabled) method documentation.
  * @see [EmulationOperations.setTouchEmulationEnabled]
  */
+@kotlinx.serialization.Serializable
 data class SetTouchEmulationEnabledRequest(
     /**
      * Whether the touch event emulation should be enabled.
@@ -589,6 +607,7 @@ the current virtual time policy.  Note this supersedes any previous time budget.
  * @link [Emulation#setVirtualTimePolicy](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setVirtualTimePolicy) method documentation.
  * @see [EmulationOperations.setVirtualTimePolicy]
  */
+@kotlinx.serialization.Serializable
 data class SetVirtualTimePolicyRequest(
     /**
      *
@@ -629,6 +648,7 @@ the current virtual time policy.  Note this supersedes any previous time budget.
  * @link [Emulation#setVirtualTimePolicy](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setVirtualTimePolicy) method documentation.
  * @see [EmulationOperations.setVirtualTimePolicy]
  */
+@kotlinx.serialization.Serializable
 data class SetVirtualTimePolicyResponse(
     /**  
      * Absolute timestamp at which virtual time was first enabled (up time in milliseconds).  
@@ -644,6 +664,7 @@ data class SetVirtualTimePolicyResponse(
  * @link [Emulation#setLocaleOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setLocaleOverride) method documentation.
  * @see [EmulationOperations.setLocaleOverride]
  */
+@kotlinx.serialization.Serializable
 data class SetLocaleOverrideRequest(
     /**
      * ICU style C locale (e.g. "en_US"). If not specified or empty, disables the override and
@@ -660,6 +681,7 @@ restores default host system locale.
  * @link [Emulation#setTimezoneOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setTimezoneOverride) method documentation.
  * @see [EmulationOperations.setTimezoneOverride]
  */
+@kotlinx.serialization.Serializable
 data class SetTimezoneOverrideRequest(
     /**
      * The timezone identifier. If empty, disables the override and
@@ -678,6 +700,7 @@ on Android.
  * @link [Emulation#setVisibleSize](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setVisibleSize) method documentation.
  * @see [EmulationOperations.setVisibleSize]
  */
+@kotlinx.serialization.Serializable
 data class SetVisibleSizeRequest(
     /**
      * Frame width (DIP).
@@ -698,6 +721,7 @@ data class SetVisibleSizeRequest(
  * @link [Emulation#setDisabledImageTypes](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setDisabledImageTypes) method documentation.
  * @see [EmulationOperations.setDisabledImageTypes]
  */
+@kotlinx.serialization.Serializable
 data class SetDisabledImageTypesRequest(
     /**
      * Image types to disable.
@@ -713,6 +737,7 @@ data class SetDisabledImageTypesRequest(
  * @link [Emulation#setUserAgentOverride](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setUserAgentOverride) method documentation.
  * @see [EmulationOperations.setUserAgentOverride]
  */
+@kotlinx.serialization.Serializable
 data class SetUserAgentOverrideRequest(
     /**
      * User agent to use.

@@ -1,54 +1,60 @@
 package pl.wendigo.chrome.protocol
 
-import com.fasterxml.jackson.databind.JsonNode
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonContentPolymorphicSerializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.jsonObject
 import pl.wendigo.chrome.api.target.SessionID
 
+enum class FrameType {
+    ERROR,
+    RESPONSE,
+    EVENT
+}
+
 /**
- * Represents generic protocol response.
+ * Represents protocol frame types.
  */
-data class ResponseFrame(
-    /**
-     * Response id.
-     */
-    val id: Long?,
+@Serializable
+sealed class ResponseFrame
 
-    /**
-     * Response result.
-     */
-    val result: JsonNode?,
+interface MethodCallResponseFrame {
+    fun matches(request: RequestFrame): Boolean
+}
 
-    /**
-     * Request error.
-     */
-    val error: RequestError?,
-
-    /**
-     * Request method or response event name.
-     */
-    val method: String?,
-
-    /**
-     * Response params.
-     */
-    val params: JsonNode?,
-
+@Serializable
+data class EventResponseFrame(
+    val method: String,
+    val params: JsonElement,
     val sessionId: SessionID? = null
-) {
-    /**
-     * Checks if response is event
-     */
-    internal fun isEvent(): Boolean = !this.method.isNullOrEmpty()
+) : ResponseFrame() {
+    fun matches(method: String, sessionId: SessionID?) = this.method == method && this.sessionId == sessionId
+    fun matches(sessionId: SessionID?) = this.sessionId == sessionId
+}
 
-    /**
-     * Checks if response is event
-     */
-    private fun isResponse(): Boolean = !this.isEvent()
+@Serializable
+data class ErrorResponseFrame(
+    val id: Long,
+    val error: RequestError,
+    val sessionId: SessionID? = null
+) : ResponseFrame(), MethodCallResponseFrame {
+    override fun matches(request: RequestFrame): Boolean = id == request.id && sessionId == request.sessionId
+}
 
-    internal fun matchesRequest(request: RequestFrame): Boolean = isResponse() &&
-        id == request.id &&
-        sessionId == request.sessionId
+@Serializable
+data class RequestResponseFrame(
+    val id: Long,
+    val result: JsonElement,
+    val sessionId: SessionID? = null
+) : ResponseFrame(), MethodCallResponseFrame {
+    override fun matches(request: RequestFrame): Boolean = id == request.id && sessionId == request.sessionId
+}
 
-    internal fun matchesMethod(method: String): Boolean = this.method == method
-
-    fun matchesSessionId(sessionId: SessionID?) = this.sessionId == sessionId
+object FrameSerializer : JsonContentPolymorphicSerializer<ResponseFrame>(ResponseFrame::class) {
+    override fun selectDeserializer(content: JsonElement) = when {
+        "error" in content.jsonObject -> ErrorResponseFrame.serializer()
+        "method" in content.jsonObject -> EventResponseFrame.serializer()
+        "id" in content.jsonObject -> RequestResponseFrame.serializer()
+        else -> throw RuntimeException("Unrecognized frame type: $content")
+    }
 }

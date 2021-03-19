@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.page
 
+import kotlinx.serialization.json.Json
+
 /**
  * Actions and events related to the inspected page belong to the page domain.
  *
@@ -13,28 +15,28 @@ class PageOperations internal constructor(private val connection: pl.wendigo.chr
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "addScriptToEvaluateOnLoad is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun addScriptToEvaluateOnLoad(input: AddScriptToEvaluateOnLoadRequest) = connection.request("Page.addScriptToEvaluateOnLoad", input, AddScriptToEvaluateOnLoadResponse::class.java)
+    fun addScriptToEvaluateOnLoad(input: AddScriptToEvaluateOnLoadRequest) = connection.request("Page.addScriptToEvaluateOnLoad", Json.encodeToJsonElement(AddScriptToEvaluateOnLoadRequest.serializer(), input), AddScriptToEvaluateOnLoadResponse.serializer())
 
     /**
      * Evaluates given script in every frame upon creation (before loading frame's scripts).
      *
      * @link Protocol [Page#addScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnNewDocument) method documentation.
      */
-    fun addScriptToEvaluateOnNewDocument(input: AddScriptToEvaluateOnNewDocumentRequest) = connection.request("Page.addScriptToEvaluateOnNewDocument", input, AddScriptToEvaluateOnNewDocumentResponse::class.java)
+    fun addScriptToEvaluateOnNewDocument(input: AddScriptToEvaluateOnNewDocumentRequest) = connection.request("Page.addScriptToEvaluateOnNewDocument", Json.encodeToJsonElement(AddScriptToEvaluateOnNewDocumentRequest.serializer(), input), AddScriptToEvaluateOnNewDocumentResponse.serializer())
 
     /**
      * Brings page to front (activates tab).
      *
      * @link Protocol [Page#bringToFront](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-bringToFront) method documentation.
      */
-    fun bringToFront() = connection.request("Page.bringToFront", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun bringToFront() = connection.request("Page.bringToFront", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Capture page screenshot.
      *
      * @link Protocol [Page#captureScreenshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot) method documentation.
      */
-    fun captureScreenshot(input: CaptureScreenshotRequest) = connection.request("Page.captureScreenshot", input, CaptureScreenshotResponse::class.java)
+    fun captureScreenshot(input: CaptureScreenshotRequest) = connection.request("Page.captureScreenshot", Json.encodeToJsonElement(CaptureScreenshotRequest.serializer(), input), CaptureScreenshotResponse.serializer())
 
     /**
      * Returns a snapshot of the page as a string. For MHTML format, the serialization includes
@@ -44,7 +46,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun captureSnapshot(input: CaptureSnapshotRequest) = connection.request("Page.captureSnapshot", input, CaptureSnapshotResponse::class.java)
+    fun captureSnapshot(input: CaptureSnapshotRequest) = connection.request("Page.captureSnapshot", Json.encodeToJsonElement(CaptureSnapshotRequest.serializer(), input), CaptureSnapshotResponse.serializer())
 
     /**
      * Clears the overriden device metrics.
@@ -53,7 +55,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearDeviceMetricsOverride is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun clearDeviceMetricsOverride() = connection.request("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearDeviceMetricsOverride() = connection.request("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Clears the overridden Device Orientation.
@@ -62,7 +64,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearDeviceOrientationOverride is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun clearDeviceOrientationOverride() = connection.request("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearDeviceOrientationOverride() = connection.request("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Clears the overriden Geolocation Position and Error.
@@ -70,14 +72,14 @@ iframes, shadow DOM, external resources, and element-inline styles.
      * @link Protocol [Page#clearGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-clearGeolocationOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearGeolocationOverride is deprecated.")
-    fun clearGeolocationOverride() = connection.request("Page.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearGeolocationOverride() = connection.request("Page.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Creates an isolated world for the given frame.
      *
      * @link Protocol [Page#createIsolatedWorld](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-createIsolatedWorld) method documentation.
      */
-    fun createIsolatedWorld(input: CreateIsolatedWorldRequest) = connection.request("Page.createIsolatedWorld", input, CreateIsolatedWorldResponse::class.java)
+    fun createIsolatedWorld(input: CreateIsolatedWorldRequest) = connection.request("Page.createIsolatedWorld", Json.encodeToJsonElement(CreateIsolatedWorldRequest.serializer(), input), CreateIsolatedWorldResponse.serializer())
 
     /**
      * Deletes browser cookie with given name, domain and path.
@@ -86,28 +88,28 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "deleteCookie is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun deleteCookie(input: DeleteCookieRequest) = connection.request("Page.deleteCookie", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun deleteCookie(input: DeleteCookieRequest) = connection.request("Page.deleteCookie", Json.encodeToJsonElement(DeleteCookieRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables page domain notifications.
      *
      * @link Protocol [Page#disable](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-disable) method documentation.
      */
-    fun disable() = connection.request("Page.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Page.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables page domain notifications.
      *
      * @link Protocol [Page#enable](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-enable) method documentation.
      */
-    fun enable() = connection.request("Page.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Page.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
      *
      * @link Protocol [Page#getAppManifest](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getAppManifest) method documentation.
      */
-    fun getAppManifest() = connection.request("Page.getAppManifest", null, GetAppManifestResponse::class.java)
+    fun getAppManifest() = connection.request("Page.getAppManifest", null, GetAppManifestResponse.serializer())
 
     /**
      *
@@ -116,7 +118,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getInstallabilityErrors() = connection.request("Page.getInstallabilityErrors", null, GetInstallabilityErrorsResponse::class.java)
+    fun getInstallabilityErrors() = connection.request("Page.getInstallabilityErrors", null, GetInstallabilityErrorsResponse.serializer())
 
     /**
      *
@@ -125,7 +127,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getManifestIcons() = connection.request("Page.getManifestIcons", null, GetManifestIconsResponse::class.java)
+    fun getManifestIcons() = connection.request("Page.getManifestIcons", null, GetManifestIconsResponse.serializer())
 
     /**
      * Returns all browser cookies. Depending on the backend support, will return detailed cookie
@@ -135,35 +137,35 @@ information in the `cookies` field.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "getCookies is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun getCookies() = connection.request("Page.getCookies", null, GetCookiesResponse::class.java)
+    fun getCookies() = connection.request("Page.getCookies", null, GetCookiesResponse.serializer())
 
     /**
      * Returns present frame tree structure.
      *
      * @link Protocol [Page#getFrameTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getFrameTree) method documentation.
      */
-    fun getFrameTree() = connection.request("Page.getFrameTree", null, GetFrameTreeResponse::class.java)
+    fun getFrameTree() = connection.request("Page.getFrameTree", null, GetFrameTreeResponse.serializer())
 
     /**
      * Returns metrics relating to the layouting of the page, such as viewport bounds/scale.
      *
      * @link Protocol [Page#getLayoutMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getLayoutMetrics) method documentation.
      */
-    fun getLayoutMetrics() = connection.request("Page.getLayoutMetrics", null, GetLayoutMetricsResponse::class.java)
+    fun getLayoutMetrics() = connection.request("Page.getLayoutMetrics", null, GetLayoutMetricsResponse.serializer())
 
     /**
      * Returns navigation history for the current page.
      *
      * @link Protocol [Page#getNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getNavigationHistory) method documentation.
      */
-    fun getNavigationHistory() = connection.request("Page.getNavigationHistory", null, GetNavigationHistoryResponse::class.java)
+    fun getNavigationHistory() = connection.request("Page.getNavigationHistory", null, GetNavigationHistoryResponse.serializer())
 
     /**
      * Resets navigation history for the current page.
      *
      * @link Protocol [Page#resetNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-resetNavigationHistory) method documentation.
      */
-    fun resetNavigationHistory() = connection.request("Page.resetNavigationHistory", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun resetNavigationHistory() = connection.request("Page.resetNavigationHistory", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns content of the given resource.
@@ -172,7 +174,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getResourceContent(input: GetResourceContentRequest) = connection.request("Page.getResourceContent", input, GetResourceContentResponse::class.java)
+    fun getResourceContent(input: GetResourceContentRequest) = connection.request("Page.getResourceContent", Json.encodeToJsonElement(GetResourceContentRequest.serializer(), input), GetResourceContentResponse.serializer())
 
     /**
      * Returns present frame / resource tree structure.
@@ -181,42 +183,42 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getResourceTree() = connection.request("Page.getResourceTree", null, GetResourceTreeResponse::class.java)
+    fun getResourceTree() = connection.request("Page.getResourceTree", null, GetResourceTreeResponse.serializer())
 
     /**
      * Accepts or dismisses a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload).
      *
      * @link Protocol [Page#handleJavaScriptDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-handleJavaScriptDialog) method documentation.
      */
-    fun handleJavaScriptDialog(input: HandleJavaScriptDialogRequest) = connection.request("Page.handleJavaScriptDialog", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun handleJavaScriptDialog(input: HandleJavaScriptDialogRequest) = connection.request("Page.handleJavaScriptDialog", Json.encodeToJsonElement(HandleJavaScriptDialogRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Navigates current page to the given URL.
      *
      * @link Protocol [Page#navigate](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigate) method documentation.
      */
-    fun navigate(input: NavigateRequest) = connection.request("Page.navigate", input, NavigateResponse::class.java)
+    fun navigate(input: NavigateRequest) = connection.request("Page.navigate", Json.encodeToJsonElement(NavigateRequest.serializer(), input), NavigateResponse.serializer())
 
     /**
      * Navigates current page to the given history entry.
      *
      * @link Protocol [Page#navigateToHistoryEntry](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigateToHistoryEntry) method documentation.
      */
-    fun navigateToHistoryEntry(input: NavigateToHistoryEntryRequest) = connection.request("Page.navigateToHistoryEntry", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun navigateToHistoryEntry(input: NavigateToHistoryEntryRequest) = connection.request("Page.navigateToHistoryEntry", Json.encodeToJsonElement(NavigateToHistoryEntryRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Print page as PDF.
      *
      * @link Protocol [Page#printToPDF](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-printToPDF) method documentation.
      */
-    fun printToPDF(input: PrintToPDFRequest) = connection.request("Page.printToPDF", input, PrintToPDFResponse::class.java)
+    fun printToPDF(input: PrintToPDFRequest) = connection.request("Page.printToPDF", Json.encodeToJsonElement(PrintToPDFRequest.serializer(), input), PrintToPDFResponse.serializer())
 
     /**
      * Reloads given page optionally ignoring the cache.
      *
      * @link Protocol [Page#reload](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-reload) method documentation.
      */
-    fun reload(input: ReloadRequest) = connection.request("Page.reload", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun reload(input: ReloadRequest) = connection.request("Page.reload", Json.encodeToJsonElement(ReloadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Deprecated, please use removeScriptToEvaluateOnNewDocument instead.
@@ -225,14 +227,14 @@ information in the `cookies` field.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "removeScriptToEvaluateOnLoad is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun removeScriptToEvaluateOnLoad(input: RemoveScriptToEvaluateOnLoadRequest) = connection.request("Page.removeScriptToEvaluateOnLoad", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeScriptToEvaluateOnLoad(input: RemoveScriptToEvaluateOnLoadRequest) = connection.request("Page.removeScriptToEvaluateOnLoad", Json.encodeToJsonElement(RemoveScriptToEvaluateOnLoadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Removes given script from the list.
      *
      * @link Protocol [Page#removeScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-removeScriptToEvaluateOnNewDocument) method documentation.
      */
-    fun removeScriptToEvaluateOnNewDocument(input: RemoveScriptToEvaluateOnNewDocumentRequest) = connection.request("Page.removeScriptToEvaluateOnNewDocument", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeScriptToEvaluateOnNewDocument(input: RemoveScriptToEvaluateOnNewDocumentRequest) = connection.request("Page.removeScriptToEvaluateOnNewDocument", Json.encodeToJsonElement(RemoveScriptToEvaluateOnNewDocumentRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Acknowledges that a screencast frame has been received by the frontend.
@@ -241,7 +243,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun screencastFrameAck(input: ScreencastFrameAckRequest) = connection.request("Page.screencastFrameAck", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun screencastFrameAck(input: ScreencastFrameAckRequest) = connection.request("Page.screencastFrameAck", Json.encodeToJsonElement(ScreencastFrameAckRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Searches for given string in resource content.
@@ -250,7 +252,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun searchInResource(input: SearchInResourceRequest) = connection.request("Page.searchInResource", input, SearchInResourceResponse::class.java)
+    fun searchInResource(input: SearchInResourceRequest) = connection.request("Page.searchInResource", Json.encodeToJsonElement(SearchInResourceRequest.serializer(), input), SearchInResourceResponse.serializer())
 
     /**
      * Enable Chrome's experimental ad filter on all sites.
@@ -259,7 +261,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setAdBlockingEnabled(input: SetAdBlockingEnabledRequest) = connection.request("Page.setAdBlockingEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAdBlockingEnabled(input: SetAdBlockingEnabledRequest) = connection.request("Page.setAdBlockingEnabled", Json.encodeToJsonElement(SetAdBlockingEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enable page Content Security Policy by-passing.
@@ -268,7 +270,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBypassCSP(input: SetBypassCSPRequest) = connection.request("Page.setBypassCSP", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setBypassCSP(input: SetBypassCSPRequest) = connection.request("Page.setBypassCSP", Json.encodeToJsonElement(SetBypassCSPRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Get Permissions Policy state on given frame.
@@ -277,7 +279,7 @@ information in the `cookies` field.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun getPermissionsPolicyState(input: GetPermissionsPolicyStateRequest) = connection.request("Page.getPermissionsPolicyState", input, GetPermissionsPolicyStateResponse::class.java)
+    fun getPermissionsPolicyState(input: GetPermissionsPolicyStateRequest) = connection.request("Page.getPermissionsPolicyState", Json.encodeToJsonElement(GetPermissionsPolicyStateRequest.serializer(), input), GetPermissionsPolicyStateResponse.serializer())
 
     /**
      * Overrides the values of device screen dimensions (window.screen.width, window.screen.height,
@@ -288,7 +290,7 @@ query results).
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDeviceMetricsOverride is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest) = connection.request("Page.setDeviceMetricsOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest) = connection.request("Page.setDeviceMetricsOverride", Json.encodeToJsonElement(SetDeviceMetricsOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Overrides the Device Orientation.
@@ -297,7 +299,7 @@ query results).
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDeviceOrientationOverride is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest) = connection.request("Page.setDeviceOrientationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest) = connection.request("Page.setDeviceOrientationOverride", Json.encodeToJsonElement(SetDeviceOrientationOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Set generic font families.
@@ -306,7 +308,7 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setFontFamilies(input: SetFontFamiliesRequest) = connection.request("Page.setFontFamilies", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setFontFamilies(input: SetFontFamiliesRequest) = connection.request("Page.setFontFamilies", Json.encodeToJsonElement(SetFontFamiliesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Set default font sizes.
@@ -315,14 +317,14 @@ query results).
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setFontSizes(input: SetFontSizesRequest) = connection.request("Page.setFontSizes", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setFontSizes(input: SetFontSizesRequest) = connection.request("Page.setFontSizes", Json.encodeToJsonElement(SetFontSizesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets given markup as the document's HTML.
      *
      * @link Protocol [Page#setDocumentContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDocumentContent) method documentation.
      */
-    fun setDocumentContent(input: SetDocumentContentRequest) = connection.request("Page.setDocumentContent", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDocumentContent(input: SetDocumentContentRequest) = connection.request("Page.setDocumentContent", Json.encodeToJsonElement(SetDocumentContentRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Set the behavior when downloading a file.
@@ -331,7 +333,7 @@ query results).
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDownloadBehavior is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDownloadBehavior(input: SetDownloadBehaviorRequest) = connection.request("Page.setDownloadBehavior", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setDownloadBehavior(input: SetDownloadBehaviorRequest) = connection.request("Page.setDownloadBehavior", Json.encodeToJsonElement(SetDownloadBehaviorRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position
@@ -340,7 +342,7 @@ unavailable.
      * @link Protocol [Page#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setGeolocationOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setGeolocationOverride is deprecated.")
-    fun setGeolocationOverride(input: SetGeolocationOverrideRequest) = connection.request("Page.setGeolocationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setGeolocationOverride(input: SetGeolocationOverrideRequest) = connection.request("Page.setGeolocationOverride", Json.encodeToJsonElement(SetGeolocationOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Controls whether page will emit lifecycle events.
@@ -349,7 +351,7 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setLifecycleEventsEnabled(input: SetLifecycleEventsEnabledRequest) = connection.request("Page.setLifecycleEventsEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setLifecycleEventsEnabled(input: SetLifecycleEventsEnabledRequest) = connection.request("Page.setLifecycleEventsEnabled", Json.encodeToJsonElement(SetLifecycleEventsEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Toggles mouse event-based touch event emulation.
@@ -358,7 +360,7 @@ unavailable.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setTouchEmulationEnabled is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest) = connection.request("Page.setTouchEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest) = connection.request("Page.setTouchEmulationEnabled", Json.encodeToJsonElement(SetTouchEmulationEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Starts sending each frame using the `screencastFrame` event.
@@ -367,14 +369,14 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun startScreencast(input: StartScreencastRequest) = connection.request("Page.startScreencast", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startScreencast(input: StartScreencastRequest) = connection.request("Page.startScreencast", Json.encodeToJsonElement(StartScreencastRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Force the page stop all navigations and pending resource fetches.
      *
      * @link Protocol [Page#stopLoading](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-stopLoading) method documentation.
      */
-    fun stopLoading() = connection.request("Page.stopLoading", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopLoading() = connection.request("Page.stopLoading", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Crashes renderer on the IO thread, generates minidumps.
@@ -383,7 +385,7 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun crash() = connection.request("Page.crash", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun crash() = connection.request("Page.crash", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Tries to close page, running its beforeunload hooks, if any.
@@ -392,7 +394,7 @@ unavailable.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun close() = connection.request("Page.close", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun close() = connection.request("Page.close", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Tries to update the web lifecycle state of the page.
@@ -403,7 +405,7 @@ https://github.com/WICG/web-lifecycle/
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setWebLifecycleState(input: SetWebLifecycleStateRequest) = connection.request("Page.setWebLifecycleState", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setWebLifecycleState(input: SetWebLifecycleStateRequest) = connection.request("Page.setWebLifecycleState", Json.encodeToJsonElement(SetWebLifecycleStateRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Stops sending each frame in the `screencastFrame`.
@@ -412,7 +414,7 @@ https://github.com/WICG/web-lifecycle/
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun stopScreencast() = connection.request("Page.stopScreencast", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopScreencast() = connection.request("Page.stopScreencast", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Forces compilation cache to be generated for every subresource script.
@@ -422,7 +424,7 @@ See also: `Page.produceCompilationCache`.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setProduceCompilationCache(input: SetProduceCompilationCacheRequest) = connection.request("Page.setProduceCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setProduceCompilationCache(input: SetProduceCompilationCacheRequest) = connection.request("Page.setProduceCompilationCache", Json.encodeToJsonElement(SetProduceCompilationCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests backend to produce compilation cache for the specified scripts.
@@ -439,7 +441,7 @@ See also: `Page.compilationCacheProduced`.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun produceCompilationCache(input: ProduceCompilationCacheRequest) = connection.request("Page.produceCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun produceCompilationCache(input: ProduceCompilationCacheRequest) = connection.request("Page.produceCompilationCache", Json.encodeToJsonElement(ProduceCompilationCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Seeds compilation cache for given url. Compilation cache does not survive
@@ -449,7 +451,7 @@ cross-process navigation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun addCompilationCache(input: AddCompilationCacheRequest) = connection.request("Page.addCompilationCache", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun addCompilationCache(input: AddCompilationCacheRequest) = connection.request("Page.addCompilationCache", Json.encodeToJsonElement(AddCompilationCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Clears seeded compilation cache.
@@ -458,7 +460,7 @@ cross-process navigation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun clearCompilationCache() = connection.request("Page.clearCompilationCache", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearCompilationCache() = connection.request("Page.clearCompilationCache", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Generates a report for testing.
@@ -467,7 +469,7 @@ cross-process navigation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun generateTestReport(input: GenerateTestReportRequest) = connection.request("Page.generateTestReport", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun generateTestReport(input: GenerateTestReportRequest) = connection.request("Page.generateTestReport", Json.encodeToJsonElement(GenerateTestReportRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Pauses page execution. Can be resumed using generic Runtime.runIfWaitingForDebugger.
@@ -476,7 +478,7 @@ cross-process navigation.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun waitForDebugger() = connection.request("Page.waitForDebugger", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun waitForDebugger() = connection.request("Page.waitForDebugger", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Intercept file chooser requests and transfer control to protocol clients.
@@ -487,137 +489,137 @@ Instead, a protocol event `Page.fileChooserOpened` is emitted.
      */
     
     @pl.wendigo.chrome.protocol.Experimental
-    fun setInterceptFileChooserDialog(input: SetInterceptFileChooserDialogRequest) = connection.request("Page.setInterceptFileChooserDialog", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setInterceptFileChooserDialog(input: SetInterceptFileChooserDialogRequest) = connection.request("Page.setInterceptFileChooserDialog", Json.encodeToJsonElement(SetInterceptFileChooserDialogRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all Page.domContentEventFired events.
      */
-    fun domContentEventFired(): io.reactivex.rxjava3.core.Flowable<DomContentEventFiredEvent> = connection.events("Page.domContentEventFired", DomContentEventFiredEvent::class.java)
+    fun domContentEventFired(): io.reactivex.rxjava3.core.Flowable<DomContentEventFiredEvent> = connection.events("Page.domContentEventFired", DomContentEventFiredEvent.serializer())
 
     /**
      *  Emitted only when `page.interceptFileChooser` is enabled.
      */
-    fun fileChooserOpened(): io.reactivex.rxjava3.core.Flowable<FileChooserOpenedEvent> = connection.events("Page.fileChooserOpened", FileChooserOpenedEvent::class.java)
+    fun fileChooserOpened(): io.reactivex.rxjava3.core.Flowable<FileChooserOpenedEvent> = connection.events("Page.fileChooserOpened", FileChooserOpenedEvent.serializer())
 
     /**
      *  Fired when frame has been attached to its parent.
      */
-    fun frameAttached(): io.reactivex.rxjava3.core.Flowable<FrameAttachedEvent> = connection.events("Page.frameAttached", FrameAttachedEvent::class.java)
+    fun frameAttached(): io.reactivex.rxjava3.core.Flowable<FrameAttachedEvent> = connection.events("Page.frameAttached", FrameAttachedEvent.serializer())
 
     /**
      *  Fired when frame no longer has a scheduled navigation.
      */
-    fun frameClearedScheduledNavigation(): io.reactivex.rxjava3.core.Flowable<FrameClearedScheduledNavigationEvent> = connection.events("Page.frameClearedScheduledNavigation", FrameClearedScheduledNavigationEvent::class.java)
+    fun frameClearedScheduledNavigation(): io.reactivex.rxjava3.core.Flowable<FrameClearedScheduledNavigationEvent> = connection.events("Page.frameClearedScheduledNavigation", FrameClearedScheduledNavigationEvent.serializer())
 
     /**
      *  Fired when frame has been detached from its parent.
      */
-    fun frameDetached(): io.reactivex.rxjava3.core.Flowable<FrameDetachedEvent> = connection.events("Page.frameDetached", FrameDetachedEvent::class.java)
+    fun frameDetached(): io.reactivex.rxjava3.core.Flowable<FrameDetachedEvent> = connection.events("Page.frameDetached", FrameDetachedEvent.serializer())
 
     /**
      *  Fired once navigation of the frame has completed. Frame is now associated with the new loader.
      */
-    fun frameNavigated(): io.reactivex.rxjava3.core.Flowable<FrameNavigatedEvent> = connection.events("Page.frameNavigated", FrameNavigatedEvent::class.java)
+    fun frameNavigated(): io.reactivex.rxjava3.core.Flowable<FrameNavigatedEvent> = connection.events("Page.frameNavigated", FrameNavigatedEvent.serializer())
 
     /**
      *  Fired when opening document to write to.
      */
-    fun documentOpened(): io.reactivex.rxjava3.core.Flowable<DocumentOpenedEvent> = connection.events("Page.documentOpened", DocumentOpenedEvent::class.java)
+    fun documentOpened(): io.reactivex.rxjava3.core.Flowable<DocumentOpenedEvent> = connection.events("Page.documentOpened", DocumentOpenedEvent.serializer())
 
     /**
      *  Returns observable capturing all Page.frameResized events.
      */
-    fun frameResized(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.frameResized", pl.wendigo.chrome.protocol.Event::class.java)
+    fun frameResized(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.frameResized", pl.wendigo.chrome.protocol.Event.serializer())
 
     /**
      *  Fired when a renderer-initiated navigation is requested.
 Navigation may still be cancelled after the event is issued.
      */
-    fun frameRequestedNavigation(): io.reactivex.rxjava3.core.Flowable<FrameRequestedNavigationEvent> = connection.events("Page.frameRequestedNavigation", FrameRequestedNavigationEvent::class.java)
+    fun frameRequestedNavigation(): io.reactivex.rxjava3.core.Flowable<FrameRequestedNavigationEvent> = connection.events("Page.frameRequestedNavigation", FrameRequestedNavigationEvent.serializer())
 
     /**
      *  Fired when frame schedules a potential navigation.
      */
-    fun frameScheduledNavigation(): io.reactivex.rxjava3.core.Flowable<FrameScheduledNavigationEvent> = connection.events("Page.frameScheduledNavigation", FrameScheduledNavigationEvent::class.java)
+    fun frameScheduledNavigation(): io.reactivex.rxjava3.core.Flowable<FrameScheduledNavigationEvent> = connection.events("Page.frameScheduledNavigation", FrameScheduledNavigationEvent.serializer())
 
     /**
      *  Fired when frame has started loading.
      */
-    fun frameStartedLoading(): io.reactivex.rxjava3.core.Flowable<FrameStartedLoadingEvent> = connection.events("Page.frameStartedLoading", FrameStartedLoadingEvent::class.java)
+    fun frameStartedLoading(): io.reactivex.rxjava3.core.Flowable<FrameStartedLoadingEvent> = connection.events("Page.frameStartedLoading", FrameStartedLoadingEvent.serializer())
 
     /**
      *  Fired when frame has stopped loading.
      */
-    fun frameStoppedLoading(): io.reactivex.rxjava3.core.Flowable<FrameStoppedLoadingEvent> = connection.events("Page.frameStoppedLoading", FrameStoppedLoadingEvent::class.java)
+    fun frameStoppedLoading(): io.reactivex.rxjava3.core.Flowable<FrameStoppedLoadingEvent> = connection.events("Page.frameStoppedLoading", FrameStoppedLoadingEvent.serializer())
 
     /**
      *  Fired when page is about to start a download.
      */
-    fun downloadWillBegin(): io.reactivex.rxjava3.core.Flowable<DownloadWillBeginEvent> = connection.events("Page.downloadWillBegin", DownloadWillBeginEvent::class.java)
+    fun downloadWillBegin(): io.reactivex.rxjava3.core.Flowable<DownloadWillBeginEvent> = connection.events("Page.downloadWillBegin", DownloadWillBeginEvent.serializer())
 
     /**
      *  Fired when download makes progress. Last call has |done| == true.
      */
-    fun downloadProgress(): io.reactivex.rxjava3.core.Flowable<DownloadProgressEvent> = connection.events("Page.downloadProgress", DownloadProgressEvent::class.java)
+    fun downloadProgress(): io.reactivex.rxjava3.core.Flowable<DownloadProgressEvent> = connection.events("Page.downloadProgress", DownloadProgressEvent.serializer())
 
     /**
      *  Fired when interstitial page was hidden
      */
-    fun interstitialHidden(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.interstitialHidden", pl.wendigo.chrome.protocol.Event::class.java)
+    fun interstitialHidden(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.interstitialHidden", pl.wendigo.chrome.protocol.Event.serializer())
 
     /**
      *  Fired when interstitial page was shown
      */
-    fun interstitialShown(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.interstitialShown", pl.wendigo.chrome.protocol.Event::class.java)
+    fun interstitialShown(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.interstitialShown", pl.wendigo.chrome.protocol.Event.serializer())
 
     /**
      *  Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been
 closed.
      */
-    fun javascriptDialogClosed(): io.reactivex.rxjava3.core.Flowable<JavascriptDialogClosedEvent> = connection.events("Page.javascriptDialogClosed", JavascriptDialogClosedEvent::class.java)
+    fun javascriptDialogClosed(): io.reactivex.rxjava3.core.Flowable<JavascriptDialogClosedEvent> = connection.events("Page.javascriptDialogClosed", JavascriptDialogClosedEvent.serializer())
 
     /**
      *  Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to
 open.
      */
-    fun javascriptDialogOpening(): io.reactivex.rxjava3.core.Flowable<JavascriptDialogOpeningEvent> = connection.events("Page.javascriptDialogOpening", JavascriptDialogOpeningEvent::class.java)
+    fun javascriptDialogOpening(): io.reactivex.rxjava3.core.Flowable<JavascriptDialogOpeningEvent> = connection.events("Page.javascriptDialogOpening", JavascriptDialogOpeningEvent.serializer())
 
     /**
      *  Fired for top level page lifecycle events such as navigation, load, paint, etc.
      */
-    fun lifecycleEvent(): io.reactivex.rxjava3.core.Flowable<LifecycleEventEvent> = connection.events("Page.lifecycleEvent", LifecycleEventEvent::class.java)
+    fun lifecycleEvent(): io.reactivex.rxjava3.core.Flowable<LifecycleEventEvent> = connection.events("Page.lifecycleEvent", LifecycleEventEvent.serializer())
 
     /**
      *  Returns observable capturing all Page.loadEventFired events.
      */
-    fun loadEventFired(): io.reactivex.rxjava3.core.Flowable<LoadEventFiredEvent> = connection.events("Page.loadEventFired", LoadEventFiredEvent::class.java)
+    fun loadEventFired(): io.reactivex.rxjava3.core.Flowable<LoadEventFiredEvent> = connection.events("Page.loadEventFired", LoadEventFiredEvent.serializer())
 
     /**
      *  Fired when same-document navigation happens, e.g. due to history API usage or anchor navigation.
      */
-    fun navigatedWithinDocument(): io.reactivex.rxjava3.core.Flowable<NavigatedWithinDocumentEvent> = connection.events("Page.navigatedWithinDocument", NavigatedWithinDocumentEvent::class.java)
+    fun navigatedWithinDocument(): io.reactivex.rxjava3.core.Flowable<NavigatedWithinDocumentEvent> = connection.events("Page.navigatedWithinDocument", NavigatedWithinDocumentEvent.serializer())
 
     /**
      *  Compressed image data requested by the `startScreencast`.
      */
-    fun screencastFrame(): io.reactivex.rxjava3.core.Flowable<ScreencastFrameEvent> = connection.events("Page.screencastFrame", ScreencastFrameEvent::class.java)
+    fun screencastFrame(): io.reactivex.rxjava3.core.Flowable<ScreencastFrameEvent> = connection.events("Page.screencastFrame", ScreencastFrameEvent.serializer())
 
     /**
      *  Fired when the page with currently enabled screencast was shown or hidden `.
      */
-    fun screencastVisibilityChanged(): io.reactivex.rxjava3.core.Flowable<ScreencastVisibilityChangedEvent> = connection.events("Page.screencastVisibilityChanged", ScreencastVisibilityChangedEvent::class.java)
+    fun screencastVisibilityChanged(): io.reactivex.rxjava3.core.Flowable<ScreencastVisibilityChangedEvent> = connection.events("Page.screencastVisibilityChanged", ScreencastVisibilityChangedEvent.serializer())
 
     /**
      *  Fired when a new window is going to be opened, via window.open(), link click, form submission,
 etc.
      */
-    fun windowOpen(): io.reactivex.rxjava3.core.Flowable<WindowOpenEvent> = connection.events("Page.windowOpen", WindowOpenEvent::class.java)
+    fun windowOpen(): io.reactivex.rxjava3.core.Flowable<WindowOpenEvent> = connection.events("Page.windowOpen", WindowOpenEvent.serializer())
 
     /**
      *  Issued for every compilation cache generated. Is only available
 if Page.setGenerateCompilationCache is enabled.
      */
-    fun compilationCacheProduced(): io.reactivex.rxjava3.core.Flowable<CompilationCacheProducedEvent> = connection.events("Page.compilationCacheProduced", CompilationCacheProducedEvent::class.java)
+    fun compilationCacheProduced(): io.reactivex.rxjava3.core.Flowable<CompilationCacheProducedEvent> = connection.events("Page.compilationCacheProduced", CompilationCacheProducedEvent.serializer())
 
     /**
      * Returns flowable capturing all Page domains events.
@@ -636,6 +638,7 @@ if Page.setGenerateCompilationCache is enabled.
  * @link [Page#addScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnLoad) method documentation.
  * @see [PageOperations.addScriptToEvaluateOnLoad]
  */
+@kotlinx.serialization.Serializable
 data class AddScriptToEvaluateOnLoadRequest(
     /**
      *
@@ -652,6 +655,7 @@ data class AddScriptToEvaluateOnLoadRequest(
  * @link [Page#addScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnLoad) method documentation.
  * @see [PageOperations.addScriptToEvaluateOnLoad]
  */
+@kotlinx.serialization.Serializable
 data class AddScriptToEvaluateOnLoadResponse(
     /**  
      * Identifier of the added script.  
@@ -667,6 +671,7 @@ data class AddScriptToEvaluateOnLoadResponse(
  * @link [Page#addScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnNewDocument) method documentation.
  * @see [PageOperations.addScriptToEvaluateOnNewDocument]
  */
+@kotlinx.serialization.Serializable
 data class AddScriptToEvaluateOnNewDocumentRequest(
     /**
      *
@@ -690,6 +695,7 @@ event is emitted.
  * @link [Page#addScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnNewDocument) method documentation.
  * @see [PageOperations.addScriptToEvaluateOnNewDocument]
  */
+@kotlinx.serialization.Serializable
 data class AddScriptToEvaluateOnNewDocumentResponse(
     /**  
      * Identifier of the added script.  
@@ -705,6 +711,7 @@ data class AddScriptToEvaluateOnNewDocumentResponse(
  * @link [Page#captureScreenshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot) method documentation.
  * @see [PageOperations.captureScreenshot]
  */
+@kotlinx.serialization.Serializable
 data class CaptureScreenshotRequest(
     /**
      * Image compression format (defaults to png).
@@ -741,6 +748,7 @@ data class CaptureScreenshotRequest(
  * @link [Page#captureScreenshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureScreenshot) method documentation.
  * @see [PageOperations.captureScreenshot]
  */
+@kotlinx.serialization.Serializable
 data class CaptureScreenshotResponse(
     /**  
      * Base64-encoded image data. (Encoded as a base64 string when passed over JSON)  
@@ -757,6 +765,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
  * @link [Page#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureSnapshot) method documentation.
  * @see [PageOperations.captureSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class CaptureSnapshotRequest(
     /**
      * Format (defaults to mhtml).
@@ -774,6 +783,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
  * @link [Page#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-captureSnapshot) method documentation.
  * @see [PageOperations.captureSnapshot]
  */
+@kotlinx.serialization.Serializable
 data class CaptureSnapshotResponse(
     /**  
      * Serialized page data.  
@@ -789,6 +799,7 @@ data class CaptureSnapshotResponse(
  * @link [Page#createIsolatedWorld](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-createIsolatedWorld) method documentation.
  * @see [PageOperations.createIsolatedWorld]
  */
+@kotlinx.serialization.Serializable
 data class CreateIsolatedWorldRequest(
     /**
      * Id of the frame in which the isolated world should be created.
@@ -816,6 +827,7 @@ option, use with caution.
  * @link [Page#createIsolatedWorld](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-createIsolatedWorld) method documentation.
  * @see [PageOperations.createIsolatedWorld]
  */
+@kotlinx.serialization.Serializable
 data class CreateIsolatedWorldResponse(
     /**  
      * Execution context of the isolated world.  
@@ -831,6 +843,7 @@ data class CreateIsolatedWorldResponse(
  * @link [Page#deleteCookie](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-deleteCookie) method documentation.
  * @see [PageOperations.deleteCookie]
  */
+@kotlinx.serialization.Serializable
 data class DeleteCookieRequest(
     /**
      * Name of the cookie to remove.
@@ -852,6 +865,7 @@ data class DeleteCookieRequest(
  * @link [Page#getAppManifest](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getAppManifest) method documentation.
  * @see [PageOperations.getAppManifest]
  */
+@kotlinx.serialization.Serializable
 data class GetAppManifestResponse(
     /**  
      * Manifest location.  
@@ -883,6 +897,7 @@ data class GetAppManifestResponse(
  * @link [Page#getInstallabilityErrors](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getInstallabilityErrors) method documentation.
  * @see [PageOperations.getInstallabilityErrors]
  */
+@kotlinx.serialization.Serializable
 data class GetInstallabilityErrorsResponse(
     /**  
      *  
@@ -899,6 +914,7 @@ data class GetInstallabilityErrorsResponse(
  * @link [Page#getManifestIcons](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getManifestIcons) method documentation.
  * @see [PageOperations.getManifestIcons]
  */
+@kotlinx.serialization.Serializable
 data class GetManifestIconsResponse(
     /**  
      *  
@@ -916,6 +932,7 @@ information in the `cookies` field.
  * @link [Page#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getCookies) method documentation.
  * @see [PageOperations.getCookies]
  */
+@kotlinx.serialization.Serializable
 data class GetCookiesResponse(
     /**  
      * Array of cookie objects.  
@@ -932,6 +949,7 @@ data class GetCookiesResponse(
  * @link [Page#getFrameTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getFrameTree) method documentation.
  * @see [PageOperations.getFrameTree]
  */
+@kotlinx.serialization.Serializable
 data class GetFrameTreeResponse(
     /**  
      * Present frame tree structure.  
@@ -948,6 +966,7 @@ data class GetFrameTreeResponse(
  * @link [Page#getLayoutMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getLayoutMetrics) method documentation.
  * @see [PageOperations.getLayoutMetrics]
  */
+@kotlinx.serialization.Serializable
 data class GetLayoutMetricsResponse(
     /**  
      * Metrics relating to the layout viewport.  
@@ -974,6 +993,7 @@ data class GetLayoutMetricsResponse(
  * @link [Page#getNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getNavigationHistory) method documentation.
  * @see [PageOperations.getNavigationHistory]
  */
+@kotlinx.serialization.Serializable
 data class GetNavigationHistoryResponse(
     /**  
      * Index of the current navigation history entry.  
@@ -994,6 +1014,7 @@ data class GetNavigationHistoryResponse(
  * @link [Page#getResourceContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceContent) method documentation.
  * @see [PageOperations.getResourceContent]
  */
+@kotlinx.serialization.Serializable
 data class GetResourceContentRequest(
     /**
      * Frame id to get resource for.
@@ -1015,6 +1036,7 @@ data class GetResourceContentRequest(
  * @link [Page#getResourceContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceContent) method documentation.
  * @see [PageOperations.getResourceContent]
  */
+@kotlinx.serialization.Serializable
 data class GetResourceContentResponse(
     /**  
      * Resource content.  
@@ -1036,6 +1058,7 @@ data class GetResourceContentResponse(
  * @link [Page#getResourceTree](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getResourceTree) method documentation.
  * @see [PageOperations.getResourceTree]
  */
+@kotlinx.serialization.Serializable
 data class GetResourceTreeResponse(
     /**  
      * Present frame / resource tree structure.  
@@ -1051,6 +1074,7 @@ data class GetResourceTreeResponse(
  * @link [Page#handleJavaScriptDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-handleJavaScriptDialog) method documentation.
  * @see [PageOperations.handleJavaScriptDialog]
  */
+@kotlinx.serialization.Serializable
 data class HandleJavaScriptDialogRequest(
     /**
      * Whether to accept or dismiss the dialog.
@@ -1072,6 +1096,7 @@ dialog.
  * @link [Page#navigate](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigate) method documentation.
  * @see [PageOperations.navigate]
  */
+@kotlinx.serialization.Serializable
 data class NavigateRequest(
     /**
      * URL to navigate the page to.
@@ -1108,6 +1133,7 @@ data class NavigateRequest(
  * @link [Page#navigate](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigate) method documentation.
  * @see [PageOperations.navigate]
  */
+@kotlinx.serialization.Serializable
 data class NavigateResponse(
     /**  
      * Frame id that has navigated (or failed to navigate)  
@@ -1133,6 +1159,7 @@ data class NavigateResponse(
  * @link [Page#navigateToHistoryEntry](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigateToHistoryEntry) method documentation.
  * @see [PageOperations.navigateToHistoryEntry]
  */
+@kotlinx.serialization.Serializable
 data class NavigateToHistoryEntryRequest(
     /**
      * Unique id of the entry to navigate to.
@@ -1148,6 +1175,7 @@ data class NavigateToHistoryEntryRequest(
  * @link [Page#printToPDF](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-printToPDF) method documentation.
  * @see [PageOperations.printToPDF]
  */
+@kotlinx.serialization.Serializable
 data class PrintToPDFRequest(
     /**
      * Paper orientation. Defaults to false.
@@ -1250,6 +1278,7 @@ in which case the content will be scaled to fit the paper size.
  * @link [Page#printToPDF](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-printToPDF) method documentation.
  * @see [PageOperations.printToPDF]
  */
+@kotlinx.serialization.Serializable
 data class PrintToPDFResponse(
     /**  
      * Base64-encoded pdf data. Empty if |returnAsStream| is specified. (Encoded as a base64 string when passed over JSON)  
@@ -1270,6 +1299,7 @@ data class PrintToPDFResponse(
  * @link [Page#reload](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-reload) method documentation.
  * @see [PageOperations.reload]
  */
+@kotlinx.serialization.Serializable
 data class ReloadRequest(
     /**
      * If true, browser cache is ignored (as if the user pressed Shift+refresh).
@@ -1291,6 +1321,7 @@ Argument will be ignored if reloading dataURL origin.
  * @link [Page#removeScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-removeScriptToEvaluateOnLoad) method documentation.
  * @see [PageOperations.removeScriptToEvaluateOnLoad]
  */
+@kotlinx.serialization.Serializable
 data class RemoveScriptToEvaluateOnLoadRequest(
     /**
      *
@@ -1306,6 +1337,7 @@ data class RemoveScriptToEvaluateOnLoadRequest(
  * @link [Page#removeScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-removeScriptToEvaluateOnNewDocument) method documentation.
  * @see [PageOperations.removeScriptToEvaluateOnNewDocument]
  */
+@kotlinx.serialization.Serializable
 data class RemoveScriptToEvaluateOnNewDocumentRequest(
     /**
      *
@@ -1321,6 +1353,7 @@ data class RemoveScriptToEvaluateOnNewDocumentRequest(
  * @link [Page#screencastFrameAck](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-screencastFrameAck) method documentation.
  * @see [PageOperations.screencastFrameAck]
  */
+@kotlinx.serialization.Serializable
 data class ScreencastFrameAckRequest(
     /**
      * Frame number.
@@ -1336,6 +1369,7 @@ data class ScreencastFrameAckRequest(
  * @link [Page#searchInResource](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-searchInResource) method documentation.
  * @see [PageOperations.searchInResource]
  */
+@kotlinx.serialization.Serializable
 data class SearchInResourceRequest(
     /**
      * Frame id for resource to search in.
@@ -1372,6 +1406,7 @@ data class SearchInResourceRequest(
  * @link [Page#searchInResource](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-searchInResource) method documentation.
  * @see [PageOperations.searchInResource]
  */
+@kotlinx.serialization.Serializable
 data class SearchInResourceResponse(
     /**  
      * List of search matches.  
@@ -1387,6 +1422,7 @@ data class SearchInResourceResponse(
  * @link [Page#setAdBlockingEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setAdBlockingEnabled) method documentation.
  * @see [PageOperations.setAdBlockingEnabled]
  */
+@kotlinx.serialization.Serializable
 data class SetAdBlockingEnabledRequest(
     /**
      * Whether to block ads.
@@ -1402,6 +1438,7 @@ data class SetAdBlockingEnabledRequest(
  * @link [Page#setBypassCSP](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setBypassCSP) method documentation.
  * @see [PageOperations.setBypassCSP]
  */
+@kotlinx.serialization.Serializable
 data class SetBypassCSPRequest(
     /**
      * Whether to bypass page CSP.
@@ -1417,6 +1454,7 @@ data class SetBypassCSPRequest(
  * @link [Page#getPermissionsPolicyState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getPermissionsPolicyState) method documentation.
  * @see [PageOperations.getPermissionsPolicyState]
  */
+@kotlinx.serialization.Serializable
 data class GetPermissionsPolicyStateRequest(
     /**
      *
@@ -1433,6 +1471,7 @@ data class GetPermissionsPolicyStateRequest(
  * @link [Page#getPermissionsPolicyState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getPermissionsPolicyState) method documentation.
  * @see [PageOperations.getPermissionsPolicyState]
  */
+@kotlinx.serialization.Serializable
 data class GetPermissionsPolicyStateResponse(
     /**  
      *  
@@ -1450,6 +1489,7 @@ query results).
  * @link [Page#setDeviceMetricsOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDeviceMetricsOverride) method documentation.
  * @see [PageOperations.setDeviceMetricsOverride]
  */
+@kotlinx.serialization.Serializable
 data class SetDeviceMetricsOverrideRequest(
     /**
      * Overriding width value in pixels (minimum 0, maximum 10000000). 0 disables the override.
@@ -1521,6 +1561,7 @@ autosizing and more.
  * @link [Page#setDeviceOrientationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDeviceOrientationOverride) method documentation.
  * @see [PageOperations.setDeviceOrientationOverride]
  */
+@kotlinx.serialization.Serializable
 data class SetDeviceOrientationOverrideRequest(
     /**
      * Mock alpha
@@ -1546,6 +1587,7 @@ data class SetDeviceOrientationOverrideRequest(
  * @link [Page#setFontFamilies](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setFontFamilies) method documentation.
  * @see [PageOperations.setFontFamilies]
  */
+@kotlinx.serialization.Serializable
 data class SetFontFamiliesRequest(
     /**
      * Specifies font families to set. If a font family is not specified, it won't be changed.
@@ -1561,6 +1603,7 @@ data class SetFontFamiliesRequest(
  * @link [Page#setFontSizes](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setFontSizes) method documentation.
  * @see [PageOperations.setFontSizes]
  */
+@kotlinx.serialization.Serializable
 data class SetFontSizesRequest(
     /**
      * Specifies font sizes to set. If a font size is not specified, it won't be changed.
@@ -1576,6 +1619,7 @@ data class SetFontSizesRequest(
  * @link [Page#setDocumentContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDocumentContent) method documentation.
  * @see [PageOperations.setDocumentContent]
  */
+@kotlinx.serialization.Serializable
 data class SetDocumentContentRequest(
     /**
      * Frame id to set HTML for.
@@ -1596,6 +1640,7 @@ data class SetDocumentContentRequest(
  * @link [Page#setDownloadBehavior](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDownloadBehavior) method documentation.
  * @see [PageOperations.setDownloadBehavior]
  */
+@kotlinx.serialization.Serializable
 data class SetDownloadBehaviorRequest(
     /**
      * Whether to allow all or deny all download requests, or use default Chrome behavior if
@@ -1618,6 +1663,7 @@ unavailable.
  * @link [Page#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setGeolocationOverride) method documentation.
  * @see [PageOperations.setGeolocationOverride]
  */
+@kotlinx.serialization.Serializable
 data class SetGeolocationOverrideRequest(
     /**
      * Mock latitude
@@ -1643,6 +1689,7 @@ data class SetGeolocationOverrideRequest(
  * @link [Page#setLifecycleEventsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setLifecycleEventsEnabled) method documentation.
  * @see [PageOperations.setLifecycleEventsEnabled]
  */
+@kotlinx.serialization.Serializable
 data class SetLifecycleEventsEnabledRequest(
     /**
      * If true, starts emitting lifecycle events.
@@ -1658,6 +1705,7 @@ data class SetLifecycleEventsEnabledRequest(
  * @link [Page#setTouchEmulationEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setTouchEmulationEnabled) method documentation.
  * @see [PageOperations.setTouchEmulationEnabled]
  */
+@kotlinx.serialization.Serializable
 data class SetTouchEmulationEnabledRequest(
     /**
      * Whether the touch event emulation should be enabled.
@@ -1678,6 +1726,7 @@ data class SetTouchEmulationEnabledRequest(
  * @link [Page#startScreencast](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-startScreencast) method documentation.
  * @see [PageOperations.startScreencast]
  */
+@kotlinx.serialization.Serializable
 data class StartScreencastRequest(
     /**
      * Image compression format.
@@ -1715,6 +1764,7 @@ https://github.com/WICG/web-lifecycle/
  * @link [Page#setWebLifecycleState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setWebLifecycleState) method documentation.
  * @see [PageOperations.setWebLifecycleState]
  */
+@kotlinx.serialization.Serializable
 data class SetWebLifecycleStateRequest(
     /**
      * Target lifecycle state
@@ -1731,6 +1781,7 @@ See also: `Page.produceCompilationCache`.
  * @link [Page#setProduceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setProduceCompilationCache) method documentation.
  * @see [PageOperations.setProduceCompilationCache]
  */
+@kotlinx.serialization.Serializable
 data class SetProduceCompilationCacheRequest(
     /**
      *
@@ -1754,6 +1805,7 @@ See also: `Page.compilationCacheProduced`.
  * @link [Page#produceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-produceCompilationCache) method documentation.
  * @see [PageOperations.produceCompilationCache]
  */
+@kotlinx.serialization.Serializable
 data class ProduceCompilationCacheRequest(
     /**
      *
@@ -1770,6 +1822,7 @@ cross-process navigation.
  * @link [Page#addCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addCompilationCache) method documentation.
  * @see [PageOperations.addCompilationCache]
  */
+@kotlinx.serialization.Serializable
 data class AddCompilationCacheRequest(
     /**
      *
@@ -1790,6 +1843,7 @@ data class AddCompilationCacheRequest(
  * @link [Page#generateTestReport](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-generateTestReport) method documentation.
  * @see [PageOperations.generateTestReport]
  */
+@kotlinx.serialization.Serializable
 data class GenerateTestReportRequest(
     /**
      * Message to be displayed in the report.
@@ -1812,6 +1866,7 @@ Instead, a protocol event `Page.fileChooserOpened` is emitted.
  * @link [Page#setInterceptFileChooserDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setInterceptFileChooserDialog) method documentation.
  * @see [PageOperations.setInterceptFileChooserDialog]
  */
+@kotlinx.serialization.Serializable
 data class SetInterceptFileChooserDialogRequest(
     /**
      *
@@ -1825,19 +1880,21 @@ data class SetInterceptFileChooserDialogRequest(
  *
  * @link [Page#domContentEventFired](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-domContentEventFired) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DomContentEventFiredEvent(
     /**  
      *  
      */  
     val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "domContentEventFired")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "domContentEventFired")
 
 /**
  * Emitted only when `page.interceptFileChooser` is enabled.
  *
  * @link [Page#fileChooserOpened](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-fileChooserOpened) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class FileChooserOpenedEvent(
     /**  
      * Id of the frame containing input node.  
@@ -1854,13 +1911,14 @@ data class FileChooserOpenedEvent(
      */  
     val mode: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "fileChooserOpened")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "fileChooserOpened")
 
 /**
  * Fired when frame has been attached to its parent.
  *
  * @link [Page#frameAttached](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameAttached) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class FrameAttachedEvent(
     /**  
      * Id of the frame that has been attached.  
@@ -1877,26 +1935,28 @@ data class FrameAttachedEvent(
      */  
     val stack: pl.wendigo.chrome.api.runtime.StackTrace? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameAttached")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameAttached")
 
 /**
  * Fired when frame no longer has a scheduled navigation.
  *
  * @link [Page#frameClearedScheduledNavigation](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameClearedScheduledNavigation) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class FrameClearedScheduledNavigationEvent(
     /**  
      * Id of the frame that has cleared its scheduled navigation.  
      */  
     val frameId: FrameId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameClearedScheduledNavigation")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameClearedScheduledNavigation")
 
 /**
  * Fired when frame has been detached from its parent.
  *
  * @link [Page#frameDetached](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameDetached) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class FrameDetachedEvent(
     /**  
      * Id of the frame that has been detached.  
@@ -1908,33 +1968,35 @@ data class FrameDetachedEvent(
      */  
     val reason: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameDetached")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameDetached")
 
 /**
  * Fired once navigation of the frame has completed. Frame is now associated with the new loader.
  *
  * @link [Page#frameNavigated](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameNavigated) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class FrameNavigatedEvent(
     /**  
      * Frame object.  
      */  
     val frame: Frame
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameNavigated")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameNavigated")
 
 /**
  * Fired when opening document to write to.
  *
  * @link [Page#documentOpened](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-documentOpened) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DocumentOpenedEvent(
     /**  
      * Frame object.  
      */  
     val frame: Frame
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "documentOpened")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "documentOpened")
 
 /**
  * Fired when a renderer-initiated navigation is requested.
@@ -1942,6 +2004,7 @@ Navigation may still be cancelled after the event is issued.
  *
  * @link [Page#frameRequestedNavigation](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameRequestedNavigation) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class FrameRequestedNavigationEvent(
     /**  
      * Id of the frame that is being navigated.  
@@ -1963,13 +2026,14 @@ data class FrameRequestedNavigationEvent(
      */  
     val disposition: ClientNavigationDisposition
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameRequestedNavigation")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameRequestedNavigation")
 
 /**
  * Fired when frame schedules a potential navigation.
  *
  * @link [Page#frameScheduledNavigation](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameScheduledNavigation) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class FrameScheduledNavigationEvent(
     /**  
      * Id of the frame that has scheduled a navigation.  
@@ -1992,39 +2056,42 @@ data class FrameScheduledNavigationEvent(
      */  
     val url: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameScheduledNavigation")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameScheduledNavigation")
 
 /**
  * Fired when frame has started loading.
  *
  * @link [Page#frameStartedLoading](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameStartedLoading) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class FrameStartedLoadingEvent(
     /**  
      * Id of the frame that has started loading.  
      */  
     val frameId: FrameId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameStartedLoading")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameStartedLoading")
 
 /**
  * Fired when frame has stopped loading.
  *
  * @link [Page#frameStoppedLoading](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-frameStoppedLoading) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class FrameStoppedLoadingEvent(
     /**  
      * Id of the frame that has stopped loading.  
      */  
     val frameId: FrameId
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "frameStoppedLoading")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "frameStoppedLoading")
 
 /**
  * Fired when page is about to start a download.
  *
  * @link [Page#downloadWillBegin](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-downloadWillBegin) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DownloadWillBeginEvent(
     /**  
      * Id of the frame that caused download to begin.  
@@ -2046,13 +2113,14 @@ data class DownloadWillBeginEvent(
      */  
     val suggestedFilename: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "downloadWillBegin")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "downloadWillBegin")
 
 /**
  * Fired when download makes progress. Last call has |done| == true.
  *
  * @link [Page#downloadProgress](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-downloadProgress) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DownloadProgressEvent(
     /**  
      * Global unique identifier of the download.  
@@ -2074,7 +2142,7 @@ data class DownloadProgressEvent(
      */  
     val state: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "downloadProgress")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "downloadProgress")
 
 /**
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been
@@ -2082,6 +2150,7 @@ closed.
  *
  * @link [Page#javascriptDialogClosed](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-javascriptDialogClosed) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class JavascriptDialogClosedEvent(
     /**  
      * Whether dialog was confirmed.  
@@ -2093,7 +2162,7 @@ data class JavascriptDialogClosedEvent(
      */  
     val userInput: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "javascriptDialogClosed")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "javascriptDialogClosed")
 
 /**
  * Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to
@@ -2101,6 +2170,7 @@ open.
  *
  * @link [Page#javascriptDialogOpening](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-javascriptDialogOpening) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class JavascriptDialogOpeningEvent(
     /**  
      * Frame url.  
@@ -2129,13 +2199,14 @@ data class JavascriptDialogOpeningEvent(
      */  
     val defaultPrompt: String? = null
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "javascriptDialogOpening")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "javascriptDialogOpening")
 
 /**
  * Fired for top level page lifecycle events such as navigation, load, paint, etc.
  *
  * @link [Page#lifecycleEvent](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-lifecycleEvent) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class LifecycleEventEvent(
     /**  
      * Id of the frame.  
@@ -2157,26 +2228,28 @@ data class LifecycleEventEvent(
      */  
     val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "lifecycleEvent")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "lifecycleEvent")
 
 /**
  *
  *
  * @link [Page#loadEventFired](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-loadEventFired) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class LoadEventFiredEvent(
     /**  
      *  
      */  
     val timestamp: pl.wendigo.chrome.api.network.MonotonicTime
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "loadEventFired")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "loadEventFired")
 
 /**
  * Fired when same-document navigation happens, e.g. due to history API usage or anchor navigation.
  *
  * @link [Page#navigatedWithinDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-navigatedWithinDocument) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class NavigatedWithinDocumentEvent(
     /**  
      * Id of the frame.  
@@ -2188,13 +2261,14 @@ data class NavigatedWithinDocumentEvent(
      */  
     val url: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "navigatedWithinDocument")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "navigatedWithinDocument")
 
 /**
  * Compressed image data requested by the `startScreencast`.
  *
  * @link [Page#screencastFrame](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-screencastFrame) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ScreencastFrameEvent(
     /**  
      * Base64-encoded compressed image. (Encoded as a base64 string when passed over JSON)  
@@ -2211,20 +2285,21 @@ data class ScreencastFrameEvent(
      */  
     val sessionId: Int
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "screencastFrame")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "screencastFrame")
 
 /**
  * Fired when the page with currently enabled screencast was shown or hidden `.
  *
  * @link [Page#screencastVisibilityChanged](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-screencastVisibilityChanged) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class ScreencastVisibilityChangedEvent(
     /**  
      * True if the page is visible.  
      */  
     val visible: Boolean
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "screencastVisibilityChanged")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "screencastVisibilityChanged")
 
 /**
  * Fired when a new window is going to be opened, via window.open(), link click, form submission,
@@ -2232,6 +2307,7 @@ etc.
  *
  * @link [Page#windowOpen](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-windowOpen) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class WindowOpenEvent(
     /**  
      * The URL for the new window.  
@@ -2253,7 +2329,7 @@ data class WindowOpenEvent(
      */  
     val userGesture: Boolean
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "windowOpen")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "windowOpen")
 
 /**
  * Issued for every compilation cache generated. Is only available
@@ -2261,6 +2337,7 @@ if Page.setGenerateCompilationCache is enabled.
  *
  * @link [Page#compilationCacheProduced](https://chromedevtools.github.io/devtools-protocol/tot/Page#event-compilationCacheProduced) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class CompilationCacheProducedEvent(
     /**  
      *  
@@ -2272,4 +2349,4 @@ data class CompilationCacheProducedEvent(
      */  
     val data: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Page", name = "compilationCacheProduced")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Page", domainEventName = "compilationCacheProduced")

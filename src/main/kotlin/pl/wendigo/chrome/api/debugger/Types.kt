@@ -22,6 +22,7 @@ typealias CallFrameId = String
  * @link [Debugger#Location](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-Location) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Location(
     /**  
      * Script identifier as reported in the `Debugger.scriptParsed`.  
@@ -45,6 +46,7 @@ data class Location(
  * @link [Debugger#ScriptPosition](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-ScriptPosition) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class ScriptPosition(
     /**  
      *  
@@ -63,6 +65,7 @@ data class ScriptPosition(
  * @link [Debugger#LocationRange](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-LocationRange) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LocationRange(
     /**  
      *  
@@ -86,6 +89,7 @@ data class LocationRange(
  * @link [Debugger#CallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-CallFrame) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class CallFrame(
     /**  
      * Call frame identifier. This identifier is only valid while the virtual machine is paused.  
@@ -120,7 +124,7 @@ data class CallFrame(
     /**  
      * `this` object for this call frame.  
      */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("this") val _this: pl.wendigo.chrome.api.runtime.RemoteObject,
+    @kotlinx.serialization.SerialName("this") val _this: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      * The value being returned, if the function is at return point.  
@@ -134,6 +138,7 @@ data class CallFrame(
  * @link [Debugger#Scope](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-Scope) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Scope(
     /**  
      * Scope type.  
@@ -145,7 +150,7 @@ data class Scope(
      object; for the rest of the scopes, it is artificial transient object enumerating scope  
      variables as its properties.  
      */  
-    @get:com.fasterxml.jackson.annotation.JsonProperty("object") val _object: pl.wendigo.chrome.api.runtime.RemoteObject,
+    @kotlinx.serialization.SerialName("object") val _object: pl.wendigo.chrome.api.runtime.RemoteObject,
 
     /**  
      *  
@@ -169,6 +174,7 @@ data class Scope(
  * @link [Debugger#SearchMatch](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-SearchMatch) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SearchMatch(
     /**  
      * Line number in resource content.  
@@ -187,6 +193,7 @@ data class SearchMatch(
  * @link [Debugger#BreakLocation](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-BreakLocation) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class BreakLocation(
     /**  
      * Script identifier as reported in the `Debugger.scriptParsed`.  
@@ -214,11 +221,12 @@ data class BreakLocation(
  *
  * @link [Debugger#ScriptLanguage](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-ScriptLanguage) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ScriptLanguage {
-    @com.fasterxml.jackson.annotation.JsonProperty("JavaScript")
+    @kotlinx.serialization.SerialName("JavaScript")
     JAVASCRIPT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("WebAssembly")
+    @kotlinx.serialization.SerialName("WebAssembly")
     WEBASSEMBLY;
 }
 
@@ -228,6 +236,7 @@ enum class ScriptLanguage {
  * @link [Debugger#DebugSymbols](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#type-DebugSymbols) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class DebugSymbols(
     /**  
      * Type of the debug symbols.  

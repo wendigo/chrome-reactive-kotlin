@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.audits
 
+import kotlinx.serialization.json.Json
+
 /**
  * Audits domain allows investigation of page violations and possible improvements.
  *
@@ -14,14 +16,14 @@ applies to images.
      *
      * @link Protocol [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
      */
-    fun getEncodedResponse(input: GetEncodedResponseRequest) = connection.request("Audits.getEncodedResponse", input, GetEncodedResponseResponse::class.java)
+    fun getEncodedResponse(input: GetEncodedResponseRequest) = connection.request("Audits.getEncodedResponse", Json.encodeToJsonElement(GetEncodedResponseRequest.serializer(), input), GetEncodedResponseResponse.serializer())
 
     /**
      * Disables issues domain, prevents further issues from being reported to the client.
      *
      * @link Protocol [Audits#disable](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-disable) method documentation.
      */
-    fun disable() = connection.request("Audits.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Audits.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables issues domain, sends the issues collected so far to the client by means of the
@@ -29,7 +31,7 @@ applies to images.
      *
      * @link Protocol [Audits#enable](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-enable) method documentation.
      */
-    fun enable() = connection.request("Audits.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Audits.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Runs the contrast check for the target page. Found issues are reported
@@ -37,12 +39,12 @@ using Audits.issueAdded event.
      *
      * @link Protocol [Audits#checkContrast](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-checkContrast) method documentation.
      */
-    fun checkContrast(input: CheckContrastRequest) = connection.request("Audits.checkContrast", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun checkContrast(input: CheckContrastRequest) = connection.request("Audits.checkContrast", Json.encodeToJsonElement(CheckContrastRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all Audits.issueAdded events.
      */
-    fun issueAdded(): io.reactivex.rxjava3.core.Flowable<IssueAddedEvent> = connection.events("Audits.issueAdded", IssueAddedEvent::class.java)
+    fun issueAdded(): io.reactivex.rxjava3.core.Flowable<IssueAddedEvent> = connection.events("Audits.issueAdded", IssueAddedEvent.serializer())
 
     /**
      * Returns flowable capturing all Audits domains events.
@@ -62,6 +64,7 @@ applies to images.
  * @link [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
  * @see [AuditsOperations.getEncodedResponse]
  */
+@kotlinx.serialization.Serializable
 data class GetEncodedResponseRequest(
     /**
      * Identifier of the network request to get content for.
@@ -94,6 +97,7 @@ applies to images.
  * @link [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
  * @see [AuditsOperations.getEncodedResponse]
  */
+@kotlinx.serialization.Serializable
 data class GetEncodedResponseResponse(
     /**  
      * The encoded body as a base64 string. Omitted if sizeOnly is true. (Encoded as a base64 string when passed over JSON)  
@@ -120,6 +124,7 @@ using Audits.issueAdded event.
  * @link [Audits#checkContrast](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-checkContrast) method documentation.
  * @see [AuditsOperations.checkContrast]
  */
+@kotlinx.serialization.Serializable
 data class CheckContrastRequest(
     /**
      * Whether to report WCAG AAA level issues. Default is false.
@@ -133,10 +138,11 @@ data class CheckContrastRequest(
  *
  * @link [Audits#issueAdded](https://chromedevtools.github.io/devtools-protocol/tot/Audits#event-issueAdded) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class IssueAddedEvent(
     /**  
      *  
      */  
     val issue: InspectorIssue
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Audits", name = "issueAdded")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Audits", domainEventName = "issueAdded")

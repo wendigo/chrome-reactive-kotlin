@@ -13,29 +13,29 @@ class InspectorOperations internal constructor(private val connection: pl.wendig
      *
      * @link Protocol [Inspector#disable](https://chromedevtools.github.io/devtools-protocol/tot/Inspector#method-disable) method documentation.
      */
-    fun disable() = connection.request("Inspector.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Inspector.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables inspector domain notifications.
      *
      * @link Protocol [Inspector#enable](https://chromedevtools.github.io/devtools-protocol/tot/Inspector#method-enable) method documentation.
      */
-    fun enable() = connection.request("Inspector.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Inspector.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Fired when remote debugging connection is about to be terminated. Contains detach reason.
      */
-    fun detached(): io.reactivex.rxjava3.core.Flowable<DetachedEvent> = connection.events("Inspector.detached", DetachedEvent::class.java)
+    fun detached(): io.reactivex.rxjava3.core.Flowable<DetachedEvent> = connection.events("Inspector.detached", DetachedEvent.serializer())
 
     /**
      *  Fired when debugging target has crashed
      */
-    fun targetCrashed(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Inspector.targetCrashed", pl.wendigo.chrome.protocol.Event::class.java)
+    fun targetCrashed(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Inspector.targetCrashed", pl.wendigo.chrome.protocol.Event.serializer())
 
     /**
      *  Fired when debugging target has reloaded after crash
      */
-    fun targetReloadedAfterCrash(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Inspector.targetReloadedAfterCrash", pl.wendigo.chrome.protocol.Event::class.java)
+    fun targetReloadedAfterCrash(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Inspector.targetReloadedAfterCrash", pl.wendigo.chrome.protocol.Event.serializer())
 
     /**
      * Returns flowable capturing all Inspector domains events.
@@ -52,10 +52,11 @@ class InspectorOperations internal constructor(private val connection: pl.wendig
  *
  * @link [Inspector#detached](https://chromedevtools.github.io/devtools-protocol/tot/Inspector#event-detached) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class DetachedEvent(
     /**  
      * The reason why connection has been terminated.  
      */  
     val reason: String
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Inspector", name = "detached")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Inspector", domainEventName = "detached")

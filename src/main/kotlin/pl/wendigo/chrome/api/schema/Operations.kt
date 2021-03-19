@@ -12,7 +12,7 @@ class SchemaOperations internal constructor(private val connection: pl.wendigo.c
      *
      * @link Protocol [Schema#getDomains](https://chromedevtools.github.io/devtools-protocol/tot/Schema#method-getDomains) method documentation.
      */
-    fun getDomains() = connection.request("Schema.getDomains", null, GetDomainsResponse::class.java)
+    fun getDomains() = connection.request("Schema.getDomains", null, GetDomainsResponse.serializer())
 
     /**
      * Returns flowable capturing all Schema domains events.
@@ -32,6 +32,7 @@ class SchemaOperations internal constructor(private val connection: pl.wendigo.c
  * @link [Schema#getDomains](https://chromedevtools.github.io/devtools-protocol/tot/Schema#method-getDomains) method documentation.
  * @see [SchemaOperations.getDomains]
  */
+@kotlinx.serialization.Serializable
 data class GetDomainsResponse(
     /**  
      * List of supported domains.  

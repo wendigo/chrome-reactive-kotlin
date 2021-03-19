@@ -14,6 +14,7 @@ typealias DatabaseId = String
  * @link [Database#Database](https://chromedevtools.github.io/devtools-protocol/tot/Database#type-Database) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Database(
     /**  
      * Database ID.  
@@ -42,6 +43,7 @@ data class Database(
  * @link [Database#Error](https://chromedevtools.github.io/devtools-protocol/tot/Database#type-Error) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Error(
     /**  
      * Error message.  

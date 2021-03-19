@@ -6,6 +6,7 @@ package pl.wendigo.chrome.api.overlay
  * @link [Overlay#SourceOrderConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-SourceOrderConfig) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class SourceOrderConfig(
     /**  
      * the color to outline the givent element in.  
@@ -24,6 +25,7 @@ data class SourceOrderConfig(
  * @link [Overlay#GridHighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-GridHighlightConfig) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class GridHighlightConfig(
     /**  
      * Whether the extension lines from grid cells to the rulers should be shown (default: false).  
@@ -132,6 +134,7 @@ data class GridHighlightConfig(
  * @link [Overlay#FlexContainerHighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-FlexContainerHighlightConfig) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FlexContainerHighlightConfig(
     /**  
      * The style of the container border  
@@ -180,6 +183,7 @@ data class FlexContainerHighlightConfig(
  * @link [Overlay#FlexItemHighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-FlexItemHighlightConfig) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FlexItemHighlightConfig(
     /**  
      * Style of the box representing the item's base size  
@@ -203,6 +207,7 @@ data class FlexItemHighlightConfig(
  * @link [Overlay#LineStyle](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-LineStyle) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class LineStyle(
     /**  
      * The color of the line (default: transparent)  
@@ -221,6 +226,7 @@ data class LineStyle(
  * @link [Overlay#BoxStyle](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-BoxStyle) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class BoxStyle(
     /**  
      * The background color for the box (default: transparent)  
@@ -238,14 +244,15 @@ data class BoxStyle(
  *
  * @link [Overlay#ContrastAlgorithm](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-ContrastAlgorithm) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ContrastAlgorithm {
-    @com.fasterxml.jackson.annotation.JsonProperty("aa")
+    @kotlinx.serialization.SerialName("aa")
     AA,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("aaa")
+    @kotlinx.serialization.SerialName("aaa")
     AAA,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("apca")
+    @kotlinx.serialization.SerialName("apca")
     APCA;
 }
 
@@ -255,6 +262,7 @@ enum class ContrastAlgorithm {
  * @link [Overlay#HighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-HighlightConfig) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class HighlightConfig(
     /**  
      * Whether the node info tooltip should be shown (default: false).  
@@ -352,14 +360,15 @@ data class HighlightConfig(
  *
  * @link [Overlay#ColorFormat](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-ColorFormat) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class ColorFormat {
-    @com.fasterxml.jackson.annotation.JsonProperty("rgb")
+    @kotlinx.serialization.SerialName("rgb")
     RGB,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("hsl")
+    @kotlinx.serialization.SerialName("hsl")
     HSL,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("hex")
+    @kotlinx.serialization.SerialName("hex")
     HEX;
 }
 
@@ -369,6 +378,7 @@ enum class ColorFormat {
  * @link [Overlay#GridNodeHighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-GridNodeHighlightConfig) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class GridNodeHighlightConfig(
     /**  
      * A descriptor for the highlight appearance.  
@@ -387,6 +397,7 @@ data class GridNodeHighlightConfig(
  * @link [Overlay#FlexNodeHighlightConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-FlexNodeHighlightConfig) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class FlexNodeHighlightConfig(
     /**  
      * A descriptor for the highlight appearance of flex containers.  
@@ -405,6 +416,7 @@ data class FlexNodeHighlightConfig(
  * @link [Overlay#HingeConfig](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-HingeConfig) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class HingeConfig(
     /**  
      * A rectangle represent hinge  
@@ -427,19 +439,20 @@ data class HingeConfig(
  *
  * @link [Overlay#InspectMode](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#type-InspectMode) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class InspectMode {
-    @com.fasterxml.jackson.annotation.JsonProperty("searchForNode")
+    @kotlinx.serialization.SerialName("searchForNode")
     SEARCHFORNODE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("searchForUAShadowDOM")
+    @kotlinx.serialization.SerialName("searchForUAShadowDOM")
     SEARCHFORUASHADOWDOM,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("captureAreaScreenshot")
+    @kotlinx.serialization.SerialName("captureAreaScreenshot")
     CAPTUREAREASCREENSHOT,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("showDistances")
+    @kotlinx.serialization.SerialName("showDistances")
     SHOWDISTANCES,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("none")
+    @kotlinx.serialization.SerialName("none")
     NONE;
 }

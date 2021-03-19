@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.log
 
+import kotlinx.serialization.json.Json
+
 /**
  * Provides access to log entries.
  *
@@ -11,14 +13,14 @@ class LogOperations internal constructor(private val connection: pl.wendigo.chro
      *
      * @link Protocol [Log#clear](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-clear) method documentation.
      */
-    fun clear() = connection.request("Log.clear", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clear() = connection.request("Log.clear", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables log domain, prevents further log entries from being reported to the client.
      *
      * @link Protocol [Log#disable](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-disable) method documentation.
      */
-    fun disable() = connection.request("Log.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("Log.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables log domain, sends the entries collected so far to the client by means of the
@@ -26,26 +28,26 @@ class LogOperations internal constructor(private val connection: pl.wendigo.chro
      *
      * @link Protocol [Log#enable](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-enable) method documentation.
      */
-    fun enable() = connection.request("Log.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("Log.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * start violation reporting.
      *
      * @link Protocol [Log#startViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-startViolationsReport) method documentation.
      */
-    fun startViolationsReport(input: StartViolationsReportRequest) = connection.request("Log.startViolationsReport", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun startViolationsReport(input: StartViolationsReportRequest) = connection.request("Log.startViolationsReport", Json.encodeToJsonElement(StartViolationsReportRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Stop violation reporting.
      *
      * @link Protocol [Log#stopViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-stopViolationsReport) method documentation.
      */
-    fun stopViolationsReport() = connection.request("Log.stopViolationsReport", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun stopViolationsReport() = connection.request("Log.stopViolationsReport", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Issued when new message was logged.
      */
-    fun entryAdded(): io.reactivex.rxjava3.core.Flowable<EntryAddedEvent> = connection.events("Log.entryAdded", EntryAddedEvent::class.java)
+    fun entryAdded(): io.reactivex.rxjava3.core.Flowable<EntryAddedEvent> = connection.events("Log.entryAdded", EntryAddedEvent.serializer())
 
     /**
      * Returns flowable capturing all Log domains events.
@@ -64,6 +66,7 @@ class LogOperations internal constructor(private val connection: pl.wendigo.chro
  * @link [Log#startViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-startViolationsReport) method documentation.
  * @see [LogOperations.startViolationsReport]
  */
+@kotlinx.serialization.Serializable
 data class StartViolationsReportRequest(
     /**
      * Configuration for violations.
@@ -77,10 +80,11 @@ data class StartViolationsReportRequest(
  *
  * @link [Log#entryAdded](https://chromedevtools.github.io/devtools-protocol/tot/Log#event-entryAdded) event documentation.
  */
+@kotlinx.serialization.Serializable
 data class EntryAddedEvent(
     /**  
      * The entry.  
      */  
     val entry: LogEntry
 
-) : pl.wendigo.chrome.protocol.Event(domain = "Log", name = "entryAdded")
+) : pl.wendigo.chrome.protocol.Event(domainName = "Log", domainEventName = "entryAdded")

@@ -13,11 +13,12 @@ typealias AuthenticatorId = String
  *
  * @link [WebAuthn#AuthenticatorProtocol](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-AuthenticatorProtocol) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class AuthenticatorProtocol {
-    @com.fasterxml.jackson.annotation.JsonProperty("u2f")
+    @kotlinx.serialization.SerialName("u2f")
     U2F,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ctap2")
+    @kotlinx.serialization.SerialName("ctap2")
     CTAP2;
 }
 
@@ -26,11 +27,12 @@ enum class AuthenticatorProtocol {
  *
  * @link [WebAuthn#Ctap2Version](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-Ctap2Version) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class Ctap2Version {
-    @com.fasterxml.jackson.annotation.JsonProperty("ctap2_0")
+    @kotlinx.serialization.SerialName("ctap2_0")
     CTAP2_0,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ctap2_1")
+    @kotlinx.serialization.SerialName("ctap2_1")
     CTAP2_1;
 }
 
@@ -39,20 +41,21 @@ enum class Ctap2Version {
  *
  * @link [WebAuthn#AuthenticatorTransport](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-AuthenticatorTransport) type documentation.
  */
+@kotlinx.serialization.Serializable
 enum class AuthenticatorTransport {
-    @com.fasterxml.jackson.annotation.JsonProperty("usb")
+    @kotlinx.serialization.SerialName("usb")
     USB,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("nfc")
+    @kotlinx.serialization.SerialName("nfc")
     NFC,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("ble")
+    @kotlinx.serialization.SerialName("ble")
     BLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("cable")
+    @kotlinx.serialization.SerialName("cable")
     CABLE,
 
-    @com.fasterxml.jackson.annotation.JsonProperty("internal")
+    @kotlinx.serialization.SerialName("internal")
     INTERNAL;
 }
 
@@ -62,6 +65,7 @@ enum class AuthenticatorTransport {
  * @link [WebAuthn#VirtualAuthenticatorOptions](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-VirtualAuthenticatorOptions) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class VirtualAuthenticatorOptions(
     /**  
      *  
@@ -114,6 +118,7 @@ data class VirtualAuthenticatorOptions(
  * @link [WebAuthn#Credential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#type-Credential) type documentation.
  */
 
+@kotlinx.serialization.Serializable
 data class Credential(
     /**  
      *  

@@ -21,7 +21,7 @@ open class DevToolsProtocol internal constructor(internal val connection: Chrome
      */
     init {
         {{#each Protocol.EventMappings}}
-            connection.addEventMapping("{{EventName}}", {{Class}}::class.java)
+            connection.registerEventSerializer("{{EventName}}", {{Class}}.serializer())
         {{/each}}
     }
 

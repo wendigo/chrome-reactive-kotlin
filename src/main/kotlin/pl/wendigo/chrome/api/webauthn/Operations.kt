@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.api.webauthn
 
+import kotlinx.serialization.json.Json
+
 /**
  * This domain allows configuring virtual authenticators to test the WebAuthn
 API.
@@ -15,35 +17,35 @@ retrieval with a virtual authenticator.
      *
      * @link Protocol [WebAuthn#enable](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-enable) method documentation.
      */
-    fun enable() = connection.request("WebAuthn.enable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun enable() = connection.request("WebAuthn.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disable the WebAuthn domain.
      *
      * @link Protocol [WebAuthn#disable](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-disable) method documentation.
      */
-    fun disable() = connection.request("WebAuthn.disable", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun disable() = connection.request("WebAuthn.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Creates and adds a virtual authenticator.
      *
      * @link Protocol [WebAuthn#addVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addVirtualAuthenticator) method documentation.
      */
-    fun addVirtualAuthenticator(input: AddVirtualAuthenticatorRequest) = connection.request("WebAuthn.addVirtualAuthenticator", input, AddVirtualAuthenticatorResponse::class.java)
+    fun addVirtualAuthenticator(input: AddVirtualAuthenticatorRequest) = connection.request("WebAuthn.addVirtualAuthenticator", Json.encodeToJsonElement(AddVirtualAuthenticatorRequest.serializer(), input), AddVirtualAuthenticatorResponse.serializer())
 
     /**
      * Removes the given authenticator.
      *
      * @link Protocol [WebAuthn#removeVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeVirtualAuthenticator) method documentation.
      */
-    fun removeVirtualAuthenticator(input: RemoveVirtualAuthenticatorRequest) = connection.request("WebAuthn.removeVirtualAuthenticator", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeVirtualAuthenticator(input: RemoveVirtualAuthenticatorRequest) = connection.request("WebAuthn.removeVirtualAuthenticator", Json.encodeToJsonElement(RemoveVirtualAuthenticatorRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Adds the credential to the specified authenticator.
      *
      * @link Protocol [WebAuthn#addCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addCredential) method documentation.
      */
-    fun addCredential(input: AddCredentialRequest) = connection.request("WebAuthn.addCredential", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun addCredential(input: AddCredentialRequest) = connection.request("WebAuthn.addCredential", Json.encodeToJsonElement(AddCredentialRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns a single credential stored in the given virtual authenticator that
@@ -51,28 +53,28 @@ matches the credential ID.
      *
      * @link Protocol [WebAuthn#getCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredential) method documentation.
      */
-    fun getCredential(input: GetCredentialRequest) = connection.request("WebAuthn.getCredential", input, GetCredentialResponse::class.java)
+    fun getCredential(input: GetCredentialRequest) = connection.request("WebAuthn.getCredential", Json.encodeToJsonElement(GetCredentialRequest.serializer(), input), GetCredentialResponse.serializer())
 
     /**
      * Returns all the credentials stored in the given virtual authenticator.
      *
      * @link Protocol [WebAuthn#getCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredentials) method documentation.
      */
-    fun getCredentials(input: GetCredentialsRequest) = connection.request("WebAuthn.getCredentials", input, GetCredentialsResponse::class.java)
+    fun getCredentials(input: GetCredentialsRequest) = connection.request("WebAuthn.getCredentials", Json.encodeToJsonElement(GetCredentialsRequest.serializer(), input), GetCredentialsResponse.serializer())
 
     /**
      * Removes a credential from the authenticator.
      *
      * @link Protocol [WebAuthn#removeCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeCredential) method documentation.
      */
-    fun removeCredential(input: RemoveCredentialRequest) = connection.request("WebAuthn.removeCredential", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun removeCredential(input: RemoveCredentialRequest) = connection.request("WebAuthn.removeCredential", Json.encodeToJsonElement(RemoveCredentialRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Clears all the credentials from the specified device.
      *
      * @link Protocol [WebAuthn#clearCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-clearCredentials) method documentation.
      */
-    fun clearCredentials(input: ClearCredentialsRequest) = connection.request("WebAuthn.clearCredentials", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun clearCredentials(input: ClearCredentialsRequest) = connection.request("WebAuthn.clearCredentials", Json.encodeToJsonElement(ClearCredentialsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets whether User Verification succeeds or fails for an authenticator.
@@ -80,7 +82,7 @@ The default is true.
      *
      * @link Protocol [WebAuthn#setUserVerified](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setUserVerified) method documentation.
      */
-    fun setUserVerified(input: SetUserVerifiedRequest) = connection.request("WebAuthn.setUserVerified", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setUserVerified(input: SetUserVerifiedRequest) = connection.request("WebAuthn.setUserVerified", Json.encodeToJsonElement(SetUserVerifiedRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets whether tests of user presence will succeed immediately (if true) or fail to resolve (if false) for an authenticator.
@@ -88,7 +90,7 @@ The default is true.
      *
      * @link Protocol [WebAuthn#setAutomaticPresenceSimulation](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setAutomaticPresenceSimulation) method documentation.
      */
-    fun setAutomaticPresenceSimulation(input: SetAutomaticPresenceSimulationRequest) = connection.request("WebAuthn.setAutomaticPresenceSimulation", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
+    fun setAutomaticPresenceSimulation(input: SetAutomaticPresenceSimulationRequest) = connection.request("WebAuthn.setAutomaticPresenceSimulation", Json.encodeToJsonElement(SetAutomaticPresenceSimulationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns flowable capturing all WebAuthn domains events.
@@ -107,6 +109,7 @@ The default is true.
  * @link [WebAuthn#addVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addVirtualAuthenticator) method documentation.
  * @see [WebAuthnOperations.addVirtualAuthenticator]
  */
+@kotlinx.serialization.Serializable
 data class AddVirtualAuthenticatorRequest(
     /**
      *
@@ -123,6 +126,7 @@ data class AddVirtualAuthenticatorRequest(
  * @link [WebAuthn#addVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addVirtualAuthenticator) method documentation.
  * @see [WebAuthnOperations.addVirtualAuthenticator]
  */
+@kotlinx.serialization.Serializable
 data class AddVirtualAuthenticatorResponse(
     /**  
      *  
@@ -138,6 +142,7 @@ data class AddVirtualAuthenticatorResponse(
  * @link [WebAuthn#removeVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeVirtualAuthenticator) method documentation.
  * @see [WebAuthnOperations.removeVirtualAuthenticator]
  */
+@kotlinx.serialization.Serializable
 data class RemoveVirtualAuthenticatorRequest(
     /**
      *
@@ -153,6 +158,7 @@ data class RemoveVirtualAuthenticatorRequest(
  * @link [WebAuthn#addCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addCredential) method documentation.
  * @see [WebAuthnOperations.addCredential]
  */
+@kotlinx.serialization.Serializable
 data class AddCredentialRequest(
     /**
      *
@@ -174,6 +180,7 @@ matches the credential ID.
  * @link [WebAuthn#getCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredential) method documentation.
  * @see [WebAuthnOperations.getCredential]
  */
+@kotlinx.serialization.Serializable
 data class GetCredentialRequest(
     /**
      *
@@ -196,6 +203,7 @@ matches the credential ID.
  * @link [WebAuthn#getCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredential) method documentation.
  * @see [WebAuthnOperations.getCredential]
  */
+@kotlinx.serialization.Serializable
 data class GetCredentialResponse(
     /**  
      *  
@@ -211,6 +219,7 @@ data class GetCredentialResponse(
  * @link [WebAuthn#getCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredentials) method documentation.
  * @see [WebAuthnOperations.getCredentials]
  */
+@kotlinx.serialization.Serializable
 data class GetCredentialsRequest(
     /**
      *
@@ -227,6 +236,7 @@ data class GetCredentialsRequest(
  * @link [WebAuthn#getCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-getCredentials) method documentation.
  * @see [WebAuthnOperations.getCredentials]
  */
+@kotlinx.serialization.Serializable
 data class GetCredentialsResponse(
     /**  
      *  
@@ -242,6 +252,7 @@ data class GetCredentialsResponse(
  * @link [WebAuthn#removeCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeCredential) method documentation.
  * @see [WebAuthnOperations.removeCredential]
  */
+@kotlinx.serialization.Serializable
 data class RemoveCredentialRequest(
     /**
      *
@@ -262,6 +273,7 @@ data class RemoveCredentialRequest(
  * @link [WebAuthn#clearCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-clearCredentials) method documentation.
  * @see [WebAuthnOperations.clearCredentials]
  */
+@kotlinx.serialization.Serializable
 data class ClearCredentialsRequest(
     /**
      *
@@ -278,6 +290,7 @@ The default is true.
  * @link [WebAuthn#setUserVerified](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setUserVerified) method documentation.
  * @see [WebAuthnOperations.setUserVerified]
  */
+@kotlinx.serialization.Serializable
 data class SetUserVerifiedRequest(
     /**
      *
@@ -299,6 +312,7 @@ The default is true.
  * @link [WebAuthn#setAutomaticPresenceSimulation](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setAutomaticPresenceSimulation) method documentation.
  * @see [WebAuthnOperations.setAutomaticPresenceSimulation]
  */
+@kotlinx.serialization.Serializable
 data class SetAutomaticPresenceSimulationRequest(
     /**
      *
