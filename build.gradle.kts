@@ -23,7 +23,7 @@ java {
     }
 }
 
-configure<pl.allegro.tech.build.axion.release.domain.VersionConfig> {
+scmVersion {
     tag.prefix = "chrome-reactive-kotlin"
 }
 
@@ -93,7 +93,7 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
             reportUndocumented.set(true)
             skipDeprecated.set(false)
             skipEmptyPackages.set(true)
-            samples.from("samples/basic.kt")
+            samples.from("samples/Basic.kt")
             includes.from("package.md", "domains.md")
 
             sourceLink {
