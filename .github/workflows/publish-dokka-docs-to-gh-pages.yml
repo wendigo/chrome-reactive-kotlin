@@ -17,5 +17,5 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BASE_BRANCH: master
           BRANCH: gh-pages
-          FOLDER: build/docs/javadoc
+          FOLDER: build/dokka/javadoc
           BUILD_SCRIPT:
