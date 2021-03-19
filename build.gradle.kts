@@ -1,5 +1,6 @@
 val jacksonVersion = "2.12.0"
 val kotlinVersion = "1.4.31"
+val githubToken: String by project
 
 plugins {
     id("maven")
@@ -29,6 +30,7 @@ configure<pl.allegro.tech.build.axion.release.domain.VersionConfig> {
 group = "pl.wendigo"
 version = scmVersion.version
 extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
+scmVersion.repository.customUsername = githubToken
 
 repositories {
     mavenCentral()
