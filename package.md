@@ -1,6 +1,6 @@
-# Module chrome-reactive-kotlin
+# Module Chrome Reactive Kotlin
 
-chrome-reactive-kotlin is a low level Chrome DevTools Protocol client written in Kotlin and leveraging RxJava2 for easy composability.
+chrome-reactive-kotlin is a low level Chrome DevTools Protocol client written in Kotlin and leveraging RxJava3 for easy composability.
 
 Library exposes all protocol domains in a single, cohesive and highly composable API. It supports both headless and non-headless Chrome automation capabilities.
 
