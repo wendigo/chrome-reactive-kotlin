@@ -552,6 +552,8 @@ enum class BlockedReason {
     SUBRESOURCE_FILTER,
     @com.fasterxml.jackson.annotation.JsonProperty("content-type")
     CONTENT_TYPE,
+    @com.fasterxml.jackson.annotation.JsonProperty("collapsed-by-client")
+    COLLAPSED_BY_CLIENT,
     @com.fasterxml.jackson.annotation.JsonProperty("coep-frame-resource-needs-coep-header")
     COEP_FRAME_RESOURCE_NEEDS_COEP_HEADER,
     @com.fasterxml.jackson.annotation.JsonProperty("coop-sandboxed-iframe-cannot-navigate-to-coop-page")
@@ -1596,8 +1598,6 @@ data class CrossOriginOpenerPolicyStatus(
 enum class CrossOriginEmbedderPolicyValue {
     @com.fasterxml.jackson.annotation.JsonProperty("None")
     NONE,
-    @com.fasterxml.jackson.annotation.JsonProperty("CorsOrCredentialless")
-    CORSORCREDENTIALLESS,
     @com.fasterxml.jackson.annotation.JsonProperty("RequireCorp")
     REQUIRECORP;
 }

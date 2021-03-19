@@ -1,7 +1,7 @@
 buildscript {
     ext {
         kotlinVersion = '1.3.50'
-        jacksonVersion = '2.9.9'
+        jacksonVersion = '2.12.0'
     }
 
     repositories {

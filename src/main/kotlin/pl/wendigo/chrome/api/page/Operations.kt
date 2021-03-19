@@ -960,34 +960,19 @@ data class GetFrameTreeResponse(
  */
 data class GetLayoutMetricsResponse(
     /**  
-     * Deprecated metrics relating to the layout viewport. Can be in DP or in CSS pixels depending on the `enable-use-zoom-for-dsf` flag. Use `cssLayoutViewport` instead.  
+     * Metrics relating to the layout viewport.  
      */  
     val layoutViewport: LayoutViewport,
 
     /**  
-     * Deprecated metrics relating to the visual viewport. Can be in DP or in CSS pixels depending on the `enable-use-zoom-for-dsf` flag. Use `cssVisualViewport` instead.  
+     * Metrics relating to the visual viewport.  
      */  
     val visualViewport: VisualViewport,
 
     /**  
-     * Deprecated size of scrollable area. Can be in DP or in CSS pixels depending on the `enable-use-zoom-for-dsf` flag. Use `cssContentSize` instead.  
+     * Size of scrollable area.  
      */  
-    val contentSize: pl.wendigo.chrome.api.dom.Rect,
-
-    /**  
-     * Metrics relating to the layout viewport in CSS pixels.  
-     */  
-    val cssLayoutViewport: LayoutViewport,
-
-    /**  
-     * Metrics relating to the visual viewport in CSS pixels.  
-     */  
-    val cssVisualViewport: VisualViewport,
-
-    /**  
-     * Size of scrollable area in CSS pixels.  
-     */  
-    val cssContentSize: pl.wendigo.chrome.api.dom.Rect
+    val contentSize: pl.wendigo.chrome.api.dom.Rect
 
 )
 

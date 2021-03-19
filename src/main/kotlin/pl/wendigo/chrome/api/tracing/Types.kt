@@ -96,21 +96,3 @@ enum class MemoryDumpLevelOfDetail {
     @com.fasterxml.jackson.annotation.JsonProperty("detailed")
     DETAILED;
 }
-
-/**
- * Backend type to use for tracing. `chrome` uses the Chrome-integrated
-tracing service and is supported on all platforms. `system` is only
-supported on Chrome OS and uses the Perfetto system tracing service.
-`auto` chooses `system` when the perfettoConfig provided to Tracing.start
-specifies at least one non-Chrome data source; otherwise uses `chrome`.
- *
- * @link [Tracing#TracingBackend](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-TracingBackend) type documentation.
- */
-enum class TracingBackend {
-    @com.fasterxml.jackson.annotation.JsonProperty("auto")
-    AUTO,
-    @com.fasterxml.jackson.annotation.JsonProperty("chrome")
-    CHROME,
-    @com.fasterxml.jackson.annotation.JsonProperty("system")
-    SYSTEM;
-}

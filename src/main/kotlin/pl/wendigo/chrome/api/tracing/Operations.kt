@@ -193,12 +193,7 @@ transfer mode (defaults to `none`)
 When specified, the parameters `categories`, `options`, `traceConfig`
 are ignored. (Encoded as a base64 string when passed over JSON)
      */
-    val perfettoConfig: String? = null,
-
-    /**
-     * Backend type (defaults to `auto`)
-     */
-    val tracingBackend: TracingBackend? = null
+    val perfettoConfig: String? = null
 
 )
 

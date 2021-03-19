@@ -13662,6 +13662,7 @@
                         "inspector",
                         "subresource-filter",
                         "content-type",
+                        "collapsed-by-client",
                         "coep-frame-resource-needs-coep-header",
                         "coop-sandboxed-iframe-cannot-navigate-to-coop-page",
                         "corp-not-same-origin",
@@ -14666,7 +14667,6 @@
                     "type": "string",
                     "enum": [
                         "None",
-                        "CorsOrCredentialless",
                         "RequireCorp"
                     ]
                 },
@@ -18112,35 +18112,17 @@
                     "returns": [
                         {
                             "name": "layoutViewport",
-                            "description": "Deprecated metrics relating to the layout viewport. Can be in DP or in CSS pixels depending on the `enable-use-zoom-for-dsf` flag. Use `cssLayoutViewport` instead.",
-                            "deprecated": true,
+                            "description": "Metrics relating to the layout viewport.",
                             "$ref": "LayoutViewport"
                         },
                         {
                             "name": "visualViewport",
-                            "description": "Deprecated metrics relating to the visual viewport. Can be in DP or in CSS pixels depending on the `enable-use-zoom-for-dsf` flag. Use `cssVisualViewport` instead.",
-                            "deprecated": true,
+                            "description": "Metrics relating to the visual viewport.",
                             "$ref": "VisualViewport"
                         },
                         {
                             "name": "contentSize",
-                            "description": "Deprecated size of scrollable area. Can be in DP or in CSS pixels depending on the `enable-use-zoom-for-dsf` flag. Use `cssContentSize` instead.",
-                            "deprecated": true,
-                            "$ref": "DOM.Rect"
-                        },
-                        {
-                            "name": "cssLayoutViewport",
-                            "description": "Metrics relating to the layout viewport in CSS pixels.",
-                            "$ref": "LayoutViewport"
-                        },
-                        {
-                            "name": "cssVisualViewport",
-                            "description": "Metrics relating to the visual viewport in CSS pixels.",
-                            "$ref": "VisualViewport"
-                        },
-                        {
-                            "name": "cssContentSize",
-                            "description": "Size of scrollable area in CSS pixels.",
+                            "description": "Size of scrollable area.",
                             "$ref": "DOM.Rect"
                         }
                     ]
@@ -20605,24 +20587,6 @@
                             }
                         }
                     ]
-                },
-                {
-                    "name": "clearTrustTokens",
-                    "description": "Removes all Trust Tokens issued by the provided issuerOrigin.\nLeaves other stored data, including the issuer's Redemption Records, intact.",
-                    "experimental": true,
-                    "parameters": [
-                        {
-                            "name": "issuerOrigin",
-                            "type": "string"
-                        }
-                    ],
-                    "returns": [
-                        {
-                            "name": "didDeleteTokens",
-                            "description": "True if any tokens were deleted, false otherwise.",
-                            "type": "boolean"
-                        }
-                    ]
                 }
             ],
             "events": [
@@ -21196,7 +21160,7 @@
                     "parameters": [
                         {
                             "name": "url",
-                            "description": "The initial URL the page will be navigated to. An empty string indicates about:blank.",
+                            "description": "The initial URL the page will be navigated to.",
                             "type": "string"
                         },
                         {
@@ -21650,16 +21614,6 @@
                         "light",
                         "detailed"
                     ]
-                },
-                {
-                    "id": "TracingBackend",
-                    "description": "Backend type to use for tracing. `chrome` uses the Chrome-integrated\ntracing service and is supported on all platforms. `system` is only\nsupported on Chrome OS and uses the Perfetto system tracing service.\n`auto` chooses `system` when the perfettoConfig provided to Tracing.start\nspecifies at least one non-Chrome data source; otherwise uses `chrome`.",
-                    "type": "string",
-                    "enum": [
-                        "auto",
-                        "chrome",
-                        "system"
-                    ]
                 }
             ],
             "commands": [
@@ -21778,12 +21732,6 @@
                             "description": "Base64-encoded serialized perfetto.protos.TraceConfig protobuf message\nWhen specified, the parameters `categories`, `options`, `traceConfig`\nare ignored. (Encoded as a base64 string when passed over JSON)",
                             "optional": true,
                             "type": "string"
-                        },
-                        {
-                            "name": "tracingBackend",
-                            "description": "Backend type (defaults to `auto`)",
-                            "optional": true,
-                            "$ref": "TracingBackend"
                         }
                     ]
                 }
