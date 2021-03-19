@@ -96,34 +96,34 @@ $x functions).
     /**
      *  Returns observable capturing all HeapProfiler.addHeapSnapshotChunk events.
      */
-    fun addHeapSnapshotChunk(): io.reactivex.Flowable<AddHeapSnapshotChunkEvent> = connection.events("HeapProfiler.addHeapSnapshotChunk", AddHeapSnapshotChunkEvent::class.java)
+    fun addHeapSnapshotChunk(): io.reactivex.rxjava3.core.Flowable<AddHeapSnapshotChunkEvent> = connection.events("HeapProfiler.addHeapSnapshotChunk", AddHeapSnapshotChunkEvent::class.java)
 
     /**
      *  If heap objects tracking has been started then backend may send update for one or more fragments
      */
-    fun heapStatsUpdate(): io.reactivex.Flowable<HeapStatsUpdateEvent> = connection.events("HeapProfiler.heapStatsUpdate", HeapStatsUpdateEvent::class.java)
+    fun heapStatsUpdate(): io.reactivex.rxjava3.core.Flowable<HeapStatsUpdateEvent> = connection.events("HeapProfiler.heapStatsUpdate", HeapStatsUpdateEvent::class.java)
 
     /**
      *  If heap objects tracking has been started then backend regularly sends a current value for last
 seen object id and corresponding timestamp. If the were changes in the heap since last event
 then one or more heapStatsUpdate events will be sent before a new lastSeenObjectId event.
      */
-    fun lastSeenObjectId(): io.reactivex.Flowable<LastSeenObjectIdEvent> = connection.events("HeapProfiler.lastSeenObjectId", LastSeenObjectIdEvent::class.java)
+    fun lastSeenObjectId(): io.reactivex.rxjava3.core.Flowable<LastSeenObjectIdEvent> = connection.events("HeapProfiler.lastSeenObjectId", LastSeenObjectIdEvent::class.java)
 
     /**
      *  Returns observable capturing all HeapProfiler.reportHeapSnapshotProgress events.
      */
-    fun reportHeapSnapshotProgress(): io.reactivex.Flowable<ReportHeapSnapshotProgressEvent> = connection.events("HeapProfiler.reportHeapSnapshotProgress", ReportHeapSnapshotProgressEvent::class.java)
+    fun reportHeapSnapshotProgress(): io.reactivex.rxjava3.core.Flowable<ReportHeapSnapshotProgressEvent> = connection.events("HeapProfiler.reportHeapSnapshotProgress", ReportHeapSnapshotProgressEvent::class.java)
 
     /**
      *  Returns observable capturing all HeapProfiler.resetProfiles events.
      */
-    fun resetProfiles(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("HeapProfiler.resetProfiles", pl.wendigo.chrome.protocol.Event::class.java)
+    fun resetProfiles(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("HeapProfiler.resetProfiles", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      * Returns flowable capturing all HeapProfiler domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "HeapProfiler"
         }

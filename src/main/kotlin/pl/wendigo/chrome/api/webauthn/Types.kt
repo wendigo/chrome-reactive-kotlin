@@ -16,6 +16,7 @@ typealias AuthenticatorId = String
 enum class AuthenticatorProtocol {
     @com.fasterxml.jackson.annotation.JsonProperty("u2f")
     U2F,
+
     @com.fasterxml.jackson.annotation.JsonProperty("ctap2")
     CTAP2;
 }
@@ -28,6 +29,7 @@ enum class AuthenticatorProtocol {
 enum class Ctap2Version {
     @com.fasterxml.jackson.annotation.JsonProperty("ctap2_0")
     CTAP2_0,
+
     @com.fasterxml.jackson.annotation.JsonProperty("ctap2_1")
     CTAP2_1;
 }
@@ -40,12 +42,16 @@ enum class Ctap2Version {
 enum class AuthenticatorTransport {
     @com.fasterxml.jackson.annotation.JsonProperty("usb")
     USB,
+
     @com.fasterxml.jackson.annotation.JsonProperty("nfc")
     NFC,
+
     @com.fasterxml.jackson.annotation.JsonProperty("ble")
     BLE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("cable")
     CABLE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("internal")
     INTERNAL;
 }

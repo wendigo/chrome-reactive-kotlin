@@ -17,7 +17,7 @@ class SchemaOperations internal constructor(private val connection: pl.wendigo.c
     /**
      * Returns flowable capturing all Schema domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Schema"
         }

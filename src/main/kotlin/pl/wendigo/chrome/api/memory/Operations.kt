@@ -84,7 +84,7 @@ collected since browser process startup.
     /**
      * Returns flowable capturing all Memory domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Memory"
         }

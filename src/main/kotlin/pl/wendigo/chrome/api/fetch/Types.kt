@@ -18,6 +18,7 @@ body is received.
 enum class RequestStage {
     @com.fasterxml.jackson.annotation.JsonProperty("Request")
     REQUEST,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Response")
     RESPONSE;
 }

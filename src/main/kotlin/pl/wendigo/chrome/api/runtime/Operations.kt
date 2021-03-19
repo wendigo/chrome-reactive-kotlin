@@ -193,48 +193,48 @@ unsubscribes current runtime agent from Runtime.bindingCalled notifications.
     /**
      *  Notification is issued every time when binding is called.
      */
-    fun bindingCalled(): io.reactivex.Flowable<BindingCalledEvent> = connection.events("Runtime.bindingCalled", BindingCalledEvent::class.java)
+    fun bindingCalled(): io.reactivex.rxjava3.core.Flowable<BindingCalledEvent> = connection.events("Runtime.bindingCalled", BindingCalledEvent::class.java)
 
     /**
      *  Issued when console API was called.
      */
-    fun consoleAPICalled(): io.reactivex.Flowable<ConsoleAPICalledEvent> = connection.events("Runtime.consoleAPICalled", ConsoleAPICalledEvent::class.java)
+    fun consoleAPICalled(): io.reactivex.rxjava3.core.Flowable<ConsoleAPICalledEvent> = connection.events("Runtime.consoleAPICalled", ConsoleAPICalledEvent::class.java)
 
     /**
      *  Issued when unhandled exception was revoked.
      */
-    fun exceptionRevoked(): io.reactivex.Flowable<ExceptionRevokedEvent> = connection.events("Runtime.exceptionRevoked", ExceptionRevokedEvent::class.java)
+    fun exceptionRevoked(): io.reactivex.rxjava3.core.Flowable<ExceptionRevokedEvent> = connection.events("Runtime.exceptionRevoked", ExceptionRevokedEvent::class.java)
 
     /**
      *  Issued when exception was thrown and unhandled.
      */
-    fun exceptionThrown(): io.reactivex.Flowable<ExceptionThrownEvent> = connection.events("Runtime.exceptionThrown", ExceptionThrownEvent::class.java)
+    fun exceptionThrown(): io.reactivex.rxjava3.core.Flowable<ExceptionThrownEvent> = connection.events("Runtime.exceptionThrown", ExceptionThrownEvent::class.java)
 
     /**
      *  Issued when new execution context is created.
      */
-    fun executionContextCreated(): io.reactivex.Flowable<ExecutionContextCreatedEvent> = connection.events("Runtime.executionContextCreated", ExecutionContextCreatedEvent::class.java)
+    fun executionContextCreated(): io.reactivex.rxjava3.core.Flowable<ExecutionContextCreatedEvent> = connection.events("Runtime.executionContextCreated", ExecutionContextCreatedEvent::class.java)
 
     /**
      *  Issued when execution context is destroyed.
      */
-    fun executionContextDestroyed(): io.reactivex.Flowable<ExecutionContextDestroyedEvent> = connection.events("Runtime.executionContextDestroyed", ExecutionContextDestroyedEvent::class.java)
+    fun executionContextDestroyed(): io.reactivex.rxjava3.core.Flowable<ExecutionContextDestroyedEvent> = connection.events("Runtime.executionContextDestroyed", ExecutionContextDestroyedEvent::class.java)
 
     /**
      *  Issued when all executionContexts were cleared in browser
      */
-    fun executionContextsCleared(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Runtime.executionContextsCleared", pl.wendigo.chrome.protocol.Event::class.java)
+    fun executionContextsCleared(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Runtime.executionContextsCleared", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Issued when object should be inspected (for example, as a result of inspect() command line API
 call).
      */
-    fun inspectRequested(): io.reactivex.Flowable<InspectRequestedEvent> = connection.events("Runtime.inspectRequested", InspectRequestedEvent::class.java)
+    fun inspectRequested(): io.reactivex.rxjava3.core.Flowable<InspectRequestedEvent> = connection.events("Runtime.inspectRequested", InspectRequestedEvent::class.java)
 
     /**
      * Returns flowable capturing all Runtime domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Runtime"
         }

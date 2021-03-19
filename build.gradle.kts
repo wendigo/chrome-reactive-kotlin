@@ -1,4 +1,4 @@
-val jacksonVersion by extra { "2.12.0" }
+val jacksonVersion = "2.12.0"
 val kotlinVersion = "1.4.31"
 
 plugins {
@@ -52,10 +52,10 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
 
-    implementation("com.squareup.okhttp3:okhttp:4.7.2")
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
-    implementation("io.reactivex.rxjava2:rxjava:2.2.19")
+    implementation("io.reactivex.rxjava3:rxjava:3.0.11")
     implementation("ch.qos.logback:logback-classic:1.2.3")
 
     implementation("org.slf4j:slf4j-api:1.7.30")

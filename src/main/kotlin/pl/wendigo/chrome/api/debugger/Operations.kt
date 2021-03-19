@@ -81,7 +81,6 @@ the same.
      * @link Protocol [Debugger#pauseOnAsyncCall](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-pauseOnAsyncCall) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "pauseOnAsyncCall is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun pauseOnAsyncCall(input: PauseOnAsyncCallRequest) = connection.request("Debugger.pauseOnAsyncCall", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -248,33 +247,33 @@ mutated manually.
     /**
      *  Fired when breakpoint is resolved to an actual script and location.
      */
-    fun breakpointResolved(): io.reactivex.Flowable<BreakpointResolvedEvent> = connection.events("Debugger.breakpointResolved", BreakpointResolvedEvent::class.java)
+    fun breakpointResolved(): io.reactivex.rxjava3.core.Flowable<BreakpointResolvedEvent> = connection.events("Debugger.breakpointResolved", BreakpointResolvedEvent::class.java)
 
     /**
      *  Fired when the virtual machine stopped on breakpoint or exception or any other stop criteria.
      */
-    fun paused(): io.reactivex.Flowable<PausedEvent> = connection.events("Debugger.paused", PausedEvent::class.java)
+    fun paused(): io.reactivex.rxjava3.core.Flowable<PausedEvent> = connection.events("Debugger.paused", PausedEvent::class.java)
 
     /**
      *  Fired when the virtual machine resumed execution.
      */
-    fun resumed(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Debugger.resumed", pl.wendigo.chrome.protocol.Event::class.java)
+    fun resumed(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Debugger.resumed", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired when virtual machine fails to parse the script.
      */
-    fun scriptFailedToParse(): io.reactivex.Flowable<ScriptFailedToParseEvent> = connection.events("Debugger.scriptFailedToParse", ScriptFailedToParseEvent::class.java)
+    fun scriptFailedToParse(): io.reactivex.rxjava3.core.Flowable<ScriptFailedToParseEvent> = connection.events("Debugger.scriptFailedToParse", ScriptFailedToParseEvent::class.java)
 
     /**
      *  Fired when virtual machine parses script. This event is also fired for all known and uncollected
 scripts upon enabling debugger.
      */
-    fun scriptParsed(): io.reactivex.Flowable<ScriptParsedEvent> = connection.events("Debugger.scriptParsed", ScriptParsedEvent::class.java)
+    fun scriptParsed(): io.reactivex.rxjava3.core.Flowable<ScriptParsedEvent> = connection.events("Debugger.scriptParsed", ScriptParsedEvent::class.java)
 
     /**
      * Returns flowable capturing all Debugger domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Debugger"
         }

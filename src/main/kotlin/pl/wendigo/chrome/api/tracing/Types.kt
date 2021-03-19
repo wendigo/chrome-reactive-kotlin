@@ -65,6 +65,7 @@ protocol buffer format. Note that the JSON format will be deprecated soon.
 enum class StreamFormat {
     @com.fasterxml.jackson.annotation.JsonProperty("json")
     JSON,
+
     @com.fasterxml.jackson.annotation.JsonProperty("proto")
     PROTO;
 }
@@ -77,6 +78,7 @@ enum class StreamFormat {
 enum class StreamCompression {
     @com.fasterxml.jackson.annotation.JsonProperty("none")
     NONE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("gzip")
     GZIP;
 }
@@ -91,8 +93,10 @@ memory_instrumentation.mojom
 enum class MemoryDumpLevelOfDetail {
     @com.fasterxml.jackson.annotation.JsonProperty("background")
     BACKGROUND,
+
     @com.fasterxml.jackson.annotation.JsonProperty("light")
     LIGHT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("detailed")
     DETAILED;
 }

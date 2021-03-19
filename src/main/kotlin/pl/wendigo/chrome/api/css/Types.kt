@@ -18,10 +18,13 @@ inspector&quot; rules), &quot;regular&quot; for regular stylesheets.
 enum class StyleSheetOrigin {
     @com.fasterxml.jackson.annotation.JsonProperty("injected")
     INJECTED,
+
     @com.fasterxml.jackson.annotation.JsonProperty("user-agent")
     USER_AGENT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("inspector")
     INSPECTOR,
+
     @com.fasterxml.jackson.annotation.JsonProperty("regular")
     REGULAR;
 }

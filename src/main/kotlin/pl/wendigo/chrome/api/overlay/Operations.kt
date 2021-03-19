@@ -190,27 +190,27 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      *  Fired when the node should be inspected. This happens after call to `setInspectMode` or when
 user manually inspects an element.
      */
-    fun inspectNodeRequested(): io.reactivex.Flowable<InspectNodeRequestedEvent> = connection.events("Overlay.inspectNodeRequested", InspectNodeRequestedEvent::class.java)
+    fun inspectNodeRequested(): io.reactivex.rxjava3.core.Flowable<InspectNodeRequestedEvent> = connection.events("Overlay.inspectNodeRequested", InspectNodeRequestedEvent::class.java)
 
     /**
      *  Fired when the node should be highlighted. This happens after call to `setInspectMode`.
      */
-    fun nodeHighlightRequested(): io.reactivex.Flowable<NodeHighlightRequestedEvent> = connection.events("Overlay.nodeHighlightRequested", NodeHighlightRequestedEvent::class.java)
+    fun nodeHighlightRequested(): io.reactivex.rxjava3.core.Flowable<NodeHighlightRequestedEvent> = connection.events("Overlay.nodeHighlightRequested", NodeHighlightRequestedEvent::class.java)
 
     /**
      *  Fired when user asks to capture screenshot of some area on the page.
      */
-    fun screenshotRequested(): io.reactivex.Flowable<ScreenshotRequestedEvent> = connection.events("Overlay.screenshotRequested", ScreenshotRequestedEvent::class.java)
+    fun screenshotRequested(): io.reactivex.rxjava3.core.Flowable<ScreenshotRequestedEvent> = connection.events("Overlay.screenshotRequested", ScreenshotRequestedEvent::class.java)
 
     /**
      *  Fired when user cancels the inspect mode.
      */
-    fun inspectModeCanceled(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Overlay.inspectModeCanceled", pl.wendigo.chrome.protocol.Event::class.java)
+    fun inspectModeCanceled(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Overlay.inspectModeCanceled", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      * Returns flowable capturing all Overlay domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Overlay"
         }

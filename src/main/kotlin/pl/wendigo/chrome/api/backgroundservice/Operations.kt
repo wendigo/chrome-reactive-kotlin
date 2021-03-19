@@ -39,18 +39,18 @@ class BackgroundServiceOperations internal constructor(private val connection: p
     /**
      *  Called when the recording state for the service has been updated.
      */
-    fun recordingStateChanged(): io.reactivex.Flowable<RecordingStateChangedEvent> = connection.events("BackgroundService.recordingStateChanged", RecordingStateChangedEvent::class.java)
+    fun recordingStateChanged(): io.reactivex.rxjava3.core.Flowable<RecordingStateChangedEvent> = connection.events("BackgroundService.recordingStateChanged", RecordingStateChangedEvent::class.java)
 
     /**
      *  Called with all existing backgroundServiceEvents when enabled, and all new
 events afterwards if enabled and recording.
      */
-    fun backgroundServiceEventReceived(): io.reactivex.Flowable<BackgroundServiceEventReceivedEvent> = connection.events("BackgroundService.backgroundServiceEventReceived", BackgroundServiceEventReceivedEvent::class.java)
+    fun backgroundServiceEventReceived(): io.reactivex.rxjava3.core.Flowable<BackgroundServiceEventReceivedEvent> = connection.events("BackgroundService.backgroundServiceEventReceived", BackgroundServiceEventReceivedEvent::class.java)
 
     /**
      * Returns flowable capturing all BackgroundService domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "BackgroundService"
         }

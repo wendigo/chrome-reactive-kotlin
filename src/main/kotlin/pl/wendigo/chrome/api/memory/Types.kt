@@ -8,6 +8,7 @@ package pl.wendigo.chrome.api.memory
 enum class PressureLevel {
     @com.fasterxml.jackson.annotation.JsonProperty("moderate")
     MODERATE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("critical")
     CRITICAL;
 }

@@ -241,8 +241,10 @@ data class BoxStyle(
 enum class ContrastAlgorithm {
     @com.fasterxml.jackson.annotation.JsonProperty("aa")
     AA,
+
     @com.fasterxml.jackson.annotation.JsonProperty("aaa")
     AAA,
+
     @com.fasterxml.jackson.annotation.JsonProperty("apca")
     APCA;
 }
@@ -353,8 +355,10 @@ data class HighlightConfig(
 enum class ColorFormat {
     @com.fasterxml.jackson.annotation.JsonProperty("rgb")
     RGB,
+
     @com.fasterxml.jackson.annotation.JsonProperty("hsl")
     HSL,
+
     @com.fasterxml.jackson.annotation.JsonProperty("hex")
     HEX;
 }
@@ -426,12 +430,16 @@ data class HingeConfig(
 enum class InspectMode {
     @com.fasterxml.jackson.annotation.JsonProperty("searchForNode")
     SEARCHFORNODE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("searchForUAShadowDOM")
     SEARCHFORUASHADOWDOM,
+
     @com.fasterxml.jackson.annotation.JsonProperty("captureAreaScreenshot")
     CAPTUREAREASCREENSHOT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("showDistances")
     SHOWDISTANCES,
+
     @com.fasterxml.jackson.annotation.JsonProperty("none")
     NONE;
 }

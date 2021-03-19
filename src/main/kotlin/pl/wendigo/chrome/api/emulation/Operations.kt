@@ -146,7 +146,6 @@ unavailable.
      * @link Protocol [Emulation#setNavigatorOverrides](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setNavigatorOverrides) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setNavigatorOverrides is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun setNavigatorOverrides(input: SetNavigatorOverridesRequest) = connection.request("Emulation.setNavigatorOverrides", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -209,7 +208,6 @@ on Android.
      * @link Protocol [Emulation#setVisibleSize](https://chromedevtools.github.io/devtools-protocol/tot/Emulation#method-setVisibleSize) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setVisibleSize is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun setVisibleSize(input: SetVisibleSizeRequest) = connection.request("Emulation.setVisibleSize", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -232,12 +230,12 @@ on Android.
     /**
      *  Notification sent after the virtual time budget for the current VirtualTimePolicy has run out.
      */
-    fun virtualTimeBudgetExpired(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.protocol.Event::class.java)
+    fun virtualTimeBudgetExpired(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Emulation.virtualTimeBudgetExpired", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      * Returns flowable capturing all Emulation domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Emulation"
         }

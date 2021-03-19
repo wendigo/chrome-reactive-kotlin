@@ -1,8 +1,8 @@
 package pl.wendigo.chrome.protocol
 
-import io.reactivex.Flowable
-import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import pl.wendigo.chrome.api.target.SessionID
 import java.util.concurrent.atomic.AtomicLong

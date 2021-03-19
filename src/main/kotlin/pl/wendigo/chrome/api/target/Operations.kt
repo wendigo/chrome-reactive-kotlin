@@ -153,45 +153,45 @@ automatically detaches from all currently attached targets.
     /**
      *  Issued when attached to target because of auto-attach or `attachToTarget` command.
      */
-    fun attachedToTarget(): io.reactivex.Flowable<AttachedToTargetEvent> = connection.events("Target.attachedToTarget", AttachedToTargetEvent::class.java)
+    fun attachedToTarget(): io.reactivex.rxjava3.core.Flowable<AttachedToTargetEvent> = connection.events("Target.attachedToTarget", AttachedToTargetEvent::class.java)
 
     /**
      *  Issued when detached from target for any reason (including `detachFromTarget` command). Can be
 issued multiple times per target if multiple sessions have been attached to it.
      */
-    fun detachedFromTarget(): io.reactivex.Flowable<DetachedFromTargetEvent> = connection.events("Target.detachedFromTarget", DetachedFromTargetEvent::class.java)
+    fun detachedFromTarget(): io.reactivex.rxjava3.core.Flowable<DetachedFromTargetEvent> = connection.events("Target.detachedFromTarget", DetachedFromTargetEvent::class.java)
 
     /**
      *  Notifies about a new protocol message received from the session (as reported in
 `attachedToTarget` event).
      */
-    fun receivedMessageFromTarget(): io.reactivex.Flowable<ReceivedMessageFromTargetEvent> = connection.events("Target.receivedMessageFromTarget", ReceivedMessageFromTargetEvent::class.java)
+    fun receivedMessageFromTarget(): io.reactivex.rxjava3.core.Flowable<ReceivedMessageFromTargetEvent> = connection.events("Target.receivedMessageFromTarget", ReceivedMessageFromTargetEvent::class.java)
 
     /**
      *  Issued when a possible inspection target is created.
      */
-    fun targetCreated(): io.reactivex.Flowable<TargetCreatedEvent> = connection.events("Target.targetCreated", TargetCreatedEvent::class.java)
+    fun targetCreated(): io.reactivex.rxjava3.core.Flowable<TargetCreatedEvent> = connection.events("Target.targetCreated", TargetCreatedEvent::class.java)
 
     /**
      *  Issued when a target is destroyed.
      */
-    fun targetDestroyed(): io.reactivex.Flowable<TargetDestroyedEvent> = connection.events("Target.targetDestroyed", TargetDestroyedEvent::class.java)
+    fun targetDestroyed(): io.reactivex.rxjava3.core.Flowable<TargetDestroyedEvent> = connection.events("Target.targetDestroyed", TargetDestroyedEvent::class.java)
 
     /**
      *  Issued when a target has crashed.
      */
-    fun targetCrashed(): io.reactivex.Flowable<TargetCrashedEvent> = connection.events("Target.targetCrashed", TargetCrashedEvent::class.java)
+    fun targetCrashed(): io.reactivex.rxjava3.core.Flowable<TargetCrashedEvent> = connection.events("Target.targetCrashed", TargetCrashedEvent::class.java)
 
     /**
      *  Issued when some information about a target has changed. This only happens between
 `targetCreated` and `targetDestroyed`.
      */
-    fun targetInfoChanged(): io.reactivex.Flowable<TargetInfoChangedEvent> = connection.events("Target.targetInfoChanged", TargetInfoChangedEvent::class.java)
+    fun targetInfoChanged(): io.reactivex.rxjava3.core.Flowable<TargetInfoChangedEvent> = connection.events("Target.targetInfoChanged", TargetInfoChangedEvent::class.java)
 
     /**
      * Returns flowable capturing all Target domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Target"
         }

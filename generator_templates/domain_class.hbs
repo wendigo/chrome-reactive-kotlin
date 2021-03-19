@@ -35,14 +35,14 @@ class {{Domain.Name}}Operations internal constructor(private val connection : {{
     /**
      * {{#if Description}}{{{trim Description}}}{{else}} Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
      */
-    fun {{Name}}(): io.reactivex.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}> = connection.events("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}::class.java);
+    fun {{Name}}(): io.reactivex.rxjava3.core.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}> = connection.events("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.Event{{/if}}::class.java);
 
 {{/each}}
 
     /**
      * Returns flowable capturing all {{Domain.Name}} domains events.
      */
-    fun events() : io.reactivex.Flowable<{{Package}}.protocol.Event> {
+    fun events() : io.reactivex.rxjava3.core.Flowable<{{Package}}.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "{{Domain.Name}}"
         }

@@ -81,22 +81,22 @@ class AnimationOperations internal constructor(private val connection: pl.wendig
     /**
      *  Event for when an animation has been cancelled.
      */
-    fun animationCanceled(): io.reactivex.Flowable<AnimationCanceledEvent> = connection.events("Animation.animationCanceled", AnimationCanceledEvent::class.java)
+    fun animationCanceled(): io.reactivex.rxjava3.core.Flowable<AnimationCanceledEvent> = connection.events("Animation.animationCanceled", AnimationCanceledEvent::class.java)
 
     /**
      *  Event for each animation that has been created.
      */
-    fun animationCreated(): io.reactivex.Flowable<AnimationCreatedEvent> = connection.events("Animation.animationCreated", AnimationCreatedEvent::class.java)
+    fun animationCreated(): io.reactivex.rxjava3.core.Flowable<AnimationCreatedEvent> = connection.events("Animation.animationCreated", AnimationCreatedEvent::class.java)
 
     /**
      *  Event for animation that has been started.
      */
-    fun animationStarted(): io.reactivex.Flowable<AnimationStartedEvent> = connection.events("Animation.animationStarted", AnimationStartedEvent::class.java)
+    fun animationStarted(): io.reactivex.rxjava3.core.Flowable<AnimationStartedEvent> = connection.events("Animation.animationStarted", AnimationStartedEvent::class.java)
 
     /**
      * Returns flowable capturing all Animation domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Animation"
         }

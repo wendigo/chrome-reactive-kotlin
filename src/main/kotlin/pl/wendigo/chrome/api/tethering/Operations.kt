@@ -25,12 +25,12 @@ class TetheringOperations internal constructor(private val connection: pl.wendig
     /**
      *  Informs that port was successfully bound and got a specified connection id.
      */
-    fun accepted(): io.reactivex.Flowable<AcceptedEvent> = connection.events("Tethering.accepted", AcceptedEvent::class.java)
+    fun accepted(): io.reactivex.rxjava3.core.Flowable<AcceptedEvent> = connection.events("Tethering.accepted", AcceptedEvent::class.java)
 
     /**
      * Returns flowable capturing all Tethering domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Tethering"
         }

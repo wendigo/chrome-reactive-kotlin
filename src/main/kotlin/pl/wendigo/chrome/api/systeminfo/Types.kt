@@ -129,8 +129,10 @@ data class VideoEncodeAcceleratorCapability(
 enum class SubsamplingFormat {
     @com.fasterxml.jackson.annotation.JsonProperty("yuv420")
     YUV420,
+
     @com.fasterxml.jackson.annotation.JsonProperty("yuv422")
     YUV422,
+
     @com.fasterxml.jackson.annotation.JsonProperty("yuv444")
     YUV444;
 }
@@ -143,8 +145,10 @@ enum class SubsamplingFormat {
 enum class ImageType {
     @com.fasterxml.jackson.annotation.JsonProperty("jpeg")
     JPEG,
+
     @com.fasterxml.jackson.annotation.JsonProperty("webp")
     WEBP,
+
     @com.fasterxml.jackson.annotation.JsonProperty("unknown")
     UNKNOWN;
 }

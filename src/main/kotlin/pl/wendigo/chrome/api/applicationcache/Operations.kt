@@ -40,17 +40,17 @@ associated with some application cache.
     /**
      *  Returns observable capturing all ApplicationCache.applicationCacheStatusUpdated events.
      */
-    fun applicationCacheStatusUpdated(): io.reactivex.Flowable<ApplicationCacheStatusUpdatedEvent> = connection.events("ApplicationCache.applicationCacheStatusUpdated", ApplicationCacheStatusUpdatedEvent::class.java)
+    fun applicationCacheStatusUpdated(): io.reactivex.rxjava3.core.Flowable<ApplicationCacheStatusUpdatedEvent> = connection.events("ApplicationCache.applicationCacheStatusUpdated", ApplicationCacheStatusUpdatedEvent::class.java)
 
     /**
      *  Returns observable capturing all ApplicationCache.networkStateUpdated events.
      */
-    fun networkStateUpdated(): io.reactivex.Flowable<NetworkStateUpdatedEvent> = connection.events("ApplicationCache.networkStateUpdated", NetworkStateUpdatedEvent::class.java)
+    fun networkStateUpdated(): io.reactivex.rxjava3.core.Flowable<NetworkStateUpdatedEvent> = connection.events("ApplicationCache.networkStateUpdated", NetworkStateUpdatedEvent::class.java)
 
     /**
      * Returns flowable capturing all ApplicationCache domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "ApplicationCache"
         }

@@ -85,18 +85,18 @@ The stage of the request can be determined by presence of responseErrorReason
 and responseStatusCode -- the request is at the response stage if either
 of these fields is present and in the request stage otherwise.
      */
-    fun requestPaused(): io.reactivex.Flowable<RequestPausedEvent> = connection.events("Fetch.requestPaused", RequestPausedEvent::class.java)
+    fun requestPaused(): io.reactivex.rxjava3.core.Flowable<RequestPausedEvent> = connection.events("Fetch.requestPaused", RequestPausedEvent::class.java)
 
     /**
      *  Issued when the domain is enabled with handleAuthRequests set to true.
 The request is paused until client responds with continueWithAuth.
      */
-    fun authRequired(): io.reactivex.Flowable<AuthRequiredEvent> = connection.events("Fetch.authRequired", AuthRequiredEvent::class.java)
+    fun authRequired(): io.reactivex.rxjava3.core.Flowable<AuthRequiredEvent> = connection.events("Fetch.authRequired", AuthRequiredEvent::class.java)
 
     /**
      * Returns flowable capturing all Fetch domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Fetch"
         }

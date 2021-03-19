@@ -8,8 +8,10 @@ package pl.wendigo.chrome.api.domdebugger
 enum class DOMBreakpointType {
     @com.fasterxml.jackson.annotation.JsonProperty("subtree-modified")
     SUBTREE_MODIFIED,
+
     @com.fasterxml.jackson.annotation.JsonProperty("attribute-modified")
     ATTRIBUTE_MODIFIED,
+
     @com.fasterxml.jackson.annotation.JsonProperty("node-removed")
     NODE_REMOVED;
 }
@@ -22,6 +24,7 @@ enum class DOMBreakpointType {
 enum class CSPViolationType {
     @com.fasterxml.jackson.annotation.JsonProperty("trustedtype-sink-violation")
     TRUSTEDTYPE_SINK_VIOLATION,
+
     @com.fasterxml.jackson.annotation.JsonProperty("trustedtype-policy-violation")
     TRUSTEDTYPE_POLICY_VIOLATION;
 }

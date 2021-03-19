@@ -26,35 +26,35 @@ class MediaOperations internal constructor(private val connection: pl.wendigo.ch
      *  This can be called multiple times, and can be used to set / override /
 remove player properties. A null propValue indicates removal.
      */
-    fun playerPropertiesChanged(): io.reactivex.Flowable<PlayerPropertiesChangedEvent> = connection.events("Media.playerPropertiesChanged", PlayerPropertiesChangedEvent::class.java)
+    fun playerPropertiesChanged(): io.reactivex.rxjava3.core.Flowable<PlayerPropertiesChangedEvent> = connection.events("Media.playerPropertiesChanged", PlayerPropertiesChangedEvent::class.java)
 
     /**
      *  Send events as a list, allowing them to be batched on the browser for less
 congestion. If batched, events must ALWAYS be in chronological order.
      */
-    fun playerEventsAdded(): io.reactivex.Flowable<PlayerEventsAddedEvent> = connection.events("Media.playerEventsAdded", PlayerEventsAddedEvent::class.java)
+    fun playerEventsAdded(): io.reactivex.rxjava3.core.Flowable<PlayerEventsAddedEvent> = connection.events("Media.playerEventsAdded", PlayerEventsAddedEvent::class.java)
 
     /**
      *  Send a list of any messages that need to be delivered.
      */
-    fun playerMessagesLogged(): io.reactivex.Flowable<PlayerMessagesLoggedEvent> = connection.events("Media.playerMessagesLogged", PlayerMessagesLoggedEvent::class.java)
+    fun playerMessagesLogged(): io.reactivex.rxjava3.core.Flowable<PlayerMessagesLoggedEvent> = connection.events("Media.playerMessagesLogged", PlayerMessagesLoggedEvent::class.java)
 
     /**
      *  Send a list of any errors that need to be delivered.
      */
-    fun playerErrorsRaised(): io.reactivex.Flowable<PlayerErrorsRaisedEvent> = connection.events("Media.playerErrorsRaised", PlayerErrorsRaisedEvent::class.java)
+    fun playerErrorsRaised(): io.reactivex.rxjava3.core.Flowable<PlayerErrorsRaisedEvent> = connection.events("Media.playerErrorsRaised", PlayerErrorsRaisedEvent::class.java)
 
     /**
      *  Called whenever a player is created, or when a new agent joins and recieves
 a list of active players. If an agent is restored, it will recieve the full
 list of player ids and all events again.
      */
-    fun playersCreated(): io.reactivex.Flowable<PlayersCreatedEvent> = connection.events("Media.playersCreated", PlayersCreatedEvent::class.java)
+    fun playersCreated(): io.reactivex.rxjava3.core.Flowable<PlayersCreatedEvent> = connection.events("Media.playersCreated", PlayersCreatedEvent::class.java)
 
     /**
      * Returns flowable capturing all Media domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Media"
         }

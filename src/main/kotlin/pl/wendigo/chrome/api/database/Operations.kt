@@ -39,12 +39,12 @@ class DatabaseOperations internal constructor(private val connection: pl.wendigo
     /**
      *  Returns observable capturing all Database.addDatabase events.
      */
-    fun addDatabase(): io.reactivex.Flowable<AddDatabaseEvent> = connection.events("Database.addDatabase", AddDatabaseEvent::class.java)
+    fun addDatabase(): io.reactivex.rxjava3.core.Flowable<AddDatabaseEvent> = connection.events("Database.addDatabase", AddDatabaseEvent::class.java)
 
     /**
      * Returns flowable capturing all Database domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Database"
         }

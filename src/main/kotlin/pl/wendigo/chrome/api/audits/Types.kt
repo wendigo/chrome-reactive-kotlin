@@ -62,10 +62,13 @@ data class AffectedFrame(
 enum class SameSiteCookieExclusionReason {
     @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteUnspecifiedTreatedAsLax")
     EXCLUDESAMESITEUNSPECIFIEDTREATEDASLAX,
+
     @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteNoneInsecure")
     EXCLUDESAMESITENONEINSECURE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteLax")
     EXCLUDESAMESITELAX,
+
     @com.fasterxml.jackson.annotation.JsonProperty("ExcludeSameSiteStrict")
     EXCLUDESAMESITESTRICT;
 }
@@ -78,18 +81,25 @@ enum class SameSiteCookieExclusionReason {
 enum class SameSiteCookieWarningReason {
     @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteUnspecifiedCrossSiteContext")
     WARNSAMESITEUNSPECIFIEDCROSSSITECONTEXT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteNoneInsecure")
     WARNSAMESITENONEINSECURE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteUnspecifiedLaxAllowUnsafe")
     WARNSAMESITEUNSPECIFIEDLAXALLOWUNSAFE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteStrictLaxDowngradeStrict")
     WARNSAMESITESTRICTLAXDOWNGRADESTRICT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteStrictCrossDowngradeStrict")
     WARNSAMESITESTRICTCROSSDOWNGRADESTRICT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteStrictCrossDowngradeLax")
     WARNSAMESITESTRICTCROSSDOWNGRADELAX,
+
     @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteLaxCrossDowngradeStrict")
     WARNSAMESITELAXCROSSDOWNGRADESTRICT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("WarnSameSiteLaxCrossDowngradeLax")
     WARNSAMESITELAXCROSSDOWNGRADELAX;
 }
@@ -102,6 +112,7 @@ enum class SameSiteCookieWarningReason {
 enum class SameSiteCookieOperation {
     @com.fasterxml.jackson.annotation.JsonProperty("SetCookie")
     SETCOOKIE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("ReadCookie")
     READCOOKIE;
 }
@@ -160,8 +171,10 @@ data class SameSiteCookieIssueDetails(
 enum class MixedContentResolutionStatus {
     @com.fasterxml.jackson.annotation.JsonProperty("MixedContentBlocked")
     MIXEDCONTENTBLOCKED,
+
     @com.fasterxml.jackson.annotation.JsonProperty("MixedContentAutomaticallyUpgraded")
     MIXEDCONTENTAUTOMATICALLYUPGRADED,
+
     @com.fasterxml.jackson.annotation.JsonProperty("MixedContentWarning")
     MIXEDCONTENTWARNING;
 }
@@ -174,54 +187,79 @@ enum class MixedContentResolutionStatus {
 enum class MixedContentResourceType {
     @com.fasterxml.jackson.annotation.JsonProperty("Audio")
     AUDIO,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Beacon")
     BEACON,
+
     @com.fasterxml.jackson.annotation.JsonProperty("CSPReport")
     CSPREPORT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Download")
     DOWNLOAD,
+
     @com.fasterxml.jackson.annotation.JsonProperty("EventSource")
     EVENTSOURCE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Favicon")
     FAVICON,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Font")
     FONT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Form")
     FORM,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Frame")
     FRAME,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Image")
     IMAGE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Import")
     IMPORT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Manifest")
     MANIFEST,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Ping")
     PING,
+
     @com.fasterxml.jackson.annotation.JsonProperty("PluginData")
     PLUGINDATA,
+
     @com.fasterxml.jackson.annotation.JsonProperty("PluginResource")
     PLUGINRESOURCE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Prefetch")
     PREFETCH,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Resource")
     RESOURCE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Script")
     SCRIPT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("ServiceWorker")
     SERVICEWORKER,
+
     @com.fasterxml.jackson.annotation.JsonProperty("SharedWorker")
     SHAREDWORKER,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Stylesheet")
     STYLESHEET,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Track")
     TRACK,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Video")
     VIDEO,
+
     @com.fasterxml.jackson.annotation.JsonProperty("Worker")
     WORKER,
+
     @com.fasterxml.jackson.annotation.JsonProperty("XMLHttpRequest")
     XMLHTTPREQUEST,
+
     @com.fasterxml.jackson.annotation.JsonProperty("XSLT")
     XSLT;
 }
@@ -277,12 +315,16 @@ refinements of the net error BLOCKED_BY_RESPONSE.
 enum class BlockedByResponseReason {
     @com.fasterxml.jackson.annotation.JsonProperty("CoepFrameResourceNeedsCoepHeader")
     COEPFRAMERESOURCENEEDSCOEPHEADER,
+
     @com.fasterxml.jackson.annotation.JsonProperty("CoopSandboxedIFrameCannotNavigateToCoopPage")
     COOPSANDBOXEDIFRAMECANNOTNAVIGATETOCOOPPAGE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("CorpNotSameOrigin")
     CORPNOTSAMEORIGIN,
+
     @com.fasterxml.jackson.annotation.JsonProperty("CorpNotSameOriginAfterDefaultedToSameOriginByCoep")
     CORPNOTSAMEORIGINAFTERDEFAULTEDTOSAMEORIGINBYCOEP,
+
     @com.fasterxml.jackson.annotation.JsonProperty("CorpNotSameSite")
     CORPNOTSAMESITE;
 }
@@ -325,6 +367,7 @@ data class BlockedByResponseIssueDetails(
 enum class HeavyAdResolutionStatus {
     @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdBlocked")
     HEAVYADBLOCKED,
+
     @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdWarning")
     HEAVYADWARNING;
 }
@@ -337,8 +380,10 @@ enum class HeavyAdResolutionStatus {
 enum class HeavyAdReason {
     @com.fasterxml.jackson.annotation.JsonProperty("NetworkTotalLimit")
     NETWORKTOTALLIMIT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("CpuTotalLimit")
     CPUTOTALLIMIT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("CpuPeakLimit")
     CPUPEAKLIMIT;
 }
@@ -374,12 +419,16 @@ data class HeavyAdIssueDetails(
 enum class ContentSecurityPolicyViolationType {
     @com.fasterxml.jackson.annotation.JsonProperty("kInlineViolation")
     KINLINEVIOLATION,
+
     @com.fasterxml.jackson.annotation.JsonProperty("kEvalViolation")
     KEVALVIOLATION,
+
     @com.fasterxml.jackson.annotation.JsonProperty("kURLViolation")
     KURLVIOLATION,
+
     @com.fasterxml.jackson.annotation.JsonProperty("kTrustedTypesSinkViolation")
     KTRUSTEDTYPESSINKVIOLATION,
+
     @com.fasterxml.jackson.annotation.JsonProperty("kTrustedTypesPolicyViolation")
     KTRUSTEDTYPESPOLICYVIOLATION;
 }
@@ -463,6 +512,7 @@ data class ContentSecurityPolicyIssueDetails(
 enum class SharedArrayBufferIssueType {
     @com.fasterxml.jackson.annotation.JsonProperty("TransferIssue")
     TRANSFERISSUE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("CreationIssue")
     CREATIONISSUE;
 }
@@ -499,8 +549,10 @@ data class SharedArrayBufferIssueDetails(
 enum class TwaQualityEnforcementViolationType {
     @com.fasterxml.jackson.annotation.JsonProperty("kHttpError")
     KHTTPERROR,
+
     @com.fasterxml.jackson.annotation.JsonProperty("kUnavailableOffline")
     KUNAVAILABLEOFFLINE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("kDigitalAssetLinks")
     KDIGITALASSETLINKS;
 }
@@ -627,20 +679,28 @@ information about the kind of issue.
 enum class InspectorIssueCode {
     @com.fasterxml.jackson.annotation.JsonProperty("SameSiteCookieIssue")
     SAMESITECOOKIEISSUE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("MixedContentIssue")
     MIXEDCONTENTISSUE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("BlockedByResponseIssue")
     BLOCKEDBYRESPONSEISSUE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("HeavyAdIssue")
     HEAVYADISSUE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("ContentSecurityPolicyIssue")
     CONTENTSECURITYPOLICYISSUE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("SharedArrayBufferIssue")
     SHAREDARRAYBUFFERISSUE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("TrustedWebActivityIssue")
     TRUSTEDWEBACTIVITYISSUE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("LowTextContrastIssue")
     LOWTEXTCONTRASTISSUE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("CorsIssue")
     CORSISSUE;
 }

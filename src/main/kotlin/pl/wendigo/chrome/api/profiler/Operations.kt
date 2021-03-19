@@ -158,12 +158,12 @@ coverage needs to have started.
     /**
      *  Returns observable capturing all Profiler.consoleProfileFinished events.
      */
-    fun consoleProfileFinished(): io.reactivex.Flowable<ConsoleProfileFinishedEvent> = connection.events("Profiler.consoleProfileFinished", ConsoleProfileFinishedEvent::class.java)
+    fun consoleProfileFinished(): io.reactivex.rxjava3.core.Flowable<ConsoleProfileFinishedEvent> = connection.events("Profiler.consoleProfileFinished", ConsoleProfileFinishedEvent::class.java)
 
     /**
      *  Sent when new profile recording is started using console.profile() call.
      */
-    fun consoleProfileStarted(): io.reactivex.Flowable<ConsoleProfileStartedEvent> = connection.events("Profiler.consoleProfileStarted", ConsoleProfileStartedEvent::class.java)
+    fun consoleProfileStarted(): io.reactivex.rxjava3.core.Flowable<ConsoleProfileStartedEvent> = connection.events("Profiler.consoleProfileStarted", ConsoleProfileStartedEvent::class.java)
 
     /**
      *  Reports coverage delta since the last poll (either from an event like this, or from
@@ -171,12 +171,12 @@ coverage needs to have started.
 coverage has been started. This event can be trigged by the embedder to, for example,
 trigger collection of coverage data immediatelly at a certain point in time.
      */
-    fun preciseCoverageDeltaUpdate(): io.reactivex.Flowable<PreciseCoverageDeltaUpdateEvent> = connection.events("Profiler.preciseCoverageDeltaUpdate", PreciseCoverageDeltaUpdateEvent::class.java)
+    fun preciseCoverageDeltaUpdate(): io.reactivex.rxjava3.core.Flowable<PreciseCoverageDeltaUpdateEvent> = connection.events("Profiler.preciseCoverageDeltaUpdate", PreciseCoverageDeltaUpdateEvent::class.java)
 
     /**
      * Returns flowable capturing all Profiler domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Profiler"
         }

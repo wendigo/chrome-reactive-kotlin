@@ -42,12 +42,12 @@ using Audits.issueAdded event.
     /**
      *  Returns observable capturing all Audits.issueAdded events.
      */
-    fun issueAdded(): io.reactivex.Flowable<IssueAddedEvent> = connection.events("Audits.issueAdded", IssueAddedEvent::class.java)
+    fun issueAdded(): io.reactivex.rxjava3.core.Flowable<IssueAddedEvent> = connection.events("Audits.issueAdded", IssueAddedEvent::class.java)
 
     /**
      * Returns flowable capturing all Audits domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Audits"
         }

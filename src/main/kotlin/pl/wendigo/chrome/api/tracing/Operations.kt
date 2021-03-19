@@ -46,24 +46,24 @@ class TracingOperations internal constructor(private val connection: pl.wendigo.
     /**
      *  Returns observable capturing all Tracing.bufferUsage events.
      */
-    fun bufferUsage(): io.reactivex.Flowable<BufferUsageEvent> = connection.events("Tracing.bufferUsage", BufferUsageEvent::class.java)
+    fun bufferUsage(): io.reactivex.rxjava3.core.Flowable<BufferUsageEvent> = connection.events("Tracing.bufferUsage", BufferUsageEvent::class.java)
 
     /**
      *  Contains an bucket of collected trace events. When tracing is stopped collected events will be
 send as a sequence of dataCollected events followed by tracingComplete event.
      */
-    fun dataCollected(): io.reactivex.Flowable<DataCollectedEvent> = connection.events("Tracing.dataCollected", DataCollectedEvent::class.java)
+    fun dataCollected(): io.reactivex.rxjava3.core.Flowable<DataCollectedEvent> = connection.events("Tracing.dataCollected", DataCollectedEvent::class.java)
 
     /**
      *  Signals that tracing is stopped and there is no trace buffers pending flush, all data were
 delivered via dataCollected events.
      */
-    fun tracingComplete(): io.reactivex.Flowable<TracingCompleteEvent> = connection.events("Tracing.tracingComplete", TracingCompleteEvent::class.java)
+    fun tracingComplete(): io.reactivex.rxjava3.core.Flowable<TracingCompleteEvent> = connection.events("Tracing.tracingComplete", TracingCompleteEvent::class.java)
 
     /**
      * Returns flowable capturing all Tracing domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Tracing"
         }

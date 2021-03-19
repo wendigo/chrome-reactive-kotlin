@@ -73,8 +73,10 @@ resource fetches.
 enum class VirtualTimePolicy {
     @com.fasterxml.jackson.annotation.JsonProperty("advance")
     ADVANCE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("pause")
     PAUSE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("pauseIfNetworkFetchesPending")
     PAUSEIFNETWORKFETCHESPENDING;
 }
@@ -149,6 +151,7 @@ data class UserAgentMetadata(
 enum class DisabledImageType {
     @com.fasterxml.jackson.annotation.JsonProperty("avif")
     AVIF,
+
     @com.fasterxml.jackson.annotation.JsonProperty("webp")
     WEBP;
 }

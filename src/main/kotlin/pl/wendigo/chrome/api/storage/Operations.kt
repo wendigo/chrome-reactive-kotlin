@@ -93,27 +93,27 @@ current browsing context.
     /**
      *  A cache's contents have been modified.
      */
-    fun cacheStorageContentUpdated(): io.reactivex.Flowable<CacheStorageContentUpdatedEvent> = connection.events("Storage.cacheStorageContentUpdated", CacheStorageContentUpdatedEvent::class.java)
+    fun cacheStorageContentUpdated(): io.reactivex.rxjava3.core.Flowable<CacheStorageContentUpdatedEvent> = connection.events("Storage.cacheStorageContentUpdated", CacheStorageContentUpdatedEvent::class.java)
 
     /**
      *  A cache has been added/deleted.
      */
-    fun cacheStorageListUpdated(): io.reactivex.Flowable<CacheStorageListUpdatedEvent> = connection.events("Storage.cacheStorageListUpdated", CacheStorageListUpdatedEvent::class.java)
+    fun cacheStorageListUpdated(): io.reactivex.rxjava3.core.Flowable<CacheStorageListUpdatedEvent> = connection.events("Storage.cacheStorageListUpdated", CacheStorageListUpdatedEvent::class.java)
 
     /**
      *  The origin's IndexedDB object store has been modified.
      */
-    fun indexedDBContentUpdated(): io.reactivex.Flowable<IndexedDBContentUpdatedEvent> = connection.events("Storage.indexedDBContentUpdated", IndexedDBContentUpdatedEvent::class.java)
+    fun indexedDBContentUpdated(): io.reactivex.rxjava3.core.Flowable<IndexedDBContentUpdatedEvent> = connection.events("Storage.indexedDBContentUpdated", IndexedDBContentUpdatedEvent::class.java)
 
     /**
      *  The origin's IndexedDB database list has been modified.
      */
-    fun indexedDBListUpdated(): io.reactivex.Flowable<IndexedDBListUpdatedEvent> = connection.events("Storage.indexedDBListUpdated", IndexedDBListUpdatedEvent::class.java)
+    fun indexedDBListUpdated(): io.reactivex.rxjava3.core.Flowable<IndexedDBListUpdatedEvent> = connection.events("Storage.indexedDBListUpdated", IndexedDBListUpdatedEvent::class.java)
 
     /**
      * Returns flowable capturing all Storage domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Storage"
         }

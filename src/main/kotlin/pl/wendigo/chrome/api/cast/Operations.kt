@@ -53,18 +53,18 @@ sink via Presentation API, Remote Playback API, or Cast SDK.
      *  This is fired whenever the list of available sinks changes. A sink is a
 device or a software surface that you can cast to.
      */
-    fun sinksUpdated(): io.reactivex.Flowable<SinksUpdatedEvent> = connection.events("Cast.sinksUpdated", SinksUpdatedEvent::class.java)
+    fun sinksUpdated(): io.reactivex.rxjava3.core.Flowable<SinksUpdatedEvent> = connection.events("Cast.sinksUpdated", SinksUpdatedEvent::class.java)
 
     /**
      *  This is fired whenever the outstanding issue/error message changes.
 |issueMessage| is empty if there is no issue.
      */
-    fun issueUpdated(): io.reactivex.Flowable<IssueUpdatedEvent> = connection.events("Cast.issueUpdated", IssueUpdatedEvent::class.java)
+    fun issueUpdated(): io.reactivex.rxjava3.core.Flowable<IssueUpdatedEvent> = connection.events("Cast.issueUpdated", IssueUpdatedEvent::class.java)
 
     /**
      * Returns flowable capturing all Cast domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Cast"
         }

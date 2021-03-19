@@ -39,10 +39,13 @@ data class ServiceWorkerRegistration(
 enum class ServiceWorkerVersionRunningStatus {
     @com.fasterxml.jackson.annotation.JsonProperty("stopped")
     STOPPED,
+
     @com.fasterxml.jackson.annotation.JsonProperty("starting")
     STARTING,
+
     @com.fasterxml.jackson.annotation.JsonProperty("running")
     RUNNING,
+
     @com.fasterxml.jackson.annotation.JsonProperty("stopping")
     STOPPING;
 }
@@ -55,14 +58,19 @@ enum class ServiceWorkerVersionRunningStatus {
 enum class ServiceWorkerVersionStatus {
     @com.fasterxml.jackson.annotation.JsonProperty("new")
     NEW,
+
     @com.fasterxml.jackson.annotation.JsonProperty("installing")
     INSTALLING,
+
     @com.fasterxml.jackson.annotation.JsonProperty("installed")
     INSTALLED,
+
     @com.fasterxml.jackson.annotation.JsonProperty("activating")
     ACTIVATING,
+
     @com.fasterxml.jackson.annotation.JsonProperty("activated")
     ACTIVATED,
+
     @com.fasterxml.jackson.annotation.JsonProperty("redundant")
     REDUNDANT;
 }

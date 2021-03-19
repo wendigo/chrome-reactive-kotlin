@@ -102,22 +102,22 @@ class ServiceWorkerOperations internal constructor(private val connection: pl.we
     /**
      *  Returns observable capturing all ServiceWorker.workerErrorReported events.
      */
-    fun workerErrorReported(): io.reactivex.Flowable<WorkerErrorReportedEvent> = connection.events("ServiceWorker.workerErrorReported", WorkerErrorReportedEvent::class.java)
+    fun workerErrorReported(): io.reactivex.rxjava3.core.Flowable<WorkerErrorReportedEvent> = connection.events("ServiceWorker.workerErrorReported", WorkerErrorReportedEvent::class.java)
 
     /**
      *  Returns observable capturing all ServiceWorker.workerRegistrationUpdated events.
      */
-    fun workerRegistrationUpdated(): io.reactivex.Flowable<WorkerRegistrationUpdatedEvent> = connection.events("ServiceWorker.workerRegistrationUpdated", WorkerRegistrationUpdatedEvent::class.java)
+    fun workerRegistrationUpdated(): io.reactivex.rxjava3.core.Flowable<WorkerRegistrationUpdatedEvent> = connection.events("ServiceWorker.workerRegistrationUpdated", WorkerRegistrationUpdatedEvent::class.java)
 
     /**
      *  Returns observable capturing all ServiceWorker.workerVersionUpdated events.
      */
-    fun workerVersionUpdated(): io.reactivex.Flowable<WorkerVersionUpdatedEvent> = connection.events("ServiceWorker.workerVersionUpdated", WorkerVersionUpdatedEvent::class.java)
+    fun workerVersionUpdated(): io.reactivex.rxjava3.core.Flowable<WorkerVersionUpdatedEvent> = connection.events("ServiceWorker.workerVersionUpdated", WorkerVersionUpdatedEvent::class.java)
 
     /**
      * Returns flowable capturing all ServiceWorker domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "ServiceWorker"
         }

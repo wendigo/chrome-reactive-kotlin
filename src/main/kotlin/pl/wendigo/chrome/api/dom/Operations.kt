@@ -394,78 +394,78 @@ $x functions).
     /**
      *  Fired when `Element`'s attribute is modified.
      */
-    fun attributeModified(): io.reactivex.Flowable<AttributeModifiedEvent> = connection.events("DOM.attributeModified", AttributeModifiedEvent::class.java)
+    fun attributeModified(): io.reactivex.rxjava3.core.Flowable<AttributeModifiedEvent> = connection.events("DOM.attributeModified", AttributeModifiedEvent::class.java)
 
     /**
      *  Fired when `Element`'s attribute is removed.
      */
-    fun attributeRemoved(): io.reactivex.Flowable<AttributeRemovedEvent> = connection.events("DOM.attributeRemoved", AttributeRemovedEvent::class.java)
+    fun attributeRemoved(): io.reactivex.rxjava3.core.Flowable<AttributeRemovedEvent> = connection.events("DOM.attributeRemoved", AttributeRemovedEvent::class.java)
 
     /**
      *  Mirrors `DOMCharacterDataModified` event.
      */
-    fun characterDataModified(): io.reactivex.Flowable<CharacterDataModifiedEvent> = connection.events("DOM.characterDataModified", CharacterDataModifiedEvent::class.java)
+    fun characterDataModified(): io.reactivex.rxjava3.core.Flowable<CharacterDataModifiedEvent> = connection.events("DOM.characterDataModified", CharacterDataModifiedEvent::class.java)
 
     /**
      *  Fired when `Container`'s child node count has changed.
      */
-    fun childNodeCountUpdated(): io.reactivex.Flowable<ChildNodeCountUpdatedEvent> = connection.events("DOM.childNodeCountUpdated", ChildNodeCountUpdatedEvent::class.java)
+    fun childNodeCountUpdated(): io.reactivex.rxjava3.core.Flowable<ChildNodeCountUpdatedEvent> = connection.events("DOM.childNodeCountUpdated", ChildNodeCountUpdatedEvent::class.java)
 
     /**
      *  Mirrors `DOMNodeInserted` event.
      */
-    fun childNodeInserted(): io.reactivex.Flowable<ChildNodeInsertedEvent> = connection.events("DOM.childNodeInserted", ChildNodeInsertedEvent::class.java)
+    fun childNodeInserted(): io.reactivex.rxjava3.core.Flowable<ChildNodeInsertedEvent> = connection.events("DOM.childNodeInserted", ChildNodeInsertedEvent::class.java)
 
     /**
      *  Mirrors `DOMNodeRemoved` event.
      */
-    fun childNodeRemoved(): io.reactivex.Flowable<ChildNodeRemovedEvent> = connection.events("DOM.childNodeRemoved", ChildNodeRemovedEvent::class.java)
+    fun childNodeRemoved(): io.reactivex.rxjava3.core.Flowable<ChildNodeRemovedEvent> = connection.events("DOM.childNodeRemoved", ChildNodeRemovedEvent::class.java)
 
     /**
      *  Called when distrubution is changed.
      */
-    fun distributedNodesUpdated(): io.reactivex.Flowable<DistributedNodesUpdatedEvent> = connection.events("DOM.distributedNodesUpdated", DistributedNodesUpdatedEvent::class.java)
+    fun distributedNodesUpdated(): io.reactivex.rxjava3.core.Flowable<DistributedNodesUpdatedEvent> = connection.events("DOM.distributedNodesUpdated", DistributedNodesUpdatedEvent::class.java)
 
     /**
      *  Fired when `Document` has been totally updated. Node ids are no longer valid.
      */
-    fun documentUpdated(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("DOM.documentUpdated", pl.wendigo.chrome.protocol.Event::class.java)
+    fun documentUpdated(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("DOM.documentUpdated", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired when `Element`'s inline style is modified via a CSS property modification.
      */
-    fun inlineStyleInvalidated(): io.reactivex.Flowable<InlineStyleInvalidatedEvent> = connection.events("DOM.inlineStyleInvalidated", InlineStyleInvalidatedEvent::class.java)
+    fun inlineStyleInvalidated(): io.reactivex.rxjava3.core.Flowable<InlineStyleInvalidatedEvent> = connection.events("DOM.inlineStyleInvalidated", InlineStyleInvalidatedEvent::class.java)
 
     /**
      *  Called when a pseudo element is added to an element.
      */
-    fun pseudoElementAdded(): io.reactivex.Flowable<PseudoElementAddedEvent> = connection.events("DOM.pseudoElementAdded", PseudoElementAddedEvent::class.java)
+    fun pseudoElementAdded(): io.reactivex.rxjava3.core.Flowable<PseudoElementAddedEvent> = connection.events("DOM.pseudoElementAdded", PseudoElementAddedEvent::class.java)
 
     /**
      *  Called when a pseudo element is removed from an element.
      */
-    fun pseudoElementRemoved(): io.reactivex.Flowable<PseudoElementRemovedEvent> = connection.events("DOM.pseudoElementRemoved", PseudoElementRemovedEvent::class.java)
+    fun pseudoElementRemoved(): io.reactivex.rxjava3.core.Flowable<PseudoElementRemovedEvent> = connection.events("DOM.pseudoElementRemoved", PseudoElementRemovedEvent::class.java)
 
     /**
      *  Fired when backend wants to provide client with the missing DOM structure. This happens upon
 most of the calls requesting node ids.
      */
-    fun setChildNodes(): io.reactivex.Flowable<SetChildNodesEvent> = connection.events("DOM.setChildNodes", SetChildNodesEvent::class.java)
+    fun setChildNodes(): io.reactivex.rxjava3.core.Flowable<SetChildNodesEvent> = connection.events("DOM.setChildNodes", SetChildNodesEvent::class.java)
 
     /**
      *  Called when shadow root is popped from the element.
      */
-    fun shadowRootPopped(): io.reactivex.Flowable<ShadowRootPoppedEvent> = connection.events("DOM.shadowRootPopped", ShadowRootPoppedEvent::class.java)
+    fun shadowRootPopped(): io.reactivex.rxjava3.core.Flowable<ShadowRootPoppedEvent> = connection.events("DOM.shadowRootPopped", ShadowRootPoppedEvent::class.java)
 
     /**
      *  Called when shadow root is pushed into the element.
      */
-    fun shadowRootPushed(): io.reactivex.Flowable<ShadowRootPushedEvent> = connection.events("DOM.shadowRootPushed", ShadowRootPushedEvent::class.java)
+    fun shadowRootPushed(): io.reactivex.rxjava3.core.Flowable<ShadowRootPushedEvent> = connection.events("DOM.shadowRootPushed", ShadowRootPushedEvent::class.java)
 
     /**
      * Returns flowable capturing all DOM domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "DOM"
         }

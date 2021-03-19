@@ -32,12 +32,12 @@ class ConsoleOperations internal constructor(private val connection: pl.wendigo.
     /**
      *  Issued when new console message is added.
      */
-    fun messageAdded(): io.reactivex.Flowable<MessageAddedEvent> = connection.events("Console.messageAdded", MessageAddedEvent::class.java)
+    fun messageAdded(): io.reactivex.rxjava3.core.Flowable<MessageAddedEvent> = connection.events("Console.messageAdded", MessageAddedEvent::class.java)
 
     /**
      * Returns flowable capturing all Console domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Console"
         }

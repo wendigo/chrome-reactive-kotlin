@@ -16,6 +16,7 @@ typealias GraphObjectId = String
 enum class ContextType {
     @com.fasterxml.jackson.annotation.JsonProperty("realtime")
     REALTIME,
+
     @com.fasterxml.jackson.annotation.JsonProperty("offline")
     OFFLINE;
 }
@@ -28,8 +29,10 @@ enum class ContextType {
 enum class ContextState {
     @com.fasterxml.jackson.annotation.JsonProperty("suspended")
     SUSPENDED,
+
     @com.fasterxml.jackson.annotation.JsonProperty("running")
     RUNNING,
+
     @com.fasterxml.jackson.annotation.JsonProperty("closed")
     CLOSED;
 }
@@ -50,8 +53,10 @@ typealias NodeType = String
 enum class ChannelCountMode {
     @com.fasterxml.jackson.annotation.JsonProperty("clamped-max")
     CLAMPED_MAX,
+
     @com.fasterxml.jackson.annotation.JsonProperty("explicit")
     EXPLICIT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("max")
     MAX;
 }
@@ -64,6 +69,7 @@ enum class ChannelCountMode {
 enum class ChannelInterpretation {
     @com.fasterxml.jackson.annotation.JsonProperty("discrete")
     DISCRETE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("speakers")
     SPEAKERS;
 }
@@ -84,6 +90,7 @@ typealias ParamType = String
 enum class AutomationRate {
     @com.fasterxml.jackson.annotation.JsonProperty("a-rate")
     A_RATE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("k-rate")
     K_RATE;
 }

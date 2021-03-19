@@ -45,12 +45,12 @@ class LogOperations internal constructor(private val connection: pl.wendigo.chro
     /**
      *  Issued when new message was logged.
      */
-    fun entryAdded(): io.reactivex.Flowable<EntryAddedEvent> = connection.events("Log.entryAdded", EntryAddedEvent::class.java)
+    fun entryAdded(): io.reactivex.rxjava3.core.Flowable<EntryAddedEvent> = connection.events("Log.entryAdded", EntryAddedEvent::class.java)
 
     /**
      * Returns flowable capturing all Log domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Log"
         }

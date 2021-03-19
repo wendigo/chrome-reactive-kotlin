@@ -55,7 +55,6 @@ Deprecated, use Fetch.continueRequest, Fetch.fulfillRequest and Fetch.failReques
      * @link Protocol [Network#continueInterceptedRequest](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-continueInterceptedRequest) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "continueInterceptedRequest is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun continueInterceptedRequest(input: ContinueInterceptedRequestRequest) = connection.request("Network.continueInterceptedRequest", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -238,7 +237,6 @@ Deprecated, please use Fetch.enable instead.
      * @link Protocol [Network#setRequestInterception](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setRequestInterception) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setRequestInterception is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun setRequestInterception(input: SetRequestInterceptionRequest) = connection.request("Network.setRequestInterception", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -270,104 +268,104 @@ Deprecated, please use Fetch.enable instead.
     /**
      *  Fired when data chunk was received over the network.
      */
-    fun dataReceived(): io.reactivex.Flowable<DataReceivedEvent> = connection.events("Network.dataReceived", DataReceivedEvent::class.java)
+    fun dataReceived(): io.reactivex.rxjava3.core.Flowable<DataReceivedEvent> = connection.events("Network.dataReceived", DataReceivedEvent::class.java)
 
     /**
      *  Fired when EventSource message is received.
      */
-    fun eventSourceMessageReceived(): io.reactivex.Flowable<EventSourceMessageReceivedEvent> = connection.events("Network.eventSourceMessageReceived", EventSourceMessageReceivedEvent::class.java)
+    fun eventSourceMessageReceived(): io.reactivex.rxjava3.core.Flowable<EventSourceMessageReceivedEvent> = connection.events("Network.eventSourceMessageReceived", EventSourceMessageReceivedEvent::class.java)
 
     /**
      *  Fired when HTTP request has failed to load.
      */
-    fun loadingFailed(): io.reactivex.Flowable<LoadingFailedEvent> = connection.events("Network.loadingFailed", LoadingFailedEvent::class.java)
+    fun loadingFailed(): io.reactivex.rxjava3.core.Flowable<LoadingFailedEvent> = connection.events("Network.loadingFailed", LoadingFailedEvent::class.java)
 
     /**
      *  Fired when HTTP request has finished loading.
      */
-    fun loadingFinished(): io.reactivex.Flowable<LoadingFinishedEvent> = connection.events("Network.loadingFinished", LoadingFinishedEvent::class.java)
+    fun loadingFinished(): io.reactivex.rxjava3.core.Flowable<LoadingFinishedEvent> = connection.events("Network.loadingFinished", LoadingFinishedEvent::class.java)
 
     /**
      *  Details of an intercepted HTTP request, which must be either allowed, blocked, modified or
 mocked.
 Deprecated, use Fetch.requestPaused instead.
      */
-    fun requestIntercepted(): io.reactivex.Flowable<RequestInterceptedEvent> = connection.events("Network.requestIntercepted", RequestInterceptedEvent::class.java)
+    fun requestIntercepted(): io.reactivex.rxjava3.core.Flowable<RequestInterceptedEvent> = connection.events("Network.requestIntercepted", RequestInterceptedEvent::class.java)
 
     /**
      *  Fired if request ended up loading from cache.
      */
-    fun requestServedFromCache(): io.reactivex.Flowable<RequestServedFromCacheEvent> = connection.events("Network.requestServedFromCache", RequestServedFromCacheEvent::class.java)
+    fun requestServedFromCache(): io.reactivex.rxjava3.core.Flowable<RequestServedFromCacheEvent> = connection.events("Network.requestServedFromCache", RequestServedFromCacheEvent::class.java)
 
     /**
      *  Fired when page is about to send HTTP request.
      */
-    fun requestWillBeSent(): io.reactivex.Flowable<RequestWillBeSentEvent> = connection.events("Network.requestWillBeSent", RequestWillBeSentEvent::class.java)
+    fun requestWillBeSent(): io.reactivex.rxjava3.core.Flowable<RequestWillBeSentEvent> = connection.events("Network.requestWillBeSent", RequestWillBeSentEvent::class.java)
 
     /**
      *  Fired when resource loading priority is changed
      */
-    fun resourceChangedPriority(): io.reactivex.Flowable<ResourceChangedPriorityEvent> = connection.events("Network.resourceChangedPriority", ResourceChangedPriorityEvent::class.java)
+    fun resourceChangedPriority(): io.reactivex.rxjava3.core.Flowable<ResourceChangedPriorityEvent> = connection.events("Network.resourceChangedPriority", ResourceChangedPriorityEvent::class.java)
 
     /**
      *  Fired when a signed exchange was received over the network
      */
-    fun signedExchangeReceived(): io.reactivex.Flowable<SignedExchangeReceivedEvent> = connection.events("Network.signedExchangeReceived", SignedExchangeReceivedEvent::class.java)
+    fun signedExchangeReceived(): io.reactivex.rxjava3.core.Flowable<SignedExchangeReceivedEvent> = connection.events("Network.signedExchangeReceived", SignedExchangeReceivedEvent::class.java)
 
     /**
      *  Fired when HTTP response is available.
      */
-    fun responseReceived(): io.reactivex.Flowable<ResponseReceivedEvent> = connection.events("Network.responseReceived", ResponseReceivedEvent::class.java)
+    fun responseReceived(): io.reactivex.rxjava3.core.Flowable<ResponseReceivedEvent> = connection.events("Network.responseReceived", ResponseReceivedEvent::class.java)
 
     /**
      *  Fired when WebSocket is closed.
      */
-    fun webSocketClosed(): io.reactivex.Flowable<WebSocketClosedEvent> = connection.events("Network.webSocketClosed", WebSocketClosedEvent::class.java)
+    fun webSocketClosed(): io.reactivex.rxjava3.core.Flowable<WebSocketClosedEvent> = connection.events("Network.webSocketClosed", WebSocketClosedEvent::class.java)
 
     /**
      *  Fired upon WebSocket creation.
      */
-    fun webSocketCreated(): io.reactivex.Flowable<WebSocketCreatedEvent> = connection.events("Network.webSocketCreated", WebSocketCreatedEvent::class.java)
+    fun webSocketCreated(): io.reactivex.rxjava3.core.Flowable<WebSocketCreatedEvent> = connection.events("Network.webSocketCreated", WebSocketCreatedEvent::class.java)
 
     /**
      *  Fired when WebSocket message error occurs.
      */
-    fun webSocketFrameError(): io.reactivex.Flowable<WebSocketFrameErrorEvent> = connection.events("Network.webSocketFrameError", WebSocketFrameErrorEvent::class.java)
+    fun webSocketFrameError(): io.reactivex.rxjava3.core.Flowable<WebSocketFrameErrorEvent> = connection.events("Network.webSocketFrameError", WebSocketFrameErrorEvent::class.java)
 
     /**
      *  Fired when WebSocket message is received.
      */
-    fun webSocketFrameReceived(): io.reactivex.Flowable<WebSocketFrameReceivedEvent> = connection.events("Network.webSocketFrameReceived", WebSocketFrameReceivedEvent::class.java)
+    fun webSocketFrameReceived(): io.reactivex.rxjava3.core.Flowable<WebSocketFrameReceivedEvent> = connection.events("Network.webSocketFrameReceived", WebSocketFrameReceivedEvent::class.java)
 
     /**
      *  Fired when WebSocket message is sent.
      */
-    fun webSocketFrameSent(): io.reactivex.Flowable<WebSocketFrameSentEvent> = connection.events("Network.webSocketFrameSent", WebSocketFrameSentEvent::class.java)
+    fun webSocketFrameSent(): io.reactivex.rxjava3.core.Flowable<WebSocketFrameSentEvent> = connection.events("Network.webSocketFrameSent", WebSocketFrameSentEvent::class.java)
 
     /**
      *  Fired when WebSocket handshake response becomes available.
      */
-    fun webSocketHandshakeResponseReceived(): io.reactivex.Flowable<WebSocketHandshakeResponseReceivedEvent> = connection.events("Network.webSocketHandshakeResponseReceived", WebSocketHandshakeResponseReceivedEvent::class.java)
+    fun webSocketHandshakeResponseReceived(): io.reactivex.rxjava3.core.Flowable<WebSocketHandshakeResponseReceivedEvent> = connection.events("Network.webSocketHandshakeResponseReceived", WebSocketHandshakeResponseReceivedEvent::class.java)
 
     /**
      *  Fired when WebSocket is about to initiate handshake.
      */
-    fun webSocketWillSendHandshakeRequest(): io.reactivex.Flowable<WebSocketWillSendHandshakeRequestEvent> = connection.events("Network.webSocketWillSendHandshakeRequest", WebSocketWillSendHandshakeRequestEvent::class.java)
+    fun webSocketWillSendHandshakeRequest(): io.reactivex.rxjava3.core.Flowable<WebSocketWillSendHandshakeRequestEvent> = connection.events("Network.webSocketWillSendHandshakeRequest", WebSocketWillSendHandshakeRequestEvent::class.java)
 
     /**
      *  Fired upon WebTransport creation.
      */
-    fun webTransportCreated(): io.reactivex.Flowable<WebTransportCreatedEvent> = connection.events("Network.webTransportCreated", WebTransportCreatedEvent::class.java)
+    fun webTransportCreated(): io.reactivex.rxjava3.core.Flowable<WebTransportCreatedEvent> = connection.events("Network.webTransportCreated", WebTransportCreatedEvent::class.java)
 
     /**
      *  Fired when WebTransport handshake is finished.
      */
-    fun webTransportConnectionEstablished(): io.reactivex.Flowable<WebTransportConnectionEstablishedEvent> = connection.events("Network.webTransportConnectionEstablished", WebTransportConnectionEstablishedEvent::class.java)
+    fun webTransportConnectionEstablished(): io.reactivex.rxjava3.core.Flowable<WebTransportConnectionEstablishedEvent> = connection.events("Network.webTransportConnectionEstablished", WebTransportConnectionEstablishedEvent::class.java)
 
     /**
      *  Fired when WebTransport is disposed.
      */
-    fun webTransportClosed(): io.reactivex.Flowable<WebTransportClosedEvent> = connection.events("Network.webTransportClosed", WebTransportClosedEvent::class.java)
+    fun webTransportClosed(): io.reactivex.rxjava3.core.Flowable<WebTransportClosedEvent> = connection.events("Network.webTransportClosed", WebTransportClosedEvent::class.java)
 
     /**
      *  Fired when additional information about a requestWillBeSent event is available from the
@@ -375,14 +373,14 @@ network stack. Not every requestWillBeSent event will have an additional
 requestWillBeSentExtraInfo fired for it, and there is no guarantee whether requestWillBeSent
 or requestWillBeSentExtraInfo will be fired first for the same request.
      */
-    fun requestWillBeSentExtraInfo(): io.reactivex.Flowable<RequestWillBeSentExtraInfoEvent> = connection.events("Network.requestWillBeSentExtraInfo", RequestWillBeSentExtraInfoEvent::class.java)
+    fun requestWillBeSentExtraInfo(): io.reactivex.rxjava3.core.Flowable<RequestWillBeSentExtraInfoEvent> = connection.events("Network.requestWillBeSentExtraInfo", RequestWillBeSentExtraInfoEvent::class.java)
 
     /**
      *  Fired when additional information about a responseReceived event is available from the network
 stack. Not every responseReceived event will have an additional responseReceivedExtraInfo for
 it, and responseReceivedExtraInfo may be fired before or after responseReceived.
      */
-    fun responseReceivedExtraInfo(): io.reactivex.Flowable<ResponseReceivedExtraInfoEvent> = connection.events("Network.responseReceivedExtraInfo", ResponseReceivedExtraInfoEvent::class.java)
+    fun responseReceivedExtraInfo(): io.reactivex.rxjava3.core.Flowable<ResponseReceivedExtraInfoEvent> = connection.events("Network.responseReceivedExtraInfo", ResponseReceivedExtraInfoEvent::class.java)
 
     /**
      *  Fired exactly once for each Trust Token operation. Depending on
@@ -390,12 +388,12 @@ the type of the operation and whether the operation succeeded or
 failed, the event is fired before the corresponding request was sent
 or after the response was received.
      */
-    fun trustTokenOperationDone(): io.reactivex.Flowable<TrustTokenOperationDoneEvent> = connection.events("Network.trustTokenOperationDone", TrustTokenOperationDoneEvent::class.java)
+    fun trustTokenOperationDone(): io.reactivex.rxjava3.core.Flowable<TrustTokenOperationDoneEvent> = connection.events("Network.trustTokenOperationDone", TrustTokenOperationDoneEvent::class.java)
 
     /**
      * Returns flowable capturing all Network domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Network"
         }

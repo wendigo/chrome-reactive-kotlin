@@ -46,7 +46,7 @@ class CacheStorageOperations internal constructor(private val connection: pl.wen
     /**
      * Returns flowable capturing all CacheStorage domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "CacheStorage"
         }

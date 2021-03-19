@@ -25,7 +25,7 @@ class DeviceOrientationOperations internal constructor(private val connection: p
     /**
      * Returns flowable capturing all DeviceOrientation domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "DeviceOrientation"
         }

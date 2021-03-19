@@ -28,7 +28,6 @@ this method while metrics collection is enabled returns an error.
      * @link Protocol [Performance#setTimeDomain](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-setTimeDomain) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setTimeDomain is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun setTimeDomain(input: SetTimeDomainRequest) = connection.request("Performance.setTimeDomain", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -42,12 +41,12 @@ this method while metrics collection is enabled returns an error.
     /**
      *  Current values of the metrics.
      */
-    fun metrics(): io.reactivex.Flowable<MetricsEvent> = connection.events("Performance.metrics", MetricsEvent::class.java)
+    fun metrics(): io.reactivex.rxjava3.core.Flowable<MetricsEvent> = connection.events("Performance.metrics", MetricsEvent::class.java)
 
     /**
      * Returns flowable capturing all Performance domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Performance"
         }

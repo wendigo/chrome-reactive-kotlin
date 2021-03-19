@@ -86,7 +86,7 @@ class DOMDebuggerOperations internal constructor(private val connection: pl.wend
     /**
      * Returns flowable capturing all DOMDebugger domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "DOMDebugger"
         }

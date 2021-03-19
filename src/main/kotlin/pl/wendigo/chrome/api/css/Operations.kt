@@ -211,33 +211,33 @@ instrumentation)
      *  Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
 web font
      */
-    fun fontsUpdated(): io.reactivex.Flowable<FontsUpdatedEvent> = connection.events("CSS.fontsUpdated", FontsUpdatedEvent::class.java)
+    fun fontsUpdated(): io.reactivex.rxjava3.core.Flowable<FontsUpdatedEvent> = connection.events("CSS.fontsUpdated", FontsUpdatedEvent::class.java)
 
     /**
      *  Fires whenever a MediaQuery result changes (for example, after a browser window has been
 resized.) The current implementation considers only viewport-dependent media features.
      */
-    fun mediaQueryResultChanged(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("CSS.mediaQueryResultChanged", pl.wendigo.chrome.protocol.Event::class.java)
+    fun mediaQueryResultChanged(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("CSS.mediaQueryResultChanged", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired whenever an active document stylesheet is added.
      */
-    fun styleSheetAdded(): io.reactivex.Flowable<StyleSheetAddedEvent> = connection.events("CSS.styleSheetAdded", StyleSheetAddedEvent::class.java)
+    fun styleSheetAdded(): io.reactivex.rxjava3.core.Flowable<StyleSheetAddedEvent> = connection.events("CSS.styleSheetAdded", StyleSheetAddedEvent::class.java)
 
     /**
      *  Fired whenever a stylesheet is changed as a result of the client operation.
      */
-    fun styleSheetChanged(): io.reactivex.Flowable<StyleSheetChangedEvent> = connection.events("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java)
+    fun styleSheetChanged(): io.reactivex.rxjava3.core.Flowable<StyleSheetChangedEvent> = connection.events("CSS.styleSheetChanged", StyleSheetChangedEvent::class.java)
 
     /**
      *  Fired whenever an active document stylesheet is removed.
      */
-    fun styleSheetRemoved(): io.reactivex.Flowable<StyleSheetRemovedEvent> = connection.events("CSS.styleSheetRemoved", StyleSheetRemovedEvent::class.java)
+    fun styleSheetRemoved(): io.reactivex.rxjava3.core.Flowable<StyleSheetRemovedEvent> = connection.events("CSS.styleSheetRemoved", StyleSheetRemovedEvent::class.java)
 
     /**
      * Returns flowable capturing all CSS domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "CSS"
         }

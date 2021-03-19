@@ -12,7 +12,6 @@ class PageOperations internal constructor(private val connection: pl.wendigo.chr
      * @link Protocol [Page#addScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addScriptToEvaluateOnLoad) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "addScriptToEvaluateOnLoad is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun addScriptToEvaluateOnLoad(input: AddScriptToEvaluateOnLoadRequest) = connection.request("Page.addScriptToEvaluateOnLoad", input, AddScriptToEvaluateOnLoadResponse::class.java)
 
@@ -53,7 +52,6 @@ iframes, shadow DOM, external resources, and element-inline styles.
      * @link Protocol [Page#clearDeviceMetricsOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-clearDeviceMetricsOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearDeviceMetricsOverride is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun clearDeviceMetricsOverride() = connection.request("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -63,7 +61,6 @@ iframes, shadow DOM, external resources, and element-inline styles.
      * @link Protocol [Page#clearDeviceOrientationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-clearDeviceOrientationOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearDeviceOrientationOverride is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun clearDeviceOrientationOverride() = connection.request("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -88,7 +85,6 @@ iframes, shadow DOM, external resources, and element-inline styles.
      * @link Protocol [Page#deleteCookie](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-deleteCookie) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "deleteCookie is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun deleteCookie(input: DeleteCookieRequest) = connection.request("Page.deleteCookie", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -138,7 +134,6 @@ information in the `cookies` field.
      * @link Protocol [Page#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-getCookies) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "getCookies is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun getCookies() = connection.request("Page.getCookies", null, GetCookiesResponse::class.java)
 
@@ -229,7 +224,6 @@ information in the `cookies` field.
      * @link Protocol [Page#removeScriptToEvaluateOnLoad](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-removeScriptToEvaluateOnLoad) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "removeScriptToEvaluateOnLoad is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun removeScriptToEvaluateOnLoad(input: RemoveScriptToEvaluateOnLoadRequest) = connection.request("Page.removeScriptToEvaluateOnLoad", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -293,7 +287,6 @@ query results).
      * @link Protocol [Page#setDeviceMetricsOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDeviceMetricsOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDeviceMetricsOverride is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest) = connection.request("Page.setDeviceMetricsOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -303,7 +296,6 @@ query results).
      * @link Protocol [Page#setDeviceOrientationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDeviceOrientationOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDeviceOrientationOverride is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest) = connection.request("Page.setDeviceOrientationOverride", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -338,7 +330,6 @@ query results).
      * @link Protocol [Page#setDownloadBehavior](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDownloadBehavior) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDownloadBehavior is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun setDownloadBehavior(input: SetDownloadBehaviorRequest) = connection.request("Page.setDownloadBehavior", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -366,7 +357,6 @@ unavailable.
      * @link Protocol [Page#setTouchEmulationEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setTouchEmulationEnabled) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setTouchEmulationEnabled is deprecated.")
-    
     @pl.wendigo.chrome.protocol.Experimental
     fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest) = connection.request("Page.setTouchEmulationEnabled", input, pl.wendigo.chrome.protocol.ResponseFrame::class.java)
 
@@ -502,137 +492,137 @@ Instead, a protocol event `Page.fileChooserOpened` is emitted.
     /**
      *  Returns observable capturing all Page.domContentEventFired events.
      */
-    fun domContentEventFired(): io.reactivex.Flowable<DomContentEventFiredEvent> = connection.events("Page.domContentEventFired", DomContentEventFiredEvent::class.java)
+    fun domContentEventFired(): io.reactivex.rxjava3.core.Flowable<DomContentEventFiredEvent> = connection.events("Page.domContentEventFired", DomContentEventFiredEvent::class.java)
 
     /**
      *  Emitted only when `page.interceptFileChooser` is enabled.
      */
-    fun fileChooserOpened(): io.reactivex.Flowable<FileChooserOpenedEvent> = connection.events("Page.fileChooserOpened", FileChooserOpenedEvent::class.java)
+    fun fileChooserOpened(): io.reactivex.rxjava3.core.Flowable<FileChooserOpenedEvent> = connection.events("Page.fileChooserOpened", FileChooserOpenedEvent::class.java)
 
     /**
      *  Fired when frame has been attached to its parent.
      */
-    fun frameAttached(): io.reactivex.Flowable<FrameAttachedEvent> = connection.events("Page.frameAttached", FrameAttachedEvent::class.java)
+    fun frameAttached(): io.reactivex.rxjava3.core.Flowable<FrameAttachedEvent> = connection.events("Page.frameAttached", FrameAttachedEvent::class.java)
 
     /**
      *  Fired when frame no longer has a scheduled navigation.
      */
-    fun frameClearedScheduledNavigation(): io.reactivex.Flowable<FrameClearedScheduledNavigationEvent> = connection.events("Page.frameClearedScheduledNavigation", FrameClearedScheduledNavigationEvent::class.java)
+    fun frameClearedScheduledNavigation(): io.reactivex.rxjava3.core.Flowable<FrameClearedScheduledNavigationEvent> = connection.events("Page.frameClearedScheduledNavigation", FrameClearedScheduledNavigationEvent::class.java)
 
     /**
      *  Fired when frame has been detached from its parent.
      */
-    fun frameDetached(): io.reactivex.Flowable<FrameDetachedEvent> = connection.events("Page.frameDetached", FrameDetachedEvent::class.java)
+    fun frameDetached(): io.reactivex.rxjava3.core.Flowable<FrameDetachedEvent> = connection.events("Page.frameDetached", FrameDetachedEvent::class.java)
 
     /**
      *  Fired once navigation of the frame has completed. Frame is now associated with the new loader.
      */
-    fun frameNavigated(): io.reactivex.Flowable<FrameNavigatedEvent> = connection.events("Page.frameNavigated", FrameNavigatedEvent::class.java)
+    fun frameNavigated(): io.reactivex.rxjava3.core.Flowable<FrameNavigatedEvent> = connection.events("Page.frameNavigated", FrameNavigatedEvent::class.java)
 
     /**
      *  Fired when opening document to write to.
      */
-    fun documentOpened(): io.reactivex.Flowable<DocumentOpenedEvent> = connection.events("Page.documentOpened", DocumentOpenedEvent::class.java)
+    fun documentOpened(): io.reactivex.rxjava3.core.Flowable<DocumentOpenedEvent> = connection.events("Page.documentOpened", DocumentOpenedEvent::class.java)
 
     /**
      *  Returns observable capturing all Page.frameResized events.
      */
-    fun frameResized(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.frameResized", pl.wendigo.chrome.protocol.Event::class.java)
+    fun frameResized(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.frameResized", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired when a renderer-initiated navigation is requested.
 Navigation may still be cancelled after the event is issued.
      */
-    fun frameRequestedNavigation(): io.reactivex.Flowable<FrameRequestedNavigationEvent> = connection.events("Page.frameRequestedNavigation", FrameRequestedNavigationEvent::class.java)
+    fun frameRequestedNavigation(): io.reactivex.rxjava3.core.Flowable<FrameRequestedNavigationEvent> = connection.events("Page.frameRequestedNavigation", FrameRequestedNavigationEvent::class.java)
 
     /**
      *  Fired when frame schedules a potential navigation.
      */
-    fun frameScheduledNavigation(): io.reactivex.Flowable<FrameScheduledNavigationEvent> = connection.events("Page.frameScheduledNavigation", FrameScheduledNavigationEvent::class.java)
+    fun frameScheduledNavigation(): io.reactivex.rxjava3.core.Flowable<FrameScheduledNavigationEvent> = connection.events("Page.frameScheduledNavigation", FrameScheduledNavigationEvent::class.java)
 
     /**
      *  Fired when frame has started loading.
      */
-    fun frameStartedLoading(): io.reactivex.Flowable<FrameStartedLoadingEvent> = connection.events("Page.frameStartedLoading", FrameStartedLoadingEvent::class.java)
+    fun frameStartedLoading(): io.reactivex.rxjava3.core.Flowable<FrameStartedLoadingEvent> = connection.events("Page.frameStartedLoading", FrameStartedLoadingEvent::class.java)
 
     /**
      *  Fired when frame has stopped loading.
      */
-    fun frameStoppedLoading(): io.reactivex.Flowable<FrameStoppedLoadingEvent> = connection.events("Page.frameStoppedLoading", FrameStoppedLoadingEvent::class.java)
+    fun frameStoppedLoading(): io.reactivex.rxjava3.core.Flowable<FrameStoppedLoadingEvent> = connection.events("Page.frameStoppedLoading", FrameStoppedLoadingEvent::class.java)
 
     /**
      *  Fired when page is about to start a download.
      */
-    fun downloadWillBegin(): io.reactivex.Flowable<DownloadWillBeginEvent> = connection.events("Page.downloadWillBegin", DownloadWillBeginEvent::class.java)
+    fun downloadWillBegin(): io.reactivex.rxjava3.core.Flowable<DownloadWillBeginEvent> = connection.events("Page.downloadWillBegin", DownloadWillBeginEvent::class.java)
 
     /**
      *  Fired when download makes progress. Last call has |done| == true.
      */
-    fun downloadProgress(): io.reactivex.Flowable<DownloadProgressEvent> = connection.events("Page.downloadProgress", DownloadProgressEvent::class.java)
+    fun downloadProgress(): io.reactivex.rxjava3.core.Flowable<DownloadProgressEvent> = connection.events("Page.downloadProgress", DownloadProgressEvent::class.java)
 
     /**
      *  Fired when interstitial page was hidden
      */
-    fun interstitialHidden(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.interstitialHidden", pl.wendigo.chrome.protocol.Event::class.java)
+    fun interstitialHidden(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.interstitialHidden", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired when interstitial page was shown
      */
-    fun interstitialShown(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.interstitialShown", pl.wendigo.chrome.protocol.Event::class.java)
+    fun interstitialShown(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> = connection.events("Page.interstitialShown", pl.wendigo.chrome.protocol.Event::class.java)
 
     /**
      *  Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) has been
 closed.
      */
-    fun javascriptDialogClosed(): io.reactivex.Flowable<JavascriptDialogClosedEvent> = connection.events("Page.javascriptDialogClosed", JavascriptDialogClosedEvent::class.java)
+    fun javascriptDialogClosed(): io.reactivex.rxjava3.core.Flowable<JavascriptDialogClosedEvent> = connection.events("Page.javascriptDialogClosed", JavascriptDialogClosedEvent::class.java)
 
     /**
      *  Fired when a JavaScript initiated dialog (alert, confirm, prompt, or onbeforeunload) is about to
 open.
      */
-    fun javascriptDialogOpening(): io.reactivex.Flowable<JavascriptDialogOpeningEvent> = connection.events("Page.javascriptDialogOpening", JavascriptDialogOpeningEvent::class.java)
+    fun javascriptDialogOpening(): io.reactivex.rxjava3.core.Flowable<JavascriptDialogOpeningEvent> = connection.events("Page.javascriptDialogOpening", JavascriptDialogOpeningEvent::class.java)
 
     /**
      *  Fired for top level page lifecycle events such as navigation, load, paint, etc.
      */
-    fun lifecycleEvent(): io.reactivex.Flowable<LifecycleEventEvent> = connection.events("Page.lifecycleEvent", LifecycleEventEvent::class.java)
+    fun lifecycleEvent(): io.reactivex.rxjava3.core.Flowable<LifecycleEventEvent> = connection.events("Page.lifecycleEvent", LifecycleEventEvent::class.java)
 
     /**
      *  Returns observable capturing all Page.loadEventFired events.
      */
-    fun loadEventFired(): io.reactivex.Flowable<LoadEventFiredEvent> = connection.events("Page.loadEventFired", LoadEventFiredEvent::class.java)
+    fun loadEventFired(): io.reactivex.rxjava3.core.Flowable<LoadEventFiredEvent> = connection.events("Page.loadEventFired", LoadEventFiredEvent::class.java)
 
     /**
      *  Fired when same-document navigation happens, e.g. due to history API usage or anchor navigation.
      */
-    fun navigatedWithinDocument(): io.reactivex.Flowable<NavigatedWithinDocumentEvent> = connection.events("Page.navigatedWithinDocument", NavigatedWithinDocumentEvent::class.java)
+    fun navigatedWithinDocument(): io.reactivex.rxjava3.core.Flowable<NavigatedWithinDocumentEvent> = connection.events("Page.navigatedWithinDocument", NavigatedWithinDocumentEvent::class.java)
 
     /**
      *  Compressed image data requested by the `startScreencast`.
      */
-    fun screencastFrame(): io.reactivex.Flowable<ScreencastFrameEvent> = connection.events("Page.screencastFrame", ScreencastFrameEvent::class.java)
+    fun screencastFrame(): io.reactivex.rxjava3.core.Flowable<ScreencastFrameEvent> = connection.events("Page.screencastFrame", ScreencastFrameEvent::class.java)
 
     /**
      *  Fired when the page with currently enabled screencast was shown or hidden `.
      */
-    fun screencastVisibilityChanged(): io.reactivex.Flowable<ScreencastVisibilityChangedEvent> = connection.events("Page.screencastVisibilityChanged", ScreencastVisibilityChangedEvent::class.java)
+    fun screencastVisibilityChanged(): io.reactivex.rxjava3.core.Flowable<ScreencastVisibilityChangedEvent> = connection.events("Page.screencastVisibilityChanged", ScreencastVisibilityChangedEvent::class.java)
 
     /**
      *  Fired when a new window is going to be opened, via window.open(), link click, form submission,
 etc.
      */
-    fun windowOpen(): io.reactivex.Flowable<WindowOpenEvent> = connection.events("Page.windowOpen", WindowOpenEvent::class.java)
+    fun windowOpen(): io.reactivex.rxjava3.core.Flowable<WindowOpenEvent> = connection.events("Page.windowOpen", WindowOpenEvent::class.java)
 
     /**
      *  Issued for every compilation cache generated. Is only available
 if Page.setGenerateCompilationCache is enabled.
      */
-    fun compilationCacheProduced(): io.reactivex.Flowable<CompilationCacheProducedEvent> = connection.events("Page.compilationCacheProduced", CompilationCacheProducedEvent::class.java)
+    fun compilationCacheProduced(): io.reactivex.rxjava3.core.Flowable<CompilationCacheProducedEvent> = connection.events("Page.compilationCacheProduced", CompilationCacheProducedEvent::class.java)
 
     /**
      * Returns flowable capturing all Page domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Page"
         }

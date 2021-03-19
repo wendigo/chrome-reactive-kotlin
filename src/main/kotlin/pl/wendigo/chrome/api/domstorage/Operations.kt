@@ -53,27 +53,27 @@ class DOMStorageOperations internal constructor(private val connection: pl.wendi
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemAdded events.
      */
-    fun domStorageItemAdded(): io.reactivex.Flowable<DomStorageItemAddedEvent> = connection.events("DOMStorage.domStorageItemAdded", DomStorageItemAddedEvent::class.java)
+    fun domStorageItemAdded(): io.reactivex.rxjava3.core.Flowable<DomStorageItemAddedEvent> = connection.events("DOMStorage.domStorageItemAdded", DomStorageItemAddedEvent::class.java)
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemRemoved events.
      */
-    fun domStorageItemRemoved(): io.reactivex.Flowable<DomStorageItemRemovedEvent> = connection.events("DOMStorage.domStorageItemRemoved", DomStorageItemRemovedEvent::class.java)
+    fun domStorageItemRemoved(): io.reactivex.rxjava3.core.Flowable<DomStorageItemRemovedEvent> = connection.events("DOMStorage.domStorageItemRemoved", DomStorageItemRemovedEvent::class.java)
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemUpdated events.
      */
-    fun domStorageItemUpdated(): io.reactivex.Flowable<DomStorageItemUpdatedEvent> = connection.events("DOMStorage.domStorageItemUpdated", DomStorageItemUpdatedEvent::class.java)
+    fun domStorageItemUpdated(): io.reactivex.rxjava3.core.Flowable<DomStorageItemUpdatedEvent> = connection.events("DOMStorage.domStorageItemUpdated", DomStorageItemUpdatedEvent::class.java)
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemsCleared events.
      */
-    fun domStorageItemsCleared(): io.reactivex.Flowable<DomStorageItemsClearedEvent> = connection.events("DOMStorage.domStorageItemsCleared", DomStorageItemsClearedEvent::class.java)
+    fun domStorageItemsCleared(): io.reactivex.rxjava3.core.Flowable<DomStorageItemsClearedEvent> = connection.events("DOMStorage.domStorageItemsCleared", DomStorageItemsClearedEvent::class.java)
 
     /**
      * Returns flowable capturing all DOMStorage domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "DOMStorage"
         }

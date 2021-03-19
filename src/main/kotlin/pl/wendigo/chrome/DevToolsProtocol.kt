@@ -1,6 +1,6 @@
 package pl.wendigo.chrome
 
-import io.reactivex.Flowable
+import io.reactivex.rxjava3.core.Flowable
 import pl.wendigo.chrome.api.accessibility.AccessibilityOperations
 import pl.wendigo.chrome.api.animation.AnimationOperations
 import pl.wendigo.chrome.api.applicationcache.ApplicationCacheOperations

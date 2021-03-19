@@ -74,17 +74,17 @@ class LayerTreeOperations internal constructor(private val connection: pl.wendig
     /**
      *  Returns observable capturing all LayerTree.layerPainted events.
      */
-    fun layerPainted(): io.reactivex.Flowable<LayerPaintedEvent> = connection.events("LayerTree.layerPainted", LayerPaintedEvent::class.java)
+    fun layerPainted(): io.reactivex.rxjava3.core.Flowable<LayerPaintedEvent> = connection.events("LayerTree.layerPainted", LayerPaintedEvent::class.java)
 
     /**
      *  Returns observable capturing all LayerTree.layerTreeDidChange events.
      */
-    fun layerTreeDidChange(): io.reactivex.Flowable<LayerTreeDidChangeEvent> = connection.events("LayerTree.layerTreeDidChange", LayerTreeDidChangeEvent::class.java)
+    fun layerTreeDidChange(): io.reactivex.rxjava3.core.Flowable<LayerTreeDidChangeEvent> = connection.events("LayerTree.layerTreeDidChange", LayerTreeDidChangeEvent::class.java)
 
     /**
      * Returns flowable capturing all LayerTree domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "LayerTree"
         }

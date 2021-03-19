@@ -20,12 +20,12 @@ See also: timelineEventAdded
     /**
      *  Sent when a performance timeline event is added. See reportPerformanceTimeline method.
      */
-    fun timelineEventAdded(): io.reactivex.Flowable<TimelineEventAddedEvent> = connection.events("PerformanceTimeline.timelineEventAdded", TimelineEventAddedEvent::class.java)
+    fun timelineEventAdded(): io.reactivex.rxjava3.core.Flowable<TimelineEventAddedEvent> = connection.events("PerformanceTimeline.timelineEventAdded", TimelineEventAddedEvent::class.java)
 
     /**
      * Returns flowable capturing all PerformanceTimeline domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "PerformanceTimeline"
         }

@@ -52,22 +52,22 @@ handled with the `handleCertificateError` command. Note: this event does not fir
 certificate error has been allowed internally. Only one client per target should override
 certificate errors at the same time.
      */
-    fun certificateError(): io.reactivex.Flowable<CertificateErrorEvent> = connection.events("Security.certificateError", CertificateErrorEvent::class.java)
+    fun certificateError(): io.reactivex.rxjava3.core.Flowable<CertificateErrorEvent> = connection.events("Security.certificateError", CertificateErrorEvent::class.java)
 
     /**
      *  The security state of the page changed.
      */
-    fun visibleSecurityStateChanged(): io.reactivex.Flowable<VisibleSecurityStateChangedEvent> = connection.events("Security.visibleSecurityStateChanged", VisibleSecurityStateChangedEvent::class.java)
+    fun visibleSecurityStateChanged(): io.reactivex.rxjava3.core.Flowable<VisibleSecurityStateChangedEvent> = connection.events("Security.visibleSecurityStateChanged", VisibleSecurityStateChangedEvent::class.java)
 
     /**
      *  The security state of the page changed.
      */
-    fun securityStateChanged(): io.reactivex.Flowable<SecurityStateChangedEvent> = connection.events("Security.securityStateChanged", SecurityStateChangedEvent::class.java)
+    fun securityStateChanged(): io.reactivex.rxjava3.core.Flowable<SecurityStateChangedEvent> = connection.events("Security.securityStateChanged", SecurityStateChangedEvent::class.java)
 
     /**
      * Returns flowable capturing all Security domains events.
      */
-    fun events(): io.reactivex.Flowable<pl.wendigo.chrome.protocol.Event> {
+    fun events(): io.reactivex.rxjava3.core.Flowable<pl.wendigo.chrome.protocol.Event> {
         return connection.allEvents().filter {
             it.protocolDomain() == "Security"
         }

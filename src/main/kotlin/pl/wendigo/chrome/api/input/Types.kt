@@ -72,8 +72,10 @@ data class TouchPoint(
 enum class GestureSourceType {
     @com.fasterxml.jackson.annotation.JsonProperty("default")
     DEFAULT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("touch")
     TOUCH,
+
     @com.fasterxml.jackson.annotation.JsonProperty("mouse")
     MOUSE;
 }
@@ -86,14 +88,19 @@ enum class GestureSourceType {
 enum class MouseButton {
     @com.fasterxml.jackson.annotation.JsonProperty("none")
     NONE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("left")
     LEFT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("middle")
     MIDDLE,
+
     @com.fasterxml.jackson.annotation.JsonProperty("right")
     RIGHT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("back")
     BACK,
+
     @com.fasterxml.jackson.annotation.JsonProperty("forward")
     FORWARD;
 }

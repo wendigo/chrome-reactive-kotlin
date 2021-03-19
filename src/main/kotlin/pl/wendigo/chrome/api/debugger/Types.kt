@@ -217,6 +217,7 @@ data class BreakLocation(
 enum class ScriptLanguage {
     @com.fasterxml.jackson.annotation.JsonProperty("JavaScript")
     JAVASCRIPT,
+
     @com.fasterxml.jackson.annotation.JsonProperty("WebAssembly")
     WEBASSEMBLY;
 }

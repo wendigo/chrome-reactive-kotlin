@@ -1,7 +1,7 @@
 package pl.wendigo.chrome
 
-import io.reactivex.Flowable
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 
 typealias SingleBlock<T> = () -> Single<T>
 typealias FlowableBlock<T> = () -> Flowable<T>
