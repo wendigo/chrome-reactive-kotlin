@@ -10,10 +10,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Build docs
-        run: ./gradlew clean dokkaJavadoc
+        run: ./gradlew clean dokkaHtml
+      - name: Touch .nojekyll
+        run: |
+          echo 1 > build/dokka/html/.nojekyll && echo "theme: jekyll-theme-cayman" > build/dokka/html/_config.yml
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           branch: gh-pages
-          folder: build/dokka/javadoc
+          folder: build/dokka/html
