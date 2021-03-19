@@ -3,7 +3,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/pl.wendigo/chrome-reactive-kotlin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/pl.wendigo/chrome-reactive-kotlin) [![Javadocs](https://www.javadoc.io/badge/pl.wendigo/chrome-reactive-kotlin.svg)](https://www.javadoc.io/doc/pl.wendigo/chrome-reactive-kotlin) [![Build Status](https://github.com/wendigo/chrome-reactive-kotlin/workflows/Test/badge.svg)](https://github.com/wendigo/chrome-reactive-kotlin/actions) [![Update Status](https://github.com/wendigo/chrome-reactive-kotlin/workflows/Update%20protocol%20to%20ToT/badge.svg)](https://github.com/wendigo/chrome-reactive-kotlin/actions?workflow=Update+protocol+to+ToT) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=wendigo/chrome-reactive-kotlin)](https://dependabot.com)
 
 
-**chrome-reactive-kotlin** is a low level [Chrome DevTools Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/) client written in [Kotlin](https://kotlinlang.org) and leveraging [RxJava2](https://github.com/ReactiveX/RxJava) for easy composability. 
+**chrome-reactive-kotlin** is a low level [Chrome DevTools Protocol](https://chromedevtools.github.io/debugger-protocol-viewer/) client written in [Kotlin](https://kotlinlang.org) and leveraging [RxJava3](https://github.com/ReactiveX/RxJava) for easy composability. 
 
 Library exposes all protocol domains in a single, cohesive and highly composable API. It supports both headless and standalone Chrome versions and supports creating isolated environments via [BrowserContext](https://chromedevtools.github.io/debugger-protocol-viewer/tot/Target/) from [Target]((https://chromedevtools.github.io/debugger-protocol-viewer/tot/Target/)) domain and flatted sessions mode (see: [http://crbug.com/991325](http://crbug.com/991325)).
 
@@ -24,7 +24,7 @@ Add to your Kotlin or Java project (Gradle dependency):
 Run headless chrome:
 
 ```
-docker container run -d -p 9222:9222 zenika/alpine-chrome --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank
+docker container run -d -p 9222:9222 eu.gcr.io/zenika-hub/alpine-chrome:89 --no-sandbox --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 about:blank
 ```
 
 And now execute:
