@@ -16,6 +16,12 @@ plugins {
     id("com.adarshr.test-logger") version "2.1.1"
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
 configure<pl.allegro.tech.build.axion.release.domain.VersionConfig> {
     tag.prefix = "chrome-reactive-kotlin"
 }
