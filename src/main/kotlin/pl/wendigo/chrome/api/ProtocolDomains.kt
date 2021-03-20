@@ -1,6 +1,5 @@
 package pl.wendigo.chrome.api
 
-import io.reactivex.rxjava3.core.Flowable
 import pl.wendigo.chrome.api.accessibility.AccessibilityDomain
 import pl.wendigo.chrome.api.animation.AnimationDomain
 import pl.wendigo.chrome.api.applicationcache.ApplicationCacheDomain
@@ -47,8 +46,7 @@ import pl.wendigo.chrome.api.tethering.TetheringDomain
 import pl.wendigo.chrome.api.tracing.TracingDomain
 import pl.wendigo.chrome.api.webaudio.WebAudioDomain
 import pl.wendigo.chrome.api.webauthn.WebAuthnDomain
-import pl.wendigo.chrome.protocol.DebuggerWebsocketConnection
-import java.io.Closeable
+import pl.wendigo.chrome.protocol.DebuggerWebSocketConnection
 
 /**
  * ProtocolDomains represents all domains that can be controlled Chrome via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
@@ -56,7 +54,7 @@ import java.io.Closeable
  * @link [https://github.com/chromedevtools/devtools-protocol](https://github.com/chromedevtools/devtools-protocol)
  * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
-open class ProtocolDomains internal constructor(internal val connection: DebuggerWebsocketConnection) : Closeable, AutoCloseable {
+open class ProtocolDomains internal constructor(connection: DebuggerWebSocketConnection) : pl.wendigo.chrome.protocol.Domains("1.3", connection) {
     /**
      * This domain is deprecated - use Runtime or Log instead.
      *
@@ -568,30 +566,9 @@ API.
     }
 
     /**
-     * Returns [Flowable] capturing all events.
-     */
-    fun Events(): Flowable<pl.wendigo.chrome.protocol.Event> {
-        return connection.allEvents()
-    }
-
-    /**
-     * Closes target.
-     */
-    override fun close() {
-        return connection.close()
-    }
-
-    /**
-     * Returns protocol version.
-     */
-    fun protocolVersion(): String {
-        return "1.3"
-    }
-
-    /**
      * Returns a list of all protocol domain objects.
      */
-    fun domains(): List<pl.wendigo.chrome.api.Domain> = listOf(
+    fun domains(): List<pl.wendigo.chrome.protocol.Domain> = listOf(
         ConsoleDomain(connection),
         DebuggerDomain(connection),
         HeapProfilerDomain(connection),

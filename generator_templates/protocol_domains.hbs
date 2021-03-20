@@ -1,12 +1,9 @@
 package {{Package}}.api
 
-import java.io.Closeable
-
-import io.reactivex.rxjava3.core.Flowable
 {{#each Protocol.Domains}}
 import {{Package}}.api.{{LowerName}}.{{Name}}Domain
 {{/each}}
-import {{Package}}.protocol.DebuggerWebsocketConnection
+import {{Package}}.protocol.DebuggerWebSocketConnection
 
 /**
  * ProtocolDomains represents all domains that can be controlled Chrome via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
@@ -14,7 +11,7 @@ import {{Package}}.protocol.DebuggerWebsocketConnection
  * @link [https://github.com/chromedevtools/devtools-protocol](https://github.com/chromedevtools/devtools-protocol)
  * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
-open class ProtocolDomains internal constructor(internal val connection: DebuggerWebsocketConnection): Closeable, AutoCloseable {
+open class ProtocolDomains internal constructor(connection: DebuggerWebSocketConnection): pl.wendigo.chrome.protocol.Domains("{{ Protocol.Version.Major }}.{{ Protocol.Version.Minor }}", connection) {
     {{#each Protocol.Domains}}
     /**
      * {{#if Description}}{{{Description}}}{{else}}Lazily returns [{{Name}}Domain] domain object allowing to invoke methods on [{{Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Name}}) protocol domain.{{/if}}
@@ -30,31 +27,11 @@ open class ProtocolDomains internal constructor(internal val connection: Debugge
     }
 
     {{/each}}
-    /**
-     * Returns [Flowable] capturing all events.
-     */
-    fun Events(): Flowable<{{Package}}.protocol.Event> {
-        return connection.allEvents()
-    }
-
-    /**
-     * Closes target.
-     */
-    override fun close() {
-        return connection.close()
-    }
-
-    /**
-     * Returns protocol version.
-     */
-    fun protocolVersion(): String {
-        return "{{ Protocol.Version.Major }}.{{ Protocol.Version.Minor }}"
-    }
 
     /**
       * Returns a list of all protocol domain objects.
       */
-    fun domains(): List<{{Package}}.api.Domain> = listOf(
+    fun domains(): List<{{Package}}.protocol.Domain> = listOf(
          {{#each Protocol.Domains}}
          {{Name}}Domain(connection),
          {{/each}}

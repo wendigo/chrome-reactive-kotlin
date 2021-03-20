@@ -14,8 +14,8 @@ subsequently load the required stylesheet contents using the `getStyleSheet[Text
  * @link Protocol [CSS](https://chromedevtools.github.io/devtools-protocol/tot/CSS) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class CSSDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain(
+class CSSDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain(
         "CSS",
         """This domain exposes CSS read/write operations. All CSS objects (stylesheets, rules, and styles)
 have an associated `id` used in subsequent operations on the related object. Each object type has
@@ -32,7 +32,7 @@ position specified by `location`.
      * @link Protocol [CSS#addRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-addRule) method documentation.
      */
     
-    fun addRule(input: AddRuleRequest) = connection.request("CSS.addRule", Json.encodeToJsonElement(AddRuleRequest.serializer(), input), AddRuleResponse.serializer())
+    fun addRule(input: AddRuleRequest): io.reactivex.rxjava3.core.Single<AddRuleResponse> = connection.request("CSS.addRule", Json.encodeToJsonElement(AddRuleRequest.serializer(), input), AddRuleResponse.serializer())
 
     /**
      * Returns all class names from specified stylesheet.
@@ -40,7 +40,7 @@ position specified by `location`.
      * @link Protocol [CSS#collectClassNames](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-collectClassNames) method documentation.
      */
     
-    fun collectClassNames(input: CollectClassNamesRequest) = connection.request("CSS.collectClassNames", Json.encodeToJsonElement(CollectClassNamesRequest.serializer(), input), CollectClassNamesResponse.serializer())
+    fun collectClassNames(input: CollectClassNamesRequest): io.reactivex.rxjava3.core.Single<CollectClassNamesResponse> = connection.request("CSS.collectClassNames", Json.encodeToJsonElement(CollectClassNamesRequest.serializer(), input), CollectClassNamesResponse.serializer())
 
     /**
      * Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
@@ -48,7 +48,7 @@ position specified by `location`.
      * @link Protocol [CSS#createStyleSheet](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-createStyleSheet) method documentation.
      */
     
-    fun createStyleSheet(input: CreateStyleSheetRequest) = connection.request("CSS.createStyleSheet", Json.encodeToJsonElement(CreateStyleSheetRequest.serializer(), input), CreateStyleSheetResponse.serializer())
+    fun createStyleSheet(input: CreateStyleSheetRequest): io.reactivex.rxjava3.core.Single<CreateStyleSheetResponse> = connection.request("CSS.createStyleSheet", Json.encodeToJsonElement(CreateStyleSheetRequest.serializer(), input), CreateStyleSheetResponse.serializer())
 
     /**
      * Disables the CSS agent for the given page.
@@ -56,7 +56,7 @@ position specified by `location`.
      * @link Protocol [CSS#disable](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("CSS.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been
@@ -65,7 +65,7 @@ enabled until the result of this command is received.
      * @link Protocol [CSS#enable](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("CSS.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Ensures that the given node will have specified pseudo-classes whenever its style is computed by
@@ -74,7 +74,7 @@ the browser.
      * @link Protocol [CSS#forcePseudoState](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-forcePseudoState) method documentation.
      */
     
-    fun forcePseudoState(input: ForcePseudoStateRequest) = connection.request("CSS.forcePseudoState", Json.encodeToJsonElement(ForcePseudoStateRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun forcePseudoState(input: ForcePseudoStateRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.forcePseudoState", Json.encodeToJsonElement(ForcePseudoStateRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -82,7 +82,7 @@ the browser.
      * @link Protocol [CSS#getBackgroundColors](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getBackgroundColors) method documentation.
      */
     
-    fun getBackgroundColors(input: GetBackgroundColorsRequest) = connection.request("CSS.getBackgroundColors", Json.encodeToJsonElement(GetBackgroundColorsRequest.serializer(), input), GetBackgroundColorsResponse.serializer())
+    fun getBackgroundColors(input: GetBackgroundColorsRequest): io.reactivex.rxjava3.core.Single<GetBackgroundColorsResponse> = connection.request("CSS.getBackgroundColors", Json.encodeToJsonElement(GetBackgroundColorsRequest.serializer(), input), GetBackgroundColorsResponse.serializer())
 
     /**
      * Returns the computed style for a DOM node identified by `nodeId`.
@@ -90,7 +90,7 @@ the browser.
      * @link Protocol [CSS#getComputedStyleForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getComputedStyleForNode) method documentation.
      */
     
-    fun getComputedStyleForNode(input: GetComputedStyleForNodeRequest) = connection.request("CSS.getComputedStyleForNode", Json.encodeToJsonElement(GetComputedStyleForNodeRequest.serializer(), input), GetComputedStyleForNodeResponse.serializer())
+    fun getComputedStyleForNode(input: GetComputedStyleForNodeRequest): io.reactivex.rxjava3.core.Single<GetComputedStyleForNodeResponse> = connection.request("CSS.getComputedStyleForNode", Json.encodeToJsonElement(GetComputedStyleForNodeRequest.serializer(), input), GetComputedStyleForNodeResponse.serializer())
 
     /**
      * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM
@@ -99,7 +99,7 @@ attributes) for a DOM node identified by `nodeId`.
      * @link Protocol [CSS#getInlineStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getInlineStylesForNode) method documentation.
      */
     
-    fun getInlineStylesForNode(input: GetInlineStylesForNodeRequest) = connection.request("CSS.getInlineStylesForNode", Json.encodeToJsonElement(GetInlineStylesForNodeRequest.serializer(), input), GetInlineStylesForNodeResponse.serializer())
+    fun getInlineStylesForNode(input: GetInlineStylesForNodeRequest): io.reactivex.rxjava3.core.Single<GetInlineStylesForNodeResponse> = connection.request("CSS.getInlineStylesForNode", Json.encodeToJsonElement(GetInlineStylesForNodeRequest.serializer(), input), GetInlineStylesForNodeResponse.serializer())
 
     /**
      * Returns requested styles for a DOM node identified by `nodeId`.
@@ -107,7 +107,7 @@ attributes) for a DOM node identified by `nodeId`.
      * @link Protocol [CSS#getMatchedStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMatchedStylesForNode) method documentation.
      */
     
-    fun getMatchedStylesForNode(input: GetMatchedStylesForNodeRequest) = connection.request("CSS.getMatchedStylesForNode", Json.encodeToJsonElement(GetMatchedStylesForNodeRequest.serializer(), input), GetMatchedStylesForNodeResponse.serializer())
+    fun getMatchedStylesForNode(input: GetMatchedStylesForNodeRequest): io.reactivex.rxjava3.core.Single<GetMatchedStylesForNodeResponse> = connection.request("CSS.getMatchedStylesForNode", Json.encodeToJsonElement(GetMatchedStylesForNodeRequest.serializer(), input), GetMatchedStylesForNodeResponse.serializer())
 
     /**
      * Returns all media queries parsed by the rendering engine.
@@ -115,7 +115,7 @@ attributes) for a DOM node identified by `nodeId`.
      * @link Protocol [CSS#getMediaQueries](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMediaQueries) method documentation.
      */
     
-    fun getMediaQueries() = connection.request("CSS.getMediaQueries", null, GetMediaQueriesResponse.serializer())
+    fun getMediaQueries(): io.reactivex.rxjava3.core.Single<GetMediaQueriesResponse> = connection.request("CSS.getMediaQueries", null, GetMediaQueriesResponse.serializer())
 
     /**
      * Requests information about platform fonts which we used to render child TextNodes in the given
@@ -124,7 +124,7 @@ node.
      * @link Protocol [CSS#getPlatformFontsForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getPlatformFontsForNode) method documentation.
      */
     
-    fun getPlatformFontsForNode(input: GetPlatformFontsForNodeRequest) = connection.request("CSS.getPlatformFontsForNode", Json.encodeToJsonElement(GetPlatformFontsForNodeRequest.serializer(), input), GetPlatformFontsForNodeResponse.serializer())
+    fun getPlatformFontsForNode(input: GetPlatformFontsForNodeRequest): io.reactivex.rxjava3.core.Single<GetPlatformFontsForNodeResponse> = connection.request("CSS.getPlatformFontsForNode", Json.encodeToJsonElement(GetPlatformFontsForNodeRequest.serializer(), input), GetPlatformFontsForNodeResponse.serializer())
 
     /**
      * Returns the current textual content for a stylesheet.
@@ -132,7 +132,7 @@ node.
      * @link Protocol [CSS#getStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getStyleSheetText) method documentation.
      */
     
-    fun getStyleSheetText(input: GetStyleSheetTextRequest) = connection.request("CSS.getStyleSheetText", Json.encodeToJsonElement(GetStyleSheetTextRequest.serializer(), input), GetStyleSheetTextResponse.serializer())
+    fun getStyleSheetText(input: GetStyleSheetTextRequest): io.reactivex.rxjava3.core.Single<GetStyleSheetTextResponse> = connection.request("CSS.getStyleSheetText", Json.encodeToJsonElement(GetStyleSheetTextRequest.serializer(), input), GetStyleSheetTextResponse.serializer())
 
     /**
      * Starts tracking the given computed styles for updates. The specified array of properties
@@ -145,7 +145,7 @@ to the front-end, no updates will be issued for the node.
      * @link Protocol [CSS#trackComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-trackComputedStyleUpdates) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun trackComputedStyleUpdates(input: TrackComputedStyleUpdatesRequest) = connection.request("CSS.trackComputedStyleUpdates", Json.encodeToJsonElement(TrackComputedStyleUpdatesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun trackComputedStyleUpdates(input: TrackComputedStyleUpdatesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.trackComputedStyleUpdates", Json.encodeToJsonElement(TrackComputedStyleUpdatesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Polls the next batch of computed style updates.
@@ -153,7 +153,7 @@ to the front-end, no updates will be issued for the node.
      * @link Protocol [CSS#takeComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeComputedStyleUpdates) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun takeComputedStyleUpdates() = connection.request("CSS.takeComputedStyleUpdates", null, TakeComputedStyleUpdatesResponse.serializer())
+    fun takeComputedStyleUpdates(): io.reactivex.rxjava3.core.Single<TakeComputedStyleUpdatesResponse> = connection.request("CSS.takeComputedStyleUpdates", null, TakeComputedStyleUpdatesResponse.serializer())
 
     /**
      * Find a rule with the given active property for the given node and set the new value for this
@@ -162,7 +162,7 @@ property
      * @link Protocol [CSS#setEffectivePropertyValueForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setEffectivePropertyValueForNode) method documentation.
      */
     
-    fun setEffectivePropertyValueForNode(input: SetEffectivePropertyValueForNodeRequest) = connection.request("CSS.setEffectivePropertyValueForNode", Json.encodeToJsonElement(SetEffectivePropertyValueForNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setEffectivePropertyValueForNode(input: SetEffectivePropertyValueForNodeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.setEffectivePropertyValueForNode", Json.encodeToJsonElement(SetEffectivePropertyValueForNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Modifies the keyframe rule key text.
@@ -170,7 +170,7 @@ property
      * @link Protocol [CSS#setKeyframeKey](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setKeyframeKey) method documentation.
      */
     
-    fun setKeyframeKey(input: SetKeyframeKeyRequest) = connection.request("CSS.setKeyframeKey", Json.encodeToJsonElement(SetKeyframeKeyRequest.serializer(), input), SetKeyframeKeyResponse.serializer())
+    fun setKeyframeKey(input: SetKeyframeKeyRequest): io.reactivex.rxjava3.core.Single<SetKeyframeKeyResponse> = connection.request("CSS.setKeyframeKey", Json.encodeToJsonElement(SetKeyframeKeyRequest.serializer(), input), SetKeyframeKeyResponse.serializer())
 
     /**
      * Modifies the rule selector.
@@ -178,7 +178,7 @@ property
      * @link Protocol [CSS#setMediaText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setMediaText) method documentation.
      */
     
-    fun setMediaText(input: SetMediaTextRequest) = connection.request("CSS.setMediaText", Json.encodeToJsonElement(SetMediaTextRequest.serializer(), input), SetMediaTextResponse.serializer())
+    fun setMediaText(input: SetMediaTextRequest): io.reactivex.rxjava3.core.Single<SetMediaTextResponse> = connection.request("CSS.setMediaText", Json.encodeToJsonElement(SetMediaTextRequest.serializer(), input), SetMediaTextResponse.serializer())
 
     /**
      * Modifies the rule selector.
@@ -186,7 +186,7 @@ property
      * @link Protocol [CSS#setRuleSelector](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setRuleSelector) method documentation.
      */
     
-    fun setRuleSelector(input: SetRuleSelectorRequest) = connection.request("CSS.setRuleSelector", Json.encodeToJsonElement(SetRuleSelectorRequest.serializer(), input), SetRuleSelectorResponse.serializer())
+    fun setRuleSelector(input: SetRuleSelectorRequest): io.reactivex.rxjava3.core.Single<SetRuleSelectorResponse> = connection.request("CSS.setRuleSelector", Json.encodeToJsonElement(SetRuleSelectorRequest.serializer(), input), SetRuleSelectorResponse.serializer())
 
     /**
      * Sets the new stylesheet text.
@@ -194,7 +194,7 @@ property
      * @link Protocol [CSS#setStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleSheetText) method documentation.
      */
     
-    fun setStyleSheetText(input: SetStyleSheetTextRequest) = connection.request("CSS.setStyleSheetText", Json.encodeToJsonElement(SetStyleSheetTextRequest.serializer(), input), SetStyleSheetTextResponse.serializer())
+    fun setStyleSheetText(input: SetStyleSheetTextRequest): io.reactivex.rxjava3.core.Single<SetStyleSheetTextResponse> = connection.request("CSS.setStyleSheetText", Json.encodeToJsonElement(SetStyleSheetTextRequest.serializer(), input), SetStyleSheetTextResponse.serializer())
 
     /**
      * Applies specified style edits one after another in the given order.
@@ -202,7 +202,7 @@ property
      * @link Protocol [CSS#setStyleTexts](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleTexts) method documentation.
      */
     
-    fun setStyleTexts(input: SetStyleTextsRequest) = connection.request("CSS.setStyleTexts", Json.encodeToJsonElement(SetStyleTextsRequest.serializer(), input), SetStyleTextsResponse.serializer())
+    fun setStyleTexts(input: SetStyleTextsRequest): io.reactivex.rxjava3.core.Single<SetStyleTextsResponse> = connection.request("CSS.setStyleTexts", Json.encodeToJsonElement(SetStyleTextsRequest.serializer(), input), SetStyleTextsResponse.serializer())
 
     /**
      * Enables the selector recording.
@@ -210,7 +210,7 @@ property
      * @link Protocol [CSS#startRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-startRuleUsageTracking) method documentation.
      */
     
-    fun startRuleUsageTracking() = connection.request("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startRuleUsageTracking(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Stop tracking rule usage and return the list of rules that were used since last call to
@@ -219,7 +219,7 @@ property
      * @link Protocol [CSS#stopRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-stopRuleUsageTracking) method documentation.
      */
     
-    fun stopRuleUsageTracking() = connection.request("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse.serializer())
+    fun stopRuleUsageTracking(): io.reactivex.rxjava3.core.Single<StopRuleUsageTrackingResponse> = connection.request("CSS.stopRuleUsageTracking", null, StopRuleUsageTrackingResponse.serializer())
 
     /**
      * Obtain list of rules that became used since last call to this method (or since start of coverage
@@ -228,7 +228,7 @@ instrumentation)
      * @link Protocol [CSS#takeCoverageDelta](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeCoverageDelta) method documentation.
      */
     
-    fun takeCoverageDelta() = connection.request("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse.serializer())
+    fun takeCoverageDelta(): io.reactivex.rxjava3.core.Single<TakeCoverageDeltaResponse> = connection.request("CSS.takeCoverageDelta", null, TakeCoverageDeltaResponse.serializer())
 
     /**
      * Enables/disables rendering of local CSS fonts (enabled by default).
@@ -236,7 +236,7 @@ instrumentation)
      * @link Protocol [CSS#setLocalFontsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setLocalFontsEnabled) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setLocalFontsEnabled(input: SetLocalFontsEnabledRequest) = connection.request("CSS.setLocalFontsEnabled", Json.encodeToJsonElement(SetLocalFontsEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setLocalFontsEnabled(input: SetLocalFontsEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.setLocalFontsEnabled", Json.encodeToJsonElement(SetLocalFontsEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded
@@ -268,7 +268,7 @@ resized.) The current implementation considers only viewport-dependent media fea
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.dom.DOMDomain(connection),
             pl.wendigo.chrome.api.page.PageDomain(connection),
@@ -282,7 +282,7 @@ resized.) The current implementation considers only viewport-dependent media fea
  * Inserts a new rule with the given `ruleText` in a stylesheet with given `styleSheetId`, at the
 position specified by `location`.
  * @link [CSS#addRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-addRule) method documentation.
- * @see [CSSOperations.addRule]
+ * @see [CSSDomain.addRule]
  */
 @kotlinx.serialization.Serializable
 data class AddRuleRequest(
@@ -310,7 +310,7 @@ position specified by `location`.
  *
   
  * @link [CSS#addRule](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-addRule) method documentation.
- * @see [CSSOperations.addRule]
+ * @see [CSSDomain.addRule]
  */
 @kotlinx.serialization.Serializable
 data class AddRuleResponse(
@@ -326,7 +326,7 @@ data class AddRuleResponse(
  *
  * Returns all class names from specified stylesheet.
  * @link [CSS#collectClassNames](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-collectClassNames) method documentation.
- * @see [CSSOperations.collectClassNames]
+ * @see [CSSDomain.collectClassNames]
  */
 @kotlinx.serialization.Serializable
 data class CollectClassNamesRequest(
@@ -343,7 +343,7 @@ data class CollectClassNamesRequest(
  *
   
  * @link [CSS#collectClassNames](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-collectClassNames) method documentation.
- * @see [CSSOperations.collectClassNames]
+ * @see [CSSDomain.collectClassNames]
  */
 @kotlinx.serialization.Serializable
 data class CollectClassNamesResponse(
@@ -359,7 +359,7 @@ data class CollectClassNamesResponse(
  *
  * Creates a new special "via-inspector" stylesheet in the frame with given `frameId`.
  * @link [CSS#createStyleSheet](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-createStyleSheet) method documentation.
- * @see [CSSOperations.createStyleSheet]
+ * @see [CSSDomain.createStyleSheet]
  */
 @kotlinx.serialization.Serializable
 data class CreateStyleSheetRequest(
@@ -376,7 +376,7 @@ data class CreateStyleSheetRequest(
  *
   
  * @link [CSS#createStyleSheet](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-createStyleSheet) method documentation.
- * @see [CSSOperations.createStyleSheet]
+ * @see [CSSDomain.createStyleSheet]
  */
 @kotlinx.serialization.Serializable
 data class CreateStyleSheetResponse(
@@ -393,7 +393,7 @@ data class CreateStyleSheetResponse(
  * Ensures that the given node will have specified pseudo-classes whenever its style is computed by
 the browser.
  * @link [CSS#forcePseudoState](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-forcePseudoState) method documentation.
- * @see [CSSOperations.forcePseudoState]
+ * @see [CSSDomain.forcePseudoState]
  */
 @kotlinx.serialization.Serializable
 data class ForcePseudoStateRequest(
@@ -414,7 +414,7 @@ data class ForcePseudoStateRequest(
  *
  *
  * @link [CSS#getBackgroundColors](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getBackgroundColors) method documentation.
- * @see [CSSOperations.getBackgroundColors]
+ * @see [CSSDomain.getBackgroundColors]
  */
 @kotlinx.serialization.Serializable
 data class GetBackgroundColorsRequest(
@@ -431,7 +431,7 @@ data class GetBackgroundColorsRequest(
  *
   
  * @link [CSS#getBackgroundColors](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getBackgroundColors) method documentation.
- * @see [CSSOperations.getBackgroundColors]
+ * @see [CSSDomain.getBackgroundColors]
  */
 @kotlinx.serialization.Serializable
 data class GetBackgroundColorsResponse(
@@ -462,7 +462,7 @@ data class GetBackgroundColorsResponse(
  *
  * Returns the computed style for a DOM node identified by `nodeId`.
  * @link [CSS#getComputedStyleForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getComputedStyleForNode) method documentation.
- * @see [CSSOperations.getComputedStyleForNode]
+ * @see [CSSDomain.getComputedStyleForNode]
  */
 @kotlinx.serialization.Serializable
 data class GetComputedStyleForNodeRequest(
@@ -479,7 +479,7 @@ data class GetComputedStyleForNodeRequest(
  *
   
  * @link [CSS#getComputedStyleForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getComputedStyleForNode) method documentation.
- * @see [CSSOperations.getComputedStyleForNode]
+ * @see [CSSDomain.getComputedStyleForNode]
  */
 @kotlinx.serialization.Serializable
 data class GetComputedStyleForNodeResponse(
@@ -496,7 +496,7 @@ data class GetComputedStyleForNodeResponse(
  * Returns the styles defined inline (explicitly in the "style" attribute and implicitly, using DOM
 attributes) for a DOM node identified by `nodeId`.
  * @link [CSS#getInlineStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getInlineStylesForNode) method documentation.
- * @see [CSSOperations.getInlineStylesForNode]
+ * @see [CSSDomain.getInlineStylesForNode]
  */
 @kotlinx.serialization.Serializable
 data class GetInlineStylesForNodeRequest(
@@ -514,7 +514,7 @@ attributes) for a DOM node identified by `nodeId`.
  *
   
  * @link [CSS#getInlineStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getInlineStylesForNode) method documentation.
- * @see [CSSOperations.getInlineStylesForNode]
+ * @see [CSSDomain.getInlineStylesForNode]
  */
 @kotlinx.serialization.Serializable
 data class GetInlineStylesForNodeResponse(
@@ -535,7 +535,7 @@ data class GetInlineStylesForNodeResponse(
  *
  * Returns requested styles for a DOM node identified by `nodeId`.
  * @link [CSS#getMatchedStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMatchedStylesForNode) method documentation.
- * @see [CSSOperations.getMatchedStylesForNode]
+ * @see [CSSDomain.getMatchedStylesForNode]
  */
 @kotlinx.serialization.Serializable
 data class GetMatchedStylesForNodeRequest(
@@ -552,7 +552,7 @@ data class GetMatchedStylesForNodeRequest(
  *
   
  * @link [CSS#getMatchedStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMatchedStylesForNode) method documentation.
- * @see [CSSOperations.getMatchedStylesForNode]
+ * @see [CSSDomain.getMatchedStylesForNode]
  */
 @kotlinx.serialization.Serializable
 data class GetMatchedStylesForNodeResponse(
@@ -594,7 +594,7 @@ data class GetMatchedStylesForNodeResponse(
  *
   
  * @link [CSS#getMediaQueries](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getMediaQueries) method documentation.
- * @see [CSSOperations.getMediaQueries]
+ * @see [CSSDomain.getMediaQueries]
  */
 @kotlinx.serialization.Serializable
 data class GetMediaQueriesResponse(
@@ -611,7 +611,7 @@ data class GetMediaQueriesResponse(
  * Requests information about platform fonts which we used to render child TextNodes in the given
 node.
  * @link [CSS#getPlatformFontsForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getPlatformFontsForNode) method documentation.
- * @see [CSSOperations.getPlatformFontsForNode]
+ * @see [CSSDomain.getPlatformFontsForNode]
  */
 @kotlinx.serialization.Serializable
 data class GetPlatformFontsForNodeRequest(
@@ -629,7 +629,7 @@ node.
  *
   
  * @link [CSS#getPlatformFontsForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getPlatformFontsForNode) method documentation.
- * @see [CSSOperations.getPlatformFontsForNode]
+ * @see [CSSDomain.getPlatformFontsForNode]
  */
 @kotlinx.serialization.Serializable
 data class GetPlatformFontsForNodeResponse(
@@ -645,7 +645,7 @@ data class GetPlatformFontsForNodeResponse(
  *
  * Returns the current textual content for a stylesheet.
  * @link [CSS#getStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getStyleSheetText) method documentation.
- * @see [CSSOperations.getStyleSheetText]
+ * @see [CSSDomain.getStyleSheetText]
  */
 @kotlinx.serialization.Serializable
 data class GetStyleSheetTextRequest(
@@ -662,7 +662,7 @@ data class GetStyleSheetTextRequest(
  *
   
  * @link [CSS#getStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-getStyleSheetText) method documentation.
- * @see [CSSOperations.getStyleSheetText]
+ * @see [CSSDomain.getStyleSheetText]
  */
 @kotlinx.serialization.Serializable
 data class GetStyleSheetTextResponse(
@@ -683,7 +683,7 @@ The changes to computed style properties are only tracked for nodes pushed to th
 by the DOM agent. If no changes to the tracked properties occur after the node has been pushed
 to the front-end, no updates will be issued for the node.
  * @link [CSS#trackComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-trackComputedStyleUpdates) method documentation.
- * @see [CSSOperations.trackComputedStyleUpdates]
+ * @see [CSSDomain.trackComputedStyleUpdates]
  */
 @kotlinx.serialization.Serializable
 data class TrackComputedStyleUpdatesRequest(
@@ -700,7 +700,7 @@ data class TrackComputedStyleUpdatesRequest(
  *
   
  * @link [CSS#takeComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeComputedStyleUpdates) method documentation.
- * @see [CSSOperations.takeComputedStyleUpdates]
+ * @see [CSSDomain.takeComputedStyleUpdates]
  */
 @kotlinx.serialization.Serializable
 data class TakeComputedStyleUpdatesResponse(
@@ -717,7 +717,7 @@ data class TakeComputedStyleUpdatesResponse(
  * Find a rule with the given active property for the given node and set the new value for this
 property
  * @link [CSS#setEffectivePropertyValueForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setEffectivePropertyValueForNode) method documentation.
- * @see [CSSOperations.setEffectivePropertyValueForNode]
+ * @see [CSSDomain.setEffectivePropertyValueForNode]
  */
 @kotlinx.serialization.Serializable
 data class SetEffectivePropertyValueForNodeRequest(
@@ -743,7 +743,7 @@ data class SetEffectivePropertyValueForNodeRequest(
  *
  * Modifies the keyframe rule key text.
  * @link [CSS#setKeyframeKey](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setKeyframeKey) method documentation.
- * @see [CSSOperations.setKeyframeKey]
+ * @see [CSSDomain.setKeyframeKey]
  */
 @kotlinx.serialization.Serializable
 data class SetKeyframeKeyRequest(
@@ -770,7 +770,7 @@ data class SetKeyframeKeyRequest(
  *
   
  * @link [CSS#setKeyframeKey](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setKeyframeKey) method documentation.
- * @see [CSSOperations.setKeyframeKey]
+ * @see [CSSDomain.setKeyframeKey]
  */
 @kotlinx.serialization.Serializable
 data class SetKeyframeKeyResponse(
@@ -786,7 +786,7 @@ data class SetKeyframeKeyResponse(
  *
  * Modifies the rule selector.
  * @link [CSS#setMediaText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setMediaText) method documentation.
- * @see [CSSOperations.setMediaText]
+ * @see [CSSDomain.setMediaText]
  */
 @kotlinx.serialization.Serializable
 data class SetMediaTextRequest(
@@ -813,7 +813,7 @@ data class SetMediaTextRequest(
  *
   
  * @link [CSS#setMediaText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setMediaText) method documentation.
- * @see [CSSOperations.setMediaText]
+ * @see [CSSDomain.setMediaText]
  */
 @kotlinx.serialization.Serializable
 data class SetMediaTextResponse(
@@ -829,7 +829,7 @@ data class SetMediaTextResponse(
  *
  * Modifies the rule selector.
  * @link [CSS#setRuleSelector](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setRuleSelector) method documentation.
- * @see [CSSOperations.setRuleSelector]
+ * @see [CSSDomain.setRuleSelector]
  */
 @kotlinx.serialization.Serializable
 data class SetRuleSelectorRequest(
@@ -856,7 +856,7 @@ data class SetRuleSelectorRequest(
  *
   
  * @link [CSS#setRuleSelector](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setRuleSelector) method documentation.
- * @see [CSSOperations.setRuleSelector]
+ * @see [CSSDomain.setRuleSelector]
  */
 @kotlinx.serialization.Serializable
 data class SetRuleSelectorResponse(
@@ -872,7 +872,7 @@ data class SetRuleSelectorResponse(
  *
  * Sets the new stylesheet text.
  * @link [CSS#setStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleSheetText) method documentation.
- * @see [CSSOperations.setStyleSheetText]
+ * @see [CSSDomain.setStyleSheetText]
  */
 @kotlinx.serialization.Serializable
 data class SetStyleSheetTextRequest(
@@ -894,7 +894,7 @@ data class SetStyleSheetTextRequest(
  *
   
  * @link [CSS#setStyleSheetText](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleSheetText) method documentation.
- * @see [CSSOperations.setStyleSheetText]
+ * @see [CSSDomain.setStyleSheetText]
  */
 @kotlinx.serialization.Serializable
 data class SetStyleSheetTextResponse(
@@ -910,7 +910,7 @@ data class SetStyleSheetTextResponse(
  *
  * Applies specified style edits one after another in the given order.
  * @link [CSS#setStyleTexts](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleTexts) method documentation.
- * @see [CSSOperations.setStyleTexts]
+ * @see [CSSDomain.setStyleTexts]
  */
 @kotlinx.serialization.Serializable
 data class SetStyleTextsRequest(
@@ -927,7 +927,7 @@ data class SetStyleTextsRequest(
  *
   
  * @link [CSS#setStyleTexts](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setStyleTexts) method documentation.
- * @see [CSSOperations.setStyleTexts]
+ * @see [CSSDomain.setStyleTexts]
  */
 @kotlinx.serialization.Serializable
 data class SetStyleTextsResponse(
@@ -945,7 +945,7 @@ data class SetStyleTextsResponse(
  *
   
  * @link [CSS#stopRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-stopRuleUsageTracking) method documentation.
- * @see [CSSOperations.stopRuleUsageTracking]
+ * @see [CSSDomain.stopRuleUsageTracking]
  */
 @kotlinx.serialization.Serializable
 data class StopRuleUsageTrackingResponse(
@@ -963,7 +963,7 @@ instrumentation)
  *
   
  * @link [CSS#takeCoverageDelta](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-takeCoverageDelta) method documentation.
- * @see [CSSOperations.takeCoverageDelta]
+ * @see [CSSDomain.takeCoverageDelta]
  */
 @kotlinx.serialization.Serializable
 data class TakeCoverageDeltaResponse(
@@ -984,7 +984,7 @@ data class TakeCoverageDeltaResponse(
  *
  * Enables/disables rendering of local CSS fonts (enabled by default).
  * @link [CSS#setLocalFontsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setLocalFontsEnabled) method documentation.
- * @see [CSSOperations.setLocalFontsEnabled]
+ * @see [CSSDomain.setLocalFontsEnabled]
  */
 @kotlinx.serialization.Serializable
 data class SetLocalFontsEnabledRequest(

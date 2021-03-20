@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [ApplicationCache](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class ApplicationCacheDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("ApplicationCache", """""", connection) {
+class ApplicationCacheDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("ApplicationCache", """""", connection) {
     /**
      * Enables application cache domain notifications.
      *
      * @link Protocol [ApplicationCache#enable](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("ApplicationCache.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ApplicationCache.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns relevant application cache data for the document in given frame.
@@ -25,7 +25,7 @@ class ApplicationCacheDomain internal constructor(connection: pl.wendigo.chrome.
      * @link Protocol [ApplicationCache#getApplicationCacheForFrame](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getApplicationCacheForFrame) method documentation.
      */
     
-    fun getApplicationCacheForFrame(input: GetApplicationCacheForFrameRequest) = connection.request("ApplicationCache.getApplicationCacheForFrame", Json.encodeToJsonElement(GetApplicationCacheForFrameRequest.serializer(), input), GetApplicationCacheForFrameResponse.serializer())
+    fun getApplicationCacheForFrame(input: GetApplicationCacheForFrameRequest): io.reactivex.rxjava3.core.Single<GetApplicationCacheForFrameResponse> = connection.request("ApplicationCache.getApplicationCacheForFrame", Json.encodeToJsonElement(GetApplicationCacheForFrameRequest.serializer(), input), GetApplicationCacheForFrameResponse.serializer())
 
     /**
      * Returns array of frame identifiers with manifest urls for each frame containing a document
@@ -34,7 +34,7 @@ associated with some application cache.
      * @link Protocol [ApplicationCache#getFramesWithManifests](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getFramesWithManifests) method documentation.
      */
     
-    fun getFramesWithManifests() = connection.request("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse.serializer())
+    fun getFramesWithManifests(): io.reactivex.rxjava3.core.Single<GetFramesWithManifestsResponse> = connection.request("ApplicationCache.getFramesWithManifests", null, GetFramesWithManifestsResponse.serializer())
 
     /**
      * Returns manifest URL for document in the given frame.
@@ -42,7 +42,7 @@ associated with some application cache.
      * @link Protocol [ApplicationCache#getManifestForFrame](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getManifestForFrame) method documentation.
      */
     
-    fun getManifestForFrame(input: GetManifestForFrameRequest) = connection.request("ApplicationCache.getManifestForFrame", Json.encodeToJsonElement(GetManifestForFrameRequest.serializer(), input), GetManifestForFrameResponse.serializer())
+    fun getManifestForFrame(input: GetManifestForFrameRequest): io.reactivex.rxjava3.core.Single<GetManifestForFrameResponse> = connection.request("ApplicationCache.getManifestForFrame", Json.encodeToJsonElement(GetManifestForFrameRequest.serializer(), input), GetManifestForFrameResponse.serializer())
 
     /**
      *  Returns observable capturing all ApplicationCache.applicationCacheStatusUpdated events.
@@ -57,7 +57,7 @@ associated with some application cache.
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.page.PageDomain(connection),
         )
@@ -69,7 +69,7 @@ associated with some application cache.
  *
  * Returns relevant application cache data for the document in given frame.
  * @link [ApplicationCache#getApplicationCacheForFrame](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getApplicationCacheForFrame) method documentation.
- * @see [ApplicationCacheOperations.getApplicationCacheForFrame]
+ * @see [ApplicationCacheDomain.getApplicationCacheForFrame]
  */
 @kotlinx.serialization.Serializable
 data class GetApplicationCacheForFrameRequest(
@@ -86,7 +86,7 @@ data class GetApplicationCacheForFrameRequest(
  *
   
  * @link [ApplicationCache#getApplicationCacheForFrame](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getApplicationCacheForFrame) method documentation.
- * @see [ApplicationCacheOperations.getApplicationCacheForFrame]
+ * @see [ApplicationCacheDomain.getApplicationCacheForFrame]
  */
 @kotlinx.serialization.Serializable
 data class GetApplicationCacheForFrameResponse(
@@ -104,7 +104,7 @@ associated with some application cache.
  *
   
  * @link [ApplicationCache#getFramesWithManifests](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getFramesWithManifests) method documentation.
- * @see [ApplicationCacheOperations.getFramesWithManifests]
+ * @see [ApplicationCacheDomain.getFramesWithManifests]
  */
 @kotlinx.serialization.Serializable
 data class GetFramesWithManifestsResponse(
@@ -121,7 +121,7 @@ data class GetFramesWithManifestsResponse(
  *
  * Returns manifest URL for document in the given frame.
  * @link [ApplicationCache#getManifestForFrame](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getManifestForFrame) method documentation.
- * @see [ApplicationCacheOperations.getManifestForFrame]
+ * @see [ApplicationCacheDomain.getManifestForFrame]
  */
 @kotlinx.serialization.Serializable
 data class GetManifestForFrameRequest(
@@ -138,7 +138,7 @@ data class GetManifestForFrameRequest(
  *
   
  * @link [ApplicationCache#getManifestForFrame](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-getManifestForFrame) method documentation.
- * @see [ApplicationCacheOperations.getManifestForFrame]
+ * @see [ApplicationCacheDomain.getManifestForFrame]
  */
 @kotlinx.serialization.Serializable
 data class GetManifestForFrameResponse(

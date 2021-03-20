@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Overlay](https://chromedevtools.github.io/devtools-protocol/tot/Overlay) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class OverlayDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Overlay", """This domain provides various functionality related to drawing atop the inspected page.""", connection) {
+class OverlayDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Overlay", """This domain provides various functionality related to drawing atop the inspected page.""", connection) {
     /**
      * Disables domain notifications.
      *
      * @link Protocol [Overlay#disable](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("Overlay.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables domain notifications.
@@ -25,7 +25,7 @@ class OverlayDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Overlay#enable](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("Overlay.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * For testing.
@@ -33,7 +33,7 @@ class OverlayDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Overlay#getHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getHighlightObjectForTest) method documentation.
      */
     
-    fun getHighlightObjectForTest(input: GetHighlightObjectForTestRequest) = connection.request("Overlay.getHighlightObjectForTest", Json.encodeToJsonElement(GetHighlightObjectForTestRequest.serializer(), input), GetHighlightObjectForTestResponse.serializer())
+    fun getHighlightObjectForTest(input: GetHighlightObjectForTestRequest): io.reactivex.rxjava3.core.Single<GetHighlightObjectForTestResponse> = connection.request("Overlay.getHighlightObjectForTest", Json.encodeToJsonElement(GetHighlightObjectForTestRequest.serializer(), input), GetHighlightObjectForTestResponse.serializer())
 
     /**
      * For Persistent Grid testing.
@@ -41,7 +41,7 @@ class OverlayDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) method documentation.
      */
     
-    fun getGridHighlightObjectsForTest(input: GetGridHighlightObjectsForTestRequest) = connection.request("Overlay.getGridHighlightObjectsForTest", Json.encodeToJsonElement(GetGridHighlightObjectsForTestRequest.serializer(), input), GetGridHighlightObjectsForTestResponse.serializer())
+    fun getGridHighlightObjectsForTest(input: GetGridHighlightObjectsForTestRequest): io.reactivex.rxjava3.core.Single<GetGridHighlightObjectsForTestResponse> = connection.request("Overlay.getGridHighlightObjectsForTest", Json.encodeToJsonElement(GetGridHighlightObjectsForTestRequest.serializer(), input), GetGridHighlightObjectsForTestResponse.serializer())
 
     /**
      * For Source Order Viewer testing.
@@ -49,7 +49,7 @@ class OverlayDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) method documentation.
      */
     
-    fun getSourceOrderHighlightObjectForTest(input: GetSourceOrderHighlightObjectForTestRequest) = connection.request("Overlay.getSourceOrderHighlightObjectForTest", Json.encodeToJsonElement(GetSourceOrderHighlightObjectForTestRequest.serializer(), input), GetSourceOrderHighlightObjectForTestResponse.serializer())
+    fun getSourceOrderHighlightObjectForTest(input: GetSourceOrderHighlightObjectForTestRequest): io.reactivex.rxjava3.core.Single<GetSourceOrderHighlightObjectForTestResponse> = connection.request("Overlay.getSourceOrderHighlightObjectForTest", Json.encodeToJsonElement(GetSourceOrderHighlightObjectForTestRequest.serializer(), input), GetSourceOrderHighlightObjectForTestResponse.serializer())
 
     /**
      * Hides any highlight.
@@ -57,7 +57,7 @@ class OverlayDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Overlay#hideHighlight](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-hideHighlight) method documentation.
      */
     
-    fun hideHighlight() = connection.request("Overlay.hideHighlight", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun hideHighlight(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.hideHighlight", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Highlights owner element of the frame with given id.
@@ -65,7 +65,7 @@ class OverlayDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Overlay#highlightFrame](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightFrame) method documentation.
      */
     
-    fun highlightFrame(input: HighlightFrameRequest) = connection.request("Overlay.highlightFrame", Json.encodeToJsonElement(HighlightFrameRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun highlightFrame(input: HighlightFrameRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.highlightFrame", Json.encodeToJsonElement(HighlightFrameRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or
@@ -74,7 +74,7 @@ objectId must be specified.
      * @link Protocol [Overlay#highlightNode](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightNode) method documentation.
      */
     
-    fun highlightNode(input: HighlightNodeRequest) = connection.request("Overlay.highlightNode", Json.encodeToJsonElement(HighlightNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun highlightNode(input: HighlightNodeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.highlightNode", Json.encodeToJsonElement(HighlightNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
@@ -82,7 +82,7 @@ objectId must be specified.
      * @link Protocol [Overlay#highlightQuad](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightQuad) method documentation.
      */
     
-    fun highlightQuad(input: HighlightQuadRequest) = connection.request("Overlay.highlightQuad", Json.encodeToJsonElement(HighlightQuadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun highlightQuad(input: HighlightQuadRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.highlightQuad", Json.encodeToJsonElement(HighlightQuadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
@@ -90,7 +90,7 @@ objectId must be specified.
      * @link Protocol [Overlay#highlightRect](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightRect) method documentation.
      */
     
-    fun highlightRect(input: HighlightRectRequest) = connection.request("Overlay.highlightRect", Json.encodeToJsonElement(HighlightRectRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun highlightRect(input: HighlightRectRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.highlightRect", Json.encodeToJsonElement(HighlightRectRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Highlights the source order of the children of the DOM node with given id or with the given
@@ -99,7 +99,7 @@ JavaScript object wrapper. Either nodeId or objectId must be specified.
      * @link Protocol [Overlay#highlightSourceOrder](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightSourceOrder) method documentation.
      */
     
-    fun highlightSourceOrder(input: HighlightSourceOrderRequest) = connection.request("Overlay.highlightSourceOrder", Json.encodeToJsonElement(HighlightSourceOrderRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun highlightSourceOrder(input: HighlightSourceOrderRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.highlightSourceOrder", Json.encodeToJsonElement(HighlightSourceOrderRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted.
@@ -108,7 +108,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setInspectMode](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setInspectMode) method documentation.
      */
     
-    fun setInspectMode(input: SetInspectModeRequest) = connection.request("Overlay.setInspectMode", Json.encodeToJsonElement(SetInspectModeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setInspectMode(input: SetInspectModeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setInspectMode", Json.encodeToJsonElement(SetInspectModeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Highlights owner element of all frames detected to be ads.
@@ -116,7 +116,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowAdHighlights](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowAdHighlights) method documentation.
      */
     
-    fun setShowAdHighlights(input: SetShowAdHighlightsRequest) = connection.request("Overlay.setShowAdHighlights", Json.encodeToJsonElement(SetShowAdHighlightsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowAdHighlights(input: SetShowAdHighlightsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowAdHighlights", Json.encodeToJsonElement(SetShowAdHighlightsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -124,7 +124,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setPausedInDebuggerMessage](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setPausedInDebuggerMessage) method documentation.
      */
     
-    fun setPausedInDebuggerMessage(input: SetPausedInDebuggerMessageRequest) = connection.request("Overlay.setPausedInDebuggerMessage", Json.encodeToJsonElement(SetPausedInDebuggerMessageRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setPausedInDebuggerMessage(input: SetPausedInDebuggerMessageRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setPausedInDebuggerMessage", Json.encodeToJsonElement(SetPausedInDebuggerMessageRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests that backend shows debug borders on layers
@@ -132,7 +132,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowDebugBorders](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowDebugBorders) method documentation.
      */
     
-    fun setShowDebugBorders(input: SetShowDebugBordersRequest) = connection.request("Overlay.setShowDebugBorders", Json.encodeToJsonElement(SetShowDebugBordersRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowDebugBorders(input: SetShowDebugBordersRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowDebugBorders", Json.encodeToJsonElement(SetShowDebugBordersRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests that backend shows the FPS counter
@@ -140,7 +140,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowFPSCounter](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFPSCounter) method documentation.
      */
     
-    fun setShowFPSCounter(input: SetShowFPSCounterRequest) = connection.request("Overlay.setShowFPSCounter", Json.encodeToJsonElement(SetShowFPSCounterRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowFPSCounter(input: SetShowFPSCounterRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowFPSCounter", Json.encodeToJsonElement(SetShowFPSCounterRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Highlight multiple elements with the CSS Grid overlay.
@@ -148,7 +148,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowGridOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowGridOverlays) method documentation.
      */
     
-    fun setShowGridOverlays(input: SetShowGridOverlaysRequest) = connection.request("Overlay.setShowGridOverlays", Json.encodeToJsonElement(SetShowGridOverlaysRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowGridOverlays(input: SetShowGridOverlaysRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowGridOverlays", Json.encodeToJsonElement(SetShowGridOverlaysRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -156,7 +156,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowFlexOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFlexOverlays) method documentation.
      */
     
-    fun setShowFlexOverlays(input: SetShowFlexOverlaysRequest) = connection.request("Overlay.setShowFlexOverlays", Json.encodeToJsonElement(SetShowFlexOverlaysRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowFlexOverlays(input: SetShowFlexOverlaysRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowFlexOverlays", Json.encodeToJsonElement(SetShowFlexOverlaysRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests that backend shows paint rectangles
@@ -164,7 +164,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowPaintRects](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowPaintRects) method documentation.
      */
     
-    fun setShowPaintRects(input: SetShowPaintRectsRequest) = connection.request("Overlay.setShowPaintRects", Json.encodeToJsonElement(SetShowPaintRectsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowPaintRects(input: SetShowPaintRectsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowPaintRects", Json.encodeToJsonElement(SetShowPaintRectsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests that backend shows layout shift regions
@@ -172,7 +172,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowLayoutShiftRegions](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowLayoutShiftRegions) method documentation.
      */
     
-    fun setShowLayoutShiftRegions(input: SetShowLayoutShiftRegionsRequest) = connection.request("Overlay.setShowLayoutShiftRegions", Json.encodeToJsonElement(SetShowLayoutShiftRegionsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowLayoutShiftRegions(input: SetShowLayoutShiftRegionsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowLayoutShiftRegions", Json.encodeToJsonElement(SetShowLayoutShiftRegionsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests that backend shows scroll bottleneck rects
@@ -180,7 +180,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowScrollBottleneckRects](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowScrollBottleneckRects) method documentation.
      */
     
-    fun setShowScrollBottleneckRects(input: SetShowScrollBottleneckRectsRequest) = connection.request("Overlay.setShowScrollBottleneckRects", Json.encodeToJsonElement(SetShowScrollBottleneckRectsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowScrollBottleneckRects(input: SetShowScrollBottleneckRectsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowScrollBottleneckRects", Json.encodeToJsonElement(SetShowScrollBottleneckRectsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests that backend shows hit-test borders on layers
@@ -188,7 +188,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowHitTestBorders](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowHitTestBorders) method documentation.
      */
     
-    fun setShowHitTestBorders(input: SetShowHitTestBordersRequest) = connection.request("Overlay.setShowHitTestBorders", Json.encodeToJsonElement(SetShowHitTestBordersRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowHitTestBorders(input: SetShowHitTestBordersRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowHitTestBorders", Json.encodeToJsonElement(SetShowHitTestBordersRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Request that backend shows an overlay with web vital metrics.
@@ -196,7 +196,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowWebVitals](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowWebVitals) method documentation.
      */
     
-    fun setShowWebVitals(input: SetShowWebVitalsRequest) = connection.request("Overlay.setShowWebVitals", Json.encodeToJsonElement(SetShowWebVitalsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowWebVitals(input: SetShowWebVitalsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowWebVitals", Json.encodeToJsonElement(SetShowWebVitalsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Paints viewport size upon main frame resize.
@@ -204,7 +204,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowViewportSizeOnResize](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowViewportSizeOnResize) method documentation.
      */
     
-    fun setShowViewportSizeOnResize(input: SetShowViewportSizeOnResizeRequest) = connection.request("Overlay.setShowViewportSizeOnResize", Json.encodeToJsonElement(SetShowViewportSizeOnResizeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowViewportSizeOnResize(input: SetShowViewportSizeOnResizeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowViewportSizeOnResize", Json.encodeToJsonElement(SetShowViewportSizeOnResizeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Add a dual screen device hinge
@@ -212,7 +212,7 @@ Backend then generates 'inspectNodeRequested' event upon element selection.
      * @link Protocol [Overlay#setShowHinge](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowHinge) method documentation.
      */
     
-    fun setShowHinge(input: SetShowHingeRequest) = connection.request("Overlay.setShowHinge", Json.encodeToJsonElement(SetShowHingeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setShowHinge(input: SetShowHingeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Overlay.setShowHinge", Json.encodeToJsonElement(SetShowHingeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Fired when the node should be inspected. This happens after call to `setInspectMode` or when
@@ -238,7 +238,7 @@ user manually inspects an element.
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.dom.DOMDomain(connection),
             pl.wendigo.chrome.api.page.PageDomain(connection),
@@ -252,7 +252,7 @@ user manually inspects an element.
  *
  * For testing.
  * @link [Overlay#getHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getHighlightObjectForTest) method documentation.
- * @see [OverlayOperations.getHighlightObjectForTest]
+ * @see [OverlayDomain.getHighlightObjectForTest]
  */
 @kotlinx.serialization.Serializable
 data class GetHighlightObjectForTestRequest(
@@ -289,7 +289,7 @@ data class GetHighlightObjectForTestRequest(
  *
   
  * @link [Overlay#getHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getHighlightObjectForTest) method documentation.
- * @see [OverlayOperations.getHighlightObjectForTest]
+ * @see [OverlayDomain.getHighlightObjectForTest]
  */
 @kotlinx.serialization.Serializable
 data class GetHighlightObjectForTestResponse(
@@ -305,7 +305,7 @@ data class GetHighlightObjectForTestResponse(
  *
  * For Persistent Grid testing.
  * @link [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) method documentation.
- * @see [OverlayOperations.getGridHighlightObjectsForTest]
+ * @see [OverlayDomain.getGridHighlightObjectsForTest]
  */
 @kotlinx.serialization.Serializable
 data class GetGridHighlightObjectsForTestRequest(
@@ -322,7 +322,7 @@ data class GetGridHighlightObjectsForTestRequest(
  *
   
  * @link [Overlay#getGridHighlightObjectsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getGridHighlightObjectsForTest) method documentation.
- * @see [OverlayOperations.getGridHighlightObjectsForTest]
+ * @see [OverlayDomain.getGridHighlightObjectsForTest]
  */
 @kotlinx.serialization.Serializable
 data class GetGridHighlightObjectsForTestResponse(
@@ -338,7 +338,7 @@ data class GetGridHighlightObjectsForTestResponse(
  *
  * For Source Order Viewer testing.
  * @link [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) method documentation.
- * @see [OverlayOperations.getSourceOrderHighlightObjectForTest]
+ * @see [OverlayDomain.getSourceOrderHighlightObjectForTest]
  */
 @kotlinx.serialization.Serializable
 data class GetSourceOrderHighlightObjectForTestRequest(
@@ -355,7 +355,7 @@ data class GetSourceOrderHighlightObjectForTestRequest(
  *
   
  * @link [Overlay#getSourceOrderHighlightObjectForTest](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-getSourceOrderHighlightObjectForTest) method documentation.
- * @see [OverlayOperations.getSourceOrderHighlightObjectForTest]
+ * @see [OverlayDomain.getSourceOrderHighlightObjectForTest]
  */
 @kotlinx.serialization.Serializable
 data class GetSourceOrderHighlightObjectForTestResponse(
@@ -371,7 +371,7 @@ data class GetSourceOrderHighlightObjectForTestResponse(
  *
  * Highlights owner element of the frame with given id.
  * @link [Overlay#highlightFrame](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightFrame) method documentation.
- * @see [OverlayOperations.highlightFrame]
+ * @see [OverlayDomain.highlightFrame]
  */
 @kotlinx.serialization.Serializable
 data class HighlightFrameRequest(
@@ -398,7 +398,7 @@ data class HighlightFrameRequest(
  * Highlights DOM node with given id or with the given JavaScript object wrapper. Either nodeId or
 objectId must be specified.
  * @link [Overlay#highlightNode](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightNode) method documentation.
- * @see [OverlayOperations.highlightNode]
+ * @see [OverlayDomain.highlightNode]
  */
 @kotlinx.serialization.Serializable
 data class HighlightNodeRequest(
@@ -434,7 +434,7 @@ data class HighlightNodeRequest(
  *
  * Highlights given quad. Coordinates are absolute with respect to the main frame viewport.
  * @link [Overlay#highlightQuad](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightQuad) method documentation.
- * @see [OverlayOperations.highlightQuad]
+ * @see [OverlayDomain.highlightQuad]
  */
 @kotlinx.serialization.Serializable
 data class HighlightQuadRequest(
@@ -460,7 +460,7 @@ data class HighlightQuadRequest(
  *
  * Highlights given rectangle. Coordinates are absolute with respect to the main frame viewport.
  * @link [Overlay#highlightRect](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightRect) method documentation.
- * @see [OverlayOperations.highlightRect]
+ * @see [OverlayDomain.highlightRect]
  */
 @kotlinx.serialization.Serializable
 data class HighlightRectRequest(
@@ -502,7 +502,7 @@ data class HighlightRectRequest(
  * Highlights the source order of the children of the DOM node with given id or with the given
 JavaScript object wrapper. Either nodeId or objectId must be specified.
  * @link [Overlay#highlightSourceOrder](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-highlightSourceOrder) method documentation.
- * @see [OverlayOperations.highlightSourceOrder]
+ * @see [OverlayDomain.highlightSourceOrder]
  */
 @kotlinx.serialization.Serializable
 data class HighlightSourceOrderRequest(
@@ -534,7 +534,7 @@ data class HighlightSourceOrderRequest(
  * Enters the 'inspect' mode. In this mode, elements that user is hovering over are highlighted.
 Backend then generates 'inspectNodeRequested' event upon element selection.
  * @link [Overlay#setInspectMode](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setInspectMode) method documentation.
- * @see [OverlayOperations.setInspectMode]
+ * @see [OverlayDomain.setInspectMode]
  */
 @kotlinx.serialization.Serializable
 data class SetInspectModeRequest(
@@ -556,7 +556,7 @@ data class SetInspectModeRequest(
  *
  * Highlights owner element of all frames detected to be ads.
  * @link [Overlay#setShowAdHighlights](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowAdHighlights) method documentation.
- * @see [OverlayOperations.setShowAdHighlights]
+ * @see [OverlayDomain.setShowAdHighlights]
  */
 @kotlinx.serialization.Serializable
 data class SetShowAdHighlightsRequest(
@@ -572,7 +572,7 @@ data class SetShowAdHighlightsRequest(
  *
  *
  * @link [Overlay#setPausedInDebuggerMessage](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setPausedInDebuggerMessage) method documentation.
- * @see [OverlayOperations.setPausedInDebuggerMessage]
+ * @see [OverlayDomain.setPausedInDebuggerMessage]
  */
 @kotlinx.serialization.Serializable
 data class SetPausedInDebuggerMessageRequest(
@@ -588,7 +588,7 @@ data class SetPausedInDebuggerMessageRequest(
  *
  * Requests that backend shows debug borders on layers
  * @link [Overlay#setShowDebugBorders](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowDebugBorders) method documentation.
- * @see [OverlayOperations.setShowDebugBorders]
+ * @see [OverlayDomain.setShowDebugBorders]
  */
 @kotlinx.serialization.Serializable
 data class SetShowDebugBordersRequest(
@@ -604,7 +604,7 @@ data class SetShowDebugBordersRequest(
  *
  * Requests that backend shows the FPS counter
  * @link [Overlay#setShowFPSCounter](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFPSCounter) method documentation.
- * @see [OverlayOperations.setShowFPSCounter]
+ * @see [OverlayDomain.setShowFPSCounter]
  */
 @kotlinx.serialization.Serializable
 data class SetShowFPSCounterRequest(
@@ -620,7 +620,7 @@ data class SetShowFPSCounterRequest(
  *
  * Highlight multiple elements with the CSS Grid overlay.
  * @link [Overlay#setShowGridOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowGridOverlays) method documentation.
- * @see [OverlayOperations.setShowGridOverlays]
+ * @see [OverlayDomain.setShowGridOverlays]
  */
 @kotlinx.serialization.Serializable
 data class SetShowGridOverlaysRequest(
@@ -636,7 +636,7 @@ data class SetShowGridOverlaysRequest(
  *
  *
  * @link [Overlay#setShowFlexOverlays](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowFlexOverlays) method documentation.
- * @see [OverlayOperations.setShowFlexOverlays]
+ * @see [OverlayDomain.setShowFlexOverlays]
  */
 @kotlinx.serialization.Serializable
 data class SetShowFlexOverlaysRequest(
@@ -652,7 +652,7 @@ data class SetShowFlexOverlaysRequest(
  *
  * Requests that backend shows paint rectangles
  * @link [Overlay#setShowPaintRects](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowPaintRects) method documentation.
- * @see [OverlayOperations.setShowPaintRects]
+ * @see [OverlayDomain.setShowPaintRects]
  */
 @kotlinx.serialization.Serializable
 data class SetShowPaintRectsRequest(
@@ -668,7 +668,7 @@ data class SetShowPaintRectsRequest(
  *
  * Requests that backend shows layout shift regions
  * @link [Overlay#setShowLayoutShiftRegions](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowLayoutShiftRegions) method documentation.
- * @see [OverlayOperations.setShowLayoutShiftRegions]
+ * @see [OverlayDomain.setShowLayoutShiftRegions]
  */
 @kotlinx.serialization.Serializable
 data class SetShowLayoutShiftRegionsRequest(
@@ -684,7 +684,7 @@ data class SetShowLayoutShiftRegionsRequest(
  *
  * Requests that backend shows scroll bottleneck rects
  * @link [Overlay#setShowScrollBottleneckRects](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowScrollBottleneckRects) method documentation.
- * @see [OverlayOperations.setShowScrollBottleneckRects]
+ * @see [OverlayDomain.setShowScrollBottleneckRects]
  */
 @kotlinx.serialization.Serializable
 data class SetShowScrollBottleneckRectsRequest(
@@ -700,7 +700,7 @@ data class SetShowScrollBottleneckRectsRequest(
  *
  * Requests that backend shows hit-test borders on layers
  * @link [Overlay#setShowHitTestBorders](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowHitTestBorders) method documentation.
- * @see [OverlayOperations.setShowHitTestBorders]
+ * @see [OverlayDomain.setShowHitTestBorders]
  */
 @kotlinx.serialization.Serializable
 data class SetShowHitTestBordersRequest(
@@ -716,7 +716,7 @@ data class SetShowHitTestBordersRequest(
  *
  * Request that backend shows an overlay with web vital metrics.
  * @link [Overlay#setShowWebVitals](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowWebVitals) method documentation.
- * @see [OverlayOperations.setShowWebVitals]
+ * @see [OverlayDomain.setShowWebVitals]
  */
 @kotlinx.serialization.Serializable
 data class SetShowWebVitalsRequest(
@@ -732,7 +732,7 @@ data class SetShowWebVitalsRequest(
  *
  * Paints viewport size upon main frame resize.
  * @link [Overlay#setShowViewportSizeOnResize](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowViewportSizeOnResize) method documentation.
- * @see [OverlayOperations.setShowViewportSizeOnResize]
+ * @see [OverlayDomain.setShowViewportSizeOnResize]
  */
 @kotlinx.serialization.Serializable
 data class SetShowViewportSizeOnResizeRequest(
@@ -748,7 +748,7 @@ data class SetShowViewportSizeOnResizeRequest(
  *
  * Add a dual screen device hinge
  * @link [Overlay#setShowHinge](https://chromedevtools.github.io/devtools-protocol/tot/Overlay#method-setShowHinge) method documentation.
- * @see [OverlayOperations.setShowHinge]
+ * @see [OverlayDomain.setShowHinge]
  */
 @kotlinx.serialization.Serializable
 data class SetShowHingeRequest(

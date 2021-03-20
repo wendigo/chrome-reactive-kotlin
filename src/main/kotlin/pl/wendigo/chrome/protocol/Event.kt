@@ -23,7 +23,7 @@ class RawEvent(
     private val eventName: String,
     private val sessionId: SessionID?
 ) : Event {
-    override fun domain() = domain
-    override fun eventName() = eventName
-    fun sessionId() = sessionId
+    override fun domain(): String = domain
+    override fun eventName(): String = eventName
+    fun sessionId(): SessionID? = sessionId
 }

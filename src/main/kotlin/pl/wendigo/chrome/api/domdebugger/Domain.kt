@@ -9,8 +9,8 @@ execution will stop on these operations as if there was a regular breakpoint set
  * @link Protocol [DOMDebugger](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger) domain documentation.
  */
 
-class DOMDebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain(
+class DOMDebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain(
         "DOMDebugger",
         """DOM debugging allows setting breakpoints on particular DOM operations and events. JavaScript
 execution will stop on these operations as if there was a regular breakpoint set.""",
@@ -22,7 +22,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#getEventListeners](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-getEventListeners) method documentation.
      */
     
-    fun getEventListeners(input: GetEventListenersRequest) = connection.request("DOMDebugger.getEventListeners", Json.encodeToJsonElement(GetEventListenersRequest.serializer(), input), GetEventListenersResponse.serializer())
+    fun getEventListeners(input: GetEventListenersRequest): io.reactivex.rxjava3.core.Single<GetEventListenersResponse> = connection.request("DOMDebugger.getEventListeners", Json.encodeToJsonElement(GetEventListenersRequest.serializer(), input), GetEventListenersResponse.serializer())
 
     /**
      * Removes DOM breakpoint that was set using `setDOMBreakpoint`.
@@ -30,7 +30,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#removeDOMBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeDOMBreakpoint) method documentation.
      */
     
-    fun removeDOMBreakpoint(input: RemoveDOMBreakpointRequest) = connection.request("DOMDebugger.removeDOMBreakpoint", Json.encodeToJsonElement(RemoveDOMBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeDOMBreakpoint(input: RemoveDOMBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.removeDOMBreakpoint", Json.encodeToJsonElement(RemoveDOMBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Removes breakpoint on particular DOM event.
@@ -38,7 +38,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#removeEventListenerBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeEventListenerBreakpoint) method documentation.
      */
     
-    fun removeEventListenerBreakpoint(input: RemoveEventListenerBreakpointRequest) = connection.request("DOMDebugger.removeEventListenerBreakpoint", Json.encodeToJsonElement(RemoveEventListenerBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeEventListenerBreakpoint(input: RemoveEventListenerBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.removeEventListenerBreakpoint", Json.encodeToJsonElement(RemoveEventListenerBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Removes breakpoint on particular native event.
@@ -46,7 +46,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#removeInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeInstrumentationBreakpoint) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun removeInstrumentationBreakpoint(input: RemoveInstrumentationBreakpointRequest) = connection.request("DOMDebugger.removeInstrumentationBreakpoint", Json.encodeToJsonElement(RemoveInstrumentationBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeInstrumentationBreakpoint(input: RemoveInstrumentationBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.removeInstrumentationBreakpoint", Json.encodeToJsonElement(RemoveInstrumentationBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Removes breakpoint from XMLHttpRequest.
@@ -54,7 +54,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#removeXHRBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeXHRBreakpoint) method documentation.
      */
     
-    fun removeXHRBreakpoint(input: RemoveXHRBreakpointRequest) = connection.request("DOMDebugger.removeXHRBreakpoint", Json.encodeToJsonElement(RemoveXHRBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeXHRBreakpoint(input: RemoveXHRBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.removeXHRBreakpoint", Json.encodeToJsonElement(RemoveXHRBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets breakpoint on particular CSP violations.
@@ -62,7 +62,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#setBreakOnCSPViolation](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setBreakOnCSPViolation) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBreakOnCSPViolation(input: SetBreakOnCSPViolationRequest) = connection.request("DOMDebugger.setBreakOnCSPViolation", Json.encodeToJsonElement(SetBreakOnCSPViolationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBreakOnCSPViolation(input: SetBreakOnCSPViolationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.setBreakOnCSPViolation", Json.encodeToJsonElement(SetBreakOnCSPViolationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets breakpoint on particular operation with DOM.
@@ -70,7 +70,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#setDOMBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setDOMBreakpoint) method documentation.
      */
     
-    fun setDOMBreakpoint(input: SetDOMBreakpointRequest) = connection.request("DOMDebugger.setDOMBreakpoint", Json.encodeToJsonElement(SetDOMBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDOMBreakpoint(input: SetDOMBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.setDOMBreakpoint", Json.encodeToJsonElement(SetDOMBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets breakpoint on particular DOM event.
@@ -78,7 +78,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#setEventListenerBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setEventListenerBreakpoint) method documentation.
      */
     
-    fun setEventListenerBreakpoint(input: SetEventListenerBreakpointRequest) = connection.request("DOMDebugger.setEventListenerBreakpoint", Json.encodeToJsonElement(SetEventListenerBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setEventListenerBreakpoint(input: SetEventListenerBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.setEventListenerBreakpoint", Json.encodeToJsonElement(SetEventListenerBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets breakpoint on particular native event.
@@ -86,7 +86,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#setInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setInstrumentationBreakpoint) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest) = connection.request("DOMDebugger.setInstrumentationBreakpoint", Json.encodeToJsonElement(SetInstrumentationBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.setInstrumentationBreakpoint", Json.encodeToJsonElement(SetInstrumentationBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets breakpoint on XMLHttpRequest.
@@ -94,12 +94,12 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#setXHRBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setXHRBreakpoint) method documentation.
      */
     
-    fun setXHRBreakpoint(input: SetXHRBreakpointRequest) = connection.request("DOMDebugger.setXHRBreakpoint", Json.encodeToJsonElement(SetXHRBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setXHRBreakpoint(input: SetXHRBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.setXHRBreakpoint", Json.encodeToJsonElement(SetXHRBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.dom.DOMDomain(connection),
             pl.wendigo.chrome.api.debugger.DebuggerDomain(connection),
@@ -113,7 +113,7 @@ execution will stop on these operations as if there was a regular breakpoint set
  *
  * Returns event listeners of the given object.
  * @link [DOMDebugger#getEventListeners](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-getEventListeners) method documentation.
- * @see [DOMDebuggerOperations.getEventListeners]
+ * @see [DOMDebuggerDomain.getEventListeners]
  */
 @kotlinx.serialization.Serializable
 data class GetEventListenersRequest(
@@ -142,7 +142,7 @@ entire subtree or provide an integer larger than 0.
  *
   
  * @link [DOMDebugger#getEventListeners](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-getEventListeners) method documentation.
- * @see [DOMDebuggerOperations.getEventListeners]
+ * @see [DOMDebuggerDomain.getEventListeners]
  */
 @kotlinx.serialization.Serializable
 data class GetEventListenersResponse(
@@ -158,7 +158,7 @@ data class GetEventListenersResponse(
  *
  * Removes DOM breakpoint that was set using `setDOMBreakpoint`.
  * @link [DOMDebugger#removeDOMBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeDOMBreakpoint) method documentation.
- * @see [DOMDebuggerOperations.removeDOMBreakpoint]
+ * @see [DOMDebuggerDomain.removeDOMBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class RemoveDOMBreakpointRequest(
@@ -179,7 +179,7 @@ data class RemoveDOMBreakpointRequest(
  *
  * Removes breakpoint on particular DOM event.
  * @link [DOMDebugger#removeEventListenerBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeEventListenerBreakpoint) method documentation.
- * @see [DOMDebuggerOperations.removeEventListenerBreakpoint]
+ * @see [DOMDebuggerDomain.removeEventListenerBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class RemoveEventListenerBreakpointRequest(
@@ -200,7 +200,7 @@ data class RemoveEventListenerBreakpointRequest(
  *
  * Removes breakpoint on particular native event.
  * @link [DOMDebugger#removeInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeInstrumentationBreakpoint) method documentation.
- * @see [DOMDebuggerOperations.removeInstrumentationBreakpoint]
+ * @see [DOMDebuggerDomain.removeInstrumentationBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class RemoveInstrumentationBreakpointRequest(
@@ -216,7 +216,7 @@ data class RemoveInstrumentationBreakpointRequest(
  *
  * Removes breakpoint from XMLHttpRequest.
  * @link [DOMDebugger#removeXHRBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeXHRBreakpoint) method documentation.
- * @see [DOMDebuggerOperations.removeXHRBreakpoint]
+ * @see [DOMDebuggerDomain.removeXHRBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class RemoveXHRBreakpointRequest(
@@ -232,7 +232,7 @@ data class RemoveXHRBreakpointRequest(
  *
  * Sets breakpoint on particular CSP violations.
  * @link [DOMDebugger#setBreakOnCSPViolation](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setBreakOnCSPViolation) method documentation.
- * @see [DOMDebuggerOperations.setBreakOnCSPViolation]
+ * @see [DOMDebuggerDomain.setBreakOnCSPViolation]
  */
 @kotlinx.serialization.Serializable
 data class SetBreakOnCSPViolationRequest(
@@ -248,7 +248,7 @@ data class SetBreakOnCSPViolationRequest(
  *
  * Sets breakpoint on particular operation with DOM.
  * @link [DOMDebugger#setDOMBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setDOMBreakpoint) method documentation.
- * @see [DOMDebuggerOperations.setDOMBreakpoint]
+ * @see [DOMDebuggerDomain.setDOMBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class SetDOMBreakpointRequest(
@@ -269,7 +269,7 @@ data class SetDOMBreakpointRequest(
  *
  * Sets breakpoint on particular DOM event.
  * @link [DOMDebugger#setEventListenerBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setEventListenerBreakpoint) method documentation.
- * @see [DOMDebuggerOperations.setEventListenerBreakpoint]
+ * @see [DOMDebuggerDomain.setEventListenerBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class SetEventListenerBreakpointRequest(
@@ -291,7 +291,7 @@ EventTarget.
  *
  * Sets breakpoint on particular native event.
  * @link [DOMDebugger#setInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setInstrumentationBreakpoint) method documentation.
- * @see [DOMDebuggerOperations.setInstrumentationBreakpoint]
+ * @see [DOMDebuggerDomain.setInstrumentationBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class SetInstrumentationBreakpointRequest(
@@ -307,7 +307,7 @@ data class SetInstrumentationBreakpointRequest(
  *
  * Sets breakpoint on XMLHttpRequest.
  * @link [DOMDebugger#setXHRBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setXHRBreakpoint) method documentation.
- * @see [DOMDebuggerOperations.setXHRBreakpoint]
+ * @see [DOMDebuggerDomain.setXHRBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class SetXHRBreakpointRequest(

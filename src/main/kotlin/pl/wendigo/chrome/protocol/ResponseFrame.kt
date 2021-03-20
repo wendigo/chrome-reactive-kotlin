@@ -28,8 +28,8 @@ data class EventResponseFrame(
     val params: JsonElement,
     val sessionId: SessionID? = null
 ) : ResponseFrame() {
-    fun matches(method: String, sessionId: SessionID?) = this.method == method && this.sessionId == sessionId
-    fun matches(sessionId: SessionID?) = this.sessionId == sessionId
+    fun matches(method: String, sessionId: SessionID?): Boolean = this.method == method && this.sessionId == sessionId
+    fun matches(sessionId: SessionID?): Boolean = this.sessionId == sessionId
 }
 
 @Serializable

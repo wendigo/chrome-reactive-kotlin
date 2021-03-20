@@ -6,15 +6,15 @@ package pl.wendigo.chrome.api.schema
  * @link Protocol [Schema](https://chromedevtools.github.io/devtools-protocol/tot/Schema) domain documentation.
  */
 @Deprecated(level = DeprecationLevel.WARNING, message = "This domain is deprecated.")
-class SchemaDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Schema", """This domain is deprecated.""", connection) {
+class SchemaDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Schema", """This domain is deprecated.""", connection) {
     /**
      * Returns supported domains.
      *
      * @link Protocol [Schema#getDomains](https://chromedevtools.github.io/devtools-protocol/tot/Schema#method-getDomains) method documentation.
      */
     
-    fun getDomains() = connection.request("Schema.getDomains", null, GetDomainsResponse.serializer())
+    fun getDomains(): io.reactivex.rxjava3.core.Single<GetDomainsResponse> = connection.request("Schema.getDomains", null, GetDomainsResponse.serializer())
 }
 
 /**
@@ -23,7 +23,7 @@ class SchemaDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
  *
   
  * @link [Schema#getDomains](https://chromedevtools.github.io/devtools-protocol/tot/Schema#method-getDomains) method documentation.
- * @see [SchemaOperations.getDomains]
+ * @see [SchemaDomain.getDomains]
  */
 @kotlinx.serialization.Serializable
 data class GetDomainsResponse(

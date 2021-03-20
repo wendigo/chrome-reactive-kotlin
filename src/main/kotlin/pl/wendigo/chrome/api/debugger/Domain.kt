@@ -9,8 +9,8 @@ breakpoints, stepping through execution, exploring stack traces, etc.
  * @link Protocol [Debugger](https://chromedevtools.github.io/devtools-protocol/tot/Debugger) domain documentation.
  */
 
-class DebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain(
+class DebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain(
         "Debugger",
         """Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing
 breakpoints, stepping through execution, exploring stack traces, etc.""",
@@ -22,7 +22,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.""",
      * @link Protocol [Debugger#continueToLocation](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-continueToLocation) method documentation.
      */
     
-    fun continueToLocation(input: ContinueToLocationRequest) = connection.request("Debugger.continueToLocation", Json.encodeToJsonElement(ContinueToLocationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun continueToLocation(input: ContinueToLocationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.continueToLocation", Json.encodeToJsonElement(ContinueToLocationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables debugger for given page.
@@ -30,7 +30,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.""",
      * @link Protocol [Debugger#disable](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("Debugger.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables debugger for the given page. Clients should not assume that the debugging has been
@@ -39,7 +39,7 @@ enabled until the result for this command is received.
      * @link Protocol [Debugger#enable](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-enable) method documentation.
      */
     
-    fun enable(input: EnableRequest) = connection.request("Debugger.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), EnableResponse.serializer())
+    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<EnableResponse> = connection.request("Debugger.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), EnableResponse.serializer())
 
     /**
      * Evaluates expression on a given call frame.
@@ -47,7 +47,7 @@ enabled until the result for this command is received.
      * @link Protocol [Debugger#evaluateOnCallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-evaluateOnCallFrame) method documentation.
      */
     
-    fun evaluateOnCallFrame(input: EvaluateOnCallFrameRequest) = connection.request("Debugger.evaluateOnCallFrame", Json.encodeToJsonElement(EvaluateOnCallFrameRequest.serializer(), input), EvaluateOnCallFrameResponse.serializer())
+    fun evaluateOnCallFrame(input: EvaluateOnCallFrameRequest): io.reactivex.rxjava3.core.Single<EvaluateOnCallFrameResponse> = connection.request("Debugger.evaluateOnCallFrame", Json.encodeToJsonElement(EvaluateOnCallFrameRequest.serializer(), input), EvaluateOnCallFrameResponse.serializer())
 
     /**
      * Returns possible locations for breakpoint. scriptId in start and end range locations should be
@@ -56,7 +56,7 @@ the same.
      * @link Protocol [Debugger#getPossibleBreakpoints](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getPossibleBreakpoints) method documentation.
      */
     
-    fun getPossibleBreakpoints(input: GetPossibleBreakpointsRequest) = connection.request("Debugger.getPossibleBreakpoints", Json.encodeToJsonElement(GetPossibleBreakpointsRequest.serializer(), input), GetPossibleBreakpointsResponse.serializer())
+    fun getPossibleBreakpoints(input: GetPossibleBreakpointsRequest): io.reactivex.rxjava3.core.Single<GetPossibleBreakpointsResponse> = connection.request("Debugger.getPossibleBreakpoints", Json.encodeToJsonElement(GetPossibleBreakpointsRequest.serializer(), input), GetPossibleBreakpointsResponse.serializer())
 
     /**
      * Returns source for the script with given id.
@@ -64,15 +64,15 @@ the same.
      * @link Protocol [Debugger#getScriptSource](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getScriptSource) method documentation.
      */
     
-    fun getScriptSource(input: GetScriptSourceRequest) = connection.request("Debugger.getScriptSource", Json.encodeToJsonElement(GetScriptSourceRequest.serializer(), input), GetScriptSourceResponse.serializer())
+    fun getScriptSource(input: GetScriptSourceRequest): io.reactivex.rxjava3.core.Single<GetScriptSourceResponse> = connection.request("Debugger.getScriptSource", Json.encodeToJsonElement(GetScriptSourceRequest.serializer(), input), GetScriptSourceResponse.serializer())
 
     /**
      * This command is deprecated. Use getScriptSource instead.
      *
      * @link Protocol [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) method documentation.
      */
-    @Deprecated(level = DeprecationLevel.WARNING, message = "{{getWasmBytecode}} is deprecated.")
-    fun getWasmBytecode(input: GetWasmBytecodeRequest) = connection.request("Debugger.getWasmBytecode", Json.encodeToJsonElement(GetWasmBytecodeRequest.serializer(), input), GetWasmBytecodeResponse.serializer())
+    @Deprecated(level = DeprecationLevel.WARNING, message = "getWasmBytecode is deprecated.")
+    fun getWasmBytecode(input: GetWasmBytecodeRequest): io.reactivex.rxjava3.core.Single<GetWasmBytecodeResponse> = connection.request("Debugger.getWasmBytecode", Json.encodeToJsonElement(GetWasmBytecodeRequest.serializer(), input), GetWasmBytecodeResponse.serializer())
 
     /**
      * Returns stack trace with given `stackTraceId`.
@@ -80,7 +80,7 @@ the same.
      * @link Protocol [Debugger#getStackTrace](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getStackTrace) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun getStackTrace(input: GetStackTraceRequest) = connection.request("Debugger.getStackTrace", Json.encodeToJsonElement(GetStackTraceRequest.serializer(), input), GetStackTraceResponse.serializer())
+    fun getStackTrace(input: GetStackTraceRequest): io.reactivex.rxjava3.core.Single<GetStackTraceResponse> = connection.request("Debugger.getStackTrace", Json.encodeToJsonElement(GetStackTraceRequest.serializer(), input), GetStackTraceResponse.serializer())
 
     /**
      * Stops on the next JavaScript statement.
@@ -88,16 +88,16 @@ the same.
      * @link Protocol [Debugger#pause](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-pause) method documentation.
      */
     
-    fun pause() = connection.request("Debugger.pause", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun pause(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.pause", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
      *
      * @link Protocol [Debugger#pauseOnAsyncCall](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-pauseOnAsyncCall) method documentation.
      */
-    @Deprecated(level = DeprecationLevel.WARNING, message = "{{pauseOnAsyncCall}} is deprecated.")
+    @Deprecated(level = DeprecationLevel.WARNING, message = "pauseOnAsyncCall is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun pauseOnAsyncCall(input: PauseOnAsyncCallRequest) = connection.request("Debugger.pauseOnAsyncCall", Json.encodeToJsonElement(PauseOnAsyncCallRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun pauseOnAsyncCall(input: PauseOnAsyncCallRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.pauseOnAsyncCall", Json.encodeToJsonElement(PauseOnAsyncCallRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Removes JavaScript breakpoint.
@@ -105,7 +105,7 @@ the same.
      * @link Protocol [Debugger#removeBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-removeBreakpoint) method documentation.
      */
     
-    fun removeBreakpoint(input: RemoveBreakpointRequest) = connection.request("Debugger.removeBreakpoint", Json.encodeToJsonElement(RemoveBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeBreakpoint(input: RemoveBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.removeBreakpoint", Json.encodeToJsonElement(RemoveBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Restarts particular call frame from the beginning.
@@ -113,7 +113,7 @@ the same.
      * @link Protocol [Debugger#restartFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-restartFrame) method documentation.
      */
     
-    fun restartFrame(input: RestartFrameRequest) = connection.request("Debugger.restartFrame", Json.encodeToJsonElement(RestartFrameRequest.serializer(), input), RestartFrameResponse.serializer())
+    fun restartFrame(input: RestartFrameRequest): io.reactivex.rxjava3.core.Single<RestartFrameResponse> = connection.request("Debugger.restartFrame", Json.encodeToJsonElement(RestartFrameRequest.serializer(), input), RestartFrameResponse.serializer())
 
     /**
      * Resumes JavaScript execution.
@@ -121,7 +121,7 @@ the same.
      * @link Protocol [Debugger#resume](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-resume) method documentation.
      */
     
-    fun resume(input: ResumeRequest) = connection.request("Debugger.resume", Json.encodeToJsonElement(ResumeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun resume(input: ResumeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.resume", Json.encodeToJsonElement(ResumeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Searches for given string in script content.
@@ -129,7 +129,7 @@ the same.
      * @link Protocol [Debugger#searchInContent](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-searchInContent) method documentation.
      */
     
-    fun searchInContent(input: SearchInContentRequest) = connection.request("Debugger.searchInContent", Json.encodeToJsonElement(SearchInContentRequest.serializer(), input), SearchInContentResponse.serializer())
+    fun searchInContent(input: SearchInContentRequest): io.reactivex.rxjava3.core.Single<SearchInContentResponse> = connection.request("Debugger.searchInContent", Json.encodeToJsonElement(SearchInContentRequest.serializer(), input), SearchInContentResponse.serializer())
 
     /**
      * Enables or disables async call stacks tracking.
@@ -137,7 +137,7 @@ the same.
      * @link Protocol [Debugger#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setAsyncCallStackDepth) method documentation.
      */
     
-    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest) = connection.request("Debugger.setAsyncCallStackDepth", Json.encodeToJsonElement(SetAsyncCallStackDepthRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setAsyncCallStackDepth", Json.encodeToJsonElement(SetAsyncCallStackDepthRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in
@@ -147,7 +147,7 @@ performing 'step in' several times, finally resorting to 'step out' if unsuccess
      * @link Protocol [Debugger#setBlackboxPatterns](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBlackboxPatterns) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBlackboxPatterns(input: SetBlackboxPatternsRequest) = connection.request("Debugger.setBlackboxPatterns", Json.encodeToJsonElement(SetBlackboxPatternsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBlackboxPatterns(input: SetBlackboxPatternsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setBlackboxPatterns", Json.encodeToJsonElement(SetBlackboxPatternsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted
@@ -158,7 +158,7 @@ blackboxed. Array should be sorted.
      * @link Protocol [Debugger#setBlackboxedRanges](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBlackboxedRanges) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBlackboxedRanges(input: SetBlackboxedRangesRequest) = connection.request("Debugger.setBlackboxedRanges", Json.encodeToJsonElement(SetBlackboxedRangesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBlackboxedRanges(input: SetBlackboxedRangesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setBlackboxedRanges", Json.encodeToJsonElement(SetBlackboxedRangesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets JavaScript breakpoint at a given location.
@@ -166,7 +166,7 @@ blackboxed. Array should be sorted.
      * @link Protocol [Debugger#setBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpoint) method documentation.
      */
     
-    fun setBreakpoint(input: SetBreakpointRequest) = connection.request("Debugger.setBreakpoint", Json.encodeToJsonElement(SetBreakpointRequest.serializer(), input), SetBreakpointResponse.serializer())
+    fun setBreakpoint(input: SetBreakpointRequest): io.reactivex.rxjava3.core.Single<SetBreakpointResponse> = connection.request("Debugger.setBreakpoint", Json.encodeToJsonElement(SetBreakpointRequest.serializer(), input), SetBreakpointResponse.serializer())
 
     /**
      * Sets instrumentation breakpoint.
@@ -174,7 +174,7 @@ blackboxed. Array should be sorted.
      * @link Protocol [Debugger#setInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setInstrumentationBreakpoint) method documentation.
      */
     
-    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest) = connection.request("Debugger.setInstrumentationBreakpoint", Json.encodeToJsonElement(SetInstrumentationBreakpointRequest.serializer(), input), SetInstrumentationBreakpointResponse.serializer())
+    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest): io.reactivex.rxjava3.core.Single<SetInstrumentationBreakpointResponse> = connection.request("Debugger.setInstrumentationBreakpoint", Json.encodeToJsonElement(SetInstrumentationBreakpointRequest.serializer(), input), SetInstrumentationBreakpointResponse.serializer())
 
     /**
      * Sets JavaScript breakpoint at given location specified either by URL or URL regex. Once this
@@ -185,7 +185,7 @@ command is issued, all existing parsed scripts will have breakpoints resolved an
      * @link Protocol [Debugger#setBreakpointByUrl](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointByUrl) method documentation.
      */
     
-    fun setBreakpointByUrl(input: SetBreakpointByUrlRequest) = connection.request("Debugger.setBreakpointByUrl", Json.encodeToJsonElement(SetBreakpointByUrlRequest.serializer(), input), SetBreakpointByUrlResponse.serializer())
+    fun setBreakpointByUrl(input: SetBreakpointByUrlRequest): io.reactivex.rxjava3.core.Single<SetBreakpointByUrlResponse> = connection.request("Debugger.setBreakpointByUrl", Json.encodeToJsonElement(SetBreakpointByUrlRequest.serializer(), input), SetBreakpointByUrlResponse.serializer())
 
     /**
      * Sets JavaScript breakpoint before each call to the given function.
@@ -195,7 +195,7 @@ calling it will also trigger the breakpoint.
      * @link Protocol [Debugger#setBreakpointOnFunctionCall](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointOnFunctionCall) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBreakpointOnFunctionCall(input: SetBreakpointOnFunctionCallRequest) = connection.request("Debugger.setBreakpointOnFunctionCall", Json.encodeToJsonElement(SetBreakpointOnFunctionCallRequest.serializer(), input), SetBreakpointOnFunctionCallResponse.serializer())
+    fun setBreakpointOnFunctionCall(input: SetBreakpointOnFunctionCallRequest): io.reactivex.rxjava3.core.Single<SetBreakpointOnFunctionCallResponse> = connection.request("Debugger.setBreakpointOnFunctionCall", Json.encodeToJsonElement(SetBreakpointOnFunctionCallRequest.serializer(), input), SetBreakpointOnFunctionCallResponse.serializer())
 
     /**
      * Activates / deactivates all breakpoints on the page.
@@ -203,7 +203,7 @@ calling it will also trigger the breakpoint.
      * @link Protocol [Debugger#setBreakpointsActive](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointsActive) method documentation.
      */
     
-    fun setBreakpointsActive(input: SetBreakpointsActiveRequest) = connection.request("Debugger.setBreakpointsActive", Json.encodeToJsonElement(SetBreakpointsActiveRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBreakpointsActive(input: SetBreakpointsActiveRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setBreakpointsActive", Json.encodeToJsonElement(SetBreakpointsActiveRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or
@@ -212,7 +212,7 @@ no exceptions. Initial pause on exceptions state is `none`.
      * @link Protocol [Debugger#setPauseOnExceptions](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setPauseOnExceptions) method documentation.
      */
     
-    fun setPauseOnExceptions(input: SetPauseOnExceptionsRequest) = connection.request("Debugger.setPauseOnExceptions", Json.encodeToJsonElement(SetPauseOnExceptionsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setPauseOnExceptions(input: SetPauseOnExceptionsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setPauseOnExceptions", Json.encodeToJsonElement(SetPauseOnExceptionsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Changes return value in top frame. Available only at return break position.
@@ -220,7 +220,7 @@ no exceptions. Initial pause on exceptions state is `none`.
      * @link Protocol [Debugger#setReturnValue](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setReturnValue) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setReturnValue(input: SetReturnValueRequest) = connection.request("Debugger.setReturnValue", Json.encodeToJsonElement(SetReturnValueRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setReturnValue(input: SetReturnValueRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setReturnValue", Json.encodeToJsonElement(SetReturnValueRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Edits JavaScript source live.
@@ -228,7 +228,7 @@ no exceptions. Initial pause on exceptions state is `none`.
      * @link Protocol [Debugger#setScriptSource](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setScriptSource) method documentation.
      */
     
-    fun setScriptSource(input: SetScriptSourceRequest) = connection.request("Debugger.setScriptSource", Json.encodeToJsonElement(SetScriptSourceRequest.serializer(), input), SetScriptSourceResponse.serializer())
+    fun setScriptSource(input: SetScriptSourceRequest): io.reactivex.rxjava3.core.Single<SetScriptSourceResponse> = connection.request("Debugger.setScriptSource", Json.encodeToJsonElement(SetScriptSourceRequest.serializer(), input), SetScriptSourceResponse.serializer())
 
     /**
      * Makes page not interrupt on any pauses (breakpoint, exception, dom exception etc).
@@ -236,7 +236,7 @@ no exceptions. Initial pause on exceptions state is `none`.
      * @link Protocol [Debugger#setSkipAllPauses](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setSkipAllPauses) method documentation.
      */
     
-    fun setSkipAllPauses(input: SetSkipAllPausesRequest) = connection.request("Debugger.setSkipAllPauses", Json.encodeToJsonElement(SetSkipAllPausesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setSkipAllPauses(input: SetSkipAllPausesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setSkipAllPauses", Json.encodeToJsonElement(SetSkipAllPausesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Changes value of variable in a callframe. Object-based scopes are not supported and must be
@@ -245,7 +245,7 @@ mutated manually.
      * @link Protocol [Debugger#setVariableValue](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setVariableValue) method documentation.
      */
     
-    fun setVariableValue(input: SetVariableValueRequest) = connection.request("Debugger.setVariableValue", Json.encodeToJsonElement(SetVariableValueRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setVariableValue(input: SetVariableValueRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setVariableValue", Json.encodeToJsonElement(SetVariableValueRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Steps into the function call.
@@ -253,7 +253,7 @@ mutated manually.
      * @link Protocol [Debugger#stepInto](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepInto) method documentation.
      */
     
-    fun stepInto(input: StepIntoRequest) = connection.request("Debugger.stepInto", Json.encodeToJsonElement(StepIntoRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stepInto(input: StepIntoRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.stepInto", Json.encodeToJsonElement(StepIntoRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Steps out of the function call.
@@ -261,7 +261,7 @@ mutated manually.
      * @link Protocol [Debugger#stepOut](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepOut) method documentation.
      */
     
-    fun stepOut() = connection.request("Debugger.stepOut", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stepOut(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.stepOut", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Steps over the statement.
@@ -269,7 +269,7 @@ mutated manually.
      * @link Protocol [Debugger#stepOver](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepOver) method documentation.
      */
     
-    fun stepOver(input: StepOverRequest) = connection.request("Debugger.stepOver", Json.encodeToJsonElement(StepOverRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stepOver(input: StepOverRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.stepOver", Json.encodeToJsonElement(StepOverRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Fired when breakpoint is resolved to an actual script and location.
@@ -300,7 +300,7 @@ scripts upon enabling debugger.
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.runtime.RuntimeDomain(connection),
         )
@@ -312,7 +312,7 @@ scripts upon enabling debugger.
  *
  * Continues execution until specific location is reached.
  * @link [Debugger#continueToLocation](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-continueToLocation) method documentation.
- * @see [DebuggerOperations.continueToLocation]
+ * @see [DebuggerDomain.continueToLocation]
  */
 @kotlinx.serialization.Serializable
 data class ContinueToLocationRequest(
@@ -334,7 +334,7 @@ data class ContinueToLocationRequest(
  * Enables debugger for the given page. Clients should not assume that the debugging has been
 enabled until the result for this command is received.
  * @link [Debugger#enable](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-enable) method documentation.
- * @see [DebuggerOperations.enable]
+ * @see [DebuggerDomain.enable]
  */
 @kotlinx.serialization.Serializable
 data class EnableRequest(
@@ -353,7 +353,7 @@ enabled until the result for this command is received.
  *
   
  * @link [Debugger#enable](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-enable) method documentation.
- * @see [DebuggerOperations.enable]
+ * @see [DebuggerDomain.enable]
  */
 @kotlinx.serialization.Serializable
 data class EnableResponse(
@@ -369,7 +369,7 @@ data class EnableResponse(
  *
  * Evaluates expression on a given call frame.
  * @link [Debugger#evaluateOnCallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-evaluateOnCallFrame) method documentation.
- * @see [DebuggerOperations.evaluateOnCallFrame]
+ * @see [DebuggerDomain.evaluateOnCallFrame]
  */
 @kotlinx.serialization.Serializable
 data class EvaluateOnCallFrameRequest(
@@ -429,7 +429,7 @@ execution. Overrides `setPauseOnException` state.
  *
   
  * @link [Debugger#evaluateOnCallFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-evaluateOnCallFrame) method documentation.
- * @see [DebuggerOperations.evaluateOnCallFrame]
+ * @see [DebuggerDomain.evaluateOnCallFrame]
  */
 @kotlinx.serialization.Serializable
 data class EvaluateOnCallFrameResponse(
@@ -451,7 +451,7 @@ data class EvaluateOnCallFrameResponse(
  * Returns possible locations for breakpoint. scriptId in start and end range locations should be
 the same.
  * @link [Debugger#getPossibleBreakpoints](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getPossibleBreakpoints) method documentation.
- * @see [DebuggerOperations.getPossibleBreakpoints]
+ * @see [DebuggerDomain.getPossibleBreakpoints]
  */
 @kotlinx.serialization.Serializable
 data class GetPossibleBreakpointsRequest(
@@ -480,7 +480,7 @@ the same.
  *
   
  * @link [Debugger#getPossibleBreakpoints](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getPossibleBreakpoints) method documentation.
- * @see [DebuggerOperations.getPossibleBreakpoints]
+ * @see [DebuggerDomain.getPossibleBreakpoints]
  */
 @kotlinx.serialization.Serializable
 data class GetPossibleBreakpointsResponse(
@@ -496,7 +496,7 @@ data class GetPossibleBreakpointsResponse(
  *
  * Returns source for the script with given id.
  * @link [Debugger#getScriptSource](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getScriptSource) method documentation.
- * @see [DebuggerOperations.getScriptSource]
+ * @see [DebuggerDomain.getScriptSource]
  */
 @kotlinx.serialization.Serializable
 data class GetScriptSourceRequest(
@@ -513,7 +513,7 @@ data class GetScriptSourceRequest(
  *
   
  * @link [Debugger#getScriptSource](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getScriptSource) method documentation.
- * @see [DebuggerOperations.getScriptSource]
+ * @see [DebuggerDomain.getScriptSource]
  */
 @kotlinx.serialization.Serializable
 data class GetScriptSourceResponse(
@@ -534,7 +534,7 @@ data class GetScriptSourceResponse(
  *
  * This command is deprecated. Use getScriptSource instead.
  * @link [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) method documentation.
- * @see [DebuggerOperations.getWasmBytecode]
+ * @see [DebuggerDomain.getWasmBytecode]
  */
 @kotlinx.serialization.Serializable
 data class GetWasmBytecodeRequest(
@@ -551,7 +551,7 @@ data class GetWasmBytecodeRequest(
  *
   
  * @link [Debugger#getWasmBytecode](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getWasmBytecode) method documentation.
- * @see [DebuggerOperations.getWasmBytecode]
+ * @see [DebuggerDomain.getWasmBytecode]
  */
 @kotlinx.serialization.Serializable
 data class GetWasmBytecodeResponse(
@@ -567,7 +567,7 @@ data class GetWasmBytecodeResponse(
  *
  * Returns stack trace with given `stackTraceId`.
  * @link [Debugger#getStackTrace](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getStackTrace) method documentation.
- * @see [DebuggerOperations.getStackTrace]
+ * @see [DebuggerDomain.getStackTrace]
  */
 @kotlinx.serialization.Serializable
 data class GetStackTraceRequest(
@@ -584,7 +584,7 @@ data class GetStackTraceRequest(
  *
   
  * @link [Debugger#getStackTrace](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-getStackTrace) method documentation.
- * @see [DebuggerOperations.getStackTrace]
+ * @see [DebuggerDomain.getStackTrace]
  */
 @kotlinx.serialization.Serializable
 data class GetStackTraceResponse(
@@ -600,7 +600,7 @@ data class GetStackTraceResponse(
  *
  *
  * @link [Debugger#pauseOnAsyncCall](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-pauseOnAsyncCall) method documentation.
- * @see [DebuggerOperations.pauseOnAsyncCall]
+ * @see [DebuggerDomain.pauseOnAsyncCall]
  */
 @kotlinx.serialization.Serializable
 data class PauseOnAsyncCallRequest(
@@ -616,7 +616,7 @@ data class PauseOnAsyncCallRequest(
  *
  * Removes JavaScript breakpoint.
  * @link [Debugger#removeBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-removeBreakpoint) method documentation.
- * @see [DebuggerOperations.removeBreakpoint]
+ * @see [DebuggerDomain.removeBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class RemoveBreakpointRequest(
@@ -632,7 +632,7 @@ data class RemoveBreakpointRequest(
  *
  * Restarts particular call frame from the beginning.
  * @link [Debugger#restartFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-restartFrame) method documentation.
- * @see [DebuggerOperations.restartFrame]
+ * @see [DebuggerDomain.restartFrame]
  */
 @kotlinx.serialization.Serializable
 data class RestartFrameRequest(
@@ -649,7 +649,7 @@ data class RestartFrameRequest(
  *
   
  * @link [Debugger#restartFrame](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-restartFrame) method documentation.
- * @see [DebuggerOperations.restartFrame]
+ * @see [DebuggerDomain.restartFrame]
  */
 @kotlinx.serialization.Serializable
 data class RestartFrameResponse(
@@ -675,7 +675,7 @@ data class RestartFrameResponse(
  *
  * Resumes JavaScript execution.
  * @link [Debugger#resume](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-resume) method documentation.
- * @see [DebuggerOperations.resume]
+ * @see [DebuggerDomain.resume]
  */
 @kotlinx.serialization.Serializable
 data class ResumeRequest(
@@ -695,7 +695,7 @@ If execution is currently not paused, this parameter has no effect.
  *
  * Searches for given string in script content.
  * @link [Debugger#searchInContent](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-searchInContent) method documentation.
- * @see [DebuggerOperations.searchInContent]
+ * @see [DebuggerDomain.searchInContent]
  */
 @kotlinx.serialization.Serializable
 data class SearchInContentRequest(
@@ -727,7 +727,7 @@ data class SearchInContentRequest(
  *
   
  * @link [Debugger#searchInContent](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-searchInContent) method documentation.
- * @see [DebuggerOperations.searchInContent]
+ * @see [DebuggerDomain.searchInContent]
  */
 @kotlinx.serialization.Serializable
 data class SearchInContentResponse(
@@ -743,7 +743,7 @@ data class SearchInContentResponse(
  *
  * Enables or disables async call stacks tracking.
  * @link [Debugger#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setAsyncCallStackDepth) method documentation.
- * @see [DebuggerOperations.setAsyncCallStackDepth]
+ * @see [DebuggerDomain.setAsyncCallStackDepth]
  */
 @kotlinx.serialization.Serializable
 data class SetAsyncCallStackDepthRequest(
@@ -762,7 +762,7 @@ call stacks (default).
 scripts with url matching one of the patterns. VM will try to leave blackboxed script by
 performing 'step in' several times, finally resorting to 'step out' if unsuccessful.
  * @link [Debugger#setBlackboxPatterns](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBlackboxPatterns) method documentation.
- * @see [DebuggerOperations.setBlackboxPatterns]
+ * @see [DebuggerDomain.setBlackboxPatterns]
  */
 @kotlinx.serialization.Serializable
 data class SetBlackboxPatternsRequest(
@@ -781,7 +781,7 @@ scripts by performing 'step in' several times, finally resorting to 'step out' i
 Positions array contains positions where blackbox state is changed. First interval isn't
 blackboxed. Array should be sorted.
  * @link [Debugger#setBlackboxedRanges](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBlackboxedRanges) method documentation.
- * @see [DebuggerOperations.setBlackboxedRanges]
+ * @see [DebuggerDomain.setBlackboxedRanges]
  */
 @kotlinx.serialization.Serializable
 data class SetBlackboxedRangesRequest(
@@ -802,7 +802,7 @@ data class SetBlackboxedRangesRequest(
  *
  * Sets JavaScript breakpoint at a given location.
  * @link [Debugger#setBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpoint) method documentation.
- * @see [DebuggerOperations.setBreakpoint]
+ * @see [DebuggerDomain.setBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class SetBreakpointRequest(
@@ -825,7 +825,7 @@ breakpoint if this expression evaluates to true.
  *
   
  * @link [Debugger#setBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpoint) method documentation.
- * @see [DebuggerOperations.setBreakpoint]
+ * @see [DebuggerDomain.setBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class SetBreakpointResponse(
@@ -846,7 +846,7 @@ data class SetBreakpointResponse(
  *
  * Sets instrumentation breakpoint.
  * @link [Debugger#setInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setInstrumentationBreakpoint) method documentation.
- * @see [DebuggerOperations.setInstrumentationBreakpoint]
+ * @see [DebuggerDomain.setInstrumentationBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class SetInstrumentationBreakpointRequest(
@@ -863,7 +863,7 @@ data class SetInstrumentationBreakpointRequest(
  *
   
  * @link [Debugger#setInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setInstrumentationBreakpoint) method documentation.
- * @see [DebuggerOperations.setInstrumentationBreakpoint]
+ * @see [DebuggerDomain.setInstrumentationBreakpoint]
  */
 @kotlinx.serialization.Serializable
 data class SetInstrumentationBreakpointResponse(
@@ -882,7 +882,7 @@ command is issued, all existing parsed scripts will have breakpoints resolved an
 `locations` property. Further matching script parsing will result in subsequent
 `breakpointResolved` events issued. This logical breakpoint will survive page reloads.
  * @link [Debugger#setBreakpointByUrl](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointByUrl) method documentation.
- * @see [DebuggerOperations.setBreakpointByUrl]
+ * @see [DebuggerDomain.setBreakpointByUrl]
  */
 @kotlinx.serialization.Serializable
 data class SetBreakpointByUrlRequest(
@@ -929,7 +929,7 @@ command is issued, all existing parsed scripts will have breakpoints resolved an
  *
   
  * @link [Debugger#setBreakpointByUrl](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointByUrl) method documentation.
- * @see [DebuggerOperations.setBreakpointByUrl]
+ * @see [DebuggerDomain.setBreakpointByUrl]
  */
 @kotlinx.serialization.Serializable
 data class SetBreakpointByUrlResponse(
@@ -952,7 +952,7 @@ data class SetBreakpointByUrlResponse(
 If another function was created from the same source as a given one,
 calling it will also trigger the breakpoint.
  * @link [Debugger#setBreakpointOnFunctionCall](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointOnFunctionCall) method documentation.
- * @see [DebuggerOperations.setBreakpointOnFunctionCall]
+ * @see [DebuggerDomain.setBreakpointOnFunctionCall]
  */
 @kotlinx.serialization.Serializable
 data class SetBreakpointOnFunctionCallRequest(
@@ -977,7 +977,7 @@ calling it will also trigger the breakpoint.
  *
   
  * @link [Debugger#setBreakpointOnFunctionCall](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointOnFunctionCall) method documentation.
- * @see [DebuggerOperations.setBreakpointOnFunctionCall]
+ * @see [DebuggerDomain.setBreakpointOnFunctionCall]
  */
 @kotlinx.serialization.Serializable
 data class SetBreakpointOnFunctionCallResponse(
@@ -993,7 +993,7 @@ data class SetBreakpointOnFunctionCallResponse(
  *
  * Activates / deactivates all breakpoints on the page.
  * @link [Debugger#setBreakpointsActive](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointsActive) method documentation.
- * @see [DebuggerOperations.setBreakpointsActive]
+ * @see [DebuggerDomain.setBreakpointsActive]
  */
 @kotlinx.serialization.Serializable
 data class SetBreakpointsActiveRequest(
@@ -1010,7 +1010,7 @@ data class SetBreakpointsActiveRequest(
  * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or
 no exceptions. Initial pause on exceptions state is `none`.
  * @link [Debugger#setPauseOnExceptions](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setPauseOnExceptions) method documentation.
- * @see [DebuggerOperations.setPauseOnExceptions]
+ * @see [DebuggerDomain.setPauseOnExceptions]
  */
 @kotlinx.serialization.Serializable
 data class SetPauseOnExceptionsRequest(
@@ -1026,7 +1026,7 @@ data class SetPauseOnExceptionsRequest(
  *
  * Changes return value in top frame. Available only at return break position.
  * @link [Debugger#setReturnValue](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setReturnValue) method documentation.
- * @see [DebuggerOperations.setReturnValue]
+ * @see [DebuggerDomain.setReturnValue]
  */
 @kotlinx.serialization.Serializable
 data class SetReturnValueRequest(
@@ -1042,7 +1042,7 @@ data class SetReturnValueRequest(
  *
  * Edits JavaScript source live.
  * @link [Debugger#setScriptSource](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setScriptSource) method documentation.
- * @see [DebuggerOperations.setScriptSource]
+ * @see [DebuggerDomain.setScriptSource]
  */
 @kotlinx.serialization.Serializable
 data class SetScriptSourceRequest(
@@ -1070,7 +1070,7 @@ description without actually modifying the code.
  *
   
  * @link [Debugger#setScriptSource](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setScriptSource) method documentation.
- * @see [DebuggerOperations.setScriptSource]
+ * @see [DebuggerDomain.setScriptSource]
  */
 @kotlinx.serialization.Serializable
 data class SetScriptSourceResponse(
@@ -1106,7 +1106,7 @@ data class SetScriptSourceResponse(
  *
  * Makes page not interrupt on any pauses (breakpoint, exception, dom exception etc).
  * @link [Debugger#setSkipAllPauses](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setSkipAllPauses) method documentation.
- * @see [DebuggerOperations.setSkipAllPauses]
+ * @see [DebuggerDomain.setSkipAllPauses]
  */
 @kotlinx.serialization.Serializable
 data class SetSkipAllPausesRequest(
@@ -1123,7 +1123,7 @@ data class SetSkipAllPausesRequest(
  * Changes value of variable in a callframe. Object-based scopes are not supported and must be
 mutated manually.
  * @link [Debugger#setVariableValue](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setVariableValue) method documentation.
- * @see [DebuggerOperations.setVariableValue]
+ * @see [DebuggerDomain.setVariableValue]
  */
 @kotlinx.serialization.Serializable
 data class SetVariableValueRequest(
@@ -1155,7 +1155,7 @@ scope types are allowed. Other scopes could be manipulated manually.
  *
  * Steps into the function call.
  * @link [Debugger#stepInto](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepInto) method documentation.
- * @see [DebuggerOperations.stepInto]
+ * @see [DebuggerDomain.stepInto]
  */
 @kotlinx.serialization.Serializable
 data class StepIntoRequest(
@@ -1177,7 +1177,7 @@ before next pause.
  *
  * Steps over the statement.
  * @link [Debugger#stepOver](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepOver) method documentation.
- * @see [DebuggerOperations.stepOver]
+ * @see [DebuggerDomain.stepOver]
  */
 @kotlinx.serialization.Serializable
 data class StepOverRequest(

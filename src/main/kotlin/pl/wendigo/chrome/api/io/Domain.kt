@@ -8,15 +8,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [IO](https://chromedevtools.github.io/devtools-protocol/tot/IO) domain documentation.
  */
 
-class IODomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("IO", """Input/Output operations for streams produced by DevTools.""", connection) {
+class IODomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("IO", """Input/Output operations for streams produced by DevTools.""", connection) {
     /**
      * Close the stream, discard any temporary backing storage.
      *
      * @link Protocol [IO#close](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-close) method documentation.
      */
     
-    fun close(input: CloseRequest) = connection.request("IO.close", Json.encodeToJsonElement(CloseRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun close(input: CloseRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IO.close", Json.encodeToJsonElement(CloseRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Read a chunk of the stream
@@ -24,7 +24,7 @@ class IODomain internal constructor(connection: pl.wendigo.chrome.protocol.Debug
      * @link Protocol [IO#read](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-read) method documentation.
      */
     
-    fun read(input: ReadRequest) = connection.request("IO.read", Json.encodeToJsonElement(ReadRequest.serializer(), input), ReadResponse.serializer())
+    fun read(input: ReadRequest): io.reactivex.rxjava3.core.Single<ReadResponse> = connection.request("IO.read", Json.encodeToJsonElement(ReadRequest.serializer(), input), ReadResponse.serializer())
 
     /**
      * Return UUID of Blob object specified by a remote object id.
@@ -32,7 +32,7 @@ class IODomain internal constructor(connection: pl.wendigo.chrome.protocol.Debug
      * @link Protocol [IO#resolveBlob](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-resolveBlob) method documentation.
      */
     
-    fun resolveBlob(input: ResolveBlobRequest) = connection.request("IO.resolveBlob", Json.encodeToJsonElement(ResolveBlobRequest.serializer(), input), ResolveBlobResponse.serializer())
+    fun resolveBlob(input: ResolveBlobRequest): io.reactivex.rxjava3.core.Single<ResolveBlobResponse> = connection.request("IO.resolveBlob", Json.encodeToJsonElement(ResolveBlobRequest.serializer(), input), ResolveBlobResponse.serializer())
 }
 
 /**
@@ -40,7 +40,7 @@ class IODomain internal constructor(connection: pl.wendigo.chrome.protocol.Debug
  *
  * Close the stream, discard any temporary backing storage.
  * @link [IO#close](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-close) method documentation.
- * @see [IOOperations.close]
+ * @see [IODomain.close]
  */
 @kotlinx.serialization.Serializable
 data class CloseRequest(
@@ -56,7 +56,7 @@ data class CloseRequest(
  *
  * Read a chunk of the stream
  * @link [IO#read](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-read) method documentation.
- * @see [IOOperations.read]
+ * @see [IODomain.read]
  */
 @kotlinx.serialization.Serializable
 data class ReadRequest(
@@ -84,7 +84,7 @@ following the last read). Some types of streams may only support sequential read
  *
   
  * @link [IO#read](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-read) method documentation.
- * @see [IOOperations.read]
+ * @see [IODomain.read]
  */
 @kotlinx.serialization.Serializable
 data class ReadResponse(
@@ -110,7 +110,7 @@ data class ReadResponse(
  *
  * Return UUID of Blob object specified by a remote object id.
  * @link [IO#resolveBlob](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-resolveBlob) method documentation.
- * @see [IOOperations.resolveBlob]
+ * @see [IODomain.resolveBlob]
  */
 @kotlinx.serialization.Serializable
 data class ResolveBlobRequest(
@@ -127,7 +127,7 @@ data class ResolveBlobRequest(
  *
   
  * @link [IO#resolveBlob](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-resolveBlob) method documentation.
- * @see [IOOperations.resolveBlob]
+ * @see [IODomain.resolveBlob]
  */
 @kotlinx.serialization.Serializable
 data class ResolveBlobResponse(

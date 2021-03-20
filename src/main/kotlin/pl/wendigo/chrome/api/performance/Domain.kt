@@ -8,15 +8,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Performance](https://chromedevtools.github.io/devtools-protocol/tot/Performance) domain documentation.
  */
 
-class PerformanceDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Performance", """""", connection) {
+class PerformanceDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Performance", """""", connection) {
     /**
      * Disable collecting and reporting metrics.
      *
      * @link Protocol [Performance#disable](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("Performance.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Performance.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enable collecting and reporting metrics.
@@ -24,7 +24,7 @@ class PerformanceDomain internal constructor(connection: pl.wendigo.chrome.proto
      * @link Protocol [Performance#enable](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-enable) method documentation.
      */
     
-    fun enable(input: EnableRequest) = connection.request("Performance.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Performance.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets time domain to use for collecting and reporting duration metrics.
@@ -33,9 +33,9 @@ this method while metrics collection is enabled returns an error.
      *
      * @link Protocol [Performance#setTimeDomain](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-setTimeDomain) method documentation.
      */
-    @Deprecated(level = DeprecationLevel.WARNING, message = "{{setTimeDomain}} is deprecated.")
+    @Deprecated(level = DeprecationLevel.WARNING, message = "setTimeDomain is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setTimeDomain(input: SetTimeDomainRequest) = connection.request("Performance.setTimeDomain", Json.encodeToJsonElement(SetTimeDomainRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setTimeDomain(input: SetTimeDomainRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Performance.setTimeDomain", Json.encodeToJsonElement(SetTimeDomainRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Retrieve current values of run-time metrics.
@@ -43,7 +43,7 @@ this method while metrics collection is enabled returns an error.
      * @link Protocol [Performance#getMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-getMetrics) method documentation.
      */
     
-    fun getMetrics() = connection.request("Performance.getMetrics", null, GetMetricsResponse.serializer())
+    fun getMetrics(): io.reactivex.rxjava3.core.Single<GetMetricsResponse> = connection.request("Performance.getMetrics", null, GetMetricsResponse.serializer())
 
     /**
      *  Current values of the metrics.
@@ -56,7 +56,7 @@ this method while metrics collection is enabled returns an error.
  *
  * Enable collecting and reporting metrics.
  * @link [Performance#enable](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-enable) method documentation.
- * @see [PerformanceOperations.enable]
+ * @see [PerformanceDomain.enable]
  */
 @kotlinx.serialization.Serializable
 data class EnableRequest(
@@ -74,7 +74,7 @@ data class EnableRequest(
 Note that this must be called before enabling metrics collection. Calling
 this method while metrics collection is enabled returns an error.
  * @link [Performance#setTimeDomain](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-setTimeDomain) method documentation.
- * @see [PerformanceOperations.setTimeDomain]
+ * @see [PerformanceDomain.setTimeDomain]
  */
 @kotlinx.serialization.Serializable
 data class SetTimeDomainRequest(
@@ -91,7 +91,7 @@ data class SetTimeDomainRequest(
  *
   
  * @link [Performance#getMetrics](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-getMetrics) method documentation.
- * @see [PerformanceOperations.getMetrics]
+ * @see [PerformanceDomain.getMetrics]
  */
 @kotlinx.serialization.Serializable
 data class GetMetricsResponse(

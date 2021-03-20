@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Tracing](https://chromedevtools.github.io/devtools-protocol/tot/Tracing) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Tracing", """""", connection) {
+class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Tracing", """""", connection) {
     /**
      * Stop trace events collection.
      *
      * @link Protocol [Tracing#end](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-end) method documentation.
      */
     
-    fun end() = connection.request("Tracing.end", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun end(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Tracing.end", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Gets supported tracing categories.
@@ -25,7 +25,7 @@ class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Tracing#getCategories](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-getCategories) method documentation.
      */
     
-    fun getCategories() = connection.request("Tracing.getCategories", null, GetCategoriesResponse.serializer())
+    fun getCategories(): io.reactivex.rxjava3.core.Single<GetCategoriesResponse> = connection.request("Tracing.getCategories", null, GetCategoriesResponse.serializer())
 
     /**
      * Record a clock sync marker in the trace.
@@ -33,7 +33,7 @@ class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Tracing#recordClockSyncMarker](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-recordClockSyncMarker) method documentation.
      */
     
-    fun recordClockSyncMarker(input: RecordClockSyncMarkerRequest) = connection.request("Tracing.recordClockSyncMarker", Json.encodeToJsonElement(RecordClockSyncMarkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun recordClockSyncMarker(input: RecordClockSyncMarkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Tracing.recordClockSyncMarker", Json.encodeToJsonElement(RecordClockSyncMarkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Request a global memory dump.
@@ -41,7 +41,7 @@ class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) method documentation.
      */
     
-    fun requestMemoryDump(input: RequestMemoryDumpRequest) = connection.request("Tracing.requestMemoryDump", Json.encodeToJsonElement(RequestMemoryDumpRequest.serializer(), input), RequestMemoryDumpResponse.serializer())
+    fun requestMemoryDump(input: RequestMemoryDumpRequest): io.reactivex.rxjava3.core.Single<RequestMemoryDumpResponse> = connection.request("Tracing.requestMemoryDump", Json.encodeToJsonElement(RequestMemoryDumpRequest.serializer(), input), RequestMemoryDumpResponse.serializer())
 
     /**
      * Start trace events collection.
@@ -49,7 +49,7 @@ class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Tracing#start](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-start) method documentation.
      */
     
-    fun start(input: StartRequest) = connection.request("Tracing.start", Json.encodeToJsonElement(StartRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun start(input: StartRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Tracing.start", Json.encodeToJsonElement(StartRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all Tracing.bufferUsage events.
@@ -71,7 +71,7 @@ delivered via dataCollected events.
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.io.IODomain(connection),
         )
@@ -84,7 +84,7 @@ delivered via dataCollected events.
  *
   
  * @link [Tracing#getCategories](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-getCategories) method documentation.
- * @see [TracingOperations.getCategories]
+ * @see [TracingDomain.getCategories]
  */
 @kotlinx.serialization.Serializable
 data class GetCategoriesResponse(
@@ -100,7 +100,7 @@ data class GetCategoriesResponse(
  *
  * Record a clock sync marker in the trace.
  * @link [Tracing#recordClockSyncMarker](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-recordClockSyncMarker) method documentation.
- * @see [TracingOperations.recordClockSyncMarker]
+ * @see [TracingDomain.recordClockSyncMarker]
  */
 @kotlinx.serialization.Serializable
 data class RecordClockSyncMarkerRequest(
@@ -116,7 +116,7 @@ data class RecordClockSyncMarkerRequest(
  *
  * Request a global memory dump.
  * @link [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) method documentation.
- * @see [TracingOperations.requestMemoryDump]
+ * @see [TracingDomain.requestMemoryDump]
  */
 @kotlinx.serialization.Serializable
 data class RequestMemoryDumpRequest(
@@ -138,7 +138,7 @@ data class RequestMemoryDumpRequest(
  *
   
  * @link [Tracing#requestMemoryDump](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-requestMemoryDump) method documentation.
- * @see [TracingOperations.requestMemoryDump]
+ * @see [TracingDomain.requestMemoryDump]
  */
 @kotlinx.serialization.Serializable
 data class RequestMemoryDumpResponse(
@@ -159,7 +159,7 @@ data class RequestMemoryDumpResponse(
  *
  * Start trace events collection.
  * @link [Tracing#start](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-start) method documentation.
- * @see [TracingOperations.start]
+ * @see [TracingDomain.start]
  */
 @kotlinx.serialization.Serializable
 data class StartRequest(

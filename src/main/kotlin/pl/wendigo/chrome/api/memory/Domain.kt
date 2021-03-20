@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Memory](https://chromedevtools.github.io/devtools-protocol/tot/Memory) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Memory", """""", connection) {
+class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Memory", """""", connection) {
     /**
      *
      *
      * @link Protocol [Memory#getDOMCounters](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getDOMCounters) method documentation.
      */
     
-    fun getDOMCounters() = connection.request("Memory.getDOMCounters", null, GetDOMCountersResponse.serializer())
+    fun getDOMCounters(): io.reactivex.rxjava3.core.Single<GetDOMCountersResponse> = connection.request("Memory.getDOMCounters", null, GetDOMCountersResponse.serializer())
 
     /**
      *
@@ -25,7 +25,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#prepareForLeakDetection](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-prepareForLeakDetection) method documentation.
      */
     
-    fun prepareForLeakDetection() = connection.request("Memory.prepareForLeakDetection", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun prepareForLeakDetection(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.prepareForLeakDetection", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Simulate OomIntervention by purging V8 memory.
@@ -33,7 +33,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#forciblyPurgeJavaScriptMemory](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-forciblyPurgeJavaScriptMemory) method documentation.
      */
     
-    fun forciblyPurgeJavaScriptMemory() = connection.request("Memory.forciblyPurgeJavaScriptMemory", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun forciblyPurgeJavaScriptMemory(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.forciblyPurgeJavaScriptMemory", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enable/disable suppressing memory pressure notifications in all processes.
@@ -41,7 +41,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#setPressureNotificationsSuppressed](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-setPressureNotificationsSuppressed) method documentation.
      */
     
-    fun setPressureNotificationsSuppressed(input: SetPressureNotificationsSuppressedRequest) = connection.request("Memory.setPressureNotificationsSuppressed", Json.encodeToJsonElement(SetPressureNotificationsSuppressedRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setPressureNotificationsSuppressed(input: SetPressureNotificationsSuppressedRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.setPressureNotificationsSuppressed", Json.encodeToJsonElement(SetPressureNotificationsSuppressedRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Simulate a memory pressure notification in all processes.
@@ -49,7 +49,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#simulatePressureNotification](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-simulatePressureNotification) method documentation.
      */
     
-    fun simulatePressureNotification(input: SimulatePressureNotificationRequest) = connection.request("Memory.simulatePressureNotification", Json.encodeToJsonElement(SimulatePressureNotificationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun simulatePressureNotification(input: SimulatePressureNotificationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.simulatePressureNotification", Json.encodeToJsonElement(SimulatePressureNotificationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Start collecting native memory profile.
@@ -57,7 +57,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#startSampling](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-startSampling) method documentation.
      */
     
-    fun startSampling(input: StartSamplingRequest) = connection.request("Memory.startSampling", Json.encodeToJsonElement(StartSamplingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startSampling(input: StartSamplingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.startSampling", Json.encodeToJsonElement(StartSamplingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Stop collecting native memory profile.
@@ -65,7 +65,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#stopSampling](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-stopSampling) method documentation.
      */
     
-    fun stopSampling() = connection.request("Memory.stopSampling", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopSampling(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.stopSampling", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Retrieve native memory allocations profile
@@ -74,7 +74,7 @@ collected since renderer process startup.
      * @link Protocol [Memory#getAllTimeSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getAllTimeSamplingProfile) method documentation.
      */
     
-    fun getAllTimeSamplingProfile() = connection.request("Memory.getAllTimeSamplingProfile", null, GetAllTimeSamplingProfileResponse.serializer())
+    fun getAllTimeSamplingProfile(): io.reactivex.rxjava3.core.Single<GetAllTimeSamplingProfileResponse> = connection.request("Memory.getAllTimeSamplingProfile", null, GetAllTimeSamplingProfileResponse.serializer())
 
     /**
      * Retrieve native memory allocations profile
@@ -83,7 +83,7 @@ collected since browser process startup.
      * @link Protocol [Memory#getBrowserSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getBrowserSamplingProfile) method documentation.
      */
     
-    fun getBrowserSamplingProfile() = connection.request("Memory.getBrowserSamplingProfile", null, GetBrowserSamplingProfileResponse.serializer())
+    fun getBrowserSamplingProfile(): io.reactivex.rxjava3.core.Single<GetBrowserSamplingProfileResponse> = connection.request("Memory.getBrowserSamplingProfile", null, GetBrowserSamplingProfileResponse.serializer())
 
     /**
      * Retrieve native memory allocations profile collected since last
@@ -92,7 +92,7 @@ collected since browser process startup.
      * @link Protocol [Memory#getSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getSamplingProfile) method documentation.
      */
     
-    fun getSamplingProfile() = connection.request("Memory.getSamplingProfile", null, GetSamplingProfileResponse.serializer())
+    fun getSamplingProfile(): io.reactivex.rxjava3.core.Single<GetSamplingProfileResponse> = connection.request("Memory.getSamplingProfile", null, GetSamplingProfileResponse.serializer())
 }
 
 /**
@@ -101,7 +101,7 @@ collected since browser process startup.
  *
   
  * @link [Memory#getDOMCounters](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getDOMCounters) method documentation.
- * @see [MemoryOperations.getDOMCounters]
+ * @see [MemoryDomain.getDOMCounters]
  */
 @kotlinx.serialization.Serializable
 data class GetDOMCountersResponse(
@@ -127,7 +127,7 @@ data class GetDOMCountersResponse(
  *
  * Enable/disable suppressing memory pressure notifications in all processes.
  * @link [Memory#setPressureNotificationsSuppressed](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-setPressureNotificationsSuppressed) method documentation.
- * @see [MemoryOperations.setPressureNotificationsSuppressed]
+ * @see [MemoryDomain.setPressureNotificationsSuppressed]
  */
 @kotlinx.serialization.Serializable
 data class SetPressureNotificationsSuppressedRequest(
@@ -143,7 +143,7 @@ data class SetPressureNotificationsSuppressedRequest(
  *
  * Simulate a memory pressure notification in all processes.
  * @link [Memory#simulatePressureNotification](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-simulatePressureNotification) method documentation.
- * @see [MemoryOperations.simulatePressureNotification]
+ * @see [MemoryDomain.simulatePressureNotification]
  */
 @kotlinx.serialization.Serializable
 data class SimulatePressureNotificationRequest(
@@ -159,7 +159,7 @@ data class SimulatePressureNotificationRequest(
  *
  * Start collecting native memory profile.
  * @link [Memory#startSampling](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-startSampling) method documentation.
- * @see [MemoryOperations.startSampling]
+ * @see [MemoryDomain.startSampling]
  */
 @kotlinx.serialization.Serializable
 data class StartSamplingRequest(
@@ -182,7 +182,7 @@ collected since renderer process startup.
  *
   
  * @link [Memory#getAllTimeSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getAllTimeSamplingProfile) method documentation.
- * @see [MemoryOperations.getAllTimeSamplingProfile]
+ * @see [MemoryDomain.getAllTimeSamplingProfile]
  */
 @kotlinx.serialization.Serializable
 data class GetAllTimeSamplingProfileResponse(
@@ -200,7 +200,7 @@ collected since browser process startup.
  *
   
  * @link [Memory#getBrowserSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getBrowserSamplingProfile) method documentation.
- * @see [MemoryOperations.getBrowserSamplingProfile]
+ * @see [MemoryDomain.getBrowserSamplingProfile]
  */
 @kotlinx.serialization.Serializable
 data class GetBrowserSamplingProfileResponse(
@@ -218,7 +218,7 @@ data class GetBrowserSamplingProfileResponse(
  *
   
  * @link [Memory#getSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-getSamplingProfile) method documentation.
- * @see [MemoryOperations.getSamplingProfile]
+ * @see [MemoryDomain.getSamplingProfile]
  */
 @kotlinx.serialization.Serializable
 data class GetSamplingProfileResponse(

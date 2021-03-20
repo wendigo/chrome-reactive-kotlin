@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Tethering](https://chromedevtools.github.io/devtools-protocol/tot/Tethering) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class TetheringDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Tethering", """The Tethering domain defines methods and events for browser port binding.""", connection) {
+class TetheringDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Tethering", """The Tethering domain defines methods and events for browser port binding.""", connection) {
     /**
      * Request browser port binding.
      *
      * @link Protocol [Tethering#bind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-bind) method documentation.
      */
     
-    fun bind(input: BindRequest) = connection.request("Tethering.bind", Json.encodeToJsonElement(BindRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun bind(input: BindRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Tethering.bind", Json.encodeToJsonElement(BindRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Request browser port unbinding.
@@ -25,7 +25,7 @@ class TetheringDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Tethering#unbind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-unbind) method documentation.
      */
     
-    fun unbind(input: UnbindRequest) = connection.request("Tethering.unbind", Json.encodeToJsonElement(UnbindRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun unbind(input: UnbindRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Tethering.unbind", Json.encodeToJsonElement(UnbindRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Informs that port was successfully bound and got a specified connection id.
@@ -38,7 +38,7 @@ class TetheringDomain internal constructor(connection: pl.wendigo.chrome.protoco
  *
  * Request browser port binding.
  * @link [Tethering#bind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-bind) method documentation.
- * @see [TetheringOperations.bind]
+ * @see [TetheringDomain.bind]
  */
 @kotlinx.serialization.Serializable
 data class BindRequest(
@@ -54,7 +54,7 @@ data class BindRequest(
  *
  * Request browser port unbinding.
  * @link [Tethering#unbind](https://chromedevtools.github.io/devtools-protocol/tot/Tethering#method-unbind) method documentation.
- * @see [TetheringOperations.unbind]
+ * @see [TetheringDomain.unbind]
  */
 @kotlinx.serialization.Serializable
 data class UnbindRequest(

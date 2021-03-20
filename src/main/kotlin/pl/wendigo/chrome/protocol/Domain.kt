@@ -1,32 +1,40 @@
-package pl.wendigo.chrome.api
+package pl.wendigo.chrome.protocol
 
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.functions.Predicate
-import pl.wendigo.chrome.protocol.Event
 
 open class Domain(
     private val name: String,
     private val description: String,
-    protected val connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection
+    internal val connection: DebuggerWebSocketConnection
 ) {
+    /**
+     * Returns domain name.
+     */
+    fun name(): String = name
+
+    /**
+     * Returns domain description.
+     */
+    fun description(): String = description
+
     /**
      * Returns flowable capturing all domains events.
      */
     fun events(): Flowable<Event> {
-        return connection.allEvents().filter {
+        return connection.events().filter {
             it.domain() == name
         }
     }
 
     /**
-     * Returns domain name.
+     * Returns flowable capturing all domains events matching predicate.
      */
-    fun name() = name
-
-    /**
-     * Returns domain description.
-     */
-    fun description() = description
+    fun events(filter: Predicate<Event>): Flowable<Event> {
+        return connection.events().filter {
+            it.domain() == name && filter.test(it)
+        }
+    }
 
     /**
      * Returns flowable capturing all domain events of a given type.

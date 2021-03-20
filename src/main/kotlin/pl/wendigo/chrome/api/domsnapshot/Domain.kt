@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [DOMSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class DOMSnapshotDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("DOMSnapshot", """This domain facilitates obtaining document snapshots with DOM, layout, and style information.""", connection) {
+class DOMSnapshotDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("DOMSnapshot", """This domain facilitates obtaining document snapshots with DOM, layout, and style information.""", connection) {
     /**
      * Disables DOM snapshot agent for the given page.
      *
      * @link Protocol [DOMSnapshot#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("DOMSnapshot.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMSnapshot.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables DOM snapshot agent for the given page.
@@ -25,7 +25,7 @@ class DOMSnapshotDomain internal constructor(connection: pl.wendigo.chrome.proto
      * @link Protocol [DOMSnapshot#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("DOMSnapshot.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMSnapshot.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
@@ -35,8 +35,8 @@ flattened.
      *
      * @link Protocol [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
      */
-    @Deprecated(level = DeprecationLevel.WARNING, message = "{{getSnapshot}} is deprecated.")
-    fun getSnapshot(input: GetSnapshotRequest) = connection.request("DOMSnapshot.getSnapshot", Json.encodeToJsonElement(GetSnapshotRequest.serializer(), input), GetSnapshotResponse.serializer())
+    @Deprecated(level = DeprecationLevel.WARNING, message = "getSnapshot is deprecated.")
+    fun getSnapshot(input: GetSnapshotRequest): io.reactivex.rxjava3.core.Single<GetSnapshotResponse> = connection.request("DOMSnapshot.getSnapshot", Json.encodeToJsonElement(GetSnapshotRequest.serializer(), input), GetSnapshotResponse.serializer())
 
     /**
      * Returns a document snapshot, including the full DOM tree of the root node (including iframes,
@@ -47,12 +47,12 @@ flattened.
      * @link Protocol [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
      */
     
-    fun captureSnapshot(input: CaptureSnapshotRequest) = connection.request("DOMSnapshot.captureSnapshot", Json.encodeToJsonElement(CaptureSnapshotRequest.serializer(), input), CaptureSnapshotResponse.serializer())
+    fun captureSnapshot(input: CaptureSnapshotRequest): io.reactivex.rxjava3.core.Single<CaptureSnapshotResponse> = connection.request("DOMSnapshot.captureSnapshot", Json.encodeToJsonElement(CaptureSnapshotRequest.serializer(), input), CaptureSnapshotResponse.serializer())
 
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.css.CSSDomain(connection),
             pl.wendigo.chrome.api.dom.DOMDomain(connection),
@@ -70,7 +70,7 @@ template contents, and imported documents) in a flattened array, as well as layo
 white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is
 flattened.
  * @link [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
- * @see [DOMSnapshotOperations.getSnapshot]
+ * @see [DOMSnapshotDomain.getSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class GetSnapshotRequest(
@@ -105,7 +105,7 @@ flattened.
  *
   
  * @link [DOMSnapshot#getSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-getSnapshot) method documentation.
- * @see [DOMSnapshotOperations.getSnapshot]
+ * @see [DOMSnapshotDomain.getSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class GetSnapshotResponse(
@@ -134,7 +134,7 @@ template contents, and imported documents) in a flattened array, as well as layo
 white-listed computed style information for the nodes. Shadow DOM in the returned DOM tree is
 flattened.
  * @link [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
- * @see [DOMSnapshotOperations.captureSnapshot]
+ * @see [DOMSnapshotDomain.captureSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class CaptureSnapshotRequest(
@@ -164,7 +164,7 @@ flattened.
  *
   
  * @link [DOMSnapshot#captureSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-captureSnapshot) method documentation.
- * @see [DOMSnapshotOperations.captureSnapshot]
+ * @see [DOMSnapshotDomain.captureSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class CaptureSnapshotResponse(

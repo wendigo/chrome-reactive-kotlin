@@ -10,8 +10,8 @@ functionalities.
  * @link Protocol [Cast](https://chromedevtools.github.io/devtools-protocol/tot/Cast) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class CastDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain(
+class CastDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain(
         "Cast",
         """A domain for interacting with Cast, Presentation API, and Remote Playback API
 functionalities.""",
@@ -27,7 +27,7 @@ an |issueUpdated| event is fired.
      * @link Protocol [Cast#enable](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-enable) method documentation.
      */
     
-    fun enable(input: EnableRequest) = connection.request("Cast.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Cast.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Stops observing for sinks and issues.
@@ -35,7 +35,7 @@ an |issueUpdated| event is fired.
      * @link Protocol [Cast#disable](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("Cast.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Cast.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets a sink to be used when the web page requests the browser to choose a
@@ -44,7 +44,7 @@ sink via Presentation API, Remote Playback API, or Cast SDK.
      * @link Protocol [Cast#setSinkToUse](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-setSinkToUse) method documentation.
      */
     
-    fun setSinkToUse(input: SetSinkToUseRequest) = connection.request("Cast.setSinkToUse", Json.encodeToJsonElement(SetSinkToUseRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setSinkToUse(input: SetSinkToUseRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Cast.setSinkToUse", Json.encodeToJsonElement(SetSinkToUseRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Starts mirroring the tab to the sink.
@@ -52,7 +52,7 @@ sink via Presentation API, Remote Playback API, or Cast SDK.
      * @link Protocol [Cast#startTabMirroring](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-startTabMirroring) method documentation.
      */
     
-    fun startTabMirroring(input: StartTabMirroringRequest) = connection.request("Cast.startTabMirroring", Json.encodeToJsonElement(StartTabMirroringRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startTabMirroring(input: StartTabMirroringRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Cast.startTabMirroring", Json.encodeToJsonElement(StartTabMirroringRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Stops the active Cast session on the sink.
@@ -60,7 +60,7 @@ sink via Presentation API, Remote Playback API, or Cast SDK.
      * @link Protocol [Cast#stopCasting](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-stopCasting) method documentation.
      */
     
-    fun stopCasting(input: StopCastingRequest) = connection.request("Cast.stopCasting", Json.encodeToJsonElement(StopCastingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopCasting(input: StopCastingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Cast.stopCasting", Json.encodeToJsonElement(StopCastingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  This is fired whenever the list of available sinks changes. A sink is a
@@ -84,7 +84,7 @@ sinks compatible with |presentationUrl| as well. When sinks are found, a
 Also starts observing for issue messages. When an issue is added or removed,
 an |issueUpdated| event is fired.
  * @link [Cast#enable](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-enable) method documentation.
- * @see [CastOperations.enable]
+ * @see [CastDomain.enable]
  */
 @kotlinx.serialization.Serializable
 data class EnableRequest(
@@ -101,7 +101,7 @@ data class EnableRequest(
  * Sets a sink to be used when the web page requests the browser to choose a
 sink via Presentation API, Remote Playback API, or Cast SDK.
  * @link [Cast#setSinkToUse](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-setSinkToUse) method documentation.
- * @see [CastOperations.setSinkToUse]
+ * @see [CastDomain.setSinkToUse]
  */
 @kotlinx.serialization.Serializable
 data class SetSinkToUseRequest(
@@ -117,7 +117,7 @@ data class SetSinkToUseRequest(
  *
  * Starts mirroring the tab to the sink.
  * @link [Cast#startTabMirroring](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-startTabMirroring) method documentation.
- * @see [CastOperations.startTabMirroring]
+ * @see [CastDomain.startTabMirroring]
  */
 @kotlinx.serialization.Serializable
 data class StartTabMirroringRequest(
@@ -133,7 +133,7 @@ data class StartTabMirroringRequest(
  *
  * Stops the active Cast session on the sink.
  * @link [Cast#stopCasting](https://chromedevtools.github.io/devtools-protocol/tot/Cast#method-stopCasting) method documentation.
- * @see [CastOperations.stopCasting]
+ * @see [CastDomain.stopCasting]
  */
 @kotlinx.serialization.Serializable
 data class StopCastingRequest(

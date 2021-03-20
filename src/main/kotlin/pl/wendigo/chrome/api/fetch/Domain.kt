@@ -8,15 +8,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Fetch](https://chromedevtools.github.io/devtools-protocol/tot/Fetch) domain documentation.
  */
 
-class FetchDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Fetch", """A domain for letting clients substitute browser's network layer with client code.""", connection) {
+class FetchDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Fetch", """A domain for letting clients substitute browser's network layer with client code.""", connection) {
     /**
      * Disables the fetch domain.
      *
      * @link Protocol [Fetch#disable](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("Fetch.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables issuing of requestPaused events. A request will be paused until client
@@ -25,7 +25,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      * @link Protocol [Fetch#enable](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-enable) method documentation.
      */
     
-    fun enable(input: EnableRequest) = connection.request("Fetch.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Causes the request to fail with specified reason.
@@ -33,7 +33,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      * @link Protocol [Fetch#failRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-failRequest) method documentation.
      */
     
-    fun failRequest(input: FailRequestRequest) = connection.request("Fetch.failRequest", Json.encodeToJsonElement(FailRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun failRequest(input: FailRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.failRequest", Json.encodeToJsonElement(FailRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Provides response to the request.
@@ -41,7 +41,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      * @link Protocol [Fetch#fulfillRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-fulfillRequest) method documentation.
      */
     
-    fun fulfillRequest(input: FulfillRequestRequest) = connection.request("Fetch.fulfillRequest", Json.encodeToJsonElement(FulfillRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun fulfillRequest(input: FulfillRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.fulfillRequest", Json.encodeToJsonElement(FulfillRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Continues the request, optionally modifying some of its parameters.
@@ -49,7 +49,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      * @link Protocol [Fetch#continueRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueRequest) method documentation.
      */
     
-    fun continueRequest(input: ContinueRequestRequest) = connection.request("Fetch.continueRequest", Json.encodeToJsonElement(ContinueRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun continueRequest(input: ContinueRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.continueRequest", Json.encodeToJsonElement(ContinueRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Continues a request supplying authChallengeResponse following authRequired event.
@@ -57,7 +57,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      * @link Protocol [Fetch#continueWithAuth](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueWithAuth) method documentation.
      */
     
-    fun continueWithAuth(input: ContinueWithAuthRequest) = connection.request("Fetch.continueWithAuth", Json.encodeToJsonElement(ContinueWithAuthRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun continueWithAuth(input: ContinueWithAuthRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.continueWithAuth", Json.encodeToJsonElement(ContinueWithAuthRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Causes the body of the response to be received from the server and
@@ -70,7 +70,7 @@ results in an undefined behavior.
      * @link Protocol [Fetch#getResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-getResponseBody) method documentation.
      */
     
-    fun getResponseBody(input: GetResponseBodyRequest) = connection.request("Fetch.getResponseBody", Json.encodeToJsonElement(GetResponseBodyRequest.serializer(), input), GetResponseBodyResponse.serializer())
+    fun getResponseBody(input: GetResponseBodyRequest): io.reactivex.rxjava3.core.Single<GetResponseBodyResponse> = connection.request("Fetch.getResponseBody", Json.encodeToJsonElement(GetResponseBodyRequest.serializer(), input), GetResponseBodyResponse.serializer())
 
     /**
      * Returns a handle to the stream representing the response body.
@@ -87,7 +87,7 @@ domain before body is received results in an undefined behavior.
      * @link Protocol [Fetch#takeResponseBodyAsStream](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-takeResponseBodyAsStream) method documentation.
      */
     
-    fun takeResponseBodyAsStream(input: TakeResponseBodyAsStreamRequest) = connection.request("Fetch.takeResponseBodyAsStream", Json.encodeToJsonElement(TakeResponseBodyAsStreamRequest.serializer(), input), TakeResponseBodyAsStreamResponse.serializer())
+    fun takeResponseBodyAsStream(input: TakeResponseBodyAsStreamRequest): io.reactivex.rxjava3.core.Single<TakeResponseBodyAsStreamResponse> = connection.request("Fetch.takeResponseBodyAsStream", Json.encodeToJsonElement(TakeResponseBodyAsStreamRequest.serializer(), input), TakeResponseBodyAsStreamResponse.serializer())
 
     /**
      *  Issued when the domain is enabled and the request URL matches the
@@ -108,7 +108,7 @@ The request is paused until client responds with continueWithAuth.
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.network.NetworkDomain(connection),
             pl.wendigo.chrome.api.io.IODomain(connection),
@@ -123,7 +123,7 @@ The request is paused until client responds with continueWithAuth.
  * Enables issuing of requestPaused events. A request will be paused until client
 calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
  * @link [Fetch#enable](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-enable) method documentation.
- * @see [FetchOperations.enable]
+ * @see [FetchDomain.enable]
  */
 @kotlinx.serialization.Serializable
 data class EnableRequest(
@@ -147,7 +147,7 @@ expecting a call to continueWithAuth.
  *
  * Causes the request to fail with specified reason.
  * @link [Fetch#failRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-failRequest) method documentation.
- * @see [FetchOperations.failRequest]
+ * @see [FetchDomain.failRequest]
  */
 @kotlinx.serialization.Serializable
 data class FailRequestRequest(
@@ -168,7 +168,7 @@ data class FailRequestRequest(
  *
  * Provides response to the request.
  * @link [Fetch#fulfillRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-fulfillRequest) method documentation.
- * @see [FetchOperations.fulfillRequest]
+ * @see [FetchDomain.fulfillRequest]
  */
 @kotlinx.serialization.Serializable
 data class FulfillRequestRequest(
@@ -213,7 +213,7 @@ If absent, a standard phrase matching responseCode is used.
  *
  * Continues the request, optionally modifying some of its parameters.
  * @link [Fetch#continueRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueRequest) method documentation.
- * @see [FetchOperations.continueRequest]
+ * @see [FetchDomain.continueRequest]
  */
 @kotlinx.serialization.Serializable
 data class ContinueRequestRequest(
@@ -249,7 +249,7 @@ data class ContinueRequestRequest(
  *
  * Continues a request supplying authChallengeResponse following authRequired event.
  * @link [Fetch#continueWithAuth](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueWithAuth) method documentation.
- * @see [FetchOperations.continueWithAuth]
+ * @see [FetchDomain.continueWithAuth]
  */
 @kotlinx.serialization.Serializable
 data class ContinueWithAuthRequest(
@@ -275,7 +275,7 @@ takeResponseBodyForInterceptionAsStream. Calling other methods that
 affect the request or disabling fetch domain before body is received
 results in an undefined behavior.
  * @link [Fetch#getResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-getResponseBody) method documentation.
- * @see [FetchOperations.getResponseBody]
+ * @see [FetchDomain.getResponseBody]
  */
 @kotlinx.serialization.Serializable
 data class GetResponseBodyRequest(
@@ -297,7 +297,7 @@ results in an undefined behavior.
  *
   
  * @link [Fetch#getResponseBody](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-getResponseBody) method documentation.
- * @see [FetchOperations.getResponseBody]
+ * @see [FetchDomain.getResponseBody]
  */
 @kotlinx.serialization.Serializable
 data class GetResponseBodyResponse(
@@ -327,7 +327,7 @@ This method is mutually exclusive with getResponseBody.
 Calling other methods that affect the request or disabling fetch
 domain before body is received results in an undefined behavior.
  * @link [Fetch#takeResponseBodyAsStream](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-takeResponseBodyAsStream) method documentation.
- * @see [FetchOperations.takeResponseBodyAsStream]
+ * @see [FetchDomain.takeResponseBodyAsStream]
  */
 @kotlinx.serialization.Serializable
 data class TakeResponseBodyAsStreamRequest(
@@ -353,7 +353,7 @@ domain before body is received results in an undefined behavior.
  *
   
  * @link [Fetch#takeResponseBodyAsStream](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-takeResponseBodyAsStream) method documentation.
- * @see [FetchOperations.takeResponseBodyAsStream]
+ * @see [FetchDomain.takeResponseBodyAsStream]
  */
 @kotlinx.serialization.Serializable
 data class TakeResponseBodyAsStreamResponse(

@@ -9,8 +9,8 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Audits](https://chromedevtools.github.io/devtools-protocol/tot/Audits) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class AuditsDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Audits", """Audits domain allows investigation of page violations and possible improvements.""", connection) {
+class AuditsDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Audits", """Audits domain allows investigation of page violations and possible improvements.""", connection) {
     /**
      * Returns the response body and size if it were re-encoded with the specified settings. Only
 applies to images.
@@ -18,7 +18,7 @@ applies to images.
      * @link Protocol [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
      */
     
-    fun getEncodedResponse(input: GetEncodedResponseRequest) = connection.request("Audits.getEncodedResponse", Json.encodeToJsonElement(GetEncodedResponseRequest.serializer(), input), GetEncodedResponseResponse.serializer())
+    fun getEncodedResponse(input: GetEncodedResponseRequest): io.reactivex.rxjava3.core.Single<GetEncodedResponseResponse> = connection.request("Audits.getEncodedResponse", Json.encodeToJsonElement(GetEncodedResponseRequest.serializer(), input), GetEncodedResponseResponse.serializer())
 
     /**
      * Disables issues domain, prevents further issues from being reported to the client.
@@ -26,7 +26,7 @@ applies to images.
      * @link Protocol [Audits#disable](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("Audits.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Audits.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables issues domain, sends the issues collected so far to the client by means of the
@@ -35,7 +35,7 @@ applies to images.
      * @link Protocol [Audits#enable](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("Audits.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Audits.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Runs the contrast check for the target page. Found issues are reported
@@ -44,7 +44,7 @@ using Audits.issueAdded event.
      * @link Protocol [Audits#checkContrast](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-checkContrast) method documentation.
      */
     
-    fun checkContrast(input: CheckContrastRequest) = connection.request("Audits.checkContrast", Json.encodeToJsonElement(CheckContrastRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun checkContrast(input: CheckContrastRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Audits.checkContrast", Json.encodeToJsonElement(CheckContrastRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all Audits.issueAdded events.
@@ -54,7 +54,7 @@ using Audits.issueAdded event.
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.network.NetworkDomain(connection),
         )
@@ -67,7 +67,7 @@ using Audits.issueAdded event.
  * Returns the response body and size if it were re-encoded with the specified settings. Only
 applies to images.
  * @link [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
- * @see [AuditsOperations.getEncodedResponse]
+ * @see [AuditsDomain.getEncodedResponse]
  */
 @kotlinx.serialization.Serializable
 data class GetEncodedResponseRequest(
@@ -100,7 +100,7 @@ applies to images.
  *
   
  * @link [Audits#getEncodedResponse](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-getEncodedResponse) method documentation.
- * @see [AuditsOperations.getEncodedResponse]
+ * @see [AuditsDomain.getEncodedResponse]
  */
 @kotlinx.serialization.Serializable
 data class GetEncodedResponseResponse(
@@ -127,7 +127,7 @@ data class GetEncodedResponseResponse(
  * Runs the contrast check for the target page. Found issues are reported
 using Audits.issueAdded event.
  * @link [Audits#checkContrast](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-checkContrast) method documentation.
- * @see [AuditsOperations.checkContrast]
+ * @see [AuditsDomain.checkContrast]
  */
 @kotlinx.serialization.Serializable
 data class CheckContrastRequest(

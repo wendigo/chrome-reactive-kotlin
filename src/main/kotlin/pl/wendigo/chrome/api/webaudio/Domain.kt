@@ -10,8 +10,8 @@ https://webaudio.github.io/web-audio-api/
  * @link Protocol [WebAudio](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class WebAudioDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain(
+class WebAudioDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain(
         "WebAudio",
         """This domain allows inspection of Web Audio API.
 https://webaudio.github.io/web-audio-api/""",
@@ -23,7 +23,7 @@ https://webaudio.github.io/web-audio-api/""",
      * @link Protocol [WebAudio#enable](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("WebAudio.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("WebAudio.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables the WebAudio domain.
@@ -31,7 +31,7 @@ https://webaudio.github.io/web-audio-api/""",
      * @link Protocol [WebAudio#disable](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("WebAudio.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("WebAudio.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Fetch the realtime data from the registered contexts.
@@ -39,7 +39,7 @@ https://webaudio.github.io/web-audio-api/""",
      * @link Protocol [WebAudio#getRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-getRealtimeData) method documentation.
      */
     
-    fun getRealtimeData(input: GetRealtimeDataRequest) = connection.request("WebAudio.getRealtimeData", Json.encodeToJsonElement(GetRealtimeDataRequest.serializer(), input), GetRealtimeDataResponse.serializer())
+    fun getRealtimeData(input: GetRealtimeDataRequest): io.reactivex.rxjava3.core.Single<GetRealtimeDataResponse> = connection.request("WebAudio.getRealtimeData", Json.encodeToJsonElement(GetRealtimeDataRequest.serializer(), input), GetRealtimeDataResponse.serializer())
 
     /**
      *  Notifies that a new BaseAudioContext has been created.
@@ -112,7 +112,7 @@ https://webaudio.github.io/web-audio-api/""",
  *
  * Fetch the realtime data from the registered contexts.
  * @link [WebAudio#getRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-getRealtimeData) method documentation.
- * @see [WebAudioOperations.getRealtimeData]
+ * @see [WebAudioDomain.getRealtimeData]
  */
 @kotlinx.serialization.Serializable
 data class GetRealtimeDataRequest(
@@ -129,7 +129,7 @@ data class GetRealtimeDataRequest(
  *
   
  * @link [WebAudio#getRealtimeData](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio#method-getRealtimeData) method documentation.
- * @see [WebAudioOperations.getRealtimeData]
+ * @see [WebAudioDomain.getRealtimeData]
  */
 @kotlinx.serialization.Serializable
 data class GetRealtimeDataResponse(

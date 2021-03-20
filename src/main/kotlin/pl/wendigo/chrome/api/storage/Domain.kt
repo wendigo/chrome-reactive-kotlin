@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Storage](https://chromedevtools.github.io/devtools-protocol/tot/Storage) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Storage", """""", connection) {
+class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Storage", """""", connection) {
     /**
      * Clears storage for origin.
      *
      * @link Protocol [Storage#clearDataForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearDataForOrigin) method documentation.
      */
     
-    fun clearDataForOrigin(input: ClearDataForOriginRequest) = connection.request("Storage.clearDataForOrigin", Json.encodeToJsonElement(ClearDataForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearDataForOrigin(input: ClearDataForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.clearDataForOrigin", Json.encodeToJsonElement(ClearDataForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns all browser cookies.
@@ -25,7 +25,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getCookies) method documentation.
      */
     
-    fun getCookies(input: GetCookiesRequest) = connection.request("Storage.getCookies", Json.encodeToJsonElement(GetCookiesRequest.serializer(), input), GetCookiesResponse.serializer())
+    fun getCookies(input: GetCookiesRequest): io.reactivex.rxjava3.core.Single<GetCookiesResponse> = connection.request("Storage.getCookies", Json.encodeToJsonElement(GetCookiesRequest.serializer(), input), GetCookiesResponse.serializer())
 
     /**
      * Sets given cookies.
@@ -33,7 +33,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#setCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-setCookies) method documentation.
      */
     
-    fun setCookies(input: SetCookiesRequest) = connection.request("Storage.setCookies", Json.encodeToJsonElement(SetCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setCookies(input: SetCookiesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.setCookies", Json.encodeToJsonElement(SetCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Clears cookies.
@@ -41,7 +41,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#clearCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearCookies) method documentation.
      */
     
-    fun clearCookies(input: ClearCookiesRequest) = connection.request("Storage.clearCookies", Json.encodeToJsonElement(ClearCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearCookies(input: ClearCookiesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.clearCookies", Json.encodeToJsonElement(ClearCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns usage and quota in bytes.
@@ -49,7 +49,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#getUsageAndQuota](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getUsageAndQuota) method documentation.
      */
     
-    fun getUsageAndQuota(input: GetUsageAndQuotaRequest) = connection.request("Storage.getUsageAndQuota", Json.encodeToJsonElement(GetUsageAndQuotaRequest.serializer(), input), GetUsageAndQuotaResponse.serializer())
+    fun getUsageAndQuota(input: GetUsageAndQuotaRequest): io.reactivex.rxjava3.core.Single<GetUsageAndQuotaResponse> = connection.request("Storage.getUsageAndQuota", Json.encodeToJsonElement(GetUsageAndQuotaRequest.serializer(), input), GetUsageAndQuotaResponse.serializer())
 
     /**
      * Override quota for the specified origin
@@ -57,7 +57,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#overrideQuotaForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-overrideQuotaForOrigin) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun overrideQuotaForOrigin(input: OverrideQuotaForOriginRequest) = connection.request("Storage.overrideQuotaForOrigin", Json.encodeToJsonElement(OverrideQuotaForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun overrideQuotaForOrigin(input: OverrideQuotaForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.overrideQuotaForOrigin", Json.encodeToJsonElement(OverrideQuotaForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Registers origin to be notified when an update occurs to its cache storage list.
@@ -65,7 +65,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#trackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackCacheStorageForOrigin) method documentation.
      */
     
-    fun trackCacheStorageForOrigin(input: TrackCacheStorageForOriginRequest) = connection.request("Storage.trackCacheStorageForOrigin", Json.encodeToJsonElement(TrackCacheStorageForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun trackCacheStorageForOrigin(input: TrackCacheStorageForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.trackCacheStorageForOrigin", Json.encodeToJsonElement(TrackCacheStorageForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Registers origin to be notified when an update occurs to its IndexedDB.
@@ -73,7 +73,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#trackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackIndexedDBForOrigin) method documentation.
      */
     
-    fun trackIndexedDBForOrigin(input: TrackIndexedDBForOriginRequest) = connection.request("Storage.trackIndexedDBForOrigin", Json.encodeToJsonElement(TrackIndexedDBForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun trackIndexedDBForOrigin(input: TrackIndexedDBForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.trackIndexedDBForOrigin", Json.encodeToJsonElement(TrackIndexedDBForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Unregisters origin from receiving notifications for cache storage.
@@ -81,7 +81,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#untrackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackCacheStorageForOrigin) method documentation.
      */
     
-    fun untrackCacheStorageForOrigin(input: UntrackCacheStorageForOriginRequest) = connection.request("Storage.untrackCacheStorageForOrigin", Json.encodeToJsonElement(UntrackCacheStorageForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun untrackCacheStorageForOrigin(input: UntrackCacheStorageForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.untrackCacheStorageForOrigin", Json.encodeToJsonElement(UntrackCacheStorageForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Unregisters origin from receiving notifications for IndexedDB.
@@ -89,7 +89,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#untrackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackIndexedDBForOrigin) method documentation.
      */
     
-    fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest) = connection.request("Storage.untrackIndexedDBForOrigin", Json.encodeToJsonElement(UntrackIndexedDBForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.untrackIndexedDBForOrigin", Json.encodeToJsonElement(UntrackIndexedDBForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns the number of stored Trust Tokens per issuer for the
@@ -98,7 +98,7 @@ current browsing context.
      * @link Protocol [Storage#getTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getTrustTokens) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun getTrustTokens() = connection.request("Storage.getTrustTokens", null, GetTrustTokensResponse.serializer())
+    fun getTrustTokens(): io.reactivex.rxjava3.core.Single<GetTrustTokensResponse> = connection.request("Storage.getTrustTokens", null, GetTrustTokensResponse.serializer())
 
     /**
      *  A cache's contents have been modified.
@@ -123,7 +123,7 @@ current browsing context.
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.browser.BrowserDomain(connection),
             pl.wendigo.chrome.api.network.NetworkDomain(connection),
@@ -136,7 +136,7 @@ current browsing context.
  *
  * Clears storage for origin.
  * @link [Storage#clearDataForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearDataForOrigin) method documentation.
- * @see [StorageOperations.clearDataForOrigin]
+ * @see [StorageDomain.clearDataForOrigin]
  */
 @kotlinx.serialization.Serializable
 data class ClearDataForOriginRequest(
@@ -157,7 +157,7 @@ data class ClearDataForOriginRequest(
  *
  * Returns all browser cookies.
  * @link [Storage#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getCookies) method documentation.
- * @see [StorageOperations.getCookies]
+ * @see [StorageDomain.getCookies]
  */
 @kotlinx.serialization.Serializable
 data class GetCookiesRequest(
@@ -174,7 +174,7 @@ data class GetCookiesRequest(
  *
   
  * @link [Storage#getCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getCookies) method documentation.
- * @see [StorageOperations.getCookies]
+ * @see [StorageDomain.getCookies]
  */
 @kotlinx.serialization.Serializable
 data class GetCookiesResponse(
@@ -190,7 +190,7 @@ data class GetCookiesResponse(
  *
  * Sets given cookies.
  * @link [Storage#setCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-setCookies) method documentation.
- * @see [StorageOperations.setCookies]
+ * @see [StorageDomain.setCookies]
  */
 @kotlinx.serialization.Serializable
 data class SetCookiesRequest(
@@ -211,7 +211,7 @@ data class SetCookiesRequest(
  *
  * Clears cookies.
  * @link [Storage#clearCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearCookies) method documentation.
- * @see [StorageOperations.clearCookies]
+ * @see [StorageDomain.clearCookies]
  */
 @kotlinx.serialization.Serializable
 data class ClearCookiesRequest(
@@ -227,7 +227,7 @@ data class ClearCookiesRequest(
  *
  * Returns usage and quota in bytes.
  * @link [Storage#getUsageAndQuota](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getUsageAndQuota) method documentation.
- * @see [StorageOperations.getUsageAndQuota]
+ * @see [StorageDomain.getUsageAndQuota]
  */
 @kotlinx.serialization.Serializable
 data class GetUsageAndQuotaRequest(
@@ -244,7 +244,7 @@ data class GetUsageAndQuotaRequest(
  *
   
  * @link [Storage#getUsageAndQuota](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getUsageAndQuota) method documentation.
- * @see [StorageOperations.getUsageAndQuota]
+ * @see [StorageDomain.getUsageAndQuota]
  */
 @kotlinx.serialization.Serializable
 data class GetUsageAndQuotaResponse(
@@ -275,7 +275,7 @@ data class GetUsageAndQuotaResponse(
  *
  * Override quota for the specified origin
  * @link [Storage#overrideQuotaForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-overrideQuotaForOrigin) method documentation.
- * @see [StorageOperations.overrideQuotaForOrigin]
+ * @see [StorageDomain.overrideQuotaForOrigin]
  */
 @kotlinx.serialization.Serializable
 data class OverrideQuotaForOriginRequest(
@@ -302,7 +302,7 @@ disabled (called without a quotaSize).
  *
  * Registers origin to be notified when an update occurs to its cache storage list.
  * @link [Storage#trackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackCacheStorageForOrigin) method documentation.
- * @see [StorageOperations.trackCacheStorageForOrigin]
+ * @see [StorageDomain.trackCacheStorageForOrigin]
  */
 @kotlinx.serialization.Serializable
 data class TrackCacheStorageForOriginRequest(
@@ -318,7 +318,7 @@ data class TrackCacheStorageForOriginRequest(
  *
  * Registers origin to be notified when an update occurs to its IndexedDB.
  * @link [Storage#trackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackIndexedDBForOrigin) method documentation.
- * @see [StorageOperations.trackIndexedDBForOrigin]
+ * @see [StorageDomain.trackIndexedDBForOrigin]
  */
 @kotlinx.serialization.Serializable
 data class TrackIndexedDBForOriginRequest(
@@ -334,7 +334,7 @@ data class TrackIndexedDBForOriginRequest(
  *
  * Unregisters origin from receiving notifications for cache storage.
  * @link [Storage#untrackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackCacheStorageForOrigin) method documentation.
- * @see [StorageOperations.untrackCacheStorageForOrigin]
+ * @see [StorageDomain.untrackCacheStorageForOrigin]
  */
 @kotlinx.serialization.Serializable
 data class UntrackCacheStorageForOriginRequest(
@@ -350,7 +350,7 @@ data class UntrackCacheStorageForOriginRequest(
  *
  * Unregisters origin from receiving notifications for IndexedDB.
  * @link [Storage#untrackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackIndexedDBForOrigin) method documentation.
- * @see [StorageOperations.untrackIndexedDBForOrigin]
+ * @see [StorageDomain.untrackIndexedDBForOrigin]
  */
 @kotlinx.serialization.Serializable
 data class UntrackIndexedDBForOriginRequest(
@@ -368,7 +368,7 @@ current browsing context.
  *
   
  * @link [Storage#getTrustTokens](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-getTrustTokens) method documentation.
- * @see [StorageOperations.getTrustTokens]
+ * @see [StorageDomain.getTrustTokens]
  */
 @kotlinx.serialization.Serializable
 data class GetTrustTokensResponse(

@@ -73,7 +73,7 @@ type Domain struct {
 
 func (d Domain) Interfaces() string {
 	interfaces := make([]string, 0)
-	interfaces = append(interfaces, fmt.Sprintf("pl.wendigo.chrome.api.Domain(\"%s\", \"\"\"%s\"\"\", connection)", d.Name, d.Description))
+	interfaces = append(interfaces, fmt.Sprintf("%s.protocol.Domain(\"%s\", \"\"\"%s\"\"\", connection)", basePackage, d.Name, d.Description))
 
 	return fmt.Sprintf(": %s", strings.Join(interfaces, ", "))
 }
@@ -140,7 +140,7 @@ func (c Command) Annotations() string {
 	annotations := make([]string, 0)
 
 	if c.Deprecated {
-		annotations = append(annotations, fmt.Sprintf("@Deprecated(level = DeprecationLevel.WARNING, message = \"{{%s}} is deprecated.\")", c.Name))
+		annotations = append(annotations, fmt.Sprintf("@Deprecated(level = DeprecationLevel.WARNING, message = \"%s is deprecated.\")", c.Name))
 	}
 
 	if c.Experimental {

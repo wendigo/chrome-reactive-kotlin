@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [ServiceWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("ServiceWorker", """""", connection) {
+class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("ServiceWorker", """""", connection) {
     /**
      *
      *
      * @link Protocol [ServiceWorker#deliverPushMessage](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-deliverPushMessage) method documentation.
      */
     
-    fun deliverPushMessage(input: DeliverPushMessageRequest) = connection.request("ServiceWorker.deliverPushMessage", Json.encodeToJsonElement(DeliverPushMessageRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun deliverPushMessage(input: DeliverPushMessageRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.deliverPushMessage", Json.encodeToJsonElement(DeliverPushMessageRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -25,7 +25,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#disable](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("ServiceWorker.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -33,7 +33,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#dispatchSyncEvent](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-dispatchSyncEvent) method documentation.
      */
     
-    fun dispatchSyncEvent(input: DispatchSyncEventRequest) = connection.request("ServiceWorker.dispatchSyncEvent", Json.encodeToJsonElement(DispatchSyncEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun dispatchSyncEvent(input: DispatchSyncEventRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.dispatchSyncEvent", Json.encodeToJsonElement(DispatchSyncEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -41,7 +41,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#dispatchPeriodicSyncEvent](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-dispatchPeriodicSyncEvent) method documentation.
      */
     
-    fun dispatchPeriodicSyncEvent(input: DispatchPeriodicSyncEventRequest) = connection.request("ServiceWorker.dispatchPeriodicSyncEvent", Json.encodeToJsonElement(DispatchPeriodicSyncEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun dispatchPeriodicSyncEvent(input: DispatchPeriodicSyncEventRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.dispatchPeriodicSyncEvent", Json.encodeToJsonElement(DispatchPeriodicSyncEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -49,7 +49,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#enable](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("ServiceWorker.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -57,7 +57,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#inspectWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-inspectWorker) method documentation.
      */
     
-    fun inspectWorker(input: InspectWorkerRequest) = connection.request("ServiceWorker.inspectWorker", Json.encodeToJsonElement(InspectWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun inspectWorker(input: InspectWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.inspectWorker", Json.encodeToJsonElement(InspectWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -65,7 +65,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#setForceUpdateOnPageLoad](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-setForceUpdateOnPageLoad) method documentation.
      */
     
-    fun setForceUpdateOnPageLoad(input: SetForceUpdateOnPageLoadRequest) = connection.request("ServiceWorker.setForceUpdateOnPageLoad", Json.encodeToJsonElement(SetForceUpdateOnPageLoadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setForceUpdateOnPageLoad(input: SetForceUpdateOnPageLoadRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.setForceUpdateOnPageLoad", Json.encodeToJsonElement(SetForceUpdateOnPageLoadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -73,7 +73,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#skipWaiting](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-skipWaiting) method documentation.
      */
     
-    fun skipWaiting(input: SkipWaitingRequest) = connection.request("ServiceWorker.skipWaiting", Json.encodeToJsonElement(SkipWaitingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun skipWaiting(input: SkipWaitingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.skipWaiting", Json.encodeToJsonElement(SkipWaitingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -81,7 +81,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#startWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-startWorker) method documentation.
      */
     
-    fun startWorker(input: StartWorkerRequest) = connection.request("ServiceWorker.startWorker", Json.encodeToJsonElement(StartWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startWorker(input: StartWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.startWorker", Json.encodeToJsonElement(StartWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -89,7 +89,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#stopAllWorkers](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-stopAllWorkers) method documentation.
      */
     
-    fun stopAllWorkers() = connection.request("ServiceWorker.stopAllWorkers", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopAllWorkers(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.stopAllWorkers", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -97,7 +97,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#stopWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-stopWorker) method documentation.
      */
     
-    fun stopWorker(input: StopWorkerRequest) = connection.request("ServiceWorker.stopWorker", Json.encodeToJsonElement(StopWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopWorker(input: StopWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.stopWorker", Json.encodeToJsonElement(StopWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -105,7 +105,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#unregister](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-unregister) method documentation.
      */
     
-    fun unregister(input: UnregisterRequest) = connection.request("ServiceWorker.unregister", Json.encodeToJsonElement(UnregisterRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun unregister(input: UnregisterRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.unregister", Json.encodeToJsonElement(UnregisterRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -113,7 +113,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#updateRegistration](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-updateRegistration) method documentation.
      */
     
-    fun updateRegistration(input: UpdateRegistrationRequest) = connection.request("ServiceWorker.updateRegistration", Json.encodeToJsonElement(UpdateRegistrationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun updateRegistration(input: UpdateRegistrationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.updateRegistration", Json.encodeToJsonElement(UpdateRegistrationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all ServiceWorker.workerErrorReported events.
@@ -133,7 +133,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.target.TargetDomain(connection),
         )
@@ -145,7 +145,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
  *
  *
  * @link [ServiceWorker#deliverPushMessage](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-deliverPushMessage) method documentation.
- * @see [ServiceWorkerOperations.deliverPushMessage]
+ * @see [ServiceWorkerDomain.deliverPushMessage]
  */
 @kotlinx.serialization.Serializable
 data class DeliverPushMessageRequest(
@@ -171,7 +171,7 @@ data class DeliverPushMessageRequest(
  *
  *
  * @link [ServiceWorker#dispatchSyncEvent](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-dispatchSyncEvent) method documentation.
- * @see [ServiceWorkerOperations.dispatchSyncEvent]
+ * @see [ServiceWorkerDomain.dispatchSyncEvent]
  */
 @kotlinx.serialization.Serializable
 data class DispatchSyncEventRequest(
@@ -202,7 +202,7 @@ data class DispatchSyncEventRequest(
  *
  *
  * @link [ServiceWorker#dispatchPeriodicSyncEvent](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-dispatchPeriodicSyncEvent) method documentation.
- * @see [ServiceWorkerOperations.dispatchPeriodicSyncEvent]
+ * @see [ServiceWorkerDomain.dispatchPeriodicSyncEvent]
  */
 @kotlinx.serialization.Serializable
 data class DispatchPeriodicSyncEventRequest(
@@ -228,7 +228,7 @@ data class DispatchPeriodicSyncEventRequest(
  *
  *
  * @link [ServiceWorker#inspectWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-inspectWorker) method documentation.
- * @see [ServiceWorkerOperations.inspectWorker]
+ * @see [ServiceWorkerDomain.inspectWorker]
  */
 @kotlinx.serialization.Serializable
 data class InspectWorkerRequest(
@@ -244,7 +244,7 @@ data class InspectWorkerRequest(
  *
  *
  * @link [ServiceWorker#setForceUpdateOnPageLoad](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-setForceUpdateOnPageLoad) method documentation.
- * @see [ServiceWorkerOperations.setForceUpdateOnPageLoad]
+ * @see [ServiceWorkerDomain.setForceUpdateOnPageLoad]
  */
 @kotlinx.serialization.Serializable
 data class SetForceUpdateOnPageLoadRequest(
@@ -260,7 +260,7 @@ data class SetForceUpdateOnPageLoadRequest(
  *
  *
  * @link [ServiceWorker#skipWaiting](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-skipWaiting) method documentation.
- * @see [ServiceWorkerOperations.skipWaiting]
+ * @see [ServiceWorkerDomain.skipWaiting]
  */
 @kotlinx.serialization.Serializable
 data class SkipWaitingRequest(
@@ -276,7 +276,7 @@ data class SkipWaitingRequest(
  *
  *
  * @link [ServiceWorker#startWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-startWorker) method documentation.
- * @see [ServiceWorkerOperations.startWorker]
+ * @see [ServiceWorkerDomain.startWorker]
  */
 @kotlinx.serialization.Serializable
 data class StartWorkerRequest(
@@ -292,7 +292,7 @@ data class StartWorkerRequest(
  *
  *
  * @link [ServiceWorker#stopWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-stopWorker) method documentation.
- * @see [ServiceWorkerOperations.stopWorker]
+ * @see [ServiceWorkerDomain.stopWorker]
  */
 @kotlinx.serialization.Serializable
 data class StopWorkerRequest(
@@ -308,7 +308,7 @@ data class StopWorkerRequest(
  *
  *
  * @link [ServiceWorker#unregister](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-unregister) method documentation.
- * @see [ServiceWorkerOperations.unregister]
+ * @see [ServiceWorkerDomain.unregister]
  */
 @kotlinx.serialization.Serializable
 data class UnregisterRequest(
@@ -324,7 +324,7 @@ data class UnregisterRequest(
  *
  *
  * @link [ServiceWorker#updateRegistration](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-updateRegistration) method documentation.
- * @see [ServiceWorkerOperations.updateRegistration]
+ * @see [ServiceWorkerDomain.updateRegistration]
  */
 @kotlinx.serialization.Serializable
 data class UpdateRegistrationRequest(

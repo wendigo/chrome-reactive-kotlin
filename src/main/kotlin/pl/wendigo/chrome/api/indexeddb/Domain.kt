@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [IndexedDB](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("IndexedDB", """""", connection) {
+class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("IndexedDB", """""", connection) {
     /**
      * Clears all entries from an object store.
      *
      * @link Protocol [IndexedDB#clearObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-clearObjectStore) method documentation.
      */
     
-    fun clearObjectStore(input: ClearObjectStoreRequest) = connection.request("IndexedDB.clearObjectStore", Json.encodeToJsonElement(ClearObjectStoreRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearObjectStore(input: ClearObjectStoreRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IndexedDB.clearObjectStore", Json.encodeToJsonElement(ClearObjectStoreRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Deletes a database.
@@ -25,7 +25,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#deleteDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteDatabase) method documentation.
      */
     
-    fun deleteDatabase(input: DeleteDatabaseRequest) = connection.request("IndexedDB.deleteDatabase", Json.encodeToJsonElement(DeleteDatabaseRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun deleteDatabase(input: DeleteDatabaseRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IndexedDB.deleteDatabase", Json.encodeToJsonElement(DeleteDatabaseRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Delete a range of entries from an object store
@@ -33,7 +33,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#deleteObjectStoreEntries](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteObjectStoreEntries) method documentation.
      */
     
-    fun deleteObjectStoreEntries(input: DeleteObjectStoreEntriesRequest) = connection.request("IndexedDB.deleteObjectStoreEntries", Json.encodeToJsonElement(DeleteObjectStoreEntriesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun deleteObjectStoreEntries(input: DeleteObjectStoreEntriesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IndexedDB.deleteObjectStoreEntries", Json.encodeToJsonElement(DeleteObjectStoreEntriesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables events from backend.
@@ -41,7 +41,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#disable](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("IndexedDB.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IndexedDB.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables events from backend.
@@ -49,7 +49,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#enable](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("IndexedDB.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IndexedDB.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Requests data from object store or index.
@@ -57,7 +57,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
      */
     
-    fun requestData(input: RequestDataRequest) = connection.request("IndexedDB.requestData", Json.encodeToJsonElement(RequestDataRequest.serializer(), input), RequestDataResponse.serializer())
+    fun requestData(input: RequestDataRequest): io.reactivex.rxjava3.core.Single<RequestDataResponse> = connection.request("IndexedDB.requestData", Json.encodeToJsonElement(RequestDataRequest.serializer(), input), RequestDataResponse.serializer())
 
     /**
      * Gets metadata of an object store
@@ -65,7 +65,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
      */
     
-    fun getMetadata(input: GetMetadataRequest) = connection.request("IndexedDB.getMetadata", Json.encodeToJsonElement(GetMetadataRequest.serializer(), input), GetMetadataResponse.serializer())
+    fun getMetadata(input: GetMetadataRequest): io.reactivex.rxjava3.core.Single<GetMetadataResponse> = connection.request("IndexedDB.getMetadata", Json.encodeToJsonElement(GetMetadataRequest.serializer(), input), GetMetadataResponse.serializer())
 
     /**
      * Requests database with given name in given frame.
@@ -73,7 +73,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
      */
     
-    fun requestDatabase(input: RequestDatabaseRequest) = connection.request("IndexedDB.requestDatabase", Json.encodeToJsonElement(RequestDatabaseRequest.serializer(), input), RequestDatabaseResponse.serializer())
+    fun requestDatabase(input: RequestDatabaseRequest): io.reactivex.rxjava3.core.Single<RequestDatabaseResponse> = connection.request("IndexedDB.requestDatabase", Json.encodeToJsonElement(RequestDatabaseRequest.serializer(), input), RequestDatabaseResponse.serializer())
 
     /**
      * Requests database names for given security origin.
@@ -81,12 +81,12 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
      */
     
-    fun requestDatabaseNames(input: RequestDatabaseNamesRequest) = connection.request("IndexedDB.requestDatabaseNames", Json.encodeToJsonElement(RequestDatabaseNamesRequest.serializer(), input), RequestDatabaseNamesResponse.serializer())
+    fun requestDatabaseNames(input: RequestDatabaseNamesRequest): io.reactivex.rxjava3.core.Single<RequestDatabaseNamesResponse> = connection.request("IndexedDB.requestDatabaseNames", Json.encodeToJsonElement(RequestDatabaseNamesRequest.serializer(), input), RequestDatabaseNamesResponse.serializer())
 
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.runtime.RuntimeDomain(connection),
         )
@@ -98,7 +98,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
  *
  * Clears all entries from an object store.
  * @link [IndexedDB#clearObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-clearObjectStore) method documentation.
- * @see [IndexedDBOperations.clearObjectStore]
+ * @see [IndexedDBDomain.clearObjectStore]
  */
 @kotlinx.serialization.Serializable
 data class ClearObjectStoreRequest(
@@ -124,7 +124,7 @@ data class ClearObjectStoreRequest(
  *
  * Deletes a database.
  * @link [IndexedDB#deleteDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteDatabase) method documentation.
- * @see [IndexedDBOperations.deleteDatabase]
+ * @see [IndexedDBDomain.deleteDatabase]
  */
 @kotlinx.serialization.Serializable
 data class DeleteDatabaseRequest(
@@ -145,7 +145,7 @@ data class DeleteDatabaseRequest(
  *
  * Delete a range of entries from an object store
  * @link [IndexedDB#deleteObjectStoreEntries](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteObjectStoreEntries) method documentation.
- * @see [IndexedDBOperations.deleteObjectStoreEntries]
+ * @see [IndexedDBDomain.deleteObjectStoreEntries]
  */
 @kotlinx.serialization.Serializable
 data class DeleteObjectStoreEntriesRequest(
@@ -176,7 +176,7 @@ data class DeleteObjectStoreEntriesRequest(
  *
  * Requests data from object store or index.
  * @link [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
- * @see [IndexedDBOperations.requestData]
+ * @see [IndexedDBDomain.requestData]
  */
 @kotlinx.serialization.Serializable
 data class RequestDataRequest(
@@ -223,7 +223,7 @@ data class RequestDataRequest(
  *
   
  * @link [IndexedDB#requestData](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestData) method documentation.
- * @see [IndexedDBOperations.requestData]
+ * @see [IndexedDBDomain.requestData]
  */
 @kotlinx.serialization.Serializable
 data class RequestDataResponse(
@@ -244,7 +244,7 @@ data class RequestDataResponse(
  *
  * Gets metadata of an object store
  * @link [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
- * @see [IndexedDBOperations.getMetadata]
+ * @see [IndexedDBDomain.getMetadata]
  */
 @kotlinx.serialization.Serializable
 data class GetMetadataRequest(
@@ -271,7 +271,7 @@ data class GetMetadataRequest(
  *
   
  * @link [IndexedDB#getMetadata](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-getMetadata) method documentation.
- * @see [IndexedDBOperations.getMetadata]
+ * @see [IndexedDBDomain.getMetadata]
  */
 @kotlinx.serialization.Serializable
 data class GetMetadataResponse(
@@ -294,7 +294,7 @@ data class GetMetadataResponse(
  *
  * Requests database with given name in given frame.
  * @link [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
- * @see [IndexedDBOperations.requestDatabase]
+ * @see [IndexedDBDomain.requestDatabase]
  */
 @kotlinx.serialization.Serializable
 data class RequestDatabaseRequest(
@@ -316,7 +316,7 @@ data class RequestDatabaseRequest(
  *
   
  * @link [IndexedDB#requestDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabase) method documentation.
- * @see [IndexedDBOperations.requestDatabase]
+ * @see [IndexedDBDomain.requestDatabase]
  */
 @kotlinx.serialization.Serializable
 data class RequestDatabaseResponse(
@@ -332,7 +332,7 @@ data class RequestDatabaseResponse(
  *
  * Requests database names for given security origin.
  * @link [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
- * @see [IndexedDBOperations.requestDatabaseNames]
+ * @see [IndexedDBDomain.requestDatabaseNames]
  */
 @kotlinx.serialization.Serializable
 data class RequestDatabaseNamesRequest(
@@ -349,7 +349,7 @@ data class RequestDatabaseNamesRequest(
  *
   
  * @link [IndexedDB#requestDatabaseNames](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-requestDatabaseNames) method documentation.
- * @see [IndexedDBOperations.requestDatabaseNames]
+ * @see [IndexedDBDomain.requestDatabaseNames]
  */
 @kotlinx.serialization.Serializable
 data class RequestDatabaseNamesResponse(

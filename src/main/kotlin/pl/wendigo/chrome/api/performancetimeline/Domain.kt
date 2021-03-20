@@ -10,8 +10,8 @@ https://w3c.github.io/performance-timeline/#dom-performanceobserver.
  * @link Protocol [PerformanceTimeline](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class PerformanceTimelineDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain(
+class PerformanceTimelineDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain(
         "PerformanceTimeline",
         """Reporting of performance timeline events, as specified in
 https://w3c.github.io/performance-timeline/#dom-performanceobserver.""",
@@ -24,7 +24,7 @@ See also: timelineEventAdded
      * @link Protocol [PerformanceTimeline#enable](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#method-enable) method documentation.
      */
     
-    fun enable(input: EnableRequest) = connection.request("PerformanceTimeline.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("PerformanceTimeline.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Sent when a performance timeline event is added. See reportPerformanceTimeline method.
@@ -34,7 +34,7 @@ See also: timelineEventAdded
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.dom.DOMDomain(connection),
             pl.wendigo.chrome.api.network.NetworkDomain(connection),
@@ -48,7 +48,7 @@ See also: timelineEventAdded
  * Previously buffered events would be reported before method returns.
 See also: timelineEventAdded
  * @link [PerformanceTimeline#enable](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#method-enable) method documentation.
- * @see [PerformanceTimelineOperations.enable]
+ * @see [PerformanceTimelineDomain.enable]
  */
 @kotlinx.serialization.Serializable
 data class EnableRequest(

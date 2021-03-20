@@ -7,15 +7,15 @@ package pl.wendigo.chrome.api.inspector
  * @link Protocol [Inspector](https://chromedevtools.github.io/devtools-protocol/tot/Inspector) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class InspectorDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Inspector", """""", connection) {
+class InspectorDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Inspector", """""", connection) {
     /**
      * Disables inspector domain notifications.
      *
      * @link Protocol [Inspector#disable](https://chromedevtools.github.io/devtools-protocol/tot/Inspector#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("Inspector.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Inspector.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables inspector domain notifications.
@@ -23,7 +23,7 @@ class InspectorDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Inspector#enable](https://chromedevtools.github.io/devtools-protocol/tot/Inspector#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("Inspector.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Inspector.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Fired when remote debugging connection is about to be terminated. Contains detach reason.

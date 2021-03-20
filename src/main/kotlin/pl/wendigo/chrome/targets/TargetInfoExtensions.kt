@@ -11,7 +11,7 @@ fun TargetInfo.isPage() = this.type == "page"
 /**
  * Converts [TargetInfo] to [SessionTarget] for given sessionID
  */
-fun TargetInfo.toTarget(sessionId: SessionID) = SessionTarget(
+fun TargetInfo.toTarget(sessionId: SessionID): SessionTarget = SessionTarget(
     sessionId = sessionId,
     targetId = this.targetId,
     browserContextID = this.browserContextId

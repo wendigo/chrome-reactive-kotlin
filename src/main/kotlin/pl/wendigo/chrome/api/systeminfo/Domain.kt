@@ -7,15 +7,15 @@ package pl.wendigo.chrome.api.systeminfo
  * @link Protocol [SystemInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class SystemInfoDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("SystemInfo", """The SystemInfo domain defines methods and events for querying low-level system information.""", connection) {
+class SystemInfoDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("SystemInfo", """The SystemInfo domain defines methods and events for querying low-level system information.""", connection) {
     /**
      * Returns information about the system.
      *
      * @link Protocol [SystemInfo#getInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getInfo) method documentation.
      */
     
-    fun getInfo() = connection.request("SystemInfo.getInfo", null, GetInfoResponse.serializer())
+    fun getInfo(): io.reactivex.rxjava3.core.Single<GetInfoResponse> = connection.request("SystemInfo.getInfo", null, GetInfoResponse.serializer())
 
     /**
      * Returns information about all running processes.
@@ -23,7 +23,7 @@ class SystemInfoDomain internal constructor(connection: pl.wendigo.chrome.protoc
      * @link Protocol [SystemInfo#getProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getProcessInfo) method documentation.
      */
     
-    fun getProcessInfo() = connection.request("SystemInfo.getProcessInfo", null, GetProcessInfoResponse.serializer())
+    fun getProcessInfo(): io.reactivex.rxjava3.core.Single<GetProcessInfoResponse> = connection.request("SystemInfo.getProcessInfo", null, GetProcessInfoResponse.serializer())
 }
 
 /**
@@ -32,7 +32,7 @@ class SystemInfoDomain internal constructor(connection: pl.wendigo.chrome.protoc
  *
   
  * @link [SystemInfo#getInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getInfo) method documentation.
- * @see [SystemInfoOperations.getInfo]
+ * @see [SystemInfoDomain.getInfo]
  */
 @kotlinx.serialization.Serializable
 data class GetInfoResponse(
@@ -67,7 +67,7 @@ data class GetInfoResponse(
  *
   
  * @link [SystemInfo#getProcessInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo#method-getProcessInfo) method documentation.
- * @see [SystemInfoOperations.getProcessInfo]
+ * @see [SystemInfoDomain.getProcessInfo]
  */
 @kotlinx.serialization.Serializable
 data class GetProcessInfoResponse(

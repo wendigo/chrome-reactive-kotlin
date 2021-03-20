@@ -8,15 +8,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Input](https://chromedevtools.github.io/devtools-protocol/tot/Input) domain documentation.
  */
 
-class InputDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Input", """""", connection) {
+class InputDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Input", """""", connection) {
     /**
      * Dispatches a key event to the page.
      *
      * @link Protocol [Input#dispatchKeyEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchKeyEvent) method documentation.
      */
     
-    fun dispatchKeyEvent(input: DispatchKeyEventRequest) = connection.request("Input.dispatchKeyEvent", Json.encodeToJsonElement(DispatchKeyEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun dispatchKeyEvent(input: DispatchKeyEventRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Input.dispatchKeyEvent", Json.encodeToJsonElement(DispatchKeyEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * This method emulates inserting text that doesn't come from a key press,
@@ -25,7 +25,7 @@ for example an emoji keyboard or an IME.
      * @link Protocol [Input#insertText](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-insertText) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun insertText(input: InsertTextRequest) = connection.request("Input.insertText", Json.encodeToJsonElement(InsertTextRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun insertText(input: InsertTextRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Input.insertText", Json.encodeToJsonElement(InsertTextRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Dispatches a mouse event to the page.
@@ -33,7 +33,7 @@ for example an emoji keyboard or an IME.
      * @link Protocol [Input#dispatchMouseEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent) method documentation.
      */
     
-    fun dispatchMouseEvent(input: DispatchMouseEventRequest) = connection.request("Input.dispatchMouseEvent", Json.encodeToJsonElement(DispatchMouseEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun dispatchMouseEvent(input: DispatchMouseEventRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Input.dispatchMouseEvent", Json.encodeToJsonElement(DispatchMouseEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Dispatches a touch event to the page.
@@ -41,7 +41,7 @@ for example an emoji keyboard or an IME.
      * @link Protocol [Input#dispatchTouchEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchTouchEvent) method documentation.
      */
     
-    fun dispatchTouchEvent(input: DispatchTouchEventRequest) = connection.request("Input.dispatchTouchEvent", Json.encodeToJsonElement(DispatchTouchEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun dispatchTouchEvent(input: DispatchTouchEventRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Input.dispatchTouchEvent", Json.encodeToJsonElement(DispatchTouchEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Emulates touch event from the mouse event parameters.
@@ -49,7 +49,7 @@ for example an emoji keyboard or an IME.
      * @link Protocol [Input#emulateTouchFromMouseEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-emulateTouchFromMouseEvent) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun emulateTouchFromMouseEvent(input: EmulateTouchFromMouseEventRequest) = connection.request("Input.emulateTouchFromMouseEvent", Json.encodeToJsonElement(EmulateTouchFromMouseEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun emulateTouchFromMouseEvent(input: EmulateTouchFromMouseEventRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Input.emulateTouchFromMouseEvent", Json.encodeToJsonElement(EmulateTouchFromMouseEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Ignores input events (useful while auditing page).
@@ -57,7 +57,7 @@ for example an emoji keyboard or an IME.
      * @link Protocol [Input#setIgnoreInputEvents](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-setIgnoreInputEvents) method documentation.
      */
     
-    fun setIgnoreInputEvents(input: SetIgnoreInputEventsRequest) = connection.request("Input.setIgnoreInputEvents", Json.encodeToJsonElement(SetIgnoreInputEventsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setIgnoreInputEvents(input: SetIgnoreInputEventsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Input.setIgnoreInputEvents", Json.encodeToJsonElement(SetIgnoreInputEventsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
@@ -65,7 +65,7 @@ for example an emoji keyboard or an IME.
      * @link Protocol [Input#synthesizePinchGesture](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-synthesizePinchGesture) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun synthesizePinchGesture(input: SynthesizePinchGestureRequest) = connection.request("Input.synthesizePinchGesture", Json.encodeToJsonElement(SynthesizePinchGestureRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun synthesizePinchGesture(input: SynthesizePinchGestureRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Input.synthesizePinchGesture", Json.encodeToJsonElement(SynthesizePinchGestureRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
@@ -73,7 +73,7 @@ for example an emoji keyboard or an IME.
      * @link Protocol [Input#synthesizeScrollGesture](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-synthesizeScrollGesture) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun synthesizeScrollGesture(input: SynthesizeScrollGestureRequest) = connection.request("Input.synthesizeScrollGesture", Json.encodeToJsonElement(SynthesizeScrollGestureRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun synthesizeScrollGesture(input: SynthesizeScrollGestureRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Input.synthesizeScrollGesture", Json.encodeToJsonElement(SynthesizeScrollGestureRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
@@ -81,7 +81,7 @@ for example an emoji keyboard or an IME.
      * @link Protocol [Input#synthesizeTapGesture](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-synthesizeTapGesture) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun synthesizeTapGesture(input: SynthesizeTapGestureRequest) = connection.request("Input.synthesizeTapGesture", Json.encodeToJsonElement(SynthesizeTapGestureRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun synthesizeTapGesture(input: SynthesizeTapGestureRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Input.synthesizeTapGesture", Json.encodeToJsonElement(SynthesizeTapGestureRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 }
 
 /**
@@ -89,7 +89,7 @@ for example an emoji keyboard or an IME.
  *
  * Dispatches a key event to the page.
  * @link [Input#dispatchKeyEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchKeyEvent) method documentation.
- * @see [InputOperations.dispatchKeyEvent]
+ * @see [InputDomain.dispatchKeyEvent]
  */
 @kotlinx.serialization.Serializable
 data class DispatchKeyEventRequest(
@@ -183,7 +183,7 @@ See https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink
  * This method emulates inserting text that doesn't come from a key press,
 for example an emoji keyboard or an IME.
  * @link [Input#insertText](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-insertText) method documentation.
- * @see [InputOperations.insertText]
+ * @see [InputDomain.insertText]
  */
 @kotlinx.serialization.Serializable
 data class InsertTextRequest(
@@ -199,7 +199,7 @@ data class InsertTextRequest(
  *
  * Dispatches a mouse event to the page.
  * @link [Input#dispatchMouseEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchMouseEvent) method documentation.
- * @see [InputOperations.dispatchMouseEvent]
+ * @see [InputDomain.dispatchMouseEvent]
  */
 @kotlinx.serialization.Serializable
 data class DispatchMouseEventRequest(
@@ -293,7 +293,7 @@ Left=1, Right=2, Middle=4, Back=8, Forward=16, None=0.
  *
  * Dispatches a touch event to the page.
  * @link [Input#dispatchTouchEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-dispatchTouchEvent) method documentation.
- * @see [InputOperations.dispatchTouchEvent]
+ * @see [InputDomain.dispatchTouchEvent]
  */
 @kotlinx.serialization.Serializable
 data class DispatchTouchEventRequest(
@@ -328,7 +328,7 @@ one by one.
  *
  * Emulates touch event from the mouse event parameters.
  * @link [Input#emulateTouchFromMouseEvent](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-emulateTouchFromMouseEvent) method documentation.
- * @see [InputOperations.emulateTouchFromMouseEvent]
+ * @see [InputDomain.emulateTouchFromMouseEvent]
  */
 @kotlinx.serialization.Serializable
 data class EmulateTouchFromMouseEventRequest(
@@ -385,7 +385,7 @@ data class EmulateTouchFromMouseEventRequest(
  *
  * Ignores input events (useful while auditing page).
  * @link [Input#setIgnoreInputEvents](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-setIgnoreInputEvents) method documentation.
- * @see [InputOperations.setIgnoreInputEvents]
+ * @see [InputDomain.setIgnoreInputEvents]
  */
 @kotlinx.serialization.Serializable
 data class SetIgnoreInputEventsRequest(
@@ -401,7 +401,7 @@ data class SetIgnoreInputEventsRequest(
  *
  * Synthesizes a pinch gesture over a time period by issuing appropriate touch events.
  * @link [Input#synthesizePinchGesture](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-synthesizePinchGesture) method documentation.
- * @see [InputOperations.synthesizePinchGesture]
+ * @see [InputDomain.synthesizePinchGesture]
  */
 @kotlinx.serialization.Serializable
 data class SynthesizePinchGestureRequest(
@@ -438,7 +438,7 @@ for the preferred input type).
  *
  * Synthesizes a scroll gesture over a time period by issuing appropriate touch events.
  * @link [Input#synthesizeScrollGesture](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-synthesizeScrollGesture) method documentation.
- * @see [InputOperations.synthesizeScrollGesture]
+ * @see [InputDomain.synthesizeScrollGesture]
  */
 @kotlinx.serialization.Serializable
 data class SynthesizeScrollGestureRequest(
@@ -512,7 +512,7 @@ for the preferred input type).
  *
  * Synthesizes a tap gesture over a time period by issuing appropriate touch events.
  * @link [Input#synthesizeTapGesture](https://chromedevtools.github.io/devtools-protocol/tot/Input#method-synthesizeTapGesture) method documentation.
- * @see [InputOperations.synthesizeTapGesture]
+ * @see [InputDomain.synthesizeTapGesture]
  */
 @kotlinx.serialization.Serializable
 data class SynthesizeTapGestureRequest(

@@ -12,9 +12,10 @@ import pl.wendigo.chrome.api.target.GetTargetInfoRequest
 import pl.wendigo.chrome.api.target.SetDiscoverTargetsRequest
 import pl.wendigo.chrome.api.target.TargetID
 import pl.wendigo.chrome.api.target.TargetInfo
-import pl.wendigo.chrome.sync
 import pl.wendigo.chrome.on
-import pl.wendigo.chrome.protocol.DebuggerWebsocketConnection
+import pl.wendigo.chrome.protocol.DebuggerWebSocketConnection
+import pl.wendigo.chrome.protocol.Experimental
+import pl.wendigo.chrome.sync
 import java.io.Closeable
 
 /**
@@ -66,13 +67,14 @@ class Manager(
      *
      * If [multiplexConnections] is false, then underlying connection to the [Target]'s debugger is also closed.
      */
+    @OptIn(Experimental::class)
     fun close(target: Target) {
         logger.info("Closing {}...", target)
 
         val browserContextID = target.info().browserContextId
 
-        sync(domains.Target.closeTarget(CloseTargetRequest(target.session.targetId))).run {
-            logger.info("Closed {}", target.session)
+        sync(domains.Target.closeTarget(CloseTargetRequest(target.targetId()))).run {
+            logger.info("Closed {}", target.session())
         }
 
         if (!browserContextID.isNullOrEmpty()) {
@@ -99,15 +101,17 @@ class Manager(
             false -> null
         }
 
-        val (targetId) = sync(domains.Target.createTarget(
-            CreateTargetRequest(
-                url = url,
-                browserContextId = browserContextId,
-                height = height,
-                width = width,
-                background = true
+        val (targetId) = sync(
+            domains.Target.createTarget(
+                CreateTargetRequest(
+                    url = url,
+                    browserContextId = browserContextId,
+                    height = height,
+                    width = width,
+                    background = true
+                )
             )
-        ))
+        )
 
         val targetInfo = sync(domains.Target.getTargetInfo(GetTargetInfoRequest(targetId = targetId))).targetInfo
 
@@ -131,12 +135,14 @@ class Manager(
      */
     fun attach(target: TargetInfo): Target {
         val sessionId = when (multiplexConnections) {
-            true -> sync(domains.Target.attachToTarget(
+            true -> sync(
+                domains.Target.attachToTarget(
                     AttachToTargetRequest(
                         targetId = target.targetId,
                         flatten = true
                     )
-                )).sessionId
+                )
+            ).sessionId
 
             false -> ""
         }
@@ -158,10 +164,10 @@ class Manager(
         )
     }
 
-    private fun openConnection(target: TargetInfo, sessionId: String): DebuggerWebsocketConnection {
+    private fun openConnection(target: TargetInfo, sessionId: String): DebuggerWebSocketConnection {
         return when (multiplexConnections) {
-            true -> domains.connection.cloneForSessionId(sessionId)
-            false -> DebuggerWebsocketConnection.open(targetWsAddress(target.targetId), eventsBufferSize)
+            true -> domains.cloneConnection(sessionId)
+            false -> DebuggerWebSocketConnection.open(targetWsAddress(target.targetId), eventsBufferSize)
         }
     }
 

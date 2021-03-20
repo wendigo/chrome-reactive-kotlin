@@ -8,15 +8,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Log](https://chromedevtools.github.io/devtools-protocol/tot/Log) domain documentation.
  */
 
-class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Log", """Provides access to log entries.""", connection) {
+class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Log", """Provides access to log entries.""", connection) {
     /**
      * Clears the log.
      *
      * @link Protocol [Log#clear](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-clear) method documentation.
      */
     
-    fun clear() = connection.request("Log.clear", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clear(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Log.clear", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disables log domain, prevents further log entries from being reported to the client.
@@ -24,7 +24,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
      * @link Protocol [Log#disable](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("Log.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Log.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables log domain, sends the entries collected so far to the client by means of the
@@ -33,7 +33,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
      * @link Protocol [Log#enable](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("Log.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Log.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * start violation reporting.
@@ -41,7 +41,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
      * @link Protocol [Log#startViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-startViolationsReport) method documentation.
      */
     
-    fun startViolationsReport(input: StartViolationsReportRequest) = connection.request("Log.startViolationsReport", Json.encodeToJsonElement(StartViolationsReportRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startViolationsReport(input: StartViolationsReportRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Log.startViolationsReport", Json.encodeToJsonElement(StartViolationsReportRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Stop violation reporting.
@@ -49,7 +49,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
      * @link Protocol [Log#stopViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-stopViolationsReport) method documentation.
      */
     
-    fun stopViolationsReport() = connection.request("Log.stopViolationsReport", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopViolationsReport(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Log.stopViolationsReport", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Issued when new message was logged.
@@ -59,7 +59,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.runtime.RuntimeDomain(connection),
             pl.wendigo.chrome.api.network.NetworkDomain(connection),
@@ -72,7 +72,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
  *
  * start violation reporting.
  * @link [Log#startViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-startViolationsReport) method documentation.
- * @see [LogOperations.startViolationsReport]
+ * @see [LogDomain.startViolationsReport]
  */
 @kotlinx.serialization.Serializable
 data class StartViolationsReportRequest(

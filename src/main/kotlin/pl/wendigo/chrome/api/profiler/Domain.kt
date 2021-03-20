@@ -8,15 +8,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Profiler](https://chromedevtools.github.io/devtools-protocol/tot/Profiler) domain documentation.
  */
 
-class ProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Profiler", """""", connection) {
+class ProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Profiler", """""", connection) {
     /**
      *
      *
      * @link Protocol [Profiler#disable](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("Profiler.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -24,7 +24,7 @@ class ProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol
      * @link Protocol [Profiler#enable](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("Profiler.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Collect coverage data for the current isolate. The coverage data may be incomplete due to
@@ -33,7 +33,7 @@ garbage collection.
      * @link Protocol [Profiler#getBestEffortCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getBestEffortCoverage) method documentation.
      */
     
-    fun getBestEffortCoverage() = connection.request("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse.serializer())
+    fun getBestEffortCoverage(): io.reactivex.rxjava3.core.Single<GetBestEffortCoverageResponse> = connection.request("Profiler.getBestEffortCoverage", null, GetBestEffortCoverageResponse.serializer())
 
     /**
      * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
@@ -41,7 +41,7 @@ garbage collection.
      * @link Protocol [Profiler#setSamplingInterval](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-setSamplingInterval) method documentation.
      */
     
-    fun setSamplingInterval(input: SetSamplingIntervalRequest) = connection.request("Profiler.setSamplingInterval", Json.encodeToJsonElement(SetSamplingIntervalRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setSamplingInterval(input: SetSamplingIntervalRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.setSamplingInterval", Json.encodeToJsonElement(SetSamplingIntervalRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -49,7 +49,7 @@ garbage collection.
      * @link Protocol [Profiler#start](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-start) method documentation.
      */
     
-    fun start() = connection.request("Profiler.start", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun start(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.start", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enable precise code coverage. Coverage data for JavaScript executed before enabling precise code
@@ -59,7 +59,7 @@ counters.
      * @link Protocol [Profiler#startPreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startPreciseCoverage) method documentation.
      */
     
-    fun startPreciseCoverage(input: StartPreciseCoverageRequest) = connection.request("Profiler.startPreciseCoverage", Json.encodeToJsonElement(StartPreciseCoverageRequest.serializer(), input), StartPreciseCoverageResponse.serializer())
+    fun startPreciseCoverage(input: StartPreciseCoverageRequest): io.reactivex.rxjava3.core.Single<StartPreciseCoverageResponse> = connection.request("Profiler.startPreciseCoverage", Json.encodeToJsonElement(StartPreciseCoverageRequest.serializer(), input), StartPreciseCoverageResponse.serializer())
 
     /**
      * Enable type profile.
@@ -67,7 +67,7 @@ counters.
      * @link Protocol [Profiler#startTypeProfile](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startTypeProfile) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun startTypeProfile() = connection.request("Profiler.startTypeProfile", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startTypeProfile(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.startTypeProfile", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -75,7 +75,7 @@ counters.
      * @link Protocol [Profiler#stop](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-stop) method documentation.
      */
     
-    fun stop() = connection.request("Profiler.stop", null, StopResponse.serializer())
+    fun stop(): io.reactivex.rxjava3.core.Single<StopResponse> = connection.request("Profiler.stop", null, StopResponse.serializer())
 
     /**
      * Disable precise code coverage. Disabling releases unnecessary execution count records and allows
@@ -84,7 +84,7 @@ executing optimized code.
      * @link Protocol [Profiler#stopPreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-stopPreciseCoverage) method documentation.
      */
     
-    fun stopPreciseCoverage() = connection.request("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopPreciseCoverage(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.stopPreciseCoverage", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disable type profile. Disabling releases type profile data collected so far.
@@ -92,7 +92,7 @@ executing optimized code.
      * @link Protocol [Profiler#stopTypeProfile](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-stopTypeProfile) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun stopTypeProfile() = connection.request("Profiler.stopTypeProfile", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopTypeProfile(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.stopTypeProfile", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Collect coverage data for the current isolate, and resets execution counters. Precise code
@@ -101,7 +101,7 @@ coverage needs to have started.
      * @link Protocol [Profiler#takePreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-takePreciseCoverage) method documentation.
      */
     
-    fun takePreciseCoverage() = connection.request("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse.serializer())
+    fun takePreciseCoverage(): io.reactivex.rxjava3.core.Single<TakePreciseCoverageResponse> = connection.request("Profiler.takePreciseCoverage", null, TakePreciseCoverageResponse.serializer())
 
     /**
      * Collect type profile.
@@ -109,7 +109,7 @@ coverage needs to have started.
      * @link Protocol [Profiler#takeTypeProfile](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-takeTypeProfile) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun takeTypeProfile() = connection.request("Profiler.takeTypeProfile", null, TakeTypeProfileResponse.serializer())
+    fun takeTypeProfile(): io.reactivex.rxjava3.core.Single<TakeTypeProfileResponse> = connection.request("Profiler.takeTypeProfile", null, TakeTypeProfileResponse.serializer())
 
     /**
      * Enable counters collection.
@@ -117,7 +117,7 @@ coverage needs to have started.
      * @link Protocol [Profiler#enableCounters](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-enableCounters) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun enableCounters() = connection.request("Profiler.enableCounters", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enableCounters(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.enableCounters", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disable counters collection.
@@ -125,7 +125,7 @@ coverage needs to have started.
      * @link Protocol [Profiler#disableCounters](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-disableCounters) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun disableCounters() = connection.request("Profiler.disableCounters", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disableCounters(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.disableCounters", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Retrieve counters.
@@ -133,7 +133,7 @@ coverage needs to have started.
      * @link Protocol [Profiler#getCounters](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getCounters) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun getCounters() = connection.request("Profiler.getCounters", null, GetCountersResponse.serializer())
+    fun getCounters(): io.reactivex.rxjava3.core.Single<GetCountersResponse> = connection.request("Profiler.getCounters", null, GetCountersResponse.serializer())
 
     /**
      * Enable run time call stats collection.
@@ -141,7 +141,7 @@ coverage needs to have started.
      * @link Protocol [Profiler#enableRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-enableRuntimeCallStats) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun enableRuntimeCallStats() = connection.request("Profiler.enableRuntimeCallStats", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enableRuntimeCallStats(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.enableRuntimeCallStats", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Disable run time call stats collection.
@@ -149,7 +149,7 @@ coverage needs to have started.
      * @link Protocol [Profiler#disableRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-disableRuntimeCallStats) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun disableRuntimeCallStats() = connection.request("Profiler.disableRuntimeCallStats", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disableRuntimeCallStats(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Profiler.disableRuntimeCallStats", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Retrieve run time call stats.
@@ -157,7 +157,7 @@ coverage needs to have started.
      * @link Protocol [Profiler#getRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getRuntimeCallStats) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun getRuntimeCallStats() = connection.request("Profiler.getRuntimeCallStats", null, GetRuntimeCallStatsResponse.serializer())
+    fun getRuntimeCallStats(): io.reactivex.rxjava3.core.Single<GetRuntimeCallStatsResponse> = connection.request("Profiler.getRuntimeCallStats", null, GetRuntimeCallStatsResponse.serializer())
 
     /**
      *  Returns observable capturing all Profiler.consoleProfileFinished events.
@@ -180,7 +180,7 @@ trigger collection of coverage data immediatelly at a certain point in time.
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.runtime.RuntimeDomain(connection),
             pl.wendigo.chrome.api.debugger.DebuggerDomain(connection),
@@ -195,7 +195,7 @@ garbage collection.
  *
   
  * @link [Profiler#getBestEffortCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getBestEffortCoverage) method documentation.
- * @see [ProfilerOperations.getBestEffortCoverage]
+ * @see [ProfilerDomain.getBestEffortCoverage]
  */
 @kotlinx.serialization.Serializable
 data class GetBestEffortCoverageResponse(
@@ -211,7 +211,7 @@ data class GetBestEffortCoverageResponse(
  *
  * Changes CPU profiler sampling interval. Must be called before CPU profiles recording started.
  * @link [Profiler#setSamplingInterval](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-setSamplingInterval) method documentation.
- * @see [ProfilerOperations.setSamplingInterval]
+ * @see [ProfilerDomain.setSamplingInterval]
  */
 @kotlinx.serialization.Serializable
 data class SetSamplingIntervalRequest(
@@ -229,7 +229,7 @@ data class SetSamplingIntervalRequest(
 coverage may be incomplete. Enabling prevents running optimized code and resets execution
 counters.
  * @link [Profiler#startPreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startPreciseCoverage) method documentation.
- * @see [ProfilerOperations.startPreciseCoverage]
+ * @see [ProfilerDomain.startPreciseCoverage]
  */
 @kotlinx.serialization.Serializable
 data class StartPreciseCoverageRequest(
@@ -258,7 +258,7 @@ counters.
  *
   
  * @link [Profiler#startPreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-startPreciseCoverage) method documentation.
- * @see [ProfilerOperations.startPreciseCoverage]
+ * @see [ProfilerDomain.startPreciseCoverage]
  */
 @kotlinx.serialization.Serializable
 data class StartPreciseCoverageResponse(
@@ -275,7 +275,7 @@ data class StartPreciseCoverageResponse(
  *
   
  * @link [Profiler#stop](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-stop) method documentation.
- * @see [ProfilerOperations.stop]
+ * @see [ProfilerDomain.stop]
  */
 @kotlinx.serialization.Serializable
 data class StopResponse(
@@ -293,7 +293,7 @@ coverage needs to have started.
  *
   
  * @link [Profiler#takePreciseCoverage](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-takePreciseCoverage) method documentation.
- * @see [ProfilerOperations.takePreciseCoverage]
+ * @see [ProfilerDomain.takePreciseCoverage]
  */
 @kotlinx.serialization.Serializable
 data class TakePreciseCoverageResponse(
@@ -315,7 +315,7 @@ data class TakePreciseCoverageResponse(
  *
   
  * @link [Profiler#takeTypeProfile](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-takeTypeProfile) method documentation.
- * @see [ProfilerOperations.takeTypeProfile]
+ * @see [ProfilerDomain.takeTypeProfile]
  */
 @kotlinx.serialization.Serializable
 data class TakeTypeProfileResponse(
@@ -332,7 +332,7 @@ data class TakeTypeProfileResponse(
  *
   
  * @link [Profiler#getCounters](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getCounters) method documentation.
- * @see [ProfilerOperations.getCounters]
+ * @see [ProfilerDomain.getCounters]
  */
 @kotlinx.serialization.Serializable
 data class GetCountersResponse(
@@ -349,7 +349,7 @@ data class GetCountersResponse(
  *
   
  * @link [Profiler#getRuntimeCallStats](https://chromedevtools.github.io/devtools-protocol/tot/Profiler#method-getRuntimeCallStats) method documentation.
- * @see [ProfilerOperations.getRuntimeCallStats]
+ * @see [ProfilerDomain.getRuntimeCallStats]
  */
 @kotlinx.serialization.Serializable
 data class GetRuntimeCallStatsResponse(

@@ -11,7 +11,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [{{Domain.Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}}) domain documentation.
  */
 {{{ Domain.Annotations }}}
-class {{Domain.Name}}Domain internal constructor(connection : {{Package}}.protocol.DebuggerWebsocketConnection)
+class {{Domain.Name}}Domain internal constructor(connection : {{Package}}.protocol.DebuggerWebSocketConnection)
 {{{ Domain.Interfaces }}}
 {
 {{#each Domain.Commands}}
@@ -21,7 +21,7 @@ class {{Domain.Name}}Domain internal constructor(connection : {{Package}}.protoc
      * @link Protocol [{{Domain.Name}}#{{Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}}#method-{{Name}}) method documentation.
      */
     {{{ Annotations }}}
-    {{{ MethodModifiers }}} fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}) = connection.request("{{Domain}}.{{Name}}", {{#if HasInputParams}}Json.encodeToJsonElement({{SimpleName}}Request.serializer(), input){{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.RequestResponseFrame{{/if}}.serializer())
+    {{{ MethodModifiers }}} fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}): io.reactivex.rxjava3.core.Single<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.RequestResponseFrame{{/if}}> = connection.request("{{Domain}}.{{Name}}", {{#if HasInputParams}}Json.encodeToJsonElement({{SimpleName}}Request.serializer(), input){{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.RequestResponseFrame{{/if}}.serializer())
 {{/each}}
 {{#each Domain.Events}}
     /**
@@ -34,7 +34,7 @@ class {{Domain.Name}}Domain internal constructor(connection : {{Package}}.protoc
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<{{ Package }}.api.Domain> {
+    override fun getDependencies(): List<{{ Package }}.protocol.Domain> {
         return arrayListOf(
             {{#each Domain.Dependencies}}
                 {{ Package }}.api.{{ lower . }}.{{.}}Domain(connection),

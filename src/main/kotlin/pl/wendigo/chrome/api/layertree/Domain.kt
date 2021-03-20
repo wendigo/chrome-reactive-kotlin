@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [LayerTree](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("LayerTree", """""", connection) {
+class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("LayerTree", """""", connection) {
     /**
      * Provides the reasons why the given layer was composited.
      *
      * @link Protocol [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
      */
     
-    fun compositingReasons(input: CompositingReasonsRequest) = connection.request("LayerTree.compositingReasons", Json.encodeToJsonElement(CompositingReasonsRequest.serializer(), input), CompositingReasonsResponse.serializer())
+    fun compositingReasons(input: CompositingReasonsRequest): io.reactivex.rxjava3.core.Single<CompositingReasonsResponse> = connection.request("LayerTree.compositingReasons", Json.encodeToJsonElement(CompositingReasonsRequest.serializer(), input), CompositingReasonsResponse.serializer())
 
     /**
      * Disables compositing tree inspection.
@@ -25,7 +25,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#disable](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("LayerTree.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("LayerTree.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables compositing tree inspection.
@@ -33,7 +33,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#enable](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("LayerTree.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("LayerTree.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns the snapshot identifier.
@@ -41,7 +41,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
      */
     
-    fun loadSnapshot(input: LoadSnapshotRequest) = connection.request("LayerTree.loadSnapshot", Json.encodeToJsonElement(LoadSnapshotRequest.serializer(), input), LoadSnapshotResponse.serializer())
+    fun loadSnapshot(input: LoadSnapshotRequest): io.reactivex.rxjava3.core.Single<LoadSnapshotResponse> = connection.request("LayerTree.loadSnapshot", Json.encodeToJsonElement(LoadSnapshotRequest.serializer(), input), LoadSnapshotResponse.serializer())
 
     /**
      * Returns the layer snapshot identifier.
@@ -49,7 +49,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
      */
     
-    fun makeSnapshot(input: MakeSnapshotRequest) = connection.request("LayerTree.makeSnapshot", Json.encodeToJsonElement(MakeSnapshotRequest.serializer(), input), MakeSnapshotResponse.serializer())
+    fun makeSnapshot(input: MakeSnapshotRequest): io.reactivex.rxjava3.core.Single<MakeSnapshotResponse> = connection.request("LayerTree.makeSnapshot", Json.encodeToJsonElement(MakeSnapshotRequest.serializer(), input), MakeSnapshotResponse.serializer())
 
     /**
      *
@@ -57,7 +57,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
      */
     
-    fun profileSnapshot(input: ProfileSnapshotRequest) = connection.request("LayerTree.profileSnapshot", Json.encodeToJsonElement(ProfileSnapshotRequest.serializer(), input), ProfileSnapshotResponse.serializer())
+    fun profileSnapshot(input: ProfileSnapshotRequest): io.reactivex.rxjava3.core.Single<ProfileSnapshotResponse> = connection.request("LayerTree.profileSnapshot", Json.encodeToJsonElement(ProfileSnapshotRequest.serializer(), input), ProfileSnapshotResponse.serializer())
 
     /**
      * Releases layer snapshot captured by the back-end.
@@ -65,7 +65,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#releaseSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-releaseSnapshot) method documentation.
      */
     
-    fun releaseSnapshot(input: ReleaseSnapshotRequest) = connection.request("LayerTree.releaseSnapshot", Json.encodeToJsonElement(ReleaseSnapshotRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun releaseSnapshot(input: ReleaseSnapshotRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("LayerTree.releaseSnapshot", Json.encodeToJsonElement(ReleaseSnapshotRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Replays the layer snapshot and returns the resulting bitmap.
@@ -73,7 +73,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
      */
     
-    fun replaySnapshot(input: ReplaySnapshotRequest) = connection.request("LayerTree.replaySnapshot", Json.encodeToJsonElement(ReplaySnapshotRequest.serializer(), input), ReplaySnapshotResponse.serializer())
+    fun replaySnapshot(input: ReplaySnapshotRequest): io.reactivex.rxjava3.core.Single<ReplaySnapshotResponse> = connection.request("LayerTree.replaySnapshot", Json.encodeToJsonElement(ReplaySnapshotRequest.serializer(), input), ReplaySnapshotResponse.serializer())
 
     /**
      * Replays the layer snapshot and returns canvas log.
@@ -81,7 +81,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
      */
     
-    fun snapshotCommandLog(input: SnapshotCommandLogRequest) = connection.request("LayerTree.snapshotCommandLog", Json.encodeToJsonElement(SnapshotCommandLogRequest.serializer(), input), SnapshotCommandLogResponse.serializer())
+    fun snapshotCommandLog(input: SnapshotCommandLogRequest): io.reactivex.rxjava3.core.Single<SnapshotCommandLogResponse> = connection.request("LayerTree.snapshotCommandLog", Json.encodeToJsonElement(SnapshotCommandLogRequest.serializer(), input), SnapshotCommandLogResponse.serializer())
 
     /**
      *  Returns observable capturing all LayerTree.layerPainted events.
@@ -96,7 +96,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.dom.DOMDomain(connection),
         )
@@ -108,7 +108,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
  *
  * Provides the reasons why the given layer was composited.
  * @link [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
- * @see [LayerTreeOperations.compositingReasons]
+ * @see [LayerTreeDomain.compositingReasons]
  */
 @kotlinx.serialization.Serializable
 data class CompositingReasonsRequest(
@@ -125,7 +125,7 @@ data class CompositingReasonsRequest(
  *
   
  * @link [LayerTree#compositingReasons](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-compositingReasons) method documentation.
- * @see [LayerTreeOperations.compositingReasons]
+ * @see [LayerTreeDomain.compositingReasons]
  */
 @kotlinx.serialization.Serializable
 data class CompositingReasonsResponse(
@@ -146,7 +146,7 @@ data class CompositingReasonsResponse(
  *
  * Returns the snapshot identifier.
  * @link [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
- * @see [LayerTreeOperations.loadSnapshot]
+ * @see [LayerTreeDomain.loadSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class LoadSnapshotRequest(
@@ -163,7 +163,7 @@ data class LoadSnapshotRequest(
  *
   
  * @link [LayerTree#loadSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-loadSnapshot) method documentation.
- * @see [LayerTreeOperations.loadSnapshot]
+ * @see [LayerTreeDomain.loadSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class LoadSnapshotResponse(
@@ -179,7 +179,7 @@ data class LoadSnapshotResponse(
  *
  * Returns the layer snapshot identifier.
  * @link [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
- * @see [LayerTreeOperations.makeSnapshot]
+ * @see [LayerTreeDomain.makeSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class MakeSnapshotRequest(
@@ -196,7 +196,7 @@ data class MakeSnapshotRequest(
  *
   
  * @link [LayerTree#makeSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-makeSnapshot) method documentation.
- * @see [LayerTreeOperations.makeSnapshot]
+ * @see [LayerTreeDomain.makeSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class MakeSnapshotResponse(
@@ -212,7 +212,7 @@ data class MakeSnapshotResponse(
  *
  *
  * @link [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
- * @see [LayerTreeOperations.profileSnapshot]
+ * @see [LayerTreeDomain.profileSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class ProfileSnapshotRequest(
@@ -244,7 +244,7 @@ data class ProfileSnapshotRequest(
  *
   
  * @link [LayerTree#profileSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-profileSnapshot) method documentation.
- * @see [LayerTreeOperations.profileSnapshot]
+ * @see [LayerTreeDomain.profileSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class ProfileSnapshotResponse(
@@ -260,7 +260,7 @@ data class ProfileSnapshotResponse(
  *
  * Releases layer snapshot captured by the back-end.
  * @link [LayerTree#releaseSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-releaseSnapshot) method documentation.
- * @see [LayerTreeOperations.releaseSnapshot]
+ * @see [LayerTreeDomain.releaseSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class ReleaseSnapshotRequest(
@@ -276,7 +276,7 @@ data class ReleaseSnapshotRequest(
  *
  * Replays the layer snapshot and returns the resulting bitmap.
  * @link [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
- * @see [LayerTreeOperations.replaySnapshot]
+ * @see [LayerTreeDomain.replaySnapshot]
  */
 @kotlinx.serialization.Serializable
 data class ReplaySnapshotRequest(
@@ -308,7 +308,7 @@ data class ReplaySnapshotRequest(
  *
   
  * @link [LayerTree#replaySnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-replaySnapshot) method documentation.
- * @see [LayerTreeOperations.replaySnapshot]
+ * @see [LayerTreeDomain.replaySnapshot]
  */
 @kotlinx.serialization.Serializable
 data class ReplaySnapshotResponse(
@@ -324,7 +324,7 @@ data class ReplaySnapshotResponse(
  *
  * Replays the layer snapshot and returns canvas log.
  * @link [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
- * @see [LayerTreeOperations.snapshotCommandLog]
+ * @see [LayerTreeDomain.snapshotCommandLog]
  */
 @kotlinx.serialization.Serializable
 data class SnapshotCommandLogRequest(
@@ -341,7 +341,7 @@ data class SnapshotCommandLogRequest(
  *
   
  * @link [LayerTree#snapshotCommandLog](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-snapshotCommandLog) method documentation.
- * @see [LayerTreeOperations.snapshotCommandLog]
+ * @see [LayerTreeDomain.snapshotCommandLog]
  */
 @kotlinx.serialization.Serializable
 data class SnapshotCommandLogResponse(

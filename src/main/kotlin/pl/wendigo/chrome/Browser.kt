@@ -10,7 +10,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.api.ProtocolDomains
 import pl.wendigo.chrome.api.target.TargetInfo
-import pl.wendigo.chrome.protocol.DebuggerWebsocketConnection
+import pl.wendigo.chrome.protocol.DebuggerWebSocketConnection
 import pl.wendigo.chrome.targets.Manager
 import pl.wendigo.chrome.targets.Target
 import java.io.Closeable
@@ -22,7 +22,7 @@ import kotlin.math.max
 class Browser private constructor(
     private val browserInfo: BrowserInfo,
     private val options: Options,
-    connection: DebuggerWebsocketConnection,
+    connection: DebuggerWebSocketConnection,
     private val manager: Manager
 ) : ProtocolDomains(connection), Closeable, AutoCloseable {
     /**
@@ -43,17 +43,17 @@ class Browser private constructor(
     /**
      * Lists all targets that can be attached to.
      */
-    fun targets() = manager.list()
+    fun targets(): List<TargetInfo> = manager.list()
 
     /**
      * Returns information on browser.
      */
-    fun browserInfo() = browserInfo
+    fun browserInfo(): BrowserInfo = browserInfo
 
     /**
      * Attaches to existing target creating new session if multiplexed connections is used.
      */
-    fun attach(target: TargetInfo) = manager.attach(target)
+    fun attach(target: TargetInfo): Target = manager.attach(target)
 
     /**
      * Closes target releasing all resources on the browser side and connections.
@@ -68,7 +68,7 @@ class Browser private constructor(
     override fun close() {
         try {
             manager.close()
-            DebuggerWebsocketConnection.close()
+            DebuggerWebSocketConnection.close()
         } catch (e: Exception) {
             logger.info("Caught exception while closing Browser", e)
         }
@@ -87,7 +87,7 @@ class Browser private constructor(
          */
         private fun connect(chromeAddress: String = "localhost:9222", options: Options): Browser {
             val info = fetchInfo(chromeAddress)
-            val connection = DebuggerWebsocketConnection.open(info.webSocketDebuggerUrl, options.eventsBufferSize)
+            val connection = DebuggerWebSocketConnection.open(info.webSocketDebuggerUrl, options.eventsBufferSize)
             val protocol = ProtocolDomains(connection)
 
             return Browser(
@@ -112,7 +112,7 @@ class Browser private constructor(
 
             return when (info.isSuccessful) {
                 true -> Json.decodeFromString(info.body?.string()!!)
-                false -> throw BrowserInfoDiscoveryFailedException("Could not query browser info - reponse code was ${info.code}")
+                false -> throw BrowserInfoDiscoveryFailedException("Could not query browser info - response code was ${info.code}")
             }
         }
 
@@ -135,44 +135,44 @@ class Browser private constructor(
         /**
          * Sets browser debugger address (default: localhost:8222)
          */
-        fun withAddress(address: String) = this.apply {
+        fun withAddress(address: String): Builder = this.apply {
             this.address = address
         }
 
         /**
          * Sets default blank page location (default: about:blank)
          */
-        fun withBlankPage(address: String) = this.apply {
+        fun withBlankPage(address: String): Builder = this.apply {
             this.blankPage = address
         }
 
         /**
-         *  Sets frames buffer size for underlying [DebuggerFramesStream]'s reactive replaying subject (default: 128)
+         *  Sets frames buffer size for underlying [pl.wendigo.chrome.protocol.DebuggerFramesStream]'s reactive replaying subject (default: 128)
          *
          *  High buffer size allows to observe N frames prior to subscribing.
          */
-        fun withEventsBufferSize(size: Int) = this.apply {
+        fun withEventsBufferSize(size: Int): Builder = this.apply {
             this.eventsBufferSize = max(size, 1)
         }
 
         /**
          * Sets default viewport height while creating sessions (default; 768, min: 100)
          */
-        fun withViewportHeight(height: Int) = this.apply {
+        fun withViewportHeight(height: Int): Builder = this.apply {
             this.viewportHeight = max(100, height)
         }
 
         /**
          * Sets default viewport width while creating sessions (default: 1024, min: 100)
          */
-        fun withViewportWidth(width: Int) = this.apply {
+        fun withViewportWidth(width: Int): Builder = this.apply {
             this.viewportWidth = max(100, width)
         }
 
         /**
          * Enables [Manager] to share single, underlying connection to debugger with multiple sessions (default: false)
          */
-        fun multiplexConnections(enabled: Boolean) = this.apply {
+        fun multiplexConnections(enabled: Boolean): Builder = this.apply {
             this.multiplexConnections = enabled
         }
 
@@ -181,14 +181,14 @@ class Browser private constructor(
          *
          * Incognito mode uses BrowserContext to separate different targets from each other.
          */
-        fun incognito(enabled: Boolean) = this.apply {
+        fun incognito(enabled: Boolean): Builder = this.apply {
             this.incognito = enabled
         }
 
         /**
          * Creates new instance of [Browser] with configuration passed to builder
          */
-        fun build() = connect(
+        fun build(): Browser = connect(
             address,
             Options(
                 eventsBufferSize = eventsBufferSize,

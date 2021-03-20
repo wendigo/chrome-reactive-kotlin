@@ -9,8 +9,8 @@ import kotlinx.serialization.json.Json
  * @link Protocol [HeapProfiler](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class HeapProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("HeapProfiler", """""", connection) {
+class HeapProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("HeapProfiler", """""", connection) {
     /**
      * Enables console to refer to the node with given id via $x (see Command Line API for more details
 $x functions).
@@ -18,7 +18,7 @@ $x functions).
      * @link Protocol [HeapProfiler#addInspectedHeapObject](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-addInspectedHeapObject) method documentation.
      */
     
-    fun addInspectedHeapObject(input: AddInspectedHeapObjectRequest) = connection.request("HeapProfiler.addInspectedHeapObject", Json.encodeToJsonElement(AddInspectedHeapObjectRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun addInspectedHeapObject(input: AddInspectedHeapObjectRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.addInspectedHeapObject", Json.encodeToJsonElement(AddInspectedHeapObjectRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -26,7 +26,7 @@ $x functions).
      * @link Protocol [HeapProfiler#collectGarbage](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-collectGarbage) method documentation.
      */
     
-    fun collectGarbage() = connection.request("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun collectGarbage(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -34,7 +34,7 @@ $x functions).
      * @link Protocol [HeapProfiler#disable](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("HeapProfiler.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -42,7 +42,7 @@ $x functions).
      * @link Protocol [HeapProfiler#enable](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("HeapProfiler.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -50,7 +50,7 @@ $x functions).
      * @link Protocol [HeapProfiler#getHeapObjectId](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getHeapObjectId) method documentation.
      */
     
-    fun getHeapObjectId(input: GetHeapObjectIdRequest) = connection.request("HeapProfiler.getHeapObjectId", Json.encodeToJsonElement(GetHeapObjectIdRequest.serializer(), input), GetHeapObjectIdResponse.serializer())
+    fun getHeapObjectId(input: GetHeapObjectIdRequest): io.reactivex.rxjava3.core.Single<GetHeapObjectIdResponse> = connection.request("HeapProfiler.getHeapObjectId", Json.encodeToJsonElement(GetHeapObjectIdRequest.serializer(), input), GetHeapObjectIdResponse.serializer())
 
     /**
      *
@@ -58,7 +58,7 @@ $x functions).
      * @link Protocol [HeapProfiler#getObjectByHeapObjectId](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getObjectByHeapObjectId) method documentation.
      */
     
-    fun getObjectByHeapObjectId(input: GetObjectByHeapObjectIdRequest) = connection.request("HeapProfiler.getObjectByHeapObjectId", Json.encodeToJsonElement(GetObjectByHeapObjectIdRequest.serializer(), input), GetObjectByHeapObjectIdResponse.serializer())
+    fun getObjectByHeapObjectId(input: GetObjectByHeapObjectIdRequest): io.reactivex.rxjava3.core.Single<GetObjectByHeapObjectIdResponse> = connection.request("HeapProfiler.getObjectByHeapObjectId", Json.encodeToJsonElement(GetObjectByHeapObjectIdRequest.serializer(), input), GetObjectByHeapObjectIdResponse.serializer())
 
     /**
      *
@@ -66,7 +66,7 @@ $x functions).
      * @link Protocol [HeapProfiler#getSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getSamplingProfile) method documentation.
      */
     
-    fun getSamplingProfile() = connection.request("HeapProfiler.getSamplingProfile", null, GetSamplingProfileResponse.serializer())
+    fun getSamplingProfile(): io.reactivex.rxjava3.core.Single<GetSamplingProfileResponse> = connection.request("HeapProfiler.getSamplingProfile", null, GetSamplingProfileResponse.serializer())
 
     /**
      *
@@ -74,7 +74,7 @@ $x functions).
      * @link Protocol [HeapProfiler#startSampling](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-startSampling) method documentation.
      */
     
-    fun startSampling(input: StartSamplingRequest) = connection.request("HeapProfiler.startSampling", Json.encodeToJsonElement(StartSamplingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startSampling(input: StartSamplingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.startSampling", Json.encodeToJsonElement(StartSamplingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -82,7 +82,7 @@ $x functions).
      * @link Protocol [HeapProfiler#startTrackingHeapObjects](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-startTrackingHeapObjects) method documentation.
      */
     
-    fun startTrackingHeapObjects(input: StartTrackingHeapObjectsRequest) = connection.request("HeapProfiler.startTrackingHeapObjects", Json.encodeToJsonElement(StartTrackingHeapObjectsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startTrackingHeapObjects(input: StartTrackingHeapObjectsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.startTrackingHeapObjects", Json.encodeToJsonElement(StartTrackingHeapObjectsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -90,7 +90,7 @@ $x functions).
      * @link Protocol [HeapProfiler#stopSampling](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-stopSampling) method documentation.
      */
     
-    fun stopSampling() = connection.request("HeapProfiler.stopSampling", null, StopSamplingResponse.serializer())
+    fun stopSampling(): io.reactivex.rxjava3.core.Single<StopSamplingResponse> = connection.request("HeapProfiler.stopSampling", null, StopSamplingResponse.serializer())
 
     /**
      *
@@ -98,7 +98,7 @@ $x functions).
      * @link Protocol [HeapProfiler#stopTrackingHeapObjects](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-stopTrackingHeapObjects) method documentation.
      */
     
-    fun stopTrackingHeapObjects(input: StopTrackingHeapObjectsRequest) = connection.request("HeapProfiler.stopTrackingHeapObjects", Json.encodeToJsonElement(StopTrackingHeapObjectsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopTrackingHeapObjects(input: StopTrackingHeapObjectsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.stopTrackingHeapObjects", Json.encodeToJsonElement(StopTrackingHeapObjectsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *
@@ -106,7 +106,7 @@ $x functions).
      * @link Protocol [HeapProfiler#takeHeapSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-takeHeapSnapshot) method documentation.
      */
     
-    fun takeHeapSnapshot(input: TakeHeapSnapshotRequest) = connection.request("HeapProfiler.takeHeapSnapshot", Json.encodeToJsonElement(TakeHeapSnapshotRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun takeHeapSnapshot(input: TakeHeapSnapshotRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.takeHeapSnapshot", Json.encodeToJsonElement(TakeHeapSnapshotRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all HeapProfiler.addHeapSnapshotChunk events.
@@ -138,7 +138,7 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.runtime.RuntimeDomain(connection),
         )
@@ -151,7 +151,7 @@ then one or more heapStatsUpdate events will be sent before a new lastSeenObject
  * Enables console to refer to the node with given id via $x (see Command Line API for more details
 $x functions).
  * @link [HeapProfiler#addInspectedHeapObject](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-addInspectedHeapObject) method documentation.
- * @see [HeapProfilerOperations.addInspectedHeapObject]
+ * @see [HeapProfilerDomain.addInspectedHeapObject]
  */
 @kotlinx.serialization.Serializable
 data class AddInspectedHeapObjectRequest(
@@ -167,7 +167,7 @@ data class AddInspectedHeapObjectRequest(
  *
  *
  * @link [HeapProfiler#getHeapObjectId](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getHeapObjectId) method documentation.
- * @see [HeapProfilerOperations.getHeapObjectId]
+ * @see [HeapProfilerDomain.getHeapObjectId]
  */
 @kotlinx.serialization.Serializable
 data class GetHeapObjectIdRequest(
@@ -184,7 +184,7 @@ data class GetHeapObjectIdRequest(
  *
   
  * @link [HeapProfiler#getHeapObjectId](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getHeapObjectId) method documentation.
- * @see [HeapProfilerOperations.getHeapObjectId]
+ * @see [HeapProfilerDomain.getHeapObjectId]
  */
 @kotlinx.serialization.Serializable
 data class GetHeapObjectIdResponse(
@@ -200,7 +200,7 @@ data class GetHeapObjectIdResponse(
  *
  *
  * @link [HeapProfiler#getObjectByHeapObjectId](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getObjectByHeapObjectId) method documentation.
- * @see [HeapProfilerOperations.getObjectByHeapObjectId]
+ * @see [HeapProfilerDomain.getObjectByHeapObjectId]
  */
 @kotlinx.serialization.Serializable
 data class GetObjectByHeapObjectIdRequest(
@@ -222,7 +222,7 @@ data class GetObjectByHeapObjectIdRequest(
  *
   
  * @link [HeapProfiler#getObjectByHeapObjectId](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getObjectByHeapObjectId) method documentation.
- * @see [HeapProfilerOperations.getObjectByHeapObjectId]
+ * @see [HeapProfilerDomain.getObjectByHeapObjectId]
  */
 @kotlinx.serialization.Serializable
 data class GetObjectByHeapObjectIdResponse(
@@ -239,7 +239,7 @@ data class GetObjectByHeapObjectIdResponse(
  *
   
  * @link [HeapProfiler#getSamplingProfile](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-getSamplingProfile) method documentation.
- * @see [HeapProfilerOperations.getSamplingProfile]
+ * @see [HeapProfilerDomain.getSamplingProfile]
  */
 @kotlinx.serialization.Serializable
 data class GetSamplingProfileResponse(
@@ -255,7 +255,7 @@ data class GetSamplingProfileResponse(
  *
  *
  * @link [HeapProfiler#startSampling](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-startSampling) method documentation.
- * @see [HeapProfilerOperations.startSampling]
+ * @see [HeapProfilerDomain.startSampling]
  */
 @kotlinx.serialization.Serializable
 data class StartSamplingRequest(
@@ -272,7 +272,7 @@ default value is 32768 bytes.
  *
  *
  * @link [HeapProfiler#startTrackingHeapObjects](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-startTrackingHeapObjects) method documentation.
- * @see [HeapProfilerOperations.startTrackingHeapObjects]
+ * @see [HeapProfilerDomain.startTrackingHeapObjects]
  */
 @kotlinx.serialization.Serializable
 data class StartTrackingHeapObjectsRequest(
@@ -289,7 +289,7 @@ data class StartTrackingHeapObjectsRequest(
  *
   
  * @link [HeapProfiler#stopSampling](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-stopSampling) method documentation.
- * @see [HeapProfilerOperations.stopSampling]
+ * @see [HeapProfilerDomain.stopSampling]
  */
 @kotlinx.serialization.Serializable
 data class StopSamplingResponse(
@@ -305,7 +305,7 @@ data class StopSamplingResponse(
  *
  *
  * @link [HeapProfiler#stopTrackingHeapObjects](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-stopTrackingHeapObjects) method documentation.
- * @see [HeapProfilerOperations.stopTrackingHeapObjects]
+ * @see [HeapProfilerDomain.stopTrackingHeapObjects]
  */
 @kotlinx.serialization.Serializable
 data class StopTrackingHeapObjectsRequest(
@@ -327,7 +327,7 @@ when the tracking is stopped.
  *
  *
  * @link [HeapProfiler#takeHeapSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-takeHeapSnapshot) method documentation.
- * @see [HeapProfilerOperations.takeHeapSnapshot]
+ * @see [HeapProfilerDomain.takeHeapSnapshot]
  */
 @kotlinx.serialization.Serializable
 data class TakeHeapSnapshotRequest(

@@ -9,15 +9,15 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Animation](https://chromedevtools.github.io/devtools-protocol/tot/Animation) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("Animation", """""", connection) {
+class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("Animation", """""", connection) {
     /**
      * Disables animation domain notifications.
      *
      * @link Protocol [Animation#disable](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("Animation.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables animation domain notifications.
@@ -25,7 +25,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#enable](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("Animation.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Returns the current time of the an animation.
@@ -33,7 +33,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#getCurrentTime](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-getCurrentTime) method documentation.
      */
     
-    fun getCurrentTime(input: GetCurrentTimeRequest) = connection.request("Animation.getCurrentTime", Json.encodeToJsonElement(GetCurrentTimeRequest.serializer(), input), GetCurrentTimeResponse.serializer())
+    fun getCurrentTime(input: GetCurrentTimeRequest): io.reactivex.rxjava3.core.Single<GetCurrentTimeResponse> = connection.request("Animation.getCurrentTime", Json.encodeToJsonElement(GetCurrentTimeRequest.serializer(), input), GetCurrentTimeResponse.serializer())
 
     /**
      * Gets the playback rate of the document timeline.
@@ -41,7 +41,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#getPlaybackRate](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-getPlaybackRate) method documentation.
      */
     
-    fun getPlaybackRate() = connection.request("Animation.getPlaybackRate", null, GetPlaybackRateResponse.serializer())
+    fun getPlaybackRate(): io.reactivex.rxjava3.core.Single<GetPlaybackRateResponse> = connection.request("Animation.getPlaybackRate", null, GetPlaybackRateResponse.serializer())
 
     /**
      * Releases a set of animations to no longer be manipulated.
@@ -49,7 +49,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#releaseAnimations](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-releaseAnimations) method documentation.
      */
     
-    fun releaseAnimations(input: ReleaseAnimationsRequest) = connection.request("Animation.releaseAnimations", Json.encodeToJsonElement(ReleaseAnimationsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun releaseAnimations(input: ReleaseAnimationsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.releaseAnimations", Json.encodeToJsonElement(ReleaseAnimationsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Gets the remote object of the Animation.
@@ -57,7 +57,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#resolveAnimation](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-resolveAnimation) method documentation.
      */
     
-    fun resolveAnimation(input: ResolveAnimationRequest) = connection.request("Animation.resolveAnimation", Json.encodeToJsonElement(ResolveAnimationRequest.serializer(), input), ResolveAnimationResponse.serializer())
+    fun resolveAnimation(input: ResolveAnimationRequest): io.reactivex.rxjava3.core.Single<ResolveAnimationResponse> = connection.request("Animation.resolveAnimation", Json.encodeToJsonElement(ResolveAnimationRequest.serializer(), input), ResolveAnimationResponse.serializer())
 
     /**
      * Seek a set of animations to a particular time within each animation.
@@ -65,7 +65,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#seekAnimations](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-seekAnimations) method documentation.
      */
     
-    fun seekAnimations(input: SeekAnimationsRequest) = connection.request("Animation.seekAnimations", Json.encodeToJsonElement(SeekAnimationsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun seekAnimations(input: SeekAnimationsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.seekAnimations", Json.encodeToJsonElement(SeekAnimationsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets the paused state of a set of animations.
@@ -73,7 +73,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#setPaused](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setPaused) method documentation.
      */
     
-    fun setPaused(input: SetPausedRequest) = connection.request("Animation.setPaused", Json.encodeToJsonElement(SetPausedRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setPaused(input: SetPausedRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.setPaused", Json.encodeToJsonElement(SetPausedRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets the playback rate of the document timeline.
@@ -81,7 +81,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#setPlaybackRate](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setPlaybackRate) method documentation.
      */
     
-    fun setPlaybackRate(input: SetPlaybackRateRequest) = connection.request("Animation.setPlaybackRate", Json.encodeToJsonElement(SetPlaybackRateRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setPlaybackRate(input: SetPlaybackRateRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.setPlaybackRate", Json.encodeToJsonElement(SetPlaybackRateRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Sets the timing of an animation node.
@@ -89,7 +89,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#setTiming](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setTiming) method documentation.
      */
     
-    fun setTiming(input: SetTimingRequest) = connection.request("Animation.setTiming", Json.encodeToJsonElement(SetTimingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setTiming(input: SetTimingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.setTiming", Json.encodeToJsonElement(SetTimingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Event for when an animation has been cancelled.
@@ -109,7 +109,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.runtime.RuntimeDomain(connection),
             pl.wendigo.chrome.api.dom.DOMDomain(connection),
@@ -122,7 +122,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
  *
  * Returns the current time of the an animation.
  * @link [Animation#getCurrentTime](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-getCurrentTime) method documentation.
- * @see [AnimationOperations.getCurrentTime]
+ * @see [AnimationDomain.getCurrentTime]
  */
 @kotlinx.serialization.Serializable
 data class GetCurrentTimeRequest(
@@ -139,7 +139,7 @@ data class GetCurrentTimeRequest(
  *
   
  * @link [Animation#getCurrentTime](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-getCurrentTime) method documentation.
- * @see [AnimationOperations.getCurrentTime]
+ * @see [AnimationDomain.getCurrentTime]
  */
 @kotlinx.serialization.Serializable
 data class GetCurrentTimeResponse(
@@ -156,7 +156,7 @@ data class GetCurrentTimeResponse(
  *
   
  * @link [Animation#getPlaybackRate](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-getPlaybackRate) method documentation.
- * @see [AnimationOperations.getPlaybackRate]
+ * @see [AnimationDomain.getPlaybackRate]
  */
 @kotlinx.serialization.Serializable
 data class GetPlaybackRateResponse(
@@ -172,7 +172,7 @@ data class GetPlaybackRateResponse(
  *
  * Releases a set of animations to no longer be manipulated.
  * @link [Animation#releaseAnimations](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-releaseAnimations) method documentation.
- * @see [AnimationOperations.releaseAnimations]
+ * @see [AnimationDomain.releaseAnimations]
  */
 @kotlinx.serialization.Serializable
 data class ReleaseAnimationsRequest(
@@ -188,7 +188,7 @@ data class ReleaseAnimationsRequest(
  *
  * Gets the remote object of the Animation.
  * @link [Animation#resolveAnimation](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-resolveAnimation) method documentation.
- * @see [AnimationOperations.resolveAnimation]
+ * @see [AnimationDomain.resolveAnimation]
  */
 @kotlinx.serialization.Serializable
 data class ResolveAnimationRequest(
@@ -205,7 +205,7 @@ data class ResolveAnimationRequest(
  *
   
  * @link [Animation#resolveAnimation](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-resolveAnimation) method documentation.
- * @see [AnimationOperations.resolveAnimation]
+ * @see [AnimationDomain.resolveAnimation]
  */
 @kotlinx.serialization.Serializable
 data class ResolveAnimationResponse(
@@ -221,7 +221,7 @@ data class ResolveAnimationResponse(
  *
  * Seek a set of animations to a particular time within each animation.
  * @link [Animation#seekAnimations](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-seekAnimations) method documentation.
- * @see [AnimationOperations.seekAnimations]
+ * @see [AnimationDomain.seekAnimations]
  */
 @kotlinx.serialization.Serializable
 data class SeekAnimationsRequest(
@@ -242,7 +242,7 @@ data class SeekAnimationsRequest(
  *
  * Sets the paused state of a set of animations.
  * @link [Animation#setPaused](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setPaused) method documentation.
- * @see [AnimationOperations.setPaused]
+ * @see [AnimationDomain.setPaused]
  */
 @kotlinx.serialization.Serializable
 data class SetPausedRequest(
@@ -263,7 +263,7 @@ data class SetPausedRequest(
  *
  * Sets the playback rate of the document timeline.
  * @link [Animation#setPlaybackRate](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setPlaybackRate) method documentation.
- * @see [AnimationOperations.setPlaybackRate]
+ * @see [AnimationDomain.setPlaybackRate]
  */
 @kotlinx.serialization.Serializable
 data class SetPlaybackRateRequest(
@@ -279,7 +279,7 @@ data class SetPlaybackRateRequest(
  *
  * Sets the timing of an animation node.
  * @link [Animation#setTiming](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setTiming) method documentation.
- * @see [AnimationOperations.setTiming]
+ * @see [AnimationDomain.setTiming]
  */
 @kotlinx.serialization.Serializable
 data class SetTimingRequest(

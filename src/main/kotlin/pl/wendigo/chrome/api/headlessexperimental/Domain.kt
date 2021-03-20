@@ -9,8 +9,8 @@ import kotlinx.serialization.json.Json
  * @link Protocol [HeadlessExperimental](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class HeadlessExperimentalDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
-    pl.wendigo.chrome.api.Domain("HeadlessExperimental", """This domain provides experimental commands only supported in headless mode.""", connection) {
+class HeadlessExperimentalDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+    pl.wendigo.chrome.protocol.Domain("HeadlessExperimental", """This domain provides experimental commands only supported in headless mode.""", connection) {
     /**
      * Sends a BeginFrame to the target and returns when the frame was completed. Optionally captures a
 screenshot from the resulting frame. Requires that the target was created with enabled
@@ -20,7 +20,7 @@ https://goo.gl/3zHXhB for more background.
      * @link Protocol [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
      */
     
-    fun beginFrame(input: BeginFrameRequest) = connection.request("HeadlessExperimental.beginFrame", Json.encodeToJsonElement(BeginFrameRequest.serializer(), input), BeginFrameResponse.serializer())
+    fun beginFrame(input: BeginFrameRequest): io.reactivex.rxjava3.core.Single<BeginFrameResponse> = connection.request("HeadlessExperimental.beginFrame", Json.encodeToJsonElement(BeginFrameRequest.serializer(), input), BeginFrameResponse.serializer())
 
     /**
      * Disables headless events for the target.
@@ -28,7 +28,7 @@ https://goo.gl/3zHXhB for more background.
      * @link Protocol [HeadlessExperimental#disable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-disable) method documentation.
      */
     
-    fun disable() = connection.request("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      * Enables headless events for the target.
@@ -36,7 +36,7 @@ https://goo.gl/3zHXhB for more background.
      * @link Protocol [HeadlessExperimental#enable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-enable) method documentation.
      */
     
-    fun enable() = connection.request("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
 
     /**
      *  Issued when the target starts or stops needing BeginFrames.
@@ -48,7 +48,7 @@ beginFrame to detect whether the frames were suppressed.
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    override fun getDependencies(): List<pl.wendigo.chrome.api.Domain> {
+    override fun getDependencies(): List<pl.wendigo.chrome.protocol.Domain> {
         return arrayListOf(
             pl.wendigo.chrome.api.page.PageDomain(connection),
             pl.wendigo.chrome.api.runtime.RuntimeDomain(connection),
@@ -64,7 +64,7 @@ screenshot from the resulting frame. Requires that the target was created with e
 BeginFrameControl. Designed for use with --run-all-compositor-stages-before-draw, see also
 https://goo.gl/3zHXhB for more background.
  * @link [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
- * @see [HeadlessExperimentalOperations.beginFrame]
+ * @see [HeadlessExperimentalDomain.beginFrame]
  */
 @kotlinx.serialization.Serializable
 data class BeginFrameRequest(
@@ -105,7 +105,7 @@ https://goo.gl/3zHXhB for more background.
  *
   
  * @link [HeadlessExperimental#beginFrame](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-beginFrame) method documentation.
- * @see [HeadlessExperimentalOperations.beginFrame]
+ * @see [HeadlessExperimentalDomain.beginFrame]
  */
 @kotlinx.serialization.Serializable
 data class BeginFrameResponse(

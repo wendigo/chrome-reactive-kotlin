@@ -17,48 +17,43 @@ import java.io.Closeable
 import java.io.EOFException
 
 /**
- * DebuggerFramesStream represents connection to remote websocket endpoint of the DevTools Protocol
+ * DebuggerFramesStream represents connection to remote WebSocket endpoint of the DevTools Protocol
  * (either inspectable page debugger url http://localhost:9222/json or browser debugger url http://localhost:9222/json/version)
+ *
+ * @param webSocketUri WS endpoint to connect to
+ * @param framesBufferSize frames buffer size (how many frames will be replayed prior to subscribing to stream)
+ * @param mapper mapper that will serialize/deserialize frames understand by protocol
+ * @param webSocketClient client for making WebSocket connection.
  */
-class DebuggerFramesStream : WebSocketListener, Closeable, AutoCloseable {
+class DebuggerFramesStream(webSocketUri: String, framesBufferSize: Int, private val mapper: FrameMapper, webSocketClient: OkHttpClient) :
+    WebSocketListener(), Closeable, AutoCloseable {
     private val messages: Subject<ResponseFrame>
-    private val mapper: FrameMapper
     private val connection: WebSocket
-    private val client: OkHttpClient
+    private val client: OkHttpClient = webSocketClient
 
-    /**
-     * Creates new WebSocketFramesStream for given web webSocketUri, buffer size, frame mapper, and ws client
-     *
-     * @param webSocketUri WS endpoint to connect to
-     * @param framesBufferSize frames buffer size (how many frames will be replayed prior to subscribing to stream)
-     * @param mapper mapper that will serialize/deserialize frames understand by protocol
-     * @param webSocketClient client for making websocket connection.
-     */
-    constructor(webSocketUri: String, framesBufferSize: Int, mapper: FrameMapper, webSocketClient: OkHttpClient) : super() {
+    init {
         this.messages = ReplaySubject.create(framesBufferSize)
-        this.mapper = mapper
-        this.client = webSocketClient
         this.connection = webSocketClient.newWebSocket(Request.Builder().url(webSocketUri).build(), this)
     }
 
     /**
-     * onMessage is called when new frame arrives on websocket.
+     * onMessage is called when new frame arrives on WebSocket.
      */
     override fun onMessage(webSocket: WebSocket, text: String) {
         messages.onNext(mapper.deserializeFrame(text))
     }
 
     /**
-     * onClosed is called when websocket is being closed.
+     * onClosed is called when WebSocket is being closed.
      */
-    override fun onClosed(webSocket: WebSocket, code: Int, reason: String) = closeSilently()
+    override fun onClosed(webSocket: WebSocket, code: Int, reason: String): Unit = closeSilently()
 
     /**
-     * onFailure is called when websocket protocol error occurs.
+     * onFailure is called when WebSocket protocol error occurs.
      */
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
         if (t !is EOFException) {
-            logger.warn("Caught websocket exception: $t")
+            logger.warn("Caught WebSocket exception: $t")
         }
     }
 
@@ -75,31 +70,31 @@ class DebuggerFramesStream : WebSocketListener, Closeable, AutoCloseable {
     }
 
     /**
-     * Sends frame over the connection.
+     * Sends frame over the WebSocket connection.
      */
     fun send(frame: RequestFrame): Single<Boolean> {
         return Single.just(connection.send(mapper.serialize(frame)))
     }
 
     /**
-     * Returns all frames that represent events from connection.
+     * Returns all frames that represent events from WebSocket connection.
      */
     fun eventFrames(): Flowable<EventResponseFrame> = frames().ofType(EventResponseFrame::class.java)
 
     /**
-     * Returns all frames received from connection.
+     * Returns all frames received from WebSocket connection.
      */
     fun frames(): Flowable<ResponseFrame> = messages.toFlowable(BackpressureStrategy.BUFFER)
 
     /**
-     * Closes stream
+     * Closes WebSocket connection.
      */
     override fun close() {
         try {
             connection.close(1000, "Goodbye!")
             client.connectionPool.evictAll()
         } catch (e: Exception) {
-            logger.warn("Caught exception while closing websocket stream: ${e.message}")
+            logger.warn("Caught exception while closing WebSocket stream: ${e.message}")
         }
 
         try {
