@@ -14,7 +14,7 @@ import {{Package}}.protocol.DebuggerWebsocketConnection
  * @link [https://github.com/chromedevtools/devtools-protocol](https://github.com/chromedevtools/devtools-protocol)
  * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
-open class ProtocolDomains internal constructor(internal val connection: DebuggerWebsocketConnection): Closeable {
+open class ProtocolDomains internal constructor(internal val connection: DebuggerWebsocketConnection): Closeable, AutoCloseable {
     {{#each Protocol.Domains}}
     /**
      * {{#if Description}}{{{Description}}}{{else}}Lazily returns [{{Name}}Domain] domain object allowing to invoke methods on [{{Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Name}}) protocol domain.{{/if}}
@@ -42,6 +42,13 @@ open class ProtocolDomains internal constructor(internal val connection: Debugge
      */
     override fun close() {
         return connection.close()
+    }
+
+    /**
+     * Returns protocol version.
+     */
+    fun protocolVersion(): String {
+        return "{{ Protocol.Version.Major }}.{{ Protocol.Version.Minor }}"
     }
 
     /**

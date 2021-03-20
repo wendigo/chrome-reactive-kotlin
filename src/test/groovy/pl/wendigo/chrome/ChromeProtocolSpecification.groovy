@@ -26,6 +26,15 @@ class ChromeProtocolSpecification
         chrome.browserInfo().protocolVersion == "1.3"
     }
 
+    def "should match protocol version"()
+    {
+        given:
+        def chrome = getBrowser()
+
+        expect:
+        chrome.browserInfo().protocolVersion == chrome.protocolVersion()
+    }
+
     def "should capture target events"()
     {
         given:

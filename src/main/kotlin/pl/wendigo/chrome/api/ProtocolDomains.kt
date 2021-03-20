@@ -56,7 +56,7 @@ import java.io.Closeable
  * @link [https://github.com/chromedevtools/devtools-protocol](https://github.com/chromedevtools/devtools-protocol)
  * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
-open class ProtocolDomains internal constructor(internal val connection: DebuggerWebsocketConnection) : Closeable {
+open class ProtocolDomains internal constructor(internal val connection: DebuggerWebsocketConnection) : Closeable, AutoCloseable {
     /**
      * This domain is deprecated - use Runtime or Log instead.
      *
@@ -579,6 +579,13 @@ API.
      */
     override fun close() {
         return connection.close()
+    }
+
+    /**
+     * Returns protocol version.
+     */
+    fun protocolVersion(): String {
+        return "1.3"
     }
 
     /**
