@@ -7,7 +7,6 @@ plugins {
     id("signing")
     id("groovy")
     id("pl.allegro.tech.build.axion-release") version "1.12.1"
-    id("io.codearte.nexus-staging") version "0.30.0"
     id("com.github.ben-manes.versions") version "0.38.0"
     id("org.jmailen.kotlinter") version "3.3.0"
     id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
@@ -156,7 +155,7 @@ publishing {
 
     repositories {
         maven {
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            url = uri("https://oss.sonatype.org/service/local/")
 
             credentials {
                 username = project.ext["nexusUsername"] as String
@@ -166,26 +165,17 @@ publishing {
     }
 }
 
-signing {
-    setRequired({
-        (project.extra["isReleaseVersion"] as Boolean) && gradle.taskGraph.hasTask("publish")
-    })
-
-    val signingKey: String by project
-    val signingPassword: String by project
-
-    useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(publishing.publications.getByName("mavenJava"))
-}
-
-nexusStaging {
-    packageGroup = "pl.wendigo"
-    numberOfRetries = 3
-    delayBetweenRetriesInMillis = 100000
-    username = project.ext["nexusUsername"] as String
-    password = project.ext["nexusPassword"] as String
-    stagingProfileId = "5028463f095590"
-}
+//signing {
+//    setRequired({
+//        (project.extra["isReleaseVersion"] as Boolean) && gradle.taskGraph.hasTask("publish")
+//    })
+//
+//    val signingKey: String by project
+//    val signingPassword: String by project
+//
+//    useInMemoryPgpKeys(signingKey, signingPassword)
+//    sign(publishing.publications.getByName("mavenJava"))
+//}
 
 tasks.named<Wrapper>("wrapper") {
     version = "6.8.3"
@@ -201,7 +191,13 @@ kotlinter {
 }
 
 nexusPublishing {
+    packageGroup.set("pl.wendigo")
     repositories {
-        sonatype()
+        sonatype {
+            username.set(project.ext["nexusUsername"] as String)
+            password.set(project.ext["nexusPassword"] as String)
+            stagingProfileId.set("5028463f095590")
+
+        }
     }
 }
