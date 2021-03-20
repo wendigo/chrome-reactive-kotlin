@@ -35,12 +35,14 @@ ext {
 
 scmVersion {
     tag.prefix = "chrome-reactive-kotlin"
+    repository.customUsername = project.ext["githubToken"] as String
+    repository.pushTagsOnly = true
 }
 
 group = "pl.wendigo"
 version = scmVersion.version
+
 extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
-scmVersion.repository.customUsername = project.ext["githubToken"] as String
 
 repositories {
     mavenCentral()
