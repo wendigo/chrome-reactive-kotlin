@@ -14,7 +14,7 @@ corresponding document elements as their child nodes.</p>
  * @link Protocol [DOM](https://chromedevtools.github.io/devtools-protocol/tot/DOM) domain documentation.
  */
 
-class DOMDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class DOMDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain(
         "DOM",
         """This domain exposes DOM read/write operations. Each DOM Node is represented with its mirror object

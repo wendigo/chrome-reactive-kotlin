@@ -2,7 +2,7 @@ package pl.wendigo.chrome.targets
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import pl.wendigo.chrome.api.DevToolsProtocol
+import pl.wendigo.chrome.api.ProtocolDomains
 import pl.wendigo.chrome.api.target.AttachToTargetRequest
 import pl.wendigo.chrome.api.target.CloseTargetRequest
 import pl.wendigo.chrome.api.target.CreateBrowserContextRequest
@@ -13,7 +13,7 @@ import pl.wendigo.chrome.api.target.SetDiscoverTargetsRequest
 import pl.wendigo.chrome.api.target.TargetID
 import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.await
-import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
+import pl.wendigo.chrome.protocol.DebuggerWebsocketConnection
 import java.io.Closeable
 
 /**
@@ -23,7 +23,7 @@ class Manager(
     private val browserDebuggerAddress: String,
     private val multiplexConnections: Boolean,
     private val eventsBufferSize: Int,
-    private val api: DevToolsProtocol
+    private val domains: ProtocolDomains
 ) : Closeable, AutoCloseable {
     private val targets: MutableMap<TargetID, TargetInfo> = mutableMapOf()
 
@@ -31,34 +31,34 @@ class Manager(
      * Closes underlying connection to debugger.
      */
     override fun close() {
-        api.close()
+        domains.close()
     }
 
     init {
-        api.Target.targetCreated().filter { it.targetInfo.isPage() }.subscribe {
+        domains.Target.targetCreated().filter { it.targetInfo.isPage() }.subscribe {
             targets[it.targetInfo.targetId] = it.targetInfo
             logger.debug("Target {} was created", it.targetInfo)
         }
 
-        api.Target.targetDestroyed().subscribe {
+        domains.Target.targetDestroyed().subscribe {
             if (targets.remove(it.targetId) != null) {
                 logger.debug("Target {} was destroyed", it.targetId)
             }
         }
 
-        api.Target.targetInfoChanged().filter { it.targetInfo.isPage() }.subscribe {
+        domains.Target.targetInfoChanged().filter { it.targetInfo.isPage() }.subscribe {
             targets[it.targetInfo.targetId] = it.targetInfo
             logger.debug("Target {} was changed", it.targetInfo)
         }
 
-        api.Target.targetCrashed().subscribe {
+        domains.Target.targetCrashed().subscribe {
             if (targets.remove(it.targetId) != null) {
                 logger.debug("Target {} has crashed", it.targetId)
             }
         }
 
         await {
-            api.Target.setDiscoverTargets(SetDiscoverTargetsRequest(discover = true))
+            domains.Target.setDiscoverTargets(SetDiscoverTargetsRequest(discover = true))
         }
     }
 
@@ -73,14 +73,14 @@ class Manager(
         val browserContextID = target.info().browserContextId
 
         await {
-            api.Target.closeTarget(CloseTargetRequest(target.session.targetId))
+            domains.Target.closeTarget(CloseTargetRequest(target.session.targetId))
         }.run {
             logger.info("Closed {}", target.session)
         }
 
         if (!browserContextID.isNullOrEmpty()) {
             await {
-                api.Target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
+                domains.Target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
             }.run {
                 logger.info("Destroyed browser context {}", browserContextID)
             }
@@ -101,13 +101,13 @@ class Manager(
 
         val browserContextId = when (incognito) {
             true -> await {
-                api.Target.createBrowserContext(CreateBrowserContextRequest(disposeOnDetach = true))
+                domains.Target.createBrowserContext(CreateBrowserContextRequest(disposeOnDetach = true))
             }.browserContextId
             false -> null
         }
 
         val (targetId) = await {
-            api.Target.createTarget(
+            domains.Target.createTarget(
                 CreateTargetRequest(
                     url = url,
                     browserContextId = browserContextId,
@@ -119,7 +119,7 @@ class Manager(
         }
 
         val targetInfo = await {
-            api.Target.getTargetInfo(GetTargetInfoRequest(targetId = targetId))
+            domains.Target.getTargetInfo(GetTargetInfoRequest(targetId = targetId))
         }.targetInfo
 
         logger.info("Created new target [$targetInfo]")
@@ -143,7 +143,7 @@ class Manager(
     fun attach(target: TargetInfo): Target {
         val sessionId = when (multiplexConnections) {
             true -> await {
-                api.Target.attachToTarget(
+                domains.Target.attachToTarget(
                     AttachToTargetRequest(
                         targetId = target.targetId,
                         flatten = true
@@ -171,10 +171,10 @@ class Manager(
         )
     }
 
-    private fun openConnection(target: TargetInfo, sessionId: String): ChromeDebuggerConnection {
+    private fun openConnection(target: TargetInfo, sessionId: String): DebuggerWebsocketConnection {
         return when (multiplexConnections) {
-            true -> api.connection.cloneForSessionId(sessionId)
-            false -> ChromeDebuggerConnection.open(targetWsAddress(target.targetId), eventsBufferSize)
+            true -> domains.connection.cloneForSessionId(sessionId)
+            false -> DebuggerWebsocketConnection.open(targetWsAddress(target.targetId), eventsBufferSize)
         }
     }
 

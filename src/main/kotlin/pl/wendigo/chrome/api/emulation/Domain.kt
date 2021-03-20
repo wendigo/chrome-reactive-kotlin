@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Emulation](https://chromedevtools.github.io/devtools-protocol/tot/Emulation) domain documentation.
  */
 
-class EmulationDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class EmulationDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Emulation", """This domain emulates different environments for the page.""", connection) {
     /**
      * Tells whether emulation is supported.

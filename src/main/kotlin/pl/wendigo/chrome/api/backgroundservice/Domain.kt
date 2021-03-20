@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [BackgroundService](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class BackgroundServiceDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class BackgroundServiceDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("BackgroundService", """Defines events for background web platform features.""", connection) {
     /**
      * Enables event updates for the service.

@@ -12,7 +12,7 @@ other objects in their object group.
  * @link Protocol [Runtime](https://chromedevtools.github.io/devtools-protocol/tot/Runtime) domain documentation.
  */
 
-class RuntimeDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class RuntimeDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain(
         "Runtime",
         """Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects.

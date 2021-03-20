@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [IndexedDB](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("IndexedDB", """""", connection) {
     /**
      * Clears all entries from an object store.

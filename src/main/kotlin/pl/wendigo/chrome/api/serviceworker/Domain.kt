@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [ServiceWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("ServiceWorker", """""", connection) {
     /**
      *

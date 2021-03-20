@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Target](https://chromedevtools.github.io/devtools-protocol/tot/Target) domain documentation.
  */
 
-class TargetDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class TargetDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Target", """Supports additional targets discovery and allows to attach to them.""", connection) {
     /**
      * Activates (focuses) the target.

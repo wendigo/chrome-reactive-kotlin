@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Animation](https://chromedevtools.github.io/devtools-protocol/tot/Animation) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Animation", """""", connection) {
     /**
      * Disables animation domain notifications.

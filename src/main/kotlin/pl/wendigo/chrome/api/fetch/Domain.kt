@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Fetch](https://chromedevtools.github.io/devtools-protocol/tot/Fetch) domain documentation.
  */
 
-class FetchDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class FetchDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Fetch", """A domain for letting clients substitute browser's network layer with client code.""", connection) {
     /**
      * Disables the fetch domain.

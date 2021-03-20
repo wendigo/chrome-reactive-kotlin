@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [HeapProfiler](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class HeapProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class HeapProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("HeapProfiler", """""", connection) {
     /**
      * Enables console to refer to the node with given id via $x (see Command Line API for more details

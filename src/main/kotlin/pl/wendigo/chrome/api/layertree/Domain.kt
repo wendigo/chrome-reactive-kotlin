@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [LayerTree](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("LayerTree", """""", connection) {
     /**
      * Provides the reasons why the given layer was composited.

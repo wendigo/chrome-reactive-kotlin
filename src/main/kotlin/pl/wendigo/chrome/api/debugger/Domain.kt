@@ -9,7 +9,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.
  * @link Protocol [Debugger](https://chromedevtools.github.io/devtools-protocol/tot/Debugger) domain documentation.
  */
 
-class DebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class DebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain(
         "Debugger",
         """Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing

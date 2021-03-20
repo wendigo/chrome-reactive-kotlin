@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Page](https://chromedevtools.github.io/devtools-protocol/tot/Page) domain documentation.
  */
 
-class PageDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class PageDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Page", """Actions and events related to the inspected page belong to the page domain.""", connection) {
     /**
      * Deprecated, please use addScriptToEvaluateOnNewDocument instead.

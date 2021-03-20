@@ -7,7 +7,7 @@ package pl.wendigo.chrome.api.inspector
  * @link Protocol [Inspector](https://chromedevtools.github.io/devtools-protocol/tot/Inspector) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class InspectorDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class InspectorDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Inspector", """""", connection) {
     /**
      * Disables inspector domain notifications.

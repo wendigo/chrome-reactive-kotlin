@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Memory](https://chromedevtools.github.io/devtools-protocol/tot/Memory) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Memory", """""", connection) {
     /**
      *

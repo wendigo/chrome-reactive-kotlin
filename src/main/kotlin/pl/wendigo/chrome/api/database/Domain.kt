@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Database](https://chromedevtools.github.io/devtools-protocol/tot/Database) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class DatabaseDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class DatabaseDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Database", """""", connection) {
     /**
      * Disables database tracking, prevents database events from being sent to the client.

@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Security](https://chromedevtools.github.io/devtools-protocol/tot/Security) domain documentation.
  */
 
-class SecurityDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class SecurityDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Security", """Security""", connection) {
     /**
      * Disables tracking security state changes.

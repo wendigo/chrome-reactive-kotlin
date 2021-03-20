@@ -1,10 +1,10 @@
 package pl.wendigo.chrome.targets
 
-import pl.wendigo.chrome.api.DevToolsProtocol
+import pl.wendigo.chrome.api.ProtocolDomains
 import pl.wendigo.chrome.api.target.GetTargetInfoRequest
 import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.await
-import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
+import pl.wendigo.chrome.protocol.DebuggerWebsocketConnection
 import java.io.Closeable
 
 /**
@@ -13,8 +13,8 @@ import java.io.Closeable
 class Target(
     private val manager: Manager,
     val session: SessionTarget,
-    connection: ChromeDebuggerConnection
-) : DevToolsProtocol(connection), AutoCloseable, Closeable {
+    connection: DebuggerWebsocketConnection
+) : ProtocolDomains(connection), AutoCloseable, Closeable {
     override fun toString(): String {
         return "Target(id='${session.targetId}', sessionId='${session.sessionId}, browserContextId='${session.browserContextID}')"
     }

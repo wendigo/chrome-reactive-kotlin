@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [DOMStorage](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class DOMStorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class DOMStorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("DOMStorage", """Query and modify DOM storage.""", connection) {
     /**
      *

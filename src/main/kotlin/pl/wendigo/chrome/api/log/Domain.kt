@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Log](https://chromedevtools.github.io/devtools-protocol/tot/Log) domain documentation.
  */
 
-class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Log", """Provides access to log entries.""", connection) {
     /**
      * Clears the log.

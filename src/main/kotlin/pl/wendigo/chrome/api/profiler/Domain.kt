@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Profiler](https://chromedevtools.github.io/devtools-protocol/tot/Profiler) domain documentation.
  */
 
-class ProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class ProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Profiler", """""", connection) {
     /**
      *

@@ -47,16 +47,16 @@ import pl.wendigo.chrome.api.tethering.TetheringDomain
 import pl.wendigo.chrome.api.tracing.TracingDomain
 import pl.wendigo.chrome.api.webaudio.WebAudioDomain
 import pl.wendigo.chrome.api.webauthn.WebAuthnDomain
-import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
+import pl.wendigo.chrome.protocol.DebuggerWebsocketConnection
 import java.io.Closeable
 
 /**
- * DevToolsProtocol represents all domains that can be controlled Chrome via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
+ * ProtocolDomains represents all domains that can be controlled Chrome via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
  *
  * @link [https://github.com/chromedevtools/devtools-protocol](https://github.com/chromedevtools/devtools-protocol)
  * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
-open class DevToolsProtocol internal constructor(internal val connection: ChromeDebuggerConnection) : Closeable {
+open class ProtocolDomains internal constructor(internal val connection: DebuggerWebsocketConnection) : Closeable {
     /**
      * This domain is deprecated - use Runtime or Log instead.
      *

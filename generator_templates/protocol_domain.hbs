@@ -11,7 +11,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [{{Domain.Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}}) domain documentation.
  */
 {{{ Domain.Annotations }}}
-class {{Domain.Name}}Domain internal constructor(connection : {{Package}}.protocol.ChromeDebuggerConnection)
+class {{Domain.Name}}Domain internal constructor(connection : {{Package}}.protocol.DebuggerWebsocketConnection)
 {{{ Domain.Interfaces }}}
 {
 {{#each Domain.Commands}}

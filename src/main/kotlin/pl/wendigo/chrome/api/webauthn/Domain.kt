@@ -10,7 +10,7 @@ API.
  * @link Protocol [WebAuthn](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class WebAuthnDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class WebAuthnDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain(
         "WebAuthn",
         """This domain allows configuring virtual authenticators to test the WebAuthn

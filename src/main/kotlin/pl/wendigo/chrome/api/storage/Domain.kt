@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Storage](https://chromedevtools.github.io/devtools-protocol/tot/Storage) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Storage", """""", connection) {
     /**
      * Clears storage for origin.

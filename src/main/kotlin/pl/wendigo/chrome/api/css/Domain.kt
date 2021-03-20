@@ -14,7 +14,7 @@ subsequently load the required stylesheet contents using the `getStyleSheet[Text
  * @link Protocol [CSS](https://chromedevtools.github.io/devtools-protocol/tot/CSS) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class CSSDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class CSSDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain(
         "CSS",
         """This domain exposes CSS read/write operations. All CSS objects (stylesheets, rules, and styles)

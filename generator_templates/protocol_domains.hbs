@@ -6,15 +6,15 @@ import io.reactivex.rxjava3.core.Flowable
 {{#each Protocol.Domains}}
 import {{Package}}.api.{{LowerName}}.{{Name}}Domain
 {{/each}}
-import {{Package}}.protocol.ChromeDebuggerConnection
+import {{Package}}.protocol.DebuggerWebsocketConnection
 
 /**
- * DevToolsProtocol represents all domains that can be controlled Chrome via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
+ * ProtocolDomains represents all domains that can be controlled Chrome via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
  *
  * @link [https://github.com/chromedevtools/devtools-protocol](https://github.com/chromedevtools/devtools-protocol)
  * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
-open class DevToolsProtocol internal constructor(internal val connection: ChromeDebuggerConnection): Closeable {
+open class ProtocolDomains internal constructor(internal val connection: DebuggerWebsocketConnection): Closeable {
     {{#each Protocol.Domains}}
     /**
      * {{#if Description}}{{{Description}}}{{else}}Lazily returns [{{Name}}Domain] domain object allowing to invoke methods on [{{Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Name}}) protocol domain.{{/if}}

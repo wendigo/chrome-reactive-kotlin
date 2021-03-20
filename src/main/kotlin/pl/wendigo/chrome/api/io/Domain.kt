@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [IO](https://chromedevtools.github.io/devtools-protocol/tot/IO) domain documentation.
  */
 
-class IODomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class IODomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("IO", """Input/Output operations for streams produced by DevTools.""", connection) {
     /**
      * Close the stream, discard any temporary backing storage.

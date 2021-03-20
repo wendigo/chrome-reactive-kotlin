@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Tracing](https://chromedevtools.github.io/devtools-protocol/tot/Tracing) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Tracing", """""", connection) {
     /**
      * Stop trace events collection.

@@ -7,7 +7,7 @@ package pl.wendigo.chrome.api.media
  * @link Protocol [Media](https://chromedevtools.github.io/devtools-protocol/tot/Media) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class MediaDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class MediaDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Media", """This domain allows detailed inspection of media elements""", connection) {
     /**
      * Enables the Media domain

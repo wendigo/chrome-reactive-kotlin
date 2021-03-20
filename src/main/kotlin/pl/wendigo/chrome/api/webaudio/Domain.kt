@@ -10,7 +10,7 @@ https://webaudio.github.io/web-audio-api/
  * @link Protocol [WebAudio](https://chromedevtools.github.io/devtools-protocol/tot/WebAudio) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class WebAudioDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class WebAudioDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain(
         "WebAudio",
         """This domain allows inspection of Web Audio API.

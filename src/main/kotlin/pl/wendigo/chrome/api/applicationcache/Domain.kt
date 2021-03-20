@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [ApplicationCache](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class ApplicationCacheDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class ApplicationCacheDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("ApplicationCache", """""", connection) {
     /**
      * Enables application cache domain notifications.

@@ -7,7 +7,7 @@ import pl.wendigo.chrome.protocol.Event
 open class Domain(
     private val name: String,
     private val description: String,
-    protected val connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection
+    protected val connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection
 ) {
     /**
      * Returns flowable capturing all domains events.

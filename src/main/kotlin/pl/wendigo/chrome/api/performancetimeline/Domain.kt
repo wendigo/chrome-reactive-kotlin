@@ -10,7 +10,7 @@ https://w3c.github.io/performance-timeline/#dom-performanceobserver.
  * @link Protocol [PerformanceTimeline](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class PerformanceTimelineDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class PerformanceTimelineDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain(
         "PerformanceTimeline",
         """Reporting of performance timeline events, as specified in

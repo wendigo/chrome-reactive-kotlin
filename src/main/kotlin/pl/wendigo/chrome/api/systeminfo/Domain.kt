@@ -7,7 +7,7 @@ package pl.wendigo.chrome.api.systeminfo
  * @link Protocol [SystemInfo](https://chromedevtools.github.io/devtools-protocol/tot/SystemInfo) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class SystemInfoDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class SystemInfoDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("SystemInfo", """The SystemInfo domain defines methods and events for querying low-level system information.""", connection) {
     /**
      * Returns information about the system.

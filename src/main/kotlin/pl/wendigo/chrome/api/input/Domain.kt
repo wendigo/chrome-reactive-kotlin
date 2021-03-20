@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Input](https://chromedevtools.github.io/devtools-protocol/tot/Input) domain documentation.
  */
 
-class InputDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class InputDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Input", """""", connection) {
     /**
      * Dispatches a key event to the page.

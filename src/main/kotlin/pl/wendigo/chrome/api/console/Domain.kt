@@ -6,7 +6,7 @@ package pl.wendigo.chrome.api.console
  * @link Protocol [Console](https://chromedevtools.github.io/devtools-protocol/tot/Console) domain documentation.
  */
 @Deprecated(level = DeprecationLevel.WARNING, message = "This domain is deprecated - use Runtime or Log instead.")
-class ConsoleDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class ConsoleDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Console", """This domain is deprecated - use Runtime or Log instead.""", connection) {
     /**
      * Does nothing.

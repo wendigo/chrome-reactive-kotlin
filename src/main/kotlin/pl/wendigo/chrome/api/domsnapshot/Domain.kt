@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [DOMSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class DOMSnapshotDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class DOMSnapshotDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("DOMSnapshot", """This domain facilitates obtaining document snapshots with DOM, layout, and style information.""", connection) {
     /**
      * Disables DOM snapshot agent for the given page.

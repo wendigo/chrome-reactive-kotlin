@@ -9,7 +9,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
  * @link Protocol [Network](https://chromedevtools.github.io/devtools-protocol/tot/Network) domain documentation.
  */
 
-class NetworkDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class NetworkDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain(
         "Network",
         """Network domain allows tracking network activities of the page. It exposes information about http,

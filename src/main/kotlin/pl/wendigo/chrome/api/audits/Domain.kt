@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Audits](https://chromedevtools.github.io/devtools-protocol/tot/Audits) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class AuditsDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class AuditsDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Audits", """Audits domain allows investigation of page violations and possible improvements.""", connection) {
     /**
      * Returns the response body and size if it were re-encoded with the specified settings. Only

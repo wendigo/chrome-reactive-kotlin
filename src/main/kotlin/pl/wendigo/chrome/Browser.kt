@@ -8,9 +8,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import pl.wendigo.chrome.api.DevToolsProtocol
+import pl.wendigo.chrome.api.ProtocolDomains
 import pl.wendigo.chrome.api.target.TargetInfo
-import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
+import pl.wendigo.chrome.protocol.DebuggerWebsocketConnection
 import pl.wendigo.chrome.targets.Manager
 import pl.wendigo.chrome.targets.Target
 import java.io.Closeable
@@ -22,9 +22,9 @@ import kotlin.math.max
 class Browser private constructor(
     private val browserInfo: BrowserInfo,
     private val options: Options,
-    connection: ChromeDebuggerConnection,
+    connection: DebuggerWebsocketConnection,
     private val manager: Manager
-) : DevToolsProtocol(connection), Closeable, AutoCloseable {
+) : ProtocolDomains(connection), Closeable, AutoCloseable {
     /**
      * Creates new target and opens new debugging session via debugging protocol.
      *
@@ -68,7 +68,7 @@ class Browser private constructor(
     override fun close() {
         try {
             manager.close()
-            ChromeDebuggerConnection.close()
+            DebuggerWebsocketConnection.close()
         } catch (e: Exception) {
             logger.info("Caught exception while closing Browser", e)
         }
@@ -87,8 +87,8 @@ class Browser private constructor(
          */
         private fun connect(chromeAddress: String = "localhost:9222", options: Options): Browser {
             val info = fetchInfo(chromeAddress)
-            val connection = ChromeDebuggerConnection.open(info.webSocketDebuggerUrl, options.eventsBufferSize)
-            val protocol = DevToolsProtocol(connection)
+            val connection = DebuggerWebsocketConnection.open(info.webSocketDebuggerUrl, options.eventsBufferSize)
+            val protocol = ProtocolDomains(connection)
 
             return Browser(
                 info,

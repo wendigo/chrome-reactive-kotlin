@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Overlay](https://chromedevtools.github.io/devtools-protocol/tot/Overlay) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class OverlayDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class OverlayDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Overlay", """This domain provides various functionality related to drawing atop the inspected page.""", connection) {
     /**
      * Disables domain notifications.

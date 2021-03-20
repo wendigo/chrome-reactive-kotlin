@@ -10,7 +10,7 @@ functionalities.
  * @link Protocol [Cast](https://chromedevtools.github.io/devtools-protocol/tot/Cast) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class CastDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class CastDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain(
         "Cast",
         """A domain for interacting with Cast, Presentation API, and Remote Playback API

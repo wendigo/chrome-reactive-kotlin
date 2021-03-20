@@ -11,7 +11,7 @@ import java.io.Closeable
 import java.util.concurrent.atomic.AtomicLong
 
 /**
- * ChromeDebuggerConnection represents connection to chrome's debugger via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
+ * DebuggerWebsocketConnection represents connection to chrome's debugger via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
  *
  * It depends on [DebuggerFramesStream] which is responsible for providing stream of protocol frames (both events and responses) and allows for sending requests.
  *
@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicLong
  * @see DebuggerFramesStream
  * @see FrameMapper
  */
-class ChromeDebuggerConnection constructor(
+class DebuggerWebsocketConnection constructor(
     private val frames: DebuggerFramesStream,
     private val eventMapper: EventMapper = EventMapper(),
     private val sessionId: SessionID? = null
@@ -77,19 +77,19 @@ class ChromeDebuggerConnection constructor(
     /**
      * Reuse existing debugger connection but for new sessionID sharing underlying websocket connection.
      */
-    fun cloneForSessionId(sessionID: SessionID) = ChromeDebuggerConnection(
+    fun cloneForSessionId(sessionID: SessionID) = DebuggerWebsocketConnection(
         frames,
         eventMapper,
         sessionID
     )
 
-    companion object Factory: AutoCloseable {
+    companion object Factory : AutoCloseable {
         /**
          * Creates new ChromeDebuggerConnection session for given websocket uri and frames buffer size.
          */
         @JvmStatic
-        fun open(websocketUri: String, framesBufferSize: Int = 128): ChromeDebuggerConnection {
-            return ChromeDebuggerConnection(
+        fun open(websocketUri: String, framesBufferSize: Int = 128): DebuggerWebsocketConnection {
+            return DebuggerWebsocketConnection(
                 DebuggerFramesStream(websocketUri, framesBufferSize, frameMapper, client),
                 eventMapper
             )

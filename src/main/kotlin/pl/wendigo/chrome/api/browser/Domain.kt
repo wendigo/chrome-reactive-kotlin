@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Browser](https://chromedevtools.github.io/devtools-protocol/tot/Browser) domain documentation.
  */
 
-class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Browser", """The Browser domain defines methods and events for browser managing.""", connection) {
     /**
      * Set permission settings for given origin.

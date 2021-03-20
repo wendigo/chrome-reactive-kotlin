@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Performance](https://chromedevtools.github.io/devtools-protocol/tot/Performance) domain documentation.
  */
 
-class PerformanceDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class PerformanceDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Performance", """""", connection) {
     /**
      * Disable collecting and reporting metrics.

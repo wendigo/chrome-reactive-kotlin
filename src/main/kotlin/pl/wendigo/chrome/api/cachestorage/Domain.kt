@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [CacheStorage](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class CacheStorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class CacheStorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("CacheStorage", """""", connection) {
     /**
      * Deletes a cache.

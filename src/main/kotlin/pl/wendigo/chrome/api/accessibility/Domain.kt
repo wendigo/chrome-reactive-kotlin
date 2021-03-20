@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Accessibility](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class AccessibilityDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class AccessibilityDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Accessibility", """""", connection) {
     /**
      * Disables the accessibility domain.

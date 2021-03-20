@@ -9,7 +9,7 @@ execution will stop on these operations as if there was a regular breakpoint set
  * @link Protocol [DOMDebugger](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger) domain documentation.
  */
 
-class DOMDebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class DOMDebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain(
         "DOMDebugger",
         """DOM debugging allows setting breakpoints on particular DOM operations and events. JavaScript

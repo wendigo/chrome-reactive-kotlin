@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [HeadlessExperimental](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class HeadlessExperimentalDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class HeadlessExperimentalDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("HeadlessExperimental", """This domain provides experimental commands only supported in headless mode.""", connection) {
     /**
      * Sends a BeginFrame to the target and returns when the frame was completed. Optionally captures a

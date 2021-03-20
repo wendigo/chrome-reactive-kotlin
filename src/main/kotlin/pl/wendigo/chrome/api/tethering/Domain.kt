@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Tethering](https://chromedevtools.github.io/devtools-protocol/tot/Tethering) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class TetheringDomain internal constructor(connection: pl.wendigo.chrome.protocol.ChromeDebuggerConnection) :
+class TetheringDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebsocketConnection) :
     pl.wendigo.chrome.api.Domain("Tethering", """The Tethering domain defines methods and events for browser port binding.""", connection) {
     /**
      * Request browser port binding.

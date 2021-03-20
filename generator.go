@@ -512,7 +512,7 @@ func main() {
 
 	log.Println("Generating protocol class")
 
-	if err := generateAndWrite(kotlinFilename("api/DevToolsProtocol"), "protocol_class", struct {
+	if err := generateAndWrite(kotlinFilename("api/ProtocolDomains"), "protocol_domains", struct {
 		Protocol Protocol
 	}{
 		Protocol: *protocol,
@@ -522,7 +522,7 @@ func main() {
 
 	log.Println("Generating event serializers")
 
-	if err := generateAndWrite(kotlinFilename("api/EventSerializers"), "serializers", struct {
+	if err := generateAndWrite(kotlinFilename("api/EventSerializers"), "event_serializers", struct {
 		Events []EventMapping
 	}{
 		Events: protocol.EventMappings(),
@@ -543,7 +543,7 @@ func main() {
 
 		currentDomain = domain.Name
 
-		if err := generateAndWrite(kotlinFilename("api/"+domain.LowerName()+"/Domain"), "domain_class", struct {
+		if err := generateAndWrite(kotlinFilename("api/"+domain.LowerName()+"/Domain"), "protocol_domain", struct {
 			Domain Domain
 		}{
 			Domain: domain,
