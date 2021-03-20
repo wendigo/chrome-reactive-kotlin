@@ -12,7 +12,8 @@ import pl.wendigo.chrome.api.target.GetTargetInfoRequest
 import pl.wendigo.chrome.api.target.SetDiscoverTargetsRequest
 import pl.wendigo.chrome.api.target.TargetID
 import pl.wendigo.chrome.api.target.TargetInfo
-import pl.wendigo.chrome.await
+import pl.wendigo.chrome.sync
+import pl.wendigo.chrome.on
 import pl.wendigo.chrome.protocol.DebuggerWebsocketConnection
 import java.io.Closeable
 
@@ -35,31 +36,29 @@ class Manager(
     }
 
     init {
-        domains.Target.targetCreated().filter { it.targetInfo.isPage() }.subscribe {
+        on(domains.Target.targetCreated().filter { it.targetInfo.isPage() }) {
             targets[it.targetInfo.targetId] = it.targetInfo
             logger.debug("Target {} was created", it.targetInfo)
         }
 
-        domains.Target.targetDestroyed().subscribe {
+        on(domains.Target.targetDestroyed()) {
             if (targets.remove(it.targetId) != null) {
                 logger.debug("Target {} was destroyed", it.targetId)
             }
         }
 
-        domains.Target.targetInfoChanged().filter { it.targetInfo.isPage() }.subscribe {
+        on(domains.Target.targetInfoChanged().filter { it.targetInfo.isPage() }) {
             targets[it.targetInfo.targetId] = it.targetInfo
             logger.debug("Target {} was changed", it.targetInfo)
         }
 
-        domains.Target.targetCrashed().subscribe {
+        on(domains.Target.targetCrashed()) {
             if (targets.remove(it.targetId) != null) {
                 logger.debug("Target {} has crashed", it.targetId)
             }
         }
 
-        await {
-            domains.Target.setDiscoverTargets(SetDiscoverTargetsRequest(discover = true))
-        }
+        sync(domains.Target.setDiscoverTargets(SetDiscoverTargetsRequest(discover = true)))
     }
 
     /**
@@ -72,22 +71,18 @@ class Manager(
 
         val browserContextID = target.info().browserContextId
 
-        await {
-            domains.Target.closeTarget(CloseTargetRequest(target.session.targetId))
-        }.run {
+        sync(domains.Target.closeTarget(CloseTargetRequest(target.session.targetId))).run {
             logger.info("Closed {}", target.session)
         }
 
         if (!browserContextID.isNullOrEmpty()) {
-            await {
-                domains.Target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))
-            }.run {
+            sync(domains.Target.disposeBrowserContext(DisposeBrowserContextRequest(browserContextID))).run {
                 logger.info("Destroyed browser context {}", browserContextID)
             }
         }
 
         if (!multiplexConnections) {
-            target.release()
+            target.closeConnection()
         }
     }
 
@@ -100,27 +95,21 @@ class Manager(
         logger.info("Creating new target [url=$url, incognito=$incognito, viewport=[$width, $height]]")
 
         val browserContextId = when (incognito) {
-            true -> await {
-                domains.Target.createBrowserContext(CreateBrowserContextRequest(disposeOnDetach = true))
-            }.browserContextId
+            true -> sync(domains.Target.createBrowserContext(CreateBrowserContextRequest(disposeOnDetach = true))).browserContextId
             false -> null
         }
 
-        val (targetId) = await {
-            domains.Target.createTarget(
-                CreateTargetRequest(
-                    url = url,
-                    browserContextId = browserContextId,
-                    height = height,
-                    width = width,
-                    background = true
-                )
+        val (targetId) = sync(domains.Target.createTarget(
+            CreateTargetRequest(
+                url = url,
+                browserContextId = browserContextId,
+                height = height,
+                width = width,
+                background = true
             )
-        }
+        ))
 
-        val targetInfo = await {
-            domains.Target.getTargetInfo(GetTargetInfoRequest(targetId = targetId))
-        }.targetInfo
+        val targetInfo = sync(domains.Target.getTargetInfo(GetTargetInfoRequest(targetId = targetId))).targetInfo
 
         logger.info("Created new target [$targetInfo]")
 
@@ -142,14 +131,12 @@ class Manager(
      */
     fun attach(target: TargetInfo): Target {
         val sessionId = when (multiplexConnections) {
-            true -> await {
-                domains.Target.attachToTarget(
+            true -> sync(domains.Target.attachToTarget(
                     AttachToTargetRequest(
                         targetId = target.targetId,
                         flatten = true
                     )
-                )
-            }.sessionId
+                )).sessionId
 
             false -> ""
         }
