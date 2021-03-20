@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.testcontainers.utility.DockerImageName
 import pl.wendigo.chrome.api.ProtocolDomains
 import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.protocol.DebuggerWebSocketConnection
@@ -17,9 +18,11 @@ import java.io.Closeable
 import kotlin.math.max
 
 /**
- * Creates new browser that allows querying remote chrome instance for debugging sessions
+ * Creates new browser that allows querying remote Chrome instance for debugging sessions
+ *
+ * @sample pl.wendigo.chrome.samples.Containerized.main
  */
-class Browser private constructor(
+open class Browser internal constructor(
     private val browserInfo: BrowserInfo,
     private val options: Options,
     connection: DebuggerWebSocketConnection,
@@ -79,7 +82,6 @@ class Browser private constructor(
     }
 
     companion object {
-
         private val logger: Logger = LoggerFactory.getLogger(Browser::class.java)
 
         /**
@@ -106,7 +108,7 @@ class Browser private constructor(
         /**
          * Fetches browser info.
          */
-        private fun fetchInfo(chromeAddress: String): BrowserInfo {
+        internal fun fetchInfo(chromeAddress: String): BrowserInfo {
             val client = OkHttpClient.Builder().build()
             val info = client.newCall(Request.Builder().url("http://$chromeAddress/json/version").build()).execute()
 
@@ -124,16 +126,18 @@ class Browser private constructor(
      * [Builder] is responsible for setting options and defaults while creating new instance of [Browser].
      */
     class Builder {
-        private var address: String = "localhost:8222"
+        private var address: String = "localhost:9222"
         private var blankPage: String = "about:blank"
         private var eventsBufferSize: Int = 128
         private var viewportWidth: Int = 1024
         private var viewportHeight: Int = 768
         private var multiplexConnections: Boolean = false
         private var incognito: Boolean = true
+        private var dockerImage: String = "eu.gcr.io/zenika-hub/alpine-chrome:89"
+        private var runDockerImage: Boolean = false
 
         /**
-         * Sets browser debugger address (default: localhost:8222)
+         * Sets browser debugger address (default: localhost:9222)
          */
         fun withAddress(address: String): Builder = this.apply {
             this.address = address
@@ -170,14 +174,14 @@ class Browser private constructor(
         }
 
         /**
-         * Enables [Manager] to share single, underlying connection to debugger with multiple sessions (default: false)
+         * Enables [Manager] to share single, underlying WebSocket connection to debugger with multiple sessions (default: false)
          */
         fun multiplexConnections(enabled: Boolean): Builder = this.apply {
             this.multiplexConnections = enabled
         }
 
         /**
-         * Enables incognito mode by default while creating sessions (default: false)
+         * Enables incognito mode by default while creating sessions (default: true)
          *
          * Incognito mode uses BrowserContext to separate different targets from each other.
          */
@@ -186,19 +190,35 @@ class Browser private constructor(
         }
 
         /**
+         * Sets docker image name that will be used to create headless Chrome instance (default: eu.gcr.io/zenika-hub/alpine-chrome:89)
+         */
+        fun withDockerImage(dockerImage: String): Builder = this.apply {
+            this.dockerImage = dockerImage
+        }
+
+        /**
+         * Enabled creating headless Chrome instance when [Browser] is created (default: false)
+         */
+        fun runInDocker(enabled: Boolean): Builder = this.apply {
+            this.runDockerImage = enabled
+        }
+
+        private fun toOptions(): Options = Options(
+            eventsBufferSize = eventsBufferSize,
+            viewportHeight = viewportHeight,
+            viewportWidth = viewportWidth,
+            incognito = incognito,
+            blankPage = blankPage,
+            multiplexConnections = multiplexConnections
+        )
+
+        /**
          * Creates new instance of [Browser] with configuration passed to builder
          */
-        fun build(): Browser = connect(
-            address,
-            Options(
-                eventsBufferSize = eventsBufferSize,
-                viewportHeight = viewportHeight,
-                viewportWidth = viewportWidth,
-                incognito = incognito,
-                blankPage = blankPage,
-                multiplexConnections = multiplexConnections
-            )
-        )
+        fun build(): Browser = when (runDockerImage) {
+            true -> ContainerizedBrowser.connect(DockerImageName.parse(dockerImage), toOptions())
+            false -> connect(address, toOptions())
+        }
     }
 
     @Serializable
@@ -222,7 +242,7 @@ class Browser private constructor(
         val webSocketDebuggerUrl: String
     )
 
-    private data class Options(
+    internal data class Options(
         val eventsBufferSize: Int,
         val viewportWidth: Int,
         val viewportHeight: Int,

@@ -15,7 +15,7 @@ open class Domains internal constructor(private val protocolVersion: String, pro
     }
 
     /**
-     * Closes target.
+     * Closes underlying debugger WebSocket connection.
      */
     override fun close() {
         return connection.close()

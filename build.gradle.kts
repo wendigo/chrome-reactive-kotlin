@@ -90,14 +90,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("io.reactivex.rxjava3:rxjava:3.0.11")
     implementation("ch.qos.logback:logback-classic:1.2.3")
-
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
-
+    implementation("org.testcontainers:testcontainers:1.15.1")
     implementation("org.slf4j:slf4j-api:1.7.30")
 
     testImplementation("org.spockframework:spock-core:1.3-groovy-2.5")
     testImplementation("ch.qos.logback:logback-classic:1.2.3")
-    testImplementation("org.testcontainers:testcontainers:1.15.1")
     testImplementation("org.testcontainers:spock:1.15.1")
 }
 
@@ -121,12 +119,12 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
             reportUndocumented.set(true)
             skipDeprecated.set(false)
             skipEmptyPackages.set(true)
-            samples.from("samples/Basic.kt")
+            samples.from("src/samples/kotlin")
             includes.from("package.md", "domains.md")
 
             sourceLink {
                 localDirectory.set(file("./src/main/kotlin"))
-                remoteUrl.set(uri("https://github.com/wendigo/chrome-reactive-kotlin/tree/master/").toURL())
+                remoteUrl.set(uri("https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin").toURL())
                 remoteLineSuffix.set("#L")
             }
         }
@@ -137,6 +135,16 @@ tasks.named<Jar>("javadocJar") {
     archiveClassifier.set("javadoc")
     dependsOn("dokkaHtml")
     from("$buildDir/dokka")
+}
+
+sourceSets {
+    val samples by creating {
+        compileClasspath += sourceSets["main"].output
+        compileClasspath += sourceSets["main"].compileClasspath
+
+        runtimeClasspath += sourceSets["main"].output
+        runtimeClasspath += sourceSets["main"].runtimeClasspath
+    }
 }
 
 publishing {
