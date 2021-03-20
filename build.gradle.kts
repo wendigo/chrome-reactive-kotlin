@@ -1,6 +1,5 @@
 val kotlinVersion = "1.4.31"
 
-
 plugins {
     id("maven")
     id("maven-publish")
@@ -38,15 +37,16 @@ scmVersion {
     repository.customUsername = project.ext["githubToken"] as String
     repository.pushTagsOnly = true
 
-    val pattern = KotlinClosure2({ v: String, c: pl.allegro.tech.build.axion.release.domain.hooks.HookContext ->
-        "\\Q${v}\\E"
+    val pattern = KotlinClosure2({ currentVersion: String, c: pl.allegro.tech.build.axion.release.domain.hooks.HookContext ->
+        "\\Q${currentVersion}\\E"
     })
 
-    val replacement = { newVersion: String, context: pl.allegro.tech.build.axion.release.domain.hooks.HookContext -> {
+    val replacement = KotlinClosure2({ newVersion: String, c: pl.allegro.tech.build.axion.release.domain.hooks.HookContext ->
         newVersion
-    } }
+    })
 
     hooks.pre("fileUpdate", mapOf("file" to "README.md", "pattern" to pattern, "replacement" to replacement))
+
     hooks.pre("commit", KotlinClosure2({ version: String, s: pl.allegro.tech.build.axion.release.domain.scm.ScmPosition ->
         "Release version $version from branch ${s.branch}"
     }))
