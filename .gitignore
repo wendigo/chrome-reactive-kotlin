@@ -12,3 +12,4 @@ out
 *.pyc
 *.py
 *.pdl
+gradle.properties

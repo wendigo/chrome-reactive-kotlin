@@ -168,13 +168,10 @@ publishing {
 
 signing {
     setRequired({
-        (project.extra["isReleaseVersion"] as Boolean) && gradle.taskGraph.hasTask("publish")
+        (project.extra["isReleaseVersion"] as Boolean) && gradle.taskGraph.hasTask("publishToSonatype")
     })
 
-    val signingKey: String by project
-    val signingPassword: String by project
-
-    useInMemoryPgpKeys(signingKey, signingPassword)
+    useGpgCmd()
     sign(publishing.publications.getByName("mavenJava"))
 }
 
