@@ -5,13 +5,23 @@ on:
       - master
 jobs:
   build-and-deploy:
+    name: "Build and deploy docs to GH pages"
     runs-on: ubuntu-latest
     env:
       GRADLE_OPTS: "-Xmx8198m -XX:MaxPermSize=4096m -XX:+HeapDumpOnOutOfMemoryError"
-      GRADLE_FLAGS: " --no-daemon -i"
+      GRADLE_FLAGS: "--no-daemon -i"
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - name: Build docs
         run: ./gradlew clean dokkaHtml ${GRADLE_FLAGS}
       - name: Touch .nojekyll
