@@ -7,6 +7,7 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.JsonElement
 import okhttp3.OkHttpClient
 import pl.wendigo.chrome.api.target.SessionID
+import java.io.Closeable
 import java.util.concurrent.atomic.AtomicLong
 
 /**
@@ -23,13 +24,13 @@ class ChromeDebuggerConnection constructor(
     private val frames: DebuggerFramesStream,
     private val eventMapper: EventMapper = EventMapper(),
     private val sessionId: SessionID? = null
-) {
+) : Closeable, AutoCloseable {
     private val nextRequestId = AtomicLong(0)
 
     /**
      * Closes connection to remote debugger.
      */
-    fun close() {
+    override fun close() {
         frames.close()
     }
 
@@ -82,7 +83,7 @@ class ChromeDebuggerConnection constructor(
         sessionID
     )
 
-    companion object Factory {
+    companion object Factory: AutoCloseable {
         /**
          * Creates new ChromeDebuggerConnection session for given websocket uri and frames buffer size.
          */
@@ -106,7 +107,7 @@ class ChromeDebuggerConnection constructor(
             EventMapper()
         }
 
-        internal fun close() {
+        override fun close() {
             client.connectionPool.evictAll()
             client.dispatcher.executorService.shutdown()
         }

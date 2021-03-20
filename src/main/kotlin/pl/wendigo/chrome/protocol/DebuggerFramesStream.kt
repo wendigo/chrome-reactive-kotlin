@@ -13,13 +13,14 @@ import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 import org.slf4j.LoggerFactory
+import java.io.Closeable
 import java.io.EOFException
 
 /**
  * DebuggerFramesStream represents connection to remote websocket endpoint of the DevTools Protocol
  * (either inspectable page debugger url http://localhost:9222/json or browser debugger url http://localhost:9222/json/version)
  */
-class DebuggerFramesStream : WebSocketListener {
+class DebuggerFramesStream : WebSocketListener, Closeable, AutoCloseable {
     private val messages: Subject<ResponseFrame>
     private val mapper: FrameMapper
     private val connection: WebSocket
@@ -93,7 +94,7 @@ class DebuggerFramesStream : WebSocketListener {
     /**
      * Closes stream
      */
-    fun close() {
+    override fun close() {
         try {
             connection.close(1000, "Goodbye!")
             client.connectionPool.evictAll()

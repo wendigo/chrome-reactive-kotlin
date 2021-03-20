@@ -13,7 +13,6 @@ import spock.lang.Specification
 class ChromeProtocolSpecification
         extends Specification
 {
-
     @Shared
     public GenericContainer container = new ChromeHeadlessContainer(DockerImageName.parse("eu.gcr.io/zenika-hub/alpine-chrome:89"))
 
@@ -23,8 +22,8 @@ class ChromeProtocolSpecification
         def chrome = getBrowser()
 
         expect:
-        chrome.getInfo().browser == "HeadlessChrome/89.0.4389.72"
-        chrome.getInfo().protocolVersion == "1.3"
+        chrome.browserInfo().browser == "HeadlessChrome/89.0.4389.72"
+        chrome.browserInfo().protocolVersion == "1.3"
     }
 
     def "should capture target events"()
@@ -34,7 +33,7 @@ class ChromeProtocolSpecification
 
         when:
         def targetCreated = [] as List<TargetCreatedEvent>
-        chrome.targetCreated().subscribe(targetCreated.&add)
+        chrome.getTarget().targetCreated().subscribe(targetCreated.&add)
 
         def target = chrome.target()
 

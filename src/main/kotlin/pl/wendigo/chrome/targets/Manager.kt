@@ -1,6 +1,5 @@
 package pl.wendigo.chrome.targets
 
-import io.reactivex.rxjava3.core.Flowable
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.api.DevToolsProtocol
@@ -11,12 +10,8 @@ import pl.wendigo.chrome.api.target.CreateTargetRequest
 import pl.wendigo.chrome.api.target.DisposeBrowserContextRequest
 import pl.wendigo.chrome.api.target.GetTargetInfoRequest
 import pl.wendigo.chrome.api.target.SetDiscoverTargetsRequest
-import pl.wendigo.chrome.api.target.TargetCrashedEvent
-import pl.wendigo.chrome.api.target.TargetCreatedEvent
-import pl.wendigo.chrome.api.target.TargetDestroyedEvent
 import pl.wendigo.chrome.api.target.TargetID
 import pl.wendigo.chrome.api.target.TargetInfo
-import pl.wendigo.chrome.api.target.TargetInfoChangedEvent
 import pl.wendigo.chrome.await
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 import java.io.Closeable
@@ -27,8 +22,9 @@ import java.io.Closeable
 class Manager(
     private val browserDebuggerAddress: String,
     private val multiplexConnections: Boolean,
+    private val eventsBufferSize: Int,
     private val api: DevToolsProtocol
-) : Closeable {
+) : Closeable, AutoCloseable {
     private val targets: MutableMap<TargetID, TargetInfo> = mutableMapOf()
 
     /**
@@ -166,26 +162,6 @@ class Manager(
     }
 
     /**
-     * Returns Flowable of [TargetCrashedEvent]
-     */
-    fun targetCrashed(): Flowable<TargetCrashedEvent> = api.Target.targetCrashed()
-
-    /**
-     * Returns Flowable of [TargetCreatedEvent]
-     */
-    fun targetCreated(): Flowable<TargetCreatedEvent> = api.Target.targetCreated()
-
-    /**
-     * Returns Flowable of [TargetInfoChangedEvent]
-     */
-    fun targetInfoChanged(): Flowable<TargetInfoChangedEvent> = api.Target.targetInfoChanged()
-
-    /**
-     * Returns Flowable of [TargetDestroyedEvent]
-     */
-    fun targetDestroyed(): Flowable<TargetDestroyedEvent> = api.Target.targetDestroyed()
-
-    /**
      * Constructs target debugger address (if not using multiplexed connections).
      */
     private fun targetWsAddress(targetID: TargetID): String {
@@ -198,7 +174,7 @@ class Manager(
     private fun openConnection(target: TargetInfo, sessionId: String): ChromeDebuggerConnection {
         return when (multiplexConnections) {
             true -> api.connection.cloneForSessionId(sessionId)
-            false -> ChromeDebuggerConnection.open(targetWsAddress(target.targetId), 128)
+            false -> ChromeDebuggerConnection.open(targetWsAddress(target.targetId), eventsBufferSize)
         }
     }
 

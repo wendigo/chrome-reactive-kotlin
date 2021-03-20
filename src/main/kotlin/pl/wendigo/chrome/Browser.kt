@@ -1,6 +1,5 @@
 package pl.wendigo.chrome
 
-import io.reactivex.rxjava3.core.Flowable
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
@@ -10,11 +9,7 @@ import okhttp3.Request
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import pl.wendigo.chrome.api.DevToolsProtocol
-import pl.wendigo.chrome.api.target.TargetCrashedEvent
-import pl.wendigo.chrome.api.target.TargetCreatedEvent
-import pl.wendigo.chrome.api.target.TargetDestroyedEvent
 import pl.wendigo.chrome.api.target.TargetInfo
-import pl.wendigo.chrome.api.target.TargetInfoChangedEvent
 import pl.wendigo.chrome.protocol.ChromeDebuggerConnection
 import pl.wendigo.chrome.targets.Manager
 import pl.wendigo.chrome.targets.Target
@@ -25,10 +20,11 @@ import kotlin.math.max
  * Creates new browser that allows querying remote chrome instance for debugging sessions
  */
 class Browser private constructor(
-    val info: Info,
+    private val browserInfo: BrowserInfo,
     private val options: Options,
+    connection: ChromeDebuggerConnection,
     private val manager: Manager
-) : AutoCloseable, Closeable {
+) : DevToolsProtocol(connection), Closeable, AutoCloseable {
     /**
      * Creates new target and opens new debugging session via debugging protocol.
      *
@@ -52,7 +48,7 @@ class Browser private constructor(
     /**
      * Returns information on browser.
      */
-    fun browserInfo() = info
+    fun browserInfo() = browserInfo
 
     /**
      * Attaches to existing target creating new session if multiplexed connections is used.
@@ -67,26 +63,6 @@ class Browser private constructor(
     }
 
     /**
-     * Returns Flowable of [TargetCrashedEvent]
-     */
-    fun targetCrashed(): Flowable<TargetCrashedEvent> = manager.targetCrashed()
-
-    /**
-     * Returns Flowable of [TargetCreatedEvent]
-     */
-    fun targetCreated(): Flowable<TargetCreatedEvent> = manager.targetCreated()
-
-    /**
-     * Returns Flowable of [TargetInfoChangedEvent]
-     */
-    fun targetInfoChanged(): Flowable<TargetInfoChangedEvent> = manager.targetInfoChanged()
-
-    /**
-     * Returns Flowable of [TargetDestroyedEvent]
-     */
-    fun targetDestroyed(): Flowable<TargetDestroyedEvent> = manager.targetDestroyed()
-
-    /**
      * Closes session manager and all established connections to debugger.
      */
     override fun close() {
@@ -99,7 +75,7 @@ class Browser private constructor(
     }
 
     override fun toString(): String {
-        return "Browser($options, sessionManager)"
+        return "Browser($browserInfo, $options, $manager)"
     }
 
     companion object {
@@ -111,14 +87,18 @@ class Browser private constructor(
          */
         private fun connect(chromeAddress: String = "localhost:9222", options: Options): Browser {
             val info = fetchInfo(chromeAddress)
+            val connection = ChromeDebuggerConnection.open(info.webSocketDebuggerUrl, options.eventsBufferSize)
+            val protocol = DevToolsProtocol(connection)
 
             return Browser(
                 info,
                 options,
+                connection,
                 Manager(
                     info.webSocketDebuggerUrl,
                     options.multiplexConnections,
-                    DevToolsProtocol(ChromeDebuggerConnection.open(info.webSocketDebuggerUrl, options.eventsBufferSize))
+                    options.eventsBufferSize,
+                    protocol
                 )
             )
         }
@@ -126,7 +106,7 @@ class Browser private constructor(
         /**
          * Fetches browser info.
          */
-        private fun fetchInfo(chromeAddress: String): Info {
+        private fun fetchInfo(chromeAddress: String): BrowserInfo {
             val client = OkHttpClient.Builder().build()
             val info = client.newCall(Request.Builder().url("http://$chromeAddress/json/version").build()).execute()
 
@@ -222,7 +202,7 @@ class Browser private constructor(
     }
 
     @Serializable
-    data class Info(
+    data class BrowserInfo(
         @SerialName("Browser")
         val browser: String,
 
