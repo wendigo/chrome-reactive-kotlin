@@ -2,7 +2,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Browser</title>
-<link href="../../../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+<link href="../../../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script src="https://unpkg.com/kotlin-playground@1" data-selector="code.runnablesample"></script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
   <body>
     <div id="container">
       <div id="leftColumn"><a href="../../../index.html">
@@ -13,7 +13,7 @@
       </div>
       <div id="main">
         <div id="leftToggler"><span class="icon-toggler"></span></div>
-<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="Chrome Reactive Kotlin::pl.wendigo.chrome/Browser///PointingToDeclaration//-1204638660">
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="Chrome Reactive Kotlin::pl.wendigo.chrome/Browser///PointingToDeclaration//-730175786">
           <div class="navigation-wrapper" id="navigation-wrapper">
             <div class="breadcrumbs"><a href="../../../index.html">Chrome Reactive Kotlin</a>/<a href="../index.html">pl.wendigo.chrome</a>/<a href="index.html">Browser</a></div>
             <div class="pull-right d-flex">
@@ -22,16 +22,67 @@
           </div>
           <div class="cover ">
             <h1 class="cover"><span>Browser</span></h1>
-            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">class <a href="index.html">Browser</a> : <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/AutoCloseable.html">AutoCloseable</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/Closeable.html">Closeable</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Creates new browser that allows querying remote chrome instance for debugging sessions</p></div></div>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">open class <a href="index.html">Browser</a> : <a href="../../pl.wendigo.chrome.api/-protocol-domains/index.html">ProtocolDomains</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/Closeable.html">Closeable</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/AutoCloseable.html">AutoCloseable</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Creates new browser that allows querying remote Chrome instance for debugging sessions</p></div></div>
           </div>
           <div class="tabbedcontent">
-            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Sources">Sources</button></div>
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Sources">Sources</button><button class="section-tab" data-togglable="Samples">Samples</button></div>
             <div class="tabs-section-body">
+              <h2 class="">Samples</h2>
+              <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Samples"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="sample-container"><code class="runnablesample monospace" theme="idea"><pre>import pl.wendigo.chrome.Browser
+import pl.wendigo.chrome.api.page.NavigateRequest
+import pl.wendigo.chrome.sync
+fun main() { 
+   //sampleStart 
+   val browser = Browser
+    .builder()
+    .withAddress(&quot;127.0.0.1:9222&quot;)
+    .runInDocker(true)
+    .multiplexConnections(true)
+    .build()
+
+browser.target(&quot;about:blank&quot;).use { target -&gt;
+    sync(target.Page.enable())
+
+    sync(
+        target.Page.navigate(NavigateRequest(url = &quot;https://github.com/wendigo/chrome-reactive-kotlin&quot;)).flatMap { (frameId) -&gt;
+            target.Page.frameStoppedLoading().filter { (loadedFrameId) -&gt;
+                loadedFrameId == frameId
+            }.take(1).singleOrError()
+        }
+    )
+
+    println(&quot;Created target is ${target.targetId()} with session info ${target.session()}&quot;)
+
+    browser.targets().forEach {
+        println(&quot;Target ${it.targetId} has url: ${it.url} and browser context id: ${it.browserContextId}&quot;)
+    }
+}
+
+browser.close() 
+   //sampleEnd
+}</pre></code></div></div></div>
               <h2 class="">Types</h2>
-              <div class="table" data-togglable="Types"><a data-name="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660" anchor-label="Builder" id="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
+              <div class="table" data-togglable="Types"><a data-name="%5Bpl.wendigo.chrome%2FBrowser.BrowserInfo%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-730175786" anchor-label="BrowserInfo" id="%5Bpl.wendigo.chrome%2FBrowser.BrowserInfo%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-builder/index.html">Builder</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660"></span>
+                    <div class=""><span class="inline-flex"><a href="-browser-info/index.html">BrowserInfo</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser.BrowserInfo%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">data class <a href="-browser-info/index.html">BrowserInfo</a>(browser: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, protocolVersion: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, userAgent: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, v8Version: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, webKitVersion: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, webSocketDebuggerUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-730175786" anchor-label="Builder" id="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-builder/index.html">Builder</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-730175786"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
@@ -40,51 +91,17 @@
   <div>
     <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">class <a href="-builder/index.html">Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660" anchor-label="Builder" id="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660" anchor-label="Builder" id="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><a href="-builder/index.html">Builder</a> is responsible for setting options and defaults while creating new instance of <a href="index.html">Browser</a>.</div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser.Companion%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660" anchor-label="Companion" id="%5Bpl.wendigo.chrome%2FBrowser.Companion%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-companion/index.html">Companion</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser.Companion%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">object <a href="-companion/index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser.Info%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660" anchor-label="Info" id="%5Bpl.wendigo.chrome%2FBrowser.Info%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-info/index.html">Info</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser.Info%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-1204638660"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">data class <a href="-info/index.html">Info</a>(browser: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, protocolVersion: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, userAgent: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, v8Version: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>?, webKitVersion: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, webSocketDebuggerUrl: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-730175786" anchor-label="Builder" id="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-730175786" anchor-label="Builder" id="%5Bpl.wendigo.chrome%2FBrowser.Builder%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><a href="-builder/index.html">Builder</a> is responsible for setting options and defaults while creating new instance of <a href="index.html">Browser</a>.</div></div>
 </div>
                     </div>
                   </div>
                 </div>
               </div>
               <h2 class="">Functions</h2>
-              <div class="table" data-togglable="Functions"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="attach" id="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
+              <div class="table" data-togglable="Functions"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="attach" id="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="attach.html">attach</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660"></span>
+                    <div class=""><span class="inline-flex"><a href="attach.html">attach</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
@@ -93,32 +110,32 @@
   <div>
     <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="attach.html">attach</a>(target: <a href="../../pl.wendigo.chrome.api.target/-target-info/index.html">TargetInfo</a>): <a href="../../pl.wendigo.chrome.targets/-target/index.html">Target</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="attach" id="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="attach" id="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>Attaches to existing target creating new session if multiplexed connections is used.</div></div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="attach" id="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="attach" id="%5Bpl.wendigo.chrome%2FBrowser%2Fattach%2F%23pl.wendigo.chrome.api.target.TargetInfo%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Attaches to existing target creating new session if multiplexed connections is used.</div></div>
 </div>
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="browserInfo" id="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="browserInfo" id="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="browser-info.html">browserInfo</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660"></span>
+                    <div class=""><span class="inline-flex"><a href="browser-info.html">browserInfo</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
                       <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
 
   <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="browser-info.html">browserInfo</a>(): <a href="-info/index.html">Browser.Info</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="browser-info.html">browserInfo</a>(): <a href="-browser-info/index.html">Browser.BrowserInfo</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="browserInfo" id="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="browserInfo" id="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>Returns information on browser.</div></div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="browserInfo" id="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="browserInfo" id="%5Bpl.wendigo.chrome%2FBrowser%2FbrowserInfo%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Returns information on browser.</div></div>
 </div>
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%2C+pl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="close" id="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%2C+pl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%2C+pl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="close" id="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%2C+pl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="close.html">close</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%2C+pl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660"></span>
+                    <div class=""><span class="inline-flex"><a href="close.html">close</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%2C+pl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
@@ -127,21 +144,72 @@
   <div>
     <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">open override fun <a href="close.html">close</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="close" id="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="close" id="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>Closes session manager and all established connections to debugger.</div></div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="close" id="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="close" id="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Closes session manager and all established connections to debugger.</div></div>
 <div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
 
   <div>
     <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="close.html">close</a>(target: <a href="../../pl.wendigo.chrome.targets/-target/index.html">Target</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="close" id="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="close" id="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>Closes target releasing all resources on the browser side and connections.</div></div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="close" id="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="close" id="%5Bpl.wendigo.chrome%2FBrowser%2Fclose%2F%23pl.wendigo.chrome.targets.Target%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Closes target releasing all resources on the browser side and connections.</div></div>
 </div>
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="target" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
+<a data-name="%5Bpl.wendigo.chrome.api%2FProtocolDomains%2Fdomains%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="domains" id="%5Bpl.wendigo.chrome.api%2FProtocolDomains%2Fdomains%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="target.html">target</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660"></span>
+                    <div class=""><span class="inline-flex"><a href="../../pl.wendigo.chrome.api/-protocol-domains/domains.html">domains</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome.api%2FProtocolDomains%2Fdomains%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="../../pl.wendigo.chrome.api/-protocol-domains/domains.html">domains</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../../pl.wendigo.chrome.protocol/-domain/index.html">Domain</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bpl.wendigo.chrome.api%2FProtocolDomains%2Fdomains%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="domains" id="%5Bpl.wendigo.chrome.api%2FProtocolDomains%2Fdomains%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome.api%2FProtocolDomains%2Fdomains%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="domains" id="%5Bpl.wendigo.chrome.api%2FProtocolDomains%2Fdomains%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Returns a list of all protocol domain objects.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome.protocol%2FDomains%2Fevents%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="events" id="%5Bpl.wendigo.chrome.protocol%2FDomains%2Fevents%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../pl.wendigo.chrome.protocol/-domains/events.html">events</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome.protocol%2FDomains%2Fevents%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="../../pl.wendigo.chrome.protocol/-domains/events.html">events</a>(): <span data-unresolved-link="io.reactivex.rxjava3.core/Flowable///PointingToDeclaration/">Flowable</span>&lt;<a href="../../pl.wendigo.chrome.protocol/-event/index.html">Event</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bpl.wendigo.chrome.protocol%2FDomains%2Fevents%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="events" id="%5Bpl.wendigo.chrome.protocol%2FDomains%2Fevents%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome.protocol%2FDomains%2Fevents%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="events" id="%5Bpl.wendigo.chrome.protocol%2FDomains%2Fevents%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Returns <span data-unresolved-link="io.reactivex.rxjava3.core/Flowable///PointingToDeclaration/">Flowable</span> capturing all events.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome.protocol%2FDomains%2FprotocolVersion%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="protocolVersion" id="%5Bpl.wendigo.chrome.protocol%2FDomains%2FprotocolVersion%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../pl.wendigo.chrome.protocol/-domains/protocol-version.html">protocolVersion</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome.protocol%2FDomains%2FprotocolVersion%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="../../pl.wendigo.chrome.protocol/-domains/protocol-version.html">protocolVersion</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bpl.wendigo.chrome.protocol%2FDomains%2FprotocolVersion%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="protocolVersion" id="%5Bpl.wendigo.chrome.protocol%2FDomains%2FprotocolVersion%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome.protocol%2FDomains%2FprotocolVersion%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="protocolVersion" id="%5Bpl.wendigo.chrome.protocol%2FDomains%2FprotocolVersion%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Returns protocol version.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="target" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="target.html">target</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
@@ -150,83 +218,15 @@
   <div>
     <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a>()</div></div>fun <a href="target.html">target</a>(url: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> = options.blankPage, incognito: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = options.incognito, width: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = options.viewportWidth, height: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = options.viewportHeight): <a href="../../pl.wendigo.chrome.targets/-target/index.html">Target</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="target" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="target" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>Creates new target and opens new debugging session via debugging protocol.</div></div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="target" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="target" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftarget%2F%23kotlin.String%23kotlin.Boolean%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Creates new target and opens new debugging session via debugging protocol.</div></div>
 </div>
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCrashed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetCrashed" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCrashed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="targets" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="target-crashed.html">targetCrashed</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCrashed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="target-crashed.html">targetCrashed</a>(): <span data-unresolved-link="io.reactivex.rxjava3.core/Flowable///PointingToDeclaration/">Flowable</span>&lt;<a href="../../pl.wendigo.chrome.api.target/-target-crashed-event/index.html">TargetCrashedEvent</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCrashed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetCrashed" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCrashed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCrashed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetCrashed" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCrashed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>Returns Flowable of <a href="../../pl.wendigo.chrome.api.target/-target-crashed-event/index.html">TargetCrashedEvent</a></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCreated%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetCreated" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCreated%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="target-created.html">targetCreated</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCreated%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="target-created.html">targetCreated</a>(): <span data-unresolved-link="io.reactivex.rxjava3.core/Flowable///PointingToDeclaration/">Flowable</span>&lt;<a href="../../pl.wendigo.chrome.api.target/-target-created-event/index.html">TargetCreatedEvent</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCreated%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetCreated" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCreated%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCreated%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetCreated" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetCreated%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>Returns Flowable of <a href="../../pl.wendigo.chrome.api.target/-target-created-event/index.html">TargetCreatedEvent</a></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetDestroyed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetDestroyed" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetDestroyed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="target-destroyed.html">targetDestroyed</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FtargetDestroyed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="target-destroyed.html">targetDestroyed</a>(): <span data-unresolved-link="io.reactivex.rxjava3.core/Flowable///PointingToDeclaration/">Flowable</span>&lt;<a href="../../pl.wendigo.chrome.api.target/-target-destroyed-event/index.html">TargetDestroyedEvent</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetDestroyed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetDestroyed" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetDestroyed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetDestroyed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetDestroyed" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetDestroyed%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>Returns Flowable of <a href="../../pl.wendigo.chrome.api.target/-target-destroyed-event/index.html">TargetDestroyedEvent</a></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetInfoChanged%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetInfoChanged" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetInfoChanged%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="target-info-changed.html">targetInfoChanged</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FtargetInfoChanged%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="target-info-changed.html">targetInfoChanged</a>(): <span data-unresolved-link="io.reactivex.rxjava3.core/Flowable///PointingToDeclaration/">Flowable</span>&lt;<a href="../../pl.wendigo.chrome.api.target/-target-info-changed-event/index.html">TargetInfoChangedEvent</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetInfoChanged%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetInfoChanged" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetInfoChanged%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtargetInfoChanged%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targetInfoChanged" id="%5Bpl.wendigo.chrome%2FBrowser%2FtargetInfoChanged%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>Returns Flowable of <a href="../../pl.wendigo.chrome.api.target/-target-info-changed-event/index.html">TargetInfoChangedEvent</a></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targets" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="targets.html">targets</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660"></span>
+                    <div class=""><span class="inline-flex"><a href="targets.html">targets</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
@@ -235,15 +235,15 @@
   <div>
     <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="targets.html">targets</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../../pl.wendigo.chrome.api.target/-target-info/index.html">TargetInfo</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targets" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="targets" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>Lists all targets that can be attached to.</div></div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="targets" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="targets" id="%5Bpl.wendigo.chrome%2FBrowser%2Ftargets%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lists all targets that can be attached to.</div></div>
 </div>
                     </div>
                   </div>
                 </div>
-<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" anchor-label="toString" id="%5Bpl.wendigo.chrome%2FBrowser%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" anchor-label="toString" id="%5Bpl.wendigo.chrome%2FBrowser%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="to-string.html">toString</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1204638660"></span>
+                    <div class=""><span class="inline-flex"><a href="to-string.html">toString</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-730175786"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
@@ -259,25 +259,610 @@
                 </div>
               </div>
               <h2 class="">Properties</h2>
-              <div class="table" data-togglable="Properties"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Finfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-1204638660" anchor-label="info" id="%5Bpl.wendigo.chrome%2FBrowser%2Finfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
+              <div class="table" data-togglable="Properties"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FAccessibility%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Accessibility" id="%5Bpl.wendigo.chrome%2FBrowser%2FAccessibility%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="info.html">info</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2Finfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-1204638660"></span>
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FAccessibility%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Accessibility</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FAccessibility%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
                       <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2Finfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-1204638660" anchor-label="info" id="%5Bpl.wendigo.chrome%2FBrowser%2Finfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="info.html">info</a>: <a href="-info/index.html">Browser.Info</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FAccessibility%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Accessibility" id="%5Bpl.wendigo.chrome%2FBrowser%2FAccessibility%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FAccessibility%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Accessibility</a>: <a href="../../pl.wendigo.chrome.api.accessibility/-accessibility-domain/index.html">AccessibilityDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FAccessibility%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Accessibility" id="%5Bpl.wendigo.chrome%2FBrowser%2FAccessibility%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.accessibility/-accessibility-domain/index.html">AccessibilityDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/Accessibility">Accessibility</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FAnimation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Animation" id="%5Bpl.wendigo.chrome%2FBrowser%2FAnimation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FAnimation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Animation</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FAnimation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FAnimation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Animation" id="%5Bpl.wendigo.chrome%2FBrowser%2FAnimation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FAnimation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Animation</a>: <a href="../../pl.wendigo.chrome.api.animation/-animation-domain/index.html">AnimationDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FAnimation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Animation" id="%5Bpl.wendigo.chrome%2FBrowser%2FAnimation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.animation/-animation-domain/index.html">AnimationDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/Animation">Animation</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FApplicationCache%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="ApplicationCache" id="%5Bpl.wendigo.chrome%2FBrowser%2FApplicationCache%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FApplicationCache%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">ApplicationCache</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FApplicationCache%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FApplicationCache%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="ApplicationCache" id="%5Bpl.wendigo.chrome%2FBrowser%2FApplicationCache%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FApplicationCache%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">ApplicationCache</a>: <a href="../../pl.wendigo.chrome.api.applicationcache/-application-cache-domain/index.html">ApplicationCacheDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FApplicationCache%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="ApplicationCache" id="%5Bpl.wendigo.chrome%2FBrowser%2FApplicationCache%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.applicationcache/-application-cache-domain/index.html">ApplicationCacheDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache">ApplicationCache</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FAudits%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Audits" id="%5Bpl.wendigo.chrome%2FBrowser%2FAudits%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FAudits%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Audits</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FAudits%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FAudits%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Audits" id="%5Bpl.wendigo.chrome%2FBrowser%2FAudits%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FAudits%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Audits</a>: <a href="../../pl.wendigo.chrome.api.audits/-audits-domain/index.html">AuditsDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FAudits%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Audits" id="%5Bpl.wendigo.chrome%2FBrowser%2FAudits%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Audits domain allows investigation of page violations and possible improvements.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FBackgroundService%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="BackgroundService" id="%5Bpl.wendigo.chrome%2FBrowser%2FBackgroundService%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FBackgroundService%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">BackgroundService</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FBackgroundService%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FBackgroundService%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="BackgroundService" id="%5Bpl.wendigo.chrome%2FBrowser%2FBackgroundService%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FBackgroundService%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">BackgroundService</a>: <a href="../../pl.wendigo.chrome.api.backgroundservice/-background-service-domain/index.html">BackgroundServiceDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FBackgroundService%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="BackgroundService" id="%5Bpl.wendigo.chrome%2FBrowser%2FBackgroundService%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Defines events for background web platform features.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FBrowser%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Browser" id="%5Bpl.wendigo.chrome%2FBrowser%2FBrowser%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FBrowser%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Browser</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FBrowser%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FBrowser%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Browser" id="%5Bpl.wendigo.chrome%2FBrowser%2FBrowser%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FBrowser%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Browser</a>: <a href="../../pl.wendigo.chrome.api.browser/-browser-domain/index.html">BrowserDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FBrowser%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Browser" id="%5Bpl.wendigo.chrome%2FBrowser%2FBrowser%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>The Browser domain defines methods and events for browser managing.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FCacheStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="CacheStorage" id="%5Bpl.wendigo.chrome%2FBrowser%2FCacheStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FCacheStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">CacheStorage</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FCacheStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FCacheStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="CacheStorage" id="%5Bpl.wendigo.chrome%2FBrowser%2FCacheStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FCacheStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">CacheStorage</a>: <a href="../../pl.wendigo.chrome.api.cachestorage/-cache-storage-domain/index.html">CacheStorageDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FCacheStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="CacheStorage" id="%5Bpl.wendigo.chrome%2FBrowser%2FCacheStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.cachestorage/-cache-storage-domain/index.html">CacheStorageDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage">CacheStorage</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FCast%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Cast" id="%5Bpl.wendigo.chrome%2FBrowser%2FCast%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FCast%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Cast</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FCast%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FCast%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Cast" id="%5Bpl.wendigo.chrome%2FBrowser%2FCast%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FCast%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Cast</a>: <a href="../../pl.wendigo.chrome.api.cast/-cast-domain/index.html">CastDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FCast%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Cast" id="%5Bpl.wendigo.chrome%2FBrowser%2FCast%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>A domain for interacting with Cast, Presentation API, and Remote Playback API functionalities.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FConsole%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Console" id="%5Bpl.wendigo.chrome%2FBrowser%2FConsole%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FConsole%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Console</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FConsole%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FConsole%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Console" id="%5Bpl.wendigo.chrome%2FBrowser%2FConsole%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace strikethrough">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FConsole%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Console</a>: <a href="../../pl.wendigo.chrome.api.console/-console-domain/index.html">ConsoleDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FConsole%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Console" id="%5Bpl.wendigo.chrome%2FBrowser%2FConsole%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain is deprecated - use Runtime or Log instead.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FCSS%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="CSS" id="%5Bpl.wendigo.chrome%2FBrowser%2FCSS%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FCSS%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">CSS</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FCSS%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FCSS%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="CSS" id="%5Bpl.wendigo.chrome%2FBrowser%2FCSS%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FCSS%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">CSS</a>: <a href="../../pl.wendigo.chrome.api.css/-c-s-s-domain/index.html">CSSDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FCSS%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="CSS" id="%5Bpl.wendigo.chrome%2FBrowser%2FCSS%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain exposes CSS read/write operations.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDatabase%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Database" id="%5Bpl.wendigo.chrome%2FBrowser%2FDatabase%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDatabase%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Database</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FDatabase%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDatabase%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Database" id="%5Bpl.wendigo.chrome%2FBrowser%2FDatabase%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDatabase%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Database</a>: <a href="../../pl.wendigo.chrome.api.database/-database-domain/index.html">DatabaseDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDatabase%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Database" id="%5Bpl.wendigo.chrome%2FBrowser%2FDatabase%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.database/-database-domain/index.html">DatabaseDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/Database">Database</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Debugger" id="%5Bpl.wendigo.chrome%2FBrowser%2FDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Debugger</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Debugger" id="%5Bpl.wendigo.chrome%2FBrowser%2FDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Debugger</a>: <a href="../../pl.wendigo.chrome.api.debugger/-debugger-domain/index.html">DebuggerDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Debugger" id="%5Bpl.wendigo.chrome%2FBrowser%2FDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Debugger domain exposes JavaScript debugging capabilities.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDeviceOrientation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DeviceOrientation" id="%5Bpl.wendigo.chrome%2FBrowser%2FDeviceOrientation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDeviceOrientation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">DeviceOrientation</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FDeviceOrientation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDeviceOrientation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DeviceOrientation" id="%5Bpl.wendigo.chrome%2FBrowser%2FDeviceOrientation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDeviceOrientation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">DeviceOrientation</a>: <a href="../../pl.wendigo.chrome.api.deviceorientation/-device-orientation-domain/index.html">DeviceOrientationDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDeviceOrientation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DeviceOrientation" id="%5Bpl.wendigo.chrome%2FBrowser%2FDeviceOrientation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.deviceorientation/-device-orientation-domain/index.html">DeviceOrientationDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/DeviceOrientation">DeviceOrientation</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOM%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOM" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOM%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDOM%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">DOM</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FDOM%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOM%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOM" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOM%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDOM%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">DOM</a>: <a href="../../pl.wendigo.chrome.api.dom/-d-o-m-domain/index.html">DOMDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOM%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOM" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOM%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain exposes DOM read/write operations.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOMDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOMDebugger" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOMDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDOMDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">DOMDebugger</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FDOMDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOMDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOMDebugger" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOMDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDOMDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">DOMDebugger</a>: <a href="../../pl.wendigo.chrome.api.domdebugger/-d-o-m-debugger-domain/index.html">DOMDebuggerDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOMDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOMDebugger" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOMDebugger%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>DOM debugging allows setting breakpoints on particular DOM operations and events.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOMSnapshot%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOMSnapshot" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOMSnapshot%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDOMSnapshot%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">DOMSnapshot</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FDOMSnapshot%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOMSnapshot%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOMSnapshot" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOMSnapshot%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDOMSnapshot%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">DOMSnapshot</a>: <a href="../../pl.wendigo.chrome.api.domsnapshot/-d-o-m-snapshot-domain/index.html">DOMSnapshotDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOMSnapshot%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOMSnapshot" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOMSnapshot%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain facilitates obtaining document snapshots with DOM, layout, and style information.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOMStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOMStorage" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOMStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDOMStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">DOMStorage</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FDOMStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOMStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOMStorage" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOMStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FDOMStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">DOMStorage</a>: <a href="../../pl.wendigo.chrome.api.domstorage/-d-o-m-storage-domain/index.html">DOMStorageDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FDOMStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="DOMStorage" id="%5Bpl.wendigo.chrome%2FBrowser%2FDOMStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Query and modify DOM storage.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FEmulation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Emulation" id="%5Bpl.wendigo.chrome%2FBrowser%2FEmulation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FEmulation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Emulation</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FEmulation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FEmulation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Emulation" id="%5Bpl.wendigo.chrome%2FBrowser%2FEmulation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FEmulation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Emulation</a>: <a href="../../pl.wendigo.chrome.api.emulation/-emulation-domain/index.html">EmulationDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FEmulation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Emulation" id="%5Bpl.wendigo.chrome%2FBrowser%2FEmulation%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain emulates different environments for the page.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FFetch%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Fetch" id="%5Bpl.wendigo.chrome%2FBrowser%2FFetch%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FFetch%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Fetch</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FFetch%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FFetch%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Fetch" id="%5Bpl.wendigo.chrome%2FBrowser%2FFetch%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FFetch%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Fetch</a>: <a href="../../pl.wendigo.chrome.api.fetch/-fetch-domain/index.html">FetchDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FFetch%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Fetch" id="%5Bpl.wendigo.chrome%2FBrowser%2FFetch%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>A domain for letting clients substitute browser's network layer with client code.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FHeadlessExperimental%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="HeadlessExperimental" id="%5Bpl.wendigo.chrome%2FBrowser%2FHeadlessExperimental%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FHeadlessExperimental%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">HeadlessExperimental</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FHeadlessExperimental%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FHeadlessExperimental%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="HeadlessExperimental" id="%5Bpl.wendigo.chrome%2FBrowser%2FHeadlessExperimental%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FHeadlessExperimental%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">HeadlessExperimental</a>: <a href="../../pl.wendigo.chrome.api.headlessexperimental/-headless-experimental-domain/index.html">HeadlessExperimentalDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FHeadlessExperimental%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="HeadlessExperimental" id="%5Bpl.wendigo.chrome%2FBrowser%2FHeadlessExperimental%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain provides experimental commands only supported in headless mode.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FHeapProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="HeapProfiler" id="%5Bpl.wendigo.chrome%2FBrowser%2FHeapProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FHeapProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">HeapProfiler</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FHeapProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FHeapProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="HeapProfiler" id="%5Bpl.wendigo.chrome%2FBrowser%2FHeapProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FHeapProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">HeapProfiler</a>: <a href="../../pl.wendigo.chrome.api.heapprofiler/-heap-profiler-domain/index.html">HeapProfilerDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FHeapProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="HeapProfiler" id="%5Bpl.wendigo.chrome%2FBrowser%2FHeapProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.heapprofiler/-heap-profiler-domain/index.html">HeapProfilerDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler">HeapProfiler</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FIndexedDB%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="IndexedDB" id="%5Bpl.wendigo.chrome%2FBrowser%2FIndexedDB%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FIndexedDB%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">IndexedDB</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FIndexedDB%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FIndexedDB%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="IndexedDB" id="%5Bpl.wendigo.chrome%2FBrowser%2FIndexedDB%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FIndexedDB%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">IndexedDB</a>: <a href="../../pl.wendigo.chrome.api.indexeddb/-indexed-d-b-domain/index.html">IndexedDBDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FIndexedDB%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="IndexedDB" id="%5Bpl.wendigo.chrome%2FBrowser%2FIndexedDB%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.indexeddb/-indexed-d-b-domain/index.html">IndexedDBDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB">IndexedDB</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FInput%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Input" id="%5Bpl.wendigo.chrome%2FBrowser%2FInput%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FInput%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Input</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FInput%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FInput%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Input" id="%5Bpl.wendigo.chrome%2FBrowser%2FInput%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FInput%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Input</a>: <a href="../../pl.wendigo.chrome.api.input/-input-domain/index.html">InputDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FInput%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Input" id="%5Bpl.wendigo.chrome%2FBrowser%2FInput%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.input/-input-domain/index.html">InputDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/Input">Input</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FInspector%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Inspector" id="%5Bpl.wendigo.chrome%2FBrowser%2FInspector%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FInspector%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Inspector</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FInspector%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FInspector%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Inspector" id="%5Bpl.wendigo.chrome%2FBrowser%2FInspector%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FInspector%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Inspector</a>: <a href="../../pl.wendigo.chrome.api.inspector/-inspector-domain/index.html">InspectorDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FInspector%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Inspector" id="%5Bpl.wendigo.chrome%2FBrowser%2FInspector%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.inspector/-inspector-domain/index.html">InspectorDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/Inspector">Inspector</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FIO%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="IO" id="%5Bpl.wendigo.chrome%2FBrowser%2FIO%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FIO%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">IO</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FIO%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FIO%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="IO" id="%5Bpl.wendigo.chrome%2FBrowser%2FIO%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FIO%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">IO</a>: <a href="../../pl.wendigo.chrome.api.io/-i-o-domain/index.html">IODomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FIO%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="IO" id="%5Bpl.wendigo.chrome%2FBrowser%2FIO%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Input/Output operations for streams produced by DevTools.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FLayerTree%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="LayerTree" id="%5Bpl.wendigo.chrome%2FBrowser%2FLayerTree%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FLayerTree%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">LayerTree</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FLayerTree%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FLayerTree%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="LayerTree" id="%5Bpl.wendigo.chrome%2FBrowser%2FLayerTree%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FLayerTree%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">LayerTree</a>: <a href="../../pl.wendigo.chrome.api.layertree/-layer-tree-domain/index.html">LayerTreeDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FLayerTree%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="LayerTree" id="%5Bpl.wendigo.chrome%2FBrowser%2FLayerTree%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.layertree/-layer-tree-domain/index.html">LayerTreeDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/LayerTree">LayerTree</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FLog%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Log" id="%5Bpl.wendigo.chrome%2FBrowser%2FLog%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FLog%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Log</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FLog%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FLog%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Log" id="%5Bpl.wendigo.chrome%2FBrowser%2FLog%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FLog%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Log</a>: <a href="../../pl.wendigo.chrome.api.log/-log-domain/index.html">LogDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FLog%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Log" id="%5Bpl.wendigo.chrome%2FBrowser%2FLog%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Provides access to log entries.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FMedia%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Media" id="%5Bpl.wendigo.chrome%2FBrowser%2FMedia%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FMedia%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Media</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FMedia%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FMedia%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Media" id="%5Bpl.wendigo.chrome%2FBrowser%2FMedia%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FMedia%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Media</a>: <a href="../../pl.wendigo.chrome.api.media/-media-domain/index.html">MediaDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FMedia%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Media" id="%5Bpl.wendigo.chrome%2FBrowser%2FMedia%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain allows detailed inspection of media elementsThis API is marked as experimental in protocol definition and can change in the future.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FMemory%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Memory" id="%5Bpl.wendigo.chrome%2FBrowser%2FMemory%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FMemory%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Memory</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FMemory%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FMemory%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Memory" id="%5Bpl.wendigo.chrome%2FBrowser%2FMemory%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FMemory%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Memory</a>: <a href="../../pl.wendigo.chrome.api.memory/-memory-domain/index.html">MemoryDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FMemory%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Memory" id="%5Bpl.wendigo.chrome%2FBrowser%2FMemory%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.memory/-memory-domain/index.html">MemoryDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/Memory">Memory</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FNetwork%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Network" id="%5Bpl.wendigo.chrome%2FBrowser%2FNetwork%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FNetwork%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Network</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FNetwork%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FNetwork%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Network" id="%5Bpl.wendigo.chrome%2FBrowser%2FNetwork%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FNetwork%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Network</a>: <a href="../../pl.wendigo.chrome.api.network/-network-domain/index.html">NetworkDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FNetwork%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Network" id="%5Bpl.wendigo.chrome%2FBrowser%2FNetwork%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Network domain allows tracking network activities of the page.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FOverlay%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Overlay" id="%5Bpl.wendigo.chrome%2FBrowser%2FOverlay%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FOverlay%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Overlay</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FOverlay%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FOverlay%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Overlay" id="%5Bpl.wendigo.chrome%2FBrowser%2FOverlay%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FOverlay%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Overlay</a>: <a href="../../pl.wendigo.chrome.api.overlay/-overlay-domain/index.html">OverlayDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FOverlay%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Overlay" id="%5Bpl.wendigo.chrome%2FBrowser%2FOverlay%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain provides various functionality related to drawing atop the inspected page.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FPage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Page" id="%5Bpl.wendigo.chrome%2FBrowser%2FPage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FPage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Page</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FPage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FPage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Page" id="%5Bpl.wendigo.chrome%2FBrowser%2FPage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FPage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Page</a>: <a href="../../pl.wendigo.chrome.api.page/-page-domain/index.html">PageDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FPage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Page" id="%5Bpl.wendigo.chrome%2FBrowser%2FPage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Actions and events related to the inspected page belong to the page domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FPerformance%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Performance" id="%5Bpl.wendigo.chrome%2FBrowser%2FPerformance%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FPerformance%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Performance</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FPerformance%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FPerformance%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Performance" id="%5Bpl.wendigo.chrome%2FBrowser%2FPerformance%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FPerformance%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Performance</a>: <a href="../../pl.wendigo.chrome.api.performance/-performance-domain/index.html">PerformanceDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FPerformance%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Performance" id="%5Bpl.wendigo.chrome%2FBrowser%2FPerformance%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.performance/-performance-domain/index.html">PerformanceDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/Performance">Performance</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FPerformanceTimeline%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="PerformanceTimeline" id="%5Bpl.wendigo.chrome%2FBrowser%2FPerformanceTimeline%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FPerformanceTimeline%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">PerformanceTimeline</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FPerformanceTimeline%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FPerformanceTimeline%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="PerformanceTimeline" id="%5Bpl.wendigo.chrome%2FBrowser%2FPerformanceTimeline%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FPerformanceTimeline%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">PerformanceTimeline</a>: <a href="../../pl.wendigo.chrome.api.performancetimeline/-performance-timeline-domain/index.html">PerformanceTimelineDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FPerformanceTimeline%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="PerformanceTimeline" id="%5Bpl.wendigo.chrome%2FBrowser%2FPerformanceTimeline%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Reporting of performance timeline events, as specified in https://w3c.github.io/performance-timeline/#dom-performanceobserver.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Profiler" id="%5Bpl.wendigo.chrome%2FBrowser%2FProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Profiler</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Profiler" id="%5Bpl.wendigo.chrome%2FBrowser%2FProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Profiler</a>: <a href="../../pl.wendigo.chrome.api.profiler/-profiler-domain/index.html">ProfilerDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Profiler" id="%5Bpl.wendigo.chrome%2FBrowser%2FProfiler%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.profiler/-profiler-domain/index.html">ProfilerDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/Profiler">Profiler</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FRuntime%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Runtime" id="%5Bpl.wendigo.chrome%2FBrowser%2FRuntime%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FRuntime%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Runtime</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FRuntime%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FRuntime%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Runtime" id="%5Bpl.wendigo.chrome%2FBrowser%2FRuntime%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FRuntime%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Runtime</a>: <a href="../../pl.wendigo.chrome.api.runtime/-runtime-domain/index.html">RuntimeDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FRuntime%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Runtime" id="%5Bpl.wendigo.chrome%2FBrowser%2FRuntime%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FSchema%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Schema" id="%5Bpl.wendigo.chrome%2FBrowser%2FSchema%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FSchema%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Schema</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FSchema%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FSchema%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Schema" id="%5Bpl.wendigo.chrome%2FBrowser%2FSchema%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace strikethrough">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FSchema%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Schema</a>: <a href="../../pl.wendigo.chrome.api.schema/-schema-domain/index.html">SchemaDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FSchema%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Schema" id="%5Bpl.wendigo.chrome%2FBrowser%2FSchema%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain is deprecated.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FSecurity%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Security" id="%5Bpl.wendigo.chrome%2FBrowser%2FSecurity%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FSecurity%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Security</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FSecurity%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FSecurity%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Security" id="%5Bpl.wendigo.chrome%2FBrowser%2FSecurity%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FSecurity%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Security</a>: <a href="../../pl.wendigo.chrome.api.security/-security-domain/index.html">SecurityDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FSecurity%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Security" id="%5Bpl.wendigo.chrome%2FBrowser%2FSecurity%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Security</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FServiceWorker%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="ServiceWorker" id="%5Bpl.wendigo.chrome%2FBrowser%2FServiceWorker%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FServiceWorker%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">ServiceWorker</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FServiceWorker%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FServiceWorker%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="ServiceWorker" id="%5Bpl.wendigo.chrome%2FBrowser%2FServiceWorker%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FServiceWorker%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">ServiceWorker</a>: <a href="../../pl.wendigo.chrome.api.serviceworker/-service-worker-domain/index.html">ServiceWorkerDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FServiceWorker%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="ServiceWorker" id="%5Bpl.wendigo.chrome%2FBrowser%2FServiceWorker%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.serviceworker/-service-worker-domain/index.html">ServiceWorkerDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker">ServiceWorker</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Storage" id="%5Bpl.wendigo.chrome%2FBrowser%2FStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Storage</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Storage" id="%5Bpl.wendigo.chrome%2FBrowser%2FStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Storage</a>: <a href="../../pl.wendigo.chrome.api.storage/-storage-domain/index.html">StorageDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Storage" id="%5Bpl.wendigo.chrome%2FBrowser%2FStorage%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.storage/-storage-domain/index.html">StorageDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/Storage">Storage</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FSystemInfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="SystemInfo" id="%5Bpl.wendigo.chrome%2FBrowser%2FSystemInfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FSystemInfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">SystemInfo</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FSystemInfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FSystemInfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="SystemInfo" id="%5Bpl.wendigo.chrome%2FBrowser%2FSystemInfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FSystemInfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">SystemInfo</a>: <a href="../../pl.wendigo.chrome.api.systeminfo/-system-info-domain/index.html">SystemInfoDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FSystemInfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="SystemInfo" id="%5Bpl.wendigo.chrome%2FBrowser%2FSystemInfo%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>The SystemInfo domain defines methods and events for querying low-level system information.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FTarget%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Target" id="%5Bpl.wendigo.chrome%2FBrowser%2FTarget%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FTarget%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Target</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FTarget%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FTarget%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Target" id="%5Bpl.wendigo.chrome%2FBrowser%2FTarget%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FTarget%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Target</a>: <a href="../../pl.wendigo.chrome.api.target/-target-domain/index.html">TargetDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FTarget%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Target" id="%5Bpl.wendigo.chrome%2FBrowser%2FTarget%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Supports additional targets discovery and allows to attach to them.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FTethering%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Tethering" id="%5Bpl.wendigo.chrome%2FBrowser%2FTethering%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FTethering%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Tethering</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FTethering%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FTethering%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Tethering" id="%5Bpl.wendigo.chrome%2FBrowser%2FTethering%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FTethering%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Tethering</a>: <a href="../../pl.wendigo.chrome.api.tethering/-tethering-domain/index.html">TetheringDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FTethering%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Tethering" id="%5Bpl.wendigo.chrome%2FBrowser%2FTethering%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>The Tethering domain defines methods and events for browser port binding.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FTracing%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Tracing" id="%5Bpl.wendigo.chrome%2FBrowser%2FTracing%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FTracing%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Tracing</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FTracing%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FTracing%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Tracing" id="%5Bpl.wendigo.chrome%2FBrowser%2FTracing%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FTracing%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">Tracing</a>: <a href="../../pl.wendigo.chrome.api.tracing/-tracing-domain/index.html">TracingDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FTracing%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="Tracing" id="%5Bpl.wendigo.chrome%2FBrowser%2FTracing%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>Lazily returns <a href="../../pl.wendigo.chrome.api.tracing/-tracing-domain/index.html">TracingDomain</a> domain object allowing to invoke methods on <a href="https://chromedevtools.github.io/devtools-protocol/tot/Tracing">Tracing</a> protocol domain.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FWebAudio%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="WebAudio" id="%5Bpl.wendigo.chrome%2FBrowser%2FWebAudio%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FWebAudio%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">WebAudio</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FWebAudio%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FWebAudio%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="WebAudio" id="%5Bpl.wendigo.chrome%2FBrowser%2FWebAudio%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FWebAudio%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">WebAudio</a>: <a href="../../pl.wendigo.chrome.api.webaudio/-web-audio-domain/index.html">WebAudioDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FWebAudio%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="WebAudio" id="%5Bpl.wendigo.chrome%2FBrowser%2FWebAudio%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain allows inspection of Web Audio API.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FWebAuthn%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="WebAuthn" id="%5Bpl.wendigo.chrome%2FBrowser%2FWebAuthn%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FWebAuthn%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">WebAuthn</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2FWebAuthn%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FWebAuthn%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="WebAuthn" id="%5Bpl.wendigo.chrome%2FBrowser%2FWebAuthn%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="index.html#%5Bpl.wendigo.chrome%2FBrowser%2FWebAuthn%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786">WebAuthn</a>: <a href="../../pl.wendigo.chrome.api.webauthn/-web-authn-domain/index.html">WebAuthnDomain</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2FWebAuthn%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" anchor-label="WebAuthn" id="%5Bpl.wendigo.chrome%2FBrowser%2FWebAuthn%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>This domain allows configuring virtual authenticators to test the WebAuthn API.</div></div></div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <h2 class="">Sources</h2>
-              <div class="table" data-togglable="Sources"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2F%2F%2FPointingToDeclaration%2F%5D%2FSource%2F-1204638660" anchor-label="https://github.com/wendigo/chrome-reactive-kotlin/tree/master//pl/wendigo/chrome/Browser.kt#L23" id="%5Bpl.wendigo.chrome%2FBrowser%2F%2F%2FPointingToDeclaration%2F%5D%2FSource%2F-1204638660" data-filterable-set=":dokkaHtml/main"></a>
+              <div class="table" data-togglable="Sources"><a data-name="%5Bpl.wendigo.chrome%2FBrowser%2F%2F%2FPointingToDeclaration%2F%5D%2FSource%2F-730175786" anchor-label="https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin/pl/wendigo/chrome/Browser.kt#L20" id="%5Bpl.wendigo.chrome%2FBrowser%2F%2F%2FPointingToDeclaration%2F%5D%2FSource%2F-730175786" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="https://github.com/wendigo/chrome-reactive-kotlin/tree/master//pl/wendigo/chrome/Browser.kt#L23">jvm source</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2F%2F%2FPointingToDeclaration%2F%5D%2FSource%2F-1204638660"></span>
+                    <div class=""><span class="inline-flex"><a href="https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin/pl/wendigo/chrome/Browser.kt#L20">jvm source</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bpl.wendigo.chrome%2FBrowser%2F%2F%2FPointingToDeclaration%2F%5D%2FSource%2F-730175786"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div></div>
