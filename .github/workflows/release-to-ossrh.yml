@@ -11,13 +11,23 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@v1
+
       - name: Tests
         run: ./gradlew clean test
+
       - name: Populate gradle.properties
-        run: echo -e "nexusUsername=${{ secrets.SONATYPE_USER }}\nnexusPassword=${{ secrets.SONATYPE_PASSWORD }}" > gradle.properties
-      - name: Release to Sonatype OSS
-        run: . deploy/deploy.sh
-        env:
-           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
-           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
-           GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          echo -e "nexusUsername=${{ secrets.SONATYPE_USER }}" > gradle.properties
+          echo -e "nexusPassword=${{ secrets.SONATYPE_PASSWORD }}" >> gradle.properties
+          echo -e "githubToken=${{ secrets.ACCESS_TOKEN }}" >> gradle.properties
+          echo -e "signingKey=${{ secrets.SIGNING_KEY }}" >> gradle.properties
+          echo -e "signingPassword=${{ secrets.SIGNING_PASSWORD }}" >> gradle.properties
+
+      - name: Assemble artefacts
+        run: ./gradlew assemble
+
+      - name: Publish to Sonatype
+        run: ./gradlew publishToSonatype -i
+
+      - name: Close and release Sonatype repository
+        run: ./gradlew closeAndReleaseRepository -i
