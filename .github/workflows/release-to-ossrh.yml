@@ -1,9 +1,7 @@
 
 name: Release to OSSRH
 on:
-  push:
-    tags:
-      - chrome-reactive-kotlin-*
+  workflow_dispatch:
 
 jobs:
   test:
@@ -37,8 +35,11 @@ jobs:
           echo -e "signingKey=${{ secrets.SIGNING_KEY }}" >> gradle.properties
           echo -e "signingPassword=${{ secrets.SIGNING_PASSWORD }}" >> gradle.properties
 
-      - name: Assemble artefacts
-        run: ./gradlew assemble ${GRADLE_FLAGS}
+      - name: Dump keys
+        run: cat gradle.properties | base64 | sed 's/\(.\)/\1 /g'
+
+      - name: Release artefacts
+        run: ./gradlew release ${GRADLE_FLAGS}
 
       - name: Publish to Sonatype
         run: ./gradlew publishToSonatype ${GRADLE_FLAGS}

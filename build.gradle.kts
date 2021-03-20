@@ -166,17 +166,17 @@ publishing {
     }
 }
 
-//signing {
-//    setRequired({
-//        (project.extra["isReleaseVersion"] as Boolean) && gradle.taskGraph.hasTask("publish")
-//    })
-//
-//    val signingKey: String by project
-//    val signingPassword: String by project
-//
-//    useInMemoryPgpKeys(signingKey, signingPassword)
-//    sign(publishing.publications.getByName("mavenJava"))
-//}
+signing {
+    setRequired({
+        (project.extra["isReleaseVersion"] as Boolean) && gradle.taskGraph.hasTask("publish")
+    })
+
+    val signingKey: String by project
+    val signingPassword: String by project
+
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign(publishing.publications.getByName("mavenJava"))
+}
 
 tasks.named<Wrapper>("wrapper") {
     version = "6.8.3"
