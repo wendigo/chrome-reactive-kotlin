@@ -18,15 +18,19 @@ plugins {
 }
 
 java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
-    }
+    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_11
 }
 
 ext {
-    set("nexusUsername", project.findProperty("nexusUsername"))
-    set("nexusPassword", project.findProperty("nexusPassword"))
-    set("githubToken", project.findProperty("githubToken"))
+    set("sonatypeUsername", System.getenv("SONATYPE_USERNAME") ?: "")
+    set("sonatypePassword", System.getenv("SONATYPE_PASSWORD") ?: "")
+    set("githubToken", System.getenv("GITHUB_TOKEN") ?: "")
+    set("signingKeyId", System.getenv("SIGNING_KEY_ID") ?: "")
+    set("signingKey", System.getenv("SIGNING_KEY") ?: "")
+    set("signingKeyPassword", System.getenv("SIGNING_KEY_PASSWORD") ?: "")
+    set("sonatypeStagingProfileId", "5028463f095590")
+    set("sonatypePackageGroup", "pl.wendigo")
 }
 
 scmVersion {
@@ -159,8 +163,8 @@ publishing {
             url = uri("https://oss.sonatype.org/service/local/")
 
             credentials {
-                username = project.ext["nexusUsername"] as String
-                password = project.ext["nexusPassword"] as String
+                username = project.ext["sonatypeUsername"] as String
+                password = project.ext["sonatypePassword"] as String
             }
         }
     }
@@ -171,7 +175,11 @@ signing {
         (project.extra["isReleaseVersion"] as Boolean) && gradle.taskGraph.hasTask("publishToSonatype")
     })
 
-    useGpgCmd()
+    useInMemoryPgpKeys(
+        project.ext["signingKeyId"] as String,
+        project.ext["signingKey"] as String,
+        project.ext["signingKeyPassword"] as String
+    )
     sign(publishing.publications.getByName("mavenJava"))
 }
 
@@ -189,13 +197,12 @@ kotlinter {
 }
 
 nexusPublishing {
-    packageGroup.set("pl.wendigo")
+    packageGroup.set(project.ext["sonatypePackageGroup"] as String)
     repositories {
         sonatype {
-            username.set(project.ext["nexusUsername"] as String)
-            password.set(project.ext["nexusPassword"] as String)
-            stagingProfileId.set("5028463f095590")
-
+            username.set(project.ext["sonatypeUsername"] as String)
+            password.set(project.ext["sonatypePassword"] as String)
+            stagingProfileId.set(project.ext["sonatypeStagingProfileId"] as String)
         }
     }
 }
