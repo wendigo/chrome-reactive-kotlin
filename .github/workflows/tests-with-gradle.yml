@@ -11,8 +11,11 @@ on:
 jobs:
   test:
     name: "Test with gradle"
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
+    env:
+       GRADLE_OPTS: "-Xmx8198m -XX:MaxPermSize=4096m -XX:+HeapDumpOnOutOfMemoryError"
+       GRADLE_FLAGS: "--no-daemon -i"
     steps:
     - uses: actions/checkout@v1
     - name: Tests
-      run: ./gradlew clean test -i
+      run: ./gradlew clean test ${GRADLE_FLAGS}
