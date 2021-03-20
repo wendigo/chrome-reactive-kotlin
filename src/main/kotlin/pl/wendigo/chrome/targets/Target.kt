@@ -1,6 +1,6 @@
 package pl.wendigo.chrome.targets
 
-import pl.wendigo.chrome.DevToolsProtocol
+import pl.wendigo.chrome.api.DevToolsProtocol
 import pl.wendigo.chrome.api.target.GetTargetInfoRequest
 import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.await

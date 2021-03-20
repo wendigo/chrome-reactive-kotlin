@@ -3,52 +3,45 @@ package {{Package}}.api.{{Domain.LowerName}}
 import kotlinx.serialization.json.Json
 
 /**
- *{{#if Domain.Description}}{{{trim Domain.Description}}}{{else}} {{Domain.Name}}Operations represents {{Domain.Name}} protocol domain request/response operations and events that can be captured.{{/if}}
+ *{{#if Domain.Description}}{{{trim Domain.Description}}}{{else}} {{Domain.Name}}Domain represents {{Domain.Name}} protocol domain request/response operations and events that can be captured.{{/if}}
  *
 {{#if Domain.Experimental}}
  * This API is marked as experimental in protocol definition and can change in the future.
 {{/if}}
  * @link Protocol [{{Domain.Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}}) domain documentation.
  */
-{{#if Domain.Deprecated}}
-@Deprecated(level = DeprecationLevel.WARNING, message = "{{#if Domain.Description}}{{{Domain.Description}}}{{else}}{{Domain.Name}} is deprecated.{{/if}}")
-{{/if}}
-{{#if Domain.Experimental}}
-@{{Package}}.protocol.Experimental
-{{/if}}
-class {{Domain.Name}}Operations internal constructor(private val connection : {{Package}}.protocol.ChromeDebuggerConnection) {
+{{{ Domain.Annotations }}}
+class {{Domain.Name}}Domain internal constructor(connection : {{Package}}.protocol.ChromeDebuggerConnection)
+{{{ Domain.Interfaces }}}
+{
 {{#each Domain.Commands}}
     /**
      *{{{trim Description}}}
      *
      * @link Protocol [{{Domain.Name}}#{{Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Domain.Name}}#method-{{Name}}) method documentation.
      */
-    {{#if Deprecated}}
-    @Deprecated(level = DeprecationLevel.WARNING, message = "{{Name}} is deprecated.")
-    {{/if}}
-    {{#if Experimental}}
-    @{{Package}}.protocol.Experimental
-    {{/if}}
-    fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}) = connection.request("{{Domain}}.{{Name}}", {{#if HasInputParams}}Json.encodeToJsonElement({{SimpleName}}Request.serializer(), input){{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.RequestResponseFrame{{/if}}.serializer())
-
-
+    {{{ Annotations }}}
+    {{{ MethodModifiers }}} fun {{Name}}({{#if HasInputParams}}input: {{SimpleName}}Request{{/if}}) = connection.request("{{Domain}}.{{Name}}", {{#if HasInputParams}}Json.encodeToJsonElement({{SimpleName}}Request.serializer(), input){{else}}null{{/if}}, {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.RequestResponseFrame{{/if}}.serializer())
 {{/each}}
 {{#each Domain.Events}}
     /**
      * {{#if Description}}{{{trim Description}}}{{else}} Returns observable capturing all {{Domain.Name}}.{{Name}} events.{{/if}}
      */
     fun {{Name}}(): io.reactivex.rxjava3.core.Flowable<{{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.RawEvent{{/if}}> = connection.events("{{Domain.Name}}.{{Name}}", {{#if HasReturnValue}}{{ClassName}}{{else}}{{Package}}.protocol.RawEvent{{/if}}.serializer())
-
 {{/each}}
 
+    {{#if Domain.Dependencies }}
     /**
-     * Returns flowable capturing all {{Domain.Name}} domains events.
+     * Returns list of dependant domains that should be enabled prior to enabling this domain.
      */
-    fun events() : io.reactivex.rxjava3.core.Flowable<{{Package}}.protocol.Event> {
-        return connection.allEvents().filter {
-            it.domain() == "{{Domain.Name}}"
-        }
+    override fun getDependencies(): List<{{ Package }}.api.Domain> {
+        return arrayListOf(
+            {{#each Domain.Dependencies}}
+                {{ Package }}.api.{{ lower . }}.{{.}}Domain(connection),
+            {{/each}}
+        )
     }
+    {{/if}}
 }
 {{#each Domain.Commands}}
 {{{InputDataClass}}}

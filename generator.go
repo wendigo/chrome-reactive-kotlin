@@ -71,6 +71,32 @@ type Domain struct {
 	Deprecated   bool      `json:"deprecated,omitempty"`
 }
 
+func (d Domain) Interfaces() string {
+	interfaces := make([]string, 0)
+	interfaces = append(interfaces, fmt.Sprintf("pl.wendigo.chrome.api.Domain(\"%s\", \"\"\"%s\"\"\", connection)", d.Name, d.Description))
+
+	return fmt.Sprintf(": %s", strings.Join(interfaces, ", "))
+}
+
+func (d Domain) Annotations() string {
+	annotations := make([]string, 0)
+
+	if d.Deprecated {
+		if d.Description == "" {
+			annotations = append(annotations, fmt.Sprintf("@Deprecated(level = DeprecationLevel.WARNING, message = \"%s is deprecated.\")", d.Name))
+		}
+		if d.Description != "" {
+			annotations = append(annotations, fmt.Sprintf("@Deprecated(level = DeprecationLevel.WARNING, message = \"%s\")", d.Description))
+		}
+	}
+
+	if d.Experimental {
+		annotations = append(annotations, fmt.Sprintf("@%s.protocol.Experimental", basePackage))
+	}
+
+	return strings.Join(annotations, "\n")
+}
+
 func (d Domain) LowerName() string {
 	return strings.ToLower(d.Name)
 }
@@ -108,6 +134,24 @@ type Command struct {
 	Redirect     string      `json:"redirect,omitempty"`
 	Handlers     []string    `json:"handlers,omitempty"`
 	Deprecated   bool        `json:"deprecated,omitempty"`
+}
+
+func (c Command) Annotations() string {
+	annotations := make([]string, 0)
+
+	if c.Deprecated {
+		annotations = append(annotations, fmt.Sprintf("@Deprecated(level = DeprecationLevel.WARNING, message = \"{{%s}} is deprecated.\")", c.Name))
+	}
+
+	if c.Experimental {
+		annotations = append(annotations, fmt.Sprintf("@%s.protocol.Experimental", basePackage))
+	}
+
+	return strings.Join(annotations, "\n")
+}
+
+func (c Command) MethodModifiers() string {
+	return ""
 }
 
 func (c Command) SimpleName() string {
@@ -449,6 +493,10 @@ func main() {
 		return ""
 	})
 
+	raymond.RegisterHelper("lower", func(value string, options *raymond.Options) string {
+		return strings.ToLower(value)
+	})
+
 	raymond.RegisterHelper("EnumName", func(value string, options *raymond.Options) string {
 		switch value {
 		case "Infinity":
@@ -464,7 +512,7 @@ func main() {
 
 	log.Println("Generating protocol class")
 
-	if err := generateAndWrite(kotlinFilename("DevToolsProtocol"), "protocol_class", struct {
+	if err := generateAndWrite(kotlinFilename("api/DevToolsProtocol"), "protocol_class", struct {
 		Protocol Protocol
 	}{
 		Protocol: *protocol,
@@ -495,7 +543,7 @@ func main() {
 
 		currentDomain = domain.Name
 
-		if err := generateAndWrite(kotlinFilename("api/"+domain.LowerName()+"/Operations"), "domain_class", struct {
+		if err := generateAndWrite(kotlinFilename("api/"+domain.LowerName()+"/Domain"), "domain_class", struct {
 			Domain Domain
 		}{
 			Domain: domain,

@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import pl.wendigo.chrome.api.DevToolsProtocol
 import pl.wendigo.chrome.api.target.TargetCrashedEvent
 import pl.wendigo.chrome.api.target.TargetCreatedEvent
 import pl.wendigo.chrome.api.target.TargetDestroyedEvent

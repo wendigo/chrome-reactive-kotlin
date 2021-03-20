@@ -3,7 +3,7 @@ package pl.wendigo.chrome.targets
 import io.reactivex.rxjava3.core.Flowable
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import pl.wendigo.chrome.DevToolsProtocol
+import pl.wendigo.chrome.api.DevToolsProtocol
 import pl.wendigo.chrome.api.target.AttachToTargetRequest
 import pl.wendigo.chrome.api.target.CloseTargetRequest
 import pl.wendigo.chrome.api.target.CreateBrowserContextRequest
