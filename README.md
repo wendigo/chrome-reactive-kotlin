@@ -14,16 +14,28 @@ Please note that most up-to-date protocol is used at the moment.
 
 # Usage
 
-Add to your Kotlin or Java project (Gradle dependency): 
+## Gradle
 
 `build.gradle`:
 ```groovy
-compile group: 'pl.wendigo', name: 'chrome-reactive-kotlin', version: '0.6.2'
+implementation 'pl.wendigo:chrome-reactive-kotlin:0.6.2'
 ```
 
 `build.gradle.kts`:
 ```kotlin
 implementation("pl.wendigo:chrome-reactive-kotlin:0.6.2")
+```
+
+## Maven
+
+`pom.xml`:
+
+```xml
+<dependency>
+  <groupId>pl.wendigo</groupId>
+  <artifactId>chrome-reactive-kotlin</artifactId>
+  <version>0.6.2</version>
+</dependency>
 ```
 
 # Example
