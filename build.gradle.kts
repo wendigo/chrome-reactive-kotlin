@@ -24,6 +24,11 @@ java {
     }
 }
 
+ext {
+    set("nexusUsername", project.findProperty("nexusUsername"))
+    set("nexusPassword", project.findProperty("nexusPassword"))
+}
+
 scmVersion {
     tag.prefix = "chrome-reactive-kotlin"
 }
@@ -148,6 +153,17 @@ publishing {
             }
         }
     }
+
+    repositories {
+        maven {
+            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+
+            credentials {
+                username = project.ext["nexusUsername"] as String
+                password = project.ext["nexusPassword"] as String
+            }
+        }
+    }
 }
 
 signing {
@@ -163,14 +179,12 @@ signing {
 }
 
 nexusStaging {
-    val nexusUsername: String by project
-    val nexusPassword: String by project
-
     packageGroup = "pl.wendigo"
     numberOfRetries = 3
     delayBetweenRetriesInMillis = 100000
-    username = nexusUsername
-    password = nexusPassword
+    username = project.ext["nexusUsername"] as String
+    password = project.ext["nexusPassword"] as String
+    stagingProfileId = "5028463f095590"
 }
 
 tasks.named<Wrapper>("wrapper") {
