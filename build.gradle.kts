@@ -174,7 +174,7 @@ publishing {
 
 signing {
     setRequired({
-        (project.extra["isReleaseVersion"] as Boolean) && gradle.taskGraph.hasTask("publishToSonatype")
+        (project.extra["isReleaseVersion"] as Boolean) && project.ext["signingKeyId"] != null
     })
 
     useInMemoryPgpKeys(

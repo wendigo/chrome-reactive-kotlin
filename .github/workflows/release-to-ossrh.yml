@@ -46,7 +46,4 @@ jobs:
         run: ./gradlew release ${GRADLE_FLAGS}
 
       - name: Publish to Sonatype
-        run: ./gradlew publishToSonatype ${GRADLE_FLAGS}
-
-      - name: Close and release Sonatype repository
-        run: ./gradlew closeAndReleaseRepository ${GRADLE_FLAGS}
+        run: ./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository ${GRADLE_FLAGS}
