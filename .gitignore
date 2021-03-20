@@ -13,3 +13,5 @@ out
 *.py
 *.pdl
 gradle.properties
+*.sh
+*.gpg
