@@ -48,12 +48,11 @@ jobs:
         run: ./gradlew clean test ${GRADLE_FLAGS}
 
       - name: Release artefacts
-        run: ./gradlew createRelease ${GRADLE_FLAGS}
+        run: ./gradlew release ${GRADLE_FLAGS}
         if: github.event.inputs.branch == "master"
 
       - name: Publish to Sonatype
         run: ./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository ${GRADLE_FLAGS}
 
-      - name: Release artefacts
-        run: ./gradlew pushRelease ${GRADLE_FLAGS}
-        if: github.event.inputs.branch == "master"
+      - name: Publish to Github Packages
+        run: ./gradlew publishAllPublicationsToGithubRepository ${GRADLE_FLAGS}

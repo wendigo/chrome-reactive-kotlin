@@ -182,6 +182,16 @@ publishing {
                 password = project.ext["sonatypePassword"] as String
             }
         }
+
+        maven {
+            url = uri("https://maven.pkg.github.com/wendigo/chrome-reactive-kotlin")
+            name = "Github"
+
+            credentials {
+                username = "wendigo"
+                password = project.ext["githubToken"] as String
+            }
+        }
     }
 }
 
