@@ -1,5 +1,5 @@
 val kotlinVersion = "1.4.31"
-val githubToken: String by project
+
 
 plugins {
     id("maven")
@@ -26,6 +26,7 @@ java {
 ext {
     set("nexusUsername", project.findProperty("nexusUsername"))
     set("nexusPassword", project.findProperty("nexusPassword"))
+    set("githubToken", project.findProperty("githubToken"))
 }
 
 scmVersion {
@@ -35,7 +36,7 @@ scmVersion {
 group = "pl.wendigo"
 version = scmVersion.version
 extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
-scmVersion.repository.customUsername = githubToken
+scmVersion.repository.customUsername = project.ext["githubToken"] as String
 
 repositories {
     mavenCentral()
