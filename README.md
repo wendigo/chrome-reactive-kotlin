@@ -1,4 +1,4 @@
-# chrome-reactive-kotlin v0.6.2
+# chrome-reactive-kotlin v0.7.0
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/pl.wendigo/chrome-reactive-kotlin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/pl.wendigo/chrome-reactive-kotlin) [![Javadocs](https://www.javadoc.io/badge/pl.wendigo/chrome-reactive-kotlin.svg)](https://www.javadoc.io/doc/pl.wendigo/chrome-reactive-kotlin) [![Tests](https://github.com/wendigo/chrome-reactive-kotlin/actions/workflows/tests-with-gradle.yml/badge.svg)](https://github.com/wendigo/chrome-reactive-kotlin/actions/workflows/tests-with-gradle.yml) [![Update Status](https://github.com/wendigo/chrome-reactive-kotlin/workflows/Update%20protocol%20to%20ToT/badge.svg)](https://github.com/wendigo/chrome-reactive-kotlin/actions?workflow=Update+protocol+to+ToT) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=wendigo/chrome-reactive-kotlin)](https://dependabot.com)
 
@@ -18,12 +18,12 @@ Please note that most up-to-date protocol is used at the moment.
 
 `build.gradle`:
 ```groovy
-implementation 'pl.wendigo:chrome-reactive-kotlin:0.6.2'
+implementation 'pl.wendigo:chrome-reactive-kotlin:0.7.0'
 ```
 
 `build.gradle.kts`:
 ```kotlin
-implementation("pl.wendigo:chrome-reactive-kotlin:0.6.2")
+implementation("pl.wendigo:chrome-reactive-kotlin:0.7.0")
 ```
 
 ## Maven
@@ -34,7 +34,7 @@ implementation("pl.wendigo:chrome-reactive-kotlin:0.6.2")
 <dependency>
   <groupId>pl.wendigo</groupId>
   <artifactId>chrome-reactive-kotlin</artifactId>
-  <version>0.6.2</version>
+  <version>0.7.0</version>
 </dependency>
 ```
 
