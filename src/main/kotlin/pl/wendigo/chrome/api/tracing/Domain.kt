@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Tracing](https://chromedevtools.github.io/devtools-protocol/tot/Tracing) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Tracing", """""", connection) {
     /**
      * Stop trace events collection.
@@ -17,7 +17,7 @@ class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Tracing#end](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-end) method documentation.
      */
     
-    fun end(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Tracing.end", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun end(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Tracing.end", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Gets supported tracing categories.
@@ -33,7 +33,7 @@ class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Tracing#recordClockSyncMarker](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-recordClockSyncMarker) method documentation.
      */
     
-    fun recordClockSyncMarker(input: RecordClockSyncMarkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Tracing.recordClockSyncMarker", Json.encodeToJsonElement(RecordClockSyncMarkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun recordClockSyncMarker(input: RecordClockSyncMarkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Tracing.recordClockSyncMarker", Json.encodeToJsonElement(RecordClockSyncMarkerRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Request a global memory dump.
@@ -49,7 +49,7 @@ class TracingDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Tracing#start](https://chromedevtools.github.io/devtools-protocol/tot/Tracing#method-start) method documentation.
      */
     
-    fun start(input: StartRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Tracing.start", Json.encodeToJsonElement(StartRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun start(input: StartRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Tracing.start", Json.encodeToJsonElement(StartRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all Tracing.bufferUsage events.

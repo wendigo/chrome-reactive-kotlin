@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Accessibility](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class AccessibilityDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class AccessibilityDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Accessibility", """""", connection) {
     /**
      * Disables the accessibility domain.
@@ -17,7 +17,7 @@ class AccessibilityDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [Accessibility#disable](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Accessibility.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Accessibility.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables the accessibility domain which causes `AXNodeId`s to remain consistent between method calls.
@@ -26,7 +26,7 @@ This turns on accessibility for the page, which can impact performance until acc
      * @link Protocol [Accessibility#enable](https://chromedevtools.github.io/devtools-protocol/tot/Accessibility#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Accessibility.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Accessibility.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Fetches the accessibility node and partial accessibility tree for this DOM node, if it exists.

@@ -9,7 +9,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
  * @link Protocol [Network](https://chromedevtools.github.io/devtools-protocol/tot/Network) domain documentation.
  */
 
-class NetworkDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class NetworkDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain(
         "Network",
         """Network domain allows tracking network activities of the page. It exposes information about http,
@@ -46,7 +46,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
      * @link Protocol [Network#clearBrowserCache](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-clearBrowserCache) method documentation.
      */
     
-    fun clearBrowserCache(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.clearBrowserCache", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearBrowserCache(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.clearBrowserCache", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Clears browser cookies.
@@ -54,7 +54,7 @@ file, data and other requests and responses, their headers, bodies, timing, etc.
      * @link Protocol [Network#clearBrowserCookies](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-clearBrowserCookies) method documentation.
      */
     
-    fun clearBrowserCookies(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.clearBrowserCookies", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearBrowserCookies(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.clearBrowserCookies", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Response to Network.requestIntercepted which either modifies the request to continue with any
@@ -67,7 +67,7 @@ Deprecated, use Fetch.continueRequest, Fetch.fulfillRequest and Fetch.failReques
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "continueInterceptedRequest is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun continueInterceptedRequest(input: ContinueInterceptedRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.continueInterceptedRequest", Json.encodeToJsonElement(ContinueInterceptedRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun continueInterceptedRequest(input: ContinueInterceptedRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.continueInterceptedRequest", Json.encodeToJsonElement(ContinueInterceptedRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Deletes browser cookies with matching name and url or domain/path pair.
@@ -75,7 +75,7 @@ Deprecated, use Fetch.continueRequest, Fetch.fulfillRequest and Fetch.failReques
      * @link Protocol [Network#deleteCookies](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-deleteCookies) method documentation.
      */
     
-    fun deleteCookies(input: DeleteCookiesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.deleteCookies", Json.encodeToJsonElement(DeleteCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun deleteCookies(input: DeleteCookiesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.deleteCookies", Json.encodeToJsonElement(DeleteCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Disables network tracking, prevents network events from being sent to the client.
@@ -83,7 +83,7 @@ Deprecated, use Fetch.continueRequest, Fetch.fulfillRequest and Fetch.failReques
      * @link Protocol [Network#disable](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Activates emulation of network conditions.
@@ -91,7 +91,7 @@ Deprecated, use Fetch.continueRequest, Fetch.fulfillRequest and Fetch.failReques
      * @link Protocol [Network#emulateNetworkConditions](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-emulateNetworkConditions) method documentation.
      */
     
-    fun emulateNetworkConditions(input: EmulateNetworkConditionsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.emulateNetworkConditions", Json.encodeToJsonElement(EmulateNetworkConditionsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun emulateNetworkConditions(input: EmulateNetworkConditionsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.emulateNetworkConditions", Json.encodeToJsonElement(EmulateNetworkConditionsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables network tracking, network events will now be delivered to the client.
@@ -99,7 +99,7 @@ Deprecated, use Fetch.continueRequest, Fetch.fulfillRequest and Fetch.failReques
      * @link Protocol [Network#enable](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-enable) method documentation.
      */
     
-    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns all browser cookies. Depending on the backend support, will return detailed cookie
@@ -170,7 +170,7 @@ attribute, user, password.
      * @link Protocol [Network#replayXHR](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-replayXHR) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun replayXHR(input: ReplayXHRRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.replayXHR", Json.encodeToJsonElement(ReplayXHRRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun replayXHR(input: ReplayXHRRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.replayXHR", Json.encodeToJsonElement(ReplayXHRRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Searches for given string in response content.
@@ -186,7 +186,7 @@ attribute, user, password.
      * @link Protocol [Network#setBlockedURLs](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setBlockedURLs) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBlockedURLs(input: SetBlockedURLsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.setBlockedURLs", Json.encodeToJsonElement(SetBlockedURLsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBlockedURLs(input: SetBlockedURLsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.setBlockedURLs", Json.encodeToJsonElement(SetBlockedURLsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Toggles ignoring of service worker for each request.
@@ -194,7 +194,7 @@ attribute, user, password.
      * @link Protocol [Network#setBypassServiceWorker](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setBypassServiceWorker) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBypassServiceWorker(input: SetBypassServiceWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.setBypassServiceWorker", Json.encodeToJsonElement(SetBypassServiceWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBypassServiceWorker(input: SetBypassServiceWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.setBypassServiceWorker", Json.encodeToJsonElement(SetBypassServiceWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Toggles ignoring cache for each request. If `true`, cache will not be used.
@@ -202,7 +202,7 @@ attribute, user, password.
      * @link Protocol [Network#setCacheDisabled](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setCacheDisabled) method documentation.
      */
     
-    fun setCacheDisabled(input: SetCacheDisabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.setCacheDisabled", Json.encodeToJsonElement(SetCacheDisabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setCacheDisabled(input: SetCacheDisabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.setCacheDisabled", Json.encodeToJsonElement(SetCacheDisabledRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
@@ -218,7 +218,7 @@ attribute, user, password.
      * @link Protocol [Network#setCookies](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setCookies) method documentation.
      */
     
-    fun setCookies(input: SetCookiesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.setCookies", Json.encodeToJsonElement(SetCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setCookies(input: SetCookiesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.setCookies", Json.encodeToJsonElement(SetCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * For testing.
@@ -226,7 +226,7 @@ attribute, user, password.
      * @link Protocol [Network#setDataSizeLimitsForTest](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setDataSizeLimitsForTest) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDataSizeLimitsForTest(input: SetDataSizeLimitsForTestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.setDataSizeLimitsForTest", Json.encodeToJsonElement(SetDataSizeLimitsForTestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDataSizeLimitsForTest(input: SetDataSizeLimitsForTestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.setDataSizeLimitsForTest", Json.encodeToJsonElement(SetDataSizeLimitsForTestRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Specifies whether to always send extra HTTP headers with the requests from this page.
@@ -234,7 +234,7 @@ attribute, user, password.
      * @link Protocol [Network#setExtraHTTPHeaders](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setExtraHTTPHeaders) method documentation.
      */
     
-    fun setExtraHTTPHeaders(input: SetExtraHTTPHeadersRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.setExtraHTTPHeaders", Json.encodeToJsonElement(SetExtraHTTPHeadersRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setExtraHTTPHeaders(input: SetExtraHTTPHeadersRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.setExtraHTTPHeaders", Json.encodeToJsonElement(SetExtraHTTPHeadersRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Specifies whether to attach a page script stack id in requests
@@ -242,7 +242,7 @@ attribute, user, password.
      * @link Protocol [Network#setAttachDebugStack](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setAttachDebugStack) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setAttachDebugStack(input: SetAttachDebugStackRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.setAttachDebugStack", Json.encodeToJsonElement(SetAttachDebugStackRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setAttachDebugStack(input: SetAttachDebugStackRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.setAttachDebugStack", Json.encodeToJsonElement(SetAttachDebugStackRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets the requests to intercept that match the provided patterns and optionally resource types.
@@ -252,7 +252,7 @@ Deprecated, please use Fetch.enable instead.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setRequestInterception is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setRequestInterception(input: SetRequestInterceptionRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.setRequestInterception", Json.encodeToJsonElement(SetRequestInterceptionRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setRequestInterception(input: SetRequestInterceptionRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.setRequestInterception", Json.encodeToJsonElement(SetRequestInterceptionRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Allows overriding user agent with the given string.
@@ -260,7 +260,7 @@ Deprecated, please use Fetch.enable instead.
      * @link Protocol [Network#setUserAgentOverride](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-setUserAgentOverride) method documentation.
      */
     
-    fun setUserAgentOverride(input: SetUserAgentOverrideRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Network.setUserAgentOverride", Json.encodeToJsonElement(SetUserAgentOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setUserAgentOverride(input: SetUserAgentOverrideRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Network.setUserAgentOverride", Json.encodeToJsonElement(SetUserAgentOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns information about the COEP/COOP isolation status.

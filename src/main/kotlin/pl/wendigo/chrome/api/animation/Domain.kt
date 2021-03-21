@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Animation](https://chromedevtools.github.io/devtools-protocol/tot/Animation) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Animation", """""", connection) {
     /**
      * Disables animation domain notifications.
@@ -17,7 +17,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#disable](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Animation.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables animation domain notifications.
@@ -25,7 +25,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#enable](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Animation.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns the current time of the an animation.
@@ -49,7 +49,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#releaseAnimations](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-releaseAnimations) method documentation.
      */
     
-    fun releaseAnimations(input: ReleaseAnimationsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.releaseAnimations", Json.encodeToJsonElement(ReleaseAnimationsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun releaseAnimations(input: ReleaseAnimationsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Animation.releaseAnimations", Json.encodeToJsonElement(ReleaseAnimationsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Gets the remote object of the Animation.
@@ -65,7 +65,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#seekAnimations](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-seekAnimations) method documentation.
      */
     
-    fun seekAnimations(input: SeekAnimationsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.seekAnimations", Json.encodeToJsonElement(SeekAnimationsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun seekAnimations(input: SeekAnimationsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Animation.seekAnimations", Json.encodeToJsonElement(SeekAnimationsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets the paused state of a set of animations.
@@ -73,7 +73,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#setPaused](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setPaused) method documentation.
      */
     
-    fun setPaused(input: SetPausedRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.setPaused", Json.encodeToJsonElement(SetPausedRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setPaused(input: SetPausedRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Animation.setPaused", Json.encodeToJsonElement(SetPausedRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets the playback rate of the document timeline.
@@ -81,7 +81,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#setPlaybackRate](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setPlaybackRate) method documentation.
      */
     
-    fun setPlaybackRate(input: SetPlaybackRateRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.setPlaybackRate", Json.encodeToJsonElement(SetPlaybackRateRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setPlaybackRate(input: SetPlaybackRateRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Animation.setPlaybackRate", Json.encodeToJsonElement(SetPlaybackRateRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets the timing of an animation node.
@@ -89,7 +89,7 @@ class AnimationDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [Animation#setTiming](https://chromedevtools.github.io/devtools-protocol/tot/Animation#method-setTiming) method documentation.
      */
     
-    fun setTiming(input: SetTimingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Animation.setTiming", Json.encodeToJsonElement(SetTimingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setTiming(input: SetTimingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Animation.setTiming", Json.encodeToJsonElement(SetTimingRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Event for when an animation has been cancelled.

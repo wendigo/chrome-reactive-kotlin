@@ -10,7 +10,7 @@ https://w3c.github.io/performance-timeline/#dom-performanceobserver.
  * @link Protocol [PerformanceTimeline](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class PerformanceTimelineDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class PerformanceTimelineDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain(
         "PerformanceTimeline",
         """Reporting of performance timeline events, as specified in
@@ -24,7 +24,7 @@ See also: timelineEventAdded
      * @link Protocol [PerformanceTimeline#enable](https://chromedevtools.github.io/devtools-protocol/tot/PerformanceTimeline#method-enable) method documentation.
      */
     
-    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("PerformanceTimeline.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("PerformanceTimeline.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Sent when a performance timeline event is added. See reportPerformanceTimeline method.

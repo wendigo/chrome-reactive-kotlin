@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Browser](https://chromedevtools.github.io/devtools-protocol/tot/Browser) domain documentation.
  */
 
-class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Browser", """The Browser domain defines methods and events for browser managing.""", connection) {
     /**
      * Set permission settings for given origin.
@@ -16,7 +16,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#setPermission](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setPermission) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setPermission(input: SetPermissionRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.setPermission", Json.encodeToJsonElement(SetPermissionRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setPermission(input: SetPermissionRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.setPermission", Json.encodeToJsonElement(SetPermissionRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Grant specific permissions to the given origin and reject all others.
@@ -24,7 +24,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#grantPermissions](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-grantPermissions) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun grantPermissions(input: GrantPermissionsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.grantPermissions", Json.encodeToJsonElement(GrantPermissionsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun grantPermissions(input: GrantPermissionsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.grantPermissions", Json.encodeToJsonElement(GrantPermissionsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Reset all permission management for all origins.
@@ -32,7 +32,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#resetPermissions](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-resetPermissions) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun resetPermissions(input: ResetPermissionsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.resetPermissions", Json.encodeToJsonElement(ResetPermissionsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun resetPermissions(input: ResetPermissionsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.resetPermissions", Json.encodeToJsonElement(ResetPermissionsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Set the behavior when downloading a file.
@@ -40,7 +40,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#setDownloadBehavior](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setDownloadBehavior) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDownloadBehavior(input: SetDownloadBehaviorRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.setDownloadBehavior", Json.encodeToJsonElement(SetDownloadBehaviorRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDownloadBehavior(input: SetDownloadBehaviorRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.setDownloadBehavior", Json.encodeToJsonElement(SetDownloadBehaviorRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Cancel a download if in progress
@@ -48,7 +48,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#cancelDownload](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-cancelDownload) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun cancelDownload(input: CancelDownloadRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.cancelDownload", Json.encodeToJsonElement(CancelDownloadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun cancelDownload(input: CancelDownloadRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.cancelDownload", Json.encodeToJsonElement(CancelDownloadRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Close browser gracefully.
@@ -56,7 +56,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#close](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-close) method documentation.
      */
     
-    fun close(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.close", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun close(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.close", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Crashes browser on the main thread.
@@ -64,7 +64,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#crash](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-crash) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun crash(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.crash", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun crash(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.crash", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Crashes GPU process.
@@ -72,7 +72,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#crashGpuProcess](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-crashGpuProcess) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun crashGpuProcess(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.crashGpuProcess", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun crashGpuProcess(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.crashGpuProcess", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns version information.
@@ -129,7 +129,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#setWindowBounds](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setWindowBounds) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setWindowBounds(input: SetWindowBoundsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.setWindowBounds", Json.encodeToJsonElement(SetWindowBoundsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setWindowBounds(input: SetWindowBoundsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.setWindowBounds", Json.encodeToJsonElement(SetWindowBoundsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Set dock tile details, platform-specific.
@@ -137,7 +137,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#setDockTile](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setDockTile) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDockTile(input: SetDockTileRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.setDockTile", Json.encodeToJsonElement(SetDockTileRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDockTile(input: SetDockTileRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.setDockTile", Json.encodeToJsonElement(SetDockTileRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Invoke custom browser commands used by telemetry.
@@ -145,7 +145,7 @@ class BrowserDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Browser#executeBrowserCommand](https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-executeBrowserCommand) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun executeBrowserCommand(input: ExecuteBrowserCommandRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Browser.executeBrowserCommand", Json.encodeToJsonElement(ExecuteBrowserCommandRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun executeBrowserCommand(input: ExecuteBrowserCommandRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Browser.executeBrowserCommand", Json.encodeToJsonElement(ExecuteBrowserCommandRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 }
 
 /**

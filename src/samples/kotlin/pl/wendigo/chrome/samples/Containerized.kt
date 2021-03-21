@@ -1,6 +1,7 @@
 package pl.wendigo.chrome.samples
 
 import pl.wendigo.chrome.Browser
+import pl.wendigo.chrome.api.network.EnableRequest
 import pl.wendigo.chrome.api.page.NavigateRequest
 import pl.wendigo.chrome.sync
 
@@ -16,6 +17,17 @@ object Containerized {
 
         browser.target("about:blank").use { target ->
             sync(target.Page.enable())
+            sync(target.DOM.enable())
+            sync(target.CSS.enable())
+            sync(target.Network.enable(EnableRequest()))
+
+            browser.events().subscribe {
+                println("Received browser event $it")
+            }
+
+            target.events().subscribe {
+                println("Received target event $it")
+            }
 
             sync(
                 target.Page.navigate(NavigateRequest(url = "https://github.com/wendigo/chrome-reactive-kotlin")).flatMap { (frameId) ->
@@ -30,6 +42,8 @@ object Containerized {
             browser.targets().forEach {
                 println("Target ${it.targetId} has url: ${it.url} and browser context id: ${it.browserContextId}")
             }
+
+            Thread.sleep(100000)
         }
 
         browser.close()

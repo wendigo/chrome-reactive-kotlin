@@ -14,7 +14,7 @@ subsequently load the required stylesheet contents using the `getStyleSheet[Text
  * @link Protocol [CSS](https://chromedevtools.github.io/devtools-protocol/tot/CSS) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class CSSDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class CSSDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain(
         "CSS",
         """This domain exposes CSS read/write operations. All CSS objects (stylesheets, rules, and styles)
@@ -56,7 +56,7 @@ position specified by `location`.
      * @link Protocol [CSS#disable](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("CSS.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables the CSS agent for the given page. Clients should not assume that the CSS agent has been
@@ -65,7 +65,7 @@ enabled until the result of this command is received.
      * @link Protocol [CSS#enable](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("CSS.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Ensures that the given node will have specified pseudo-classes whenever its style is computed by
@@ -74,7 +74,7 @@ the browser.
      * @link Protocol [CSS#forcePseudoState](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-forcePseudoState) method documentation.
      */
     
-    fun forcePseudoState(input: ForcePseudoStateRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.forcePseudoState", Json.encodeToJsonElement(ForcePseudoStateRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun forcePseudoState(input: ForcePseudoStateRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("CSS.forcePseudoState", Json.encodeToJsonElement(ForcePseudoStateRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -145,7 +145,7 @@ to the front-end, no updates will be issued for the node.
      * @link Protocol [CSS#trackComputedStyleUpdates](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-trackComputedStyleUpdates) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun trackComputedStyleUpdates(input: TrackComputedStyleUpdatesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.trackComputedStyleUpdates", Json.encodeToJsonElement(TrackComputedStyleUpdatesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun trackComputedStyleUpdates(input: TrackComputedStyleUpdatesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("CSS.trackComputedStyleUpdates", Json.encodeToJsonElement(TrackComputedStyleUpdatesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Polls the next batch of computed style updates.
@@ -162,7 +162,7 @@ property
      * @link Protocol [CSS#setEffectivePropertyValueForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setEffectivePropertyValueForNode) method documentation.
      */
     
-    fun setEffectivePropertyValueForNode(input: SetEffectivePropertyValueForNodeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.setEffectivePropertyValueForNode", Json.encodeToJsonElement(SetEffectivePropertyValueForNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setEffectivePropertyValueForNode(input: SetEffectivePropertyValueForNodeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("CSS.setEffectivePropertyValueForNode", Json.encodeToJsonElement(SetEffectivePropertyValueForNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Modifies the keyframe rule key text.
@@ -210,7 +210,7 @@ property
      * @link Protocol [CSS#startRuleUsageTracking](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-startRuleUsageTracking) method documentation.
      */
     
-    fun startRuleUsageTracking(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startRuleUsageTracking(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("CSS.startRuleUsageTracking", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Stop tracking rule usage and return the list of rules that were used since last call to
@@ -236,7 +236,7 @@ instrumentation)
      * @link Protocol [CSS#setLocalFontsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/CSS#method-setLocalFontsEnabled) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setLocalFontsEnabled(input: SetLocalFontsEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CSS.setLocalFontsEnabled", Json.encodeToJsonElement(SetLocalFontsEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setLocalFontsEnabled(input: SetLocalFontsEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("CSS.setLocalFontsEnabled", Json.encodeToJsonElement(SetLocalFontsEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Fires whenever a web font is updated.  A non-empty font parameter indicates a successfully loaded

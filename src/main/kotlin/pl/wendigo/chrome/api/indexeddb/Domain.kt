@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [IndexedDB](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("IndexedDB", """""", connection) {
     /**
      * Clears all entries from an object store.
@@ -17,7 +17,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#clearObjectStore](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-clearObjectStore) method documentation.
      */
     
-    fun clearObjectStore(input: ClearObjectStoreRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IndexedDB.clearObjectStore", Json.encodeToJsonElement(ClearObjectStoreRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearObjectStore(input: ClearObjectStoreRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("IndexedDB.clearObjectStore", Json.encodeToJsonElement(ClearObjectStoreRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Deletes a database.
@@ -25,7 +25,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#deleteDatabase](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteDatabase) method documentation.
      */
     
-    fun deleteDatabase(input: DeleteDatabaseRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IndexedDB.deleteDatabase", Json.encodeToJsonElement(DeleteDatabaseRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun deleteDatabase(input: DeleteDatabaseRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("IndexedDB.deleteDatabase", Json.encodeToJsonElement(DeleteDatabaseRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Delete a range of entries from an object store
@@ -33,7 +33,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#deleteObjectStoreEntries](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-deleteObjectStoreEntries) method documentation.
      */
     
-    fun deleteObjectStoreEntries(input: DeleteObjectStoreEntriesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IndexedDB.deleteObjectStoreEntries", Json.encodeToJsonElement(DeleteObjectStoreEntriesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun deleteObjectStoreEntries(input: DeleteObjectStoreEntriesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("IndexedDB.deleteObjectStoreEntries", Json.encodeToJsonElement(DeleteObjectStoreEntriesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Disables events from backend.
@@ -41,7 +41,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#disable](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IndexedDB.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("IndexedDB.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables events from backend.
@@ -49,7 +49,7 @@ class IndexedDBDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [IndexedDB#enable](https://chromedevtools.github.io/devtools-protocol/tot/IndexedDB#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IndexedDB.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("IndexedDB.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Requests data from object store or index.

@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Page](https://chromedevtools.github.io/devtools-protocol/tot/Page) domain documentation.
  */
 
-class PageDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class PageDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Page", """Actions and events related to the inspected page belong to the page domain.""", connection) {
     /**
      * Deprecated, please use addScriptToEvaluateOnNewDocument instead.
@@ -33,7 +33,7 @@ class PageDomain internal constructor(connection: pl.wendigo.chrome.protocol.Deb
      * @link Protocol [Page#bringToFront](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-bringToFront) method documentation.
      */
     
-    fun bringToFront(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.bringToFront", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun bringToFront(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.bringToFront", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Capture page screenshot.
@@ -59,7 +59,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearDeviceMetricsOverride is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun clearDeviceMetricsOverride(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearDeviceMetricsOverride(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.clearDeviceMetricsOverride", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Clears the overridden Device Orientation.
@@ -68,7 +68,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearDeviceOrientationOverride is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun clearDeviceOrientationOverride(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearDeviceOrientationOverride(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.clearDeviceOrientationOverride", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Clears the overriden Geolocation Position and Error.
@@ -76,7 +76,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      * @link Protocol [Page#clearGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-clearGeolocationOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "clearGeolocationOverride is deprecated.")
-    fun clearGeolocationOverride(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearGeolocationOverride(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.clearGeolocationOverride", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Creates an isolated world for the given frame.
@@ -93,7 +93,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "deleteCookie is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun deleteCookie(input: DeleteCookieRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.deleteCookie", Json.encodeToJsonElement(DeleteCookieRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun deleteCookie(input: DeleteCookieRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.deleteCookie", Json.encodeToJsonElement(DeleteCookieRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Disables page domain notifications.
@@ -101,7 +101,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      * @link Protocol [Page#disable](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables page domain notifications.
@@ -109,7 +109,7 @@ iframes, shadow DOM, external resources, and element-inline styles.
      * @link Protocol [Page#enable](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -175,7 +175,7 @@ information in the `cookies` field.
      * @link Protocol [Page#resetNavigationHistory](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-resetNavigationHistory) method documentation.
      */
     
-    fun resetNavigationHistory(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.resetNavigationHistory", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun resetNavigationHistory(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.resetNavigationHistory", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns content of the given resource.
@@ -199,7 +199,7 @@ information in the `cookies` field.
      * @link Protocol [Page#handleJavaScriptDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-handleJavaScriptDialog) method documentation.
      */
     
-    fun handleJavaScriptDialog(input: HandleJavaScriptDialogRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.handleJavaScriptDialog", Json.encodeToJsonElement(HandleJavaScriptDialogRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun handleJavaScriptDialog(input: HandleJavaScriptDialogRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.handleJavaScriptDialog", Json.encodeToJsonElement(HandleJavaScriptDialogRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Navigates current page to the given URL.
@@ -215,7 +215,7 @@ information in the `cookies` field.
      * @link Protocol [Page#navigateToHistoryEntry](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-navigateToHistoryEntry) method documentation.
      */
     
-    fun navigateToHistoryEntry(input: NavigateToHistoryEntryRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.navigateToHistoryEntry", Json.encodeToJsonElement(NavigateToHistoryEntryRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun navigateToHistoryEntry(input: NavigateToHistoryEntryRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.navigateToHistoryEntry", Json.encodeToJsonElement(NavigateToHistoryEntryRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Print page as PDF.
@@ -231,7 +231,7 @@ information in the `cookies` field.
      * @link Protocol [Page#reload](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-reload) method documentation.
      */
     
-    fun reload(input: ReloadRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.reload", Json.encodeToJsonElement(ReloadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun reload(input: ReloadRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.reload", Json.encodeToJsonElement(ReloadRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Deprecated, please use removeScriptToEvaluateOnNewDocument instead.
@@ -240,7 +240,7 @@ information in the `cookies` field.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "removeScriptToEvaluateOnLoad is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun removeScriptToEvaluateOnLoad(input: RemoveScriptToEvaluateOnLoadRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.removeScriptToEvaluateOnLoad", Json.encodeToJsonElement(RemoveScriptToEvaluateOnLoadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeScriptToEvaluateOnLoad(input: RemoveScriptToEvaluateOnLoadRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.removeScriptToEvaluateOnLoad", Json.encodeToJsonElement(RemoveScriptToEvaluateOnLoadRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Removes given script from the list.
@@ -248,7 +248,7 @@ information in the `cookies` field.
      * @link Protocol [Page#removeScriptToEvaluateOnNewDocument](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-removeScriptToEvaluateOnNewDocument) method documentation.
      */
     
-    fun removeScriptToEvaluateOnNewDocument(input: RemoveScriptToEvaluateOnNewDocumentRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.removeScriptToEvaluateOnNewDocument", Json.encodeToJsonElement(RemoveScriptToEvaluateOnNewDocumentRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeScriptToEvaluateOnNewDocument(input: RemoveScriptToEvaluateOnNewDocumentRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.removeScriptToEvaluateOnNewDocument", Json.encodeToJsonElement(RemoveScriptToEvaluateOnNewDocumentRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Acknowledges that a screencast frame has been received by the frontend.
@@ -256,7 +256,7 @@ information in the `cookies` field.
      * @link Protocol [Page#screencastFrameAck](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-screencastFrameAck) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun screencastFrameAck(input: ScreencastFrameAckRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.screencastFrameAck", Json.encodeToJsonElement(ScreencastFrameAckRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun screencastFrameAck(input: ScreencastFrameAckRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.screencastFrameAck", Json.encodeToJsonElement(ScreencastFrameAckRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Searches for given string in resource content.
@@ -272,7 +272,7 @@ information in the `cookies` field.
      * @link Protocol [Page#setAdBlockingEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setAdBlockingEnabled) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setAdBlockingEnabled(input: SetAdBlockingEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setAdBlockingEnabled", Json.encodeToJsonElement(SetAdBlockingEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setAdBlockingEnabled(input: SetAdBlockingEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setAdBlockingEnabled", Json.encodeToJsonElement(SetAdBlockingEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enable page Content Security Policy by-passing.
@@ -280,7 +280,7 @@ information in the `cookies` field.
      * @link Protocol [Page#setBypassCSP](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setBypassCSP) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBypassCSP(input: SetBypassCSPRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setBypassCSP", Json.encodeToJsonElement(SetBypassCSPRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBypassCSP(input: SetBypassCSPRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setBypassCSP", Json.encodeToJsonElement(SetBypassCSPRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Get Permissions Policy state on given frame.
@@ -299,7 +299,7 @@ query results).
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDeviceMetricsOverride is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setDeviceMetricsOverride", Json.encodeToJsonElement(SetDeviceMetricsOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDeviceMetricsOverride(input: SetDeviceMetricsOverrideRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setDeviceMetricsOverride", Json.encodeToJsonElement(SetDeviceMetricsOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Overrides the Device Orientation.
@@ -308,7 +308,7 @@ query results).
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDeviceOrientationOverride is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setDeviceOrientationOverride", Json.encodeToJsonElement(SetDeviceOrientationOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setDeviceOrientationOverride", Json.encodeToJsonElement(SetDeviceOrientationOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Set generic font families.
@@ -316,7 +316,7 @@ query results).
      * @link Protocol [Page#setFontFamilies](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setFontFamilies) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setFontFamilies(input: SetFontFamiliesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setFontFamilies", Json.encodeToJsonElement(SetFontFamiliesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setFontFamilies(input: SetFontFamiliesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setFontFamilies", Json.encodeToJsonElement(SetFontFamiliesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Set default font sizes.
@@ -324,7 +324,7 @@ query results).
      * @link Protocol [Page#setFontSizes](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setFontSizes) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setFontSizes(input: SetFontSizesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setFontSizes", Json.encodeToJsonElement(SetFontSizesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setFontSizes(input: SetFontSizesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setFontSizes", Json.encodeToJsonElement(SetFontSizesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets given markup as the document's HTML.
@@ -332,7 +332,7 @@ query results).
      * @link Protocol [Page#setDocumentContent](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setDocumentContent) method documentation.
      */
     
-    fun setDocumentContent(input: SetDocumentContentRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setDocumentContent", Json.encodeToJsonElement(SetDocumentContentRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDocumentContent(input: SetDocumentContentRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setDocumentContent", Json.encodeToJsonElement(SetDocumentContentRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Set the behavior when downloading a file.
@@ -341,7 +341,7 @@ query results).
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setDownloadBehavior is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setDownloadBehavior(input: SetDownloadBehaviorRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setDownloadBehavior", Json.encodeToJsonElement(SetDownloadBehaviorRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDownloadBehavior(input: SetDownloadBehaviorRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setDownloadBehavior", Json.encodeToJsonElement(SetDownloadBehaviorRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Overrides the Geolocation Position or Error. Omitting any of the parameters emulates position
@@ -350,7 +350,7 @@ unavailable.
      * @link Protocol [Page#setGeolocationOverride](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setGeolocationOverride) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setGeolocationOverride is deprecated.")
-    fun setGeolocationOverride(input: SetGeolocationOverrideRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setGeolocationOverride", Json.encodeToJsonElement(SetGeolocationOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setGeolocationOverride(input: SetGeolocationOverrideRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setGeolocationOverride", Json.encodeToJsonElement(SetGeolocationOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Controls whether page will emit lifecycle events.
@@ -358,7 +358,7 @@ unavailable.
      * @link Protocol [Page#setLifecycleEventsEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setLifecycleEventsEnabled) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setLifecycleEventsEnabled(input: SetLifecycleEventsEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setLifecycleEventsEnabled", Json.encodeToJsonElement(SetLifecycleEventsEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setLifecycleEventsEnabled(input: SetLifecycleEventsEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setLifecycleEventsEnabled", Json.encodeToJsonElement(SetLifecycleEventsEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Toggles mouse event-based touch event emulation.
@@ -367,7 +367,7 @@ unavailable.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setTouchEmulationEnabled is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setTouchEmulationEnabled", Json.encodeToJsonElement(SetTouchEmulationEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setTouchEmulationEnabled(input: SetTouchEmulationEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setTouchEmulationEnabled", Json.encodeToJsonElement(SetTouchEmulationEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Starts sending each frame using the `screencastFrame` event.
@@ -375,7 +375,7 @@ unavailable.
      * @link Protocol [Page#startScreencast](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-startScreencast) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun startScreencast(input: StartScreencastRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.startScreencast", Json.encodeToJsonElement(StartScreencastRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startScreencast(input: StartScreencastRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.startScreencast", Json.encodeToJsonElement(StartScreencastRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Force the page stop all navigations and pending resource fetches.
@@ -383,7 +383,7 @@ unavailable.
      * @link Protocol [Page#stopLoading](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-stopLoading) method documentation.
      */
     
-    fun stopLoading(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.stopLoading", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopLoading(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.stopLoading", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Crashes renderer on the IO thread, generates minidumps.
@@ -391,7 +391,7 @@ unavailable.
      * @link Protocol [Page#crash](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-crash) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun crash(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.crash", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun crash(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.crash", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Tries to close page, running its beforeunload hooks, if any.
@@ -399,7 +399,7 @@ unavailable.
      * @link Protocol [Page#close](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-close) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun close(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.close", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun close(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.close", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Tries to update the web lifecycle state of the page.
@@ -409,7 +409,7 @@ https://github.com/WICG/web-lifecycle/
      * @link Protocol [Page#setWebLifecycleState](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setWebLifecycleState) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setWebLifecycleState(input: SetWebLifecycleStateRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setWebLifecycleState", Json.encodeToJsonElement(SetWebLifecycleStateRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setWebLifecycleState(input: SetWebLifecycleStateRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setWebLifecycleState", Json.encodeToJsonElement(SetWebLifecycleStateRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Stops sending each frame in the `screencastFrame`.
@@ -417,7 +417,7 @@ https://github.com/WICG/web-lifecycle/
      * @link Protocol [Page#stopScreencast](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-stopScreencast) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun stopScreencast(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.stopScreencast", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopScreencast(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.stopScreencast", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Forces compilation cache to be generated for every subresource script.
@@ -426,7 +426,7 @@ See also: `Page.produceCompilationCache`.
      * @link Protocol [Page#setProduceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setProduceCompilationCache) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setProduceCompilationCache(input: SetProduceCompilationCacheRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setProduceCompilationCache", Json.encodeToJsonElement(SetProduceCompilationCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setProduceCompilationCache(input: SetProduceCompilationCacheRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setProduceCompilationCache", Json.encodeToJsonElement(SetProduceCompilationCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Requests backend to produce compilation cache for the specified scripts.
@@ -442,7 +442,7 @@ See also: `Page.compilationCacheProduced`.
      * @link Protocol [Page#produceCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-produceCompilationCache) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun produceCompilationCache(input: ProduceCompilationCacheRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.produceCompilationCache", Json.encodeToJsonElement(ProduceCompilationCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun produceCompilationCache(input: ProduceCompilationCacheRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.produceCompilationCache", Json.encodeToJsonElement(ProduceCompilationCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Seeds compilation cache for given url. Compilation cache does not survive
@@ -451,7 +451,7 @@ cross-process navigation.
      * @link Protocol [Page#addCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-addCompilationCache) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun addCompilationCache(input: AddCompilationCacheRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.addCompilationCache", Json.encodeToJsonElement(AddCompilationCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun addCompilationCache(input: AddCompilationCacheRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.addCompilationCache", Json.encodeToJsonElement(AddCompilationCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Clears seeded compilation cache.
@@ -459,7 +459,7 @@ cross-process navigation.
      * @link Protocol [Page#clearCompilationCache](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-clearCompilationCache) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun clearCompilationCache(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.clearCompilationCache", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearCompilationCache(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.clearCompilationCache", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Generates a report for testing.
@@ -467,7 +467,7 @@ cross-process navigation.
      * @link Protocol [Page#generateTestReport](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-generateTestReport) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun generateTestReport(input: GenerateTestReportRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.generateTestReport", Json.encodeToJsonElement(GenerateTestReportRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun generateTestReport(input: GenerateTestReportRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.generateTestReport", Json.encodeToJsonElement(GenerateTestReportRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Pauses page execution. Can be resumed using generic Runtime.runIfWaitingForDebugger.
@@ -475,7 +475,7 @@ cross-process navigation.
      * @link Protocol [Page#waitForDebugger](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-waitForDebugger) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun waitForDebugger(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.waitForDebugger", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun waitForDebugger(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.waitForDebugger", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Intercept file chooser requests and transfer control to protocol clients.
@@ -485,7 +485,7 @@ Instead, a protocol event `Page.fileChooserOpened` is emitted.
      * @link Protocol [Page#setInterceptFileChooserDialog](https://chromedevtools.github.io/devtools-protocol/tot/Page#method-setInterceptFileChooserDialog) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setInterceptFileChooserDialog(input: SetInterceptFileChooserDialogRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Page.setInterceptFileChooserDialog", Json.encodeToJsonElement(SetInterceptFileChooserDialogRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setInterceptFileChooserDialog(input: SetInterceptFileChooserDialogRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Page.setInterceptFileChooserDialog", Json.encodeToJsonElement(SetInterceptFileChooserDialogRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all Page.domContentEventFired events.

@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [CacheStorage](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class CacheStorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class CacheStorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("CacheStorage", """""", connection) {
     /**
      * Deletes a cache.
@@ -17,7 +17,7 @@ class CacheStorageDomain internal constructor(connection: pl.wendigo.chrome.prot
      * @link Protocol [CacheStorage#deleteCache](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteCache) method documentation.
      */
     
-    fun deleteCache(input: DeleteCacheRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CacheStorage.deleteCache", Json.encodeToJsonElement(DeleteCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun deleteCache(input: DeleteCacheRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("CacheStorage.deleteCache", Json.encodeToJsonElement(DeleteCacheRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Deletes a cache entry.
@@ -25,7 +25,7 @@ class CacheStorageDomain internal constructor(connection: pl.wendigo.chrome.prot
      * @link Protocol [CacheStorage#deleteEntry](https://chromedevtools.github.io/devtools-protocol/tot/CacheStorage#method-deleteEntry) method documentation.
      */
     
-    fun deleteEntry(input: DeleteEntryRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("CacheStorage.deleteEntry", Json.encodeToJsonElement(DeleteEntryRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun deleteEntry(input: DeleteEntryRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("CacheStorage.deleteEntry", Json.encodeToJsonElement(DeleteEntryRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Requests cache names.

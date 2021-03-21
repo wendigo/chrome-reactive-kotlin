@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Database](https://chromedevtools.github.io/devtools-protocol/tot/Database) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class DatabaseDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class DatabaseDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Database", """""", connection) {
     /**
      * Disables database tracking, prevents database events from being sent to the client.
@@ -17,7 +17,7 @@ class DatabaseDomain internal constructor(connection: pl.wendigo.chrome.protocol
      * @link Protocol [Database#disable](https://chromedevtools.github.io/devtools-protocol/tot/Database#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Database.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Database.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables database tracking, database events will now be delivered to the client.
@@ -25,7 +25,7 @@ class DatabaseDomain internal constructor(connection: pl.wendigo.chrome.protocol
      * @link Protocol [Database#enable](https://chromedevtools.github.io/devtools-protocol/tot/Database#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Database.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Database.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *

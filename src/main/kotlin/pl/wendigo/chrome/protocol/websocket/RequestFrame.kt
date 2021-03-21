@@ -1,4 +1,4 @@
-package pl.wendigo.chrome.protocol
+package pl.wendigo.chrome.protocol.websocket
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

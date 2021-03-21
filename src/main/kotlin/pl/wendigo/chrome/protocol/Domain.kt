@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.functions.Predicate
 open class Domain(
     private val name: String,
     private val description: String,
-    internal val connection: DebuggerWebSocketConnection
+    internal val connection: ProtocolConnection
 ) {
     /**
      * Returns domain name.

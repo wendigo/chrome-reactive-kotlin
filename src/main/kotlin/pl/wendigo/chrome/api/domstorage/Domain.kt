@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [DOMStorage](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class DOMStorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class DOMStorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("DOMStorage", """Query and modify DOM storage.""", connection) {
     /**
      *
@@ -17,7 +17,7 @@ class DOMStorageDomain internal constructor(connection: pl.wendigo.chrome.protoc
      * @link Protocol [DOMStorage#clear](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-clear) method documentation.
      */
     
-    fun clear(input: ClearRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMStorage.clear", Json.encodeToJsonElement(ClearRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clear(input: ClearRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMStorage.clear", Json.encodeToJsonElement(ClearRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Disables storage tracking, prevents storage events from being sent to the client.
@@ -25,7 +25,7 @@ class DOMStorageDomain internal constructor(connection: pl.wendigo.chrome.protoc
      * @link Protocol [DOMStorage#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMStorage.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMStorage.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables storage tracking, storage events will now be delivered to the client.
@@ -33,7 +33,7 @@ class DOMStorageDomain internal constructor(connection: pl.wendigo.chrome.protoc
      * @link Protocol [DOMStorage#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMStorage.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMStorage.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -49,7 +49,7 @@ class DOMStorageDomain internal constructor(connection: pl.wendigo.chrome.protoc
      * @link Protocol [DOMStorage#removeDOMStorageItem](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-removeDOMStorageItem) method documentation.
      */
     
-    fun removeDOMStorageItem(input: RemoveDOMStorageItemRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMStorage.removeDOMStorageItem", Json.encodeToJsonElement(RemoveDOMStorageItemRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeDOMStorageItem(input: RemoveDOMStorageItemRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMStorage.removeDOMStorageItem", Json.encodeToJsonElement(RemoveDOMStorageItemRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -57,7 +57,7 @@ class DOMStorageDomain internal constructor(connection: pl.wendigo.chrome.protoc
      * @link Protocol [DOMStorage#setDOMStorageItem](https://chromedevtools.github.io/devtools-protocol/tot/DOMStorage#method-setDOMStorageItem) method documentation.
      */
     
-    fun setDOMStorageItem(input: SetDOMStorageItemRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMStorage.setDOMStorageItem", Json.encodeToJsonElement(SetDOMStorageItemRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDOMStorageItem(input: SetDOMStorageItemRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMStorage.setDOMStorageItem", Json.encodeToJsonElement(SetDOMStorageItemRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all DOMStorage.domStorageItemAdded events.

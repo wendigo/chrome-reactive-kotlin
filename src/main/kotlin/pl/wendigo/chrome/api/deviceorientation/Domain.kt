@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [DeviceOrientation](https://chromedevtools.github.io/devtools-protocol/tot/DeviceOrientation) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class DeviceOrientationDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class DeviceOrientationDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("DeviceOrientation", """""", connection) {
     /**
      * Clears the overridden Device Orientation.
@@ -17,7 +17,7 @@ class DeviceOrientationDomain internal constructor(connection: pl.wendigo.chrome
      * @link Protocol [DeviceOrientation#clearDeviceOrientationOverride](https://chromedevtools.github.io/devtools-protocol/tot/DeviceOrientation#method-clearDeviceOrientationOverride) method documentation.
      */
     
-    fun clearDeviceOrientationOverride(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DeviceOrientation.clearDeviceOrientationOverride", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearDeviceOrientationOverride(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DeviceOrientation.clearDeviceOrientationOverride", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Overrides the Device Orientation.
@@ -25,7 +25,7 @@ class DeviceOrientationDomain internal constructor(connection: pl.wendigo.chrome
      * @link Protocol [DeviceOrientation#setDeviceOrientationOverride](https://chromedevtools.github.io/devtools-protocol/tot/DeviceOrientation#method-setDeviceOrientationOverride) method documentation.
      */
     
-    fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DeviceOrientation.setDeviceOrientationOverride", Json.encodeToJsonElement(SetDeviceOrientationOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDeviceOrientationOverride(input: SetDeviceOrientationOverrideRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DeviceOrientation.setDeviceOrientationOverride", Json.encodeToJsonElement(SetDeviceOrientationOverrideRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 }
 
 /**

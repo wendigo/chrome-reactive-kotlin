@@ -7,22 +7,26 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.JsonElement
 import okhttp3.OkHttpClient
 import pl.wendigo.chrome.api.target.SessionID
+import pl.wendigo.chrome.protocol.websocket.FrameMapper
+import pl.wendigo.chrome.protocol.websocket.RequestFrame
+import pl.wendigo.chrome.protocol.websocket.WebSocketFramesStream
 import java.io.Closeable
 import java.util.concurrent.atomic.AtomicLong
 
 /**
- * DebuggerWebSocketConnection represents connection to chrome's debugger via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
+ * ProtocolConnection represents connection to chrome's debugger via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
  *
- * It depends on [DebuggerFramesStream] which is responsible for providing stream of protocol frames (both events and responses) and allows for sending requests.
+ * It depends on [WebSocketFramesStream] which is responsible for providing stream of WebSocket frames (both events and responses) and allows for sending request frames.
  *
- * [FrameMapper] is responsible for decoding/encoding objects to/from JSON frames which DevTools Protocol can understand.
+ * [EventMapper] is responsible for mapping [pl.wendigo.chrome.protocol.websocket.EventResponseFrame]s to concrete [Event] representations.
  *
- * @see DebuggerFramesStream
+ * @see WebSocketFramesStream
  * @see FrameMapper
+ * @see EventMapper
  */
-class DebuggerWebSocketConnection constructor(
-    private val frames: DebuggerFramesStream,
-    private val eventMapper: EventMapper = EventMapper(),
+class ProtocolConnection constructor(
+    private val frames: WebSocketFramesStream,
+    private val eventMapper: EventMapper = ProtocolConnection.eventMapper,
     private val sessionId: SessionID? = null
 ) : Closeable, AutoCloseable {
     private val nextRequestId = AtomicLong(0)
@@ -77,20 +81,23 @@ class DebuggerWebSocketConnection constructor(
     /**
      * Reuse existing debugger connection but for new sessionID sharing underlying WebSocket connection.
      */
-    fun cloneForSessionId(sessionID: SessionID): DebuggerWebSocketConnection = DebuggerWebSocketConnection(
+    internal fun cloneForSessionId(sessionID: SessionID): ProtocolConnection = ProtocolConnection(
         frames,
         eventMapper,
         sessionID
     )
 
+    /**
+     * Factory is responsible for opening debugger WebSocket connections to a given debugger uri.
+     */
     companion object Factory : AutoCloseable {
         /**
          * Creates new ChromeDebuggerConnection session for given WebSocket uri and frames buffer size.
          */
         @JvmStatic
-        fun open(webSocketUri: String, framesBufferSize: Int = 128): DebuggerWebSocketConnection {
-            return DebuggerWebSocketConnection(
-                DebuggerFramesStream(webSocketUri, framesBufferSize, frameMapper, client),
+        fun open(webSocketUri: String, framesBufferSize: Int = 128): ProtocolConnection {
+            return ProtocolConnection(
+                WebSocketFramesStream(webSocketUri, framesBufferSize, frameMapper, client),
                 eventMapper
             )
         }

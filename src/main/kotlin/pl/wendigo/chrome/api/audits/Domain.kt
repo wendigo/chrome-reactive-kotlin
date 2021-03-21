@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Audits](https://chromedevtools.github.io/devtools-protocol/tot/Audits) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class AuditsDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class AuditsDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Audits", """Audits domain allows investigation of page violations and possible improvements.""", connection) {
     /**
      * Returns the response body and size if it were re-encoded with the specified settings. Only
@@ -26,7 +26,7 @@ applies to images.
      * @link Protocol [Audits#disable](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Audits.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Audits.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables issues domain, sends the issues collected so far to the client by means of the
@@ -35,7 +35,7 @@ applies to images.
      * @link Protocol [Audits#enable](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Audits.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Audits.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Runs the contrast check for the target page. Found issues are reported
@@ -44,7 +44,7 @@ using Audits.issueAdded event.
      * @link Protocol [Audits#checkContrast](https://chromedevtools.github.io/devtools-protocol/tot/Audits#method-checkContrast) method documentation.
      */
     
-    fun checkContrast(input: CheckContrastRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Audits.checkContrast", Json.encodeToJsonElement(CheckContrastRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun checkContrast(input: CheckContrastRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Audits.checkContrast", Json.encodeToJsonElement(CheckContrastRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all Audits.issueAdded events.

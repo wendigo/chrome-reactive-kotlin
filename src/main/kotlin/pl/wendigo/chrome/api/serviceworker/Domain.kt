@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [ServiceWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("ServiceWorker", """""", connection) {
     /**
      *
@@ -17,7 +17,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#deliverPushMessage](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-deliverPushMessage) method documentation.
      */
     
-    fun deliverPushMessage(input: DeliverPushMessageRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.deliverPushMessage", Json.encodeToJsonElement(DeliverPushMessageRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun deliverPushMessage(input: DeliverPushMessageRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.deliverPushMessage", Json.encodeToJsonElement(DeliverPushMessageRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -25,7 +25,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#disable](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -33,7 +33,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#dispatchSyncEvent](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-dispatchSyncEvent) method documentation.
      */
     
-    fun dispatchSyncEvent(input: DispatchSyncEventRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.dispatchSyncEvent", Json.encodeToJsonElement(DispatchSyncEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun dispatchSyncEvent(input: DispatchSyncEventRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.dispatchSyncEvent", Json.encodeToJsonElement(DispatchSyncEventRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -41,7 +41,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#dispatchPeriodicSyncEvent](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-dispatchPeriodicSyncEvent) method documentation.
      */
     
-    fun dispatchPeriodicSyncEvent(input: DispatchPeriodicSyncEventRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.dispatchPeriodicSyncEvent", Json.encodeToJsonElement(DispatchPeriodicSyncEventRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun dispatchPeriodicSyncEvent(input: DispatchPeriodicSyncEventRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.dispatchPeriodicSyncEvent", Json.encodeToJsonElement(DispatchPeriodicSyncEventRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -49,7 +49,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#enable](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -57,7 +57,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#inspectWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-inspectWorker) method documentation.
      */
     
-    fun inspectWorker(input: InspectWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.inspectWorker", Json.encodeToJsonElement(InspectWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun inspectWorker(input: InspectWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.inspectWorker", Json.encodeToJsonElement(InspectWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -65,7 +65,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#setForceUpdateOnPageLoad](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-setForceUpdateOnPageLoad) method documentation.
      */
     
-    fun setForceUpdateOnPageLoad(input: SetForceUpdateOnPageLoadRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.setForceUpdateOnPageLoad", Json.encodeToJsonElement(SetForceUpdateOnPageLoadRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setForceUpdateOnPageLoad(input: SetForceUpdateOnPageLoadRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.setForceUpdateOnPageLoad", Json.encodeToJsonElement(SetForceUpdateOnPageLoadRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -73,7 +73,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#skipWaiting](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-skipWaiting) method documentation.
      */
     
-    fun skipWaiting(input: SkipWaitingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.skipWaiting", Json.encodeToJsonElement(SkipWaitingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun skipWaiting(input: SkipWaitingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.skipWaiting", Json.encodeToJsonElement(SkipWaitingRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -81,7 +81,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#startWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-startWorker) method documentation.
      */
     
-    fun startWorker(input: StartWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.startWorker", Json.encodeToJsonElement(StartWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startWorker(input: StartWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.startWorker", Json.encodeToJsonElement(StartWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -89,7 +89,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#stopAllWorkers](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-stopAllWorkers) method documentation.
      */
     
-    fun stopAllWorkers(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.stopAllWorkers", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopAllWorkers(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.stopAllWorkers", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -97,7 +97,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#stopWorker](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-stopWorker) method documentation.
      */
     
-    fun stopWorker(input: StopWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.stopWorker", Json.encodeToJsonElement(StopWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopWorker(input: StopWorkerRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.stopWorker", Json.encodeToJsonElement(StopWorkerRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -105,7 +105,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#unregister](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-unregister) method documentation.
      */
     
-    fun unregister(input: UnregisterRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.unregister", Json.encodeToJsonElement(UnregisterRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun unregister(input: UnregisterRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.unregister", Json.encodeToJsonElement(UnregisterRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -113,7 +113,7 @@ class ServiceWorkerDomain internal constructor(connection: pl.wendigo.chrome.pro
      * @link Protocol [ServiceWorker#updateRegistration](https://chromedevtools.github.io/devtools-protocol/tot/ServiceWorker#method-updateRegistration) method documentation.
      */
     
-    fun updateRegistration(input: UpdateRegistrationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ServiceWorker.updateRegistration", Json.encodeToJsonElement(UpdateRegistrationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun updateRegistration(input: UpdateRegistrationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ServiceWorker.updateRegistration", Json.encodeToJsonElement(UpdateRegistrationRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all ServiceWorker.workerErrorReported events.

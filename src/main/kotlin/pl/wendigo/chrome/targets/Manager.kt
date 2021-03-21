@@ -13,13 +13,12 @@ import pl.wendigo.chrome.api.target.SetDiscoverTargetsRequest
 import pl.wendigo.chrome.api.target.TargetID
 import pl.wendigo.chrome.api.target.TargetInfo
 import pl.wendigo.chrome.on
-import pl.wendigo.chrome.protocol.DebuggerWebSocketConnection
-import pl.wendigo.chrome.protocol.Experimental
+import pl.wendigo.chrome.protocol.ProtocolConnection
 import pl.wendigo.chrome.sync
 import java.io.Closeable
 
 /**
- * [Manager] is responsible for querying, creating, closing, attaching to debuggable targets on the browser side.
+ * [Manager] is responsible for querying, creating, closing, attaching to debuggable [Target]s on the controlled Chrome instance.
  */
 class Manager(
     private val browserDebuggerAddress: String,
@@ -67,7 +66,6 @@ class Manager(
      *
      * If [multiplexConnections] is false, then underlying connection to the [Target]'s debugger is also closed.
      */
-    @OptIn(Experimental::class)
     fun close(target: Target) {
         logger.info("Closing {}...", target)
 
@@ -130,8 +128,8 @@ class Manager(
     /**
      * Attaches to given [TargetInfo] and returns new [Target] for it.
      *
-     * If [multiplexConnections] is true then existing debugger browser connection is used.
-     * If not - new underlying connection to target's debugger is established.
+     * If [multiplexConnections] is true then existing debugger browser connection is used: [#991325](https://crbug.com/991325))
+     * Otherwise new underlying connection to target's debugger endpoint is established.
      */
     fun attach(target: TargetInfo): Target {
         val sessionId = when (multiplexConnections) {
@@ -164,10 +162,10 @@ class Manager(
         )
     }
 
-    private fun openConnection(target: TargetInfo, sessionId: String): DebuggerWebSocketConnection {
+    private fun openConnection(target: TargetInfo, sessionId: String): ProtocolConnection {
         return when (multiplexConnections) {
             true -> domains.cloneConnection(sessionId)
-            false -> DebuggerWebSocketConnection.open(targetWsAddress(target.targetId), eventsBufferSize)
+            false -> ProtocolConnection.open(targetWsAddress(target.targetId), eventsBufferSize)
         }
     }
 

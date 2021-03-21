@@ -14,7 +14,7 @@ corresponding document elements as their child nodes.</p>
  * @link Protocol [DOM](https://chromedevtools.github.io/devtools-protocol/tot/DOM) domain documentation.
  */
 
-class DOMDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class DOMDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain(
         "DOM",
         """This domain exposes DOM read/write operations. Each DOM Node is represented with its mirror object
@@ -60,7 +60,7 @@ to identify the node.
      * @link Protocol [DOM#scrollIntoViewIfNeeded](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-scrollIntoViewIfNeeded) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun scrollIntoViewIfNeeded(input: ScrollIntoViewIfNeededRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.scrollIntoViewIfNeeded", Json.encodeToJsonElement(ScrollIntoViewIfNeededRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun scrollIntoViewIfNeeded(input: ScrollIntoViewIfNeededRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.scrollIntoViewIfNeeded", Json.encodeToJsonElement(ScrollIntoViewIfNeededRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Disables DOM agent for the given page.
@@ -68,7 +68,7 @@ to identify the node.
      * @link Protocol [DOM#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Discards search results from the session with the given id. `getSearchResults` should no longer
@@ -77,7 +77,7 @@ be called for that search.
      * @link Protocol [DOM#discardSearchResults](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-discardSearchResults) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun discardSearchResults(input: DiscardSearchResultsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.discardSearchResults", Json.encodeToJsonElement(DiscardSearchResultsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun discardSearchResults(input: DiscardSearchResultsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.discardSearchResults", Json.encodeToJsonElement(DiscardSearchResultsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables DOM agent for the given page.
@@ -85,7 +85,7 @@ be called for that search.
      * @link Protocol [DOM#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Focuses the given element.
@@ -93,7 +93,7 @@ be called for that search.
      * @link Protocol [DOM#focus](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-focus) method documentation.
      */
     
-    fun focus(input: FocusRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.focus", Json.encodeToJsonElement(FocusRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun focus(input: FocusRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.focus", Json.encodeToJsonElement(FocusRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns attributes for the specified node.
@@ -186,7 +186,7 @@ identifier.
      * @link Protocol [DOM#hideHighlight](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-hideHighlight) method documentation.
      */
     
-    fun hideHighlight(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.hideHighlight", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun hideHighlight(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.hideHighlight", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Highlights DOM node.
@@ -194,7 +194,7 @@ identifier.
      * @link Protocol [DOM#highlightNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-highlightNode) method documentation.
      */
     
-    fun highlightNode(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.highlightNode", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun highlightNode(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.highlightNode", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Highlights given rectangle.
@@ -202,7 +202,7 @@ identifier.
      * @link Protocol [DOM#highlightRect](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-highlightRect) method documentation.
      */
     
-    fun highlightRect(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.highlightRect", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun highlightRect(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.highlightRect", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Marks last undoable state.
@@ -210,7 +210,7 @@ identifier.
      * @link Protocol [DOM#markUndoableState](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-markUndoableState) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun markUndoableState(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.markUndoableState", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun markUndoableState(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.markUndoableState", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Moves node into the new container, places it before the given anchor.
@@ -267,7 +267,7 @@ identifier.
      * @link Protocol [DOM#redo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-redo) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun redo(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.redo", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun redo(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.redo", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Removes attribute with given name from an element with given id.
@@ -275,7 +275,7 @@ identifier.
      * @link Protocol [DOM#removeAttribute](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeAttribute) method documentation.
      */
     
-    fun removeAttribute(input: RemoveAttributeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.removeAttribute", Json.encodeToJsonElement(RemoveAttributeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeAttribute(input: RemoveAttributeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.removeAttribute", Json.encodeToJsonElement(RemoveAttributeRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Removes node with given id.
@@ -283,7 +283,7 @@ identifier.
      * @link Protocol [DOM#removeNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-removeNode) method documentation.
      */
     
-    fun removeNode(input: RemoveNodeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.removeNode", Json.encodeToJsonElement(RemoveNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeNode(input: RemoveNodeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.removeNode", Json.encodeToJsonElement(RemoveNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Requests that children of the node with given id are returned to the caller in form of
@@ -293,7 +293,7 @@ the specified depth.
      * @link Protocol [DOM#requestChildNodes](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-requestChildNodes) method documentation.
      */
     
-    fun requestChildNodes(input: RequestChildNodesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.requestChildNodes", Json.encodeToJsonElement(RequestChildNodesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun requestChildNodes(input: RequestChildNodesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.requestChildNodes", Json.encodeToJsonElement(RequestChildNodesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Requests that the node is sent to the caller given the JavaScript node object reference. All
@@ -319,7 +319,7 @@ nodes that form the path from the node to the root are also sent to the client a
      * @link Protocol [DOM#setAttributeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributeValue) method documentation.
      */
     
-    fun setAttributeValue(input: SetAttributeValueRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.setAttributeValue", Json.encodeToJsonElement(SetAttributeValueRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setAttributeValue(input: SetAttributeValueRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.setAttributeValue", Json.encodeToJsonElement(SetAttributeValueRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets attributes on element with given id. This method is useful when user edits some existing
@@ -328,7 +328,7 @@ attribute value and types in several attribute name/value pairs.
      * @link Protocol [DOM#setAttributesAsText](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setAttributesAsText) method documentation.
      */
     
-    fun setAttributesAsText(input: SetAttributesAsTextRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.setAttributesAsText", Json.encodeToJsonElement(SetAttributesAsTextRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setAttributesAsText(input: SetAttributesAsTextRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.setAttributesAsText", Json.encodeToJsonElement(SetAttributesAsTextRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets files for the given file input element.
@@ -336,7 +336,7 @@ attribute value and types in several attribute name/value pairs.
      * @link Protocol [DOM#setFileInputFiles](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setFileInputFiles) method documentation.
      */
     
-    fun setFileInputFiles(input: SetFileInputFilesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.setFileInputFiles", Json.encodeToJsonElement(SetFileInputFilesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setFileInputFiles(input: SetFileInputFilesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.setFileInputFiles", Json.encodeToJsonElement(SetFileInputFilesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets if stack traces should be captured for Nodes. See `Node.getNodeStackTraces`. Default is disabled.
@@ -344,7 +344,7 @@ attribute value and types in several attribute name/value pairs.
      * @link Protocol [DOM#setNodeStackTracesEnabled](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeStackTracesEnabled) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setNodeStackTracesEnabled(input: SetNodeStackTracesEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.setNodeStackTracesEnabled", Json.encodeToJsonElement(SetNodeStackTracesEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setNodeStackTracesEnabled(input: SetNodeStackTracesEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.setNodeStackTracesEnabled", Json.encodeToJsonElement(SetNodeStackTracesEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Gets stack traces associated with a Node. As of now, only provides stack trace for Node creation.
@@ -370,7 +370,7 @@ $x functions).
      * @link Protocol [DOM#setInspectedNode](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setInspectedNode) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setInspectedNode(input: SetInspectedNodeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.setInspectedNode", Json.encodeToJsonElement(SetInspectedNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setInspectedNode(input: SetInspectedNodeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.setInspectedNode", Json.encodeToJsonElement(SetInspectedNodeRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets node name for a node with given id.
@@ -386,7 +386,7 @@ $x functions).
      * @link Protocol [DOM#setNodeValue](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setNodeValue) method documentation.
      */
     
-    fun setNodeValue(input: SetNodeValueRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.setNodeValue", Json.encodeToJsonElement(SetNodeValueRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setNodeValue(input: SetNodeValueRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.setNodeValue", Json.encodeToJsonElement(SetNodeValueRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets node HTML markup, returns new node id.
@@ -394,7 +394,7 @@ $x functions).
      * @link Protocol [DOM#setOuterHTML](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-setOuterHTML) method documentation.
      */
     
-    fun setOuterHTML(input: SetOuterHTMLRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.setOuterHTML", Json.encodeToJsonElement(SetOuterHTMLRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setOuterHTML(input: SetOuterHTMLRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.setOuterHTML", Json.encodeToJsonElement(SetOuterHTMLRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Undoes the last performed action.
@@ -402,7 +402,7 @@ $x functions).
      * @link Protocol [DOM#undo](https://chromedevtools.github.io/devtools-protocol/tot/DOM#method-undo) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun undo(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOM.undo", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun undo(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOM.undo", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns iframe node that owns iframe with the given domain.

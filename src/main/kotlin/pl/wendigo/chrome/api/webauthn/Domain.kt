@@ -10,7 +10,7 @@ API.
  * @link Protocol [WebAuthn](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class WebAuthnDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class WebAuthnDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain(
         "WebAuthn",
         """This domain allows configuring virtual authenticators to test the WebAuthn
@@ -24,7 +24,7 @@ retrieval with a virtual authenticator.
      * @link Protocol [WebAuthn#enable](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("WebAuthn.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("WebAuthn.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Disable the WebAuthn domain.
@@ -32,7 +32,7 @@ retrieval with a virtual authenticator.
      * @link Protocol [WebAuthn#disable](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("WebAuthn.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("WebAuthn.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Creates and adds a virtual authenticator.
@@ -48,7 +48,7 @@ retrieval with a virtual authenticator.
      * @link Protocol [WebAuthn#removeVirtualAuthenticator](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeVirtualAuthenticator) method documentation.
      */
     
-    fun removeVirtualAuthenticator(input: RemoveVirtualAuthenticatorRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("WebAuthn.removeVirtualAuthenticator", Json.encodeToJsonElement(RemoveVirtualAuthenticatorRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeVirtualAuthenticator(input: RemoveVirtualAuthenticatorRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("WebAuthn.removeVirtualAuthenticator", Json.encodeToJsonElement(RemoveVirtualAuthenticatorRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Adds the credential to the specified authenticator.
@@ -56,7 +56,7 @@ retrieval with a virtual authenticator.
      * @link Protocol [WebAuthn#addCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-addCredential) method documentation.
      */
     
-    fun addCredential(input: AddCredentialRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("WebAuthn.addCredential", Json.encodeToJsonElement(AddCredentialRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun addCredential(input: AddCredentialRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("WebAuthn.addCredential", Json.encodeToJsonElement(AddCredentialRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns a single credential stored in the given virtual authenticator that
@@ -81,7 +81,7 @@ matches the credential ID.
      * @link Protocol [WebAuthn#removeCredential](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-removeCredential) method documentation.
      */
     
-    fun removeCredential(input: RemoveCredentialRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("WebAuthn.removeCredential", Json.encodeToJsonElement(RemoveCredentialRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeCredential(input: RemoveCredentialRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("WebAuthn.removeCredential", Json.encodeToJsonElement(RemoveCredentialRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Clears all the credentials from the specified device.
@@ -89,7 +89,7 @@ matches the credential ID.
      * @link Protocol [WebAuthn#clearCredentials](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-clearCredentials) method documentation.
      */
     
-    fun clearCredentials(input: ClearCredentialsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("WebAuthn.clearCredentials", Json.encodeToJsonElement(ClearCredentialsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearCredentials(input: ClearCredentialsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("WebAuthn.clearCredentials", Json.encodeToJsonElement(ClearCredentialsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets whether User Verification succeeds or fails for an authenticator.
@@ -98,7 +98,7 @@ The default is true.
      * @link Protocol [WebAuthn#setUserVerified](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setUserVerified) method documentation.
      */
     
-    fun setUserVerified(input: SetUserVerifiedRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("WebAuthn.setUserVerified", Json.encodeToJsonElement(SetUserVerifiedRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setUserVerified(input: SetUserVerifiedRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("WebAuthn.setUserVerified", Json.encodeToJsonElement(SetUserVerifiedRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets whether tests of user presence will succeed immediately (if true) or fail to resolve (if false) for an authenticator.
@@ -107,7 +107,7 @@ The default is true.
      * @link Protocol [WebAuthn#setAutomaticPresenceSimulation](https://chromedevtools.github.io/devtools-protocol/tot/WebAuthn#method-setAutomaticPresenceSimulation) method documentation.
      */
     
-    fun setAutomaticPresenceSimulation(input: SetAutomaticPresenceSimulationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("WebAuthn.setAutomaticPresenceSimulation", Json.encodeToJsonElement(SetAutomaticPresenceSimulationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setAutomaticPresenceSimulation(input: SetAutomaticPresenceSimulationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("WebAuthn.setAutomaticPresenceSimulation", Json.encodeToJsonElement(SetAutomaticPresenceSimulationRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 }
 
 /**

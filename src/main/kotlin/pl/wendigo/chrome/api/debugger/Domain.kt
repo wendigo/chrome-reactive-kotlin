@@ -9,7 +9,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.
  * @link Protocol [Debugger](https://chromedevtools.github.io/devtools-protocol/tot/Debugger) domain documentation.
  */
 
-class DebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class DebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain(
         "Debugger",
         """Debugger domain exposes JavaScript debugging capabilities. It allows setting and removing
@@ -22,7 +22,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.""",
      * @link Protocol [Debugger#continueToLocation](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-continueToLocation) method documentation.
      */
     
-    fun continueToLocation(input: ContinueToLocationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.continueToLocation", Json.encodeToJsonElement(ContinueToLocationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun continueToLocation(input: ContinueToLocationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.continueToLocation", Json.encodeToJsonElement(ContinueToLocationRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Disables debugger for given page.
@@ -30,7 +30,7 @@ breakpoints, stepping through execution, exploring stack traces, etc.""",
      * @link Protocol [Debugger#disable](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables debugger for the given page. Clients should not assume that the debugging has been
@@ -88,7 +88,7 @@ the same.
      * @link Protocol [Debugger#pause](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-pause) method documentation.
      */
     
-    fun pause(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.pause", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun pause(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.pause", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -97,7 +97,7 @@ the same.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "pauseOnAsyncCall is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun pauseOnAsyncCall(input: PauseOnAsyncCallRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.pauseOnAsyncCall", Json.encodeToJsonElement(PauseOnAsyncCallRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun pauseOnAsyncCall(input: PauseOnAsyncCallRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.pauseOnAsyncCall", Json.encodeToJsonElement(PauseOnAsyncCallRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Removes JavaScript breakpoint.
@@ -105,7 +105,7 @@ the same.
      * @link Protocol [Debugger#removeBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-removeBreakpoint) method documentation.
      */
     
-    fun removeBreakpoint(input: RemoveBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.removeBreakpoint", Json.encodeToJsonElement(RemoveBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeBreakpoint(input: RemoveBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.removeBreakpoint", Json.encodeToJsonElement(RemoveBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Restarts particular call frame from the beginning.
@@ -121,7 +121,7 @@ the same.
      * @link Protocol [Debugger#resume](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-resume) method documentation.
      */
     
-    fun resume(input: ResumeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.resume", Json.encodeToJsonElement(ResumeRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun resume(input: ResumeRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.resume", Json.encodeToJsonElement(ResumeRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Searches for given string in script content.
@@ -137,7 +137,7 @@ the same.
      * @link Protocol [Debugger#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setAsyncCallStackDepth) method documentation.
      */
     
-    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setAsyncCallStackDepth", Json.encodeToJsonElement(SetAsyncCallStackDepthRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.setAsyncCallStackDepth", Json.encodeToJsonElement(SetAsyncCallStackDepthRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Replace previous blackbox patterns with passed ones. Forces backend to skip stepping/pausing in
@@ -147,7 +147,7 @@ performing 'step in' several times, finally resorting to 'step out' if unsuccess
      * @link Protocol [Debugger#setBlackboxPatterns](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBlackboxPatterns) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBlackboxPatterns(input: SetBlackboxPatternsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setBlackboxPatterns", Json.encodeToJsonElement(SetBlackboxPatternsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBlackboxPatterns(input: SetBlackboxPatternsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.setBlackboxPatterns", Json.encodeToJsonElement(SetBlackboxPatternsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Makes backend skip steps in the script in blackboxed ranges. VM will try leave blacklisted
@@ -158,7 +158,7 @@ blackboxed. Array should be sorted.
      * @link Protocol [Debugger#setBlackboxedRanges](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBlackboxedRanges) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBlackboxedRanges(input: SetBlackboxedRangesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setBlackboxedRanges", Json.encodeToJsonElement(SetBlackboxedRangesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBlackboxedRanges(input: SetBlackboxedRangesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.setBlackboxedRanges", Json.encodeToJsonElement(SetBlackboxedRangesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets JavaScript breakpoint at a given location.
@@ -203,7 +203,7 @@ calling it will also trigger the breakpoint.
      * @link Protocol [Debugger#setBreakpointsActive](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setBreakpointsActive) method documentation.
      */
     
-    fun setBreakpointsActive(input: SetBreakpointsActiveRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setBreakpointsActive", Json.encodeToJsonElement(SetBreakpointsActiveRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBreakpointsActive(input: SetBreakpointsActiveRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.setBreakpointsActive", Json.encodeToJsonElement(SetBreakpointsActiveRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Defines pause on exceptions state. Can be set to stop on all exceptions, uncaught exceptions or
@@ -212,7 +212,7 @@ no exceptions. Initial pause on exceptions state is `none`.
      * @link Protocol [Debugger#setPauseOnExceptions](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setPauseOnExceptions) method documentation.
      */
     
-    fun setPauseOnExceptions(input: SetPauseOnExceptionsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setPauseOnExceptions", Json.encodeToJsonElement(SetPauseOnExceptionsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setPauseOnExceptions(input: SetPauseOnExceptionsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.setPauseOnExceptions", Json.encodeToJsonElement(SetPauseOnExceptionsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Changes return value in top frame. Available only at return break position.
@@ -220,7 +220,7 @@ no exceptions. Initial pause on exceptions state is `none`.
      * @link Protocol [Debugger#setReturnValue](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setReturnValue) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setReturnValue(input: SetReturnValueRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setReturnValue", Json.encodeToJsonElement(SetReturnValueRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setReturnValue(input: SetReturnValueRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.setReturnValue", Json.encodeToJsonElement(SetReturnValueRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Edits JavaScript source live.
@@ -236,7 +236,7 @@ no exceptions. Initial pause on exceptions state is `none`.
      * @link Protocol [Debugger#setSkipAllPauses](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setSkipAllPauses) method documentation.
      */
     
-    fun setSkipAllPauses(input: SetSkipAllPausesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setSkipAllPauses", Json.encodeToJsonElement(SetSkipAllPausesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setSkipAllPauses(input: SetSkipAllPausesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.setSkipAllPauses", Json.encodeToJsonElement(SetSkipAllPausesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Changes value of variable in a callframe. Object-based scopes are not supported and must be
@@ -245,7 +245,7 @@ mutated manually.
      * @link Protocol [Debugger#setVariableValue](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-setVariableValue) method documentation.
      */
     
-    fun setVariableValue(input: SetVariableValueRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.setVariableValue", Json.encodeToJsonElement(SetVariableValueRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setVariableValue(input: SetVariableValueRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.setVariableValue", Json.encodeToJsonElement(SetVariableValueRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Steps into the function call.
@@ -253,7 +253,7 @@ mutated manually.
      * @link Protocol [Debugger#stepInto](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepInto) method documentation.
      */
     
-    fun stepInto(input: StepIntoRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.stepInto", Json.encodeToJsonElement(StepIntoRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stepInto(input: StepIntoRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.stepInto", Json.encodeToJsonElement(StepIntoRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Steps out of the function call.
@@ -261,7 +261,7 @@ mutated manually.
      * @link Protocol [Debugger#stepOut](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepOut) method documentation.
      */
     
-    fun stepOut(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.stepOut", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stepOut(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.stepOut", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Steps over the statement.
@@ -269,7 +269,7 @@ mutated manually.
      * @link Protocol [Debugger#stepOver](https://chromedevtools.github.io/devtools-protocol/tot/Debugger#method-stepOver) method documentation.
      */
     
-    fun stepOver(input: StepOverRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Debugger.stepOver", Json.encodeToJsonElement(StepOverRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stepOver(input: StepOverRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Debugger.stepOver", Json.encodeToJsonElement(StepOverRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Fired when breakpoint is resolved to an actual script and location.

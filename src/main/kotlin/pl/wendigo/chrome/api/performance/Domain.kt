@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Performance](https://chromedevtools.github.io/devtools-protocol/tot/Performance) domain documentation.
  */
 
-class PerformanceDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class PerformanceDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Performance", """""", connection) {
     /**
      * Disable collecting and reporting metrics.
@@ -16,7 +16,7 @@ class PerformanceDomain internal constructor(connection: pl.wendigo.chrome.proto
      * @link Protocol [Performance#disable](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Performance.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Performance.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enable collecting and reporting metrics.
@@ -24,7 +24,7 @@ class PerformanceDomain internal constructor(connection: pl.wendigo.chrome.proto
      * @link Protocol [Performance#enable](https://chromedevtools.github.io/devtools-protocol/tot/Performance#method-enable) method documentation.
      */
     
-    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Performance.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Performance.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets time domain to use for collecting and reporting duration metrics.
@@ -35,7 +35,7 @@ this method while metrics collection is enabled returns an error.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setTimeDomain is deprecated.")
     @pl.wendigo.chrome.protocol.Experimental
-    fun setTimeDomain(input: SetTimeDomainRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Performance.setTimeDomain", Json.encodeToJsonElement(SetTimeDomainRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setTimeDomain(input: SetTimeDomainRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Performance.setTimeDomain", Json.encodeToJsonElement(SetTimeDomainRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Retrieve current values of run-time metrics.

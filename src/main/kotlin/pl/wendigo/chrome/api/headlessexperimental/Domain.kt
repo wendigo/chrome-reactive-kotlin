@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [HeadlessExperimental](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class HeadlessExperimentalDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class HeadlessExperimentalDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("HeadlessExperimental", """This domain provides experimental commands only supported in headless mode.""", connection) {
     /**
      * Sends a BeginFrame to the target and returns when the frame was completed. Optionally captures a
@@ -28,7 +28,7 @@ https://goo.gl/3zHXhB for more background.
      * @link Protocol [HeadlessExperimental#disable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("HeadlessExperimental.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables headless events for the target.
@@ -36,7 +36,7 @@ https://goo.gl/3zHXhB for more background.
      * @link Protocol [HeadlessExperimental#enable](https://chromedevtools.github.io/devtools-protocol/tot/HeadlessExperimental#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("HeadlessExperimental.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Issued when the target starts or stops needing BeginFrames.

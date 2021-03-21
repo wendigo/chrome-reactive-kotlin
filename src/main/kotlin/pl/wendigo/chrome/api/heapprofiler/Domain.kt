@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [HeapProfiler](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class HeapProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class HeapProfilerDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("HeapProfiler", """""", connection) {
     /**
      * Enables console to refer to the node with given id via $x (see Command Line API for more details
@@ -18,7 +18,7 @@ $x functions).
      * @link Protocol [HeapProfiler#addInspectedHeapObject](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-addInspectedHeapObject) method documentation.
      */
     
-    fun addInspectedHeapObject(input: AddInspectedHeapObjectRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.addInspectedHeapObject", Json.encodeToJsonElement(AddInspectedHeapObjectRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun addInspectedHeapObject(input: AddInspectedHeapObjectRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("HeapProfiler.addInspectedHeapObject", Json.encodeToJsonElement(AddInspectedHeapObjectRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -26,7 +26,7 @@ $x functions).
      * @link Protocol [HeapProfiler#collectGarbage](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-collectGarbage) method documentation.
      */
     
-    fun collectGarbage(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun collectGarbage(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("HeapProfiler.collectGarbage", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -34,7 +34,7 @@ $x functions).
      * @link Protocol [HeapProfiler#disable](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("HeapProfiler.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -42,7 +42,7 @@ $x functions).
      * @link Protocol [HeapProfiler#enable](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("HeapProfiler.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -74,7 +74,7 @@ $x functions).
      * @link Protocol [HeapProfiler#startSampling](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-startSampling) method documentation.
      */
     
-    fun startSampling(input: StartSamplingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.startSampling", Json.encodeToJsonElement(StartSamplingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startSampling(input: StartSamplingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("HeapProfiler.startSampling", Json.encodeToJsonElement(StartSamplingRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -82,7 +82,7 @@ $x functions).
      * @link Protocol [HeapProfiler#startTrackingHeapObjects](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-startTrackingHeapObjects) method documentation.
      */
     
-    fun startTrackingHeapObjects(input: StartTrackingHeapObjectsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.startTrackingHeapObjects", Json.encodeToJsonElement(StartTrackingHeapObjectsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startTrackingHeapObjects(input: StartTrackingHeapObjectsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("HeapProfiler.startTrackingHeapObjects", Json.encodeToJsonElement(StartTrackingHeapObjectsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -98,7 +98,7 @@ $x functions).
      * @link Protocol [HeapProfiler#stopTrackingHeapObjects](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-stopTrackingHeapObjects) method documentation.
      */
     
-    fun stopTrackingHeapObjects(input: StopTrackingHeapObjectsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.stopTrackingHeapObjects", Json.encodeToJsonElement(StopTrackingHeapObjectsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopTrackingHeapObjects(input: StopTrackingHeapObjectsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("HeapProfiler.stopTrackingHeapObjects", Json.encodeToJsonElement(StopTrackingHeapObjectsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -106,7 +106,7 @@ $x functions).
      * @link Protocol [HeapProfiler#takeHeapSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler#method-takeHeapSnapshot) method documentation.
      */
     
-    fun takeHeapSnapshot(input: TakeHeapSnapshotRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("HeapProfiler.takeHeapSnapshot", Json.encodeToJsonElement(TakeHeapSnapshotRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun takeHeapSnapshot(input: TakeHeapSnapshotRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("HeapProfiler.takeHeapSnapshot", Json.encodeToJsonElement(TakeHeapSnapshotRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Returns observable capturing all HeapProfiler.addHeapSnapshotChunk events.

@@ -4,7 +4,7 @@ import pl.wendigo.chrome.api.ProtocolDomains
 import pl.wendigo.chrome.api.target.GetTargetInfoRequest
 import pl.wendigo.chrome.api.target.TargetID
 import pl.wendigo.chrome.api.target.TargetInfo
-import pl.wendigo.chrome.protocol.DebuggerWebSocketConnection
+import pl.wendigo.chrome.protocol.ProtocolConnection
 import pl.wendigo.chrome.sync
 import java.io.Closeable
 
@@ -14,17 +14,17 @@ import java.io.Closeable
 class Target(
     private val manager: Manager,
     private val session: SessionTarget,
-    connection: DebuggerWebSocketConnection
+    connection: ProtocolConnection
 ) : ProtocolDomains(connection), AutoCloseable, Closeable {
     /**
-     * Returns [TargetInfo] for given target directly from inspector protocol.
+     * Retrieves [TargetInfo] for current target directly from debugger protocol.
      */
     fun info(): TargetInfo {
         return sync(Target.getTargetInfo(GetTargetInfoRequest(session.targetId))).targetInfo
     }
 
     /**
-     * Closes target releasing all resources on the browser side.
+     * Closes target releasing all resources on the debugger side.
      */
     override fun close() {
         return manager.close(this)

@@ -9,7 +9,7 @@ execution will stop on these operations as if there was a regular breakpoint set
  * @link Protocol [DOMDebugger](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger) domain documentation.
  */
 
-class DOMDebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class DOMDebuggerDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain(
         "DOMDebugger",
         """DOM debugging allows setting breakpoints on particular DOM operations and events. JavaScript
@@ -30,7 +30,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#removeDOMBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeDOMBreakpoint) method documentation.
      */
     
-    fun removeDOMBreakpoint(input: RemoveDOMBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.removeDOMBreakpoint", Json.encodeToJsonElement(RemoveDOMBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeDOMBreakpoint(input: RemoveDOMBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMDebugger.removeDOMBreakpoint", Json.encodeToJsonElement(RemoveDOMBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Removes breakpoint on particular DOM event.
@@ -38,7 +38,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#removeEventListenerBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeEventListenerBreakpoint) method documentation.
      */
     
-    fun removeEventListenerBreakpoint(input: RemoveEventListenerBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.removeEventListenerBreakpoint", Json.encodeToJsonElement(RemoveEventListenerBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeEventListenerBreakpoint(input: RemoveEventListenerBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMDebugger.removeEventListenerBreakpoint", Json.encodeToJsonElement(RemoveEventListenerBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Removes breakpoint on particular native event.
@@ -46,7 +46,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#removeInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeInstrumentationBreakpoint) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun removeInstrumentationBreakpoint(input: RemoveInstrumentationBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.removeInstrumentationBreakpoint", Json.encodeToJsonElement(RemoveInstrumentationBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeInstrumentationBreakpoint(input: RemoveInstrumentationBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMDebugger.removeInstrumentationBreakpoint", Json.encodeToJsonElement(RemoveInstrumentationBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Removes breakpoint from XMLHttpRequest.
@@ -54,7 +54,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#removeXHRBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-removeXHRBreakpoint) method documentation.
      */
     
-    fun removeXHRBreakpoint(input: RemoveXHRBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.removeXHRBreakpoint", Json.encodeToJsonElement(RemoveXHRBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeXHRBreakpoint(input: RemoveXHRBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMDebugger.removeXHRBreakpoint", Json.encodeToJsonElement(RemoveXHRBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets breakpoint on particular CSP violations.
@@ -62,7 +62,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#setBreakOnCSPViolation](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setBreakOnCSPViolation) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setBreakOnCSPViolation(input: SetBreakOnCSPViolationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.setBreakOnCSPViolation", Json.encodeToJsonElement(SetBreakOnCSPViolationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setBreakOnCSPViolation(input: SetBreakOnCSPViolationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMDebugger.setBreakOnCSPViolation", Json.encodeToJsonElement(SetBreakOnCSPViolationRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets breakpoint on particular operation with DOM.
@@ -70,7 +70,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#setDOMBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setDOMBreakpoint) method documentation.
      */
     
-    fun setDOMBreakpoint(input: SetDOMBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.setDOMBreakpoint", Json.encodeToJsonElement(SetDOMBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDOMBreakpoint(input: SetDOMBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMDebugger.setDOMBreakpoint", Json.encodeToJsonElement(SetDOMBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets breakpoint on particular DOM event.
@@ -78,7 +78,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#setEventListenerBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setEventListenerBreakpoint) method documentation.
      */
     
-    fun setEventListenerBreakpoint(input: SetEventListenerBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.setEventListenerBreakpoint", Json.encodeToJsonElement(SetEventListenerBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setEventListenerBreakpoint(input: SetEventListenerBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMDebugger.setEventListenerBreakpoint", Json.encodeToJsonElement(SetEventListenerBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets breakpoint on particular native event.
@@ -86,7 +86,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#setInstrumentationBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setInstrumentationBreakpoint) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.setInstrumentationBreakpoint", Json.encodeToJsonElement(SetInstrumentationBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setInstrumentationBreakpoint(input: SetInstrumentationBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMDebugger.setInstrumentationBreakpoint", Json.encodeToJsonElement(SetInstrumentationBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Sets breakpoint on XMLHttpRequest.
@@ -94,7 +94,7 @@ execution will stop on these operations as if there was a regular breakpoint set
      * @link Protocol [DOMDebugger#setXHRBreakpoint](https://chromedevtools.github.io/devtools-protocol/tot/DOMDebugger#method-setXHRBreakpoint) method documentation.
      */
     
-    fun setXHRBreakpoint(input: SetXHRBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMDebugger.setXHRBreakpoint", Json.encodeToJsonElement(SetXHRBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setXHRBreakpoint(input: SetXHRBreakpointRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMDebugger.setXHRBreakpoint", Json.encodeToJsonElement(SetXHRBreakpointRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns list of dependant domains that should be enabled prior to enabling this domain.

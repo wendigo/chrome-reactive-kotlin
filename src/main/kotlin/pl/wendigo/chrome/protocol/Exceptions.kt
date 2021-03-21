@@ -1,5 +1,7 @@
 package pl.wendigo.chrome.protocol
 
+import pl.wendigo.chrome.protocol.websocket.RequestFrame
+
 /**
  * Frame deserialization failed on object mapper.
  */

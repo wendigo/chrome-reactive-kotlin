@@ -2,12 +2,19 @@ package {{Package}}.api
 
 import kotlinx.serialization.KSerializer
 import pl.wendigo.chrome.protocol.Event
+import pl.wendigo.chrome.protocol.websocket.EventResponseFrame
 
+/**
+ * EventSerializers is responsible for mapping [EventResponseFrame] to [KSerializer] that can decode this frame to [Event].
+ */
 object EventSerializers {
-    fun getByEventName(eventName: String): KSerializer<out Event> = when(eventName) {
+    /**
+     * Returns [Event] serializer that can decode given [EventResponseFrame] frame.
+     */
+    fun getByEventName(frame: EventResponseFrame): KSerializer<out Event> = when(frame.eventName) {
         {{#each Events}}
         "{{EventName}}" -> {{Class}}.serializer()
         {{/each}}
-        else -> throw RuntimeException("Unrecognized event type $eventName")
+        else -> throw RuntimeException("Unrecognized event frame $frame")
     }
 }

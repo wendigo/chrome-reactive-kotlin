@@ -12,7 +12,7 @@ other objects in their object group.
  * @link Protocol [Runtime](https://chromedevtools.github.io/devtools-protocol/tot/Runtime) domain documentation.
  */
 
-class RuntimeDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class RuntimeDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain(
         "Runtime",
         """Runtime domain exposes JavaScript runtime by means of remote evaluation and mirror objects.
@@ -53,7 +53,7 @@ inherited from the target object.
      * @link Protocol [Runtime#disable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Discards collected exceptions and console API calls.
@@ -61,7 +61,7 @@ inherited from the target object.
      * @link Protocol [Runtime#discardConsoleEntries](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-discardConsoleEntries) method documentation.
      */
     
-    fun discardConsoleEntries(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun discardConsoleEntries(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.discardConsoleEntries", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables reporting of execution contexts creation by means of `executionContextCreated` event.
@@ -71,7 +71,7 @@ context.
      * @link Protocol [Runtime#enable](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Evaluates expression on global object.
@@ -129,7 +129,7 @@ object.
      * @link Protocol [Runtime#releaseObject](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObject) method documentation.
      */
     
-    fun releaseObject(input: ReleaseObjectRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.releaseObject", Json.encodeToJsonElement(ReleaseObjectRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun releaseObject(input: ReleaseObjectRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.releaseObject", Json.encodeToJsonElement(ReleaseObjectRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Releases all remote objects that belong to a given group.
@@ -137,7 +137,7 @@ object.
      * @link Protocol [Runtime#releaseObjectGroup](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-releaseObjectGroup) method documentation.
      */
     
-    fun releaseObjectGroup(input: ReleaseObjectGroupRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.releaseObjectGroup", Json.encodeToJsonElement(ReleaseObjectGroupRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun releaseObjectGroup(input: ReleaseObjectGroupRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.releaseObjectGroup", Json.encodeToJsonElement(ReleaseObjectGroupRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Tells inspected instance to run if it was waiting for debugger to attach.
@@ -145,7 +145,7 @@ object.
      * @link Protocol [Runtime#runIfWaitingForDebugger](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-runIfWaitingForDebugger) method documentation.
      */
     
-    fun runIfWaitingForDebugger(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun runIfWaitingForDebugger(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.runIfWaitingForDebugger", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Runs script with given id in a given context.
@@ -161,7 +161,7 @@ object.
      * @link Protocol [Runtime#setAsyncCallStackDepth](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setAsyncCallStackDepth) method documentation.
      */
     
-    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.setAsyncCallStackDepth", Json.encodeToJsonElement(SetAsyncCallStackDepthRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setAsyncCallStackDepth(input: SetAsyncCallStackDepthRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.setAsyncCallStackDepth", Json.encodeToJsonElement(SetAsyncCallStackDepthRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -169,7 +169,7 @@ object.
      * @link Protocol [Runtime#setCustomObjectFormatterEnabled](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setCustomObjectFormatterEnabled) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setCustomObjectFormatterEnabled(input: SetCustomObjectFormatterEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.setCustomObjectFormatterEnabled", Json.encodeToJsonElement(SetCustomObjectFormatterEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setCustomObjectFormatterEnabled(input: SetCustomObjectFormatterEnabledRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.setCustomObjectFormatterEnabled", Json.encodeToJsonElement(SetCustomObjectFormatterEnabledRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *
@@ -177,7 +177,7 @@ object.
      * @link Protocol [Runtime#setMaxCallStackSizeToCapture](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-setMaxCallStackSizeToCapture) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setMaxCallStackSizeToCapture(input: SetMaxCallStackSizeToCaptureRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.setMaxCallStackSizeToCapture", Json.encodeToJsonElement(SetMaxCallStackSizeToCaptureRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setMaxCallStackSizeToCapture(input: SetMaxCallStackSizeToCaptureRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.setMaxCallStackSizeToCapture", Json.encodeToJsonElement(SetMaxCallStackSizeToCaptureRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Terminate current or next JavaScript execution.
@@ -186,7 +186,7 @@ Will cancel the termination when the outer-most script execution ends.
      * @link Protocol [Runtime#terminateExecution](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-terminateExecution) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun terminateExecution(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.terminateExecution", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun terminateExecution(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.terminateExecution", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * If executionContextId is empty, adds binding with the given name on the
@@ -199,7 +199,7 @@ Each binding function call produces Runtime.bindingCalled notification.
      * @link Protocol [Runtime#addBinding](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-addBinding) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun addBinding(input: AddBindingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.addBinding", Json.encodeToJsonElement(AddBindingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun addBinding(input: AddBindingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.addBinding", Json.encodeToJsonElement(AddBindingRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * This method does not remove binding function from global object but
@@ -208,7 +208,7 @@ unsubscribes current runtime agent from Runtime.bindingCalled notifications.
      * @link Protocol [Runtime#removeBinding](https://chromedevtools.github.io/devtools-protocol/tot/Runtime#method-removeBinding) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun removeBinding(input: RemoveBindingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Runtime.removeBinding", Json.encodeToJsonElement(RemoveBindingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun removeBinding(input: RemoveBindingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Runtime.removeBinding", Json.encodeToJsonElement(RemoveBindingRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Notification is issued every time when binding is called.

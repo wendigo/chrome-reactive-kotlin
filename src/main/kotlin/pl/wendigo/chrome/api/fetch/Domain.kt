@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Fetch](https://chromedevtools.github.io/devtools-protocol/tot/Fetch) domain documentation.
  */
 
-class FetchDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class FetchDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Fetch", """A domain for letting clients substitute browser's network layer with client code.""", connection) {
     /**
      * Disables the fetch domain.
@@ -16,7 +16,7 @@ class FetchDomain internal constructor(connection: pl.wendigo.chrome.protocol.De
      * @link Protocol [Fetch#disable](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Fetch.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables issuing of requestPaused events. A request will be paused until client
@@ -25,7 +25,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      * @link Protocol [Fetch#enable](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-enable) method documentation.
      */
     
-    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(input: EnableRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Fetch.enable", Json.encodeToJsonElement(EnableRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Causes the request to fail with specified reason.
@@ -33,7 +33,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      * @link Protocol [Fetch#failRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-failRequest) method documentation.
      */
     
-    fun failRequest(input: FailRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.failRequest", Json.encodeToJsonElement(FailRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun failRequest(input: FailRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Fetch.failRequest", Json.encodeToJsonElement(FailRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Provides response to the request.
@@ -41,7 +41,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      * @link Protocol [Fetch#fulfillRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-fulfillRequest) method documentation.
      */
     
-    fun fulfillRequest(input: FulfillRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.fulfillRequest", Json.encodeToJsonElement(FulfillRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun fulfillRequest(input: FulfillRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Fetch.fulfillRequest", Json.encodeToJsonElement(FulfillRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Continues the request, optionally modifying some of its parameters.
@@ -49,7 +49,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      * @link Protocol [Fetch#continueRequest](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueRequest) method documentation.
      */
     
-    fun continueRequest(input: ContinueRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.continueRequest", Json.encodeToJsonElement(ContinueRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun continueRequest(input: ContinueRequestRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Fetch.continueRequest", Json.encodeToJsonElement(ContinueRequestRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Continues a request supplying authChallengeResponse following authRequired event.
@@ -57,7 +57,7 @@ calls one of failRequest, fulfillRequest or continueRequest/continueWithAuth.
      * @link Protocol [Fetch#continueWithAuth](https://chromedevtools.github.io/devtools-protocol/tot/Fetch#method-continueWithAuth) method documentation.
      */
     
-    fun continueWithAuth(input: ContinueWithAuthRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Fetch.continueWithAuth", Json.encodeToJsonElement(ContinueWithAuthRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun continueWithAuth(input: ContinueWithAuthRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Fetch.continueWithAuth", Json.encodeToJsonElement(ContinueWithAuthRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Causes the body of the response to be received from the server and

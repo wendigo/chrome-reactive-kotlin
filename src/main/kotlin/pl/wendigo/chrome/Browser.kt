@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory
 import org.testcontainers.utility.DockerImageName
 import pl.wendigo.chrome.api.ProtocolDomains
 import pl.wendigo.chrome.api.target.TargetInfo
-import pl.wendigo.chrome.protocol.DebuggerWebSocketConnection
+import pl.wendigo.chrome.protocol.ProtocolConnection
 import pl.wendigo.chrome.targets.Manager
 import pl.wendigo.chrome.targets.Target
 import java.io.Closeable
@@ -25,7 +25,7 @@ import kotlin.math.max
 open class Browser internal constructor(
     private val browserInfo: BrowserInfo,
     private val options: Options,
-    connection: DebuggerWebSocketConnection,
+    connection: ProtocolConnection,
     private val manager: Manager
 ) : ProtocolDomains(connection), Closeable, AutoCloseable {
     /**
@@ -71,7 +71,7 @@ open class Browser internal constructor(
     override fun close() {
         try {
             manager.close()
-            DebuggerWebSocketConnection.close()
+            ProtocolConnection.close()
         } catch (e: Exception) {
             logger.info("Caught exception while closing Browser", e)
         }
@@ -89,7 +89,7 @@ open class Browser internal constructor(
          */
         private fun connect(chromeAddress: String = "localhost:9222", options: Options): Browser {
             val info = fetchInfo(chromeAddress)
-            val connection = DebuggerWebSocketConnection.open(info.webSocketDebuggerUrl, options.eventsBufferSize)
+            val connection = ProtocolConnection.open(info.webSocketDebuggerUrl, options.eventsBufferSize)
             val protocol = ProtocolDomains(connection)
 
             return Browser(
@@ -131,7 +131,8 @@ open class Browser internal constructor(
         private var eventsBufferSize: Int = 128
         private var viewportWidth: Int = 1024
         private var viewportHeight: Int = 768
-        private var multiplexConnections: Boolean = false
+
+        private var multiplexConnections: Boolean = true // see https://crbug.com/991325
         private var incognito: Boolean = true
         private var dockerImage: String = "eu.gcr.io/zenika-hub/alpine-chrome:89"
         private var runDockerImage: Boolean = false
@@ -151,7 +152,7 @@ open class Browser internal constructor(
         }
 
         /**
-         *  Sets frames buffer size for underlying [pl.wendigo.chrome.protocol.DebuggerFramesStream]'s reactive replaying subject (default: 128)
+         *  Sets frames buffer size for underlying [pl.wendigo.chrome.protocol.WebSocketFramesStream]'s reactive replaying subject (default: 128)
          *
          *  High buffer size allows to observe N frames prior to subscribing.
          */
@@ -174,16 +175,18 @@ open class Browser internal constructor(
         }
 
         /**
-         * Enables [Manager] to share single, underlying WebSocket connection to debugger with multiple sessions (default: false)
+         * Enables [Manager] to share single, underlying WebSocket connection to debugger with multiple sessions (default: true)
+         *
+         * @see [https://bugs.chromium.org/p/chromium/issues/detail?id=991325](https://bugs.chromium.org/p/chromium/issues/detail?id=991325)
          */
         fun multiplexConnections(enabled: Boolean): Builder = this.apply {
             this.multiplexConnections = enabled
         }
 
         /**
-         * Enables incognito mode by default while creating sessions (default: true)
+         * Enables incognito mode while creating new targets (default: true)
          *
-         * Incognito mode uses BrowserContext to separate different targets from each other.
+         * Incognito mode uses [pl.wendigo.chrome.api.browser.BrowserContextID] to separate different targets from each other (separating cookies, caches, storages...)
          */
         fun incognito(enabled: Boolean): Builder = this.apply {
             this.incognito = enabled

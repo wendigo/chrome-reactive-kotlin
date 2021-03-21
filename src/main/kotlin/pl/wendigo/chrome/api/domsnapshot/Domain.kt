@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [DOMSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class DOMSnapshotDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class DOMSnapshotDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("DOMSnapshot", """This domain facilitates obtaining document snapshots with DOM, layout, and style information.""", connection) {
     /**
      * Disables DOM snapshot agent for the given page.
@@ -17,7 +17,7 @@ class DOMSnapshotDomain internal constructor(connection: pl.wendigo.chrome.proto
      * @link Protocol [DOMSnapshot#disable](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMSnapshot.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMSnapshot.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables DOM snapshot agent for the given page.
@@ -25,7 +25,7 @@ class DOMSnapshotDomain internal constructor(connection: pl.wendigo.chrome.proto
      * @link Protocol [DOMSnapshot#enable](https://chromedevtools.github.io/devtools-protocol/tot/DOMSnapshot#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("DOMSnapshot.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("DOMSnapshot.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns a document snapshot, including the full DOM tree of the root node (including iframes,

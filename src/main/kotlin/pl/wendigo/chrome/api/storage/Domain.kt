@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Storage](https://chromedevtools.github.io/devtools-protocol/tot/Storage) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Storage", """""", connection) {
     /**
      * Clears storage for origin.
@@ -17,7 +17,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#clearDataForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearDataForOrigin) method documentation.
      */
     
-    fun clearDataForOrigin(input: ClearDataForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.clearDataForOrigin", Json.encodeToJsonElement(ClearDataForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearDataForOrigin(input: ClearDataForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Storage.clearDataForOrigin", Json.encodeToJsonElement(ClearDataForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns all browser cookies.
@@ -33,7 +33,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#setCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-setCookies) method documentation.
      */
     
-    fun setCookies(input: SetCookiesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.setCookies", Json.encodeToJsonElement(SetCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setCookies(input: SetCookiesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Storage.setCookies", Json.encodeToJsonElement(SetCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Clears cookies.
@@ -41,7 +41,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#clearCookies](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-clearCookies) method documentation.
      */
     
-    fun clearCookies(input: ClearCookiesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.clearCookies", Json.encodeToJsonElement(ClearCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearCookies(input: ClearCookiesRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Storage.clearCookies", Json.encodeToJsonElement(ClearCookiesRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns usage and quota in bytes.
@@ -57,7 +57,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#overrideQuotaForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-overrideQuotaForOrigin) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun overrideQuotaForOrigin(input: OverrideQuotaForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.overrideQuotaForOrigin", Json.encodeToJsonElement(OverrideQuotaForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun overrideQuotaForOrigin(input: OverrideQuotaForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Storage.overrideQuotaForOrigin", Json.encodeToJsonElement(OverrideQuotaForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Registers origin to be notified when an update occurs to its cache storage list.
@@ -65,7 +65,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#trackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackCacheStorageForOrigin) method documentation.
      */
     
-    fun trackCacheStorageForOrigin(input: TrackCacheStorageForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.trackCacheStorageForOrigin", Json.encodeToJsonElement(TrackCacheStorageForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun trackCacheStorageForOrigin(input: TrackCacheStorageForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Storage.trackCacheStorageForOrigin", Json.encodeToJsonElement(TrackCacheStorageForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Registers origin to be notified when an update occurs to its IndexedDB.
@@ -73,7 +73,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#trackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-trackIndexedDBForOrigin) method documentation.
      */
     
-    fun trackIndexedDBForOrigin(input: TrackIndexedDBForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.trackIndexedDBForOrigin", Json.encodeToJsonElement(TrackIndexedDBForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun trackIndexedDBForOrigin(input: TrackIndexedDBForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Storage.trackIndexedDBForOrigin", Json.encodeToJsonElement(TrackIndexedDBForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Unregisters origin from receiving notifications for cache storage.
@@ -81,7 +81,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#untrackCacheStorageForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackCacheStorageForOrigin) method documentation.
      */
     
-    fun untrackCacheStorageForOrigin(input: UntrackCacheStorageForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.untrackCacheStorageForOrigin", Json.encodeToJsonElement(UntrackCacheStorageForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun untrackCacheStorageForOrigin(input: UntrackCacheStorageForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Storage.untrackCacheStorageForOrigin", Json.encodeToJsonElement(UntrackCacheStorageForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Unregisters origin from receiving notifications for IndexedDB.
@@ -89,7 +89,7 @@ class StorageDomain internal constructor(connection: pl.wendigo.chrome.protocol.
      * @link Protocol [Storage#untrackIndexedDBForOrigin](https://chromedevtools.github.io/devtools-protocol/tot/Storage#method-untrackIndexedDBForOrigin) method documentation.
      */
     
-    fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Storage.untrackIndexedDBForOrigin", Json.encodeToJsonElement(UntrackIndexedDBForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun untrackIndexedDBForOrigin(input: UntrackIndexedDBForOriginRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Storage.untrackIndexedDBForOrigin", Json.encodeToJsonElement(UntrackIndexedDBForOriginRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns the number of stored Trust Tokens per issuer for the

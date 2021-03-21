@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Security](https://chromedevtools.github.io/devtools-protocol/tot/Security) domain documentation.
  */
 
-class SecurityDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class SecurityDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Security", """Security""", connection) {
     /**
      * Disables tracking security state changes.
@@ -16,7 +16,7 @@ class SecurityDomain internal constructor(connection: pl.wendigo.chrome.protocol
      * @link Protocol [Security#disable](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Security.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Security.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables tracking security state changes.
@@ -24,7 +24,7 @@ class SecurityDomain internal constructor(connection: pl.wendigo.chrome.protocol
      * @link Protocol [Security#enable](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Security.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Security.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enable/disable whether all certificate errors should be ignored.
@@ -32,7 +32,7 @@ class SecurityDomain internal constructor(connection: pl.wendigo.chrome.protocol
      * @link Protocol [Security#setIgnoreCertificateErrors](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-setIgnoreCertificateErrors) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setIgnoreCertificateErrors(input: SetIgnoreCertificateErrorsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Security.setIgnoreCertificateErrors", Json.encodeToJsonElement(SetIgnoreCertificateErrorsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setIgnoreCertificateErrors(input: SetIgnoreCertificateErrorsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Security.setIgnoreCertificateErrors", Json.encodeToJsonElement(SetIgnoreCertificateErrorsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Handles a certificate error that fired a certificateError event.
@@ -40,7 +40,7 @@ class SecurityDomain internal constructor(connection: pl.wendigo.chrome.protocol
      * @link Protocol [Security#handleCertificateError](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-handleCertificateError) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "handleCertificateError is deprecated.")
-    fun handleCertificateError(input: HandleCertificateErrorRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Security.handleCertificateError", Json.encodeToJsonElement(HandleCertificateErrorRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun handleCertificateError(input: HandleCertificateErrorRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Security.handleCertificateError", Json.encodeToJsonElement(HandleCertificateErrorRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enable/disable overriding certificate errors. If enabled, all certificate error events need to
@@ -49,7 +49,7 @@ be handled by the DevTools client and should be answered with `handleCertificate
      * @link Protocol [Security#setOverrideCertificateErrors](https://chromedevtools.github.io/devtools-protocol/tot/Security#method-setOverrideCertificateErrors) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "setOverrideCertificateErrors is deprecated.")
-    fun setOverrideCertificateErrors(input: SetOverrideCertificateErrorsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Security.setOverrideCertificateErrors", Json.encodeToJsonElement(SetOverrideCertificateErrorsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setOverrideCertificateErrors(input: SetOverrideCertificateErrorsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Security.setOverrideCertificateErrors", Json.encodeToJsonElement(SetOverrideCertificateErrorsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  There is a certificate error. If overriding certificate errors is enabled, then it should be

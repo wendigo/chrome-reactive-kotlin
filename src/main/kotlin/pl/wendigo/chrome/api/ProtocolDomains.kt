@@ -46,7 +46,7 @@ import pl.wendigo.chrome.api.tethering.TetheringDomain
 import pl.wendigo.chrome.api.tracing.TracingDomain
 import pl.wendigo.chrome.api.webaudio.WebAudioDomain
 import pl.wendigo.chrome.api.webauthn.WebAuthnDomain
-import pl.wendigo.chrome.protocol.DebuggerWebSocketConnection
+import pl.wendigo.chrome.protocol.ProtocolConnection
 
 /**
  * ProtocolDomains represents all domains that can be controlled Chrome via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
@@ -54,7 +54,7 @@ import pl.wendigo.chrome.protocol.DebuggerWebSocketConnection
  * @link [https://github.com/chromedevtools/devtools-protocol](https://github.com/chromedevtools/devtools-protocol)
  * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
-open class ProtocolDomains internal constructor(connection: DebuggerWebSocketConnection) : pl.wendigo.chrome.protocol.Domains("1.3", connection) {
+open class ProtocolDomains internal constructor(connection: ProtocolConnection) : pl.wendigo.chrome.protocol.Domains("1.3", connection) {
     /**
      * This domain is deprecated - use Runtime or Log instead.
      *

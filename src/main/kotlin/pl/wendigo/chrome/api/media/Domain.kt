@@ -7,7 +7,7 @@ package pl.wendigo.chrome.api.media
  * @link Protocol [Media](https://chromedevtools.github.io/devtools-protocol/tot/Media) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class MediaDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class MediaDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Media", """This domain allows detailed inspection of media elements""", connection) {
     /**
      * Enables the Media domain
@@ -15,7 +15,7 @@ class MediaDomain internal constructor(connection: pl.wendigo.chrome.protocol.De
      * @link Protocol [Media#enable](https://chromedevtools.github.io/devtools-protocol/tot/Media#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Media.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Media.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Disables the Media domain.
@@ -23,7 +23,7 @@ class MediaDomain internal constructor(connection: pl.wendigo.chrome.protocol.De
      * @link Protocol [Media#disable](https://chromedevtools.github.io/devtools-protocol/tot/Media#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Media.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Media.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  This can be called multiple times, and can be used to set / override /

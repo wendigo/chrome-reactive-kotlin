@@ -6,7 +6,7 @@ package pl.wendigo.chrome.api.schema
  * @link Protocol [Schema](https://chromedevtools.github.io/devtools-protocol/tot/Schema) domain documentation.
  */
 @Deprecated(level = DeprecationLevel.WARNING, message = "This domain is deprecated.")
-class SchemaDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class SchemaDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Schema", """This domain is deprecated.""", connection) {
     /**
      * Returns supported domains.

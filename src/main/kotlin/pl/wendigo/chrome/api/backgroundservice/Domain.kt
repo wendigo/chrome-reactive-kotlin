@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [BackgroundService](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class BackgroundServiceDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class BackgroundServiceDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("BackgroundService", """Defines events for background web platform features.""", connection) {
     /**
      * Enables event updates for the service.
@@ -17,7 +17,7 @@ class BackgroundServiceDomain internal constructor(connection: pl.wendigo.chrome
      * @link Protocol [BackgroundService#startObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-startObserving) method documentation.
      */
     
-    fun startObserving(input: StartObservingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("BackgroundService.startObserving", Json.encodeToJsonElement(StartObservingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startObserving(input: StartObservingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("BackgroundService.startObserving", Json.encodeToJsonElement(StartObservingRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Disables event updates for the service.
@@ -25,7 +25,7 @@ class BackgroundServiceDomain internal constructor(connection: pl.wendigo.chrome
      * @link Protocol [BackgroundService#stopObserving](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-stopObserving) method documentation.
      */
     
-    fun stopObserving(input: StopObservingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("BackgroundService.stopObserving", Json.encodeToJsonElement(StopObservingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopObserving(input: StopObservingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("BackgroundService.stopObserving", Json.encodeToJsonElement(StopObservingRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Set the recording state for the service.
@@ -33,7 +33,7 @@ class BackgroundServiceDomain internal constructor(connection: pl.wendigo.chrome
      * @link Protocol [BackgroundService#setRecording](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-setRecording) method documentation.
      */
     
-    fun setRecording(input: SetRecordingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("BackgroundService.setRecording", Json.encodeToJsonElement(SetRecordingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setRecording(input: SetRecordingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("BackgroundService.setRecording", Json.encodeToJsonElement(SetRecordingRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Clears all stored data for the service.
@@ -41,7 +41,7 @@ class BackgroundServiceDomain internal constructor(connection: pl.wendigo.chrome
      * @link Protocol [BackgroundService#clearEvents](https://chromedevtools.github.io/devtools-protocol/tot/BackgroundService#method-clearEvents) method documentation.
      */
     
-    fun clearEvents(input: ClearEventsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("BackgroundService.clearEvents", Json.encodeToJsonElement(ClearEventsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clearEvents(input: ClearEventsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("BackgroundService.clearEvents", Json.encodeToJsonElement(ClearEventsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Called when the recording state for the service has been updated.

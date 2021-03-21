@@ -1,4 +1,4 @@
-package pl.wendigo.chrome.protocol
+package pl.wendigo.chrome.protocol.websocket
 
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
@@ -17,30 +17,29 @@ import java.io.Closeable
 import java.io.EOFException
 
 /**
- * DebuggerFramesStream represents connection to remote WebSocket endpoint of the DevTools Protocol
+ * WebSocketFramesStream represents connection to remote WebSocket endpoint of the DevTools Protocol
  * (either inspectable page debugger url http://localhost:9222/json or browser debugger url http://localhost:9222/json/version)
  *
- * @param webSocketUri WS endpoint to connect to
- * @param framesBufferSize frames buffer size (how many frames will be replayed prior to subscribing to stream)
- * @param mapper mapper that will serialize/deserialize frames understand by protocol
- * @param webSocketClient client for making WebSocket connection.
+ * @param webSocketUri WebSocket debugger uri to connect to
+ * @param framesBufferSize Frames buffer size (how many [ResponseFrame]s will be replayed prior to subscribing to stream)
+ * @param mapper FrameMapper that will serialize/deserialize frames exchanged by protocol
+ * @param webSocketClient WebSocket client for exchanging WebSocket frames.
  */
-class DebuggerFramesStream(webSocketUri: String, framesBufferSize: Int, private val mapper: FrameMapper, webSocketClient: OkHttpClient) :
-    WebSocketListener(), Closeable, AutoCloseable {
-    private val messages: Subject<ResponseFrame>
-    private val connection: WebSocket
+class WebSocketFramesStream(
+    webSocketUri: String,
+    framesBufferSize: Int,
+    private val mapper: FrameMapper,
+    webSocketClient: OkHttpClient
+) : WebSocketListener(), Closeable, AutoCloseable {
+    private val messages: Subject<WebSocketFrame> = ReplaySubject.create(framesBufferSize)
+    private val connection: WebSocket = webSocketClient.newWebSocket(Request.Builder().url(webSocketUri).build(), this)
     private val client: OkHttpClient = webSocketClient
-
-    init {
-        this.messages = ReplaySubject.create(framesBufferSize)
-        this.connection = webSocketClient.newWebSocket(Request.Builder().url(webSocketUri).build(), this)
-    }
 
     /**
      * onMessage is called when new frame arrives on WebSocket.
      */
     override fun onMessage(webSocket: WebSocket, text: String) {
-        messages.onNext(mapper.deserializeFrame(text))
+        messages.onNext(mapper.deserializeWebSocketMessage(text))
     }
 
     /**
@@ -62,9 +61,9 @@ class DebuggerFramesStream(webSocketUri: String, framesBufferSize: Int, private 
      */
     fun <T> getResponse(requestFrame: RequestFrame, serializer: KSerializer<T>): Single<T> {
         return frames()
-            .ofType(MethodCallResponseFrame::class.java)
+            .ofType(ResponseFrame::class.java)
             .filter { it.matches(requestFrame) }
-            .map { frame -> mapper.deserializeResponse(requestFrame, frame, serializer) }
+            .map { frame -> mapper.deserializeResponseFrame(requestFrame, frame, serializer) }
             .subscribeOn(Schedulers.io())
             .firstOrError()
     }
@@ -84,7 +83,7 @@ class DebuggerFramesStream(webSocketUri: String, framesBufferSize: Int, private 
     /**
      * Returns all frames received from WebSocket connection.
      */
-    fun frames(): Flowable<ResponseFrame> = messages.toFlowable(BackpressureStrategy.BUFFER)
+    fun frames(): Flowable<WebSocketFrame> = messages.toFlowable(BackpressureStrategy.BUFFER)
 
     /**
      * Closes WebSocket connection.
@@ -114,6 +113,6 @@ class DebuggerFramesStream(webSocketUri: String, framesBufferSize: Int, private 
     }
 
     companion object {
-        private val logger = LoggerFactory.getLogger(DebuggerFramesStream::class.java)!!
+        private val logger = LoggerFactory.getLogger(WebSocketFramesStream::class.java)!!
     }
 }

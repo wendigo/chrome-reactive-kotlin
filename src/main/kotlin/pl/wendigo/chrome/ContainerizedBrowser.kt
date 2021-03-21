@@ -4,14 +4,14 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.testcontainers.utility.DockerImageName
 import pl.wendigo.chrome.api.ProtocolDomains
-import pl.wendigo.chrome.protocol.DebuggerWebSocketConnection
+import pl.wendigo.chrome.protocol.ProtocolConnection
 import pl.wendigo.chrome.targets.Manager
 
 internal class ContainerizedBrowser private constructor(
     private val container: HeadlessChromeContainer,
     browserInfo: BrowserInfo,
     options: Options,
-    connection: DebuggerWebSocketConnection,
+    connection: ProtocolConnection,
     manager: Manager
 ) : pl.wendigo.chrome.Browser(browserInfo, options, connection, manager) {
     override fun close() {
@@ -42,7 +42,7 @@ internal class ContainerizedBrowser private constructor(
 
             val info = fetchInfo(container.getBrowserEndpoint())
 
-            val connection = DebuggerWebSocketConnection.open(info.webSocketDebuggerUrl, options.eventsBufferSize)
+            val connection = ProtocolConnection.open(info.webSocketDebuggerUrl, options.eventsBufferSize)
             val protocol = ProtocolDomains(connection)
 
             return ContainerizedBrowser(

@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [ApplicationCache](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class ApplicationCacheDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class ApplicationCacheDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("ApplicationCache", """""", connection) {
     /**
      * Enables application cache domain notifications.
@@ -17,7 +17,7 @@ class ApplicationCacheDomain internal constructor(connection: pl.wendigo.chrome.
      * @link Protocol [ApplicationCache#enable](https://chromedevtools.github.io/devtools-protocol/tot/ApplicationCache#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("ApplicationCache.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("ApplicationCache.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns relevant application cache data for the document in given frame.

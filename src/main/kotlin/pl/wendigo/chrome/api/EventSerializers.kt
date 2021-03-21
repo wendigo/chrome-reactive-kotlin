@@ -2,9 +2,16 @@ package pl.wendigo.chrome.api
 
 import kotlinx.serialization.KSerializer
 import pl.wendigo.chrome.protocol.Event
+import pl.wendigo.chrome.protocol.websocket.EventResponseFrame
 
+/**
+ * EventSerializers is responsible for mapping [EventResponseFrame] to [KSerializer] that can decode this frame to [Event].
+ */
 object EventSerializers {
-    fun getByEventName(eventName: String): KSerializer<out Event> = when (eventName) {
+    /**
+     * Returns [Event] serializer that can decode given [EventResponseFrame] frame.
+     */
+    fun getByEventName(frame: EventResponseFrame): KSerializer<out Event> = when (frame.eventName) {
         "Animation.animationCanceled" -> pl.wendigo.chrome.api.animation.AnimationCanceledEvent.serializer()
         "Animation.animationCreated" -> pl.wendigo.chrome.api.animation.AnimationCreatedEvent.serializer()
         "Animation.animationStarted" -> pl.wendigo.chrome.api.animation.AnimationStartedEvent.serializer()
@@ -164,6 +171,6 @@ object EventSerializers {
         "WebAudio.nodeParamDisconnected" -> pl.wendigo.chrome.api.webaudio.NodeParamDisconnectedEvent.serializer()
         "WebAudio.nodesConnected" -> pl.wendigo.chrome.api.webaudio.NodesConnectedEvent.serializer()
         "WebAudio.nodesDisconnected" -> pl.wendigo.chrome.api.webaudio.NodesDisconnectedEvent.serializer()
-        else -> throw RuntimeException("Unrecognized event type $eventName")
+        else -> throw RuntimeException("Unrecognized event frame $frame")
     }
 }

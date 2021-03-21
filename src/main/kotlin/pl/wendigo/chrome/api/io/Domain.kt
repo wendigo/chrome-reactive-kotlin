@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [IO](https://chromedevtools.github.io/devtools-protocol/tot/IO) domain documentation.
  */
 
-class IODomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class IODomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("IO", """Input/Output operations for streams produced by DevTools.""", connection) {
     /**
      * Close the stream, discard any temporary backing storage.
@@ -16,7 +16,7 @@ class IODomain internal constructor(connection: pl.wendigo.chrome.protocol.Debug
      * @link Protocol [IO#close](https://chromedevtools.github.io/devtools-protocol/tot/IO#method-close) method documentation.
      */
     
-    fun close(input: CloseRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("IO.close", Json.encodeToJsonElement(CloseRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun close(input: CloseRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("IO.close", Json.encodeToJsonElement(CloseRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Read a chunk of the stream

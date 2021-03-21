@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Target](https://chromedevtools.github.io/devtools-protocol/tot/Target) domain documentation.
  */
 
-class TargetDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class TargetDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Target", """Supports additional targets discovery and allows to attach to them.""", connection) {
     /**
      * Activates (focuses) the target.
@@ -16,7 +16,7 @@ class TargetDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Target#activateTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-activateTarget) method documentation.
      */
     
-    fun activateTarget(input: ActivateTargetRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Target.activateTarget", Json.encodeToJsonElement(ActivateTargetRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun activateTarget(input: ActivateTargetRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Target.activateTarget", Json.encodeToJsonElement(ActivateTargetRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Attaches to the target with given id.
@@ -55,7 +55,7 @@ The object has the follwing API:
      * @link Protocol [Target#exposeDevToolsProtocol](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-exposeDevToolsProtocol) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun exposeDevToolsProtocol(input: ExposeDevToolsProtocolRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Target.exposeDevToolsProtocol", Json.encodeToJsonElement(ExposeDevToolsProtocolRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun exposeDevToolsProtocol(input: ExposeDevToolsProtocolRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Target.exposeDevToolsProtocol", Json.encodeToJsonElement(ExposeDevToolsProtocolRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Creates a new empty BrowserContext. Similar to an incognito profile but you can have more than
@@ -88,7 +88,7 @@ one.
      * @link Protocol [Target#detachFromTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-detachFromTarget) method documentation.
      */
     
-    fun detachFromTarget(input: DetachFromTargetRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Target.detachFromTarget", Json.encodeToJsonElement(DetachFromTargetRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun detachFromTarget(input: DetachFromTargetRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Target.detachFromTarget", Json.encodeToJsonElement(DetachFromTargetRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Deletes a BrowserContext. All the belonging pages will be closed without calling their
@@ -97,7 +97,7 @@ beforeunload hooks.
      * @link Protocol [Target#disposeBrowserContext](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-disposeBrowserContext) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun disposeBrowserContext(input: DisposeBrowserContextRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Target.disposeBrowserContext", Json.encodeToJsonElement(DisposeBrowserContextRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disposeBrowserContext(input: DisposeBrowserContextRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Target.disposeBrowserContext", Json.encodeToJsonElement(DisposeBrowserContextRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns information about a target.
@@ -123,7 +123,7 @@ and crbug.com/991325.
      * @link Protocol [Target#sendMessageToTarget](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-sendMessageToTarget) method documentation.
      */
     @Deprecated(level = DeprecationLevel.WARNING, message = "sendMessageToTarget is deprecated.")
-    fun sendMessageToTarget(input: SendMessageToTargetRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Target.sendMessageToTarget", Json.encodeToJsonElement(SendMessageToTargetRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun sendMessageToTarget(input: SendMessageToTargetRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Target.sendMessageToTarget", Json.encodeToJsonElement(SendMessageToTargetRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Controls whether to automatically attach to new targets which are considered to be related to
@@ -133,7 +133,7 @@ automatically detaches from all currently attached targets.
      * @link Protocol [Target#setAutoAttach](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setAutoAttach) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setAutoAttach(input: SetAutoAttachRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Target.setAutoAttach", Json.encodeToJsonElement(SetAutoAttachRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setAutoAttach(input: SetAutoAttachRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Target.setAutoAttach", Json.encodeToJsonElement(SetAutoAttachRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Controls whether to discover available targets and notify via
@@ -142,7 +142,7 @@ automatically detaches from all currently attached targets.
      * @link Protocol [Target#setDiscoverTargets](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setDiscoverTargets) method documentation.
      */
     
-    fun setDiscoverTargets(input: SetDiscoverTargetsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Target.setDiscoverTargets", Json.encodeToJsonElement(SetDiscoverTargetsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setDiscoverTargets(input: SetDiscoverTargetsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Target.setDiscoverTargets", Json.encodeToJsonElement(SetDiscoverTargetsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables target discovery for the specified locations, when `setDiscoverTargets` was set to
@@ -151,7 +151,7 @@ automatically detaches from all currently attached targets.
      * @link Protocol [Target#setRemoteLocations](https://chromedevtools.github.io/devtools-protocol/tot/Target#method-setRemoteLocations) method documentation.
      */
     @pl.wendigo.chrome.protocol.Experimental
-    fun setRemoteLocations(input: SetRemoteLocationsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Target.setRemoteLocations", Json.encodeToJsonElement(SetRemoteLocationsRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setRemoteLocations(input: SetRemoteLocationsRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Target.setRemoteLocations", Json.encodeToJsonElement(SetRemoteLocationsRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Issued when attached to target because of auto-attach or `attachToTarget` command.

@@ -3,7 +3,7 @@ package {{Package}}.api
 {{#each Protocol.Domains}}
 import {{Package}}.api.{{LowerName}}.{{Name}}Domain
 {{/each}}
-import {{Package}}.protocol.DebuggerWebSocketConnection
+import {{Package}}.protocol.ProtocolConnection
 
 /**
  * ProtocolDomains represents all domains that can be controlled Chrome via [DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/).
@@ -11,7 +11,7 @@ import {{Package}}.protocol.DebuggerWebSocketConnection
  * @link [https://github.com/chromedevtools/devtools-protocol](https://github.com/chromedevtools/devtools-protocol)
  * @link [https://chromedevtools.github.io/devtools-protocol/](https://chromedevtools.github.io/devtools-protocol/)
  */
-open class ProtocolDomains internal constructor(connection: DebuggerWebSocketConnection): pl.wendigo.chrome.protocol.Domains("{{ Protocol.Version.Major }}.{{ Protocol.Version.Minor }}", connection) {
+open class ProtocolDomains internal constructor(connection: ProtocolConnection): pl.wendigo.chrome.protocol.Domains("{{ Protocol.Version.Major }}.{{ Protocol.Version.Minor }}", connection) {
     {{#each Protocol.Domains}}
     /**
      * {{#if Description}}{{{Description}}}{{else}}Lazily returns [{{Name}}Domain] domain object allowing to invoke methods on [{{Name}}](https://chromedevtools.github.io/devtools-protocol/tot/{{Name}}) protocol domain.{{/if}}

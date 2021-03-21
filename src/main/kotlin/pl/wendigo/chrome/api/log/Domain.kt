@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Log](https://chromedevtools.github.io/devtools-protocol/tot/Log) domain documentation.
  */
 
-class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Log", """Provides access to log entries.""", connection) {
     /**
      * Clears the log.
@@ -16,7 +16,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
      * @link Protocol [Log#clear](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-clear) method documentation.
      */
     
-    fun clear(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Log.clear", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun clear(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Log.clear", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Disables log domain, prevents further log entries from being reported to the client.
@@ -24,7 +24,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
      * @link Protocol [Log#disable](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Log.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Log.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables log domain, sends the entries collected so far to the client by means of the
@@ -33,7 +33,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
      * @link Protocol [Log#enable](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Log.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Log.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * start violation reporting.
@@ -41,7 +41,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
      * @link Protocol [Log#startViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-startViolationsReport) method documentation.
      */
     
-    fun startViolationsReport(input: StartViolationsReportRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Log.startViolationsReport", Json.encodeToJsonElement(StartViolationsReportRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startViolationsReport(input: StartViolationsReportRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Log.startViolationsReport", Json.encodeToJsonElement(StartViolationsReportRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Stop violation reporting.
@@ -49,7 +49,7 @@ class LogDomain internal constructor(connection: pl.wendigo.chrome.protocol.Debu
      * @link Protocol [Log#stopViolationsReport](https://chromedevtools.github.io/devtools-protocol/tot/Log#method-stopViolationsReport) method documentation.
      */
     
-    fun stopViolationsReport(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Log.stopViolationsReport", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopViolationsReport(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Log.stopViolationsReport", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      *  Issued when new message was logged.

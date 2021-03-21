@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [LayerTree](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("LayerTree", """""", connection) {
     /**
      * Provides the reasons why the given layer was composited.
@@ -25,7 +25,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#disable](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-disable) method documentation.
      */
     
-    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("LayerTree.disable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun disable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("LayerTree.disable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enables compositing tree inspection.
@@ -33,7 +33,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#enable](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-enable) method documentation.
      */
     
-    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("LayerTree.enable", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun enable(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("LayerTree.enable", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Returns the snapshot identifier.
@@ -65,7 +65,7 @@ class LayerTreeDomain internal constructor(connection: pl.wendigo.chrome.protoco
      * @link Protocol [LayerTree#releaseSnapshot](https://chromedevtools.github.io/devtools-protocol/tot/LayerTree#method-releaseSnapshot) method documentation.
      */
     
-    fun releaseSnapshot(input: ReleaseSnapshotRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("LayerTree.releaseSnapshot", Json.encodeToJsonElement(ReleaseSnapshotRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun releaseSnapshot(input: ReleaseSnapshotRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("LayerTree.releaseSnapshot", Json.encodeToJsonElement(ReleaseSnapshotRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Replays the layer snapshot and returns the resulting bitmap.

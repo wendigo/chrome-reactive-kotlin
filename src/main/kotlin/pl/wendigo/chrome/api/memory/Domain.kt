@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
  * @link Protocol [Memory](https://chromedevtools.github.io/devtools-protocol/tot/Memory) domain documentation.
  */
 @pl.wendigo.chrome.protocol.Experimental
-class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.DebuggerWebSocketConnection) :
+class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.ProtocolConnection) :
     pl.wendigo.chrome.protocol.Domain("Memory", """""", connection) {
     /**
      *
@@ -25,7 +25,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#prepareForLeakDetection](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-prepareForLeakDetection) method documentation.
      */
     
-    fun prepareForLeakDetection(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.prepareForLeakDetection", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun prepareForLeakDetection(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Memory.prepareForLeakDetection", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Simulate OomIntervention by purging V8 memory.
@@ -33,7 +33,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#forciblyPurgeJavaScriptMemory](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-forciblyPurgeJavaScriptMemory) method documentation.
      */
     
-    fun forciblyPurgeJavaScriptMemory(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.forciblyPurgeJavaScriptMemory", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun forciblyPurgeJavaScriptMemory(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Memory.forciblyPurgeJavaScriptMemory", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Enable/disable suppressing memory pressure notifications in all processes.
@@ -41,7 +41,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#setPressureNotificationsSuppressed](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-setPressureNotificationsSuppressed) method documentation.
      */
     
-    fun setPressureNotificationsSuppressed(input: SetPressureNotificationsSuppressedRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.setPressureNotificationsSuppressed", Json.encodeToJsonElement(SetPressureNotificationsSuppressedRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun setPressureNotificationsSuppressed(input: SetPressureNotificationsSuppressedRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Memory.setPressureNotificationsSuppressed", Json.encodeToJsonElement(SetPressureNotificationsSuppressedRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Simulate a memory pressure notification in all processes.
@@ -49,7 +49,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#simulatePressureNotification](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-simulatePressureNotification) method documentation.
      */
     
-    fun simulatePressureNotification(input: SimulatePressureNotificationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.simulatePressureNotification", Json.encodeToJsonElement(SimulatePressureNotificationRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun simulatePressureNotification(input: SimulatePressureNotificationRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Memory.simulatePressureNotification", Json.encodeToJsonElement(SimulatePressureNotificationRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Start collecting native memory profile.
@@ -57,7 +57,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#startSampling](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-startSampling) method documentation.
      */
     
-    fun startSampling(input: StartSamplingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.startSampling", Json.encodeToJsonElement(StartSamplingRequest.serializer(), input), pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun startSampling(input: StartSamplingRequest): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Memory.startSampling", Json.encodeToJsonElement(StartSamplingRequest.serializer(), input), pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Stop collecting native memory profile.
@@ -65,7 +65,7 @@ class MemoryDomain internal constructor(connection: pl.wendigo.chrome.protocol.D
      * @link Protocol [Memory#stopSampling](https://chromedevtools.github.io/devtools-protocol/tot/Memory#method-stopSampling) method documentation.
      */
     
-    fun stopSampling(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.RequestResponseFrame> = connection.request("Memory.stopSampling", null, pl.wendigo.chrome.protocol.RequestResponseFrame.serializer())
+    fun stopSampling(): io.reactivex.rxjava3.core.Single<pl.wendigo.chrome.protocol.websocket.RequestResponseFrame> = connection.request("Memory.stopSampling", null, pl.wendigo.chrome.protocol.websocket.RequestResponseFrame.serializer())
 
     /**
      * Retrieve native memory allocations profile

@@ -5,7 +5,7 @@ import pl.wendigo.chrome.api.target.SessionID
 import pl.wendigo.chrome.api.target.TargetID
 
 /**
- * SessionTarget represents session we are currently connected to.
+ * SessionTarget represents multiplexed session we are currently connected to.
  */
 data class SessionTarget(
     val sessionId: SessionID,
