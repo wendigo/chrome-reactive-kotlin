@@ -1,11 +1,9 @@
 package pl.wendigo.chrome
 
-import org.testcontainers.spock.Testcontainers
 import pl.wendigo.chrome.api.target.TargetCreatedEvent
 import pl.wendigo.chrome.protocol.Event
 import spock.lang.Specification
 
-@Testcontainers
 class ChromeProtocolSpecification
         extends Specification
 {

@@ -91,12 +91,11 @@ dependencies {
     implementation("io.reactivex.rxjava3:rxjava:3.0.11")
     implementation("ch.qos.logback:logback-classic:1.2.3")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
-    implementation("org.testcontainers:testcontainers:1.15.1")
+    implementation("org.testcontainers:testcontainers:1.15.2")
     implementation("org.slf4j:slf4j-api:1.7.30")
 
     testImplementation("org.spockframework:spock-core:1.3-groovy-2.5")
     testImplementation("ch.qos.logback:logback-classic:1.2.3")
-    testImplementation("org.testcontainers:spock:1.15.1")
 }
 
 java {
