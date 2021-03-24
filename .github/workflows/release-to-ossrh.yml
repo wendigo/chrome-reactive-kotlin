@@ -51,15 +51,18 @@ jobs:
       - name: Tests
         run: ./gradlew clean test ${GRADLE_FLAGS}
 
-      - name: Mark next version
-        run: ./gradlew markNextVersion -Prelease.version=${{ github.event.inputs.version }}
+      - name: Display current version
+        run: ./gradlew currentVersion
+
+      - name: Release artefacts with forced version
+        run: ./gradlew release -Prelease.forceVersion=${{ github.event.inputs.version }}
         if: github.event.inputs.version != ''
 
       - name: Release artefacts
         run: ./gradlew release ${GRADLE_FLAGS}
         if: github.event.inputs.branch == 'master'
 
-      - name: Display current version
+      - name: Display released version
         run: ./gradlew currentVersion
 
       - name: Publish to Sonatype
