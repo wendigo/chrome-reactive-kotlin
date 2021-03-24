@@ -60,7 +60,7 @@ jobs:
 
       - name: Release artefacts
         run: ./gradlew release ${GRADLE_FLAGS}
-        if: github.event.inputs.branch == 'master'
+        if: github.event.inputs.branch == 'master' && github.event.inputs.version != ''
 
       - name: Display released version
         run: ./gradlew currentVersion
