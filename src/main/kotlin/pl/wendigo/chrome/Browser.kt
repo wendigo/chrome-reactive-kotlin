@@ -66,12 +66,12 @@ open class Browser internal constructor(
     }
 
     /**
-     * Closes session manager and all established connections to debugger.
+     * Closes session manager and established connection to the debugger.
      */
     override fun close() {
         try {
             manager.close()
-            ProtocolConnection.close()
+            connection.close()
         } catch (e: Exception) {
             logger.info("Caught exception while closing Browser", e)
         }

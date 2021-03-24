@@ -24,7 +24,7 @@ internal class HeadlessChromeContainer(dockerImageName: DockerImageName) : Gener
         this.addExposedPort(9222)
     }
 
-    internal fun getBrowserEndpoint(): String {
+    fun getBrowserEndpoint(): String {
         return this.containerIpAddress + ":" + this.getMappedPort(9222)
     }
 }

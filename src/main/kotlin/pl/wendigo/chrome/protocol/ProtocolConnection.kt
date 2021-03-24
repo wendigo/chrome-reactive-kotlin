@@ -90,20 +90,16 @@ class ProtocolConnection constructor(
     /**
      * Factory is responsible for opening debugger WebSocket connections to a given debugger uri.
      */
-    companion object Factory : AutoCloseable {
+    companion object Factory {
         /**
          * Creates new ChromeDebuggerConnection session for given WebSocket uri and frames buffer size.
          */
         @JvmStatic
         fun open(webSocketUri: String, framesBufferSize: Int = 128): ProtocolConnection {
             return ProtocolConnection(
-                WebSocketFramesStream(webSocketUri, framesBufferSize, frameMapper, client),
+                WebSocketFramesStream(webSocketUri, framesBufferSize, frameMapper, OkHttpClient()),
                 eventMapper
             )
-        }
-
-        private val client by lazy {
-            OkHttpClient()
         }
 
         private val frameMapper by lazy {
@@ -112,11 +108,6 @@ class ProtocolConnection constructor(
 
         private val eventMapper by lazy {
             EventMapper()
-        }
-
-        override fun close() {
-            client.connectionPool.evictAll()
-            client.dispatcher.executorService.shutdown()
         }
     }
 }

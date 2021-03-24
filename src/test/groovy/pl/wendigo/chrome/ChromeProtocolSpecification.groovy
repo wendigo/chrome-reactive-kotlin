@@ -1,5 +1,6 @@
 package pl.wendigo.chrome
 
+import org.testcontainers.utility.DockerImageName
 import pl.wendigo.chrome.api.target.TargetCreatedEvent
 import pl.wendigo.chrome.protocol.Event
 import spock.lang.Specification
@@ -90,5 +91,27 @@ class ChromeProtocolSpecification
 
         cleanup:
             target.close()
+    }
+
+    def "should allow creating multiple browser instances"()
+    {
+        given:
+            def container = new HeadlessChromeContainer(DockerImageName.parse("eu.gcr.io/zenika-hub/alpine-chrome:89"))
+            container.start()
+        when:
+            def browser1 = Browser.builder().withAddress(container.getBrowserEndpoint()).build()
+            def target1 = browser.target("https://google.com")
+            target1.close()
+            browser1.close()
+
+        then:
+            // this shouldn't fail
+            def browser2 = Browser.builder().withAddress(container.getBrowserEndpoint()).build()
+            def target2 = browser.target("https://google.com")
+            target2.close()
+            browser2.close()
+
+        cleanup:
+            container.stop()
     }
 }

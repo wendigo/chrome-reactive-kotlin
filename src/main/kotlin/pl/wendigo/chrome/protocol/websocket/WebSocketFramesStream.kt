@@ -92,6 +92,7 @@ class WebSocketFramesStream(
         try {
             connection.close(1000, "Goodbye!")
             client.connectionPool.evictAll()
+            client.dispatcher.executorService.shutdown()
         } catch (e: Exception) {
             logger.warn("Caught exception while closing WebSocket stream: ${e.message}")
         }
