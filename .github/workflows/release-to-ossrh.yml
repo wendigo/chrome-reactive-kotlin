@@ -55,12 +55,12 @@ jobs:
         run: ./gradlew currentVersion
 
       - name: Release artefacts with forced version
-        run: ./gradlew release -Prelease.forceVersion=${{ github.event.inputs.version }}
+        run: ./gradlew release ${GRADLE_FLAGS} -Prelease.forceVersion=${{ github.event.inputs.version }}
         if: github.event.inputs.version != ''
 
       - name: Release artefacts
         run: ./gradlew release ${GRADLE_FLAGS}
-        if: github.event.inputs.branch == 'master' && github.event.inputs.version != ''
+        if: github.event.inputs.version == ''
 
       - name: Display released version
         run: ./gradlew currentVersion

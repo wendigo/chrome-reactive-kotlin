@@ -36,6 +36,7 @@ scmVersion {
     tag.prefix = "chrome-reactive-kotlin"
     repository.customUsername = project.ext["githubToken"] as String
     repository.pushTagsOnly = true
+    useHighestVersion = true
 
     val pattern = KotlinClosure2({ currentVersion: String, c: pl.allegro.tech.build.axion.release.domain.hooks.HookContext ->
         "\\Q${currentVersion}\\E"
