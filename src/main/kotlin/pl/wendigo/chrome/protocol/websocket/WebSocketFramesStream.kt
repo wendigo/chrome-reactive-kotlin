@@ -31,7 +31,7 @@ class WebSocketFramesStream(
     private val mapper: FrameMapper,
     webSocketClient: OkHttpClient
 ) : WebSocketListener(), Closeable, AutoCloseable {
-    private val messages: Subject<WebSocketFrame> = ReplaySubject.create(framesBufferSize)
+    private val messages: Subject<WebSocketFrame> = ReplaySubject.createWithSize(framesBufferSize)
     private val connection: WebSocket = webSocketClient.newWebSocket(Request.Builder().url(webSocketUri).build(), this)
     private val client: OkHttpClient = webSocketClient
 
