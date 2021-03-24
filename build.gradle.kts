@@ -51,6 +51,8 @@ scmVersion {
     hooks.pre("commit", KotlinClosure2({ version: String, s: pl.allegro.tech.build.axion.release.domain.scm.ScmPosition ->
         "Release version $version from branch ${s.branch}"
     }))
+
+    hooks.post("push")
 }
 
 group = "pl.wendigo"
