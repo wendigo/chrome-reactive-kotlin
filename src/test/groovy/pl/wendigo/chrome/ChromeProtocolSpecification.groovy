@@ -114,4 +114,13 @@ class ChromeProtocolSpecification
         cleanup:
             container.stop()
     }
+
+    def "should return project info"()
+    {
+        given:
+            def version = Browser.buildInfo()
+
+        expect:
+            version.toString() =~ "^pl\\.wendigo:chrome-reactive-kotlin:(.*?) built from (.*?), rev (.*?)\$"
+    }
 }

@@ -85,6 +85,16 @@ open class Browser internal constructor(
         private val logger: Logger = LoggerFactory.getLogger(Browser::class.java)
 
         /**
+         * Returns library build info.
+         */
+        @JvmStatic
+        fun buildInfo(): BuildInfo {
+            return Browser.javaClass.getResource("/version.json").readText().run {
+                Json.decodeFromString(BuildInfo.serializer(), this)
+            }
+        }
+
+        /**
          * Creates new Browser instance by connecting to remote chrome debugger.
          */
         private fun connect(chromeAddress: String = "localhost:9222", options: Options): Browser {

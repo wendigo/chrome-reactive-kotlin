@@ -11,6 +11,7 @@ plugins {
     id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
     id("org.jetbrains.dokka") version "1.4.30"
     id("com.adarshr.test-logger") version "2.1.1"
+
     kotlin("jvm") version "1.4.31"
     kotlin("kapt") version "1.4.31"
     kotlin("plugin.serialization") version "1.4.31"
@@ -129,6 +130,19 @@ tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
                 remoteUrl.set(uri("https://github.com/wendigo/chrome-reactive-kotlin/tree/master/src/main/kotlin").toURL())
                 remoteLineSuffix.set("#L")
             }
+        }
+    }
+}
+
+tasks.withType<ProcessResources>().forEach {
+    it.filesMatching("**/version.json") {
+        filter {
+            it
+                .replace("@version@", scmVersion.version)
+                .replace("@revision@", scmVersion.scmPosition.revision)
+                .replace("@branch@", scmVersion.scmPosition.branch)
+                .replace("@group@", project.group as String)
+                .replace("@name@", project.name)
         }
     }
 }

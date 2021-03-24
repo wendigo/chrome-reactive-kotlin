@@ -1,0 +1,7 @@
+{
+  "version": "@version@",
+  "revision": "@revision@",
+  "branch": "@branch@",
+  "group": "@group@",
+  "name": "@name@"
+}
