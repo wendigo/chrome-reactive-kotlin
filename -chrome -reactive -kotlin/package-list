@@ -7623,6 +7623,7 @@ $dokka.location:pl.wendigo.chrome/Browser.Builder/withEventsBufferSize/#kotlin.I
 $dokka.location:pl.wendigo.chrome/Browser.Builder/withViewportHeight/#kotlin.Int/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-browser/-builder/with-viewport-height.html
 $dokka.location:pl.wendigo.chrome/Browser.Builder/withViewportWidth/#kotlin.Int/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-browser/-builder/with-viewport-width.html
 $dokka.location:pl.wendigo.chrome/Browser.Companion///PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-browser/-companion/index.html
+$dokka.location:pl.wendigo.chrome/Browser.Companion/buildInfo/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-browser/-companion/build-info.html
 $dokka.location:pl.wendigo.chrome/Browser.Companion/builder/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-browser/-companion/builder.html
 $dokka.location:pl.wendigo.chrome/Browser///PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-browser/index.html
 $dokka.location:pl.wendigo.chrome/Browser/attach/#pl.wendigo.chrome.api.target.TargetInfo/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-browser/attach.html
@@ -7634,6 +7635,14 @@ $dokka.location:pl.wendigo.chrome/Browser/targets/#/PointingToDeclaration/-chro
 $dokka.location:pl.wendigo.chrome/Browser/toString/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-browser/to-string.html
 $dokka.location:pl.wendigo.chrome/BrowserInfoDiscoveryFailedException///PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-browser-info-discovery-failed-exception/index.html
 $dokka.location:pl.wendigo.chrome/BrowserInfoDiscoveryFailedException/BrowserInfoDiscoveryFailedException/#kotlin.String/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-browser-info-discovery-failed-exception/-browser-info-discovery-failed-exception.html
+$dokka.location:pl.wendigo.chrome/BuildInfo///PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-build-info/index.html
+$dokka.location:pl.wendigo.chrome/BuildInfo/BuildInfo/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-build-info/-build-info.html
+$dokka.location:pl.wendigo.chrome/BuildInfo/branch/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-build-info/branch.html
+$dokka.location:pl.wendigo.chrome/BuildInfo/group/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-build-info/group.html
+$dokka.location:pl.wendigo.chrome/BuildInfo/name/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-build-info/name.html
+$dokka.location:pl.wendigo.chrome/BuildInfo/revision/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-build-info/revision.html
+$dokka.location:pl.wendigo.chrome/BuildInfo/toString/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-build-info/to-string.html
+$dokka.location:pl.wendigo.chrome/BuildInfo/version/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome/-build-info/version.html
 pl.wendigo.chrome
 pl.wendigo.chrome.api
 pl.wendigo.chrome.api.accessibility
