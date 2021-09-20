@@ -8,7 +8,8 @@ data class BuildInfo(
     val revision: String,
     val branch: String,
     val group: String,
-    val name: String) {
+    val name: String
+) {
     override fun toString(): String {
         return "$group:$name:$version built from $branch, rev $revision"
     }
