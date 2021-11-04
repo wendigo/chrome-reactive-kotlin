@@ -7544,6 +7544,7 @@ $dokka.location:pl.wendigo.chrome.protocol/Event.Companion///PointingToDeclarati
 $dokka.location:pl.wendigo.chrome.protocol/Event///PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome.protocol/-event/index.html
 $dokka.location:pl.wendigo.chrome.protocol/Event/domain/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome.protocol/-event/domain.html
 $dokka.location:pl.wendigo.chrome.protocol/Event/eventName/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome.protocol/-event/event-name.html
+$dokka.location:pl.wendigo.chrome.protocol/EventMapper.Companion///PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome.protocol/-event-mapper/-companion/index.html
 $dokka.location:pl.wendigo.chrome.protocol/EventMapper///PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome.protocol/-event-mapper/index.html
 $dokka.location:pl.wendigo.chrome.protocol/EventMapper/EventMapper/#/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome.protocol/-event-mapper/-event-mapper.html
 $dokka.location:pl.wendigo.chrome.protocol/EventMapper/deserialize/#pl.wendigo.chrome.protocol.websocket.EventResponseFrame#kotlinx.serialization.KSerializer[TypeParam(bounds=[pl.wendigo.chrome.protocol.Event])]/PointingToDeclaration/-chrome -reactive -kotlin/pl.wendigo.chrome.protocol/-event-mapper/deserialize.html
