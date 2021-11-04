@@ -83,14 +83,18 @@ open class Browser internal constructor(
 
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(Browser::class.java)
+        private val decoder = Json {
+            ignoreUnknownKeys = true;
+            isLenient = true
+        }
 
         /**
          * Returns library build info.
          */
         @JvmStatic
         fun buildInfo(): BuildInfo {
-            return Browser.javaClass.getResource("/version.json").readText().run {
-                Json.decodeFromString(BuildInfo.serializer(), this)
+            return Browser.javaClass.getResource("/version.json")!!.readText().run {
+                decoder.decodeFromString(BuildInfo.serializer(), this)
             }
         }
 
@@ -123,7 +127,7 @@ open class Browser internal constructor(
             val info = client.newCall(Request.Builder().url("http://$chromeAddress/json/version").build()).execute()
 
             return when (info.isSuccessful) {
-                true -> Json.decodeFromString(info.body?.string()!!)
+                true -> decoder.decodeFromString(info.body?.string()!!)
                 false -> throw BrowserInfoDiscoveryFailedException("Could not query browser info - response code was ${info.code}")
             }
         }

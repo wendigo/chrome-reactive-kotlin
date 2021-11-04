@@ -16,7 +16,7 @@ class EventMapper {
                 return Event.fromFrame(eventFrame) as T
             }
 
-            return Json.decodeFromJsonElement(eventSerializer, eventFrame.params)
+            return decoder.decodeFromJsonElement(eventSerializer, eventFrame.params)
         } catch (e: Throwable) {
             throw DeserializationFailed("Could not deserialize event $eventFrame with $eventSerializer", e)
         }
@@ -28,5 +28,12 @@ class EventMapper {
      */
     fun deserialize(eventFrame: EventResponseFrame): Event {
         return deserialize(eventFrame, EventSerializers.getByEventName(eventFrame))
+    }
+
+    companion object {
+        private val decoder = Json {
+            ignoreUnknownKeys = true;
+            isLenient = true
+        }
     }
 }
